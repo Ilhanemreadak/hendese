@@ -16,7 +16,7 @@
   .is-live .sa-v1lbl:not(.gone) .sa-dead{display:none}
   .is-live .sa-show:not(.in){opacity:0}
 }
-html.motion .sa-split,html.motion .sa-l1,html.motion .sa-l2{transition:transform var(--dur-3) var(--ease),stroke-width var(--dur-3) var(--ease)}
+html.motion .sa-split,html.motion .sa-l1,html.motion .sa-l2{transition:transform var(--dur-3) var(--ease-out),stroke-width var(--dur-3) var(--ease-out)}
 html.motion .sa-show{transition:opacity var(--dur-2)}
 .sticky .dl b{display:block}
 </style>
@@ -189,9 +189,9 @@ Hendese.stickyScene({
   <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
   <tbody>
     <tr><td><code>el</code></td><td><code>.sticky</code> seçicisi; içinde <code>.sticky-fig</code> &gt; <code>.drawing</code> ve <code>[data-beat]</code> öğeleri.</td></tr>
-    <tr><td><code>render(i, t, api)</code></td><td><code>i</code> etkin beat (0'dan), <code>t</code> beat içi ilerleme 0..1. Döner: <code>{hud?, hoca?}</code>.</td></tr>
+    <tr><td><code>render(i, t, api)</code></td><td><code>i</code> etkin beat (0'dan), <code>t</code> beat içi ilerleme 0..1. Döner: <code>{hud?, tb?, hoca?}</code>; <code>tb</code> 0..1 göstergeyi antet haline (<code>.hud-tb</code>) geçirir.</td></tr>
     <tr><td><code>chap</code>, <code>still</code>, <code>measure(api)</code>, <code>reset(api)</code></td><td>Pin sahnesindeki gibi.</td></tr>
-    <tr><td><code>api</code></td><td><code>el, fig, beats, drawing, aw, ah, set(k, v)</code> (<code>--k</code>'yı <code>.sticky-fig</code>'e yazar), <code>cls, live, poke, seg, ease, lerp, clamp01</code>.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, fig, beats, drawing, aw, ah</code> (<code>aw</code>/<code>ah</code> her ölçümde hesaplanmış <code>--aw</code>/<code>--ah</code>'tan okunur; dar varyantta değişir), <code>set(k, v)</code> (<code>--k</code>'yı <code>.sticky-fig</code>'e yazar), <code>cls, live, poke, seg, ease, lerp, clamp01</code>.</td></tr>
     <tr><td><code>.on</code> / <code>.past</code></td><td>Motorun beat'lere kendisi verdiği sınıflar; canlı mod kapanınca silinir.</td></tr>
     <tr><td><code>.sticky--dense</code></td><td>1100–1279px'de şekil sütununu genişletir, iç boşlukları azaltır.</td></tr>
     <tr><td><code>.hud-slot</code></td><td>İsteğe bağlı; <code>.sf-head</code> içine konur, HUD 232px genişlikte iner.</td></tr>

@@ -9,13 +9,9 @@
 <link rel="stylesheet" href="assets/docs.css">
 <style>
 /* Sayfaya özel tarif stilleri: paketin parçası değildir, her tarifin "stil" bloğunda aynen görünür. */
-/* yalnız bu sayfa: çizgi tablosundaki örnek çizgiler, lamba listesi */
+/* yalnız bu sayfa: çizgi tablosundaki örnek çizgiler */
 .r-sw{display:block;width:120px;height:16px;fill:none;overflow:visible}
-.r-lamps{margin:12px 0 0;padding-left:1.6em;font-size:14px;line-height:1.55;color:var(--ink-2)}
-.r-lamps li::marker{font:600 12px var(--font-mono);color:var(--draw)}
-.r-lamps .on{color:var(--ink)}
-/* ortak: küçük harfli mono anahtar etiketi, ortalı etiket */
-.r-k{display:block;font:600 max(9.5px,calc(10.5 * var(--u)))/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
+/* ortak: ortalı etiket, mürekkep renkleri; anahtar etiketi .stamp-k paket sınıfı */
 .r-c{text-align:center}
 .r-ink{color:var(--ink)}
 .r-mute{color:var(--ink-3)}
@@ -36,34 +32,20 @@
 /* kumpas: hücreler çizim birimiyle (26 birim) ölçülür; sabit çene ^, kayan çene $ */
 .r-anc{font:600 18px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-gauge{display:flex}
-.r-cells{display:flex}
-.r-cells i{display:grid;place-items:center;position:relative;width:calc(26 * var(--u));height:calc(40 * var(--u));box-sizing:border-box;border:1px solid var(--pencil);background:var(--paper);font:600 max(12px,calc(20 * var(--u)))/1 var(--font-mono);font-style:normal;color:var(--ink)}
-.r-cells i+i{border-left:0}
-.r-cells i.ok{border-bottom:calc(3 * var(--u)) solid var(--ok)}
-.r-cells i.bad,.r-cells i.miss{z-index:1;border:calc(2 * var(--u)) solid var(--bad);background:var(--bad-soft);color:var(--bad)}
-.r-cells i.miss{border-style:dashed}
-.r-cells i.dim{border-style:dashed;background:transparent;color:var(--ink-3)}
-.r-cells i.mk::after{content:"▲";position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:max(10px,calc(14 * var(--u)));line-height:1.2;color:var(--bad)}
+/* hücreler: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark paket sınıfı */
 .r-seg>code{display:block;margin-top:calc(22 * var(--u));padding:calc(3 * var(--u)) 0 0;border:0;border-top:calc(2 * var(--u)) solid currentColor;border-radius:0;background:none;font:600 max(11px,calc(14 * var(--u)))/1.3 var(--font-mono);color:var(--draw);white-space:nowrap}
 .r-seg.ok>code{color:var(--ok)}.r-seg.bad>code{color:var(--bad)}
 .r-verdict{color:var(--ink);font-size:max(11px,calc(14 * var(--u)))}
 .r-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.r-legend .r-cells i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}
-/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir (merkez = view-box koordinatı) */
-.r-needle{transform-box:view-box;transform-origin:320px 290px}
-.r-des path{stroke:var(--draw);stroke-width:2}
-.r-des .tip{fill:var(--draw);stroke:none}
-.r-act path{stroke:var(--ink);stroke-width:5;stroke-linecap:round}
-.r-act circle{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.r-legend .cells>i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}
+/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir; .needle (istenen) ve .needle.is-actual (gerçek) paket sınıfı, merkez --ox/--oy (view-box koordinatı) */
 .r-gap{stroke:var(--warn);stroke-width:6}
 .r-sweep{stroke:var(--draw);stroke-width:2;transform-box:view-box;transform-origin:60px 300px;transform:rotate(135deg)}
-.r-des-l{stroke:var(--draw);stroke-width:2}
-.r-act-l{stroke:var(--ink);stroke-width:5;stroke-linecap:round}
+/* lejant çizgileri de ibre: .needle (istenen), .needle.is-actual (gerçek) */
 /* hat: kalın ray; makasın kullanılmayan kolu hayalet; filtre kolu kırmızı */
 .r-tr{stroke:var(--draw);stroke-width:2.5}
 .r-arm{stroke:var(--bad);stroke-width:5;stroke-linecap:round}
-.r-tag{width:auto;padding:0 calc(6 * var(--u));border:1px solid var(--draw);background:var(--paper);color:var(--ink);white-space:nowrap}
-.r-tag-g{border-style:dashed;border-color:var(--pencil);color:var(--ink-3)}
+/* hat etiketi: .tag, .tag.is-ghost paket sınıfı */
 /* açılır kapak: menteşe view-box koordinatında; durum değişince yalnızca rotate değişir */
 .r-deck{stroke:var(--draw);stroke-width:2.5}
 .r-hinge{fill:var(--scene-bg);stroke:var(--draw);stroke-width:1.5}
@@ -76,13 +58,10 @@
 /* pano: lamba numarası = alttaki listenin satırı; yanan lamba ve fazı kırmızı */
 .r-z{color:var(--draw);letter-spacing:.06em;text-transform:uppercase}
 .r-seg2{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
-.r-seg2.on{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
+.r-seg2[data-state="on"]{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
 .r-ld{stroke:var(--pencil);stroke-width:1}
-.r-ld.on{stroke:var(--bad);stroke-width:2}
-.r-lamp circle{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
-.r-lamp text{font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
-.r-lamp.on circle{fill:var(--bad);stroke:var(--bad)}
-.r-lamp.on text{fill:var(--paper)}
+.r-ld[data-state="on"]{stroke:var(--bad);stroke-width:2}
+/* lamba ve liste: .lamp, .lamps, data-state="on" paket sınıfı */
 </style>
 </head>
 <body>
@@ -156,7 +135,7 @@
   <div class="hero-copy">
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
     <h1>Blueprint ve tarifler<em>Çizim dilinin kuralları ve kopyalanabilir çizim tarifleri.</em></h1>
-    <p class="intro">Her tarif üç parçadır: ne zaman kullanılacağı, canlı çizim ve kopyalanabilir işaretleme. Çizimler paketin sınıflarıyla kurulur; paketin karşılamadığı birkaç ayrıntı <code>.r-</code> önekli küçük bir stil bloğunda durur.</p>
+    <p class="intro">Her tarif üç parçadır: ne zaman kullanılacağı, canlı çizim ve kopyalanabilir işaretleme. Çizimler paketin sınıflarıyla kurulur; paketin karşılamadığı birkaç ayrıntı <code>.r-</code> önekli küçük bir stil bloğunda durur. Birden çok sayfada gereken tarifler (<code>.tag</code>, <code>.cells</code>, <code>.needle</code>, <code>.lamp</code>, çizim içinde <code>.stamp-k</code>) paket sınıfıdır; stil bloğunda yalnız adları geçer.</p>
   </div>
 </section>
 
@@ -195,12 +174,12 @@
     <path class="ln-draw ln-dash" d="M280 105H512"/>
     <path class="ln-draw" d="M512 105l-9-4M512 105l-9 4"/>
   </svg>
-  <p class="dl" style="--x:40;--y:20;--w:240"><b class="r-k">gerçek · düz çizgi</b></p>
-  <p class="dl" style="--x:520;--y:20;--w:240"><b class="r-k">örnek · kesikli çizgi</b></p>
-  <p class="dl r-ink" style="--x:54;--y:72;--w:216"><b class="r-k">Servis</b>web-api<br><span class="r-mute">prod-3f9c2a1b</span></p>
-  <p class="dl" style="--x:534;--y:72;--w:216"><b class="r-k">Kalıp</b>&lt;ad&gt;-dev<br><span class="r-mute">yalnızca tetiklenirse oluşur</span></p>
+  <p class="dl" style="--x:40;--y:20;--w:240"><span class="stamp-k">gerçek · düz çizgi</span></p>
+  <p class="dl" style="--x:520;--y:20;--w:240"><span class="stamp-k">örnek · kesikli çizgi</span></p>
+  <p class="dl r-ink" style="--x:54;--y:72;--w:216"><span class="stamp-k">Servis</span>web-api<br><span class="r-mute">prod-3f9c2a1b</span></p>
+  <p class="dl" style="--x:534;--y:72;--w:216"><span class="stamp-k">Kalıp</span>&lt;ad&gt;-dev<br><span class="r-mute">yalnızca tetiklenirse oluşur</span></p>
   <p class="dl r-c" style="--x:300;--y:80;--w:200">kalıp eşlemesi</p>
-  <p class="dl" style="--x:40;--y:192;--w:720"><span class="state ok">Hazır</span> <span class="state warn">Bekliyor</span> <span class="state bad">Reddedildi</span> <span class="state">Taslak</span></p>
+  <p class="dl" style="--x:40;--y:192;--w:720"><span class="state s-ok">Hazır</span> <span class="state s-warn">Bekliyor</span> <span class="state s-bad">Reddedildi</span> <span class="state">Taslak</span></p>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:230"&gt;
@@ -211,15 +190,14 @@
     &lt;path class="ln-draw ln-dash" d="M280 105H512"/&gt;
     &lt;path class="ln-draw" d="M512 105l-9-4M512 105l-9 4"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl" style="--x:40;--y:20;--w:240"&gt;&lt;b class="r-k"&gt;gerçek · düz çizgi&lt;/b&gt;&lt;/p&gt;
-  &lt;p class="dl" style="--x:520;--y:20;--w:240"&gt;&lt;b class="r-k"&gt;örnek · kesikli çizgi&lt;/b&gt;&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:54;--y:72;--w:216"&gt;&lt;b class="r-k"&gt;Servis&lt;/b&gt;web-api&lt;br&gt;&lt;span class="r-mute"&gt;prod-3f9c2a1b&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl" style="--x:534;--y:72;--w:216"&gt;&lt;b class="r-k"&gt;Kalıp&lt;/b&gt;&amp;lt;ad&amp;gt;-dev&lt;br&gt;&lt;span class="r-mute"&gt;yalnızca tetiklenirse oluşur&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;gerçek · düz çizgi&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:520;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;örnek · kesikli çizgi&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:54;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Servis&lt;/span&gt;web-api&lt;br&gt;&lt;span class="r-mute"&gt;prod-3f9c2a1b&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:534;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Kalıp&lt;/span&gt;&amp;lt;ad&amp;gt;-dev&lt;br&gt;&lt;span class="r-mute"&gt;yalnızca tetiklenirse oluşur&lt;/span&gt;&lt;/p&gt;
   &lt;p class="dl r-c" style="--x:300;--y:80;--w:200"&gt;kalıp eşlemesi&lt;/p&gt;
-  &lt;p class="dl" style="--x:40;--y:192;--w:720"&gt;&lt;span class="state ok"&gt;Hazır&lt;/span&gt; &lt;span class="state warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="state"&gt;Taslak&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:192;--w:720"&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt; &lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="state"&gt;Taslak&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* ortak: küçük harfli mono anahtar etiketi, ortalı etiket */
-.r-k{display:block;font:600 max(9.5px,calc(10.5 * var(--u)))/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
+  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* ortak: ortalı etiket, mürekkep renkleri; anahtar etiketi .stamp-k paket sınıfı */
 .r-c{text-align:center}
 .r-ink{color:var(--ink)}
 .r-mute{color:var(--ink-3)}
@@ -258,9 +236,9 @@
         <rect class="ln-draw fill-paper" x="420" y="110" width="160" height="90"/>
         <path class="ln-draw" d="M180 155H214M214 155l-8-4M214 155l-8 4M380 155H414M414 155l-8-4M414 155l-8 4"/>
       </svg>
-      <p class="dl r-ink" style="--x:30;--y:122;--w:140"><b class="r-k">1 · Kaynak</b>ornek-servis</p>
-      <p class="dl r-ink" style="--x:230;--y:122;--w:140"><b class="r-k">2 · Derleme</b>prod-3f9c2a1b</p>
-      <p class="dl r-ink" style="--x:430;--y:122;--w:140"><b class="r-k">3 · Kayıt</b>eu-west-1</p>
+      <p class="dl r-ink" style="--x:30;--y:122;--w:140"><span class="stamp-k">1 · Kaynak</span>ornek-servis</p>
+      <p class="dl r-ink" style="--x:230;--y:122;--w:140"><span class="stamp-k">2 · Derleme</span>prod-3f9c2a1b</p>
+      <p class="dl r-ink" style="--x:430;--y:122;--w:140"><span class="stamp-k">3 · Kayıt</span>eu-west-1</p>
     </div>
   </div>
   <div class="f-foot">
@@ -292,9 +270,9 @@
         &lt;rect class="ln-draw fill-paper" x="420" y="110" width="160" height="90"/&gt;
         &lt;path class="ln-draw" d="M180 155H214M214 155l-8-4M214 155l-8 4M380 155H414M414 155l-8-4M414 155l-8 4"/&gt;
       &lt;/svg&gt;
-      &lt;p class="dl r-ink" style="--x:30;--y:122;--w:140"&gt;&lt;b class="r-k"&gt;1 · Kaynak&lt;/b&gt;ornek-servis&lt;/p&gt;
-      &lt;p class="dl r-ink" style="--x:230;--y:122;--w:140"&gt;&lt;b class="r-k"&gt;2 · Derleme&lt;/b&gt;prod-3f9c2a1b&lt;/p&gt;
-      &lt;p class="dl r-ink" style="--x:430;--y:122;--w:140"&gt;&lt;b class="r-k"&gt;3 · Kayıt&lt;/b&gt;eu-west-1&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:30;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;1 · Kaynak&lt;/span&gt;ornek-servis&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:230;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;2 · Derleme&lt;/span&gt;prod-3f9c2a1b&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:430;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;3 · Kayıt&lt;/span&gt;eu-west-1&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="f-foot"&gt;
@@ -361,8 +339,8 @@
       <path class="ln-block" d="M280 75H560"/>
       <path class="ln-draw ln-bad" d="M566 58V92M576 64l14 22M590 64l-14 22"/>
     </svg>
-    <p class="dl r-ink" style="--x:36;--y:44;--w:230"><b class="r-k">İç ağ</b>web-api · 10.0.0.0/16</p>
-    <p class="dl" style="--x:636;--y:44;--w:230"><b class="r-k">İnternet</b>dışarıdan erişim</p>
+    <p class="dl r-ink" style="--x:36;--y:44;--w:230"><span class="stamp-k">İç ağ</span>web-api · 10.0.0.0/16</p>
+    <p class="dl" style="--x:636;--y:44;--w:230"><span class="stamp-k">İnternet</span>dışarıdan erişim</p>
     <p class="dl r-c r-badt" style="--x:320;--y:44;--w:200">yol yok</p>
   </div>
   <figcaption class="figcap"><b>Şekil 3.</b> İç ağ ile internet arasında doğrudan yol yoktur; kırmızı kesik çizgi reddedilen denemeyi gösterir.</figcaption>
@@ -379,8 +357,8 @@
       &lt;path class="ln-block" d="M280 75H560"/&gt;
       &lt;path class="ln-draw ln-bad" d="M566 58V92M576 64l14 22M590 64l-14 22"/&gt;
     &lt;/svg&gt;
-    &lt;p class="dl r-ink" style="--x:36;--y:44;--w:230"&gt;&lt;b class="r-k"&gt;İç ağ&lt;/b&gt;web-api · 10.0.0.0/16&lt;/p&gt;
-    &lt;p class="dl" style="--x:636;--y:44;--w:230"&gt;&lt;b class="r-k"&gt;İnternet&lt;/b&gt;dışarıdan erişim&lt;/p&gt;
+    &lt;p class="dl r-ink" style="--x:36;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;İç ağ&lt;/span&gt;web-api · 10.0.0.0/16&lt;/p&gt;
+    &lt;p class="dl" style="--x:636;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;İnternet&lt;/span&gt;dışarıdan erişim&lt;/p&gt;
     &lt;p class="dl r-c r-badt" style="--x:320;--y:44;--w:200"&gt;yol yok&lt;/p&gt;
   &lt;/div&gt;
   &lt;figcaption class="figcap"&gt;&lt;b&gt;Şekil 3.&lt;/b&gt; İç ağ ile internet arasında doğrudan yol yoktur; kırmızı kesik çizgi reddedilen denemeyi gösterir.&lt;/figcaption&gt;
@@ -409,9 +387,9 @@
     <path class="ln-pencil" d="M340 165H430V56H480"/>
     <circle class="fill-draw" cx="340" cy="165" r="3"/>
   </svg>
-  <div class="dl r-ink" style="--x:76;--y:124;--w:250"><b class="r-k">Servis</b>web-api · 3 kopya<br><span class="state ok">Hazır</span></div>
+  <div class="dl r-ink" style="--x:76;--y:124;--w:250"><span class="stamp-k">Servis</span>web-api · 3 kopya<br><span class="state s-ok">Hazır</span></div>
   <p class="dl callout" style="--x:480;--y:40;--w:280"><b>Çağrı notu</b>Kutu HTML'de, leader çizgisi SVG'de. İkisi de çizim birimiyle konumlanır.</p>
-  <p class="dl" style="--x:60;--y:246;--w:700"><span class="state ok">Hazır</span> <span class="state warn">Bekliyor</span> <span class="state bad">Reddedildi</span> <span class="r-mute">· .state etiketi metnin içinde akar</span></p>
+  <p class="dl" style="--x:60;--y:246;--w:700"><span class="state s-ok">Hazır</span> <span class="state s-warn">Bekliyor</span> <span class="state s-bad">Reddedildi</span> <span class="r-mute">· .state etiketi metnin içinde akar</span></p>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:290"&gt;
@@ -423,9 +401,9 @@
     &lt;path class="ln-pencil" d="M340 165H430V56H480"/&gt;
     &lt;circle class="fill-draw" cx="340" cy="165" r="3"/&gt;
   &lt;/svg&gt;
-  &lt;div class="dl r-ink" style="--x:76;--y:124;--w:250"&gt;&lt;b class="r-k"&gt;Servis&lt;/b&gt;web-api · 3 kopya&lt;br&gt;&lt;span class="state ok"&gt;Hazır&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="dl r-ink" style="--x:76;--y:124;--w:250"&gt;&lt;span class="stamp-k"&gt;Servis&lt;/span&gt;web-api · 3 kopya&lt;br&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt;&lt;/div&gt;
   &lt;p class="dl callout" style="--x:480;--y:40;--w:280"&gt;&lt;b&gt;Çağrı notu&lt;/b&gt;Kutu HTML'de, leader çizgisi SVG'de. İkisi de çizim birimiyle konumlanır.&lt;/p&gt;
-  &lt;p class="dl" style="--x:60;--y:246;--w:700"&gt;&lt;span class="state ok"&gt;Hazır&lt;/span&gt; &lt;span class="state warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="r-mute"&gt;· .state etiketi metnin içinde akar&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:60;--y:246;--w:700"&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt; &lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="r-mute"&gt;· .state etiketi metnin içinde akar&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
 </article>
@@ -619,7 +597,7 @@
     <path class="ln-pencil" d="M466 180H520L540 166H560"/>
     <circle class="fill-draw" cx="466" cy="180" r="3"/>
   </svg>
-  <p class="dl r-ink" style="--x:78;--y:114;--w:350"><b class="r-k">Derleme konteyneri</b>linux-x86_64-standard · orta boy</p>
+  <p class="dl r-ink" style="--x:78;--y:114;--w:350"><span class="stamp-k">Derleme konteyneri</span>linux-x86_64-standard · orta boy</p>
   <p class="dl callout" style="--x:560;--y:146;--w:220"><b>Geçici</b>Her build için açılır, iş bitince yok edilir.</p>
 </div>
   </div>
@@ -636,7 +614,7 @@
     &lt;path class="ln-pencil" d="M466 180H520L540 166H560"/&gt;
     &lt;circle class="fill-draw" cx="466" cy="180" r="3"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:78;--y:114;--w:350"&gt;&lt;b class="r-k"&gt;Derleme konteyneri&lt;/b&gt;linux-x86_64-standard · orta boy&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:78;--y:114;--w:350"&gt;&lt;span class="stamp-k"&gt;Derleme konteyneri&lt;/span&gt;linux-x86_64-standard · orta boy&lt;/p&gt;
   &lt;p class="dl callout" style="--x:560;--y:146;--w:220"&gt;&lt;b&gt;Geçici&lt;/b&gt;Her build için açılır, iş bitince yok edilir.&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
@@ -820,11 +798,11 @@
     <text class="r-anc" x="479" y="16">$</text>
   </svg>
   <div class="dl r-gauge" style="--x:120;--y:80;--w:378">
-    <div class="r-seg ok"><div class="r-cells"><i class="ok">p</i><i class="ok">r</i><i class="ok">o</i><i class="ok">d</i><i class="ok">-</i></div><code>^prod-</code></div>
-    <div class="r-seg bad"><div class="r-cells"><i class="ok">3</i><i class="ok">f</i><i class="ok">9</i><i class="ok">c</i><i class="ok">2</i><i class="bad mk">g</i><i class="dim">1</i><i class="miss"></i></div><code>[a-f0-9]{8} · 5/8</code></div>
+    <div class="r-seg ok"><div class="cells"><i class="s-ok">p</i><i class="s-ok">r</i><i class="s-ok">o</i><i class="s-ok">d</i><i class="s-ok">-</i></div><code>^prod-</code></div>
+    <div class="r-seg bad"><div class="cells"><i class="s-ok">3</i><i class="s-ok">f</i><i class="s-ok">9</i><i class="s-ok">c</i><i class="s-ok">2</i><i class="s-bad" data-mark>g</i><i data-state="ghost">1</i><i data-state="miss"></i></div><code>[a-f0-9]{8} · 5/8</code></div>
   </div>
-  <div class="dl r-verdict" style="--x:540;--y:76;--w:340"><span class="state bad">Uymaz</span> 6. karakter <b>g</b> onaltılık değil; sekiz haneden yalnızca yedisi var.</div>
-  <p class="dl r-legend" style="--x:540;--y:150;--w:340"><span class="r-cells"><i class="ok">a</i></span>geçti <span class="r-cells"><i class="bad">x</i></span>kaldı <span class="r-cells"><i class="miss"></i></span>eksik <span class="r-cells"><i class="dim">b</i></span>bakılmadı</p>
+  <div class="dl r-verdict" style="--x:540;--y:76;--w:340"><span class="state s-bad">Uymaz</span> 6. karakter <b>g</b> onaltılık değil; sekiz haneden yalnızca yedisi var.</div>
+  <p class="dl r-legend" style="--x:540;--y:150;--w:340"><span class="cells"><i class="s-ok">a</i></span>geçti <span class="cells"><i class="s-bad">x</i></span>kaldı <span class="cells"><i data-state="miss"></i></span>eksik <span class="cells"><i data-state="ghost">b</i></span>bakılmadı</p>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:210"&gt;
@@ -838,28 +816,21 @@
     &lt;text class="r-anc" x="479" y="16"&gt;$&lt;/text&gt;
   &lt;/svg&gt;
   &lt;div class="dl r-gauge" style="--x:120;--y:80;--w:378"&gt;
-    &lt;div class="r-seg ok"&gt;&lt;div class="r-cells"&gt;&lt;i class="ok"&gt;p&lt;/i&gt;&lt;i class="ok"&gt;r&lt;/i&gt;&lt;i class="ok"&gt;o&lt;/i&gt;&lt;i class="ok"&gt;d&lt;/i&gt;&lt;i class="ok"&gt;-&lt;/i&gt;&lt;/div&gt;&lt;code&gt;^prod-&lt;/code&gt;&lt;/div&gt;
-    &lt;div class="r-seg bad"&gt;&lt;div class="r-cells"&gt;&lt;i class="ok"&gt;3&lt;/i&gt;&lt;i class="ok"&gt;f&lt;/i&gt;&lt;i class="ok"&gt;9&lt;/i&gt;&lt;i class="ok"&gt;c&lt;/i&gt;&lt;i class="ok"&gt;2&lt;/i&gt;&lt;i class="bad mk"&gt;g&lt;/i&gt;&lt;i class="dim"&gt;1&lt;/i&gt;&lt;i class="miss"&gt;&lt;/i&gt;&lt;/div&gt;&lt;code&gt;[a-f0-9]{8} · 5/8&lt;/code&gt;&lt;/div&gt;
+    &lt;div class="r-seg ok"&gt;&lt;div class="cells"&gt;&lt;i class="s-ok"&gt;p&lt;/i&gt;&lt;i class="s-ok"&gt;r&lt;/i&gt;&lt;i class="s-ok"&gt;o&lt;/i&gt;&lt;i class="s-ok"&gt;d&lt;/i&gt;&lt;i class="s-ok"&gt;-&lt;/i&gt;&lt;/div&gt;&lt;code&gt;^prod-&lt;/code&gt;&lt;/div&gt;
+    &lt;div class="r-seg bad"&gt;&lt;div class="cells"&gt;&lt;i class="s-ok"&gt;3&lt;/i&gt;&lt;i class="s-ok"&gt;f&lt;/i&gt;&lt;i class="s-ok"&gt;9&lt;/i&gt;&lt;i class="s-ok"&gt;c&lt;/i&gt;&lt;i class="s-ok"&gt;2&lt;/i&gt;&lt;i class="s-bad" data-mark&gt;g&lt;/i&gt;&lt;i data-state="ghost"&gt;1&lt;/i&gt;&lt;i data-state="miss"&gt;&lt;/i&gt;&lt;/div&gt;&lt;code&gt;[a-f0-9]{8} · 5/8&lt;/code&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="dl r-verdict" style="--x:540;--y:76;--w:340"&gt;&lt;span class="state bad"&gt;Uymaz&lt;/span&gt; 6. karakter &lt;b&gt;g&lt;/b&gt; onaltılık değil; sekiz haneden yalnızca yedisi var.&lt;/div&gt;
-  &lt;p class="dl r-legend" style="--x:540;--y:150;--w:340"&gt;&lt;span class="r-cells"&gt;&lt;i class="ok"&gt;a&lt;/i&gt;&lt;/span&gt;geçti &lt;span class="r-cells"&gt;&lt;i class="bad"&gt;x&lt;/i&gt;&lt;/span&gt;kaldı &lt;span class="r-cells"&gt;&lt;i class="miss"&gt;&lt;/i&gt;&lt;/span&gt;eksik &lt;span class="r-cells"&gt;&lt;i class="dim"&gt;b&lt;/i&gt;&lt;/span&gt;bakılmadı&lt;/p&gt;
+  &lt;div class="dl r-verdict" style="--x:540;--y:76;--w:340"&gt;&lt;span class="state s-bad"&gt;Uymaz&lt;/span&gt; 6. karakter &lt;b&gt;g&lt;/b&gt; onaltılık değil; sekiz haneden yalnızca yedisi var.&lt;/div&gt;
+  &lt;p class="dl r-legend" style="--x:540;--y:150;--w:340"&gt;&lt;span class="cells"&gt;&lt;i class="s-ok"&gt;a&lt;/i&gt;&lt;/span&gt;geçti &lt;span class="cells"&gt;&lt;i class="s-bad"&gt;x&lt;/i&gt;&lt;/span&gt;kaldı &lt;span class="cells"&gt;&lt;i data-state="miss"&gt;&lt;/i&gt;&lt;/span&gt;eksik &lt;span class="cells"&gt;&lt;i data-state="ghost"&gt;b&lt;/i&gt;&lt;/span&gt;bakılmadı&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
   <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* kumpas: hücreler çizim birimiyle (26 birim) ölçülür; sabit çene ^, kayan çene $ */
 .r-anc{font:600 18px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-gauge{display:flex}
-.r-cells{display:flex}
-.r-cells i{display:grid;place-items:center;position:relative;width:calc(26 * var(--u));height:calc(40 * var(--u));box-sizing:border-box;border:1px solid var(--pencil);background:var(--paper);font:600 max(12px,calc(20 * var(--u)))/1 var(--font-mono);font-style:normal;color:var(--ink)}
-.r-cells i+i{border-left:0}
-.r-cells i.ok{border-bottom:calc(3 * var(--u)) solid var(--ok)}
-.r-cells i.bad,.r-cells i.miss{z-index:1;border:calc(2 * var(--u)) solid var(--bad);background:var(--bad-soft);color:var(--bad)}
-.r-cells i.miss{border-style:dashed}
-.r-cells i.dim{border-style:dashed;background:transparent;color:var(--ink-3)}
-.r-cells i.mk::after{content:"▲";position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:max(10px,calc(14 * var(--u)));line-height:1.2;color:var(--bad)}
+/* hücreler: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark paket sınıfı */
 .r-seg&gt;code{display:block;margin-top:calc(22 * var(--u));padding:calc(3 * var(--u)) 0 0;border:0;border-top:calc(2 * var(--u)) solid currentColor;border-radius:0;background:none;font:600 max(11px,calc(14 * var(--u)))/1.3 var(--font-mono);color:var(--draw);white-space:nowrap}
 .r-seg.ok&gt;code{color:var(--ok)}.r-seg.bad&gt;code{color:var(--bad)}
 .r-verdict{color:var(--ink);font-size:max(11px,calc(14 * var(--u)))}
 .r-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
-.r-legend .r-cells i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}</code></pre></figure>
+.r-legend .cells>i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}</code></pre></figure>
 </div>
 <p>Kadran, istenen durum (ince ibre, ok uçlu) ile gerçek durumu (kalın ibre) aynı ölçek üzerinde gösterir; aradaki fark turuncu yayla işaretlenir. Soldaki tarayıcı simgesi düzenli kontrolü anlatır.</p>
 <div class="demo">
@@ -870,18 +841,18 @@
     <path class="ln-draw" d="M122.7 218.2A210 210 0 0 1 517.3 218.2"/>
     <path class="ln-pencil" d="M122.7 218.2L131.1 221.3M138.1 185L152 193M159.1 155L166 160.8M185 129.1L190.8 136M215 108.1L223 122M248.2 92.7L251.3 101.1M283.5 83.2L285.1 92.1M320 80L320 96M356.5 83.2L354.9 92.1M391.8 92.7L388.7 101.1M425 108.1L417 122M455 129.1L449.2 136M480.9 155L474 160.8M501.9 185L488 193M517.3 218.2L508.9 221.3"/>
     <path class="r-gap" d="M209 97.7A222 222 0 0 1 431 97.7"/>
-    <g class="r-needle r-act" style="transform:rotate(-30deg)"><path d="M320 300V150"/><circle cx="320" cy="290" r="12"/></g>
-    <g class="r-needle r-des" style="transform:rotate(30deg)"><path d="M320 290V108"/><path class="tip" d="M320 96l-6 12h12z"/></g>
+    <g class="needle is-actual" style="--ox:320px;--oy:290px;transform:rotate(-30deg)"><path d="M320 300V150"/><circle cx="320" cy="290" r="12"/></g>
+    <g class="needle" style="--ox:320px;--oy:290px;transform:rotate(30deg)"><path d="M320 290V108"/><path class="tip" d="M320 96l-6 12h12z"/></g>
     <circle class="fill-draw" cx="320" cy="290" r="4"/>
     <circle class="ln-draw fill-scene" cx="60" cy="300" r="34"/>
     <circle class="ln-pencil" cx="60" cy="300" r="20"/>
     <path class="ln-pencil" d="M26 300H94M60 266V334"/>
     <line class="r-sweep" x1="60" y1="300" x2="60" y2="268"/>
-    <path class="r-des-l" d="M470 302H500"/><path class="r-act-l" d="M470 330H500"/>
+    <g class="needle"><path d="M470 302H500"/></g><g class="needle is-actual"><path d="M470 330H500"/></g>
   </svg>
   <p class="dl r-c r-ink" style="--x:95;--y:30;--w:150">prod-79457ad0</p>
   <p class="dl r-c r-ink" style="--x:395;--y:30;--w:150">prod-3f9c2a1b</p>
-  <p class="dl r-c" style="--x:245;--y:30;--w:150"><span class="state warn">Fark</span></p>
+  <p class="dl r-c" style="--x:245;--y:30;--w:150"><span class="state s-warn">Fark</span></p>
   <p class="dl" style="--x:104;--y:300;--w:120">tarama · 2 dk</p>
   <p class="dl" style="--x:510;--y:292;--w:130">istenen (Git)</p>
   <p class="dl" style="--x:510;--y:320;--w:130">gerçek (küme)</p>
@@ -892,32 +863,26 @@
     &lt;path class="ln-draw" d="M122.7 218.2A210 210 0 0 1 517.3 218.2"/&gt;
     &lt;path class="ln-pencil" d="M122.7 218.2L131.1 221.3M138.1 185L152 193M159.1 155L166 160.8M185 129.1L190.8 136M215 108.1L223 122M248.2 92.7L251.3 101.1M283.5 83.2L285.1 92.1M320 80L320 96M356.5 83.2L354.9 92.1M391.8 92.7L388.7 101.1M425 108.1L417 122M455 129.1L449.2 136M480.9 155L474 160.8M501.9 185L488 193M517.3 218.2L508.9 221.3"/&gt;
     &lt;path class="r-gap" d="M209 97.7A222 222 0 0 1 431 97.7"/&gt;
-    &lt;g class="r-needle r-act" style="transform:rotate(-30deg)"&gt;&lt;path d="M320 300V150"/&gt;&lt;circle cx="320" cy="290" r="12"/&gt;&lt;/g&gt;
-    &lt;g class="r-needle r-des" style="transform:rotate(30deg)"&gt;&lt;path d="M320 290V108"/&gt;&lt;path class="tip" d="M320 96l-6 12h12z"/&gt;&lt;/g&gt;
+    &lt;g class="needle is-actual" style="--ox:320px;--oy:290px;transform:rotate(-30deg)"&gt;&lt;path d="M320 300V150"/&gt;&lt;circle cx="320" cy="290" r="12"/&gt;&lt;/g&gt;
+    &lt;g class="needle" style="--ox:320px;--oy:290px;transform:rotate(30deg)"&gt;&lt;path d="M320 290V108"/&gt;&lt;path class="tip" d="M320 96l-6 12h12z"/&gt;&lt;/g&gt;
     &lt;circle class="fill-draw" cx="320" cy="290" r="4"/&gt;
     &lt;circle class="ln-draw fill-scene" cx="60" cy="300" r="34"/&gt;
     &lt;circle class="ln-pencil" cx="60" cy="300" r="20"/&gt;
     &lt;path class="ln-pencil" d="M26 300H94M60 266V334"/&gt;
     &lt;line class="r-sweep" x1="60" y1="300" x2="60" y2="268"/&gt;
-    &lt;path class="r-des-l" d="M470 302H500"/&gt;&lt;path class="r-act-l" d="M470 330H500"/&gt;
+    &lt;g class="needle"&gt;&lt;path d="M470 302H500"/&gt;&lt;/g&gt;&lt;g class="needle is-actual"&gt;&lt;path d="M470 330H500"/&gt;&lt;/g&gt;
   &lt;/svg&gt;
   &lt;p class="dl r-c r-ink" style="--x:95;--y:30;--w:150"&gt;prod-79457ad0&lt;/p&gt;
   &lt;p class="dl r-c r-ink" style="--x:395;--y:30;--w:150"&gt;prod-3f9c2a1b&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:245;--y:30;--w:150"&gt;&lt;span class="state warn"&gt;Fark&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:245;--y:30;--w:150"&gt;&lt;span class="state s-warn"&gt;Fark&lt;/span&gt;&lt;/p&gt;
   &lt;p class="dl" style="--x:104;--y:300;--w:120"&gt;tarama · 2 dk&lt;/p&gt;
   &lt;p class="dl" style="--x:510;--y:292;--w:130"&gt;istenen (Git)&lt;/p&gt;
   &lt;p class="dl" style="--x:510;--y:320;--w:130"&gt;gerçek (küme)&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir (merkez = view-box koordinatı) */
-.r-needle{transform-box:view-box;transform-origin:320px 290px}
-.r-des path{stroke:var(--draw);stroke-width:2}
-.r-des .tip{fill:var(--draw);stroke:none}
-.r-act path{stroke:var(--ink);stroke-width:5;stroke-linecap:round}
-.r-act circle{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir; .needle (istenen) ve .needle.is-actual (gerçek) paket sınıfı, merkez --ox/--oy (view-box koordinatı) */
 .r-gap{stroke:var(--warn);stroke-width:6}
 .r-sweep{stroke:var(--draw);stroke-width:2;transform-box:view-box;transform-origin:60px 300px;transform:rotate(135deg)}
-.r-des-l{stroke:var(--draw);stroke-width:2}
-.r-act-l{stroke:var(--ink);stroke-width:5;stroke-linecap:round}</code></pre></figure>
+/* lejant çizgileri de ibre: .needle (istenen), .needle.is-actual (gerçek) */</code></pre></figure>
 </div>
 </article>
 
@@ -940,10 +905,10 @@
   <p class="dl" style="--x:40;--y:44;--w:200">ana dal</p>
   <p class="dl" style="--x:40;--y:134;--w:200">diğer dallar</p>
   <p class="dl r-badt" style="--x:120;--y:206;--w:200">tetik filtresi</p>
-  <p class="dl r-ink" style="--x:332;--y:32;--w:210"><b class="r-k">Derleme projesi</b>tek tarif dosyası</p>
+  <p class="dl r-ink" style="--x:332;--y:32;--w:210"><span class="stamp-k">Derleme projesi</span>tek tarif dosyası</p>
   <p class="dl r-c" style="--x:385;--y:124;--w:120">makas</p>
-  <p class="dl r-tag" style="--x:600;--y:42;--w:150">prod-&lt;hash&gt;</p>
-  <p class="dl r-tag r-tag-g" style="--x:600;--y:168;--w:150">dev-&lt;hash&gt;</p>
+  <p class="dl tag" style="--x:600;--y:42;--w:150">prod-&lt;hash&gt;</p>
+  <p class="dl tag is-ghost" style="--x:600;--y:168;--w:150">dev-&lt;hash&gt;</p>
   <p class="dl r-mute" style="--x:600;--y:200;--w:290">oluşmaz: filtre dalı geçirmez</p>
 </div>
   </div>
@@ -960,17 +925,16 @@
   &lt;p class="dl" style="--x:40;--y:44;--w:200"&gt;ana dal&lt;/p&gt;
   &lt;p class="dl" style="--x:40;--y:134;--w:200"&gt;diğer dallar&lt;/p&gt;
   &lt;p class="dl r-badt" style="--x:120;--y:206;--w:200"&gt;tetik filtresi&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:332;--y:32;--w:210"&gt;&lt;b class="r-k"&gt;Derleme projesi&lt;/b&gt;tek tarif dosyası&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:332;--y:32;--w:210"&gt;&lt;span class="stamp-k"&gt;Derleme projesi&lt;/span&gt;tek tarif dosyası&lt;/p&gt;
   &lt;p class="dl r-c" style="--x:385;--y:124;--w:120"&gt;makas&lt;/p&gt;
-  &lt;p class="dl r-tag" style="--x:600;--y:42;--w:150"&gt;prod-&amp;lt;hash&amp;gt;&lt;/p&gt;
-  &lt;p class="dl r-tag r-tag-g" style="--x:600;--y:168;--w:150"&gt;dev-&amp;lt;hash&amp;gt;&lt;/p&gt;
+  &lt;p class="dl tag" style="--x:600;--y:42;--w:150"&gt;prod-&amp;lt;hash&amp;gt;&lt;/p&gt;
+  &lt;p class="dl tag is-ghost" style="--x:600;--y:168;--w:150"&gt;dev-&amp;lt;hash&amp;gt;&lt;/p&gt;
   &lt;p class="dl r-mute" style="--x:600;--y:200;--w:290"&gt;oluşmaz: filtre dalı geçirmez&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
   <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* hat: kalın ray; makasın kullanılmayan kolu hayalet; filtre kolu kırmızı */
 .r-tr{stroke:var(--draw);stroke-width:2.5}
 .r-arm{stroke:var(--bad);stroke-width:5;stroke-linecap:round}
-.r-tag{width:auto;padding:0 calc(6 * var(--u));border:1px solid var(--draw);background:var(--paper);color:var(--ink);white-space:nowrap}
-.r-tag-g{border-style:dashed;border-color:var(--pencil);color:var(--ink-3)}</code></pre></figure>
+/* hat etiketi: .tag, .tag.is-ghost paket sınıfı */</code></pre></figure>
 </div>
 <p>Pilon ve açılır köprü: iki kıyı arasındaki bağlantı. Kapak menteşede <code>transform-box: view-box</code> ile döner; son durum (indirilmiş, bağlı) düz, önceki durum (kalkık, bekliyor) hayalet çizilir. Pilon başındaki yelpaze, bağlantıyı kullanan referansların sayısını gösterir.</p>
 <div class="demo">
@@ -988,11 +952,11 @@
     <circle class="r-hinge" cx="420" cy="194" r="3.5"/>
     <path class="ln-pencil" d="M620 120L700 60H708M620 120L700 70H708M620 120L700 80H708M620 120L700 90H708M620 120L700 100H708M620 120L700 110H708M620 120L700 120H708M620 120L700 130H708M620 120L700 140H708M620 120L700 150H708M620 120L700 160H708M620 120L700 170H708"/>
   </svg>
-  <p class="dl r-ink" style="--x:34;--y:214;--w:180"><b class="r-k">Kurum ağı</b>iç servis</p>
-  <p class="dl r-ink" style="--x:436;--y:214;--w:200"><b class="r-k">Bağlantı ana makinesi</b>alt ağ başına bir ayak</p>
-  <p class="dl r-ink" style="--x:660;--y:214;--w:110"><b class="r-k">Bulut</b>eu-west-1</p>
-  <p class="dl" style="--x:120;--y:12;--w:190"><span class="state warn">Bekliyor</span><br>hayalet: kapak açık</p>
-  <p class="dl" style="--x:280;--y:208;--w:120"><span class="state ok">Bağlı</span></p>
+  <p class="dl r-ink" style="--x:34;--y:214;--w:180"><span class="stamp-k">Kurum ağı</span>iç servis</p>
+  <p class="dl r-ink" style="--x:436;--y:214;--w:200"><span class="stamp-k">Bağlantı ana makinesi</span>alt ağ başına bir ayak</p>
+  <p class="dl r-ink" style="--x:660;--y:214;--w:110"><span class="stamp-k">Bulut</span>eu-west-1</p>
+  <p class="dl" style="--x:120;--y:12;--w:190"><span class="state s-warn">Bekliyor</span><br>hayalet: kapak açık</p>
+  <p class="dl" style="--x:280;--y:208;--w:120"><span class="state s-ok">Bağlı</span></p>
   <p class="dl r-ink" style="--x:716;--y:92;--w:84"><b class="r-n">12</b>proje kullanır</p>
   <p class="dl r-c r-mute" style="--x:220;--y:274;--w:200">boşluk</p>
 </div>
@@ -1009,11 +973,11 @@
     &lt;circle class="r-hinge" cx="420" cy="194" r="3.5"/&gt;
     &lt;path class="ln-pencil" d="M620 120L700 60H708M620 120L700 70H708M620 120L700 80H708M620 120L700 90H708M620 120L700 100H708M620 120L700 110H708M620 120L700 120H708M620 120L700 130H708M620 120L700 140H708M620 120L700 150H708M620 120L700 160H708M620 120L700 170H708"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:34;--y:214;--w:180"&gt;&lt;b class="r-k"&gt;Kurum ağı&lt;/b&gt;iç servis&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:436;--y:214;--w:200"&gt;&lt;b class="r-k"&gt;Bağlantı ana makinesi&lt;/b&gt;alt ağ başına bir ayak&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:660;--y:214;--w:110"&gt;&lt;b class="r-k"&gt;Bulut&lt;/b&gt;eu-west-1&lt;/p&gt;
-  &lt;p class="dl" style="--x:120;--y:12;--w:190"&gt;&lt;span class="state warn"&gt;Bekliyor&lt;/span&gt;&lt;br&gt;hayalet: kapak açık&lt;/p&gt;
-  &lt;p class="dl" style="--x:280;--y:208;--w:120"&gt;&lt;span class="state ok"&gt;Bağlı&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:34;--y:214;--w:180"&gt;&lt;span class="stamp-k"&gt;Kurum ağı&lt;/span&gt;iç servis&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:436;--y:214;--w:200"&gt;&lt;span class="stamp-k"&gt;Bağlantı ana makinesi&lt;/span&gt;alt ağ başına bir ayak&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:660;--y:214;--w:110"&gt;&lt;span class="stamp-k"&gt;Bulut&lt;/span&gt;eu-west-1&lt;/p&gt;
+  &lt;p class="dl" style="--x:120;--y:12;--w:190"&gt;&lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt;&lt;br&gt;hayalet: kapak açık&lt;/p&gt;
+  &lt;p class="dl" style="--x:280;--y:208;--w:120"&gt;&lt;span class="state s-ok"&gt;Bağlı&lt;/span&gt;&lt;/p&gt;
   &lt;p class="dl r-ink" style="--x:716;--y:92;--w:84"&gt;&lt;b class="r-n"&gt;12&lt;/b&gt;proje kullanır&lt;/p&gt;
   &lt;p class="dl r-c r-mute" style="--x:220;--y:274;--w:200"&gt;boşluk&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
@@ -1043,14 +1007,14 @@
     <g class="r-st" style="--c:var(--ok)"><path class="r-pl" d="M340 70L380 46V296L340 320ZM346 108.4L374 91.6L374 111.6L346 128.4Z"/><text x="364" y="38">1</text></g>
     <g class="r-st" style="--c:var(--sec)"><path class="r-pl" d="M372 70L412 46V296L372 320ZM378 178.4L406 161.6L406 181.6L378 198.4Z"/><text x="396" y="38">2</text></g>
   </svg>
-  <p class="dl r-ink" style="--x:30;--y:72;--w:140"><b class="r-k">Derleme</b>hizmet rolü</p>
+  <p class="dl r-ink" style="--x:30;--y:72;--w:140"><span class="stamp-k">Derleme</span>hizmet rolü</p>
   <p class="dl" style="--x:224;--y:88;--w:110">log yaz</p>
   <p class="dl" style="--x:224;--y:158;--w:110">kaynak çek</p>
   <p class="dl r-badt" style="--x:224;--y:228;--w:110">imaj gönder</p>
   <p class="dl r-ink" style="--x:716;--y:100;--w:160">günlük grubu</p>
   <p class="dl r-ink" style="--x:716;--y:170;--w:160">kaynak deposu</p>
   <p class="dl r-badt" style="--x:716;--y:240;--w:160">imaj deposu · red</p>
-  <p class="dl" style="--x:460;--y:264;--w:240"><span class="state bad">Reddedildi</span> pencere yok</p>
+  <p class="dl" style="--x:460;--y:264;--w:240"><span class="state s-bad">Reddedildi</span> pencere yok</p>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:330"&gt;
@@ -1068,14 +1032,14 @@
     &lt;g class="r-st" style="--c:var(--ok)"&gt;&lt;path class="r-pl" d="M340 70L380 46V296L340 320ZM346 108.4L374 91.6L374 111.6L346 128.4Z"/&gt;&lt;text x="364" y="38"&gt;1&lt;/text&gt;&lt;/g&gt;
     &lt;g class="r-st" style="--c:var(--sec)"&gt;&lt;path class="r-pl" d="M372 70L412 46V296L372 320ZM378 178.4L406 161.6L406 181.6L378 198.4Z"/&gt;&lt;text x="396" y="38"&gt;2&lt;/text&gt;&lt;/g&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:30;--y:72;--w:140"&gt;&lt;b class="r-k"&gt;Derleme&lt;/b&gt;hizmet rolü&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:30;--y:72;--w:140"&gt;&lt;span class="stamp-k"&gt;Derleme&lt;/span&gt;hizmet rolü&lt;/p&gt;
   &lt;p class="dl" style="--x:224;--y:88;--w:110"&gt;log yaz&lt;/p&gt;
   &lt;p class="dl" style="--x:224;--y:158;--w:110"&gt;kaynak çek&lt;/p&gt;
   &lt;p class="dl r-badt" style="--x:224;--y:228;--w:110"&gt;imaj gönder&lt;/p&gt;
   &lt;p class="dl r-ink" style="--x:716;--y:100;--w:160"&gt;günlük grubu&lt;/p&gt;
   &lt;p class="dl r-ink" style="--x:716;--y:170;--w:160"&gt;kaynak deposu&lt;/p&gt;
   &lt;p class="dl r-badt" style="--x:716;--y:240;--w:160"&gt;imaj deposu · red&lt;/p&gt;
-  &lt;p class="dl" style="--x:460;--y:264;--w:240"&gt;&lt;span class="state bad"&gt;Reddedildi&lt;/span&gt; pencere yok&lt;/p&gt;
+  &lt;p class="dl" style="--x:460;--y:264;--w:240"&gt;&lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; pencere yok&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
   <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* plaka: evenodd ile pencere kesilir; renk --c ile */
 .r-st .r-pl{fill:color-mix(in srgb,var(--c) 16%,transparent);fill-rule:evenodd;stroke:var(--c);stroke-width:1.5}
@@ -1095,7 +1059,7 @@
     <path class="ln-pencil" d="M10 166H990"/>
     <path class="r-ld" d="M55 122V150"/>
     <path class="r-ld" d="M210 122V150"/>
-    <path class="r-ld on" d="M515 122V150"/>
+    <path class="r-ld" data-state="on" d="M515 122V150"/>
     <path class="r-ld" d="M515 90V98"/>
     <path class="r-ld" d="M645 122V150"/>
     <path class="r-ld" d="M845 122V150"/>
@@ -1104,18 +1068,18 @@
     <rect class="r-seg2" x="170" y="150" width="80" height="32"/>
     <rect class="r-seg2" x="250" y="150" width="60" height="32"/>
     <rect class="r-seg2" x="310" y="150" width="100" height="32"/>
-    <rect class="r-seg2 on" x="410" y="150" width="210" height="32"/>
+    <rect class="r-seg2" data-state="on" x="410" y="150" width="210" height="32"/>
     <rect class="r-seg2" x="620" y="150" width="50" height="32"/>
     <rect class="r-seg2" x="700" y="150" width="70" height="32"/>
     <rect class="r-seg2" x="785" y="150" width="120" height="32"/>
     <rect class="r-seg2" x="915" y="150" width="75" height="32"/>
     <path class="ln-draw" d="M670 166H698M698 166l-9-4M698 166l-9 4"/>
-    <g class="r-lamp"><circle cx="55" cy="110" r="12"/><text x="55" y="110">1</text></g>
-    <g class="r-lamp"><circle cx="210" cy="110" r="12"/><text x="210" y="110">2</text></g>
-    <g class="r-lamp on"><circle cx="515" cy="110" r="12"/><text x="515" y="110">3</text></g>
-    <g class="r-lamp"><circle cx="515" cy="78" r="12"/><text x="515" y="78">4</text></g>
-    <g class="r-lamp"><circle cx="645" cy="110" r="12"/><text x="645" y="110">5</text></g>
-    <g class="r-lamp"><circle cx="845" cy="110" r="12"/><text x="845" y="110">6</text></g>
+    <g class="lamp"><circle cx="55" cy="110" r="12"/><text x="55" y="110">1</text></g>
+    <g class="lamp"><circle cx="210" cy="110" r="12"/><text x="210" y="110">2</text></g>
+    <g class="lamp" data-state="on"><circle cx="515" cy="110" r="12"/><text x="515" y="110">3</text></g>
+    <g class="lamp"><circle cx="515" cy="78" r="12"/><text x="515" y="78">4</text></g>
+    <g class="lamp"><circle cx="645" cy="110" r="12"/><text x="645" y="110">5</text></g>
+    <g class="lamp"><circle cx="845" cy="110" r="12"/><text x="845" y="110">6</text></g>
     <path class="ln-draw" d="M170 262H670"/>
     <path class="ln-pencil" d="M180 262V266M190 262V266M200 262V266M210 262V266M220 262V269M230 262V266M240 262V266M250 262V266M260 262V266M280 262V266M290 262V266M300 262V266M310 262V266M320 262V269M330 262V266M340 262V266M350 262V266M360 262V266M380 262V266M390 262V266M400 262V266M410 262V266M420 262V269M430 262V266M440 262V266M450 262V266M460 262V266M480 262V266M490 262V266M500 262V266M510 262V266M520 262V269M530 262V266M540 262V266M550 262V266M560 262V266M580 262V266M590 262V266M600 262V266M610 262V266M620 262V269M630 262V266M640 262V266M650 262V266M660 262V266"/>
     <path class="ln-draw" d="M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
@@ -1140,10 +1104,10 @@
   <p class="dl r-c r-mute" style="--x:540;--y:276;--w:60">40 s</p>
   <p class="dl r-c r-mute" style="--x:640;--y:276;--w:60">50 s</p>
 </div>
-<ol class="r-lamps">
+<ol class="lamps">
   <li>Build hiç başlamadı: tetik filtresi dalı eşleştirmedi.</li>
   <li>Hazırlık düştü: derleme imajı çekilemedi ya da kapasite yok.</li>
-  <li class="on"><b>Yanıyor ·</b> Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.</li>
+  <li data-state="on"><b>Yanıyor ·</b> Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.</li>
   <li>Ayrıcalıklı mod kapalı: Docker servisi başlamadı.</li>
   <li>Gönderim reddedildi: rolün imaj deposuna yazma izni yok.</li>
   <li>Dağıtım güncellenmedi: etiket <code>^prod-[a-f0-9]{8}$</code> kalıbına uymuyor.</li>
@@ -1155,7 +1119,7 @@
     &lt;path class="ln-pencil" d="M10 166H990"/&gt;
     &lt;path class="r-ld" d="M55 122V150"/&gt;
     &lt;path class="r-ld" d="M210 122V150"/&gt;
-    &lt;path class="r-ld on" d="M515 122V150"/&gt;
+    &lt;path class="r-ld" data-state="on" d="M515 122V150"/&gt;
     &lt;path class="r-ld" d="M515 90V98"/&gt;
     &lt;path class="r-ld" d="M645 122V150"/&gt;
     &lt;path class="r-ld" d="M845 122V150"/&gt;
@@ -1164,18 +1128,18 @@
     &lt;rect class="r-seg2" x="170" y="150" width="80" height="32"/&gt;
     &lt;rect class="r-seg2" x="250" y="150" width="60" height="32"/&gt;
     &lt;rect class="r-seg2" x="310" y="150" width="100" height="32"/&gt;
-    &lt;rect class="r-seg2 on" x="410" y="150" width="210" height="32"/&gt;
+    &lt;rect class="r-seg2" data-state="on" x="410" y="150" width="210" height="32"/&gt;
     &lt;rect class="r-seg2" x="620" y="150" width="50" height="32"/&gt;
     &lt;rect class="r-seg2" x="700" y="150" width="70" height="32"/&gt;
     &lt;rect class="r-seg2" x="785" y="150" width="120" height="32"/&gt;
     &lt;rect class="r-seg2" x="915" y="150" width="75" height="32"/&gt;
     &lt;path class="ln-draw" d="M670 166H698M698 166l-9-4M698 166l-9 4"/&gt;
-    &lt;g class="r-lamp"&gt;&lt;circle cx="55" cy="110" r="12"/&gt;&lt;text x="55" y="110"&gt;1&lt;/text&gt;&lt;/g&gt;
-    &lt;g class="r-lamp"&gt;&lt;circle cx="210" cy="110" r="12"/&gt;&lt;text x="210" y="110"&gt;2&lt;/text&gt;&lt;/g&gt;
-    &lt;g class="r-lamp on"&gt;&lt;circle cx="515" cy="110" r="12"/&gt;&lt;text x="515" y="110"&gt;3&lt;/text&gt;&lt;/g&gt;
-    &lt;g class="r-lamp"&gt;&lt;circle cx="515" cy="78" r="12"/&gt;&lt;text x="515" y="78"&gt;4&lt;/text&gt;&lt;/g&gt;
-    &lt;g class="r-lamp"&gt;&lt;circle cx="645" cy="110" r="12"/&gt;&lt;text x="645" y="110"&gt;5&lt;/text&gt;&lt;/g&gt;
-    &lt;g class="r-lamp"&gt;&lt;circle cx="845" cy="110" r="12"/&gt;&lt;text x="845" y="110"&gt;6&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp"&gt;&lt;circle cx="55" cy="110" r="12"/&gt;&lt;text x="55" y="110"&gt;1&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp"&gt;&lt;circle cx="210" cy="110" r="12"/&gt;&lt;text x="210" y="110"&gt;2&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp" data-state="on"&gt;&lt;circle cx="515" cy="110" r="12"/&gt;&lt;text x="515" y="110"&gt;3&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp"&gt;&lt;circle cx="515" cy="78" r="12"/&gt;&lt;text x="515" y="78"&gt;4&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp"&gt;&lt;circle cx="645" cy="110" r="12"/&gt;&lt;text x="645" y="110"&gt;5&lt;/text&gt;&lt;/g&gt;
+    &lt;g class="lamp"&gt;&lt;circle cx="845" cy="110" r="12"/&gt;&lt;text x="845" y="110"&gt;6&lt;/text&gt;&lt;/g&gt;
     &lt;path class="ln-draw" d="M170 262H670"/&gt;
     &lt;path class="ln-pencil" d="M180 262V266M190 262V266M200 262V266M210 262V266M220 262V269M230 262V266M240 262V266M250 262V266M260 262V266M280 262V266M290 262V266M300 262V266M310 262V266M320 262V269M330 262V266M340 262V266M350 262V266M360 262V266M380 262V266M390 262V266M400 262V266M410 262V266M420 262V269M430 262V266M440 262V266M450 262V266M460 262V266M480 262V266M490 262V266M500 262V266M510 262V266M520 262V269M530 262V266M540 262V266M550 262V266M560 262V266M580 262V266M590 262V266M600 262V266M610 262V266M620 262V269M630 262V266M640 262V266M650 262V266M660 262V266"/&gt;
     &lt;path class="ln-draw" d="M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/&gt;
@@ -1200,10 +1164,10 @@
   &lt;p class="dl r-c r-mute" style="--x:540;--y:276;--w:60"&gt;40 s&lt;/p&gt;
   &lt;p class="dl r-c r-mute" style="--x:640;--y:276;--w:60"&gt;50 s&lt;/p&gt;
 &lt;/div&gt;
-&lt;ol class="r-lamps"&gt;
+&lt;ol class="lamps"&gt;
   &lt;li&gt;Build hiç başlamadı: tetik filtresi dalı eşleştirmedi.&lt;/li&gt;
   &lt;li&gt;Hazırlık düştü: derleme imajı çekilemedi ya da kapasite yok.&lt;/li&gt;
-  &lt;li class="on"&gt;&lt;b&gt;Yanıyor ·&lt;/b&gt; Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.&lt;/li&gt;
+  &lt;li data-state="on"&gt;&lt;b&gt;Yanıyor ·&lt;/b&gt; Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.&lt;/li&gt;
   &lt;li&gt;Ayrıcalıklı mod kapalı: Docker servisi başlamadı.&lt;/li&gt;
   &lt;li&gt;Gönderim reddedildi: rolün imaj deposuna yazma izni yok.&lt;/li&gt;
   &lt;li&gt;Dağıtım güncellenmedi: etiket &lt;code&gt;^prod-[a-f0-9]{8}$&lt;/code&gt; kalıbına uymuyor.&lt;/li&gt;
@@ -1211,13 +1175,10 @@
   <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* pano: lamba numarası = alttaki listenin satırı; yanan lamba ve fazı kırmızı */
 .r-z{color:var(--draw);letter-spacing:.06em;text-transform:uppercase}
 .r-seg2{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
-.r-seg2.on{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
+.r-seg2[data-state="on"]{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
 .r-ld{stroke:var(--pencil);stroke-width:1}
-.r-ld.on{stroke:var(--bad);stroke-width:2}
-.r-lamp circle{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
-.r-lamp text{font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
-.r-lamp.on circle{fill:var(--bad);stroke:var(--bad)}
-.r-lamp.on text{fill:var(--paper)}</code></pre></figure>
+.r-ld[data-state="on"]{stroke:var(--bad);stroke-width:2}
+/* lamba ve liste: .lamp, .lamps, data-state="on" paket sınıfı */</code></pre></figure>
 </div>
 </article>
 

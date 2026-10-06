@@ -16,7 +16,7 @@
     <rect class="ln-draw fill-paper" x="470" y="200" width="180" height="50"/>
     <path class="ln-draw" d="M300 155H385M385 85V225M385 85H464M385 155H464M385 225H464M464 85l-8-4M464 85l-8 4M464 155l-8-4M464 155l-8 4M464 225l-8-4M464 225l-8 4"/>
   </svg>
-  <p class="dl" style="--x:116;--y:124;--w:170"><span class="stamp-k">Yük dengeleyici</span><br>lb-public · :443</p>
+  <p class="dl" style="--x:116;--y:124;--w:170"><span class="stamp-k">Yük dengeleyici</span>lb-public · :443</p>
   <p class="dl" style="--x:484;--y:76;--w:160">web-1 · 10.0.1.11</p>
   <p class="dl" style="--x:484;--y:146;--w:160">web-2 · 10.0.1.12</p>
   <p class="dl" style="--x:484;--y:216;--w:160">web-3 · 10.0.1.13</p>
@@ -51,14 +51,20 @@
     <path class="dim" d="M400 168V208M800 168V208M400 200H800M400 200l8-3v6zM800 200l-8-3v6z"/>
     <text class="dim-t" x="600" y="222" text-anchor="middle">görünmezlik süresi 20 s</text>
   </svg>
-  <p class="dl" style="--x:40;--y:44;--w:160"><span class="stamp-k">Kuyruk</span><br>jobs-eu</p>
+  <p class="dl" style="--x:40;--y:44;--w:160"><span class="stamp-k">Kuyruk</span>jobs-eu</p>
   <p class="dl" style="--x:200;--y:44;--w:80;text-align:center">girdi</p>
   <p class="dl" style="--x:360;--y:44;--w:80;text-align:center">alındı</p>
   <p class="dl" style="--x:440;--y:44;--w:80;text-align:center">silindi</p>
   <p class="dl" style="--x:700;--y:44;--w:200;text-align:center">süre dolarsa geri döner</p>
 </div>
 </demo>
-<div class="prose"><p>Ölçü yolu üç parçadan yazılır: uzatma çizgileri (<code>M240 132V92</code>), ölçü çizgisi (<code>M240 100H480</code>) ve ok uçları (<code>l8-3v6z</code>). Zincirleme ölçülerde ortadaki uzatma çizgisi iki ölçüye de aittir; ok uçları ona iki yönden dayanır. Dikey ölçünün değeri <code>rotate(-90)</code> ile döndürülür.</p></div>
+<div class="prose"><p>Ölçü yolu üç parçadan, bu sırayla yazılır:</p>
+<ol class="plain">
+  <li>uzatma çizgileri: <code>M240 132V92</code>;</li>
+  <li>ölçü çizgisi: <code>M240 100H480</code>;</li>
+  <li>ok uçları: <code>l8-3v6z</code>.</li>
+</ol>
+<p>Zincirleme ölçülerde ortadaki uzatma çizgisi iki ölçüye de aittir; ok uçları ona iki yönden dayanır. Dikey ölçünün değeri <code>rotate(-90)</code> ile döndürülür.</p></div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">ölçü tarifi</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- yatay: x1 → x2, ölçü çizgisi y'de; uzatma çizgileri nesneden y'nin biraz ötesine --&gt;
 &lt;path class="dim" d="M x1 nesne V y-8  M x2 nesne V y-8  M x1 y H x2  M x1 y l8-3v6z  M x2 y l-8-3v6z"/&gt;
 &lt;text class="dim-t" x="(x1+x2)/2" y="y-6" text-anchor="middle"&gt;değer&lt;/text&gt;</code></pre></figure>
@@ -78,21 +84,21 @@
     <path class="ln-pencil" d="M450 140V80L496 34H600"/>
   </svg>
   <p class="dl" style="--x:20;--y:20;--w:400">Kural · <b>logs-prod/</b> öneki</p>
-  <p class="dl" style="--x:34;--y:152;--w:200"><span class="stamp-k">Sıcak katman</span><br>2,1 TB<br><span class="state ok">Erişilebilir</span></p>
-  <p class="dl" style="--x:354;--y:152;--w:200"><span class="stamp-k">Soğuk katman</span><br>18,4 TB<br><span class="state warn">Geri çağırma</span></p>
-  <p class="dl" style="--x:674;--y:152;--w:200;color:var(--ink-3)"><span class="stamp-k">Silinir</span><br>kalıcı, geri alınamaz<br><span class="state bad">Siliniyor</span></p>
+  <p class="dl" style="--x:34;--y:152;--w:200"><span class="stamp-k">Sıcak katman</span>2,1 TB<br><span class="state s-ok">Erişilebilir</span></p>
+  <p class="dl" style="--x:354;--y:152;--w:200"><span class="stamp-k">Soğuk katman</span>18,4 TB<br><span class="state s-warn">Geri çağırma</span></p>
+  <p class="dl" style="--x:674;--y:152;--w:200"><span class="stamp-k">Silinir</span>kalıcı, geri alınamaz<br><span class="state s-bad">Siliniyor</span></p>
   <p class="dl callout" style="--x:600;--y:20;--w:280"><b>Geri çağırma</b>Soğuk katmandan okuma 12 saate kadar sürer; acil iz için sıcakta tutun.</p>
 </div>
 <p class="oneliner"><span class="co-label">Bir cümleyle</span>Nesneler 30 gün sıcakta, bir yıl soğukta kalır ve sonra kalıcı olarak silinir.</p>
 </demo>
 <div class="prose"><p>Callout kutusu HTML'dir, leader çizgisi SVG'de çizilir ve kutunun sol kenarında, ilk satır hizasında biter; metin uzasa da çizgi kopmaz. Leader nesneye bir nokta (<code>circle.fill-draw</code>) ile bağlanır.</p></div>
 <demo label="Örnek · .state etiketleri">
-<p style="display:flex;flex-wrap:wrap;gap:8px;margin:0"><span class="state ok">Eşitlendi</span><span class="state warn">Gecikmeli</span><span class="state bad">Düştü</span><span class="state">Planlandı</span></p>
+<p style="display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:0"><span class="state s-ok">Eşitlendi</span><span class="state s-warn">Gecikmeli</span><span class="state s-bad">Düştü</span><span class="state">Planlandı</span></p>
 </demo>
 <div class="prose"><p><code>.state</code> rengini <code>currentColor</code> ile çerçeveye de verir; renk tek başına anlam taşımaz, etiket her zaman bir kelimedir. Çizim dışında kullanıldığında <code>--u</code> yoksa 1px varsayılır.</p></div>
 </chapter>
 
-<chapter title="İstasyon konumlama" lead="Tıklanabilir istasyonlar da çizim birimiyle yerleşir: --x, --y, --w ve --h. Ölçek değişince düğmeler çizimle birlikte büyür.">
+<chapter title="İstasyon konumlama" lead="Tıklanabilir istasyonlar da çizim birimiyle yerleşir: --x, --y, --w ve --h. Ölçek değişince düğmeler çizimle birlikte büyür; köşeleri çizimdeki kutular gibi düzdür.">
 <demo label="Örnek · üretici, kuyruk, işçiler">
 <div data-explorer="cb-kuyruk">
   <div class="drawing" style="--aw:800;--ah:200">
@@ -115,12 +121,12 @@
   </div>
 </div>
 </demo>
-<div class="prose"><p><code>.station</code> ve <code>.sl</code>, en yakın <code>.drawing</code>'in <code>--aw</code> / <code>--ah</code> değerini kalıtımla okur; verilmezse 1000 × 600 varsayılır. Gezgin davranışı için <a href="istasyon-gezgini.html">İstasyon gezgini</a> sayfasına bakın.</p></div>
+<div class="prose"><p><code>.station</code> ve <code>.sl</code>, en yakın <code>.drawing</code>'in <code>--aw</code> / <code>--ah</code> değerini kalıtımla okur; verilmezse 1000 × 600 varsayılır. İstasyon kare köşelidir (<code>border-radius: 0</code>): çizilen her nesne gibi yuvarlatılmaz, böylece SVG kutularıyla aynı çizgiyi paylaşır. Gezgin davranışı için <a href="istasyon-gezgini.html">İstasyon gezgini</a> sayfasına bakın.</p></div>
 </chapter>
 
 <chapter title="Ölçek" lead="Aynı çizim iki genişlikte: çizgiler aynı kalınlıkta kalır, yazılar --u ile küçülür ama alt sınırın altına inmez.">
 <demo label="Örnek · tam ve üçte bir genişlik">
-<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start">
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-8);align-items:start">
   <div class="drawing" style="--aw:600;--ah:170">
     <svg viewBox="0 0 600 170" aria-hidden="true">
       <rect class="ln-draw fill-paper" x="20" y="60" width="200" height="80"/>
@@ -129,8 +135,8 @@
       <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
       <text class="dim-t" x="300" y="24" text-anchor="middle">600 birim</text>
     </svg>
-    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span><br>eu-west-1</p>
-    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span><br>eu-central-1</p>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span>eu-central-1</p>
   </div>
   <div class="drawing" style="--aw:600;--ah:170">
     <svg viewBox="0 0 600 170" aria-hidden="true">
@@ -140,8 +146,8 @@
       <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
       <text class="dim-t" x="300" y="24" text-anchor="middle">600 birim</text>
     </svg>
-    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span><br>eu-west-1</p>
-    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span><br>eu-central-1</p>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span>eu-central-1</p>
   </div>
 </div>
 </demo>
@@ -155,7 +161,7 @@
   <svg viewBox="0 0 440 120" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="10" width="240" height="100"/>
   </svg>
-  <p class="dl" style="--x:24;--y:22;--w:214"><span class="stamp-k">Yedek kasası</span><br>gece 02:00'de alınan anlık görüntüler 35 gün saklanır</p>
+  <p class="dl" style="--x:24;--y:22;--w:214"><span class="stamp-k">Yedek kasası</span>gece 02:00'de alınan anlık görüntüler 35 gün saklanır</p>
 </div>
 </demo>
 <demo label="Yapma · uzun metin SVG içinde">

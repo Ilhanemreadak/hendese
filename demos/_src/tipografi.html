@@ -1,21 +1,21 @@
-<!-- meta {"title":"Tipografi","group":"Temel","order":20,"tagline":"İki aile ve bir piksel yazı.","intro":"IBM Plex Sans gövde ve başlıklar, IBM Plex Mono kod ve etiketler, Pixelify Sans yalnızca Hoca için. Üçü de pakete gömülü gelir; Türkçe harfler latin-ext alt kümesindedir ve dışarıya istek atılmaz.","summary":"Üç aile, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.","facts":{"Token'lar":"<code>--font-sans</code> · <code>--font-mono</code> · <code>--font-pixel</code>","Sınıflar":"<code>.hero h1 em</code> · <code>.ch-head</code> · <code>.lead</code> · <code>.prose</code> · <code>.chip</code> · <code>.mono</code> · <code>.figcap</code>","JS":"Gerekmez; büyük harfli İngilizce kelimeler için isteğe bağlı <code>englishStems</code>"}} -->
+<!-- meta {"title":"Tipografi","group":"Temel","order":20,"tagline":"İki aile ve bir piksel yazı.","intro":"IBM Plex Sans gövde ve başlıklar, IBM Plex Mono kod ve etiketler, Pixelify Sans yalnızca Hoca için. Üçü de pakete gömülü gelir; Türkçe harfler latin-ext alt kümesindedir ve dışarıya istek atılmaz.","summary":"Üç aile, <code>--fs-*</code> yazı ölçeği, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.","facts":{"Token'lar":"<code>--font-sans</code> · <code>--font-mono</code> · <code>--font-pixel</code> · <code>--fs-xs</code> … <code>--fs-display</code>","Sınıflar":"<code>.hero h1 em</code> · <code>.ch-head</code> · <code>.lead</code> · <code>.prose</code> · <code>.chip</code> · <code>.mono</code> · <code>.figcap</code>","JS":"Gerekmez; büyük harfli İngilizce kelimeler için isteğe bağlı <code>englishStems</code>"}} -->
 
 <chapter title="Üç aile" lead="Her ailenin tek bir işi var. Ağırlıklar pakete gömülü dosyalardır; listede olmayan bir ağırlık istenirse tarayıcı sahte kalın üretir.">
 <demo label="Örnek · aileler ve işleri">
-<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
-  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5)">
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
     <p class="chip">--font-sans · 400 500 600 700</p>
-    <p style="margin:8px 0 4px;font:600 24px/1.2 var(--font-sans);letter-spacing:-.02em;color:var(--ink)">Sürüm notu</p>
-    <p style="margin:0;font:400 14.5px/1.55 var(--font-sans);color:var(--ink-2)">Gövde metni, başlıklar, düğme etiketleri.</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:600 var(--fs-xl)/1.2 var(--font-sans);letter-spacing:-.02em;color:var(--ink)">Sürüm notu</p>
+    <p style="margin:0;font:400 var(--fs-md)/1.55 var(--font-sans);color:var(--ink-2)">Gövde metni, başlıklar, düğme etiketleri.</p>
   </div>
-  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
-    <p class="chip">--font-mono · 400 500</p>
-    <p style="margin:8px 0 4px;font:500 20px/1.3 var(--font-mono);color:var(--ink)">web-api:1.14.2</p>
-    <p style="margin:0;font:400 13px/1.55 var(--font-mono);color:var(--ink-2)">Kod, etiket, antet, sayaç.</p>
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
+    <p class="chip">--font-mono · 400 500 600</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:500 var(--fs-xl)/1.3 var(--font-mono);color:var(--ink)">web-api:1.14.2</p>
+    <p style="margin:0;font:400 var(--fs-sm)/1.55 var(--font-mono);color:var(--ink-2)">Kod, etiket, antet, sayaç.</p>
   </div>
-  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
     <p class="chip"><span lang="en">--font-pixel</span> · 400 500</p>
-    <p style="margin:8px 0 4px;font:500 22px/1.3 var(--font-pixel);color:var(--ink)">Hoca</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:500 var(--fs-xl)/1.3 var(--font-pixel);color:var(--ink)">Hoca</p>
     <p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">Konuşma balonu ve raydaki plaka.</p>
   </div>
 </div>
@@ -24,11 +24,31 @@
   <thead><tr><th>Token</th><th>Yedek zincir</th><th>Ağırlık</th><th>İş</th></tr></thead>
   <tbody>
     <tr><td><code>--font-sans</code></td><td>Segoe UI, system-ui, -apple-system</td><td>400 · 500 · 600 · 700</td><td>Gövde ve başlıklar</td></tr>
-    <tr><td><code>--font-mono</code></td><td>Cascadia Code, Consolas, ui-monospace</td><td>400 · 500</td><td>Kod, etiket, antet, sayaçlar</td></tr>
+    <tr><td><code>--font-mono</code></td><td>Cascadia Code, Consolas, ui-monospace</td><td>400 · 500 · 600</td><td>Kod, etiket, antet, sayaçlar</td></tr>
     <tr><td><code>--font-pixel</code></td><td><code>--font-mono</code></td><td>400 · 500</td><td>Yalnızca Hoca</td></tr>
   </tbody>
 </table></div>
 <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Dosyalar</span><div class="co-body"><p>WOFF2 dosyaları <code>dist/fonts/</code> altındadır ve kendi sunucunuzdan yüklenir. Tek dosyalık sayfalar için fontları base64 olarak taşıyan <code>dist/hendese.inline.css</code> kullanılır. Lisans: SIL Open Font License 1.1.</p></div></div>
+</chapter>
+
+<chapter title="Yazı ölçeği" lead="Bileşenler yazı boyutunu dokuz token'dan okur; ham px yazmak testte hata verir. Aşağıdaki her satır kendi token'ıyla basılmıştır.">
+<div class="tbl wide"><table>
+  <thead><tr><th>Token</th><th>Değer</th><th>Örnek</th><th>Oturan eski boyutlar</th></tr></thead>
+  <tbody>
+    <tr><td><code>--fs-xs</code></td><td>11px</td><td><span style="font-size:var(--fs-xs)">Şekil 2 · derleme · 12 dk önce</span></td><td>9 · 10 · 10.5 · 11.5px</td></tr>
+    <tr><td><code>--fs-sm</code></td><td>12.5px</td><td><span style="font-size:var(--fs-sm)">Kopyala · ikincil satır · şekil yazısı</span></td><td>12 · 13px</td></tr>
+    <tr><td><code>--fs-md</code></td><td>14px</td><td><span style="font-size:var(--fs-md)">Tablo hücresi ve callout gövdesi</span></td><td>13.5 · 14.5px</td></tr>
+    <tr><td><code>--fs-base</code></td><td>16px</td><td><span style="font-size:var(--fs-base)">Okuma metni, satır yüksekliği 1,65</span></td><td>15 · 15.5px</td></tr>
+    <tr><td><code>--fs-lg</code></td><td>17.5px</td><td><span style="font-size:var(--fs-lg)">Giriş paragrafı ve ara başlık</span></td><td>17 · 18px</td></tr>
+    <tr><td><code>--fs-xl</code></td><td>22px</td><td><span style="font-size:var(--fs-xl);font-weight:600">Damga adı · 0042</span></td><td>20px</td></tr>
+    <tr><td><code>--fs-2xl</code></td><td>30px</td><td><span style="font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.02em">Pafta başlığı</span></td><td>—</td></tr>
+    <tr><td><code>--fs-h2</code></td><td>26–32px</td><td><span style="font-size:var(--fs-h2);font-weight:600;letter-spacing:-.02em">Bölüm başlığı</span></td><td>—</td></tr>
+    <tr><td><code>--fs-display</code></td><td>44–68px</td><td><span style="font-size:var(--fs-display);font-weight:600;letter-spacing:-.035em;line-height:1.05">Hero</span></td><td>dar ekranda <code>--fs-display-sm</code> (30–40px)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Ölçek 0.2'de kuruldu. Bileşenlerdeki ara değerler en yakın basamağa oturtuldu; en belirgin farklar etiketlerde (10.5px → 11px) ve tablo gövdesindedir (14.5px → 14px). Çizim içindeki yazı ölçek dışıdır: <code>max(10.5px, calc(12 * var(--u)))</code> gibi bir ifadeyle çizimle birlikte büyüyüp küçülür. Hoca'nın piksel yazısı da 3px ızgaraya bağlı olduğu için kendi boyutunu korur.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">uygulama.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>.deploy-card h4{font:600 var(--fs-lg)/1.3 var(--font-sans)}
+.deploy-card .meta{font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase}</code></pre></figure>
 </chapter>
 
 <chapter title="Hiyerarşi" lead="Bir sayfada beş düzey yeterli: hero başlığı ve alt satırı, bölüm başı, lead, gövde ve etiket. Büyük başlıklar clamp ile ekran genişliğine uyar.">
@@ -54,12 +74,13 @@
 <div class="tbl"><table>
   <thead><tr><th>Seçici</th><th>Boyut / satır</th><th>Ağırlık</th><th>Renk</th></tr></thead>
   <tbody>
-    <tr><td><code>.hero h1</code></td><td><code>clamp(44px,4.6vw,68px)</code> / 1.02</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.hero h1</code></td><td><code>--fs-display</code> / 1.02</td><td>600</td><td><code>--ink</code></td></tr>
     <tr><td><code>.hero h1 em</code></td><td>0.5em / 1.2, blok</td><td>500</td><td><code>--ink-2</code></td></tr>
-    <tr><td><code>.chapter h2</code></td><td><code>clamp(26px,2.4vw,32px)</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
-    <tr><td><code>.ch-num</code></td><td>11.5px mono, büyük harf</td><td>400</td><td><code>--accent</code></td></tr>
-    <tr><td><code>.lead</code> · <code>.intro</code></td><td>17px, en çok 64ch</td><td>400</td><td><code>--ink-2</code></td></tr>
-    <tr><td><code>body</code> · <code>.prose</code></td><td>16px / 1.65, en çok 72ch</td><td>400</td><td><code>--ink</code> · <code>--ink-2</code></td></tr>
+    <tr><td><code>.chapter h2</code></td><td><code>--fs-h2</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.chapter h3</code></td><td><code>--fs-lg</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.ch-num</code></td><td><code>--fs-xs</code> mono, büyük harf</td><td>400</td><td><code>--accent</code></td></tr>
+    <tr><td><code>.lead</code> · <code>.intro</code></td><td><code>--fs-lg</code>, en çok 64ch</td><td>400</td><td><code>--ink-2</code></td></tr>
+    <tr><td><code>body</code> · <code>.prose</code></td><td><code>--fs-base</code> / 1.65, en çok 72ch</td><td>400</td><td><code>--ink</code> · <code>--ink-2</code></td></tr>
   </tbody>
 </table></div>
 <div class="prose"><p><code>.chapter h2</code> ve <code>.chapter h3</code> yalnızca <code>.chapter</code> içinde biçimlenir; başlığı bölüm dışına taşırsanız tarayıcının varsayılan ölçüsüne döner.</p></div>
@@ -73,22 +94,33 @@
 </div>
 <p class="figcap"><b>Tablo 2.</b> İsabet oranı son 24 saatte %94; ıskaların çoğu fiyat güncellemesinden hemen sonra.</p>
 </demo>
+<demo label="Örnek · .tnum ile hizalı rakamlar">
+<div class="tbl"><table>
+  <thead><tr><th>Bölge</th><th>Varsayılan</th><th>.tnum</th></tr></thead>
+  <tbody>
+    <tr><td>eu-west-1</td><td>1 111,11 ms</td><td class="tnum">1 111,11 ms</td></tr>
+    <tr><td>eu-central-1</td><td>808,08 ms</td><td class="tnum">808,08 ms</td></tr>
+    <tr><td>us-east-1</td><td>99,90 ms</td><td class="tnum">99,90 ms</td></tr>
+  </tbody>
+</table></div>
+</demo>
 <div class="tbl"><table>
   <thead><tr><th>Öğe</th><th>Görünüm</th><th>Ne zaman</th></tr></thead>
   <tbody>
     <tr><td><code>code</code></td><td>mono .86em, <code>--surface-3</code> zemin</td><td>Kopyalanabilecek değer: anahtar, komut, yol</td></tr>
     <tr><td><code>.mono</code></td><td>mono .92em, zeminsiz</td><td>Ad ya da kimlik; vurgulanmadan hizalı okunsun</td></tr>
-    <tr><td><code>.chip</code></td><td>11px mono, büyük harf, <code>--ink-3</code></td><td>Şekil ya da bölüm etiketi</td></tr>
-    <tr><td><code>.figcap</code></td><td>13px, <code>--ink-3</code>, <code>b</code> <code>--ink-2</code></td><td>Şekil ve tablo yazısı</td></tr>
+    <tr><td><code>.chip</code></td><td><code>--fs-xs</code> mono, büyük harf, <code>--ink-3</code></td><td>Şekil ya da bölüm etiketi</td></tr>
+    <tr><td><code>.figcap</code></td><td><code>--fs-sm</code>, <code>--ink-3</code>, <code>b</code> <code>--ink-2</code></td><td>Şekil ve tablo yazısı</td></tr>
+    <tr><td><code>.tnum</code></td><td>sabit genişlikli rakam</td><td>Sayaç, tutar, süre: alt alta hizalı rakamlar</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
 <chapter title="Türkçe karakterler" lead="Plex ailelerinin latin-ext alt kümesi Türkçe harflerin tamamını kapsar. Asıl tuzak harfler değil, CSS ile büyük harfe çevirme kuralıdır.">
 <demo label="Örnek · üç ailede aynı cümle">
-<p style="margin:0 0 6px;font:400 18px/1.5 var(--font-sans)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
-<p style="margin:0 0 6px;font:400 16px/1.5 var(--font-mono)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
-<p style="margin:0;font:400 16px/1.5 var(--font-pixel)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p style="margin:0 0 var(--sp-2);font:400 var(--fs-lg)/1.5 var(--font-sans)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p style="margin:0 0 var(--sp-2);font:400 var(--fs-base)/1.5 var(--font-mono)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p style="margin:0;font:400 var(--fs-base)/1.5 var(--font-pixel)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
 </demo>
 <div class="prose"><p>Sayfa <code>lang="tr"</code> olduğunda <code>text-transform:uppercase</code> Türkçe kuralı uygular: <code>i</code> → <code>İ</code>, <code>ı</code> → <code>I</code>. Türkçe kelimeler için doğru, büyük harfle basılan İngilizce teknik kelimeler için yanlıştır. <code>.chip</code>, <code>.ch-num</code>, tablo başlıkları ve örnek etiketleri büyük harfle basılır.</p></div>
 <div class="dodont">
@@ -106,12 +138,12 @@
 <chapter title="Piksel yazının sınırları" lead="Pixelify Sans yalnızca Hoca'nın sesidir: konuşma balonu ve raydaki plaka. Gövde metninde, başlıkta ya da veri gösteriminde kullanılmaz.">
 <div class="dodont">
 <demo label="Yap · kısa konuşma, tek cümle">
-<p style="display:inline-block;margin:0;padding:5px 9px 6px;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:400 13.5px/1.4 var(--font-pixel)">Önbellek ısındı, devam edebiliriz.</p>
+<p style="display:inline-block;margin:0;padding:5px 9px var(--sp-2);border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:400 13.5px/1.4 var(--font-pixel)">Önbellek ısındı, devam edebiliriz.</p>
 </demo>
 <demo label="Yapma · veri ve uzun metin">
 <p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">0O 1l 5S 8B · istek kimliği 10l0O-8B5S: bu ayırt edilemez. Uzun paragraflar da piksel yazıda hızla yorar.</p>
 </demo>
 </div>
 <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Neden bu kadar dar</span><div class="co-body"><p>Piksel yazıda benzer karakterler (<code>0/O</code>, <code>1/l</code>) ayrışmaz, rakamlar eşit genişlikte değildir ve küçük boyutta harf aralığı düzensizleşir. Yalnızca 400 ve 500 ağırlıkları gelir. Hoca'nın balonu <code>.hoca-bubble.mono</code> ile mono yazıya da geçebilir; kod ya da değer içeren konuşmalarda onu kullanın.</p></div></div>
-<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Ağırlık sınırı</span><div class="co-body"><p>Paket ağırlıkları sabittir: mono 400/500, sans 400–700. Mono'da 600 yazarsanız tarayıcı sahte kalın üretir; mono vurgu için 500 kullanın.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Ağırlık sınırı</span><div class="co-body"><p>Paket ağırlıkları sabittir: mono 400/500/600, sans 400–700, piksel 400/500. Listede olmayan bir ağırlık yazarsanız tarayıcı sahte kalın üretir.</p></div></div>
 </chapter>

@@ -65,8 +65,9 @@
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Değişiklik türleri</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Metinde anahtar</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Dar alan</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Dar alan</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -221,7 +222,7 @@
 &lt;/<span class='k'>figure</span>&gt;
 &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Yeni vade sütunu. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Yalnızca ödenmemiş faturaları kapsayan kısmi indeks (satır 4–6).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
 </div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin varsayılan 13px yazı boyuna ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin yazı boyuna (<code>--fs-sm</code>, 12.5px) ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
 </article>
 
 <article class="chapter" id="p3" data-section data-title="Metinde anahtar">
@@ -286,8 +287,61 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Dar alan">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Dar alan</h2><p class="lead">Şerit pre'nin dışında durduğu için uzun satır yatay kaydırıldığında işaretler yerinde kalır; yalnızca kod kayar.</p></header>
+<article class="chapter" id="p4" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durumlar</h2><p class="lead">Şeridin tek bir durumu vardır: değişti. Eklenen, silinen ya da riskli satır için ayrı renk yoktur; farkın türü metinde söylenir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · değişen, süren ve değişmeyen satır</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">hpa.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i></div>
+<pre tabindex="0"><code><span class="k">spec</span>:
+  <span class="k">minReplicas</span>: <span class="v">3</span>
+  <span class="k">maxReplicas</span>: <span class="v">12</span>
+  <span class="k">behavior</span>:
+    <span class="k">scaleDown</span>: { <span class="k">stabilizationWindowSeconds</span>: <span class="v">600</span> }</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>En az kopya 2'den 3'e çıktı. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Küçülme davranışı eklendi (satır 4–5). Silinen satır: <code>targetCPUUtilizationPercentage: 80</code>; ölçek kararı artık varsayılan CPU hedefiyle veriliyor.</p>
+<p class="figcap"><b>Özet.</b> <span class="plus">+3</span> eklenen ya da değişen satır, <span class="minus">−1</span> silinen satır.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;hpa.yaml&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;spec&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;minReplicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;3&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxReplicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;12&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;behavior&lt;/<span class='k'>span</span>&gt;:
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;scaleDown&lt;/<span class='k'>span</span>&gt;: { &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;stabilizationWindowSeconds&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;600&lt;/<span class='k'>span</span>&gt; }&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;En az kopya 2'den 3'e çıktı. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Küçülme davranışı eklendi (satır 4–5). Silinen satır: &lt;<span class='k'>code</span>&gt;targetCPUUtilizationPercentage: 80&lt;/<span class='k'>code</span>&gt;; ölçek kararı artık varsayılan CPU hedefiyle veriliyor.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Özet.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;+3&lt;/<span class='k'>span</span>&gt; eklenen ya da değişen satır, &lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;−1&lt;/<span class='k'>span</span>&gt; silinen satır.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Değişti</td><td><code>&lt;i style="--l:N" data-m="Δ1"&gt;</code></td><td>Yeşil çizgi, hafif zemin, işaret</td></tr>
+    <tr><td>Değişiklik sürüyor</td><td><code>data-m=""</code></td><td>Çizgi ve zemin, işaretsiz</td></tr>
+    <tr><td>Değişmedi</td><td>işaret yok</td><td>Düz kod</td></tr>
+    <tr><td>Silindi</td><td>şeritte yok; metinde eski değer ve <code>.minus</code> sayısı</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Silinen satır kodda bulunmadığı için şeritte gösterilemez; paket bunun için bir işaret sunmaz. Eski değeri açıklama metnine yazın. Kırmızı ya da sarı şerit taklidi için satır içi renk vermeyin: okur yeşil dışındaki rengi bir anlam sanır, ekran okuyucu ise hiçbirini duymaz.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Dar alan">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Dar alan</h2><p class="lead">Şerit pre'nin dışında durduğu için uzun satır yatay kaydırıldığında işaretler yerinde kalır; yalnızca kod kayar.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · dar kolonda uzun satır</span>
   <div class="demo-view">
@@ -327,8 +381,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Kopyalanan metin çalışan metindir. Değişikliği işaretlemek için kodun içine karakter eklemeyin.</p></header>
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Kopyalanan metin çalışan metindir. Değişikliği işaretlemek için kodun içine karakter eklemeyin.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · işaret şeritte</span>

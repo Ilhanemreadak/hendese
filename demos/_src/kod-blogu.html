@@ -1,4 +1,4 @@
-<!-- meta {"title":"Kod bloğu","group":"Bileşenler","order":40,"tagline":"İki temada da koyu, kopyalanmaya hazır.","intro":"<code>figure.code</code> bir başlık satırı (dosya, dil, kopyala) ve kaydırılabilir bir <code>&lt;pre&gt;</code> taşır. Renklendirme elle, dört sınıfla yapılır; kopyalama düğmesi <code>Hendese.init()</code> ile kendiliğinden çalışır ve yalnızca kodu alır.","summary":"<code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.","facts":{"Sınıflar":"<code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code>","Token":"<code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code>","JS":"Kopyalama: <code>Hendese.init()</code>; metinler <code>strings.copy / copied / copyFail</code>"}} -->
+<!-- meta {"title":"Kod bloğu","group":"Bileşenler","order":40,"tagline":"İki temada da koyu, kopyalanmaya hazır.","intro":"<code>figure.code</code> bir başlık satırı (dosya, dil, kopyala) ve kaydırılabilir bir <code>&lt;pre&gt;</code> taşır. Renklendirme elle, dört sınıfla yapılır; kopyalama düğmesi <code>Hendese.init()</code> ile kendiliğinden çalışır ve yalnızca kodu alır.","summary":"<code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.","facts":{"Sınıflar":"<code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code> · <code>.g1</code>–<code>.g5</code>","Token":"<code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code>","JS":"Kopyalama: <code>Hendese.init()</code>; metinler <code>strings.copy / copied / copyFail</code>"}} -->
 
 
 <chapter title="Anatomi" lead="Başlık satırında solda dosya adı, sağda dil ve kopyala düğmesi durur. pre klavye ile odaklanabilir olmalı; uzun satırlar yatay kayar.">
@@ -102,7 +102,7 @@
 <pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">staging</span> rollout status deploy/web-api --timeout=<span class="v">120s</span></code></pre>
 </figure>
 </demo>
-<div class="prose"><p>Başarılı kopyada düğme <code>.done</code> sınıfı alır ve yeşile döner; pano izni yoksa gizli bir <code>textarea</code> ile yeniden dener, o da olmazsa <b>Kopyalanamadı</b> yazar. Düğme metinleri başka dile şöyle çevrilir:</p></div>
+<div class="prose"><p>Başarılı kopyada düğme <code>data-state="done"</code> alır ve yeşile döner; pano izni yoksa gizli bir <code>textarea</code> ile yeniden dener, o da olmazsa <code>data-state="fail"</code> ile kırmızıya döner ve <b>Kopyalanamadı</b> yazar. Etiket <code>aria-live="polite"</code> olduğundan sonuç ekran okuyucuya da duyurulur. Düğme metinleri başka dile şöyle çevrilir:</p></div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.init({
   strings: { copy: 'Copy', copied: 'Copied', copyFail: 'Copy failed' }
 });</code></pre></figure>
@@ -129,12 +129,15 @@
     <span class="code-lang">SQL</span>
     <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
   </figcaption>
-<pre class="annotated" tabindex="0"><code><span class="grp g2" data-label="şema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
+<pre class="annotated" tabindex="0"><code><span class="grp g1" data-label="kilit">  <span class="k">SET</span> lock_timeout = <span class="s">'5s'</span>;
+</span><span class="grp g2" data-label="şema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
 </span><span class="grp g3" data-label="veri">  <span class="k">UPDATE</span> orders <span class="k">SET</span> status = <span class="s">'paid'</span> <span class="k">WHERE</span> paid_at <span class="k">IS NOT NULL</span>;
 </span><span class="grp g4" data-label="kısıt">  <span class="k">ALTER TABLE</span> orders <span class="k">ALTER COLUMN</span> status <span class="k">SET NOT NULL</span>;
+</span><span class="grp g5" data-label="yetki">  <span class="k">GRANT SELECT</span> (status) <span class="k">ON</span> orders <span class="k">TO</span> raporlama;
 </span></code></pre>
 </figure>
 </demo>
+<div class="prose"><p>Beş grup rengi vardır (<code>.g1</code>–<code>.g5</code>); sıra anlam taşımaz, yan yana gruplar ayrı renk alsın yeter. Renk yalnız grubu ayırır, ne olduğunu <code>data-label</code> söyler. Dar sütunda etiketler gizlenir, renkli çizgi kalır.</p></div>
 <div class="prose"><p>Yürütme imleci için her satırı <code>.ln</code> ile sarın ve satır sonunu <code>&lt;/span&gt;</code>'ın içine koyun. Aşağıdaki düğme imleci bir sonraki satıra taşır.</p></div>
 <demo label="Örnek · adım adım yürütme">
 <figure class="code" id="kb-run">
@@ -154,6 +157,29 @@
   <span id="kb-pos" class="chip" aria-live="polite">satır 1 / 4</span>
 </div>
 </demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Kod bloğunun durumu kopyala düğmesinde ve odakta yaşar. Düğmenin üç hali vardır; ikisini metin, birini metin ve renk söyler.">
+<demo label="Örnek · kopyalayın, düğmeyi izleyin">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">prod</span> get pods -l app=web-api</code></pre>
+</figure>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Hal</th><th>Düğme metni</th><th>Görünüş</th><th>Kim yazar</th></tr></thead>
+  <tbody>
+    <tr><td>Hazır</td><td>Kopyala</td><td>İnce kenar, açık mürekkep</td><td>İşaretleme</td></tr>
+    <tr><td>Kopyalandı</td><td>Kopyalandı</td><td>Yeşil kenar ve yazı, 1,6 saniye</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Kopyalanamadı</td><td>Kopyalanamadı</td><td>Renk değişmez; yalnız metin</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Odak</td><td>—</td><td><code>pre</code> içe 2px halka, düğme açık mavi halka</td><td>Tarayıcı (<code>:focus-visible</code>)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Sonuç sınıfını betik yazar ve geri alır; işaretlemede elle vermeyin. Başlıksız blokta düğme yoktur, dolayısıyla durum da yoktur. Kopyala düğmesinin devre dışı hali yoktur: kopyalanmaması gereken metin kod bloğuna konmaz. Satırın “şimdi çalışıyor” durumu <code>.ln.cur</code> ile verilir (yukarıdaki bölüm).</p></div>
 </chapter>
 
 <chapter title="Yap / yapma" lead="Kod bloğu kopyalanmak için vardır. Okurun yapıştırdığı şey çalışmalı; istem işareti, çıktı ve süs kodun dışında kalmalı.">

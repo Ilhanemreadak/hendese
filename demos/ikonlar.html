@@ -73,66 +73,78 @@
     <p class="hero-label">Hendese · Temel</p>
     <h1>İkonlar<em>On üç çizgi ikon, tek sprite.</em></h1>
     <p class="intro">İkonlar sayfanın başına bir kez yapıştırılan SVG sprite'tan <code>&lt;use href="#i-…"&gt;</code> ile çağrılır. Hepsi 24 birimlik ızgarada, 2 birim kalınlıkta, yuvarlak uçlu çizgidir ve rengini <code>currentColor</code>'dan alır.</p>
-<dl class="kv"><dt>Dosya</dt><dd><code>src/icons.svg</code> → <code>dist/icons.svg</code></dd><dt>Kullanım</dt><dd><code>&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;</code></dd><dt>Boyut</dt><dd>Bileşen belirler: 12 · 14 · 16px</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Dosya</dt><dd><code>src/icons.svg</code> → <code>dist/icons.svg</code></dd><dt>Kullanım</dt><dd><code>&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;</code></dd><dt>Boyut</dt><dd><code>1em</code>: metinle aynı; bileşen içinde 12 · 14 · 16px</dd><dt>Metin içi</dt><dd><code>.ic</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
+
+<style>
+/* sayfaya özel (.ik-): katalog hücreleri. İkon boyutu yalnız font-size'dan gelir. */
+.ik-cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:var(--sp-4)}
+.ik-cat>div{display:grid;justify-items:center;gap:var(--sp-4);padding:var(--sp-7) var(--sp-3) var(--sp-4);border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)}
+.ik-cat svg{font-size:var(--fs-xl);color:var(--ink)}
+</style>
 
 <article class="chapter" id="p1" data-section data-title="Sprite">
   <header class="ch-head"><p class="ch-num">01</p><h2>Sprite</h2><p class="lead">On üç ikon, on üç sembol. Sprite görünmezdir; her kullanım yalnızca bir use öğesidir, bu yüzden aynı ikonu yüz kez kullanmak sayfayı büyütmez.</p></header>
 <div class="demo">
-  <span class="demo-label">Katalog · 24px</span>
+  <span class="demo-label">Katalog · --fs-xl</span>
   <div class="demo-view">
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px">
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-shield"/></svg><code>#i-shield</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-info"/></svg><code>#i-info</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-bulb"/></svg><code>#i-bulb</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-warn"/></svg><code>#i-warn</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-check"/></svg><code>#i-check</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-wrench"/></svg><code>#i-wrench</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-copy"/></svg><code>#i-copy</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-menu"/></svg><code>#i-menu</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-x"/></svg><code>#i-x</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-sun"/></svg><code>#i-sun</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-moon"/></svg><code>#i-moon</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-tick"/></svg><code>#i-tick</code></div>
-  <div style="display:grid;justify-items:center;gap:10px;padding:16px 8px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)"><svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink)"><use href="#i-reset"/></svg><code>#i-reset</code></div>
+<div class="ik-cat">
+  <div><svg aria-hidden="true"><use href="#i-shield"/></svg><code>#i-shield</code></div>
+  <div><svg aria-hidden="true"><use href="#i-info"/></svg><code>#i-info</code></div>
+  <div><svg aria-hidden="true"><use href="#i-bulb"/></svg><code>#i-bulb</code></div>
+  <div><svg aria-hidden="true"><use href="#i-warn"/></svg><code>#i-warn</code></div>
+  <div><svg aria-hidden="true"><use href="#i-check"/></svg><code>#i-check</code></div>
+  <div><svg aria-hidden="true"><use href="#i-wrench"/></svg><code>#i-wrench</code></div>
+  <div><svg aria-hidden="true"><use href="#i-copy"/></svg><code>#i-copy</code></div>
+  <div><svg aria-hidden="true"><use href="#i-menu"/></svg><code>#i-menu</code></div>
+  <div><svg aria-hidden="true"><use href="#i-x"/></svg><code>#i-x</code></div>
+  <div><svg aria-hidden="true"><use href="#i-sun"/></svg><code>#i-sun</code></div>
+  <div><svg aria-hidden="true"><use href="#i-moon"/></svg><code>#i-moon</code></div>
+  <div><svg aria-hidden="true"><use href="#i-tick"/></svg><code>#i-tick</code></div>
+  <div><svg aria-hidden="true"><use href="#i-reset"/></svg><code>#i-reset</code></div>
 </div>
   </div>
 </div>
 <div class="demo">
-  <span class="demo-label">Örnek · en kısa kullanım</span>
+  <span class="demo-label">Örnek · cümlenin içinde ikon</span>
   <div class="demo-view">
-<svg aria-hidden="true" style="width:24px;height:24px;color:var(--ink-2)"><use href="#i-wrench"/></svg>
+<p style="margin:0">Ayarlar <svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg> menüsünden önbelleği <svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg> sıfırlayın.</p>
+<p class="lead" style="margin:var(--sp-3) 0 0"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> Büyük metinde ikon da büyür.</p>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:24px;height:24px;color:var(--ink-2)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;</code></pre></figure>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;Ayarlar &lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; menüsünden önbelleği &lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; sıfırlayın.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>lead</span>" style="<span class='s'>margin:var(--sp-3) 0 0</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; Büyük metinde ikon da büyür.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>Bileşen dışında kullanılan bir ikonun boyutunu siz vermelisiniz. <code>base.css</code> her <code>svg</code>'yi <code>display:block</code> yapar ve boyut vermez; boyutsuz bir <code>&lt;svg&gt;</code> tarayıcının varsayılanı olan 300×150 alanı kaplar.</p></div>
+<div class="prose"><p>Kaynakta <code>viewBox</code> taşımayan ve doğrudan bir <code>&lt;use&gt;</code> içeren her <code>&lt;svg&gt;</code> boyutunu metinden alır: <code>1em × 1em</code>. Boyutu değiştirmek için ikona değil, kapsayıcının <code>font-size</code>'ına dokunun. Kural <code>:where()</code> içindedir, yani özgüllüğü sıfırdır; bileşenlerin kendi boyutları (<code>.btn svg</code> 14px gibi) ve sizin sınıflarınız her zaman kazanır.</p>
+<p><code>base.css</code> her <code>svg</code>'yi blok yapar. Cümlenin içindeki ikon için <code>.ic</code> ekleyin: satır içi blok olur, taban çizgisine oturur ve flex içinde küçülmez. 0.1'deki <code>style="width:16px;height:16px"</code> geçici çözümüne artık gerek yok.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:where(svg:not([viewBox]):has(&gt;use)){width:1em;height:1em}
+.ic{display:inline-block;vertical-align:-.125em;flex:none}</code></pre></figure>
 </article>
 
 <article class="chapter" id="p2" data-section data-title="Boyutlar">
   <header class="ch-head"><p class="ch-num">02</p><h2>Boyutlar</h2><p class="lead">Çizgi kalınlığı 24 birimlik ızgarada 2 birimdir; 12px'te bir piksele iner. 12px'in altına inmeyin, 24px'in üstünde ikon değil çizim kullanın.</p></header>
 <div class="demo">
-  <span class="demo-label">Ölçek · 12 · 14 · 16 · 20 · 24px</span>
+  <span class="demo-label">Ölçek · satırın yazı boyutu</span>
   <div class="demo-view">
-<div style="display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;">
-  <p class="chip">12px</p>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:var(--ink-2)"><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-shield"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-info"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-bulb"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-warn"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-check"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-wrench"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-copy"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-menu"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-x"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-sun"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-moon"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-tick"/></svg><svg aria-hidden="true" style="width:12px;height:12px"><use href="#i-reset"/></svg></div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0">
+  <p class="chip">--fs-sm · 12.5px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-sm)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
 </div>
-<div style="display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line)">
-  <p class="chip">14px</p>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:var(--ink-2)"><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-shield"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-info"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-bulb"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-warn"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-check"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-wrench"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-copy"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-menu"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-x"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-sun"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-moon"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-tick"/></svg><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-reset"/></svg></div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-md · 14px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-md)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
 </div>
-<div style="display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line)">
-  <p class="chip">16px</p>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:var(--ink-2)"><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-shield"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-info"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-bulb"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-warn"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-check"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-wrench"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-copy"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-menu"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-x"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-sun"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-moon"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-tick"/></svg><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-reset"/></svg></div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-base · 16px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-base)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
 </div>
-<div style="display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line)">
-  <p class="chip">20px</p>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:var(--ink-2)"><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-shield"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-info"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-bulb"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-warn"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-check"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-wrench"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-copy"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-menu"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-x"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-sun"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-moon"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-tick"/></svg><svg aria-hidden="true" style="width:20px;height:20px"><use href="#i-reset"/></svg></div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-lg · 17.5px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-lg)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
 </div>
-<div style="display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line)">
-  <p class="chip">24px</p>
-  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:var(--ink-2)"><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-shield"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-info"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-bulb"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-warn"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-check"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-wrench"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-copy"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-menu"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-x"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-sun"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-moon"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-tick"/></svg><svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-reset"/></svg></div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-xl · 22px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-xl)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
 </div>
   </div>
 </div>
@@ -142,7 +154,7 @@
     <tr><td>12px</td><td>Callout ikonu, kod bloğundaki kopyala düğmesi, kontrol kutusundaki tik</td><td><code>.co-ic svg</code> · <code>.code-copy svg</code> · <code>.rb-item .box svg</code></td></tr>
     <tr><td>14px</td><td>Metinli düğme, başarı satırı</td><td><code>.btn svg</code> · <code>.check svg</code></td></tr>
     <tr><td>16px</td><td>Yalnız ikonlu düğme, kontrol listesi bitiş satırı</td><td><code>.icon-btn svg</code> · <code>.rb-done svg</code></td></tr>
-    <tr><td>20–24px</td><td>Bileşen dışı tek ikon</td><td>satır içi <code>style</code> ya da kendi sınıfınız</td></tr>
+    <tr><td><code>1em</code></td><td>Bileşen dışındaki her ikon</td><td>Kapsayıcının <code>font-size</code>'ı; cümle içinde <code>.ic</code></td></tr>
   </tbody>
 </table></div>
 </article>
@@ -194,14 +206,14 @@
 <div class="demo">
   <span class="demo-label">Örnek · günlük görüntüleyici araç çubuğu</span>
   <div class="demo-view">
-<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
+<div style="display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
   <span class="mono" style="margin-right:auto;color:var(--ink-2)">web-api · prod · son 15 dk</span>
   <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>Yenile</button>
   <button class="icon-btn" type="button" aria-label="Günlüğü kopyala"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
   <button class="icon-btn" type="button" aria-label="Görüntüleyiciyi kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)</span>"&gt;
   &lt;<span class='k'>span</span> class="<span class='s'>mono</span>" style="<span class='s'>margin-right:auto;color:var(--ink-2)</span>"&gt;web-api · prod · son 15 dk&lt;/<span class='k'>span</span>&gt;
   &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yenile&lt;/<span class='k'>button</span>&gt;
   &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Günlüğü kopyala</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
@@ -214,20 +226,20 @@
 <div class="tbl"><table>
   <thead><tr><th>Kişi</th><th>Kaynak</th><th>Durum</th></tr></thead>
   <tbody>
-    <tr><td>a.yilmaz</td><td><code>orders-db</code> · salt okunur</td><td><span style="display:inline-flex;align-items:center;gap:6px;color:var(--ok)"><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-check"/></svg>Onaylandı</span></td></tr>
-    <tr><td>d.kaya</td><td><code>eu-west-1</code> · yönetici</td><td><span style="display:inline-flex;align-items:center;gap:6px;color:var(--sec)"><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-shield"/></svg>İkinci onay bekliyor</span></td></tr>
-    <tr><td>m.demir</td><td><code>billing-worker</code> · dağıtım</td><td><span style="display:inline-flex;align-items:center;gap:6px;color:var(--warn)"><svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-warn"/></svg>3 gün içinde sona eriyor</span></td></tr>
-    <tr><td>s.aydin</td><td><code>prod</code> · gizli bilgi kasası</td><td><span style="display:inline-flex;align-items:center;gap:6px;color:var(--bad)"><svg role="img" aria-label="Reddedildi" style="width:14px;height:14px"><use href="#i-x"/></svg>gerekçe: rol yok</span></td></tr>
+    <tr><td>a.yilmaz</td><td><code>orders-db</code> · salt okunur</td><td><span style="color:var(--ok)"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Onaylandı</span></td></tr>
+    <tr><td>d.kaya</td><td><code>eu-west-1</code> · yönetici</td><td><span style="color:var(--sec)"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> İkinci onay bekliyor</span></td></tr>
+    <tr><td>m.demir</td><td><code>billing-worker</code> · dağıtım</td><td><span style="color:var(--warn)"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> 3 gün içinde sona eriyor</span></td></tr>
+    <tr><td>s.aydin</td><td><code>prod</code> · gizli bilgi kasası</td><td><span style="color:var(--bad)"><svg class="ic" role="img" aria-label="Reddedildi"><use href="#i-x"/></svg> gerekçe: rol yok</span></td></tr>
   </tbody>
 </table></div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
   &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Kişi&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Kaynak&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Durum&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
   &lt;<span class='k'>tbody</span>&gt;
-    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;a.yilmaz&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;orders-db&lt;/<span class='k'>code</span>&gt; · salt okunur&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>display:inline-flex;align-items:center;gap:6px;color:var(--ok)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:14px;height:14px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Onaylandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
-    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;d.kaya&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt; · yönetici&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>display:inline-flex;align-items:center;gap:6px;color:var(--sec)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:14px;height:14px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;İkinci onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
-    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;m.demir&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; · dağıtım&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>display:inline-flex;align-items:center;gap:6px;color:var(--warn)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:14px;height:14px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;3 gün içinde sona eriyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
-    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;s.aydin&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;prod&lt;/<span class='k'>code</span>&gt; · gizli bilgi kasası&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>display:inline-flex;align-items:center;gap:6px;color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> role="<span class='s'>img</span>" aria-label="<span class='s'>Reddedildi</span>" style="<span class='s'>width:14px;height:14px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;gerekçe: rol yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;a.yilmaz&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;orders-db&lt;/<span class='k'>code</span>&gt; · salt okunur&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--ok)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; Onaylandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;d.kaya&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt; · yönetici&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--sec)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; İkinci onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;m.demir&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; · dağıtım&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; 3 gün içinde sona eriyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;s.aydin&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;prod&lt;/<span class='k'>code</span>&gt; · gizli bilgi kasası&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>Reddedildi</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; gerekçe: rol yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
   &lt;/<span class='k'>tbody</span>&gt;
 &lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
@@ -235,18 +247,18 @@
 <div class="demo">
   <span class="demo-label">Örnek · koyu sahne</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);color:var(--ink);border-radius:var(--r-sm);padding:14px 16px">
-  <p class="chip" style="margin-bottom:8px">Alarm · orders-db</p>
-  <p style="margin:0 0 12px;display:flex;align-items:center;gap:8px;color:var(--bad)"><svg aria-hidden="true" style="width:16px;height:16px"><use href="#i-warn"/></svg>Bağlantı havuzu %94 dolu</p>
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:var(--sp-6) var(--sp-7)">
+  <p class="chip" style="margin-bottom:var(--sp-3)">Alarm · orders-db</p>
+  <p style="margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)"><svg aria-hidden="true"><use href="#i-warn"/></svg>Bağlantı havuzu %94 dolu</p>
   <div class="pillrow">
     <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Sorguyu kopyala</button>
     <button class="icon-btn" type="button" aria-label="Alarm hakkında bilgi"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);color:var(--ink);border-radius:var(--r-sm);padding:14px 16px</span>"&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:8px</span>"&gt;Alarm · orders-db&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 12px;display:flex;align-items:center;gap:8px;color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:16px;height:16px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Bağlantı havuzu %94 dolu&lt;/<span class='k'>p</span>&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:var(--sp-6) var(--sp-7)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:var(--sp-3)</span>"&gt;Alarm · orders-db&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Bağlantı havuzu %94 dolu&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sorguyu kopyala&lt;/<span class='k'>button</span>&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Alarm hakkında bilgi</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
@@ -260,21 +272,21 @@
 <div class="demo">
   <span class="demo-label">Önizleme · eklemeden önce</span>
   <div class="demo-view">
-<div style="display:flex;align-items:center;gap:18px">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:24px;height:24px"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
-  <svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-shield"/></svg>
-  <svg aria-hidden="true" style="width:24px;height:24px"><use href="#i-wrench"/></svg>
+<div style="display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xl)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="1em" height="1em"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+  <svg aria-hidden="true"><use href="#i-shield"/></svg>
+  <svg aria-hidden="true"><use href="#i-wrench"/></svg>
   <span class="figcap" style="margin:0">Yeni çizimi mevcut ikonların yanında, aynı boyutta deneyin.</span>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:18px</span>"&gt;
-  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 24 24</span>" fill="<span class='s'>none</span>" stroke="<span class='s'>currentColor</span>" stroke-width="<span class='s'>2</span>" stroke-linecap="<span class='s'>round</span>" stroke-linejoin="<span class='s'>round</span>" aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:24px;height:24px</span>"&gt;&lt;<span class='k'>ellipse</span> cx="<span class='s'>12</span>" cy="<span class='s'>6</span>" rx="<span class='s'>7</span>" ry="<span class='s'>3</span>"/&gt;&lt;<span class='k'>path</span> d="<span class='s'>M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
-  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:24px;height:24px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
-  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:24px;height:24px</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xl)</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 24 24</span>" fill="<span class='s'>none</span>" stroke="<span class='s'>currentColor</span>" stroke-width="<span class='s'>2</span>" stroke-linecap="<span class='s'>round</span>" stroke-linejoin="<span class='s'>round</span>" aria-hidden="<span class='s'>true</span>" width="<span class='s'>1em</span>" height="<span class='s'>1em</span>"&gt;&lt;<span class='k'>ellipse</span> cx="<span class='s'>12</span>" cy="<span class='s'>6</span>" rx="<span class='s'>7</span>" ry="<span class='s'>3</span>"/&gt;&lt;<span class='k'>path</span> d="<span class='s'>M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
   &lt;<span class='k'>span</span> class="<span class='s'>figcap</span>" style="<span class='s'>margin:0</span>"&gt;Yeni çizimi mevcut ikonların yanında, aynı boyutta deneyin.&lt;/<span class='k'>span</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">src/icons.svg</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- &lt;defs&gt; içine, alfabetik değil anlam sırasıylalt;defs&lt;defs&gt; içine, alfabetik değil anlam sırasıylagt; içine, son sembolün altına --&gt;</span>
+<figure class="code"><figcaption class="code-head"><span class="code-file">src/icons.svg</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- &lt;defs&gt; içine, son sembolün altına; sıra alfabetik değil anlamsaldır --&gt;</span>
 &lt;<span class="k">symbol</span> id="<span class="s">i-database</span>" viewBox="<span class="s">0 0 24 24</span>" fill="<span class="s">none</span>" stroke="<span class="s">currentColor</span>"
         stroke-width="<span class="s">2</span>" stroke-linecap="<span class="s">round</span>" stroke-linejoin="<span class="s">round</span>"&gt;
   &lt;<span class="k">ellipse</span> cx="<span class="s">12</span>" cy="<span class="s">6</span>" rx="<span class="s">7</span>" ry="<span class="s">3</span>"/&gt;
@@ -302,26 +314,26 @@
 <div class="demo">
   <span class="demo-label">Yap · ikonun adı var</span>
   <div class="demo-view">
-<p style="margin:0;display:flex;align-items:center;gap:8px">
-  <svg role="img" aria-label="Uyarı" style="width:16px;height:16px;color:var(--warn)"><use href="#i-warn"/></svg>
+<p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
+  <svg role="img" aria-label="Uyarı" style="color:var(--warn)"><use href="#i-warn"/></svg>
   <span class="mono">eu-west-1</span>
 </p>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:8px</span>"&gt;
-  &lt;<span class='k'>svg</span> role="<span class='s'>img</span>" aria-label="<span class='s'>Uyarı</span>" style="<span class='s'>width:16px;height:16px;color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>svg</span> role="<span class='s'>img</span>" aria-label="<span class='s'>Uyarı</span>" style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
   &lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
 &lt;/<span class='k'>p</span>&gt;</code></pre></figure>
 </div>
 <div class="demo">
   <span class="demo-label">Yapma · anlam yalnızca çizimde</span>
   <div class="demo-view">
-<p style="margin:0;display:flex;align-items:center;gap:8px">
-  <svg aria-hidden="true" style="width:16px;height:16px;color:var(--warn)"><use href="#i-warn"/></svg>
+<p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
+  <svg aria-hidden="true" style="color:var(--warn)"><use href="#i-warn"/></svg>
   <span class="mono">eu-west-1</span>
 </p>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:8px</span>"&gt;
-  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>width:16px;height:16px;color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
   &lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
 &lt;/<span class='k'>p</span>&gt;</code></pre></figure>
 </div>

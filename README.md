@@ -22,6 +22,8 @@ dist/icons.svg          ikon sprite'ı
 
 Dokümantasyon `docs/` klasöründedir; `docs/index.html` dosyasını tarayıcıda açın. Her parçanın varyantları, bağlam örnekleri ve yap/yapma çiftleri ayrı sayfalardadır: `demos/index.html` (kaynaklar `demos/_src/`, üretici `tools/demos.mjs`, `npm run build` içinde koşar). Kopyala-başla sayfası `starter/index.html`.
 
+Yeni parça eklerken ya da bir parçayı değiştirirken **[STANDART.md](STANDART.md)** izlenir: token ölçekleri, durum sözleşmesi (`--c`/`--c-soft`, `.s-*`), etkileşim durumları, kap sorguları ve parça sayfası yapısı. `npm test` bu kuralları denetler (`tests/unit/standard.test.mjs`, `tools/demos.mjs`).
+
 ## Hızlı başlangıç
 
 ```html
@@ -48,7 +50,9 @@ Dokümantasyon `docs/` klasöründedir; `docs/index.html` dosyasını tarayıcı
 | `strings` | Türkçe metinler | Arayüz metinleri. |
 | `themeKey` | `'hendese-theme'` | localStorage anahtarı. |
 | `topId` | `'top'` | Sayfa başının id'si. |
-| `englishStems` | yok | `RegExp`: büyük harfli etiketlerdeki İngilizce kelimelere `lang="en"` ekler (Türkçe büyük İ sorunu). |
+| `englishStems` | yok | `RegExp`: büyük harfle basılan her etiketteki İngilizce kelimelere `lang="en"` ekler (Türkçe büyük İ sorunu). |
+
+Temayı tek renkle değiştirmek: `:root{--accent:light-dark(#0f766e,#5eead4);--accent-2:light-dark(#0b5d57,#99f6e4)}`. Çizim, kalem ve vurgu zemini `--accent`'ten türetilir; `--accent-2` bağlantı rengidir, kontrastını elle doğrulayın.
 
 ## Felsefe
 

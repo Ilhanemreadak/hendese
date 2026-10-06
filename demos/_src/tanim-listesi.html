@@ -1,4 +1,4 @@
-<!-- meta {"title":"Tanım listesi","group":"Bileşenler","order":70,"tagline":"Ad–değer çiftleri, şekil yazısı ve okuma metni.","intro":"Üç metin parçası: kısa ad–değer çiftleri için <code>dl.kv</code>, bir şeklin ya da tablonun altına <code>.figcap</code>, uzun okuma için <code>.prose</code>. Satır içi kod, mono yazı ve bağlantılar bunların içinde yaşar.","summary":"<code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.","facts":{"Sınıflar":"<code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code>","Ölçüler":"<code>.kv</code> ad sütunu 200px, 860px altında tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Tanım listesi","group":"Bileşenler","order":70,"tagline":"Ad–değer çiftleri, şekil yazısı ve okuma metni.","intro":"Üç metin parçası: kısa ad–değer çiftleri için <code>dl.kv</code>, bir şeklin ya da tablonun altına <code>.figcap</code>, uzun okuma için <code>.prose</code>. Satır içi kod, mono yazı ve bağlantılar bunların içinde yaşar.","summary":"<code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.","facts":{"Sınıflar":"<code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code>","Ölçüler":"<code>.kv</code> ad sütunu 200px; içerik sütunu 640px'ten darsa tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch","JS":"Gerekmez"}} -->
 
 
 <chapter title="Tanım listesi" lead="dl.kv iki sütunlu bir ızgaradır: solda kalın ad, sağda değer. Değer kısa olmalı; bir kelime, bir sayı, bir tanımlayıcı.">
@@ -8,11 +8,11 @@
   <dt>Sahibi</dt><dd>platform ekibi</dd>
   <dt>Bölge</dt><dd><code>eu-west-1</code></dd>
   <dt>Kopya</dt><dd>3 (en az 2, en çok 8)</dd>
-  <dt>Durum</dt><dd><span class="pill pill-ok">sağlıklı</span></dd>
+  <dt>Durum</dt><dd><span class="pill s-ok">sağlıklı</span></dd>
   <dt><code>HEALTHCHECK</code></dt><dd><span class="mono">GET /healthz</span> · 10 sn aralık</dd>
 </dl>
 </demo>
-<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. 860px'in altında ad ve değer alt alta iner. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
+<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. İçerik sütunu (<code>main</code>) 640px'ten darsa ad ve değer alt alta iner; bu bir kap sorgusudur, pencereye değil sütuna bakar. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
 </chapter>
 
 <chapter title="Bağlam içinde" lead="Aynı yapı bir DNS kaydını, bir alarmı ya da bir önbellek ayarını anlatır. Okur adları dikey tarar, aradığını bulur.">
@@ -26,15 +26,15 @@
 </demo>
 <demo label="Örnek · alarm ayrıntısı">
 <p class="chip" style="margin-bottom:6px">Alarm · 5xx oranı</p>
-<dl class="kv" style="--u:1px">
-  <dt>Durum</dt><dd><span class="state bad">tetiklendi</span></dd>
+<dl class="kv">
+  <dt>Durum</dt><dd><span class="state s-bad">tetiklendi</span></dd>
   <dt>Eşik</dt><dd>%2 · 5 dakika</dd>
   <dt>Son değer</dt><dd>%3.7</dd>
   <dt>Bildirim</dt><dd>nöbetçi-platform, <a href="#p2">olay kanalı</a></dd>
 </dl>
 </demo>
 <demo label="Örnek · koyu sahne içinde">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:14px 18px">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:14px 18px">
   <dl class="kv" style="margin:0">
     <dt>Önbellek</dt><dd><code>cache-eu</code></dd>
     <dt>Politika</dt><dd><span class="mono">allkeys-lfu</span></dd>
@@ -42,6 +42,26 @@
   </dl>
 </div>
 </demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Tanım listesinin kendi durum rengi yoktur; durum değerin içindeki rozetle söylenir. Uzun, boş ve henüz bilinmeyen değerler için birer kural yeter.">
+<demo label="Örnek · dağıtım kaydı">
+<dl class="kv">
+  <dt>Durum</dt><dd><span class="pill s-warn">yeniden deneniyor</span> 3 denemenin 2'si</dd>
+  <dt>Güvenlik taraması</dt><dd><span class="state s-sec">imza bekliyor</span></dd>
+  <dt>İmaj</dt><dd><code>123456789012.dkr.ecr.eu-west-1.amazonaws.com/web-api@sha256:4c1e9a0b7d2f</code></dd>
+  <dt>Bitiş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span> (iş sürüyor)</dd>
+  <dt>Geri dönüş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">tanımlı değil</span></dd>
+</dl>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Değer</th><th>Kural</th></tr></thead>
+  <tbody>
+    <tr><td>Durum</td><td><code>.pill.s-*</code> ya da <code>.state.s-*</code> ve bir kelime; <code>dd</code>'yi boyamayın</td></tr>
+    <tr><td>Uzun tanımlayıcı</td><td><code>&lt;code&gt;</code> içinde yazın: herhangi bir yerden kırılır, sütun taşmaz</td></tr>
+    <tr><td>Boş ya da bilinmiyor</td><td>Görünen “—”, ekran okuyucu için <code>.visually-hidden</code> bir kelime; <code>dd</code>'yi boş bırakmayın</td></tr>
+  </tbody>
+</table></div>
 </chapter>
 
 <chapter title="Şekil yazısı" lead="figcap bir şeklin, tablonun ya da kod bloğunun hemen altında durur. Kalın ilk kelime numarayı, kalanı tek cümlelik açıklamayı taşır.">

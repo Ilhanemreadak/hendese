@@ -3,3 +3,4 @@ test-results/
 playwright-report/
 releases/
 *.tgz
+tools/_*.tmp.mjs

@@ -64,9 +64,10 @@
     <div class="nav-group">Bu sayfa</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Tanım listesi</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p3"><span class="num">03</span><span>Şekil yazısı</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Okuma metni</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Şekil yazısı</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Okuma metni</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -82,7 +83,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Tanım listesi<em>Ad–değer çiftleri, şekil yazısı ve okuma metni.</em></h1>
     <p class="intro">Üç metin parçası: kısa ad–değer çiftleri için <code>dl.kv</code>, bir şeklin ya da tablonun altına <code>.figcap</code>, uzun okuma için <code>.prose</code>. Satır içi kod, mono yazı ve bağlantılar bunların içinde yaşar.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code></dd><dt>Ölçüler</dt><dd><code>.kv</code> ad sütunu 200px, 860px altında tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code></dd><dt>Ölçüler</dt><dd><code>.kv</code> ad sütunu 200px; içerik sütunu 640px'ten darsa tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -96,7 +97,7 @@
   <dt>Sahibi</dt><dd>platform ekibi</dd>
   <dt>Bölge</dt><dd><code>eu-west-1</code></dd>
   <dt>Kopya</dt><dd>3 (en az 2, en çok 8)</dd>
-  <dt>Durum</dt><dd><span class="pill pill-ok">sağlıklı</span></dd>
+  <dt>Durum</dt><dd><span class="pill s-ok">sağlıklı</span></dd>
   <dt><code>HEALTHCHECK</code></dt><dd><span class="mono">GET /healthz</span> · 10 sn aralık</dd>
 </dl>
   </div>
@@ -105,11 +106,11 @@
   &lt;<span class='k'>dt</span>&gt;Sahibi&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;platform ekibi&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;Bölge&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;Kopya&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;3 (en az 2, en çok 8)&lt;/<span class='k'>dd</span>&gt;
-  &lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;sağlıklı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;sağlıklı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;&lt;<span class='k'>code</span>&gt;HEALTHCHECK&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;GET /healthz&lt;/<span class='k'>span</span>&gt; · 10 sn aralık&lt;/<span class='k'>dd</span>&gt;
 &lt;/<span class='k'>dl</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. 860px'in altında ad ve değer alt alta iner. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
+<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. İçerik sütunu (<code>main</code>) 640px'ten darsa ad ve değer alt alta iner; bu bir kap sorgusudur, pencereye değil sütuna bakar. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
 </article>
 
 <article class="chapter" id="p2" data-section data-title="Bağlam içinde">
@@ -135,16 +136,16 @@
   <span class="demo-label">Örnek · alarm ayrıntısı</span>
   <div class="demo-view">
 <p class="chip" style="margin-bottom:6px">Alarm · 5xx oranı</p>
-<dl class="kv" style="--u:1px">
-  <dt>Durum</dt><dd><span class="state bad">tetiklendi</span></dd>
+<dl class="kv">
+  <dt>Durum</dt><dd><span class="state s-bad">tetiklendi</span></dd>
   <dt>Eşik</dt><dd>%2 · 5 dakika</dd>
   <dt>Son değer</dt><dd>%3.7</dd>
   <dt>Bildirim</dt><dd>nöbetçi-platform, <a href="#p2">olay kanalı</a></dd>
 </dl>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:6px</span>"&gt;Alarm · 5xx oranı&lt;/<span class='k'>p</span>&gt;
-&lt;<span class='k'>dl</span> class="<span class='s'>kv</span>" style="<span class='s'>--u:1px</span>"&gt;
-  &lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;tetiklendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+&lt;<span class='k'>dl</span> class="<span class='s'>kv</span>"&gt;
+  &lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;tetiklendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;Eşik&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;%2 · 5 dakika&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;Son değer&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;%3.7&lt;/<span class='k'>dd</span>&gt;
   &lt;<span class='k'>dt</span>&gt;Bildirim&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;nöbetçi-platform, &lt;<span class='k'>a</span> href="<span class='s'>#p2</span>"&gt;olay kanalı&lt;/<span class='k'>a</span>&gt;&lt;/<span class='k'>dd</span>&gt;
@@ -153,7 +154,7 @@
 <div class="demo">
   <span class="demo-label">Örnek · koyu sahne içinde</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:14px 18px">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:14px 18px">
   <dl class="kv" style="margin:0">
     <dt>Önbellek</dt><dd><code>cache-eu</code></dd>
     <dt>Politika</dt><dd><span class="mono">allkeys-lfu</span></dd>
@@ -161,7 +162,7 @@
   </dl>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-sm);padding:14px 18px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:14px 18px</span>"&gt;
   &lt;<span class='k'>dl</span> class="<span class='s'>kv</span>" style="<span class='s'>margin:0</span>"&gt;
     &lt;<span class='k'>dt</span>&gt;Önbellek&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>code</span>&gt;cache-eu&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dd</span>&gt;
     &lt;<span class='k'>dt</span>&gt;Politika&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;allkeys-lfu&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
@@ -171,8 +172,39 @@
 </div>
 </article>
 
-<article class="chapter" id="p3" data-section data-title="Şekil yazısı">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Şekil yazısı</h2><p class="lead">figcap bir şeklin, tablonun ya da kod bloğunun hemen altında durur. Kalın ilk kelime numarayı, kalanı tek cümlelik açıklamayı taşır.</p></header>
+<article class="chapter" id="p3" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Tanım listesinin kendi durum rengi yoktur; durum değerin içindeki rozetle söylenir. Uzun, boş ve henüz bilinmeyen değerler için birer kural yeter.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · dağıtım kaydı</span>
+  <div class="demo-view">
+<dl class="kv">
+  <dt>Durum</dt><dd><span class="pill s-warn">yeniden deneniyor</span> 3 denemenin 2'si</dd>
+  <dt>Güvenlik taraması</dt><dd><span class="state s-sec">imza bekliyor</span></dd>
+  <dt>İmaj</dt><dd><code>123456789012.dkr.ecr.eu-west-1.amazonaws.com/web-api@sha256:4c1e9a0b7d2f</code></dd>
+  <dt>Bitiş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span> (iş sürüyor)</dd>
+  <dt>Geri dönüş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">tanımlı değil</span></dd>
+</dl>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>dl</span> class="<span class='s'>kv</span>"&gt;
+  &lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;yeniden deneniyor&lt;/<span class='k'>span</span>&gt; 3 denemenin 2'si&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;Güvenlik taraması&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-sec</span>"&gt;imza bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;İmaj&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>code</span>&gt;123456789012.dkr.ecr.eu-west-1.amazonaws.com/web-api@sha256:4c1e9a0b7d2f&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;Bitiş&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;henüz yok&lt;/<span class='k'>span</span>&gt; (iş sürüyor)&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;Geri dönüş&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;tanımlı değil&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+&lt;/<span class='k'>dl</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Değer</th><th>Kural</th></tr></thead>
+  <tbody>
+    <tr><td>Durum</td><td><code>.pill.s-*</code> ya da <code>.state.s-*</code> ve bir kelime; <code>dd</code>'yi boyamayın</td></tr>
+    <tr><td>Uzun tanımlayıcı</td><td><code>&lt;code&gt;</code> içinde yazın: herhangi bir yerden kırılır, sütun taşmaz</td></tr>
+    <tr><td>Boş ya da bilinmiyor</td><td>Görünen “—”, ekran okuyucu için <code>.visually-hidden</code> bir kelime; <code>dd</code>'yi boş bırakmayın</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Şekil yazısı">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Şekil yazısı</h2><p class="lead">figcap bir şeklin, tablonun ya da kod bloğunun hemen altında durur. Kalın ilk kelime numarayı, kalanı tek cümlelik açıklamayı taşır.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · tablo altında</span>
   <div class="demo-view">
@@ -219,8 +251,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Okuma metni">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Okuma metni</h2><p class="lead">prose satırı 72 karakterde tutar ve gövdeyi ikincil mürekkeple yazar. İçinde başlık, liste, satır içi kod, mono yazı ve bağlantı olabilir.</p></header>
+<article class="chapter" id="p5" data-section data-title="Okuma metni">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Okuma metni</h2><p class="lead">prose satırı 72 karakterde tutar ve gövdeyi ikincil mürekkeple yazar. İçinde başlık, liste, satır içi kod, mono yazı ve bağlantı olabilir.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · sürüm notu</span>
   <div class="demo-view">
@@ -259,8 +291,8 @@
 <div class="prose"><p><code>code</code> zemin çizer ve okurun yazacağı ya da kopyalayacağı değer içindir. <code>.mono</code> zemin çizmez; saat dilimi, kayıt türü gibi teknik ama kopyalanmayan adlar içindir.</p></div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Tanım listesi bir sözlüktür, bir hikâye değil. Değer uzadıkça okur sütunu taramayı bırakır.</p></header>
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Tanım listesi bir sözlüktür, bir hikâye değil. Değer uzadıkça okur sütunu taramayı bırakır.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · kısa değer, ayrıntı metinde</span>

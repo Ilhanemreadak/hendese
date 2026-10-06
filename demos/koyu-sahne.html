@@ -58,9 +58,10 @@
     <div class="nav-group">Bu sayfa</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Nasıl çalışır</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Çizimler</span></a>
-    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bileşenler</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Açık sahne</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bileşenler</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -74,47 +75,50 @@
 <section class="hero" id="top" data-section data-title="Giriş">
   <div class="hero-copy">
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
-    <h1>Koyu sahne<em>Bir kapsayıcıyı temadan bağımsız koyu çiz.</em></h1>
-    <p class="intro"><code>.scene-dark</code> bir kapsayıcının <code>color-scheme</code> değerini koyuya çevirir. Token'lar <code>light-dark()</code> ile tanımlı olduğu için içerideki her çizgi, dolgu ve bileşen koyu tonlara çözülür; açık temada da. “Ağın içi”, “gece nöbeti” gibi bağlamsal olarak farklı bir yeri göstermek için kullanılır.</p>
-<dl class="kv"><dt>Sınıf</dt><dd><code>.scene-dark</code></dd><dt>Ne yapar</dt><dd><code>color-scheme: dark</code> + <code>color: var(--ink)</code></dd><dt>Kapsayıcıya düşen</dt><dd>Zemin: <code>background: var(--scene-bg)</code> (ya da <code>.frame-bg</code>)</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+    <h1>Koyu sahne<em>Bir kapsayıcıyı temadan bağımsız koyu ya da açık çiz.</em></h1>
+    <p class="intro"><code>.scene-dark</code> bir kapsayıcının <code>color-scheme</code> değerini koyuya çevirir. Token'lar <code>light-dark()</code> ile tanımlı olduğu için içerideki her çizgi, dolgu ve bileşen koyu tonlara çözülür; açık temada da. “Ağın içi”, “gece nöbeti” gibi bağlamsal olarak farklı bir yeri göstermek için kullanılır. <code>.scene-light</code> tersini yapar: koyu temada bir kapsayıcıyı açık çizer.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.scene-dark</code> · <code>.scene-light</code></dd><dt>Ne yapar</dt><dd><code>color-scheme: dark | light</code> + <code>color: var(--ink)</code></dd><dt>Zemin</dt><dd>Kendi <code>.frame-bg</code> katmanı yoksa <code>var(--scene-bg)</code>, otomatik</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
 <article class="chapter" id="p1" data-section data-title="Nasıl çalışır">
-  <header class="ch-head"><p class="ch-num">01</p><h2>Nasıl çalışır</h2><p class="lead">Sınıf iki şey yapar: kapsayıcının renk şemasını koyu yapar ve metin rengini yeniden okur. Zemin kapsayıcının işidir; fig-sheet ve frame bunu frame-bg ile zaten yapar.</p></header>
+  <header class="ch-head"><p class="ch-num">01</p><h2>Nasıl çalışır</h2><p class="lead">Sınıf üç şey yapar: kapsayıcının renk şemasını çevirir, metin rengini yeniden okur ve zemini verir. fig-sheet ve frame zeminini kendi frame-bg katmanıyla çizer; sınıf onu ezmez.</p></header>
 <div class="demo">
-  <span class="demo-label">Örnek · aynı işaretleme, iki şema</span>
+  <span class="demo-label">Örnek · aynı işaretleme, iki sahne</span>
   <div class="demo-view">
-<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
-  <div style="padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)">
-    <p class="chip">Sayfa teması</p>
-    <p style="margin:6px 0 12px">billing-worker kuyruğu boşalttı.</p>
-    <div class="pillrow" style="align-items:center"><span class="state ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-6)">
+  <div class="scene-light" style="padding:var(--sp-7) var(--sp-8)">
+    <p class="chip"><span lang="en">.scene-light</span></p>
+    <p style="margin:var(--sp-2) 0 var(--sp-5)">billing-worker kuyruğu boşalttı.</p>
+    <div class="pillrow" style="align-items:center"><span class="state s-ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
   </div>
-  <div class="scene-dark" style="padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)">
-    <p class="chip">.scene-dark</p>
-    <p style="margin:6px 0 12px">billing-worker kuyruğu boşalttı.</p>
-    <div class="pillrow" style="align-items:center"><span class="state ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
+  <div class="scene-dark" style="padding:var(--sp-7) var(--sp-8)">
+    <p class="chip"><span lang="en">.scene-dark</span></p>
+    <p style="margin:var(--sp-2) 0 var(--sp-5)">billing-worker kuyruğu boşalttı.</p>
+    <div class="pillrow" style="align-items:center"><span class="state s-ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px</span>"&gt;
-  &lt;<span class='k'>div</span> style="<span class='s'>padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)</span>"&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Sayfa teması&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 12px</span>"&gt;billing-worker kuyruğu boşalttı.&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Boşta&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;Günlüğü aç&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-6)</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-light</span>" style="<span class='s'>padding:var(--sp-7) var(--sp-8)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;.scene-light&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-5)</span>"&gt;billing-worker kuyruğu boşalttı.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Boşta&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;Günlüğü aç&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)</span>"&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;.scene-dark&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 12px</span>"&gt;billing-worker kuyruğu boşalttı.&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Boşta&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;Günlüğü aç&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-7) var(--sp-8)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;.scene-dark&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-5)</span>"&gt;billing-worker kuyruğu boşalttı.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Boşta&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;Günlüğü aç&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>İki kutunun işaretlemesi yalnızca sınıf adında ayrılır. Sağdaki kutuda <code>--scene-bg</code>, <code>--ink</code>, <code>--ok</code> ve düğmenin yüzey token'ları koyu değerlerine çözülür. Sayfa zaten koyu temadaysa iki kutu aynı görünür.</p></div>
+<div class="prose"><p>İki kutunun işaretlemesi yalnızca sınıf adında ayrılır ve ikisinde de satır içi zemin yoktur. Soldaki kutu sayfa teması ne olursa olsun açık, sağdaki koyu çizilir: <code>--scene-bg</code>, <code>--ink</code>, <code>--ok</code> ve düğmenin yüzey token'ları sahnenin şemasına göre çözülür.</p></div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">paketteki kural</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* light-dark() token'ları kullanıldıkları öğenin color-scheme'ine göre çözülür */
-.scene-dark{color-scheme:dark;color:var(--ink)}</code></pre></figure>
-<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Zemin sizde</span><div class="co-body"><p>Sınıf zemin vermez. Çıplak bir <code>div.scene-dark</code> açık temada açık zeminin üstüne açık renkli metin yazar. Kapsayıcıya <code>background: var(--scene-bg)</code> (ya da <code>--surface</code>) verin veya içine bir <code>.frame-bg</code> katmanı koyun.</p></div></div>
+.scene-dark{color-scheme:dark;color:var(--ink)}
+.scene-light{color-scheme:light;color:var(--ink)}
+/* kendi pafta zemini yoksa sahne zemini kaba verilir */
+:is(.scene-dark,.scene-light):not(:has(&gt;.frame-bg)){background:var(--scene-bg)}</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Zemin otomatik</span><div class="co-body"><p>Çıplak bir <code>div.scene-dark</code> zeminini kendisi alır: doğrudan çocuğu bir <code>.frame-bg</code> değilse kapsayıcıya <code>background: var(--scene-bg)</code> verilir. Satır içi zemin yazmayın. Köşe ve kenar isteyen sahne bir <code>.frame-bg</code> katmanı taşır; zemini o zaman katman çizer.</p></div></div>
 </article>
 
 <article class="chapter" id="p2" data-section data-title="Çizimler">
@@ -138,9 +142,9 @@
       <path class="ln-draw ln-dash" d="M550 105H694"/>
       <path class="ln-draw" d="M694 105l-8-4M694 105l-8 4"/>
     </svg>
-    <p class="dl" style="--x:34;--y:74;--w:150"><span class="stamp-k">İstemci</span><br>tarayıcı</p>
-    <p class="dl" style="--x:344;--y:74;--w:200"><span class="stamp-k">Edge</span><br>edge-fra<br><span class="state ok">İsabet %94</span></p>
-    <p class="dl" style="--x:714;--y:74;--w:160"><span class="stamp-k">Origin</span><br>web-api</p>
+    <p class="dl" style="--x:34;--y:74;--w:150"><span class="stamp-k">İstemci</span>tarayıcı</p>
+    <p class="dl" style="--x:344;--y:74;--w:200"><span class="stamp-k" lang="en">Edge</span>edge-fra<br><span class="state s-ok">İsabet %94</span></p>
+    <p class="dl" style="--x:714;--y:74;--w:160"><span class="stamp-k" lang="en">Origin</span>web-api</p>
     <p class="dl" style="--x:560;--y:112;--w:130;text-align:center">ıskalamada</p>
   </div>
   <figcaption class="figcap"><b>Şekil 1.</b> Kalın yol isteklerin çoğunun izlediği yoldur; kesikli yol yalnızca önbellek ıskalandığında kullanılır.</figcaption>
@@ -162,9 +166,9 @@
       &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M550 105H694</span>"/&gt;
       &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M694 105l-8-4M694 105l-8 4</span>"/&gt;
     &lt;/<span class='k'>svg</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:74;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;İstemci&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;tarayıcı&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:344;--y:74;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Edge&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;edge-fra&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;İsabet %94&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:714;--y:74;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Origin&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;web-api&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:74;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;İstemci&lt;/<span class='k'>span</span>&gt;tarayıcı&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:344;--y:74;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>" lang="<span class='s'>en</span>"&gt;Edge&lt;/<span class='k'>span</span>&gt;edge-fra&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;İsabet %94&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:714;--y:74;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>" lang="<span class='s'>en</span>"&gt;Origin&lt;/<span class='k'>span</span>&gt;web-api&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:560;--y:112;--w:130;text-align:center</span>"&gt;ıskalamada&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 1.&lt;/<span class='k'>b</span>&gt; Kalın yol isteklerin çoğunun izlediği yoldur; kesikli yol yalnızca önbellek ıskalandığında kullanılır.&lt;/<span class='k'>figcaption</span>&gt;
@@ -173,7 +177,7 @@
 <div class="demo">
   <span class="demo-label">Örnek · çıplak kapsayıcı · kasa erişimi</span>
   <div class="demo-view">
-<div class="scene-dark" style="padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)">
+<div class="scene-dark" style="padding:var(--sp-7) var(--sp-8)">
   <div class="drawing" style="--aw:900;--ah:180">
     <svg viewBox="0 0 900 180" aria-hidden="true">
       <rect class="ln-strong fill-paper" x="640" y="45" width="240" height="90"/>
@@ -185,13 +189,13 @@
     </svg>
     <p class="dl" style="--x:34;--y:38;--w:180">billing-worker</p>
     <p class="dl" style="--x:34;--y:122;--w:180">ci-runner</p>
-    <p class="dl" style="--x:654;--y:58;--w:220"><span class="stamp-k">Kasa</span><br>secret/billing/*<br><span class="state ok">Okunabilir</span></p>
+    <p class="dl" style="--x:654;--y:58;--w:220"><span class="stamp-k">Kasa</span>secret/billing/*<br><span class="state s-ok">Okunabilir</span></p>
     <p class="dl" style="--x:260;--y:20;--w:240">rol: billing-read</p>
-    <p class="dl" style="--x:260;--y:104;--w:300"><span class="state bad">Reddedildi</span> politika yok</p>
+    <p class="dl" style="--x:260;--y:104;--w:300"><span class="state s-bad">Reddedildi</span> politika yok</p>
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-7) var(--sp-8)</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:180</span>"&gt;
     &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 180</span>" aria-hidden="<span class='s'>true</span>"&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>640</span>" y="<span class='s'>45</span>" width="<span class='s'>240</span>" height="<span class='s'>90</span>"/&gt;
@@ -203,33 +207,81 @@
     &lt;/<span class='k'>svg</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:38;--w:180</span>"&gt;billing-worker&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:122;--w:180</span>"&gt;ci-runner&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:654;--y:58;--w:220</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kasa&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;secret/billing/*&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Okunabilir&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:654;--y:58;--w:220</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kasa&lt;/<span class='k'>span</span>&gt;secret/billing/*&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Okunabilir&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:260;--y:20;--w:240</span>"&gt;rol: billing-read&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:260;--y:104;--w:300</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;Reddedildi&lt;/<span class='k'>span</span>&gt; politika yok&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:260;--y:104;--w:300</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Reddedildi&lt;/<span class='k'>span</span>&gt; politika yok&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>İkinci örnekte pafta yok: <code>.scene-dark</code> doğrudan bir <code>div</code>'e verilmiş, zemin satır içi <code>var(--scene-bg)</code> ile okunmuş. Çizimin içi hiç değişmedi.</p></div>
+<div class="prose"><p>İkinci örnekte pafta yok: <code>.scene-dark</code> doğrudan bir <code>div</code>'e verilmiş ve zemini sınıf kendisi vermiş; satır içinde yalnızca dolgu var. Çizimin içi hiç değişmedi.</p></div>
 </article>
 
-<article class="chapter" id="p3" data-section data-title="Bileşenler">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Bileşenler</h2><p class="lead">Düğme, durum etiketi, uyarı kutusu, antet ve kayıt kutusu da yalnızca token okur. Koyu sahne içinde ek sınıf gerekmez.</p></header>
+<article class="chapter" id="p3" data-section data-title="Açık sahne">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Açık sahne</h2><p class="lead">scene-light tersini yapar: koyu temalı bir sayfada kapsayıcıyı açık çizer. Baskı önizlemesi, kâğıt çıktısı ya da açık zeminli bir ekranı anlatmak için.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · baskı önizlemesi · açık pafta</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-light">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 2</p>
+  <p class="fig-cap">Değişiklik formunun basılı hali</p>
+  <div class="drawing" style="--aw:900;--ah:170">
+    <svg viewBox="0 0 900 170" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="20" y="40" width="250" height="100"/>
+      <rect class="ln-strong fill-paper" x="330" y="40" width="250" height="100"/>
+      <rect class="ln-draw ln-dash fill-paper" x="640" y="40" width="240" height="100"/>
+      <path class="ln-draw" d="M270 90H324M324 90l-8-4M324 90l-8 4"/>
+      <path class="ln-draw ln-dash" d="M580 90H634"/>
+      <path class="ln-draw" d="M634 90l-8-4M634 90l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:34;--y:54;--w:230"><span class="stamp-k">Talep</span>web-api · 4.3.0<br><span class="state s-ok">Onaylandı</span></p>
+    <p class="dl" style="--x:344;--y:54;--w:230"><span class="stamp-k">Pencere</span>Sal 02:00–03:00<br><span class="state s-warn">Bekliyor</span></p>
+    <p class="dl" style="--x:654;--y:54;--w:220"><span class="stamp-k">Geri dönüş</span>4.2.0 · gerekirse</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> Sayfa koyu temadayken de form kâğıttaki gibi açık çizilir; sayfa açık temadaysa sınıf görünür bir şey değiştirmez.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-light</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Şekil 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Değişiklik formunun basılı hali&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:170</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 170</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>40</span>" width="<span class='s'>250</span>" height="<span class='s'>100</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>40</span>" width="<span class='s'>250</span>" height="<span class='s'>100</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" x="<span class='s'>640</span>" y="<span class='s'>40</span>" width="<span class='s'>240</span>" height="<span class='s'>100</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M270 90H324M324 90l-8-4M324 90l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M580 90H634</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M634 90l-8-4M634 90l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:54;--w:230</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Talep&lt;/<span class='k'>span</span>&gt;web-api · 4.3.0&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Onaylandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:344;--y:54;--w:230</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Pencere&lt;/<span class='k'>span</span>&gt;Sal 02:00–03:00&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:654;--y:54;--w:220</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Geri dönüş&lt;/<span class='k'>span</span>&gt;4.2.0 · gerekirse&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 2.&lt;/<span class='k'>b</span>&gt; Sayfa koyu temadayken de form kâğıttaki gibi açık çizilir; sayfa açık temadaysa sınıf görünür bir şey değiştirmez.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Sahneler iç içe geçebilir: en yakın sınıf kazanır. Koyu bir paftanın içine konan <code>.scene-light</code> kutusu açık, açık bir sahnenin içindeki <code>.scene-dark</code> koyu çözülür. Her iki sınıf da kendi <code>.frame-bg</code> katmanı yoksa zemini kendisi verir.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bileşenler">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bileşenler</h2><p class="lead">Düğme, durum etiketi, uyarı kutusu, antet ve kayıt kutusu da yalnızca token okur. Koyu sahne içinde ek sınıf gerekmez.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · bileşenler koyu sahnede</span>
   <div class="demo-view">
-<div class="scene-dark" style="padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)">
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start">
-    <div style="display:grid;gap:14px">
+<div class="scene-dark" style="padding:var(--sp-7) var(--sp-8)">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8);align-items:start">
+    <div style="display:grid;gap:var(--sp-6)">
       <div class="pillrow">
         <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
         <button class="toggle-btn" type="button" aria-pressed="true">Alarmları sustur</button>
         <button class="icon-btn" type="button" aria-label="Bilgi"><svg><use href="#i-info"/></svg></button>
       </div>
-      <p class="pillrow" style="margin:0"><span class="state ok">Eşitlendi</span><span class="state warn">Gecikmeli</span><span class="state bad">Düştü</span><span class="pill pill-ok">3 / 3 hazır</span></p>
+      <p class="pillrow" style="margin:0"><span class="state s-ok">Eşitlendi</span><span class="state s-warn">Gecikmeli</span><span class="state s-bad">Düştü</span><span class="pill s-ok">3 / 3 hazır</span></p>
       <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Bakım penceresi</span><div class="co-body"><p>02:00–03:00 arasında orders-db salt okunur.</p></div></div>
       <div class="readout"><p><b>search</b> indeksi yeniden kuruluyor; tahmini bitiş 02:40.</p></div>
     </div>
-    <div style="display:grid;gap:14px">
+    <div style="display:grid;gap:var(--sp-6)">
       <dl class="titleblock">
         <div class="tb-head"><dt>Nöbet</dt><dd>ödeme ekibi</dd></div>
         <div><dt>Birincil</dt><dd>nöbetçi-1</dd></div>
@@ -247,19 +299,19 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)</span>"&gt;
-  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start</span>"&gt;
-    &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:14px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-7) var(--sp-8)</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-8);align-items:start</span>"&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-6)</span>"&gt;
       &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
         &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
         &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>"&gt;Alarmları sustur&lt;/<span class='k'>button</span>&gt;
         &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Bilgi</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
       &lt;/<span class='k'>div</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Eşitlendi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;Gecikmeli&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;Düştü&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;3 / 3 hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Eşitlendi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Gecikmeli&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Düştü&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;3 / 3 hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>div</span> class="<span class='s'>co co-warn</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bakım penceresi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;02:00–03:00 arasında orders-db salt okunur.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;search&lt;/<span class='k'>b</span>&gt; indeksi yeniden kuruluyor; tahmini bitiş 02:40.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
-    &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:14px</span>"&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-6)</span>"&gt;
       &lt;<span class='k'>dl</span> class="<span class='s'>titleblock</span>"&gt;
         &lt;<span class='k'>div</span> class="<span class='s'>tb-head</span>"&gt;&lt;<span class='k'>dt</span>&gt;Nöbet&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;ödeme ekibi&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
         &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Birincil&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;nöbetçi-1&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -280,15 +332,15 @@
 <div class="prose"><p>Kod blokları (<code>.code</code>) iki temada da zaten koyudur ve <code>--code-*</code> token'larını kullanır; koyu sahnede değişmezler. Hoca maskotu ve sayfa kabuğu (<code>.rail</code>, <code>.topbar</code>) bu sınıfın kapsamı dışındadır.</p></div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Koyu sahne bir yeri işaret eder: ağın içi, gece vardiyası, üretim ortamı. Tipik kullanım bütün bir paftayı koyu yapmaktır.</p></header>
+<article class="chapter" id="p5" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Bağlam içinde</h2><p class="lead">Koyu sahne bir yeri işaret eder: ağın içi, gece vardiyası, üretim ortamı. Tipik kullanım bütün bir paftayı koyu yapmaktır.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · ağın içi · koyu pafta ve gezgin</span>
   <div class="demo-view">
 <div class="frame scene-dark" data-explorer="ks-ag">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
-    <p class="chip">04 · Şekil 2</p>
+    <p class="chip">05 · Şekil 3</p>
     <p class="fig-cap">vpc-prod içinden bakış</p>
   </header>
   <div class="f-side">
@@ -313,7 +365,7 @@
       <p class="sl" style="--x:550;--y:219">özel</p>
       <p class="sl" style="--x:555;--y:319">veri</p>
       <p class="sl" style="--x:400;--y:186">yalnızca dışarı</p>
-      <p class="sl" style="--x:10;--y:258;color:var(--bad)">internet → db</p>
+      <p class="sl" style="--x:10;--y:258">internet → db</p>
       <button class="station" type="button" data-key="igw" aria-pressed="false" aria-controls="ks-ag" style="--x:15;--y:30;--w:170;--h:70"><span class="st-name">Ağ geçidi</span><span class="st-sub">internet</span></button>
       <button class="station" type="button" data-key="lb" aria-pressed="true" aria-controls="ks-ag" style="--x:215;--y:30;--w:170;--h:70;--svc:var(--sec)"><span class="st-name">lb-public</span><span class="st-sub">:443</span></button>
       <button class="station" type="button" data-key="nat" aria-pressed="false" aria-controls="ks-ag" style="--x:415;--y:30;--w:170;--h:70"><span class="st-name">NAT</span><span class="st-sub">çıkış</span></button>
@@ -337,7 +389,7 @@
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame scene-dark</span>" data-explorer="<span class='s'>ks-ag</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;04 · Şekil 2&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Şekil 3&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;vpc-prod içinden bakış&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>header</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;
@@ -362,7 +414,7 @@
       &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:550;--y:219</span>"&gt;özel&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:555;--y:319</span>"&gt;veri&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:400;--y:186</span>"&gt;yalnızca dışarı&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:10;--y:258;color:var(--bad)</span>"&gt;internet → db&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:10;--y:258</span>"&gt;internet → db&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>igw</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ks-ag</span>" style="<span class='s'>--x:15;--y:30;--w:170;--h:70</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Ağ geçidi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;internet&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
       &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>lb</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ks-ag</span>" style="<span class='s'>--x:215;--y:30;--w:170;--h:70;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;lb-public&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;:443&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
       &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>nat</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ks-ag</span>" style="<span class='s'>--x:415;--y:30;--w:170;--h:70</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;NAT&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;çıkış&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
@@ -385,13 +437,13 @@
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Koyu sahnede renkler token'dan okunmalıdır. Sabit bir renk açık tema için seçilmiştir; koyu zeminde ya kaybolur ya da bağırır.</p></header>
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Koyu sahnede renkler token'dan okunmalıdır. Sabit bir renk açık tema için seçilmiştir; koyu zeminde ya kaybolur ya da bağırır.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · sınıf ve token</span>
   <div class="demo-view">
-<div class="scene-dark" style="padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)">
+<div class="scene-dark" style="padding:var(--sp-5)">
   <div class="drawing" style="--aw:440;--ah:110">
     <svg viewBox="0 0 440 110" aria-hidden="true">
       <rect class="ln-draw fill-paper" x="10" y="25" width="150" height="60"/>
@@ -403,7 +455,7 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-5)</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
     &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>25</span>" width="<span class='s'>150</span>" height="<span class='s'>60</span>"/&gt;
@@ -418,7 +470,7 @@
 <div class="demo">
   <span class="demo-label">Yapma · sabit renkli çizgi</span>
   <div class="demo-view">
-<div class="scene-dark" style="padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)">
+<div class="scene-dark" style="padding:var(--sp-5)">
   <div class="drawing" style="--aw:440;--ah:110">
     <svg viewBox="0 0 440 110" aria-hidden="true">
       <rect x="10" y="25" width="150" height="60" stroke="#2352c9" stroke-width="1.5"/>
@@ -430,7 +482,7 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-5)</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
     &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
       &lt;<span class='k'>rect</span> x="<span class='s'>10</span>" y="<span class='s'>25</span>" width="<span class='s'>150</span>" height="<span class='s'>60</span>" stroke="<span class='s'>#2352c9</span>" stroke-width="<span class='s'>1.5</span>"/&gt;
@@ -449,11 +501,11 @@
   <tr><td>Yüzey, mürekkep, çizgi token'ları</td><td>Döner</td><td><code>--paper</code>, <code>--scene-bg</code>, <code>--ink-*</code>, <code>--draw</code>, <code>--pencil*</code>, <code>--line*</code>.</td></tr>
   <tr><td>Durum ve servis renkleri</td><td>Döner</td><td><code>--ok</code>, <code>--warn</code>, <code>--bad</code>, <code>--sec</code> ve <code>-soft</code> eşleri; koyu değerler daha açıktır.</td></tr>
   <tr><td>Kod blokları</td><td>Değişmez</td><td><code>--code-*</code> zaten iki temada da koyu.</td></tr>
-  <tr><td>Kapsayıcı zemini</td><td>Sizde</td><td>Sınıf zemin vermez; <code>.frame-bg</code> ya da satır içi <code>background</code>.</td></tr>
+  <tr><td>Kapsayıcı zemini</td><td>Otomatik</td><td>Kendi <code>.frame-bg</code> katmanı yoksa <code>--scene-bg</code>; varsa zemini o çizer.</td></tr>
   <tr><td>Sabit renkler</td><td>Değişmez</td><td>SVG'de <code>stroke="#…"</code> ya da satır içi hex kullanmayın.</td></tr>
   </tbody>
 </table></div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Koyu token'lar koyu zeminde en az AA karşıtlığı verecek biçimde seçilmiştir; sayfa açık temadayken de bu geçerlidir. Koyu sahneyi yalnızca bağlam için kullanın: okuyucu temayı açığa almışsa, uzun metinleri koyu kutuya koymak tercihini yok sayar.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Koyu token'lar koyu zeminde en az AA karşıtlığı verecek biçimde seçilmiştir; sayfa açık temadayken de bu geçerlidir. Sahneleri yalnızca bağlam için kullanın: okuyucunun seçtiği temayı uzun metinlerde <code>.scene-dark</code> ya da <code>.scene-light</code> ile ezmek, tercihini yok sayar.</p></div></div>
 </article>
 
 <nav class="pager" aria-label="Parçalar arası"><a href="ariza-panosu.html" rel="prev"><small>Önceki · <span lang="en">Blueprint</span></small>Arıza panosu</a><a href="pin-sahnesi.html" rel="next"><small>Sonraki · Hareket</small>Pin sahnesi</a></nav>

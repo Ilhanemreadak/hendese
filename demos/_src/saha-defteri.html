@@ -1,4 +1,4 @@
-<!-- meta {"title":"Saha defteri","group":"Bileşenler","order":140,"tagline":"Numaralı notlar, künyeli girdiler.","intro":"<code>.survey-log</code> sıralı bir not defteridir: her girdinin solunda numarası ve künyesi, sağında etiketli paragrafları durur. Olay sonrası zaman çizelgesi, değişiklik günlüğü ya da ölçüm kaydı gibi “ne zaman, nerede, ne gördük, ne yaptık” sorularını sırayla cevaplayan metinler için.","summary":"<code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.","facts":{"Sınıflar":"<code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code>","Yapı":"<code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code>","Dar ekran":"720px altında künye metnin üstüne iner","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Saha defteri","group":"Bileşenler","order":140,"tagline":"Numaralı notlar, künyeli girdiler.","intro":"<code>.survey-log</code> sıralı bir not defteridir: her girdinin solunda numarası ve künyesi, sağında etiketli paragrafları durur. Olay sonrası zaman çizelgesi, değişiklik günlüğü ya da ölçüm kaydı gibi “ne zaman, nerede, ne gördük, ne yaptık” sorularını sırayla cevaplayan metinler için.","summary":"<code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.","facts":{"Sınıflar":"<code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code>","Durum":"<code>li.s-ok</code> · <code>li.s-warn</code> · <code>li.s-bad</code> numarayı boyar","Yapı":"<code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code>","Dar sütun":"Kap 720px'ten darsa künye metnin üstüne iner","JS":"Gerekmez"}} -->
 
 <chapter title="Anatomi" lead="Solda 200px künye sütunu, sağda okunabilir genişlikte metin. Üstte kalın bir çizgi defteri açar, her girdinin altında ince bir çizgi onu kapatır.">
 <demo label="Örnek · tek girdi">
@@ -115,7 +115,7 @@
     </div>
     <div class="sl-body">
       <span class="sl-label">Ölçüm</span>
-      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill pill-ok">%0,02</span></p>
+      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill s-ok">%0,02</span></p>
       <span class="sl-label">Yorum</span>
       <p>p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.</p>
     </div>
@@ -127,7 +127,7 @@
     </div>
     <div class="sl-body">
       <span class="sl-label">Ölçüm</span>
-      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill pill-neutral">%0,9</span></p>
+      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill s-warn">%0,9</span></p>
       <span class="sl-label">Yorum</span>
       <p>Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).</p>
     </div>
@@ -136,9 +136,57 @@
 </demo>
 </chapter>
 
+<chapter title="Durumlar" lead="Girdiye .s-* verilirse numara o renge boyanır; çizgiler ve metin değişmez. Durumu künyede bir alanla da yazın: renk yalnız taramayı hızlandırır.">
+<demo label="Örnek · geri alma denemeleri">
+<ol class="survey-log">
+  <li class="s-bad">
+    <div class="sl-meta">
+      <span class="sl-no">R-01</span>
+      <dl><dt>Saat</dt><dd>14:05</dd><dt>Sonuç</dt><dd>başarısız</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p><code>web-api</code> 1.8.2'ye geri alındı; yeni kopyalar imajı çekemedi.</p>
+    </div>
+  </li>
+  <li class="s-warn">
+    <div class="sl-meta">
+      <span class="sl-no">R-02</span>
+      <dl><dt>Saat</dt><dd>14:19</dd><dt>Sonuç</dt><dd>kısmi</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>İmaj kaydı izni düzeltildi; 3 kopyanın 2'si ayağa kalktı.</p>
+    </div>
+  </li>
+  <li class="s-ok">
+    <div class="sl-meta">
+      <span class="sl-no">R-03</span>
+      <dl><dt>Saat</dt><dd>14:31</dd><dt>Sonuç</dt><dd>başarılı</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>Son kopya yeni düğüme taşındı; 5xx oranı %0,1'e indi.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">R-04</span>
+      <dl><dt>Saat</dt><dd>15:00</dd><dt>Sonuç</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">yok</span></dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Not</span>
+      <p>Sınıfsız girdi çizim renginde kalır: gözlem ya da not, sonucu olmayan kayıt.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<div class="prose"><p>Kabul edilen sınıflar <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code> ve <code>.s-neutral</code>'dır; yalnız <code>.sl-no</code> rengi değişir. Boş değeri boş bırakmayın: görünen <b>—</b>, ekran okuyucu için <code>.visually-hidden</code> bir kelime. Boş <code>dd</code> atlanır ve alan kayıp sanılır.</p></div>
+</chapter>
+
 <chapter title="Koyu sahne" lead="Defter koyu panelde de aynı kalır; çizgiler ve künye renkleri kapsayıcının temasına göre çözülür.">
 <demo label="Örnek · nöbet defteri, koyu panel">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px 22px">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px 22px">
   <p class="chip">Nöbet defteri · gece</p>
   <ol class="survey-log">
     <li>

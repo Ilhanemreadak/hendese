@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const BANNED = new RegExp(['mat', 'l[iı]|cla', 'ude'].join(''), 'i');   // kelimeler bu dosyada da geçmesin diye parçalı
-const ROOTS = ['src', 'docs', 'demos', 'starter', 'dist', 'tools', 'tests', 'README.md', 'CHANGELOG.md', 'package.json'];
+const ROOTS = ['src', 'docs', 'demos', 'starter', 'dist', 'tools', 'tests', 'README.md', 'STANDART.md', 'CHANGELOG.md', 'package.json'];
 function* walk(p) {
   if (!fs.existsSync(p)) return;
   if (fs.statSync(p).isDirectory()) { for (const f of fs.readdirSync(p)) yield* walk(path.join(p, f)); return; }

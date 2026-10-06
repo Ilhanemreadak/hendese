@@ -1,4 +1,4 @@
-<!-- meta {"title":"Adımlar","group":"Bileşenler","order":80,"tagline":"Sıralı iş için numaralı kartlar.","intro":"<code>ol.steps</code> her maddeyi numaralı bir karta çevirir. Numara CSS sayacıyla iki haneli basılır. Her adım bir başlık, kısa bir açıklama ve isteğe bağlı bir kontrol satırı taşır: okur adımı bitirdiğini neye bakarak anlayacağını bilir.","summary":"<code>ol.steps</code> ve <code>.check</code>; işe başlama, olay müdahalesi ve sürüm prosedürü.","facts":{"Sınıflar":"<code>.steps</code> · <code>.check</code>","Yapı":"<code>ol.steps &gt; li &gt; h3 + p + p.check</code>","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Adımlar","group":"Bileşenler","order":80,"tagline":"Sıralı iş için numaralı kartlar.","intro":"<code>ol.steps</code> her maddeyi numaralı bir karta çevirir. Numara CSS sayacıyla iki haneli basılır. Her adım bir başlık, kısa bir açıklama ve isteğe bağlı bir kontrol satırı taşır: okur adımı bitirdiğini neye bakarak anlayacağını bilir.","summary":"<code>ol.steps</code> ve <code>.check</code>; işe başlama, olay müdahalesi ve sürüm prosedürü.","facts":{"Sınıflar":"<code>.steps</code> · <code>.check</code> · <code>.s-warn</code> · <code>.s-bad</code>","Durum":"<code>aria-current=\"step\"</code> · <code>data-state=\"done|blocked\"</code> · <code>start</code>","Yapı":"<code>ol.steps &gt; li &gt; h3 + p + p.check</code>","JS":"Gerekmez"}} -->
 
 
 <chapter title="Anatomi" lead="Bir adım üç satırdır: ne yapılacak, nasıl yapılacak, bittiği nasıl anlaşılacak. Yalnızca başlık zorunludur.">
@@ -14,7 +14,7 @@
 <div class="tbl"><table>
   <thead><tr><th>Parça</th><th>Görev</th></tr></thead>
   <tbody>
-    <tr><td><code>li::before</code></td><td>Numara rozeti; <code>01</code>, <code>02</code>… CSS sayacı <code>s</code>'den</td></tr>
+    <tr><td><code>li::before</code></td><td>Numara rozeti; <code>01</code>, <code>02</code>… liste sayacı <code>list-item</code>'dan, yani <code>start</code>'ı izler</td></tr>
     <tr><td><code>h3</code></td><td>Emir kipinde, tek eylem</td></tr>
     <tr><td><code>p</code></td><td>Nasıl yapılacağı; 72 karakterde durur</td></tr>
     <tr><td><code>p.check</code></td><td>Bitiş ölçütü; yeşil, onay ikonlu</td></tr>
@@ -22,7 +22,7 @@
 </table></div>
 </chapter>
 
-<chapter title="Varyantlar" lead="Adım yalnızca bir başlık kadar kısa ya da kod ve not taşıyacak kadar uzun olabilir. Numaralamayı ortadan sürdürmek için sayacı satır içinde başlatın.">
+<chapter title="Varyantlar" lead="Adım yalnızca bir başlık kadar kısa ya da kod ve not taşıyacak kadar uzun olabilir. Numaralamayı ortadan sürdürmek için start özniteliği yeter.">
 <demo label="Örnek · yalnız başlıklar">
 <ol class="steps">
   <li><h3>Dalı açın</h3></li>
@@ -42,7 +42,7 @@
 </ol>
 </demo>
 <demo label="Örnek · numaralamayı sürdürmek">
-<ol class="steps" style="counter-reset:s 3" start="4">
+<ol class="steps" start="4">
   <li>
     <h3>Trafiği yeni hedefe verin</h3>
     <p>Yük dengeleyicide ağırlığı <code>100 / 0</code> yapın.</p>
@@ -53,7 +53,45 @@
   </li>
 </ol>
 </demo>
-<div class="prose"><p>Numaralar <code>start</code> özniteliğini değil CSS sayacını izler; bu yüzden ikisini birlikte verin: <code>start</code> ekran okuyucu için, <code>counter-reset:s 3</code> görünen numara için.</p></div>
+<div class="prose"><p>Görünen numara tarayıcının liste sayacından (<code>list-item</code>) gelir; <code>start="4"</code> hem ekran okuyucuya hem rozete yeter. Eski sürümlerde gereken <code>counter-reset:s 3</code> satırını silin.</p></div>
+</chapter>
+
+<chapter title="Durumlar" lead="Bir adım şimdiki, tamamlanmış ya da engelli olabilir. Durum ARIA ile (aria-current) ya da data-state ile verilir ve her zaman metinle de söylenir; renk yalnız pekiştirir.">
+<demo label="Örnek · tamamlandı, şimdiki, engelli">
+<ol class="steps">
+  <li data-state="done">
+    <h3>Yedeği alın <span class="visually-hidden">(tamamlandı)</span></h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: yedek kovada, boyutu 4,2 GB.</span></p>
+  </li>
+  <li aria-current="step">
+    <h3>Göçü çalıştırın <span class="state s-accent">şimdi</span></h3>
+    <p><code>migrate up</code> ile <code>0043</code> numaralı göçü uygulayın.</p>
+    <p class="check s-warn"><svg><use href="#i-warn"/></svg><span>Kontrol: tablo kilidi 30 saniyeyi geçerse durdurun.</span></p>
+  </li>
+  <li data-state="blocked">
+    <h3>Okuma kopyasını yükseltin <span class="state s-bad">engelli</span></h3>
+    <p>Kopya gecikmesi 5 dakikanın üstünde; göç bitmeden başlamayın.</p>
+    <p class="check s-bad"><svg><use href="#i-x"/></svg><span>Durdurma ölçütü: gecikme artmaya devam ediyorsa geri alın.</span></p>
+  </li>
+</ol>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Şimdiki</td><td><code>aria-current="step"</code></td><td>2px çizim kenarı; ekran okuyucu “şimdiki adım” der</td></tr>
+    <tr><td>Tamamlandı</td><td><code>data-state="done"</code> + metin</td><td>Numara rozeti yeşil</td></tr>
+    <tr><td>Engelli</td><td><code>data-state="blocked"</code> + metin</td><td>Kesikli kenar, rozet kırmızı</td></tr>
+    <tr><td>Kontrol satırı</td><td><code>.check.s-warn</code> · <code>.check.s-bad</code></td><td>Uyarı ya da durdurma ölçütü; ikonu kendiniz seçin</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>data-state</code> ekran okuyucuya ulaşmaz. Durumu ya görünür yazın (<code>.state</code> etiketi) ya da <code>.visually-hidden</code> bir metinle başlığa ekleyin; yukarıdaki ilk adım ikinci yolu kullanır. Durumu bir betik değiştiriyorsa özniteliği ve metni birlikte güncelleyin.</p></div>
+<demo label="Örnek · numaralama sürer, durum da sürer">
+<ol class="steps" start="7">
+  <li data-state="done"><h3>Trafiği yeni hedefe verin <span class="state s-ok">bitti</span></h3></li>
+  <li aria-current="step"><h3>Bir saat hata oranını izleyin <span class="visually-hidden">(şimdiki adım)</span></h3></li>
+  <li><h3>Eski hedefi kapatın</h3></li>
+</ol>
+</demo>
 </chapter>
 
 <chapter title="Bağlam içinde" lead="Üç tipik iş: yeni bir geliştiricinin erişim alması, bir olaya müdahale ve bir sürümün yayına alınması.">
@@ -77,9 +115,9 @@
 </ol>
 </demo>
 <demo label="Örnek · olay müdahalesi" nocode>
-<ol class="steps" style="--u:1px">
+<ol class="steps">
   <li>
-    <h3>Olayı ilan edin <span class="state warn">ilk 5 dakika</span></h3>
+    <h3>Olayı ilan edin <span class="state s-warn">ilk 5 dakika</span></h3>
     <p>Olay kanalını açın, önem derecesini yazın, bir koordinatör atayın.</p>
   </li>
   <li>

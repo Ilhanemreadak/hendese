@@ -5,6 +5,7 @@
    - Reduced motion (masaüstü): her sahnenin `still` pozunda durgun bir kopya, hareket yok. */
 import { $, S, SCENES, hooks, clamp01, lerp, ease, poke } from './core.js';
 import { createHoca } from './hoca.js';
+import { readAw } from './scenes.js';
 import { current, isQuiet } from './nav.js';
 
 var hoca = null, homeEl, homePt = { x: 0, y: 0 }, H = { owner: null, from: null, t0: 0, pos: null, fade: null };
@@ -37,7 +38,7 @@ export function refresh() {
   if (!hoca) return;
   var wantStatic = !S.motion && matchMedia('(min-width:1100px)').matches;
   hoca.clearPlaced();
-  if (wantStatic) SCENES.forEach(function (sc) { var o = typeof sc.still === 'function' ? sc.still() : sc.still; if (o) hoca.place(sc.dr, { left: (o.x / sc.aw * 100) + '%', top: (o.y / sc.ah * 100) + '%', pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null }); });
+  if (wantStatic) SCENES.forEach(function (sc) { if (sc.still && sc.dr) readAw(sc); var o = typeof sc.still === 'function' ? sc.still() : sc.still; if (o) hoca.place(sc.dr, { left: (o.x / sc.aw * 100) + '%', top: (o.y / sc.ah * 100) + '%', pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null }); });
   if (!S.motion) { hoca.render({ visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 }); H.owner = null; H.from = null; H.fade = null; H.pos = null; }
 }
 

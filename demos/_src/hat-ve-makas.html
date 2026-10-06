@@ -1,11 +1,11 @@
-<!-- meta {"title":"Hat ve makas","group":"Blueprint","order":70,"tagline":"Trafik hangi yoldan gidiyor, hangisi kapalı.","intro":"Yönlendirme çizimleri demiryolu dilini kullanır: ray kalın çizgidir, makas yolun ayrıldığı noktadır, kullanılmayan kol hayalettir, filtre kolu kırmızıdır. Kanarya, mavi/yeşil ve bölge yedeği gibi trafik kararları bu dille tek bakışta okunur.","summary":"Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.","facts":{"Sınıflar":"<code>.ln-strong</code> (ray) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.callout</code> · <code>.state</code> · <code>.deck-cap</code>","Satır içi stil":"Filtre kolu: <code>stroke:var(--bad)</code>, 5 birim","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Hat ve makas","group":"Blueprint","order":70,"tagline":"Trafik hangi yoldan gidiyor, hangisi kapalı.","intro":"Yönlendirme çizimleri demiryolu dilini kullanır: ray kalın çizgidir, makas yolun ayrıldığı noktadır, kullanılmayan kol hayalettir, filtre kolu kırmızıdır. Kanarya, mavi/yeşil ve bölge yedeği gibi trafik kararları bu dille tek bakışta okunur.","summary":"Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.","facts":{"Sınıflar":"<code>.ln-strong</code> (ray) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.tag</code> · <code>.state</code> · <code>.deck-cap</code>","Satır içi stil":"Filtre kolu: <code>stroke:var(--bad)</code>, 5 birim","JS":"Gerekmez"}} -->
 
 <chapter title="Anatomi" lead="Ray trafiği taşıyan yoldur ve kalın çizilir. Makasta yol ayrılır; o an kullanılmayan kol hayalet kalır. Filtre kolu bir rayı keser ve kırmızıdır.">
 <demo label="Örnek · bir makas ve bir filtre">
 <div class="drawing" style="--aw:900;--ah:250">
   <svg viewBox="0 0 900 250" aria-hidden="true">
-    <path class="ln-strong" d="M40 110H340L380 70H880"/>
-    <path class="ln-ghost" d="M340 110L380 150H880"/>
+    <path class="ln-strong" d="M40 110H340L380 70H700"/>
+    <path class="ln-ghost" d="M340 110L380 150H700"/>
     <circle class="fill-draw" cx="340" cy="110" r="4"/>
     <path class="ln-strong" d="M40 210H250"/>
     <path class="ln-ghost" d="M250 210H330"/>
@@ -16,14 +16,14 @@
   <p class="dl" style="--x:40;--y:84;--w:260">istekler · lb-public</p>
   <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">makas</p>
   <p class="dl" style="--x:420;--y:44;--w:200">ray · .ln-strong</p>
-  <p class="dl" style="--x:420;--y:158;--w:240;color:var(--ink-3)">kullanılmayan kol · .ln-ghost</p>
+  <p class="dl" style="--x:420;--y:158;--w:240">kullanılmayan kol · .ln-ghost</p>
   <p class="dl" style="--x:40;--y:184;--w:200">tarama botları</p>
-  <p class="dl" style="--x:266;--y:164;--w:200;color:var(--bad)">filtre kolu · WAF</p>
-  <p class="dl callout" style="--x:700;--y:26;--w:180">web-api v2</p>
-  <p class="dl callout" style="--x:700;--y:164;--w:180;border-style:dashed;color:var(--ink-3)">web-api v1 · boşta</p>
+  <p class="dl" style="--x:266;--y:164;--w:200">filtre kolu · WAF</p>
+  <p class="dl tag" style="--x:700;--y:58">web-api v2</p>
+  <p class="dl tag is-ghost" style="--x:700;--y:138">web-api v1 · boşta</p>
 </div>
 </demo>
-<div class="prose"><p>Makas noktası <code>circle.fill-draw</code> ile işaretlenir. Filtre kolu bir direk (<code>.ln-draw</code>), bir mafsal (<code>circle.ln-draw.fill-paper</code>) ve rayı kesen kalın kırmızı bir çubuktur; kolun ötesindeki yol hayalettir, çünkü oraya hiçbir şey ulaşmaz. Varış etiketleri <code>.callout</code> kutusudur; boşta olan kesikli çerçeve alır.</p></div>
+<div class="prose"><p>Makas noktası <code>circle.fill-draw</code> ile işaretlenir. Filtre kolu bir direk (<code>.ln-draw</code>), bir mafsal (<code>circle.ln-draw.fill-paper</code>) ve rayı kesen kalın kırmızı bir çubuktur; kolun ötesindeki yol hayalettir, çünkü oraya hiçbir şey ulaşmaz. Varış etiketleri <code>.tag</code> hat etiketidir ve rayın ucuna oturur; boşta olan <code>.tag.is-ghost</code> ile kesikli çerçeve alır.</p></div>
 </chapter>
 
 <chapter title="Makas türleri" lead="Aynı makas üç farklı kararı çizer: trafiği ağırlıkla bölmek, bir taraftan ötekine bir anda geçmek ya da sağlıksız tarafı kapatmak.">
@@ -37,8 +37,9 @@
     <text class="dim-t" x="520" y="140" text-anchor="middle">%5</text>
   </svg>
   <p class="dl" style="--x:40;--y:64;--w:260">istekler</p>
-  <p class="dl callout" style="--x:690;--y:74;--w:190">4.2.0 · kararlı</p>
-  <p class="dl callout" style="--x:690;--y:132;--w:190">4.3.0 <span class="state warn">Gözlemde</span></p>
+  <p class="dl tag" style="--x:690;--y:78">4.2.0 · kararlı</p>
+  <p class="dl tag" style="--x:690;--y:138">4.3.0 · kanarya</p>
+  <p class="dl" style="--x:690;--y:164;--w:200"><span class="state s-warn">Gözlemde</span></p>
   <p class="dl" style="--x:380;--y:160;--w:300">hata %0,3 · eşik %1 · 30 dk</p>
 </div>
 </demo>
@@ -58,10 +59,10 @@
   <p class="sl deck-cap" style="--x:490;--y:14"><b>SONRA</b>trafik yeşilde</p>
   <p class="dl" style="--x:340;--y:70;--w:100">mavi</p>
   <p class="dl" style="--x:340;--y:150;--w:110">yeşil · boşta</p>
-  <p class="dl" style="--x:810;--y:70;--w:90;color:var(--ink-3)">mavi</p>
+  <p class="dl" style="--x:810;--y:70;--w:90">mavi</p>
   <p class="dl" style="--x:810;--y:150;--w:90">yeşil</p>
   <p class="dl" style="--x:20;--y:182;--w:420">yeşil kuruldu ve testleri geçti</p>
-  <p class="dl" style="--x:490;--y:182;--w:410;color:var(--ink-3)">mavi geri dönüş için bir saat bekletilir</p>
+  <p class="dl" style="--x:490;--y:182;--w:410">mavi geri dönüş için bir saat bekletilir</p>
 </div>
 </demo>
 <div class="prose"><p>Mavi/yeşilde makas tek hamlede döner. “Sonra” çiziminde mavi kol hayalettir: önceki konumdur ve geri dönüş yolu olarak durur. Ara durum yoktur; bu yüzden çizim iki ayrı paneldir, kesikli kılavuz çizgisi onları ayırır.</p></div>
@@ -95,9 +96,9 @@
         <text class="dim-t" x="110" y="158" text-anchor="middle">TTL 60 s</text>
       </svg>
       <p class="dl" style="--x:20;--y:102;--w:180">api.ornek.net</p>
-      <p class="dl" style="--x:240;--y:14;--w:200;color:var(--bad)">sağlık · 3/3 başarısız</p>
-      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state bad">Sağlıksız</span></p>
-      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state ok">Etkin</span></p>
+      <p class="dl" style="--x:240;--y:14;--w:200">sağlık · 3/3 başarısız</p>
+      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state s-bad">Sağlıksız</span></p>
+      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state s-ok">Etkin</span></p>
     </div>
   </div>
   <div class="f-foot">
@@ -125,10 +126,10 @@
     </svg>
     <p class="dl" style="--x:40;--y:104;--w:170">istekler</p>
     <p class="dl" style="--x:300;--y:34;--w:300">GET · okuma</p>
-    <p class="dl" style="--x:300;--y:104;--w:300;color:var(--bad)">POST · doğrudan yazma</p>
+    <p class="dl" style="--x:300;--y:104;--w:300">POST · doğrudan yazma</p>
     <p class="dl" style="--x:300;--y:174;--w:300">POST · kuyruğa</p>
     <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · kopya</p>
-    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state warn">Bakımda</span></p>
+    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state s-warn">Bakımda</span></p>
     <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · yazma kuyruğu</p>
   </div>
   <figcaption class="figcap"><b>Şekil 2.</b> Okumalar kopyadan devam eder. Birincile doğrudan yazma kapalıdır; yazmalar kuyrukta bekler ve bakım bitince sırayla işlenir.</figcaption>
@@ -146,7 +147,7 @@
     <circle class="fill-draw" cx="150" cy="75" r="4"/>
   </svg>
   <p class="dl" style="--x:330;--y:14;--w:100">v2 · etkin</p>
-  <p class="dl" style="--x:310;--y:118;--w:120;color:var(--ink-3)">v1 · önceki</p>
+  <p class="dl" style="--x:310;--y:118;--w:120">v1 · önceki</p>
 </div>
 </demo>
 <demo label="Yapma · iki kalın kol">

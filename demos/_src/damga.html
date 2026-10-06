@@ -1,4 +1,4 @@
-<!-- meta {"title":"Damga","group":"Bileşenler","order":130,"tagline":"Bir adı mühürle.","intro":"<code>.stamp</code> çift çerçeveli bir ad plakasıdır: üstte küçük bir tür etiketi, altında büyük mono yazılmış ad. Bir şeklin, bir bölümün ya da bir kararın tek öznesini adlandırır: kim onayladı, kimin sahipliğinde, hangi sürüm.","summary":"<code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; onay, sahiplik ve sürüm damgaları.","facts":{"Sınıflar":"<code>.stamp</code> · <code>.stamp-k</code> · <code>.stamp-name</code>","Genişlik":"Kabını doldurur; <code>max-width</code> ile daraltın","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Damga","group":"Bileşenler","order":130,"tagline":"Bir adı mühürle.","intro":"<code>.stamp</code> çift çerçeveli bir ad plakasıdır: üstte küçük bir tür etiketi, altında büyük mono yazılmış ad. Bir şeklin, bir bölümün ya da bir kararın tek öznesini adlandırır: kim onayladı, kimin sahipliğinde, hangi sürüm.","summary":"<code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; onay, sahiplik ve sürüm damgaları.","facts":{"Sınıflar":"<code>.stamp</code> · <code>.stamp-k</code> · <code>.stamp-name</code>","Genişlik":"Kabını doldurur; <code>max-width</code> ile daraltın","Durum":"Kendi durum rengi yok; yanına <code>.state.s-*</code>","JS":"Gerekmez"}} -->
 
 <chapter title="Anatomi" lead="Dış çerçeve çizim renginde, içteki ince çizgi kalem renginde. Etiket ne tür bir ad olduğunu, ad ise kendisini söyler.">
 <demo label="Örnek · sahiplik plakası">
@@ -49,7 +49,7 @@
   </div>
   <div>
     <p style="margin:0 0 6px"><b>Fatura dışa aktarımı ve daha hızlı arama</b></p>
-    <ul style="margin:0;color:var(--ink-2);font-size:14.5px">
+    <ul style="margin:0;color:var(--ink-2);font-size:var(--fs-md)">
       <li>Faturalar CSV olarak dışa aktarılabilir.</li>
       <li><code>due_date</code> dizini ile vade aramaları 6 kat hızlandı.</li>
       <li>Eski <code>/v0/invoices</code> uç noktası kaldırıldı.</li>
@@ -60,19 +60,19 @@
 <demo label="Örnek · erişim isteği kararı">
 <div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:560px">
   <p class="chip">Erişim isteği · #2318</p>
-  <p style="margin:6px 0 14px;color:var(--ink-2);font-size:14.5px"><code>prod</code> veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.</p>
+  <p style="margin:6px 0 14px;color:var(--ink-2);font-size:var(--fs-md)"><code>prod</code> veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.</p>
   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
     <div class="stamp" style="min-width:200px">
       <span class="stamp-k">Onaylayan</span>
       <span class="stamp-name">veri ekibi</span>
     </div>
-    <span class="state ok">Onaylandı</span>
+    <span class="state s-ok">Onaylandı</span>
     <span class="mono" style="color:var(--ink-3)">bitiş 13 Ekim 2026</span>
   </div>
 </div>
 </demo>
 <demo label="Örnek · koyu pafta, servis sahipleri">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px">
   <p class="chip">Sahiplik haritası · eu-west-1</p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:10px">
     <div class="stamp"><span class="stamp-k" lang="en">web-api</span><span class="stamp-name">ön yüz</span></div>
@@ -81,6 +81,26 @@
   </div>
 </div>
 </demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Damga bir adı mühürler, durumu değil. Rengi ve çerçevesi her zaman aynıdır; karar yanındaki .state etiketinde, boş ad ise bir tireyle yazılır.">
+<demo label="Örnek · aynı damga, üç karar">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-7)">
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name">güvenlik ekibi</span></div>
+    <span class="state s-ok">onaylandı</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name">veri ekibi</span></div>
+    <span class="state s-bad">reddedildi</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name"><span aria-hidden="true">—</span><span class="visually-hidden">henüz atanmadı</span></span></div>
+    <span class="state s-neutral">bekliyor</span>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Henüz atanmamış ad için damgayı kaldırmayın; “—” yazın, ekran okuyucuya <code>.visually-hidden</code> bir kelime bırakın. Dilin kuralına göre “henüz gerçek değil” kesikli çizilir, ama damganın kesikli hali yoktur: beklemeyi etiket söyler. Rengi ya da çerçeveyi satır içi stille değiştirmeyin.</p></div>
 </chapter>
 
 <chapter title="Yap / yapma" lead="Damga bir ad içindir, cümle için değil. Tıklanacak bir şey de değildir; eylem bir düğmeye aittir.">

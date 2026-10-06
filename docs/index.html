@@ -170,8 +170,10 @@ tests/     unit (node:test) · e2e (Playwright + axe)</code></pre></figure>
       <tr><td>Durum duyurusu</td><td><code>.readout</code> ve üst çubukta <code>aria-live</code></td><td>Seçim sonuçlarını <code>.readout</code>'a yazar</td></tr>
       <tr><td>Dil</td><td><code>englishStems</code> ile büyük harfli İngilizce kelimelere <code>lang="en"</code></td><td>Sayfa dilini (<code>lang</code>) doğru verir</td></tr>
       <tr><td>Kod</td><td><code>pre tabindex="0"</code> kaydırılabilir, kopyala düğmesi; diff işaretleri kopyaya girmez</td><td>Kod bloklarını <code>figure.code</code> ile yazar</td></tr>
+      <tr><td>Kontrast</td><td><code>prefers-contrast:more</code>'da kalem çizgileri mürekkebe döner; zorunlu renkte seçim ve ilerleme <code>Highlight</code> ile çizilir</td><td>Anlamı yalnız zemin rengine bağlamaz</td></tr>
     </tbody>
   </table></div>
+  <aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Standart</span><div class="co-body">Pakete eklenen her parçanın uyduğu kurallar (token, durum, etkileşim durumları, kap sorgusu, bitmiş hal, erişilebilirlik, dil) depodaki <code>STANDART.md</code> dosyasındadır. Kuralların çoğunu testler denetler: <code>tests/unit/standard.test.mjs</code> bileşen CSS'inde ham değer (renk, yazı boyutu, boşluk, köşe, süre, katman) yazılmasını engeller ve her sınıfın bir sayfada gösterildiğini doğrular; e2e testleri her sayfayı açık ve koyu temada axe ile tarar. Hepsi <code>npm test</code> ile çalışır.</div></aside>
 </article>
 
 <article class="chapter" id="g6" data-section data-title="Sürümleme">

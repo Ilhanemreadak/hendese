@@ -65,7 +65,8 @@
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Kullanımlar</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -81,7 +82,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Damga<em>Bir adı mühürle.</em></h1>
     <p class="intro"><code>.stamp</code> çift çerçeveli bir ad plakasıdır: üstte küçük bir tür etiketi, altında büyük mono yazılmış ad. Bir şeklin, bir bölümün ya da bir kararın tek öznesini adlandırır: kim onayladı, kimin sahipliğinde, hangi sürüm.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.stamp</code> · <code>.stamp-k</code> · <code>.stamp-name</code></dd><dt>Genişlik</dt><dd>Kabını doldurur; <code>max-width</code> ile daraltın</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.stamp</code> · <code>.stamp-k</code> · <code>.stamp-name</code></dd><dt>Genişlik</dt><dd>Kabını doldurur; <code>max-width</code> ile daraltın</dd><dt>Durum</dt><dd>Kendi durum rengi yok; yanına <code>.state.s-*</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -170,7 +171,7 @@
   </div>
   <div>
     <p style="margin:0 0 6px"><b>Fatura dışa aktarımı ve daha hızlı arama</b></p>
-    <ul style="margin:0;color:var(--ink-2);font-size:14.5px">
+    <ul style="margin:0;color:var(--ink-2);font-size:var(--fs-md)">
       <li>Faturalar CSV olarak dışa aktarılabilir.</li>
       <li><code>due_date</code> dizini ile vade aramaları 6 kat hızlandı.</li>
       <li>Eski <code>/v0/invoices</code> uç noktası kaldırıldı.</li>
@@ -185,7 +186,7 @@
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span>&gt;
     &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 6px</span>"&gt;&lt;<span class='k'>b</span>&gt;Fatura dışa aktarımı ve daha hızlı arama&lt;/<span class='k'>b</span>&gt;&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>ul</span> style="<span class='s'>margin:0;color:var(--ink-2);font-size:14.5px</span>"&gt;
+    &lt;<span class='k'>ul</span> style="<span class='s'>margin:0;color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;
       &lt;<span class='k'>li</span>&gt;Faturalar CSV olarak dışa aktarılabilir.&lt;/<span class='k'>li</span>&gt;
       &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>code</span>&gt;due_date&lt;/<span class='k'>code</span>&gt; dizini ile vade aramaları 6 kat hızlandı.&lt;/<span class='k'>li</span>&gt;
       &lt;<span class='k'>li</span>&gt;Eski &lt;<span class='k'>code</span>&gt;/v0/invoices&lt;/<span class='k'>code</span>&gt; uç noktası kaldırıldı.&lt;/<span class='k'>li</span>&gt;
@@ -198,26 +199,26 @@
   <div class="demo-view">
 <div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:560px">
   <p class="chip">Erişim isteği · #2318</p>
-  <p style="margin:6px 0 14px;color:var(--ink-2);font-size:14.5px"><code>prod</code> veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.</p>
+  <p style="margin:6px 0 14px;color:var(--ink-2);font-size:var(--fs-md)"><code>prod</code> veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.</p>
   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
     <div class="stamp" style="min-width:200px">
       <span class="stamp-k">Onaylayan</span>
       <span class="stamp-name">veri ekibi</span>
     </div>
-    <span class="state ok">Onaylandı</span>
+    <span class="state s-ok">Onaylandı</span>
     <span class="mono" style="color:var(--ink-3)">bitiş 13 Ekim 2026</span>
   </div>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:560px</span>"&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Erişim isteği · #2318&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 14px;color:var(--ink-2);font-size:14.5px</span>"&gt;&lt;<span class='k'>code</span>&gt;prod&lt;/<span class='k'>code</span>&gt; veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 14px;color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;&lt;<span class='k'>code</span>&gt;prod&lt;/<span class='k'>code</span>&gt; veritabanına salt okunur erişim, 7 gün süreyle, olay incelemesi için.&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>div</span> style="<span class='s'>display:flex;gap:16px;align-items:center;flex-wrap:wrap</span>"&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>stamp</span>" style="<span class='s'>min-width:200px</span>"&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Onaylayan&lt;/<span class='k'>span</span>&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>stamp-name</span>"&gt;veri ekibi&lt;/<span class='k'>span</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
-    &lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Onaylandı&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Onaylandı&lt;/<span class='k'>span</span>&gt;
     &lt;<span class='k'>span</span> class="<span class='s'>mono</span>" style="<span class='s'>color:var(--ink-3)</span>"&gt;bitiş 13 Ekim 2026&lt;/<span class='k'>span</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
@@ -225,7 +226,7 @@
 <div class="demo">
   <span class="demo-label">Örnek · koyu pafta, servis sahipleri</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px">
   <p class="chip">Sahiplik haritası · eu-west-1</p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:10px">
     <div class="stamp"><span class="stamp-k" lang="en">web-api</span><span class="stamp-name">ön yüz</span></div>
@@ -234,7 +235,7 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:18px</span>"&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Sahiplik haritası · eu-west-1&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:10px</span>"&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>stamp</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>" lang="<span class='s'>en</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-name</span>"&gt;ön yüz&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -245,8 +246,46 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Yap / yapma</h2><p class="lead">Damga bir ad içindir, cümle için değil. Tıklanacak bir şey de değildir; eylem bir düğmeye aittir.</p></header>
+<article class="chapter" id="p4" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durumlar</h2><p class="lead">Damga bir adı mühürler, durumu değil. Rengi ve çerçevesi her zaman aynıdır; karar yanındaki .state etiketinde, boş ad ise bir tireyle yazılır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · aynı damga, üç karar</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-7)">
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name">güvenlik ekibi</span></div>
+    <span class="state s-ok">onaylandı</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name">veri ekibi</span></div>
+    <span class="state s-bad">reddedildi</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Onaylayan</span><span class="stamp-name"><span aria-hidden="true">—</span><span class="visually-hidden">henüz atanmadı</span></span></div>
+    <span class="state s-neutral">bekliyor</span>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-7)</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-3);justify-items:start</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>stamp</span>" style="<span class='s'>width:100%</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Onaylayan&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-name</span>"&gt;güvenlik ekibi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;onaylandı&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-3);justify-items:start</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>stamp</span>" style="<span class='s'>width:100%</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Onaylayan&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-name</span>"&gt;veri ekibi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;reddedildi&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-3);justify-items:start</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>stamp</span>" style="<span class='s'>width:100%</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Onaylayan&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-name</span>"&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;henüz atanmadı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-neutral</span>"&gt;bekliyor&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Henüz atanmamış ad için damgayı kaldırmayın; “—” yazın, ekran okuyucuya <code>.visually-hidden</code> bir kelime bırakın. Dilin kuralına göre “henüz gerçek değil” kesikli çizilir, ama damganın kesikli hali yoktur: beklemeyi etiket söyler. Rengi ya da çerçeveyi satır içi stille değiştirmeyin.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Damga bir ad içindir, cümle için değil. Tıklanacak bir şey de değildir; eylem bir düğmeye aittir.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · kısa, tek özne</span>

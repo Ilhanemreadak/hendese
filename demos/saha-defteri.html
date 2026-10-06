@@ -65,8 +65,9 @@
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Olay sonrası zaman çizelgesi</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Değişiklik günlüğü ve ölçüm kaydı</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Koyu sahne</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Koyu sahne</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -82,7 +83,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Saha defteri<em>Numaralı notlar, künyeli girdiler.</em></h1>
     <p class="intro"><code>.survey-log</code> sıralı bir not defteridir: her girdinin solunda numarası ve künyesi, sağında etiketli paragrafları durur. Olay sonrası zaman çizelgesi, değişiklik günlüğü ya da ölçüm kaydı gibi “ne zaman, nerede, ne gördük, ne yaptık” sorularını sırayla cevaplayan metinler için.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code></dd><dt>Yapı</dt><dd><code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code></dd><dt>Dar ekran</dt><dd>720px altında künye metnin üstüne iner</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code></dd><dt>Durum</dt><dd><code>li.s-ok</code> · <code>li.s-warn</code> · <code>li.s-bad</code> numarayı boyar</dd><dt>Yapı</dt><dd><code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code></dd><dt>Dar sütun</dt><dd>Kap 720px'ten darsa künye metnin üstüne iner</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -303,7 +304,7 @@
     </div>
     <div class="sl-body">
       <span class="sl-label">Ölçüm</span>
-      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill pill-ok">%0,02</span></p>
+      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill s-ok">%0,02</span></p>
       <span class="sl-label">Yorum</span>
       <p>p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.</p>
     </div>
@@ -315,7 +316,7 @@
     </div>
     <div class="sl-body">
       <span class="sl-label">Ölçüm</span>
-      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill pill-neutral">%0,9</span></p>
+      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill s-warn">%0,9</span></p>
       <span class="sl-label">Yorum</span>
       <p>Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).</p>
     </div>
@@ -330,7 +331,7 @@
     &lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Ölçüm&lt;/<span class='k'>span</span>&gt;
-      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;GET /v1/invoices&lt;/<span class='k'>code</span>&gt; · p50 &lt;<span class='k'>b</span>&gt;41 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;182 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;390 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;%0,02&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;GET /v1/invoices&lt;/<span class='k'>code</span>&gt; · p50 &lt;<span class='k'>b</span>&gt;41 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;182 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;390 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;%0,02&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Yorum&lt;/<span class='k'>span</span>&gt;
       &lt;<span class='k'>p</span>&gt;p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.&lt;/<span class='k'>p</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
@@ -342,7 +343,7 @@
     &lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Ölçüm&lt;/<span class='k'>span</span>&gt;
-      &lt;<span class='k'>p</span>&gt;p50 &lt;<span class='k'>b</span>&gt;58 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;410 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;1.240 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;%0,9&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span>&gt;p50 &lt;<span class='k'>b</span>&gt;58 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;410 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;1.240 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;%0,9&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Yorum&lt;/<span class='k'>span</span>&gt;
       &lt;<span class='k'>p</span>&gt;Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).&lt;/<span class='k'>p</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
@@ -351,12 +352,106 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Koyu sahne">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Koyu sahne</h2><p class="lead">Defter koyu panelde de aynı kalır; çizgiler ve künye renkleri kapsayıcının temasına göre çözülür.</p></header>
+<article class="chapter" id="p4" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durumlar</h2><p class="lead">Girdiye .s-* verilirse numara o renge boyanır; çizgiler ve metin değişmez. Durumu künyede bir alanla da yazın: renk yalnız taramayı hızlandırır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · geri alma denemeleri</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li class="s-bad">
+    <div class="sl-meta">
+      <span class="sl-no">R-01</span>
+      <dl><dt>Saat</dt><dd>14:05</dd><dt>Sonuç</dt><dd>başarısız</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p><code>web-api</code> 1.8.2'ye geri alındı; yeni kopyalar imajı çekemedi.</p>
+    </div>
+  </li>
+  <li class="s-warn">
+    <div class="sl-meta">
+      <span class="sl-no">R-02</span>
+      <dl><dt>Saat</dt><dd>14:19</dd><dt>Sonuç</dt><dd>kısmi</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>İmaj kaydı izni düzeltildi; 3 kopyanın 2'si ayağa kalktı.</p>
+    </div>
+  </li>
+  <li class="s-ok">
+    <div class="sl-meta">
+      <span class="sl-no">R-03</span>
+      <dl><dt>Saat</dt><dd>14:31</dd><dt>Sonuç</dt><dd>başarılı</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>Son kopya yeni düğüme taşındı; 5xx oranı %0,1'e indi.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">R-04</span>
+      <dl><dt>Saat</dt><dd>15:00</dd><dt>Sonuç</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">yok</span></dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Not</span>
+      <p>Sınıfsız girdi çizim renginde kalır: gözlem ya da not, sonucu olmayan kayıt.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-bad</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-01&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:05&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;başarısız&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;web-api&lt;/<span class='k'>code</span>&gt; 1.8.2'ye geri alındı; yeni kopyalar imajı çekemedi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-warn</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-02&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:19&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;kısmi&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;İmaj kaydı izni düzeltildi; 3 kopyanın 2'si ayağa kalktı.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-ok</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-03&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:31&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;başarılı&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Son kopya yeni düğüme taşındı; 5xx oranı %0,1'e indi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-04&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;15:00&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Not&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Sınıfsız girdi çizim renginde kalır: gözlem ya da not, sonucu olmayan kayıt.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Kabul edilen sınıflar <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code> ve <code>.s-neutral</code>'dır; yalnız <code>.sl-no</code> rengi değişir. Boş değeri boş bırakmayın: görünen <b>—</b>, ekran okuyucu için <code>.visually-hidden</code> bir kelime. Boş <code>dd</code> atlanır ve alan kayıp sanılır.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Koyu sahne">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Koyu sahne</h2><p class="lead">Defter koyu panelde de aynı kalır; çizgiler ve künye renkleri kapsayıcının temasına göre çözülür.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · nöbet defteri, koyu panel</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px 22px">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px 22px">
   <p class="chip">Nöbet defteri · gece</p>
   <ol class="survey-log">
     <li>
@@ -374,7 +469,7 @@
   </ol>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px 22px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:18px 22px</span>"&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Nöbet defteri · gece&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
     &lt;<span class='k'>li</span>&gt;
@@ -394,8 +489,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Gözlem ile yorumu ayırın: ne görüldüğü bir etikette, ne düşünüldüğü ya da yapıldığı başka bir etikette.</p></header>
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Gözlem ile yorumu ayırın: ne görüldüğü bir etikette, ne düşünüldüğü ya da yapıldığı başka bir etikette.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · ayrı etiketler</span>

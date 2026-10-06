@@ -67,3 +67,8 @@ test('sahnenin hidden talebi Hoca\'yı gizler (canlı mod)', async ({ page }) =>
   await page.evaluate(() => { window.__hidden = true; Hendese.refresh(); scrollBy(0, 2); }); await idle(page);
   await expect(page.locator('.hoca-layer > .hoca')).toBeHidden();
 });
+
+test('büyük harfli her etikette İngilizce kelime lang=en alır', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/lang'));
+  expect(await page.evaluate(() => ['#a', '#b', '#c'].map(s => document.querySelectorAll(s + ' [lang="en"]').length))).toEqual([1, 1, 0]);
+});

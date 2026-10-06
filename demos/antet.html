@@ -66,7 +66,8 @@
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Farklı paftalar</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Şekle bağlı</span></a>
     <a class="nav-link" href="#p4"><span class="num">04</span><span>Sayfa başında</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -82,7 +83,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Antet<em>Paftanın künyesi.</em></h1>
     <p class="intro"><code>.titleblock</code> teknik çizimin köşesindeki künye tablosudur: bir şeklin ya da sayfanın neyi, hangi ortamda, hangi ölçekte ve ne zaman gösterdiğini tek bakışta söyler. İşaretleme bir <code>&lt;dl&gt;</code>; ilk satır <code>.tb-head</code> ile paftanın adını taşır.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.titleblock</code> · <code>.tb-head</code></dd><dt>Yapı</dt><dd><code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code></dd><dt>Genişlik</dt><dd>380px, kabından taşmaz; 720px altında tam genişlik</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.titleblock</code> · <code>.tb-head</code></dd><dt>Yapı</dt><dd><code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code></dd><dt>Genişlik</dt><dd>380px, kabından taşmaz; içerik sütunu 720px'ten darsa tam genişlik</dd><dt>Durum</dt><dd>Kendi durum rengi yok; <code>.state.s-*</code> ile bir satırda yazılır</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -294,7 +295,7 @@
 <header style="display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between">
   <div style="flex:1 1 300px">
     <p class="chip">Runbook · RB-019</p>
-    <h3 style="margin:8px 0 8px;font-size:26px;letter-spacing:-.02em">Önbellek kümesini yenileme</h3>
+    <h3 style="margin:8px 0 8px;font-size:var(--fs-2xl);letter-spacing:-.02em">Önbellek kümesini yenileme</h3>
     <p style="margin:0;color:var(--ink-2);max-width:48ch">Düğümleri tek tek değiştirerek kesintisiz sürüm yükseltme. Tahmini süre 40 dakika.</p>
   </div>
   <dl class="titleblock">
@@ -308,7 +309,7 @@
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>header</span> style="<span class='s'>display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between</span>"&gt;
   &lt;<span class='k'>div</span> style="<span class='s'>flex:1 1 300px</span>"&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Runbook · RB-019&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>h3</span> style="<span class='s'>margin:8px 0 8px;font-size:26px;letter-spacing:-.02em</span>"&gt;Önbellek kümesini yenileme&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>h3</span> style="<span class='s'>margin:8px 0 8px;font-size:var(--fs-2xl);letter-spacing:-.02em</span>"&gt;Önbellek kümesini yenileme&lt;/<span class='k'>h3</span>&gt;
     &lt;<span class='k'>p</span> style="<span class='s'>margin:0;color:var(--ink-2);max-width:48ch</span>"&gt;Düğümleri tek tek değiştirerek kesintisiz sürüm yükseltme. Tahmini süre 40 dakika.&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>dl</span> class="<span class='s'>titleblock</span>"&gt;
@@ -321,8 +322,63 @@
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Antet bir künyedir, açıklama alanı değil. Kısa alanlar, ölçülebilir değerler ve tek bir başlık satırı.</p></header>
+<article class="chapter" id="p5" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Durumlar</h2><p class="lead">Antetin kendi durum rengi ya da kesikli taslak hali yoktur. Paftanın durumu bir satırda, .state etiketiyle yazılır; boş ve uzun değerler için birer kural yeter.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · taslak ve onaylı pafta</span>
+  <div class="demo-view">
+<div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-warn">taslak</span></dd></div>
+    <div><dt>Revizyon</dt><dd>B · gözden geçiriliyor</dd></div>
+    <div><dt>Onaylayan</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span></dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-ok">onaylı</span></dd></div>
+    <div><dt>Revizyon</dt><dd>C · 2026-10-06</dd></div>
+    <div><dt>Onaylayan</dt><dd>platform ekibi</dd></div>
+  </dl>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start</span>"&gt;
+  &lt;<span class='k'>dl</span> class="<span class='s'>titleblock</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>tb-head</span>"&gt;&lt;<span class='k'>dt</span>&gt;Pafta&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Önbellek katmanı&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;taslak&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Revizyon&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;B · gözden geçiriliyor&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Onaylayan&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;henüz yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>dl</span>&gt;
+  &lt;<span class='k'>dl</span> class="<span class='s'>titleblock</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>tb-head</span>"&gt;&lt;<span class='k'>dt</span>&gt;Pafta&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Önbellek katmanı&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;onaylı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Revizyon&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;C · 2026-10-06&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Onaylayan&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;platform ekibi&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>dl</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · geçersiz kalmış pafta, uzun değer</span>
+  <div class="demo-view">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>Eski giriş yolu</dd></div>
+  <div><dt>Durum</dt><dd><span class="state s-bad">geçersiz</span> yerine RB-024</dd></div>
+  <div><dt>İmaj</dt><dd>web-api@sha256:4c1e9a0b7d2f6e8a</dd></div>
+  <div><dt>Bölge</dt><dd>eu-west-1 · eu-central-1 · us-east-1</dd></div>
+</dl>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>dl</span> class="<span class='s'>titleblock</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>tb-head</span>"&gt;&lt;<span class='k'>dt</span>&gt;Pafta&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Eski giriş yolu&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Durum&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;geçersiz&lt;/<span class='k'>span</span>&gt; yerine RB-024&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;İmaj&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;web-api@sha256:4c1e9a0b7d2f6e8a&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;Bölge&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;eu-west-1 · eu-central-1 · us-east-1&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>dl</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Durumu antetin rengiyle değil satırdaki kelimeyle söyleyin; <code>.state</code> çizim dışında 1px birimle basılır. Boş alan satırını silmeyin: “—” görünür, ekran okuyucu <code>.visually-hidden</code> metni duyar ve okur alanın unutulmadığını bilir. Dilin kuralına göre taslak pafta kesikli çerçeveyle çizilmeliydi; antet bunu henüz desteklemiyor. Satır içi stille taklit etmeyin.</p></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Antet bir künyedir, açıklama alanı değil. Kısa alanlar, ölçülebilir değerler ve tek bir başlık satırı.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · kısa alan, ölçülebilir değer</span>

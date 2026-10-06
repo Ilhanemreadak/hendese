@@ -320,22 +320,18 @@ Hendese.$$(<span class="s">'[name=m-rep]'</span>).forEach(<span class="k">functi
 </article>
 
 <article class="chapter" id="m7" data-section data-title="Dar varyant">
-  <header class="ch-head"><p class="ch-num">07</p><h2>Dar varyant: kap sorgusuyla ikinci çizim</h2><p class="lead">Yoğun bir sticky çizim dar masaüstünde sıkışıyorsa, aynı paftanın dar bir varyantını çizin ve kap sorgusuyla değiştirin. Motor <code>--aw/--ah</code>'ı her ölçümde yeniden okur.</p></header>
+  <header class="ch-head"><p class="ch-num">07</p><h2>Dar varyant: kap sorgusuyla ikinci çizim</h2><p class="lead">Yoğun bir çizim dar bir sütunda sıkışıyorsa küçültmek yerine aynı paftanın dar bir varyantını çizin. Desen pakettedir: <code>fig</code> kabı (<code>.f-map</code>, <code>.fig-sheet</code>, <code>.sticky-fig</code>) 576px'ten darsa ikinci çizim devreye girer. Motor <code>--aw/--ah</code>'ı her ölçümde yeniden okur.</p></header>
   <div class="demo">
-    <span class="demo-label">Desen</span>
-    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">/* 1. canlı modda f-map adlandırılmış kap olur */</span>
-<span class="k">@media</span> screen{ <span class="k">#ornek</span> .sticky.is-live .f-map{container-name:fig} }
-<span class="c">/* 2. dar kapta çizim ölçüsü ve SVG grubu değişir; etiketler --nx/--ny/--nw'ye geçer */</span>
-<span class="k">@container</span> fig (max-width:575px){
-  <span class="k">#ornek</span> .drawing{--aw:<span class="v">600</span> !important;--ah:<span class="v">780</span> !important}
-  <span class="k">#ornek</span> .is-wide{display:none} <span class="k">#ornek</span> .is-nar{display:inline}
-  <span class="k">#ornek</span> .dl{left:calc(var(--nx,var(--x)) / var(--aw) * <span class="v">100</span>%);top:calc(var(--ny,var(--y)) / var(--ah) * <span class="v">100</span>%)}
-  <span class="k">#ornek</span> .dl[style*="--nw"]{width:calc(var(--nw) / var(--aw) * <span class="v">100</span>%)}
-}
-<span class="c">/* 3. JS: koordinat tablosunu ölçüye göre seçin — render içinde api.aw değil sahnenin ölçtüğü değer:
-   still/hoca koordinatları için s.aw &lt; 700 ? DAR : GENIS */</span></code></pre></figure>
+    <span class="demo-label">Desen · yalnız işaretleme, sayfa CSS'i gerekmez</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- geniş ölçü --aw/--ah, dar ölçü --naw/--nah; iki SVG yan yana --&gt;</span>
+&lt;<span class="k">div</span> class="<span class="s">drawing</span>" style="<span class="s">--aw:1000;--ah:560;--naw:600;--nah:780</span>"&gt;
+  &lt;<span class="k">svg</span> class="<span class="s">is-wide</span>" viewBox="<span class="s">0 0 1000 560</span>"&gt;…&lt;/<span class="k">svg</span>&gt;
+  &lt;<span class="k">svg</span> class="<span class="s">is-nar</span>" viewBox="<span class="s">0 0 600 780</span>"&gt;…&lt;/<span class="k">svg</span>&gt;
+  <span class="c">&lt;!-- etiket iki konumu taşır: --x/--y/--w geniş, --nx/--ny/--nw dar --&gt;</span>
+  &lt;<span class="k">p</span> class="<span class="s">dl</span>" style="<span class="s">--x:620;--y:80;--w:220;--nx:40;--ny:520;--nw:300</span>"&gt;kayıt deposu&lt;/<span class="k">p</span>&gt;
+&lt;/<span class="k">div</span>&gt;</code></pre></figure>
   </div>
-  <p class="prose">1100–1279px aralığında şekil sütununa daha fazla yer vermek için sticky kapsayıcıya <code>.sticky--dense</code> ekleyin.</p>
+  <p class="prose">Sahnenin Hoca ve <code>still</code> koordinatları için <code>render</code> içinde <code>api.aw &lt; 700 ? DAR : GENIS</code> tablosunu seçin; <code>api.aw</code> her ölçümde hesaplanmış değerdir. Canlı ve örnekli bir sayfa: <a href="../demos/dar-varyant.html">Dar varyant</a>. Pencere 1100–1279px iken şekil sütununa daha fazla yer vermek için sticky kapsayıcıya <code>.sticky--dense</code> ekleyin.</p>
 </article>
 
 <article class="chapter" id="m8" data-section data-title="API başvurusu">

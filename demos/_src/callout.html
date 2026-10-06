@@ -1,4 +1,4 @@
-<!-- meta {"title":"Callout","group":"Bileşenler","order":30,"tagline":"Akışı bölmeden düşülen yan not.","intro":"Callout, okuma metninin yanına sol çizgili kısa bir not ekler. Yedi tür vardır; renk ve ikon türe bağlıdır, etiket metni serbesttir. Gövde paragraf, liste ve kod taşıyabilir.","summary":"Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.","facts":{"Sınıflar":"<code>.co</code> · <code>.co-info</code> · <code>.co-important</code> · <code>.co-tip</code> · <code>.co-warn</code> · <code>.co-sec</code> · <code>.co-success</code> · <code>.co-trouble</code>","Parçalar":"<code>.co-ic</code> (ikon) · <code>.co-label</code> (etiket) · <code>.co-body</code> (gövde)","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Callout","group":"Bileşenler","order":30,"tagline":"Akışı bölmeden düşülen yan not.","intro":"Callout, okuma metninin yanına sol çizgili kısa bir not ekler. Yedi tür vardır; renk ve ikon türe bağlıdır, etiket metni serbesttir. Gövde paragraf, liste ve kod taşıyabilir.","summary":"Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.","facts":{"Sınıflar":"<code>.co</code> · <code>.co-info</code> · <code>.co-important</code> · <code>.co-tip</code> · <code>.co-warn</code> · <code>.co-sec</code> · <code>.co-success</code> · <code>.co-trouble</code>","Durum":"Tür bir roldür; renk gerekirse <code>.s-*</code> ile ezilir","Parçalar":"<code>.co-ic</code> (ikon) · <code>.co-label</code> (etiket) · <code>.co-body</code> (gövde)","JS":"Gerekmez"}} -->
 
 
 <chapter title="Yedi tür" lead="Her türün sabit bir rengi ve ikonu vardır. Aşağıdaki notların hepsi aynı işten, bir alan adının yeni DNS sağlayıcısına taşınmasından alındı.">
@@ -65,6 +65,23 @@
 <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Not</span><div class="co-body"><p>Gövde yalnızca paragrafların kenar boşluğunu düzenler. Callout bir liste ya da kod bloğuyla bitiyorsa alttaki boşluk biraz büyük kalır; bu yüzden uzun notları bir paragrafla kapatmak iyi bir alışkanlıktır.</p></div></div>
 </chapter>
 
+<chapter title="Durumlar" lead="Callout türü bir roldür, durum değil: co-warn “dikkat isteyen adım” demektir, “şu an bir sorun var” değil. Rengi .s-* ile ezmek mümkündür ama çoğu zaman gerekmez.">
+<demo label="Örnek · sabit rol, değişen durum">
+<div class="co co-info s-ok"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Son dağıtım · başarılı</span><div class="co-body"><p><code>web-api:1.9.0</code> 10:42'de prod'a çıktı; 3 kopyanın 3'ü hazır.</p></div></div>
+<div class="co co-info s-bad"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Son dağıtım · başarısız</span><div class="co-body"><p><code>web-api:1.9.1</code> sağlık denetimini geçemedi; önceki sürüm çalışmaya devam ediyor.</p></div></div>
+</demo>
+<div class="prose"><p>Not her zaman aynı türdedir (son dağıtımın özeti), yalnızca sonucu değişir; rengi o sonuçtan gelen <code>.s-ok</code> ya da <code>.s-bad</code> verir, sonucu etiket de yazar. Sonuç canlı değişiyorsa callout yerine <code>.readout</code> ve <code>aria-live</code> daha uygundur.</p></div>
+<div class="dodont">
+<demo label="Yap · anlamı rol taşır">
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Bitti sayılır</span><div class="co-body"><p>Beş çözümleyicinin beşi yeni adresi döndürüyor.</p></div></div>
+</demo>
+<demo label="Yapma · rol ile renk çelişir">
+<div class="co co-warn s-ok"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Beş çözümleyicinin beşi yeni adresi döndürüyor.</p></div></div>
+</demo>
+</div>
+<div class="prose"><p>Uyarı ikonu ve “Dikkat” etiketi yeşil çizilince okur hangisine inanacağını bilemez. Kural: rol doğruysa <code>.s-*</code> eklemeyin; yalnız rol sabit kalıp sonuç değişiyorsa ekleyin. Callout'ın devre dışı ya da bekliyor hali yoktur; bekleyen bir bölgeye <code>aria-busy="true"</code> verilir.</p></div>
+</chapter>
+
 <chapter title="Bağlam içinde" lead="Callout kendi başına değil, bir adımın ya da paragrafın hemen altında durur; ilgili olduğu yere yakın olmalıdır.">
 <demo label="Örnek · adım içinde">
 <ol class="steps">
@@ -87,7 +104,7 @@
 </div>
 </demo>
 <demo label="Örnek · koyu sahne içinde">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:4px 18px">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:4px 18px">
   <div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Erişim süresi</span><div class="co-body"><p>Geçici yönetici yetkisi 2 saat sonra kendiliğinden geri alınır.</p></div></div>
   <div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Onaylandı</span><div class="co-body"><p>İstek iki onaylayıcıdan geçti.</p></div></div>
 </div>

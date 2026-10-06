@@ -73,7 +73,7 @@
 </figure>
 <p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Yeni vade sütunu. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Yalnızca ödenmemiş faturaları kapsayan kısmi indeks (satır 4–6).</p>
 </demo>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin varsayılan 13px yazı boyuna ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin yazı boyuna (<code>--fs-sm</code>, 12.5px) ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
 </chapter>
 
 <chapter title="Metinde anahtar" lead="diff-key açıklamayı satıra bağlar. Paragraf içinde, değişiklik listesinde ya da bir tanım listesinde aynı şekilde kullanılır.">
@@ -105,6 +105,38 @@
   <dt><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Politika</dt><dd><code>allkeys-lru</code> → <code>allkeys-lfu</code></dd>
 </dl>
 </demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Şeridin tek bir durumu vardır: değişti. Eklenen, silinen ya da riskli satır için ayrı renk yoktur; farkın türü metinde söylenir.">
+<demo label="Örnek · değişen, süren ve değişmeyen satır">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">hpa.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i></div>
+<pre tabindex="0"><code><span class="k">spec</span>:
+  <span class="k">minReplicas</span>: <span class="v">3</span>
+  <span class="k">maxReplicas</span>: <span class="v">12</span>
+  <span class="k">behavior</span>:
+    <span class="k">scaleDown</span>: { <span class="k">stabilizationWindowSeconds</span>: <span class="v">600</span> }</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>En az kopya 2'den 3'e çıktı. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Küçülme davranışı eklendi (satır 4–5). Silinen satır: <code>targetCPUUtilizationPercentage: 80</code>; ölçek kararı artık varsayılan CPU hedefiyle veriliyor.</p>
+<p class="figcap"><b>Özet.</b> <span class="plus">+3</span> eklenen ya da değişen satır, <span class="minus">−1</span> silinen satır.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Değişti</td><td><code>&lt;i style="--l:N" data-m="Δ1"&gt;</code></td><td>Yeşil çizgi, hafif zemin, işaret</td></tr>
+    <tr><td>Değişiklik sürüyor</td><td><code>data-m=""</code></td><td>Çizgi ve zemin, işaretsiz</td></tr>
+    <tr><td>Değişmedi</td><td>işaret yok</td><td>Düz kod</td></tr>
+    <tr><td>Silindi</td><td>şeritte yok; metinde eski değer ve <code>.minus</code> sayısı</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Silinen satır kodda bulunmadığı için şeritte gösterilemez; paket bunun için bir işaret sunmaz. Eski değeri açıklama metnine yazın. Kırmızı ya da sarı şerit taklidi için satır içi renk vermeyin: okur yeşil dışındaki rengi bir anlam sanır, ekran okuyucu ise hiçbirini duymaz.</p></div>
 </chapter>
 
 <chapter title="Dar alan" lead="Şerit pre'nin dışında durduğu için uzun satır yatay kaydırıldığında işaretler yerinde kalır; yalnızca kod kayar.">

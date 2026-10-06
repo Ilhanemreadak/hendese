@@ -1,4 +1,4 @@
-/* Hendese 0.1.1 */
+/* Hendese 0.2.0 */
 
 // src/js/math.js
 function clamp01(v) {
@@ -704,284 +704,6 @@ function createHoca() {
   };
 }
 
-// src/js/hoca-controller.js
-var hoca = null;
-var homeEl;
-var homePt = { x: 0, y: 0 };
-var H = { owner: null, from: null, t0: 0, pos: null, fade: null };
-var WALK_MAX = 260;
-var state = { dismissed: false };
-function tick(t) {
-  if (!S.motion) return false;
-  var sc = null, want = "home";
-  if (Date.now() >= S.lockUntil) {
-    for (var i = 0; i < SCENES.length; i++) if (SCENES[i].hoca) {
-      sc = SCENES[i].hoca;
-      want = SCENES[i];
-      break;
-    }
-  }
-  var tg = sc ? sc : { x: homePt.x, y: homePt.y, pose: "idle", face: 1, bubble: null, tag: null, alpha: isQuiet(current()) ? 0.45 : 1 };
-  if (want !== H.owner) {
-    if (H.owner && H.pos && !(sc && sc.hidden)) {
-      if (H.owner === "home" || want === "home" || Math.hypot(tg.x - H.pos.x, tg.y - H.pos.y) > WALK_MAX) {
-        H.fade = { x: H.pos.x, y: H.pos.y, pose: H.pos.pose, face: H.pos.face, a: H.pos.alpha, t0: t };
-        H.from = null;
-      } else {
-        H.from = { x: H.pos.x, y: H.pos.y };
-        H.t0 = t;
-        H.fade = null;
-      }
-    }
-    H.owner = want;
-  }
-  var s = { visible: !(sc && sc.hidden), x: tg.x, y: tg.y, pose: tg.pose, face: tg.face, bubble: tg.bubble, bubbleUp: !!tg.bubbleUp, tag: tg.tag, squash: tg.squash || 0, alpha: tg.alpha == null ? 1 : tg.alpha }, busy = false;
-  if (H.fade) {
-    var f = H.fade, q = (t - f.t0) / 320;
-    if (q >= 1) H.fade = null;
-    else {
-      busy = true;
-      s.bubble = null;
-      s.tag = null;
-      if (q < 0.5) {
-        s.x = f.x;
-        s.y = f.y;
-        s.pose = f.pose;
-        s.face = f.face;
-        s.squash = 0;
-        s.alpha = f.a * (1 - 2 * q);
-      } else s.alpha *= 2 * q - 1;
-    }
-  }
-  if (H.from) {
-    var k = clamp01((t - H.t0) / 650);
-    if (k >= 1) H.from = null;
-    else {
-      var e = ease(k);
-      s.x = lerp(H.from.x, tg.x, e);
-      s.y = lerp(H.from.y, tg.y, e);
-      s.pose = Math.floor((t - H.t0) / 150) % 2 ? "walkA" : "walkB";
-      s.face = tg.x < H.from.x ? -1 : 1;
-      s.bubble = null;
-      s.tag = null;
-      s.alpha = 1;
-      busy = true;
-    }
-  }
-  H.pos = { x: s.x, y: s.y, pose: s.pose, face: s.face, alpha: s.alpha };
-  hoca.render(s);
-  return busy;
-}
-function refresh() {
-  if (!hoca) return;
-  var wantStatic = !S.motion && matchMedia("(min-width:1100px)").matches;
-  hoca.clearPlaced();
-  if (wantStatic) SCENES.forEach(function(sc) {
-    var o = typeof sc.still === "function" ? sc.still() : sc.still;
-    if (o) hoca.place(sc.dr, { left: o.x / sc.aw * 100 + "%", top: o.y / sc.ah * 100 + "%", pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null });
-  });
-  if (!S.motion) {
-    hoca.render({ visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
-    H.owner = null;
-    H.from = null;
-    H.fade = null;
-    H.pos = null;
-  }
-}
-function init4() {
-  homeEl = $("#hoca-home");
-  if (!homeEl && !SCENES.some(function(sc) {
-    return sc.still;
-  })) return;
-  hoca = createHoca();
-  hooks.afterMeasure.unshift(function() {
-    if (homeEl) {
-      var r = homeEl.getBoundingClientRect();
-      homePt = { x: r.left + r.width / 2, y: r.bottom - 22 };
-    }
-  });
-  hooks.frame.push(tick);
-  hooks.motion.push(refresh);
-}
-function dismiss() {
-  state.dismissed = true;
-  poke();
-}
-
-// src/js/widgets.js
-function tables() {
-  $$(".tbl").forEach(function(w) {
-    if (!w.hasAttribute("tabindex")) w.setAttribute("tabindex", "0");
-  });
-  $$(".tbl table").forEach(function(t) {
-    var ths = $$("thead th", t).map(function(th) {
-      return th.textContent.trim();
-    });
-    $$("tbody tr", t).forEach(function(tr) {
-      $$("td", tr).forEach(function(td, i) {
-        if (ths[i]) td.setAttribute("data-th", ths[i]);
-      });
-    });
-  });
-}
-function copy() {
-  $$(".code").forEach(function(fig) {
-    var btn = $(".code-copy", fig), code = $("code", fig);
-    if (!btn || !code) return;
-    var label = $("span", btn);
-    btn.addEventListener("click", function() {
-      var text = code.textContent.replace(/\n+$/, "");
-      function done(ok) {
-        label.textContent = ok ? strings.copied : strings.copyFail;
-        btn.classList.toggle("done", ok);
-        setTimeout(function() {
-          label.textContent = strings.copy;
-          btn.classList.remove("done");
-        }, 1600);
-      }
-      function fallback() {
-        var ok = false;
-        try {
-          var ta = document.createElement("textarea");
-          ta.value = text;
-          ta.setAttribute("readonly", "");
-          ta.style.position = "fixed";
-          ta.style.opacity = "0";
-          document.body.appendChild(ta);
-          ta.select();
-          ok = document.execCommand("copy");
-          ta.remove();
-        } catch (e) {
-        }
-        done(ok);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function() {
-        done(true);
-      }, fallback);
-      else fallback();
-    });
-  });
-}
-function runbooks() {
-  $$(".runbook").forEach(function(rb) {
-    var boxes = $$('input[type="checkbox"]', rb), count = $(".rb-count", rb), fill2 = $(".rb-bar i", rb), reset = $(".rb-reset", rb), key = rb.getAttribute("data-store");
-    function save() {
-      if (key) try {
-        localStorage.setItem(key, JSON.stringify(boxes.map(function(b) {
-          return b.checked;
-        })));
-      } catch (e) {
-      }
-    }
-    function render() {
-      var n = boxes.filter(function(b) {
-        return b.checked;
-      }).length;
-      if (count) count.textContent = n + " / " + boxes.length;
-      if (fill2) fill2.style.width = 100 * n / boxes.length + "%";
-      rb.classList.toggle("complete", n === boxes.length);
-      rb.dispatchEvent(new CustomEvent("hendese:runbook", { bubbles: true, detail: { done: n, total: boxes.length } }));
-    }
-    if (key) try {
-      var s = JSON.parse(localStorage.getItem(key));
-      if (Array.isArray(s)) boxes.forEach(function(b, i) {
-        b.checked = !!s[i];
-      });
-    } catch (e) {
-    }
-    boxes.forEach(function(b) {
-      b.addEventListener("change", function() {
-        save();
-        render();
-      });
-    });
-    if (reset) reset.addEventListener("click", function() {
-      boxes.forEach(function(b) {
-        b.checked = false;
-      });
-      save();
-      render();
-      if (boxes[0]) boxes[0].focus();
-    });
-    render();
-  });
-}
-function explorers() {
-  $$("[data-explorer]").forEach(function(ex) {
-    var panel = document.getElementById(ex.getAttribute("data-explorer"));
-    if (!panel) return;
-    var btns = $$("[data-key]", ex).filter(function(b) {
-      return b.hasAttribute("aria-pressed");
-    });
-    var pre = btns.filter(function(b) {
-      return b.getAttribute("aria-pressed") === "true";
-    })[0] || btns[0], selected = pre && pre.getAttribute("data-key");
-    function show(key) {
-      $$("[data-for]", panel).forEach(function(d) {
-        d.classList.toggle("show", d.getAttribute("data-for") === key);
-      });
-    }
-    function select(key) {
-      selected = key;
-      btns.forEach(function(b) {
-        b.setAttribute("aria-pressed", String(b.getAttribute("data-key") === key));
-      });
-      show(key);
-    }
-    btns.forEach(function(b) {
-      var k = b.getAttribute("data-key");
-      b.addEventListener("click", function() {
-        select(k);
-        ex.dispatchEvent(new CustomEvent("hendese:explore", { bubbles: true, detail: { key: k } }));
-      });
-      b.addEventListener("mouseenter", function() {
-        show(k);
-      });
-      b.addEventListener("mouseleave", function() {
-        show(selected);
-      });
-      b.addEventListener("focus", function() {
-        show(k);
-      });
-      b.addEventListener("blur", function() {
-        show(selected);
-      });
-    });
-    if (selected) select(selected);
-  });
-}
-function init5() {
-  tables();
-  copy();
-  runbooks();
-  explorers();
-}
-
-// src/js/lang.js
-var WORD = /[A-Za-z][A-Za-z0-9_.-]*/g;
-function wrapEnglish(EN, sel) {
-  if (!EN) return;
-  $$(sel || ".drawing *,.sticky-fig *,.beats *,.chip,.hud *,.route-stage *").forEach(function(b) {
-    if (b.closest("[lang]:not(html)") || getComputedStyle(b).textTransform !== "uppercase") return;
-    Array.prototype.slice.call(b.childNodes).forEach(function(n) {
-      if (n.nodeType !== 3 || !EN.test(n.nodeValue)) return;
-      var s = n.nodeValue, f = document.createDocumentFragment(), k = 0, m;
-      WORD.lastIndex = 0;
-      while (m = WORD.exec(s)) {
-        if (!EN.test(m[0])) continue;
-        f.appendChild(document.createTextNode(s.slice(k, m.index)));
-        var sp = document.createElement("span");
-        sp.lang = "en";
-        sp.textContent = m[0];
-        f.appendChild(sp);
-        k = m.index + m[0].length;
-      }
-      f.appendChild(document.createTextNode(s.slice(k)));
-      n.replaceWith(f);
-    });
-  });
-}
-
 // src/js/scenes.js
 function flagger() {
   var flags = /* @__PURE__ */ new Map();
@@ -1212,8 +934,288 @@ function figScene(cfg) {
   return s;
 }
 
+// src/js/hoca-controller.js
+var hoca = null;
+var homeEl;
+var homePt = { x: 0, y: 0 };
+var H = { owner: null, from: null, t0: 0, pos: null, fade: null };
+var WALK_MAX = 260;
+var state = { dismissed: false };
+function tick(t) {
+  if (!S.motion) return false;
+  var sc = null, want = "home";
+  if (Date.now() >= S.lockUntil) {
+    for (var i = 0; i < SCENES.length; i++) if (SCENES[i].hoca) {
+      sc = SCENES[i].hoca;
+      want = SCENES[i];
+      break;
+    }
+  }
+  var tg = sc ? sc : { x: homePt.x, y: homePt.y, pose: "idle", face: 1, bubble: null, tag: null, alpha: isQuiet(current()) ? 0.45 : 1 };
+  if (want !== H.owner) {
+    if (H.owner && H.pos && !(sc && sc.hidden)) {
+      if (H.owner === "home" || want === "home" || Math.hypot(tg.x - H.pos.x, tg.y - H.pos.y) > WALK_MAX) {
+        H.fade = { x: H.pos.x, y: H.pos.y, pose: H.pos.pose, face: H.pos.face, a: H.pos.alpha, t0: t };
+        H.from = null;
+      } else {
+        H.from = { x: H.pos.x, y: H.pos.y };
+        H.t0 = t;
+        H.fade = null;
+      }
+    }
+    H.owner = want;
+  }
+  var s = { visible: !(sc && sc.hidden), x: tg.x, y: tg.y, pose: tg.pose, face: tg.face, bubble: tg.bubble, bubbleUp: !!tg.bubbleUp, tag: tg.tag, squash: tg.squash || 0, alpha: tg.alpha == null ? 1 : tg.alpha }, busy = false;
+  if (H.fade) {
+    var f = H.fade, q = (t - f.t0) / 320;
+    if (q >= 1) H.fade = null;
+    else {
+      busy = true;
+      s.bubble = null;
+      s.tag = null;
+      if (q < 0.5) {
+        s.x = f.x;
+        s.y = f.y;
+        s.pose = f.pose;
+        s.face = f.face;
+        s.squash = 0;
+        s.alpha = f.a * (1 - 2 * q);
+      } else s.alpha *= 2 * q - 1;
+    }
+  }
+  if (H.from) {
+    var k = clamp01((t - H.t0) / 650);
+    if (k >= 1) H.from = null;
+    else {
+      var e = ease(k);
+      s.x = lerp(H.from.x, tg.x, e);
+      s.y = lerp(H.from.y, tg.y, e);
+      s.pose = Math.floor((t - H.t0) / 150) % 2 ? "walkA" : "walkB";
+      s.face = tg.x < H.from.x ? -1 : 1;
+      s.bubble = null;
+      s.tag = null;
+      s.alpha = 1;
+      busy = true;
+    }
+  }
+  H.pos = { x: s.x, y: s.y, pose: s.pose, face: s.face, alpha: s.alpha };
+  hoca.render(s);
+  return busy;
+}
+function refresh() {
+  if (!hoca) return;
+  var wantStatic = !S.motion && matchMedia("(min-width:1100px)").matches;
+  hoca.clearPlaced();
+  if (wantStatic) SCENES.forEach(function(sc) {
+    if (sc.still && sc.dr) readAw(sc);
+    var o = typeof sc.still === "function" ? sc.still() : sc.still;
+    if (o) hoca.place(sc.dr, { left: o.x / sc.aw * 100 + "%", top: o.y / sc.ah * 100 + "%", pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null });
+  });
+  if (!S.motion) {
+    hoca.render({ visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
+    H.owner = null;
+    H.from = null;
+    H.fade = null;
+    H.pos = null;
+  }
+}
+function init4() {
+  homeEl = $("#hoca-home");
+  if (!homeEl && !SCENES.some(function(sc) {
+    return sc.still;
+  })) return;
+  hoca = createHoca();
+  hooks.afterMeasure.unshift(function() {
+    if (homeEl) {
+      var r = homeEl.getBoundingClientRect();
+      homePt = { x: r.left + r.width / 2, y: r.bottom - 22 };
+    }
+  });
+  hooks.frame.push(tick);
+  hooks.motion.push(refresh);
+}
+function dismiss() {
+  state.dismissed = true;
+  poke();
+}
+
+// src/js/widgets.js
+function tables() {
+  $$(".tbl").forEach(function(w) {
+    if (!w.hasAttribute("tabindex")) w.setAttribute("tabindex", "0");
+  });
+  $$(".tbl table").forEach(function(t) {
+    var ths = $$("thead th", t).map(function(th) {
+      return th.textContent.trim();
+    });
+    $$("tbody tr", t).forEach(function(tr) {
+      $$("td", tr).forEach(function(td, i) {
+        if (ths[i]) td.setAttribute("data-th", ths[i]);
+      });
+    });
+  });
+}
+function copy() {
+  $$(".code").forEach(function(fig) {
+    var btn = $(".code-copy", fig), code = $("code", fig);
+    if (!btn || !code) return;
+    var label = $("span", btn);
+    label.setAttribute("aria-live", "polite");
+    btn.addEventListener("click", function() {
+      var text = code.textContent.replace(/\n+$/, "");
+      function done(ok) {
+        label.textContent = ok ? strings.copied : strings.copyFail;
+        btn.setAttribute("data-state", ok ? "done" : "fail");
+        setTimeout(function() {
+          label.textContent = strings.copy;
+          btn.removeAttribute("data-state");
+        }, 1600);
+      }
+      function fallback() {
+        var ok = false;
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          ok = document.execCommand("copy");
+          ta.remove();
+        } catch (e) {
+        }
+        done(ok);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function() {
+        done(true);
+      }, fallback);
+      else fallback();
+    });
+  });
+}
+function runbooks() {
+  $$(".runbook").forEach(function(rb) {
+    var boxes = $$('input[type="checkbox"]', rb), count = $(".rb-count", rb), fill2 = $(".rb-bar i", rb), reset = $(".rb-reset", rb), key = rb.getAttribute("data-store");
+    function save() {
+      if (key) try {
+        localStorage.setItem(key, JSON.stringify(boxes.map(function(b) {
+          return b.checked;
+        })));
+      } catch (e) {
+      }
+    }
+    function render() {
+      var n = boxes.filter(function(b) {
+        return b.checked;
+      }).length;
+      if (count) count.textContent = n + " / " + boxes.length;
+      if (fill2) fill2.style.width = 100 * n / boxes.length + "%";
+      rb.classList.toggle("complete", n === boxes.length);
+      rb.dispatchEvent(new CustomEvent("hendese:runbook", { bubbles: true, detail: { done: n, total: boxes.length } }));
+    }
+    if (key) try {
+      var s = JSON.parse(localStorage.getItem(key));
+      if (Array.isArray(s)) boxes.forEach(function(b, i) {
+        b.checked = !!s[i];
+      });
+    } catch (e) {
+    }
+    boxes.forEach(function(b) {
+      b.addEventListener("change", function() {
+        save();
+        render();
+      });
+    });
+    if (reset) reset.addEventListener("click", function() {
+      boxes.forEach(function(b) {
+        b.checked = false;
+      });
+      save();
+      render();
+      if (boxes[0]) boxes[0].focus();
+    });
+    render();
+  });
+}
+function explorers() {
+  $$("[data-explorer]").forEach(function(ex) {
+    var panel = document.getElementById(ex.getAttribute("data-explorer"));
+    if (!panel) return;
+    var btns = $$("[data-key]", ex).filter(function(b) {
+      return b.hasAttribute("aria-pressed");
+    });
+    var pre = btns.filter(function(b) {
+      return b.getAttribute("aria-pressed") === "true";
+    })[0] || btns[0], selected = pre && pre.getAttribute("data-key");
+    function show(key) {
+      $$("[data-for]", panel).forEach(function(d) {
+        d.classList.toggle("show", d.getAttribute("data-for") === key);
+      });
+    }
+    function select(key) {
+      selected = key;
+      btns.forEach(function(b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-key") === key));
+      });
+      show(key);
+    }
+    btns.forEach(function(b) {
+      var k = b.getAttribute("data-key");
+      b.addEventListener("click", function() {
+        select(k);
+        ex.dispatchEvent(new CustomEvent("hendese:explore", { bubbles: true, detail: { key: k } }));
+      });
+      b.addEventListener("mouseenter", function() {
+        show(k);
+      });
+      b.addEventListener("mouseleave", function() {
+        show(selected);
+      });
+      b.addEventListener("focus", function() {
+        show(k);
+      });
+      b.addEventListener("blur", function() {
+        show(selected);
+      });
+    });
+    if (selected) select(selected);
+  });
+}
+function init5() {
+  tables();
+  copy();
+  runbooks();
+  explorers();
+}
+
+// src/js/lang.js
+var WORD = /[A-Za-z][A-Za-z0-9_.-]*/g;
+function wrapEnglish(EN, root) {
+  if (!EN) return;
+  var w = document.createTreeWalker(root || document.body, NodeFilter.SHOW_TEXT), hits = [], n;
+  while (n = w.nextNode()) if (EN.test(n.nodeValue)) hits.push(n);
+  hits.forEach(function(n2) {
+    var b = n2.parentElement;
+    if (!b || b.closest("[lang]:not(html),script,style,pre,code") || getComputedStyle(b).textTransform !== "uppercase") return;
+    var s = n2.nodeValue, f = document.createDocumentFragment(), k = 0, m;
+    WORD.lastIndex = 0;
+    while (m = WORD.exec(s)) {
+      if (!EN.test(m[0])) continue;
+      f.appendChild(document.createTextNode(s.slice(k, m.index)));
+      var sp = document.createElement("span");
+      sp.lang = "en";
+      sp.textContent = m[0];
+      f.appendChild(sp);
+      k = m.index + m[0].length;
+    }
+    f.appendChild(document.createTextNode(s.slice(k)));
+    n2.replaceWith(f);
+  });
+}
+
 // src/js/index.js
-var version = true ? "0.1.1" : "dev";
+var version = true ? "0.2.0" : "dev";
 var O = null;
 var started = false;
 function init6(opts) {

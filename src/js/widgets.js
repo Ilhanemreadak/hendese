@@ -11,10 +11,10 @@ function tables() {
 
 /* kod kopyala: figure.code > .code-copy > span + code */
 function copy() {
-  $$('.code').forEach(function (fig) { var btn = $('.code-copy', fig), code = $('code', fig); if (!btn || !code) return; var label = $('span', btn);
+  $$('.code').forEach(function (fig) { var btn = $('.code-copy', fig), code = $('code', fig); if (!btn || !code) return; var label = $('span', btn); label.setAttribute('aria-live', 'polite');
     btn.addEventListener('click', function () {
       var text = code.textContent.replace(/\n+$/, '');
-      function done(ok) { label.textContent = ok ? strings.copied : strings.copyFail; btn.classList.toggle('done', ok); setTimeout(function () { label.textContent = strings.copy; btn.classList.remove('done'); }, 1600); }
+      function done(ok) { label.textContent = ok ? strings.copied : strings.copyFail; btn.setAttribute('data-state', ok ? 'done' : 'fail'); setTimeout(function () { label.textContent = strings.copy; btn.removeAttribute('data-state'); }, 1600); }
       function fallback() { var ok = false; try { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); ok = document.execCommand('copy'); ta.remove(); } catch (e) {} done(ok); }
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, fallback); else fallback();
     }); });

@@ -20,7 +20,9 @@
 .ease-dot{position:absolute;left:3px;top:3px;width:16px;height:16px;background:var(--draw);transition:transform var(--dur-4) var(--e)}
 .ease-demo:is(:hover,:focus-visible) .ease-dot{transform:translateX(calc(100cqw - 22px))}
 .radii{display:flex;flex-wrap:wrap;gap:14px}
-.radii div{display:grid;place-items:center;width:120px;height:72px;border:1.5px solid var(--draw);background:var(--paper);font:500 12px/1.3 var(--font-mono);color:var(--ink-2)}
+.radii div{display:grid;place-items:center;width:120px;height:72px;border:1.5px solid var(--draw);background:var(--paper);font:500 var(--fs-sm)/1.3 var(--font-mono);color:var(--ink-2)}
+.sp-row{display:grid;grid-template-columns:70px 44px minmax(0,1fr);gap:var(--sp-5);align-items:center;padding:var(--sp-1) 0;font:500 var(--fs-sm)/1.3 var(--font-mono);color:var(--ink-2)}
+.sp-row i{display:block;height:12px;width:var(--w);background:var(--draw)}
 @media (max-width:719px){.type-row,.ease-row{grid-template-columns:1fr}}
 </style>
 </head>
@@ -77,6 +79,7 @@
     <a class="nav-link" href="#t5"><span class="num">05</span><span>Durum ve servis renkleri</span></a>
     <a class="nav-link" href="#t6"><span class="num">06</span><span>Tipografi</span></a>
     <a class="nav-link" href="#t7"><span class="num">07</span><span>Ölçü, köşe ve hareket</span></a>
+    <a class="nav-link" href="#t8"><span class="num">08</span><span>Kontrast ve zorunlu renk</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -120,9 +123,33 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
 
   <div class="prose">
     <h3>Uyarlama</h3>
-    <p>Kendi stil dosyanızı <code>hendese.css</code>'ten sonra bağlayın ve yalnızca değiştirmek istediğiniz token'ları yazın. İki temayı da aynı satırda verin:</p>
+    <p>Kendi stil dosyanızı <code>hendese.css</code>'ten sonra bağlayın ve yalnızca değiştirmek istediğiniz token'ları yazın. İki temayı da aynı satırda verin. Tema tek renkle değişir: <code>--draw</code>, <code>--accent-soft</code>, <code>--pencil</code>, <code>--pencil-2</code> ve <code>--scene-shade</code> <code>--accent</code>'ten <code>color-mix()</code> ile türetilir. Bağlantı metninin kontrastı için <code>--accent-2</code>'yi de verin:</p>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">uygulama.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:root{--accent:light-dark(#0b7a5a,#5fd3a8)}</code></pre></figure>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">uygulama.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:root{--accent:light-dark(#0b7a5a,#5fd3a8);--accent-2:light-dark(#09654a,#7fe0bb)}</code></pre></figure>
+  <div class="prose">
+    <p>Türevler <code>:root</code>'ta bir kez çözülür. Bir alt öğede yalnız <code>--accent</code>'i ezmek <code>--draw</code>'u ve kalem tonlarını değiştirmez; yerel bir ezmede türevleri de birlikte yazın. Aşağıda solda yalnız <code>--accent</code> ezilmiş, sağda türevleriyle birlikte.</p>
+  </div>
+  <div class="demo">
+    <span class="demo-label">Örnek · yerel ezme</span>
+    <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--sp-5)">
+  <div style="--accent:light-dark(#0b7a5a,#5fd3a8);padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md)">
+    <p class="ch-num">Yalnız --accent</p>
+    <svg viewBox="0 0 220 48" width="220" height="48" fill="none" aria-hidden="true"><rect class="ln-pencil" x="2" y="8" width="90" height="32"/><rect class="ln-draw fill-paper" x="120" y="8" width="96" height="32"/></svg>
+    <p style="margin:var(--sp-3) 0 0;color:var(--ink-2)">Bölüm numarası yeşil; çizgiler hâlâ mavi.</p>
+  </div>
+  <div style="--accent:light-dark(#0b7a5a,#5fd3a8);--draw:var(--accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);--pencil:color-mix(in srgb,var(--draw) 28%,transparent);padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md)">
+    <p class="ch-num">--accent ve türevleri</p>
+    <svg viewBox="0 0 220 48" width="220" height="48" fill="none" aria-hidden="true"><rect class="ln-pencil" x="2" y="8" width="90" height="32"/><rect class="ln-draw fill-paper" x="120" y="8" width="96" height="32"/></svg>
+    <p style="margin:var(--sp-3) 0 0;color:var(--ink-2)">Numara, kalem ve mürekkep birlikte yeşil.</p>
+  </div>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- :root'ta yalnız --accent yeterli; yerel ezmede türevler de yazılır --&gt;
+&lt;div style="--accent:light-dark(#0b7a5a,#5fd3a8);--draw:var(--accent);
+            --accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);
+            --pencil:color-mix(in srgb,var(--draw) 28%,transparent)"&gt;…&lt;/div&gt;</code></pre></figure>
+  </div>
 
   <div class="prose">
     <h3>Temayı zorlamak</h3>
@@ -141,12 +168,12 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
   <div style="padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
     <p class="chip">Sayfa teması</p>
     <p>Yüzey ve mürekkep sayfayı izler.</p>
-    <span class="pill pill-ok">hazır</span>
+    <span class="pill s-ok">hazır</span>
   </div>
   <div class="scene-dark" style="padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
     <p class="chip">Koyu pafta</p>
     <p>Aynı token'lar burada hep koyu çözülür.</p>
-    <span class="pill pill-ok">hazır</span>
+    <span class="pill s-ok">hazır</span>
   </div>
 </div>
     </div>
@@ -154,12 +181,12 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
   &lt;div style="padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)"&gt;
     &lt;p class="chip"&gt;Sayfa teması&lt;/p&gt;
     &lt;p&gt;Yüzey ve mürekkep sayfayı izler.&lt;/p&gt;
-    &lt;span class="pill pill-ok"&gt;hazır&lt;/span&gt;
+    &lt;span class="pill s-ok"&gt;hazır&lt;/span&gt;
   &lt;/div&gt;
   &lt;div class="scene-dark" style="padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)"&gt;
     &lt;p class="chip"&gt;Koyu pafta&lt;/p&gt;
     &lt;p&gt;Aynı token'lar burada hep koyu çözülür.&lt;/p&gt;
-    &lt;span class="pill pill-ok"&gt;hazır&lt;/span&gt;
+    &lt;span class="pill s-ok"&gt;hazır&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre></figure>
   </div>
@@ -174,6 +201,7 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
     <div style="--c:var(--surface-3)"><i></i><span>--surface-3<small>satır içi kod, çubuk izi</small></span></div>
     <div style="--c:var(--paper)"><i></i><span>--paper<small>antet, damga, çip zemini</small></span></div>
     <div style="--c:var(--scene-bg)"><i></i><span>--scene-bg<small>pafta (frame) zemini</small></span></div>
+    <div style="--c:var(--scene-shade)"><i></i><span>--scene-shade<small>izometrik yan yüz</small></span></div>
     <div style="--c:var(--line)"><i></i><span>--line<small>ince ayraç</small></span></div>
     <div style="--c:var(--line-2)"><i></i><span>--line-2<small>belirgin kenar</small></span></div>
     <div style="--c:var(--ruler)"><i></i><span>--ruler<small>cetvel çizgileri</small></span></div>
@@ -186,12 +214,14 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
       <tr><td><code>--surface</code></td><td><code>#ffffff</code></td><td><code>#161b22</code></td><td>Kart, tablo, adım, kontrol listesi</td></tr>
       <tr><td><code>--surface-2</code></td><td><code>#f8f8f4</code></td><td><code>#1a2029</code></td><td>Düğme ve liste öğesi üzerine gelme</td></tr>
       <tr><td><code>--surface-3</code></td><td><code>#ebebe4</code></td><td><code>#222936</code></td><td>Satır içi <code>code</code>, ilerleme çubuğu izi, nötr rozet</td></tr>
-      <tr><td><code>--paper</code></td><td><code>#fbfbf8</code></td><td><code>#141b25</code></td><td>Antet, damga, kayıt, seçim çipi, istasyon</td></tr>
+      <tr><td><code>--paper</code></td><td><code>#fbfbf8</code></td><td><code>#1a2331</code></td><td>Antet, damga, kayıt, seçim çipi, istasyon. Koyu değer 0.2'de <code>#141b25</code>'ten açıldı: pafta zemininden ayrışsın</td></tr>
       <tr><td><code>--scene-bg</code></td><td><code>#e9eff8</code></td><td><code>#121a27</code></td><td><code>.frame-bg</code> pafta zemini</td></tr>
+      <tr><td><code>--scene-shade</code></td><td colspan="2"><code>color-mix(in srgb,var(--draw) 8%,var(--scene-bg))</code></td><td>İzometrik kutunun yan yüzü: <code>.fill-shade</code></td></tr>
       <tr><td><code>--line</code></td><td><code>rgba(22,28,40,.10)</code></td><td><code>rgba(170,185,210,.12)</code></td><td>Bölüm ve tablo ayraçları</td></tr>
       <tr><td><code>--line-2</code></td><td><code>rgba(22,28,40,.20)</code></td><td><code>rgba(170,185,210,.24)</code></td><td>Düğme kenarı, tablo başlığı alt çizgisi</td></tr>
       <tr><td><code>--ruler</code></td><td><code>rgba(22,28,40,.075)</code></td><td><code>rgba(170,185,210,.06)</code></td><td><code>.rulers</code> arka plan çizgileri</td></tr>
       <tr><td><code>--scrim</code></td><td><code>rgba(20,28,45,.45)</code></td><td><code>rgba(4,6,10,.6)</code></td><td>Mobil çekmece açıkken içerik perdesi</td></tr>
+      <tr><td><code>--shadow-drawer</code></td><td colspan="2"><code>0 0 0 1px var(--line), 20px 0 60px -20px rgba(0,0,0,.6)</code></td><td>Yalnız kayan ray çekmecesi. Dilde gölge yoktur; tek istisna kabuktur</td></tr>
     </tbody>
   </table></div>
 </article>
@@ -222,7 +252,7 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
 </article>
 
 <article class="chapter" id="t4" data-section data-title="Vurgu ve çizim">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Vurgu ve çizim</h2><p class="lead">Vurgu etkileşimi (bağlantı, odak, seçim) işaretler; çizim ve kalem token'ları paftadaki çizgileri. İkisi açık temada aynı mavidir, koyu temada çizim biraz daha soğuk kalır.</p></header>
+  <header class="ch-head"><p class="ch-num">04</p><h2>Vurgu ve çizim</h2><p class="lead">Vurgu etkileşimi (bağlantı, odak, seçim) işaretler; çizim ve kalem token'ları paftadaki çizgileri. Çizim rengi vurgunun kendisidir, kalem tonları ondan türetilir: tema tek renkle değişir.</p></header>
   <div class="swatches">
     <div style="--c:var(--accent)"><i></i><span>--accent<small>odak, ilerleme, bölüm no</small></span></div>
     <div style="--c:var(--accent-2)"><i></i><span>--accent-2<small>bağlantı metni</small></span></div>
@@ -257,10 +287,10 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
       <tr><td><code>--accent</code></td><td><code>#2352c9</code></td><td><code>#8aaeff</code></td><td>Odak halkası, okuma çubuğu, <code>.ch-num</code>, <code>.skip</code></td></tr>
       <tr><td><code>--accent-2</code></td><td><code>#1d45ad</code></td><td><code>#a5c0ff</code></td><td>Bağlantılar</td></tr>
       <tr><td><code>--accent-ink</code></td><td><code>#ffffff</code></td><td><code>#0b1020</code></td><td>Vurgu zemini üzerindeki metin</td></tr>
-      <tr><td><code>--accent-soft</code></td><td><code>rgba(35,82,201,.09)</code></td><td><code>rgba(138,174,255,.12)</code></td><td>Adım numarası, segment seçimi, <code>.register .now</code></td></tr>
-      <tr><td><code>--draw</code></td><td><code>#2352c9</code></td><td><code>#8fb2ff</code></td><td><code>.ln-draw</code>, antet çerçevesi, seçim çerçevesi</td></tr>
-      <tr><td><code>--pencil</code></td><td><code>rgba(35,82,201,.28)</code></td><td><code>rgba(143,178,255,.28)</code></td><td><code>.ln-pencil</code>, <code>.pencil</code>, antet iç çizgileri</td></tr>
-      <tr><td><code>--pencil-2</code></td><td><code>rgba(35,82,201,.13)</code></td><td><code>rgba(143,178,255,.13)</code></td><td><code>.pencil-2</code> kılavuz çizgileri</td></tr>
+      <tr><td><code>--accent-soft</code></td><td><code>--accent</code> %9</td><td><code>--accent</code> %12</td><td>Adım numarası, segment seçimi, <code>.register .now</code></td></tr>
+      <tr><td><code>--draw</code></td><td><code>#2352c9</code></td><td><code>#8aaeff</code></td><td><code>var(--accent)</code>: <code>.ln-draw</code>, antet çerçevesi, seçim çerçevesi. Koyu değer 0.2'de <code>#8fb2ff</code>'ten vurguyla birleşti</td></tr>
+      <tr><td><code>--pencil</code></td><td colspan="2"><code>--draw</code> %28</td><td><code>.ln-pencil</code>, <code>.pencil</code>, antet iç çizgileri</td></tr>
+      <tr><td><code>--pencil-2</code></td><td colspan="2"><code>--draw</code> %13</td><td><code>.pencil-2</code> kılavuz çizgileri</td></tr>
     </tbody>
   </table></div>
 </article>
@@ -289,17 +319,17 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
   <div class="tbl"><table>
     <thead><tr><th>Token</th><th>Açık</th><th>Koyu</th><th>Kullanım</th></tr></thead>
     <tbody>
-      <tr><td><code>--ok</code> / <code>--ok-soft</code></td><td><code>#127a4c</code></td><td><code>#38c98a</code></td><td><code>.pill-ok</code>, <code>.state.ok</code>, <code>.co-tip</code>, <code>.co-success</code>, kontrol listesi</td></tr>
-      <tr><td><code>--warn</code> / <code>--warn-soft</code></td><td><code>#93610f</code></td><td><code>#f2b53c</code></td><td><code>.co-warn</code>, <code>.state.warn</code></td></tr>
-      <tr><td><code>--bad</code> / <code>--bad-soft</code></td><td><code>#c23434</code></td><td><code>#f06a6a</code></td><td><code>.co-trouble</code>, <code>.state.bad</code>, basılı <code>.toggle-btn</code></td></tr>
+      <tr><td><code>--ok</code> / <code>--ok-soft</code></td><td><code>#127a4c</code></td><td><code>#38c98a</code></td><td><code>.s-ok</code>, <code>.co-tip</code>, <code>.co-success</code>, kontrol listesi</td></tr>
+      <tr><td><code>--warn</code> / <code>--warn-soft</code></td><td><code>#93610f</code></td><td><code>#f2b53c</code></td><td><code>.s-warn</code>, <code>.co-warn</code></td></tr>
+      <tr><td><code>--bad</code> / <code>--bad-soft</code></td><td><code>#c23434</code></td><td><code>#f06a6a</code></td><td><code>.s-bad</code>, <code>.co-trouble</code>, basılı <code>.toggle-btn</code></td></tr>
       <tr><td><code>--sec</code> / <code>--sec-soft</code></td><td><code>#6b4fd6</code></td><td><code>#b39dfc</code></td><td><code>.co-sec</code>, <code>.s-sec</code></td></tr>
       <tr><td><code>--aws</code></td><td><code>#9c5600</code></td><td><code>#ffa02e</code></td><td><code>.s-aws</code>, <code>.svc-aws</code></td></tr>
       <tr><td><code>--gitlab</code></td><td><code>#b54418</code></td><td><code>#fc6d26</code></td><td><code>.s-gitlab</code>, <code>.svc-gitlab</code></td></tr>
-      <tr><td><code>--k8s</code></td><td><code>#2a66d0</code></td><td><code>#4f8ff7</code></td><td><code>.svc-k8s</code></td></tr>
+      <tr><td><code>--k8s</code></td><td><code>#2a66d0</code></td><td><code>#4f8ff7</code></td><td><code>.s-k8s</code>, <code>.svc-k8s</code></td></tr>
       <tr><td><code>--argo</code></td><td><code>#ad4829</code></td><td><code>#f0805a</code></td><td><code>.s-argo</code>, <code>.svc-argo</code></td></tr>
     </tbody>
   </table></div>
-  <p class="figcap">Yumuşak zeminlerin değerleri ana rengin %9–13 opaklığıdır; tabloda yalnızca ana renk verildi.</p>
+  <p class="figcap">Yumuşak zeminlerin değerleri ana rengin %9–13 opaklığıdır; tabloda yalnızca ana renk verildi. Bileşenler durum rengini <code>--c</code> / <code>--c-soft</code> değişkenlerinden okur; <code>.s-*</code> sınıfları bu ikisini verir. <code>.pill-ok</code>, <code>.state.ok</code> gibi eski adlar 1.0'a kadar çalışır.</p>
 </article>
 
 <article class="chapter" id="t6" data-section data-title="Tipografi">
@@ -308,19 +338,36 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
     <thead><tr><th>Token</th><th>Aile</th><th>Ağırlıklar</th><th>Kullanım</th></tr></thead>
     <tbody>
       <tr><td><code>--font-sans</code></td><td>IBM Plex Sans <small>yedek: Segoe UI, system-ui</small></td><td>400 · 500 · 600 · 700</td><td>Gövde metni, başlıklar</td></tr>
-      <tr><td><code>--font-mono</code></td><td>IBM Plex Mono <small>yedek: Cascadia Code, Consolas</small></td><td>400 · 500</td><td>Kod, etiketler, antet, sayaçlar</td></tr>
+      <tr><td><code>--font-mono</code></td><td>IBM Plex Mono <small>yedek: Cascadia Code, Consolas</small></td><td>400 · 500 · 600</td><td>Kod, etiketler, antet, sayaçlar</td></tr>
       <tr><td><code>--font-pixel</code></td><td>Pixelify Sans <small>yedek: --font-mono</small></td><td>400 · 500</td><td>Hoca'nın konuşma balonu ve plakası</td></tr>
     </tbody>
   </table></div>
   <p class="figcap">Fontlar <code>dist/fonts/</code> altında kendi sunucunuzdan yüklenir (WOFF2, latin + latin-ext alt kümeleri; Türkçe karakterler latin-ext'tedir). Lisans: SIL Open Font License (OFL). Tek dosyalık sayfalar için fontları gömülü taşıyan <code>dist/hendese.inline.css</code> vardır.</p>
 
   <h3>Yazı ölçeği</h3>
+  <div class="prose">
+    <p>Bileşenler yazı boyutunu dokuz token'dan okur. Ölçek 0.2'de kuruldu; aradaki eski değerler en yakın basamağa oturtuldu (ör. 10.5 ve 11.5px → <code>--fs-xs</code>, 13px → <code>--fs-sm</code>, 14.5px → <code>--fs-md</code>, 15.5px → <code>--fs-base</code>, 17 ve 18px → <code>--fs-lg</code>). Çizim içindeki boyutlar ölçek dışıdır: <code>max(Npx, calc(M * var(--u)))</code> ile çizimle birlikte ölçeklenir.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
+    <tbody>
+      <tr><td><code>--fs-xs</code></td><td><code>11px</code></td><td>Mono etiket, çip, tablo başlığı, bölüm numarası</td></tr>
+      <tr><td><code>--fs-sm</code></td><td><code>12.5px</code></td><td>Kod, düğme, ikincil satır, şekil yazısı</td></tr>
+      <tr><td><code>--fs-md</code></td><td><code>14px</code></td><td>Bileşen gövdesi, tablo, callout</td></tr>
+      <tr><td><code>--fs-base</code></td><td><code>16px</code></td><td>Okuma metni (<code>body</code>)</td></tr>
+      <tr><td><code>--fs-lg</code></td><td><code>17.5px</code></td><td>Giriş paragrafı, <code>h3</code></td></tr>
+      <tr><td><code>--fs-xl</code></td><td><code>22px</code></td><td>Damga adı, büyük numara</td></tr>
+      <tr><td><code>--fs-2xl</code></td><td><code>30px</code></td><td>Pafta başlığı</td></tr>
+      <tr><td><code>--fs-h2</code></td><td><code>clamp(26px,2.4vw,32px)</code></td><td>Bölüm başlığı</td></tr>
+      <tr><td><code>--fs-display</code> / <code>--fs-display-sm</code></td><td><code>clamp(44px,4.6vw,68px)</code> / <code>clamp(30px,9vw,40px)</code></td><td>Hero başlığı; dar ekranda ikincisi</td></tr>
+    </tbody>
+  </table></div>
   <div class="demo">
     <span class="demo-label">Örnek · ölçek</span>
     <div class="demo-view">
-      <div class="type-row"><p class="chip" lang="en">.hero h1</p><p style="font:600 clamp(44px,4.6vw,68px)/1.02 var(--font-sans);letter-spacing:-.035em">Hendese</p></div>
-      <div class="type-row"><p class="chip" lang="en">.chapter h2</p><p style="font:600 clamp(26px,2.4vw,32px)/1.2 var(--font-sans);letter-spacing:-.02em">Dağıtım hattı</p></div>
-      <div class="type-row"><p class="chip" lang="en">.chapter h3</p><p style="font:600 17.5px/1.2 var(--font-sans)">İmaj etiketi sözleşmesi</p></div>
+      <div class="type-row"><p class="chip" lang="en">.hero h1</p><p style="font:600 var(--fs-display)/1.02 var(--font-sans);letter-spacing:-.035em">Hendese</p></div>
+      <div class="type-row"><p class="chip" lang="en">.chapter h2</p><p style="font:600 var(--fs-h2)/1.2 var(--font-sans);letter-spacing:-.02em">Dağıtım hattı</p></div>
+      <div class="type-row"><p class="chip" lang="en">.chapter h3</p><p style="font:600 var(--fs-lg)/1.2 var(--font-sans)">İmaj etiketi sözleşmesi</p></div>
       <div class="type-row"><p class="chip" lang="en">.lead</p><p class="lead">Her aşama bir öncekinin çıktısını okur.</p></div>
       <div class="type-row"><p class="chip">gövde</p><p>Gövde metni 16 piksel, satır yüksekliği 1,65.</p></div>
       <div class="type-row"><p class="chip" lang="en">.mono</p><p class="mono">web-api · prod-3f9c2a1b · eu-west-1</p></div>
@@ -331,14 +378,14 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
   <div class="tbl"><table>
     <thead><tr><th>Seçici</th><th>Boyut / satır</th><th>Ağırlık</th><th>Aile</th></tr></thead>
     <tbody>
-      <tr><td><code>.hero h1</code></td><td><code>clamp(44px,4.6vw,68px)</code> / 1.02</td><td>600</td><td>sans</td></tr>
-      <tr><td><code>.chapter h2</code></td><td><code>clamp(26px,2.4vw,32px)</code> / 1.2</td><td>600</td><td>sans</td></tr>
-      <tr><td><code>.chapter h3</code></td><td>17.5px / 1.2</td><td>600</td><td>sans</td></tr>
-      <tr><td><code>.lead</code></td><td>17px / 1.65</td><td>400</td><td>sans, <code>--ink-2</code></td></tr>
-      <tr><td><code>body</code></td><td>16px / 1.65</td><td>400</td><td>sans</td></tr>
+      <tr><td><code>.hero h1</code></td><td><code>--fs-display</code> / 1.02</td><td>600</td><td>sans</td></tr>
+      <tr><td><code>.chapter h2</code></td><td><code>--fs-h2</code> / 1.2</td><td>600</td><td>sans</td></tr>
+      <tr><td><code>.chapter h3</code></td><td><code>--fs-lg</code> / 1.2</td><td>600</td><td>sans</td></tr>
+      <tr><td><code>.lead</code></td><td><code>--fs-lg</code> / 1.65</td><td>400</td><td>sans, <code>--ink-2</code></td></tr>
+      <tr><td><code>body</code></td><td><code>--fs-base</code> / 1.65</td><td>400</td><td>sans</td></tr>
       <tr><td><code>.mono</code></td><td>.92em</td><td>miras</td><td>mono</td></tr>
-      <tr><td><code>.chip</code></td><td>11px / 1.4, büyük harf</td><td>500</td><td>mono, <code>--ink-3</code></td></tr>
-      <tr><td><code>.figcap</code></td><td>13px</td><td>400</td><td>sans, <code>--ink-3</code></td></tr>
+      <tr><td><code>.chip</code></td><td><code>--fs-xs</code> / 1.4, büyük harf</td><td>500</td><td>mono, <code>--ink-3</code></td></tr>
+      <tr><td><code>.figcap</code></td><td><code>--fs-sm</code></td><td>400</td><td>sans, <code>--ink-3</code></td></tr>
     </tbody>
   </table></div>
 
@@ -358,8 +405,8 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
 </article>
 
 <article class="chapter" id="t7" data-section data-title="Ölçü, köşe ve hareket">
-  <header class="ch-head"><p class="ch-num">07</p><h2>Ölçü, köşe ve hareket</h2><p class="lead">Kabuk ölçüleri, üç köşe yarıçapı, süre ve eğri token'ları; CSS <code>content</code> ile basılan arayüz metinleri ve kod bloklarının ayrı paleti.</p></header>
-  <h3>Ölçüler ve köşeler</h3>
+  <header class="ch-head"><p class="ch-num">07</p><h2>Ölçü, köşe ve hareket</h2><p class="lead">Kabuk ölçüleri, boşluk ölçeği, beş köşe yarıçapı, katman sırası, süre ve eğri token'ları; CSS <code>content</code> ile basılan arayüz metinleri ve kod bloklarının ayrı paleti.</p></header>
+  <h3>Kabuk ölçüleri</h3>
   <div class="tbl"><table>
     <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
     <tbody>
@@ -367,36 +414,90 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
       <tr><td><code>--side-w</code></td><td><code>clamp(230px,20vw,290px)</code></td><td>Paftanın yan sütunu</td></tr>
       <tr><td><code>--canvas-max</code></td><td><code>1040px</code></td><td>İçerik tuvalinin en büyük genişliği</td></tr>
       <tr><td><code>--topbar-h</code></td><td><code>52px</code></td><td>Dar ekranda üst çubuk yüksekliği</td></tr>
-      <tr><td><code>--r-sm</code></td><td><code>6px</code></td><td>Tablo, çip, örnek renk kutusu</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Boşluk ölçeği</h3>
+  <div class="prose">
+    <p><code>padding</code>, <code>margin</code>, <code>gap</code> ve <code>inset</code> on bir basamaktan okunur. 0–3px arası optik düzeltmedir ve ölçek dışında kalır; çizim içindeki boşluklar <code>calc(N * var(--u))</code> ile çizim birimindedir.</p>
+  </div>
+  <div class="demo">
+    <span class="demo-label">Örnek · boşluk cetveli</span>
+    <div class="demo-view">
+      <div class="sp-row"><span>--sp-1</span><span>4</span><i style="--w:var(--sp-1)"></i></div>
+      <div class="sp-row"><span>--sp-2</span><span>6</span><i style="--w:var(--sp-2)"></i></div>
+      <div class="sp-row"><span>--sp-3</span><span>8</span><i style="--w:var(--sp-3)"></i></div>
+      <div class="sp-row"><span>--sp-4</span><span>10</span><i style="--w:var(--sp-4)"></i></div>
+      <div class="sp-row"><span>--sp-5</span><span>12</span><i style="--w:var(--sp-5)"></i></div>
+      <div class="sp-row"><span>--sp-6</span><span>14</span><i style="--w:var(--sp-6)"></i></div>
+      <div class="sp-row"><span>--sp-7</span><span>16</span><i style="--w:var(--sp-7)"></i></div>
+      <div class="sp-row"><span>--sp-8</span><span>20</span><i style="--w:var(--sp-8)"></i></div>
+      <div class="sp-row"><span>--sp-9</span><span>28</span><i style="--w:var(--sp-9)"></i></div>
+      <div class="sp-row"><span>--sp-10</span><span>32</span><i style="--w:var(--sp-10)"></i></div>
+      <div class="sp-row"><span>--sp-11</span><span>48</span><i style="--w:var(--sp-11)"></i></div>
+    </div>
+  </div>
+
+  <h3>Köşeler</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
+    <tbody>
+      <tr><td><code>--r-xs</code></td><td><code>4px</code></td><td>Satır içi <code>code</code>, odak halkası, kod dili etiketi, HUD</td></tr>
+      <tr><td><code>--r-sm</code></td><td><code>6px</code></td><td>Düğme, tablo, çip, örnek renk kutusu</td></tr>
       <tr><td><code>--r-md</code></td><td><code>10px</code></td><td>Kod bloğu, adım, örnek kutusu</td></tr>
       <tr><td><code>--r-lg</code></td><td><code>14px</code></td><td>Kontrol listesi, pafta zemini</td></tr>
+      <tr><td><code>--r-pill</code></td><td><code>999px</code></td><td>Rozet (<code>.pill</code>), kontrol listesi ilerleme çubuğu</td></tr>
+      <tr><td><code>0</code></td><td>—</td><td>Çizilen nesneler (istasyon, etiket, antet) köşelidir</td></tr>
     </tbody>
   </table></div>
   <div class="demo">
     <span class="demo-label">Örnek · köşeler</span>
     <div class="demo-view">
       <div class="radii">
+        <div style="border-radius:var(--r-xs)">--r-xs</div>
         <div style="border-radius:var(--r-sm)">--r-sm</div>
         <div style="border-radius:var(--r-md)">--r-md</div>
         <div style="border-radius:var(--r-lg)">--r-lg</div>
+        <div style="border-radius:var(--r-pill)">--r-pill</div>
       </div>
     </div>
   </div>
 
+  <h3>Katman sırası</h3>
+  <div class="prose">
+    <p>Sabit konumlu kabuk öğelerinin <code>z-index</code> değerleri token'dır; sıra aşağıdan yukarıya tablodaki gibidir. Bileşen içinde 0–2 arası yerel istifleme serbesttir.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Token</th><th>Değer</th><th>Öğe</th></tr></thead>
+    <tbody>
+      <tr><td><code>--z-topbar</code></td><td><code>40</code></td><td>Dar ekranda üst çubuk</td></tr>
+      <tr><td><code>--z-scrim</code></td><td><code>45</code></td><td>Çekmece perdesi</td></tr>
+      <tr><td><code>--z-rail</code></td><td><code>50</code></td><td>Ray ve çekmece</td></tr>
+      <tr><td><code>--z-hud</code></td><td><code>55</code></td><td>HUD göstergesi</td></tr>
+      <tr><td><code>--z-hoca</code></td><td><code>60</code></td><td>Hoca katmanı</td></tr>
+      <tr><td><code>--z-progress</code></td><td><code>70</code></td><td>Okuma çubuğu</td></tr>
+      <tr><td><code>--z-skip</code></td><td><code>100</code></td><td>Atlama bağlantısı</td></tr>
+    </tbody>
+  </table></div>
+
   <h3>Hareket</h3>
+  <div class="prose">
+    <p>Tek süre ve eğri takımı: beş süre, üç eğri. 0.1'deki <code>--ease</code>, <code>--t-fast</code> ve <code>--t-med</code> artık bu takıma bağlı takma adlardır ve 0.3'te silinir. <code>--t-fast</code> 160ms'ten 120ms'e indi.</p>
+  </div>
   <div class="tbl"><table>
     <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
     <tbody>
-      <tr><td><code>--ease</code></td><td><code>cubic-bezier(.2,.7,.2,1)</code></td><td>Genel geçiş eğrisi</td></tr>
-      <tr><td><code>--t-fast</code> / <code>--t-med</code></td><td><code>160ms</code> / <code>320ms</code></td><td>Renk ve zemin geçişleri / çekmece, perde</td></tr>
       <tr><td><code>--dur-1</code></td><td><code>120ms</code></td><td>Anlık geri bildirim</td></tr>
       <tr><td><code>--dur-2</code></td><td><code>250ms</code></td><td>Küçük durum değişimi</td></tr>
-      <tr><td><code>--dur-3</code></td><td><code>320ms</code></td><td>Kayıt satırı vurgusu, panel</td></tr>
+      <tr><td><code>--dur-3</code></td><td><code>320ms</code></td><td>Kayıt satırı vurgusu, panel, çekmece</td></tr>
       <tr><td><code>--dur-4</code></td><td><code>650ms</code></td><td>Sahne içi yer değiştirme</td></tr>
       <tr><td><code>--dur-5</code></td><td><code>2s</code></td><td>Kalem taslağının mürekkebe çizilmesi</td></tr>
-      <tr><td><code>--ease-out</code></td><td><code>var(--ease)</code></td><td>Varsayılan: hızlı başla, yumuşak dur</td></tr>
+      <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(.2,.7,.2,1)</code></td><td>Varsayılan: hızlı başla, yumuşak dur</td></tr>
       <tr><td><code>--ease-in-out</code></td><td><code>cubic-bezier(.45,0,.55,1)</code></td><td>Sahne içi yer değiştirme</td></tr>
       <tr><td><code>--ease-snap</code></td><td><code>cubic-bezier(.3,1.6,.55,1)</code></td><td>Yerine oturma, hafif taşma</td></tr>
+      <tr><td><code>--ease</code> <span class="pill s-warn">kalkıyor</span></td><td><code>var(--ease-out)</code></td><td>0.3'te silinir; <code>--ease-out</code> kullanın</td></tr>
+      <tr><td><code>--t-fast</code> <span class="pill s-warn">kalkıyor</span></td><td><code>var(--dur-1)</code></td><td>0.3'te silinir; <code>--dur-1</code> kullanın</td></tr>
+      <tr><td><code>--t-med</code> <span class="pill s-warn">kalkıyor</span></td><td><code>var(--dur-3)</code></td><td>0.3'te silinir; <code>--dur-3</code> kullanın</td></tr>
     </tbody>
   </table></div>
   <p class="prose" style="color:var(--ink-2)">Üç eğriyi karşılaştırmak için aşağıdaki kutunun üzerine gelin ya da Tab ile odaklanın. Hareketi azaltma tercihi açıksa <code>base.css</code> tüm geçiş sürelerini sıfıra çeker; kareler beklemeden son konumlarına geçer.</p>
@@ -428,12 +529,29 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
       <tr><td><code>--code-bg</code></td><td><code>#0a0d13</code></td><td>Kod bloğu zemini</td></tr>
       <tr><td><code>--code-line</code></td><td><code>rgba(255,255,255,.07)</code></td><td>Başlık ayracı, diff kenar şeridi</td></tr>
       <tr><td><code>--code-ink</code> / <code>--code-muted</code></td><td><code>#dfe6f1</code> / <code>#8a96ad</code></td><td>Kod metni / başlık metni</td></tr>
+      <tr><td><code>--code-ink-2</code></td><td><code>#c9d2e0</code></td><td>Kopyala düğmesinin metni</td></tr>
+      <tr><td><code>--code-fill</code> / <code>--code-fill-2</code></td><td><code>rgba(255,255,255,.06)</code> / <code>rgba(255,255,255,.12)</code></td><td>Kod zemini üstündeki düğme: zemin / kenar ve üzerine gelme</td></tr>
       <tr><td><code>--code-k</code></td><td><code>#8ec5ff</code></td><td><code>.k</code> anahtar, yürütme imleci</td></tr>
       <tr><td><code>--code-s</code></td><td><code>#ffd28a</code></td><td><code>.s</code> metin değeri</td></tr>
       <tr><td><code>--code-c</code></td><td><code>#7f8ca3</code></td><td><code>.c</code> yorum</td></tr>
       <tr><td><code>--code-v</code></td><td><code>#b8f2a6</code></td><td><code>.v</code> değişken, diff işareti</td></tr>
     </tbody>
   </table></div>
+</article>
+
+<article class="chapter" id="t8" data-section data-title="Kontrast ve zorunlu renk">
+  <header class="ch-head"><p class="ch-num">08</p><h2>Kontrast ve zorunlu renk</h2><p class="lead">İki sistem ayarı token'ları değiştirir: daha yüksek kontrast isteği ve Windows'un zorunlu renk (yüksek kontrast) modu.</p></header>
+  <h3><code>prefers-contrast: more</code></h3>
+  <div class="prose">
+    <p>Kullanıcı daha yüksek kontrast istediğinde dört token yeniden tanımlanır: kalem çizgileri mürekkebe döner, belirgin kenar ve ikincil metin bir kademe koyulaşır. Bileşenler token okuduğu için ayrı bir kural gerekmez.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>@media (prefers-contrast:more){
+  :root{--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:var(--pencil);--ink-3:var(--ink-2)}
+}</code></pre></figure>
+  <h3><code>forced-colors: active</code></h3>
+  <div class="prose">
+    <p>Zorunlu renkte tarayıcı zeminleri ve renkleri sistem paletine çevirir; yalnız zemin rengiyle verilen anlam kaybolur. Paket bu yüzden seçili ve şimdiki durumları (<code>.choice</code> seçimi, basılı <code>.toggle-btn</code>, seçili istasyon, <code>.steps</code> içindeki <code>aria-current</code>) <code>Highlight</code> renginde bir çerçeveyle, ilerleme çubuklarını (<code>.rb-bar</code>, <code>.hud-bar</code>) ve işaretli kontrol kutusunu <code>Highlight</code> zeminle çizer. Devre dışı öğeler <code>GrayText</code> alır. Kendi bileşenlerinizde de anlamı yalnız zemine bağlamayın: kenar, desen ya da metin ekleyin.</p>
+  </div>
 </article>
 
 </div>

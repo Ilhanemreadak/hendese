@@ -76,7 +76,7 @@
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
     <h1>Pafta<em>Çizimin çerçevesi: başlık, yan sütun, harita, alt yazı.</em></h1>
     <p class="intro">Her şekil bir paftanın üstünde durur. <code>.frame</code> dört alanlı ızgaradır; yan sütuna ihtiyaç duymayan şekiller için daha hafif <code>.fig-sheet</code>, sabit 1000 × 600 birimlik ızgara için <code>.sheet</code> vardır.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.frame</code> · <code>.frame-bg</code> · <code>.f-head</code> · <code>.f-side</code> · <code>.f-map</code> · <code>.f-foot</code> · <code>.fig-sheet</code> · <code>.fig-cap</code> · <code>.sheet</code></dd><dt>Kırılım</dt><dd>1100px altında tek sütun, 720px altında dar dolgu</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.frame</code> · <code>.frame-bg</code> · <code>.f-head</code> · <code>.f-side</code> · <code>.f-map</code> · <code>.f-foot</code> · <code>.fig-sheet</code> · <code>.fig-cap</code> · <code>.sheet</code></dd><dt>Kırılım</dt><dd>Sütun (<code>col</code> kabı) 760px altına inince tek sütun, 720px altında dar dolgu</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -98,7 +98,10 @@
     </div>
   </div>
   <div class="f-map">
-    <div style="display:grid;place-items:center;min-height:200px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)">f-map · çizim alanı</div>
+    <div class="drawing" style="--aw:600;--ah:200">
+      <svg viewBox="0 0 600 200" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="600" height="200"/></svg>
+      <p class="dl" style="--x:0;--y:92;--w:600;text-align:center">f-map · çizim alanı</p>
+    </div>
   </div>
   <div class="f-foot">
     <p class="figcap"><b>f-foot.</b> Şekil yazısı, tek satır özet ya da istasyon paneli.</p>
@@ -118,7 +121,10 @@
     &lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
-    &lt;<span class='k'>div</span> style="<span class='s'>display:grid;place-items:center;min-height:200px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)</span>"&gt;f-map · çizim alanı&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:200</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 200</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>0</span>" y="<span class='s'>0</span>" width="<span class='s'>600</span>" height="<span class='s'>200</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:92;--w:600;text-align:center</span>"&gt;f-map · çizim alanı&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;f-foot.&lt;/<span class='k'>b</span>&gt; Şekil yazısı, tek satır özet ya da istasyon paneli.&lt;/<span class='k'>p</span>&gt;
@@ -156,9 +162,9 @@
         <path class="ln-draw" d="M444 100l-8-4M444 100l-8 4"/>
         <path class="ln-draw" d="M300 140V176H80V146M80 146l-4 8M80 146l4 8"/>
       </svg>
-      <p class="dl" style="--x:22;--y:72;--w:118"><span class="stamp-k">İstemci</span><br>tarayıcı</p>
-      <p class="dl" style="--x:242;--y:72;--w:118"><span class="stamp-k">Çözümleyici</span><br>TTL 300 s</p>
-      <p class="dl" style="--x:462;--y:72;--w:118"><span class="stamp-k">Yetkili</span><br>ornek.net NS</p>
+      <p class="dl" style="--x:22;--y:72;--w:118"><span class="stamp-k">İstemci</span>tarayıcı</p>
+      <p class="dl" style="--x:242;--y:72;--w:118"><span class="stamp-k">Çözümleyici</span>TTL 300 s</p>
+      <p class="dl" style="--x:462;--y:72;--w:118"><span class="stamp-k">Yetkili</span>ornek.net NS</p>
       <p class="dl" style="--x:380;--y:106;--w:64">ıskalama</p>
       <p class="dl" style="--x:120;--y:184;--w:300">yanıt · A 203.0.113.10</p>
     </div>
@@ -195,9 +201,9 @@
         &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M444 100l-8-4M444 100l-8 4</span>"/&gt;
         &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M300 140V176H80V146M80 146l-4 8M80 146l4 8</span>"/&gt;
       &lt;/<span class='k'>svg</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:22;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;İstemci&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;tarayıcı&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:242;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Çözümleyici&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;TTL 300 s&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:462;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Yetkili&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;ornek.net NS&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:22;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;İstemci&lt;/<span class='k'>span</span>&gt;tarayıcı&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:242;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Çözümleyici&lt;/<span class='k'>span</span>&gt;TTL 300 s&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:462;--y:72;--w:118</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Yetkili&lt;/<span class='k'>span</span>&gt;ornek.net NS&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:380;--y:106;--w:64</span>"&gt;ıskalama&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:120;--y:184;--w:300</span>"&gt;yanıt · A 203.0.113.10&lt;/<span class='k'>p</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
@@ -346,9 +352,9 @@
         <text class="dim-t" x="345" y="60" text-anchor="middle">0,4 s</text>
         <text class="dim-t" x="345" y="200" text-anchor="middle">6,2 s</text>
       </svg>
-      <p class="dl" style="--x:34;--y:102;--w:160"><span class="stamp-k">Birincil</span><br>orders-db-1<br><span class="state ok">Yazılır</span></p>
-      <p class="dl" style="--x:414;--y:32;--w:160"><span class="stamp-k">Okuma kopyası</span><br>orders-db-2<br><span class="state ok">Hazır</span></p>
-      <p class="dl" style="--x:414;--y:172;--w:160"><span class="stamp-k">Okuma kopyası</span><br>orders-db-3<br><span class="state warn">Gecikmeli</span></p>
+      <p class="dl" style="--x:34;--y:102;--w:160"><span class="stamp-k">Birincil</span>orders-db-1<br><span class="state s-ok">Yazılır</span></p>
+      <p class="dl" style="--x:414;--y:32;--w:160"><span class="stamp-k">Okuma kopyası</span>orders-db-2<br><span class="state s-ok">Hazır</span></p>
+      <p class="dl" style="--x:414;--y:172;--w:160"><span class="stamp-k">Okuma kopyası</span>orders-db-3<br><span class="state s-warn">Gecikmeli</span></p>
     </div>
   </div>
   <div class="f-foot">
@@ -383,9 +389,9 @@
         &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>345</span>" y="<span class='s'>60</span>" text-anchor="<span class='s'>middle</span>"&gt;0,4 s&lt;/<span class='k'>text</span>&gt;
         &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>345</span>" y="<span class='s'>200</span>" text-anchor="<span class='s'>middle</span>"&gt;6,2 s&lt;/<span class='k'>text</span>&gt;
       &lt;/<span class='k'>svg</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:102;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Birincil&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;orders-db-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Yazılır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:414;--y:32;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Okuma kopyası&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;orders-db-2&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:414;--y:172;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Okuma kopyası&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;orders-db-3&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;Gecikmeli&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:102;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Birincil&lt;/<span class='k'>span</span>&gt;orders-db-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Yazılır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:414;--y:32;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Okuma kopyası&lt;/<span class='k'>span</span>&gt;orders-db-2&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:414;--y:172;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Okuma kopyası&lt;/<span class='k'>span</span>&gt;orders-db-3&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Gecikmeli&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
@@ -484,10 +490,10 @@
       <rect class="ln-draw fill-paper" x="710" y="60" width="170" height="86"/>
       <path class="ln-draw" d="M190 103H244M244 103l-8-4M244 103l-8 4M420 103H474M474 103l-8-4M474 103l-8 4M650 103H704M704 103l-8-4M704 103l-8 4"/>
     </svg>
-    <p class="dl" style="--x:32;--y:72;--w:150"><span class="stamp-k">Metrik</span><br>5xx oranı %4,1</p>
-    <p class="dl" style="--x:262;--y:72;--w:150"><span class="stamp-k">Kural</span><br><span class="state bad">Tetiklendi</span></p>
-    <p class="dl" style="--x:492;--y:72;--w:150"><span class="stamp-k">Yönlendirici</span><br>ekip: ödeme</p>
-    <p class="dl" style="--x:722;--y:72;--w:150"><span class="stamp-k">Nöbetçi</span><br><span class="state warn">Onay bekliyor</span></p>
+    <p class="dl" style="--x:32;--y:72;--w:150"><span class="stamp-k">Metrik</span>5xx oranı %4,1</p>
+    <p class="dl" style="--x:262;--y:72;--w:150"><span class="stamp-k">Kural</span><span class="state s-bad">Tetiklendi</span></p>
+    <p class="dl" style="--x:492;--y:72;--w:150"><span class="stamp-k">Yönlendirici</span>ekip: ödeme</p>
+    <p class="dl" style="--x:722;--y:72;--w:150"><span class="stamp-k">Nöbetçi</span><span class="state s-warn">Onay bekliyor</span></p>
   </div>
   <figcaption class="figcap"><b>Şekil 5.</b> Kalın çerçeve şu anki durağı, üstteki ölçüler her aşamanın süresini gösterir. Koyu pafta “nöbet ekranı” bağlamını anlatır.</figcaption>
 </figure>
@@ -508,10 +514,10 @@
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>710</span>" y="<span class='s'>60</span>" width="<span class='s'>170</span>" height="<span class='s'>86</span>"/&gt;
       &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M190 103H244M244 103l-8-4M244 103l-8 4M420 103H474M474 103l-8-4M474 103l-8 4M650 103H704M704 103l-8-4M704 103l-8 4</span>"/&gt;
     &lt;/<span class='k'>svg</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Metrik&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;5xx oranı %4,1&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:262;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kural&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;Tetiklendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:492;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Yönlendirici&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;ekip: ödeme&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:722;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Nöbetçi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;Onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Metrik&lt;/<span class='k'>span</span>&gt;5xx oranı %4,1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:262;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kural&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Tetiklendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:492;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Yönlendirici&lt;/<span class='k'>span</span>&gt;ekip: ödeme&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:722;--y:72;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Nöbetçi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 5.&lt;/<span class='k'>b</span>&gt; Kalın çerçeve şu anki durağı, üstteki ölçüler her aşamanın süresini gösterir. Koyu pafta “nöbet ekranı” bağlamını anlatır.&lt;/<span class='k'>figcaption</span>&gt;
 &lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
@@ -519,20 +525,21 @@
 </article>
 
 <article class="chapter" id="p4" data-section data-title="Ölçüler ve kırılımlar">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Ölçüler ve kırılımlar</h2><p class="lead">Paftanın kendi ölçüleri azdır ve hepsi token ya da sabit bir değerdir. Kırılım ekran genişliğine bağlıdır, kapsayıcıya değil.</p></header>
+  <header class="ch-head"><p class="ch-num">04</p><h2>Ölçüler ve kırılımlar</h2><p class="lead">Paftanın kendi ölçüleri azdır ve hepsi token'dır. Kırılım ekrana değil, paftanın durduğu sütuna bağlıdır; yalnız .sheet ekrana bakar.</p></header>
 <div class="tbl"><table>
   <thead><tr><th>Değer</th><th>Nerede</th><th>Ne yapar</th></tr></thead>
   <tbody>
   <tr><td><code>--side-w</code></td><td><code>.frame</code></td><td>Yan sütun genişliği: <code>clamp(230px, 20vw, 290px)</code>.</td></tr>
-  <tr><td><code>22px 28px 20px</code></td><td><code>.frame</code></td><td>İç dolgu; sütun arası 32px, satır arası 14px.</td></tr>
+  <tr><td><code>--sp-8 --sp-9</code></td><td><code>.frame</code></td><td>İç dolgu 20px / 28px; sütun arası <code>--sp-10</code> (32px), satır arası <code>--sp-6</code> (14px).</td></tr>
   <tr><td><code>--r-lg</code></td><td><code>.frame-bg</code></td><td>Zeminin köşe yuvarlaması; zemin rengi <code>--scene-bg</code>, kenar <code>--line</code>.</td></tr>
-  <tr><td><code>16px 20px 14px</code></td><td><code>.fig-sheet</code></td><td>Tek sütunlu paftanın dolgusu; dar ekranda <code>12px 10px</code>.</td></tr>
+  <tr><td><code>--sp-7 --sp-8 --sp-6</code></td><td><code>.fig-sheet</code></td><td>Tek sütunlu paftanın dolgusu (16px 20px 14px); dar sütunda <code>--sp-5 --sp-4</code>.</td></tr>
   <tr><td><code>1000 × 600</code></td><td><code>.sheet</code></td><td>Sabit birim ızgarası; en fazla 1100px genişler.</td></tr>
-  <tr><td><code>max-width: 1099px</code></td><td><code>.frame</code></td><td>Yan sütun çizimin altına iner, antet sola yaslanır.</td></tr>
-  <tr><td><code>max-width: 719px</code></td><td><code>.frame</code>, <code>.sheet</code></td><td>Dolgu daralır, alt alan tek sütun olur, <code>.sheet</code> listeye döner.</td></tr>
+  <tr><td><code>@container col (max-width: 760px)</code></td><td><code>.frame</code></td><td>Yan sütun çizimin altına iner, antet sola yaslanır.</td></tr>
+  <tr><td><code>@container col (max-width: 719px)</code></td><td><code>.frame</code>, <code>.fig-sheet</code></td><td>Dolgu daralır, alt alan tek sütun olur, antet tam genişlik alır.</td></tr>
+  <tr><td><code>@media (max-width: 719px)</code></td><td><code>.sheet</code></td><td>Ekran daralınca <code>.sheet</code> listeye döner; tek pencere istisnası budur.</td></tr>
   </tbody>
 </table></div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Kırılım ekrana bağlı</span><div class="co-body"><p><code>.frame</code> tek sütuna ekran genişliğiyle geçer. Geniş ekranda dar bir sütuna (kart, yan panel, ikili ızgara) konan frame yan sütununu korur ve çizim alanı daralır. Dar yerlerde <code>.fig-sheet</code> kullanın.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Kırılım sütuna bağlı</span><div class="co-body"><p><code>.frame</code> tek sütuna en yakın <code>col</code> kabının genişliğiyle geçer. Bu kap varsayılan olarak <code>main</code> ve <code>.sticky-text</code>'tir; geniş ekranda da dar bir sütunda duran pafta yan sütununu alta indirir. Kendi dar sütununuzu (kart, yan panel, ikili ızgara) kurduysanız ona <code>container: col / inline-size</code> verin; kapsız dar sütunda frame en yakın geniş kaba bakar ve yan sütununu korur.</p></div></div>
 </article>
 
 <article class="chapter" id="p5" data-section data-title="Yap / yapma">
@@ -607,37 +614,61 @@
 </div>
 <div class="dodont">
 <div class="demo">
-  <span class="demo-label">Yap · dar sütunda fig-sheet</span>
+  <span class="demo-label">Yap · dar sütun col kabı</span>
   <div class="demo-view">
-<figure class="fig-sheet">
-  <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">05 · Şekil 7</p>
-  <p class="fig-cap">Tek sütun, tam genişlik çizim</p>
-  <div style="display:grid;place-items:center;min-height:110px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)">çizim</div>
-</figure>
+<div style="container:col / inline-size">
+  <div class="frame">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <header class="f-head"><p class="chip">05 · Şekil 7</p></header>
+    <div class="f-side"><div class="prose"><p>Yan sütun çizimin altına iner.</p></div></div>
+    <div class="f-map">
+    <div class="drawing" style="--aw:400;--ah:110">
+      <svg viewBox="0 0 400 110" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="400" height="110"/></svg>
+      <p class="dl" style="--x:0;--y:47;--w:400;text-align:center">çizim</p>
+    </div>
+    </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Şekil 7&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Tek sütun, tam genişlik çizim&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;place-items:center;min-height:110px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)</span>"&gt;çizim&lt;/<span class='k'>div</span>&gt;
-&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>container:col / inline-size</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;&lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Şekil 7&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>header</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;&lt;<span class='k'>div</span> class="<span class='s'>prose</span>"&gt;&lt;<span class='k'>p</span>&gt;Yan sütun çizimin altına iner.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:400;--ah:110</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 400 110</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>0</span>" y="<span class='s'>0</span>" width="<span class='s'>400</span>" height="<span class='s'>110</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:47;--w:400;text-align:center</span>"&gt;çizim&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="demo">
-  <span class="demo-label">Yapma · dar sütunda frame</span>
+  <span class="demo-label">Yapma · kapsız dar sütunda frame</span>
   <div class="demo-view">
 <div class="frame">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head"><p class="chip">05 · Şekil 7</p></header>
-  <div class="f-side"><div class="prose"><p>Yan sütun genişliğini korur.</p></div></div>
-  <div class="f-map"><div style="display:grid;place-items:center;min-height:110px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)">çizim</div></div>
+  <div class="f-side"><div class="prose"><p>Ana sütuna bakar, yan sütununu korur.</p></div></div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:400;--ah:110">
+      <svg viewBox="0 0 400 110" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="400" height="110"/></svg>
+      <p class="dl" style="--x:0;--y:47;--w:400;text-align:center">çizim</p>
+    </div>
+  </div>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;&lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Şekil 7&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>header</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;&lt;<span class='k'>div</span> class="<span class='s'>prose</span>"&gt;&lt;<span class='k'>p</span>&gt;Yan sütun genişliğini korur.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;&lt;<span class='k'>div</span> style="<span class='s'>display:grid;place-items:center;min-height:110px;border:1px dashed var(--pencil);font:500 12px var(--font-mono);color:var(--ink-3)</span>"&gt;çizim&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;&lt;<span class='k'>div</span> class="<span class='s'>prose</span>"&gt;&lt;<span class='k'>p</span>&gt;Ana sütuna bakar, yan sütununu korur.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:400;--ah:110</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 400 110</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>0</span>" y="<span class='s'>0</span>" width="<span class='s'>400</span>" height="<span class='s'>110</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:47;--w:400;text-align:center</span>"&gt;çizim&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 </div>

@@ -2,6 +2,71 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
+## [0.2.0] - 2026-10-06
+
+Sistem mantığı ve standart sürümü. Ayrıntı: `STANDART.md`.
+
+### Eklendi
+- `STANDART.md`: token, durum, etkileşim durumu, yerleşim, bitmiş hal, erişilebilirlik, dil ve parça sayfası kuralları; yeni parça kontrol listesi.
+- Standart denetimi:
+  - `tests/unit/standard.test.mjs`, bileşen CSS'inde ham yazı boyutu, boşluk, köşe, süre, z-index ve renk yazılmasını yasaklar; gerekçeli istisna `/* std:ok … */` en fazla 15 tane olabilir;
+  - aynı test, bileşen ve blueprint CSS'indeki her sınıfın bir sayfada gösterilmesini ister;
+  - `tools/demos.mjs`, her parça sayfasında zorunlu meta alanlarını ve grubun zorunlu bölümlerini denetler.
+- Token ölçekleri:
+  - yazı: `--fs-xs … --fs-2xl`, `--fs-h2`, `--fs-display`;
+  - boşluk: `--sp-1 … --sp-11`;
+  - köşe: `--r-xs`, `--r-pill`;
+  - katman: `--z-*`;
+  - diğer: kod renkleri (`--code-ink-2`, `--code-fill`, `--code-fill-2`), `--shadow-drawer`, `--scene-shade`.
+- Tek renkten tema: `--draw`, `--accent-soft`, `--pencil`, `--pencil-2` artık `--accent`'ten türer. Temayı değiştirmek için `:root`'ta yalnız `--accent` ve `--accent-2` ezilir.
+- Durum standardı:
+  - `.s-ok`, `.s-warn`, `.s-bad`, `.s-sec`, `.s-neutral`, `.s-accent`; servis sınıflarının zemini otomatik;
+  - `.pill`, `.state`, `.readout`, `.check`, `.co`, `.steps>li`, `.survey-log>li`, `.cells>i` ve `.lamp` aynı `--c`/`--c-soft` sözleşmesini okur.
+- Etkileşim durumları:
+  - devre dışı (`:disabled`, `[aria-disabled]`): kesikli kenar;
+  - adımlarda `aria-current` ve `data-state="done|blocked"`;
+  - kopyalama sonucu `data-state="done|fail"`, `aria-live` ile duyurulur.
+- Kap sorguları: `col` (`main`, `.sticky-text`) ve `fig` (`.f-map`, `.fig-sheet`, `.sticky-fig`). Dar varyant artık paket deseni: `--naw`/`--nah`, `.is-wide`/`.is-nar`, `--nx`/`--ny`/`--nw`; sayfada CSS gerekmez.
+- Tariflerden pakete taşınanlar:
+  - etiket ve hücre: `.tag`/`.tag.is-ghost`, `.cells` (`data-state="miss|ghost"`, `data-mark`);
+  - ibre: `.needle`/`.needle.is-actual`;
+  - lamba: `.lamp` (`data-state="on|ghost"`, `.s-*`), `.lamps`;
+  - diğer: çizimde ölçeklenen `.stamp-k`, `.fill-shade`, `.fill-soft`, `.ln-c`.
+- Yardımcılar: `.visually-hidden`, `.tnum`, `.ic`, tablo sayı sütunu `.num`. İkonlar boyutunu yazıdan alır (1em).
+- Sahneler ve uyum:
+  - `.scene-light`;
+  - kendi pafta zemini olmayan `.scene-dark`/`.scene-light` kabı sahne zeminini otomatik alır;
+  - `prefers-contrast: more` ve `forced-colors` kuralları.
+- `<ol class="steps" start="4">`: numaralandırma yerleşik `list-item` sayacıyla çalışır.
+- Bileşen sayfalarına "Durumlar" bölümleri eklendi; Blueprint tarifleri ve parça sayfaları paket sınıflarına taşındı.
+
+### Değişti (kırıcı)
+- Yazı boyutları ve boşluklar en yakın ölçek adımına yuvarlandı:
+  - yazı en çok ±0.5px (9 ve 10px etiketler 11px'e, 20px numara 22px'e, kod 13px'ten 12.5px'e);
+  - boşluk en çok ±2px.
+- Köşeler: `.btn`, `.icon-btn`, `.skip`, adım rozeti ve kontrol listesi satırı 6px; `.station` köşesiz.
+- Hareket: `--t-fast` 160ms'den 120ms'ye indi; `.8s` hero girişi `--dur-4` (650ms).
+- `.pill` ve diğer durum bileşenleri artık kendi `--c` varsayılanını verir; üst öğeden durum rengi almaz.
+- Kap sorgusu kırılımları:
+  - pafta, pencere 1099px yerine sütun 760px'in altında tek sütuna geçer;
+  - tanım listesi 640px sütunda tek sütun olur;
+  - tablo kartı ve saha defteri sütuna göre değişir; sticky metin sütunundaki tablolar statik modda da kart olur.
+- Tablo kartı yalnız JS varken açılır; JS'siz dar kapta tablo yatay kayar.
+- Koyu tema: `--paper` #1a2331, `--draw` #8aaeff (`--accent`).
+- `lang.js`: `englishStems` artık büyük harfle basılan her etiketi tarar, seçici listesiyle sınırlı değil.
+
+### Kullanımdan kalkıyor
+- `--ease`, `--t-fast`, `--t-med` (0.3'te silinir).
+- `.pill-ok`, `.pill-neutral`, `.state.ok/.warn/.bad`, `.readout.ok/.bad`, `.p-auto/.p-manual/.p-inline` (1.0'da silinir; `.s-*` kullanın).
+
+### Düzeltildi
+- Adım içindeki `.check` rengi `.steps>li p` kuralına yeniliyordu.
+- Basılı ve devre dışı aç/kapa düğmesi kırmızı kesikli kenarla çiziliyordu.
+- Katlanan pin beat'inin yüksekliği eski 10.5px'e göre hesaplanıyordu.
+- Reduced-motion'da durgun Hoca kopyası, dar varyantın hesaplanmış `--aw`/`--ah` değerini okumuyordu.
+- Kod bloğu içindeki servis renkleri ve kopyalama sonucu açık temada koyu zemine göre okunaksızdı (`.code` artık koyu şemada).
+- Koyu temada kontrol listesi işaretinin kontrastı düşüktü.
+
 ## [0.1.1] - 2026-10-06
 
 ### Eklendi

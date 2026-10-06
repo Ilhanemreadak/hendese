@@ -2,9 +2,9 @@
 
 <style>
 /* sayfaya özel: durgun HUD örnekleri (.hd-mock) ve sahne çizimleri (.hd-). */
-.hd-mock{position:relative;width:260px;height:176px;background:var(--paper);border:1px solid var(--line-2);border-radius:4px;font-family:var(--font-mono);color:var(--ink);--tb:0}
+.hd-mock{position:relative;width:260px;height:176px;background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r-xs);font-family:var(--font-mono);color:var(--ink);--tb:0}
 .hd-row{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-start}
-.hd-row .figcap{max-width:44ch;margin:0;font-size:13px;color:var(--ink-3)}
+.hd-row .figcap{max-width:44ch;margin:0}
 .hd-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
 .hd-line{stroke:var(--bad);stroke-width:2.5;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--al,1))}
 .hd-scene .dl b{display:block}
@@ -191,6 +191,7 @@ Hendese.pinScene({
     <tr><td><code>#hud-fill</code></td><td><code>hud.fill</code> (0..1) ile <code>scaleX</code> ölçeklenen çubuk.</td></tr>
     <tr><td><code>.hud-slot</code></td><td>Sahne içinde göstergenin ineceği yer; konumu ve genişliği <code>measure</code>'da ölçülür.</td></tr>
     <tr><td><code>render → {hud}</code></td><td>Pin ve sticky sahnelerinde. Fig sahnesi HUD talep etmez.</td></tr>
+    <tr><td><code>render → {tb}</code></td><td>0..1: göstergenin antet haline (<code>.hud-tb</code>) geçişi; 1 tam antet, 0 canlı alanlar. Pin ve sticky sahnelerinde okunur.</td></tr>
     <tr><td><code>cfg.chap</code></td><td><code>hud.chap</code> olarak eklenir (sahne <code>hud</code> içinde <code>chap</code> verirse o kazanır).</td></tr>
     <tr><td>Seçim</td><td>Her karede <code>alpha</code>'sı en yüksek talep; alpha, sahnenin ekrana giriş ve çıkışında 0'a iner.</td></tr>
   </tbody>

@@ -66,7 +66,8 @@
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Diller ve vurgu</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Kopyalama ve uzun satır</span></a>
     <a class="nav-link" href="#p4"><span class="num">04</span><span>Açıklama ve imleç</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -82,7 +83,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Kod bloğu<em>İki temada da koyu, kopyalanmaya hazır.</em></h1>
     <p class="intro"><code>figure.code</code> bir başlık satırı (dosya, dil, kopyala) ve kaydırılabilir bir <code>&lt;pre&gt;</code> taşır. Renklendirme elle, dört sınıfla yapılır; kopyalama düğmesi <code>Hendese.init()</code> ile kendiliğinden çalışır ve yalnızca kodu alır.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code></dd><dt>Token</dt><dd><code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code></dd><dt>JS</dt><dd>Kopyalama: <code>Hendese.init()</code>; metinler <code>strings.copy / copied / copyFail</code></dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code> · <code>.g1</code>–<code>.g5</code></dd><dt>Token</dt><dd><code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code></dd><dt>JS</dt><dd>Kopyalama: <code>Hendese.init()</code>; metinler <code>strings.copy / copied / copyFail</code></dd></dl>
   </div>
 </section>
 
@@ -242,7 +243,7 @@
 &lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; -n &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;staging&lt;/<span class='k'>span</span>&gt; rollout status deploy/web-api --timeout=&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;120s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
 &lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>Başarılı kopyada düğme <code>.done</code> sınıfı alır ve yeşile döner; pano izni yoksa gizli bir <code>textarea</code> ile yeniden dener, o da olmazsa <b>Kopyalanamadı</b> yazar. Düğme metinleri başka dile şöyle çevrilir:</p></div>
+<div class="prose"><p>Başarılı kopyada düğme <code>data-state="done"</code> alır ve yeşile döner; pano izni yoksa gizli bir <code>textarea</code> ile yeniden dener, o da olmazsa <code>data-state="fail"</code> ile kırmızıya döner ve <b>Kopyalanamadı</b> yazar. Etiket <code>aria-live="polite"</code> olduğundan sonuç ekran okuyucuya da duyurulur. Düğme metinleri başka dile şöyle çevrilir:</p></div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.init({
   strings: { copy: 'Copy', copied: 'Copied', copyFail: 'Copy failed' }
 });</code></pre></figure>
@@ -285,9 +286,11 @@
     <span class="code-lang">SQL</span>
     <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
   </figcaption>
-<pre class="annotated" tabindex="0"><code><span class="grp g2" data-label="şema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
+<pre class="annotated" tabindex="0"><code><span class="grp g1" data-label="kilit">  <span class="k">SET</span> lock_timeout = <span class="s">'5s'</span>;
+</span><span class="grp g2" data-label="şema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
 </span><span class="grp g3" data-label="veri">  <span class="k">UPDATE</span> orders <span class="k">SET</span> status = <span class="s">'paid'</span> <span class="k">WHERE</span> paid_at <span class="k">IS NOT NULL</span>;
 </span><span class="grp g4" data-label="kısıt">  <span class="k">ALTER TABLE</span> orders <span class="k">ALTER COLUMN</span> status <span class="k">SET NOT NULL</span>;
+</span><span class="grp g5" data-label="yetki">  <span class="k">GRANT SELECT</span> (status) <span class="k">ON</span> orders <span class="k">TO</span> raporlama;
 </span></code></pre>
 </figure>
   </div>
@@ -297,12 +300,15 @@
     &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;SQL&lt;/<span class='k'>span</span>&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>figcaption</span>&gt;
-&lt;<span class='k'>pre</span> class="<span class='s'>annotated</span>" tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g2</span>" data-label="<span class='s'>şema</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ADD COLUMN&lt;/<span class='k'>span</span>&gt; status text;
+&lt;<span class='k'>pre</span> class="<span class='s'>annotated</span>" tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g1</span>" data-label="<span class='s'>kilit</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET&lt;/<span class='k'>span</span>&gt; lock_timeout = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;'5s'&lt;/<span class='k'>span</span>&gt;;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g2</span>" data-label="<span class='s'>şema</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ADD COLUMN&lt;/<span class='k'>span</span>&gt; status text;
 &lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g3</span>" data-label="<span class='s'>veri</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;UPDATE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET&lt;/<span class='k'>span</span>&gt; status = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;'paid'&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;WHERE&lt;/<span class='k'>span</span>&gt; paid_at &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;IS NOT NULL&lt;/<span class='k'>span</span>&gt;;
 &lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g4</span>" data-label="<span class='s'>kısıt</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER COLUMN&lt;/<span class='k'>span</span>&gt; status &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET NOT NULL&lt;/<span class='k'>span</span>&gt;;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g5</span>" data-label="<span class='s'>yetki</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;GRANT SELECT&lt;/<span class='k'>span</span>&gt; (status) &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ON&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;TO&lt;/<span class='k'>span</span>&gt; raporlama;
 &lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
 &lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
 </div>
+<div class="prose"><p>Beş grup rengi vardır (<code>.g1</code>–<code>.g5</code>); sıra anlam taşımaz, yan yana gruplar ayrı renk alsın yeter. Renk yalnız grubu ayırır, ne olduğunu <code>data-label</code> söyler. Dar sütunda etiketler gizlenir, renkli çizgi kalır.</p></div>
 <div class="prose"><p>Yürütme imleci için her satırı <code>.ln</code> ile sarın ve satır sonunu <code>&lt;/span&gt;</code>'ın içine koyun. Aşağıdaki düğme imleci bir sonraki satıra taşır.</p></div>
 <div class="demo">
   <span class="demo-label">Örnek · adım adım yürütme</span>
@@ -343,8 +349,43 @@
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Kod bloğu kopyalanmak için vardır. Okurun yapıştırdığı şey çalışmalı; istem işareti, çıktı ve süs kodun dışında kalmalı.</p></header>
+<article class="chapter" id="p5" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Durumlar</h2><p class="lead">Kod bloğunun durumu kopyala düğmesinde ve odakta yaşar. Düğmenin üç hali vardır; ikisini metin, birini metin ve renk söyler.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · kopyalayın, düğmeyi izleyin</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">prod</span> get pods -l app=web-api</code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; -n &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;prod&lt;/<span class='k'>span</span>&gt; get pods -l app=web-api&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Hal</th><th>Düğme metni</th><th>Görünüş</th><th>Kim yazar</th></tr></thead>
+  <tbody>
+    <tr><td>Hazır</td><td>Kopyala</td><td>İnce kenar, açık mürekkep</td><td>İşaretleme</td></tr>
+    <tr><td>Kopyalandı</td><td>Kopyalandı</td><td>Yeşil kenar ve yazı, 1,6 saniye</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Kopyalanamadı</td><td>Kopyalanamadı</td><td>Renk değişmez; yalnız metin</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Odak</td><td>—</td><td><code>pre</code> içe 2px halka, düğme açık mavi halka</td><td>Tarayıcı (<code>:focus-visible</code>)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Sonuç sınıfını betik yazar ve geri alır; işaretlemede elle vermeyin. Başlıksız blokta düğme yoktur, dolayısıyla durum da yoktur. Kopyala düğmesinin devre dışı hali yoktur: kopyalanmaması gereken metin kod bloğuna konmaz. Satırın “şimdi çalışıyor” durumu <code>.ln.cur</code> ile verilir (yukarıdaki bölüm).</p></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Kod bloğu kopyalanmak için vardır. Okurun yapıştırdığı şey çalışmalı; istem işareti, çıktı ve süs kodun dışında kalmalı.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · yalnızca komut</span>

@@ -76,7 +76,7 @@
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
     <h1>İstasyon gezgini<em>Çizimdeki her durak tıklanabilir bir düğme.</em></h1>
     <p class="intro">Gezgin, bir çizimin duraklarını gerçek <code>&lt;button&gt;</code> öğelerine çevirir. Üzerine gelmek ya da odaklanmak önizler, tıklamak seçer; seçilen durağın açıklaması paftanın altındaki panelde görünür. Bir sayfada istediğiniz kadar gezgin olabilir.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.station</code> · <code>.st-name</code> · <code>.st-sub</code> · <code>.st-meta</code> · <code>.st-detail</code> · <code>.sl</code> · <code>.deck-cap</code></dd><dt>Öznitelikler</dt><dd><code>data-explorer</code> · <code>data-key</code> · <code>aria-pressed</code> · <code>data-for</code></dd><dt>Olay</dt><dd><code>hendese:explore</code> → <code>detail.key</code></dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.station</code> · <code>.svc-*</code> · <code>.st-name</code> · <code>.st-sub</code> · <code>.st-meta</code> · <code>.st-detail</code> · <code>.sl</code> · <code>.deck-cap</code></dd><dt>Öznitelikler</dt><dd><code>data-explorer</code> · <code>data-key</code> · <code>aria-pressed</code> · <code>data-for</code></dd><dt>Olay</dt><dd><code>hendese:explore</code> → <code>detail.key</code></dd></dl>
   </div>
 </section>
 
@@ -181,6 +181,46 @@
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="prose"><p>Satırlar <code>text-overflow: ellipsis</code> ile kesilir; uzun bir ad durağı büyütmez. Yazı boyları <code>--u</code> ile ölçeklenir ve 10.5px'in altına inmez. Rozet metni <code>--str-selected</code> token'ından gelir; başka bir dil için onu ezin.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · servis işaretleri · .svc-*</span>
+  <div class="demo-view">
+<div data-explorer="ig-svc">
+  <div class="drawing" style="--aw:900;--ah:150">
+    <svg viewBox="0 0 900 150" aria-hidden="true">
+      <path class="ln-draw" d="M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4"/>
+    </svg>
+    <button class="station svc-gitlab" type="button" data-key="kaynak" aria-pressed="true" aria-controls="ig-svc" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">Kaynak</span><span class="st-sub">GitLab deposu</span><span class="st-meta">.svc-gitlab</span></button>
+    <button class="station svc-aws" type="button" data-key="derleme" aria-pressed="false" aria-controls="ig-svc" style="--x:245;--y:30;--w:200;--h:90"><span class="st-name">Derleme</span><span class="st-sub">AWS · eu-west-1</span><span class="st-meta">.svc-aws</span></button>
+    <button class="station svc-argo" type="button" data-key="esitleme" aria-pressed="false" aria-controls="ig-svc" style="--x:470;--y:30;--w:200;--h:90"><span class="st-name">Eşitleme</span><span class="st-sub">Argo CD</span><span class="st-meta">.svc-argo</span></button>
+    <button class="station svc-k8s" type="button" data-key="kume" aria-pressed="false" aria-controls="ig-svc" style="--x:695;--y:30;--w:200;--h:90"><span class="st-name">Küme</span><span class="st-sub">Kubernetes · web-api</span><span class="st-meta">.svc-k8s</span></button>
+  </div>
+  <div class="st-detail" id="ig-svc" aria-live="polite">
+    <div data-for="kaynak" class="show"><b>.svc-gitlab</b> kareyi kaynak deposunun rengine boyar. Sınıf yalnızca <code>--svc</code> değişkenini atar; çerçeve ve yazı değişmez.</div>
+    <div data-for="derleme"><b>.svc-aws</b> bulut hizmetleri için: derleme, kayıt, kuyruk.</div>
+    <div data-for="esitleme"><b>.svc-argo</b> depodaki istenen durumu kümeye taşıyan eşitleyici için.</div>
+    <div data-for="kume"><b>.svc-k8s</b> kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-svc</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:150</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-gitlab</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kaynak</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:20;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kaynak&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;GitLab deposu&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-gitlab&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-aws</span>" type="<span class='s'>button</span>" data-key="<span class='s'>derleme</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:245;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Derleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;AWS · eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-aws&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-argo</span>" type="<span class='s'>button</span>" data-key="<span class='s'>esitleme</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:470;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Eşitleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Argo CD&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-argo&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-k8s</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kume</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Küme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Kubernetes · web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-k8s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-svc</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kaynak</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-gitlab&lt;/<span class='k'>b</span>&gt; kareyi kaynak deposunun rengine boyar. Sınıf yalnızca &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; değişkenini atar; çerçeve ve yazı değişmez.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>derleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-aws&lt;/<span class='k'>b</span>&gt; bulut hizmetleri için: derleme, kayıt, kuyruk.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>esitleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-argo&lt;/<span class='k'>b</span>&gt; depodaki istenen durumu kümeye taşıyan eşitleyici için.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kume</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-k8s&lt;/<span class='k'>b</span>&gt; kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Servis rengi için satır içi <code>--svc</code> yazmak yerine hazır sınıfı kullanın: <code>.svc-gitlab</code>, <code>.svc-aws</code>, <code>.svc-argo</code>, <code>.svc-k8s</code>. Renk yalnızca küçük karede kalır; servis adı her zaman alt satırda da yazılıdır.</p></div>
 </article>
 
 <article class="chapter" id="p3" data-section data-title="Bağlam içinde">
@@ -296,7 +336,7 @@
     <button class="station" type="button" data-key="nobetci" aria-pressed="false" aria-controls="ig-alarm" style="--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)"><span class="st-name">Nöbetçi</span><span class="st-sub">birincil</span><span class="st-meta">onay ≤ 5 dk</span></button>
     <button class="station" type="button" data-key="kayit" aria-pressed="false" aria-controls="ig-alarm" style="--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)"><span class="st-name">Olay kaydı</span><span class="st-sub">zaman çizelgesi</span><span class="st-meta">otomatik</span></button>
   </div>
-  <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:12px">
+  <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:var(--sp-5)">
     <div data-for="metrik"><b>Metrik.</b> web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.</div>
     <div data-for="kural" class="show"><b>Kural.</b> Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.</div>
     <div data-for="yonlendirici"><b>Yönlendirici.</b> Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.</div>
@@ -321,7 +361,7 @@
     &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>nobetci</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Nöbetçi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;birincil&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;onay ≤ 5 dk&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kayit</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Olay kaydı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;zaman çizelgesi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;otomatik&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-alarm</span>" aria-live="<span class='s'>polite</span>" style="<span class='s'>margin-top:12px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-alarm</span>" aria-live="<span class='s'>polite</span>" style="<span class='s'>margin-top:var(--sp-5)</span>"&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>metrik</span>"&gt;&lt;<span class='k'>b</span>&gt;Metrik.&lt;/<span class='k'>b</span>&gt; web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>kural</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;Kural.&lt;/<span class='k'>b</span>&gt; Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>yonlendirici</span>"&gt;&lt;<span class='k'>b</span>&gt;Yönlendirici.&lt;/<span class='k'>b</span>&gt; Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.&lt;/<span class='k'>div</span>&gt;

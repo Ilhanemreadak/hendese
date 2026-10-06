@@ -75,7 +75,7 @@
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
     <h1>Arıza panosu<em>Hangi fazda, hangi lamba yanıyor.</em></h1>
     <p class="intro">Arıza panosu bir sürecin ya da servis grubunun nerede bozulduğunu tek bakışta gösterir: fazlar bir şeritte, olası arızalar numaralı lambalarda. Her lamba alttaki listenin bir satırıdır; liste çizimin metin karşılığıdır ve her zaman yazılır.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code></dd><dt>Satır içi stil</dt><dd>Yanan lamba ve faz dolgusu (<code>--bad</code>, <code>--bad-soft</code>), lamba numarası yazısı</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code> · <code>.lamp</code> · <code>.lamps</code> · <code>.fill-soft</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -89,27 +89,23 @@
     <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
     <path class="ln-pencil" d="M10 166H370M670 166H990"/>
     <path class="ln-pencil" d="M50 122V150M130 122V150M270 122V150M520 90V98M947 122V150"/>
-    <path class="ln-draw ln-bad" style="stroke-width:2" d="M520 122V150"/>
+    <path class="ln-strong ln-bad" d="M520 122V150"/>
     <rect class="ln-draw fill-paper" x="10" y="150" width="80" height="32"/>
     <rect class="ln-draw fill-paper" x="100" y="150" width="60" height="32"/>
     <rect class="ln-draw fill-paper" x="170" y="150" width="40" height="32"/>
     <rect class="ln-draw fill-paper" x="210" y="150" width="120" height="32"/>
     <rect class="ln-draw fill-paper" x="330" y="150" width="40" height="32"/>
-    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="370" y="150" width="300" height="32"/>
+    <rect class="ln-strong ln-c fill-soft s-bad" x="370" y="150" width="300" height="32"/>
     <rect class="ln-draw fill-paper" x="700" y="150" width="90" height="32"/>
     <rect class="ln-draw fill-paper" x="805" y="150" width="85" height="32"/>
     <rect class="ln-draw fill-paper" x="905" y="150" width="85" height="32"/>
     <path class="ln-draw" d="M670 166H698M698 166l-9-4M698 166l-9 4"/>
-    <circle class="ln-draw fill-paper" cx="50" cy="110" r="12"/>
-    <circle class="ln-draw fill-paper" cx="130" cy="110" r="12"/>
-    <circle class="ln-draw fill-paper" cx="270" cy="110" r="12"/>
-    <circle style="fill:var(--bad);stroke:var(--bad)" cx="520" cy="110" r="12"/>
-    <circle class="ln-draw fill-paper" cx="520" cy="78" r="12"/>
-    <circle class="ln-draw fill-paper" cx="947" cy="110" r="12"/>
-    <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
-      <text x="50" y="110">1</text><text x="130" y="110">2</text><text x="270" y="110">3</text>
-      <text x="520" y="110" style="fill:var(--paper)">4</text><text x="520" y="78">5</text><text x="947" y="110">6</text>
-    </g>
+    <g class="lamp"><circle cx="50" cy="110" r="12"/><text x="50" y="110">1</text></g>
+    <g class="lamp"><circle cx="130" cy="110" r="12"/><text x="130" y="110">2</text></g>
+    <g class="lamp"><circle cx="270" cy="110" r="12"/><text x="270" y="110">3</text></g>
+    <g class="lamp" data-state="on"><circle cx="520" cy="110" r="12"/><text x="520" y="110">4</text></g>
+    <g class="lamp"><circle cx="520" cy="78" r="12"/><text x="520" y="78">5</text></g>
+    <g class="lamp"><circle cx="947" cy="110" r="12"/><text x="947" y="110">6</text></g>
     <path class="ln-draw" d="M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
     <path class="ln-pencil" d="M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5"/>
   </svg>
@@ -121,22 +117,22 @@
   <p class="dl" style="--x:150;--y:190;--w:80;text-align:center">LB</p>
   <p class="dl" style="--x:210;--y:208;--w:120;text-align:center">web-api</p>
   <p class="dl" style="--x:310;--y:190;--w:80;text-align:center">önbellek</p>
-  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center;color:var(--bad)">veritabanı · 120 ms</p>
+  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center">veritabanı · 120 ms</p>
   <p class="dl" style="--x:695;--y:190;--w:100;text-align:center">serileştir</p>
   <p class="dl" style="--x:797;--y:208;--w:100;text-align:center">sıkıştır</p>
   <p class="dl" style="--x:897;--y:190;--w:100;text-align:center">istemci</p>
-  <p class="dl" style="--x:140;--y:276;--w:60;text-align:center;color:var(--ink-3)">0</p>
-  <p class="dl" style="--x:240;--y:276;--w:60;text-align:center;color:var(--ink-3)">40</p>
-  <p class="dl" style="--x:340;--y:276;--w:60;text-align:center;color:var(--ink-3)">80</p>
-  <p class="dl" style="--x:440;--y:276;--w:60;text-align:center;color:var(--ink-3)">120</p>
-  <p class="dl" style="--x:540;--y:276;--w:60;text-align:center;color:var(--ink-3)">160</p>
-  <p class="dl" style="--x:630;--y:276;--w:80;text-align:center;color:var(--ink-3)">200 ms</p>
+  <p class="dl" style="--x:140;--y:276;--w:60;text-align:center">0</p>
+  <p class="dl" style="--x:240;--y:276;--w:60;text-align:center">40</p>
+  <p class="dl" style="--x:340;--y:276;--w:60;text-align:center">80</p>
+  <p class="dl" style="--x:440;--y:276;--w:60;text-align:center">120</p>
+  <p class="dl" style="--x:540;--y:276;--w:60;text-align:center">160</p>
+  <p class="dl" style="--x:630;--y:276;--w:80;text-align:center">200 ms</p>
 </div>
-<ol class="plain">
+<ol class="lamps">
   <li>DNS çözümlenemedi: kayıt yok ya da çözümleyiciye ulaşılamıyor.</li>
   <li>TLS el sıkışması düştü: sertifika süresi dolmuş ya da zincir eksik.</li>
   <li>web-api 5xx döndü: uygulama hatası, yığın izi günlükte.</li>
-  <li><b style="color:var(--bad)">Yanıyor ·</b> Veritabanı fazı 120 ms sürdü (bütçe 30 ms): <code>orders</code> tablosunda indekssiz sorgu.</li>
+  <li data-state="on"><b>Yanıyor ·</b> Veritabanı fazı 120 ms sürdü (bütçe 30 ms): <code>orders</code> tablosunda indekssiz sorgu.</li>
   <li>Bağlantı havuzu doldu: istekler veritabanını beklerken sıraya girdi.</li>
   <li>İstemci zaman aşımı: yanıt 2 saniyede tamamlanmadı.</li>
 </ol>
@@ -146,27 +142,23 @@
     &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990</span>"/&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M10 166H370M670 166H990</span>"/&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M50 122V150M130 122V150M270 122V150M520 90V98M947 122V150</span>"/&gt;
-    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" style="<span class='s'>stroke-width:2</span>" d="<span class='s'>M520 122V150</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M520 122V150</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>150</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>100</span>" y="<span class='s'>150</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>170</span>" y="<span class='s'>150</span>" width="<span class='s'>40</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>210</span>" y="<span class='s'>150</span>" width="<span class='s'>120</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>150</span>" width="<span class='s'>40</span>" height="<span class='s'>32</span>"/&gt;
-    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-bad</span>" style="<span class='s'>fill:var(--bad-soft)</span>" x="<span class='s'>370</span>" y="<span class='s'>150</span>" width="<span class='s'>300</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>370</span>" y="<span class='s'>150</span>" width="<span class='s'>300</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>150</span>" width="<span class='s'>90</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>805</span>" y="<span class='s'>150</span>" width="<span class='s'>85</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>905</span>" y="<span class='s'>150</span>" width="<span class='s'>85</span>" height="<span class='s'>32</span>"/&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M670 166H698M698 166l-9-4M698 166l-9 4</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>50</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>130</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>270</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>520</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>520</span>" cy="<span class='s'>78</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>947</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;
-    &lt;<span class='k'>g</span> style="<span class='s'>font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central</span>"&gt;
-      &lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>110</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>130</span>" y="<span class='s'>110</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>270</span>" y="<span class='s'>110</span>"&gt;3&lt;/<span class='k'>text</span>&gt;
-      &lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>110</span>" style="<span class='s'>fill:var(--paper)</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>78</span>"&gt;5&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>947</span>" y="<span class='s'>110</span>"&gt;6&lt;/<span class='k'>text</span>&gt;
-    &lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>50</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>110</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>130</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>130</span>" y="<span class='s'>110</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>270</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>270</span>" y="<span class='s'>110</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>520</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>110</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>520</span>" cy="<span class='s'>78</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>78</span>"&gt;5&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>947</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>947</span>" y="<span class='s'>110</span>"&gt;6&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273</span>"/&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5</span>"/&gt;
   &lt;/<span class='k'>svg</span>&gt;
@@ -178,22 +170,22 @@
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:150;--y:190;--w:80;text-align:center</span>"&gt;LB&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:210;--y:208;--w:120;text-align:center</span>"&gt;web-api&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:190;--w:80;text-align:center</span>"&gt;önbellek&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:370;--y:208;--w:300;text-align:center;color:var(--bad)</span>"&gt;veritabanı · 120 ms&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:370;--y:208;--w:300;text-align:center</span>"&gt;veritabanı · 120 ms&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:695;--y:190;--w:100;text-align:center</span>"&gt;serileştir&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:797;--y:208;--w:100;text-align:center</span>"&gt;sıkıştır&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:897;--y:190;--w:100;text-align:center</span>"&gt;istemci&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:140;--y:276;--w:60;text-align:center;color:var(--ink-3)</span>"&gt;0&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:276;--w:60;text-align:center;color:var(--ink-3)</span>"&gt;40&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:276;--w:60;text-align:center;color:var(--ink-3)</span>"&gt;80&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:440;--y:276;--w:60;text-align:center;color:var(--ink-3)</span>"&gt;120&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:540;--y:276;--w:60;text-align:center;color:var(--ink-3)</span>"&gt;160&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:630;--y:276;--w:80;text-align:center;color:var(--ink-3)</span>"&gt;200 ms&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:140;--y:276;--w:60;text-align:center</span>"&gt;0&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:276;--w:60;text-align:center</span>"&gt;40&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:276;--w:60;text-align:center</span>"&gt;80&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:440;--y:276;--w:60;text-align:center</span>"&gt;120&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:540;--y:276;--w:60;text-align:center</span>"&gt;160&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:630;--y:276;--w:80;text-align:center</span>"&gt;200 ms&lt;/<span class='k'>p</span>&gt;
 &lt;/<span class='k'>div</span>&gt;
-&lt;<span class='k'>ol</span> class="<span class='s'>plain</span>"&gt;
+&lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
   &lt;<span class='k'>li</span>&gt;DNS çözümlenemedi: kayıt yok ya da çözümleyiciye ulaşılamıyor.&lt;/<span class='k'>li</span>&gt;
   &lt;<span class='k'>li</span>&gt;TLS el sıkışması düştü: sertifika süresi dolmuş ya da zincir eksik.&lt;/<span class='k'>li</span>&gt;
   &lt;<span class='k'>li</span>&gt;web-api 5xx döndü: uygulama hatası, yığın izi günlükte.&lt;/<span class='k'>li</span>&gt;
-  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--bad)</span>"&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Veritabanı fazı 120 ms sürdü (bütçe 30 ms): &lt;<span class='k'>code</span>&gt;orders&lt;/<span class='k'>code</span>&gt; tablosunda indekssiz sorgu.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Veritabanı fazı 120 ms sürdü (bütçe 30 ms): &lt;<span class='k'>code</span>&gt;orders&lt;/<span class='k'>code</span>&gt; tablosunda indekssiz sorgu.&lt;/<span class='k'>li</span>&gt;
   &lt;<span class='k'>li</span>&gt;Bağlantı havuzu doldu: istekler veritabanını beklerken sıraya girdi.&lt;/<span class='k'>li</span>&gt;
   &lt;<span class='k'>li</span>&gt;İstemci zaman aşımı: yanıt 2 saniyede tamamlanmadı.&lt;/<span class='k'>li</span>&gt;
 &lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
@@ -208,14 +200,11 @@
   <div class="demo-view">
 <div class="drawing" style="--aw:900;--ah:120">
   <svg viewBox="0 0 900 120" aria-hidden="true">
-    <circle class="ln-draw fill-paper" cx="60" cy="40" r="14"/>
-    <circle style="fill:var(--bad);stroke:var(--bad)" cx="240" cy="40" r="14"/>
-    <circle style="fill:var(--warn);stroke:var(--warn)" cx="420" cy="40" r="14"/>
-    <circle class="ln-draw ln-dash fill-paper" cx="600" cy="40" r="14"/>
-    <circle class="ln-ghost" cx="780" cy="40" r="14"/>
-    <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
-      <text x="60" y="40">1</text><text x="240" y="40" style="fill:var(--paper)">2</text><text x="420" y="40" style="fill:var(--paper)">3</text><text x="600" y="40">4</text><text x="780" y="40" style="fill:var(--ink-3)">5</text>
-    </g>
+    <g class="lamp"><circle cx="60" cy="40" r="14"/><text x="60" y="40">1</text></g>
+    <g class="lamp" data-state="on"><circle cx="240" cy="40" r="14"/><text x="240" y="40">2</text></g>
+    <g class="lamp s-warn" data-state="on"><circle cx="420" cy="40" r="14"/><text x="420" y="40">3</text></g>
+    <g class="lamp"><circle class="ln-dash" cx="600" cy="40" r="14"/><text x="600" y="40">4</text></g>
+    <g class="lamp" data-state="ghost"><circle cx="780" cy="40" r="14"/><text x="780" y="40">5</text></g>
   </svg>
   <p class="dl" style="--x:0;--y:66;--w:120;text-align:center">sönük<br>sorun yok</p>
   <p class="dl" style="--x:180;--y:66;--w:120;text-align:center">yanıyor<br>arıza</p>
@@ -226,14 +215,11 @@
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:120</span>"&gt;
   &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 120</span>" aria-hidden="<span class='s'>true</span>"&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>60</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>240</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--warn);stroke:var(--warn)</span>" cx="<span class='s'>420</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" cx="<span class='s'>600</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-ghost</span>" cx="<span class='s'>780</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;
-    &lt;<span class='k'>g</span> style="<span class='s'>font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central</span>"&gt;
-      &lt;<span class='k'>text</span> x="<span class='s'>60</span>" y="<span class='s'>40</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>240</span>" y="<span class='s'>40</span>" style="<span class='s'>fill:var(--paper)</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>420</span>" y="<span class='s'>40</span>" style="<span class='s'>fill:var(--paper)</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>600</span>" y="<span class='s'>40</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>780</span>" y="<span class='s'>40</span>" style="<span class='s'>fill:var(--ink-3)</span>"&gt;5&lt;/<span class='k'>text</span>&gt;
-    &lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>60</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>60</span>" y="<span class='s'>40</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>240</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>240</span>" y="<span class='s'>40</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>420</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>420</span>" y="<span class='s'>40</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> class="<span class='s'>ln-dash</span>" cx="<span class='s'>600</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>600</span>" y="<span class='s'>40</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>ghost</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>780</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>780</span>" y="<span class='s'>40</span>"&gt;5&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
   &lt;/<span class='k'>svg</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:66;--w:120;text-align:center</span>"&gt;sönük&lt;<span class='k'>br</span>&gt;sorun yok&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:180;--y:66;--w:120;text-align:center</span>"&gt;yanıyor&lt;<span class='k'>br</span>&gt;arıza&lt;/<span class='k'>p</span>&gt;
@@ -242,7 +228,7 @@
   &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:720;--y:66;--w:120;text-align:center</span>"&gt;hayalet&lt;<span class='k'>br</span>&gt;ölçülemiyor&lt;/<span class='k'>p</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>Yanan lambanın bağlı olduğu leader ve faz da kırmızı çizilir; uyarıdaki lamba yalnızca kendisi boyanır. Bir panoda aynı anda birden fazla lamba yanabilir, ama listede yanan satırlar en başta değil, kendi numaralarının yerinde durur: numara sırası çizimdeki konum sırasıdır.</p></div>
+<div class="prose"><p>Lamba <code>&lt;g class="lamp"&gt;</code> içinde bir daire ve numaradır; yanan lamba <code>data-state="on"</code> alır; rengi varsayılan olarak arızadır, <code>.s-warn</code> ile uyarıya döner. Ölçülemeyen lamba <code>data-state="ghost"</code> ile kesikli ve soluk çizilir; bakımdaki lamba dairesine <code>.ln-dash</code> alır. Yanan faz <code>class="ln-strong ln-c fill-soft s-bad"</code> ile çizilir: çizgi ve dolgu rengini tek bir <code>.s-*</code> sınıfı verir. Listede aynı satır <code>&lt;li data-state="on"&gt;</code> ile koyulaşır ve “Yanıyor ·” diye başlar. Yanan lambanın bağlı olduğu leader ve faz da kırmızı çizilir; uyarıdaki lamba yalnızca kendisi boyanır. Bir panoda aynı anda birden fazla lamba yanabilir, ama listede yanan satırlar en başta değil, kendi numaralarının yerinde durur: numara sırası çizimdeki konum sırasıdır.</p></div>
 </article>
 
 <article class="chapter" id="p3" data-section data-title="Bağlam içinde">
@@ -260,21 +246,21 @@
       <path class="pencil-2" d="M270 44V272M390 44V272M510 44V272M630 44V272M750 44V272"/>
       <circle class="ln-draw fill-paper" cx="330" cy="70" r="11"/>
       <circle class="ln-draw fill-paper" cx="450" cy="70" r="11"/>
-      <circle style="fill:var(--warn);stroke:var(--warn)" cx="570" cy="70" r="11"/>
+      <g class="lamp s-warn" data-state="on"><circle cx="570" cy="70" r="11"/><text x="570" y="70">1</text></g>
       <circle class="ln-draw fill-paper" cx="690" cy="70" r="11"/>
       <circle class="ln-draw fill-paper" cx="810" cy="70" r="11"/>
       <circle class="ln-draw fill-paper" cx="330" cy="115" r="11"/>
       <circle class="ln-draw fill-paper" cx="450" cy="115" r="11"/>
       <circle class="ln-draw fill-paper" cx="570" cy="115" r="11"/>
       <circle class="ln-draw fill-paper" cx="690" cy="115" r="11"/>
-      <circle style="fill:var(--bad);stroke:var(--bad)" cx="810" cy="115" r="11"/>
+      <g class="lamp" data-state="on"><circle cx="810" cy="115" r="11"/><text x="810" y="115">2</text></g>
       <circle class="ln-draw fill-paper" cx="330" cy="160" r="11"/>
       <circle class="ln-draw fill-paper" cx="450" cy="160" r="11"/>
       <circle class="ln-draw fill-paper" cx="570" cy="160" r="11"/>
       <circle class="ln-draw fill-paper" cx="690" cy="160" r="11"/>
       <circle class="ln-draw fill-paper" cx="810" cy="160" r="11"/>
       <circle class="ln-draw fill-paper" cx="330" cy="205" r="11"/>
-      <circle style="fill:var(--bad);stroke:var(--bad)" cx="450" cy="205" r="11"/>
+      <g class="lamp" data-state="on"><circle cx="450" cy="205" r="11"/><text x="450" y="205">3</text></g>
       <circle class="ln-draw fill-paper" cx="570" cy="205" r="11"/>
       <circle class="ln-draw fill-paper" cx="690" cy="205" r="11"/>
       <circle class="ln-draw ln-dash fill-paper" cx="810" cy="205" r="11"/>
@@ -283,9 +269,6 @@
       <circle class="ln-draw fill-paper" cx="570" cy="250" r="11"/>
       <circle class="ln-draw fill-paper" cx="690" cy="250" r="11"/>
       <circle class="ln-draw fill-paper" cx="810" cy="250" r="11"/>
-      <g style="font:600 12px var(--font-mono);fill:var(--paper);text-anchor:middle;dominant-baseline:central">
-        <text x="570" y="70">1</text><text x="810" y="115">2</text><text x="450" y="205">3</text>
-      </g>
     </svg>
     <p class="dl" style="--x:270;--y:14;--w:120;text-align:center"><span class="stamp-k">Canlılık</span></p>
     <p class="dl" style="--x:390;--y:14;--w:120;text-align:center"><span class="stamp-k">Hazırlık</span></p>
@@ -298,10 +281,10 @@
     <p class="dl" style="--x:24;--y:195;--w:240">search</p>
     <p class="dl" style="--x:24;--y:240;--w:240">orders-db</p>
   </div>
-  <ol class="plain">
-    <li><b style="color:var(--warn)">Uyarı ·</b> web-api p95 gecikmesi 480 ms; eşik 500 ms.</li>
-    <li><b style="color:var(--bad)">Yanıyor ·</b> billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.</li>
-    <li><b style="color:var(--bad)">Yanıyor ·</b> search hazır değil: indeks yeniden kuruluyor, trafik almıyor.</li>
+  <ol class="lamps">
+    <li><b>Uyarı ·</b> web-api p95 gecikmesi 480 ms; eşik 500 ms.</li>
+    <li data-state="on"><b>Yanıyor ·</b> billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.</li>
+    <li data-state="on"><b>Yanıyor ·</b> search hazır değil: indeks yeniden kuruluyor, trafik almıyor.</li>
   </ol>
   <figcaption class="figcap"><b>Şekil 1.</b> Sönük lambalar numarasızdır. search satırındaki kesikli lamba susturulmuş bir kontroldür (bakım penceresi).</figcaption>
 </figure>
@@ -316,21 +299,21 @@
       &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M270 44V272M390 44V272M510 44V272M630 44V272M750 44V272</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
-      &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--warn);stroke:var(--warn)</span>" cx="<span class='s'>570</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>570</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>570</span>" y="<span class='s'>70</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
-      &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>810</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>810</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>810</span>" y="<span class='s'>115</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
-      &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>450</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>450</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>450</span>" y="<span class='s'>205</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
@@ -339,9 +322,6 @@
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
       &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
-      &lt;<span class='k'>g</span> style="<span class='s'>font:600 12px var(--font-mono);fill:var(--paper);text-anchor:middle;dominant-baseline:central</span>"&gt;
-        &lt;<span class='k'>text</span> x="<span class='s'>570</span>" y="<span class='s'>70</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>810</span>" y="<span class='s'>115</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>450</span>" y="<span class='s'>205</span>"&gt;3&lt;/<span class='k'>text</span>&gt;
-      &lt;/<span class='k'>g</span>&gt;
     &lt;/<span class='k'>svg</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:270;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Canlılık&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:390;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Hazırlık&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
@@ -354,10 +334,10 @@
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:195;--w:240</span>"&gt;search&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:240;--w:240</span>"&gt;orders-db&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>ol</span> class="<span class='s'>plain</span>"&gt;
-    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--warn)</span>"&gt;Uyarı ·&lt;/<span class='k'>b</span>&gt; web-api p95 gecikmesi 480 ms; eşik 500 ms.&lt;/<span class='k'>li</span>&gt;
-    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--bad)</span>"&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.&lt;/<span class='k'>li</span>&gt;
-    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--bad)</span>"&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; search hazır değil: indeks yeniden kuruluyor, trafik almıyor.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
+    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;Uyarı ·&lt;/<span class='k'>b</span>&gt; web-api p95 gecikmesi 480 ms; eşik 500 ms.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; search hazır değil: indeks yeniden kuruluyor, trafik almıyor.&lt;/<span class='k'>li</span>&gt;
   &lt;/<span class='k'>ol</span>&gt;
   &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 1.&lt;/<span class='k'>b</span>&gt; Sönük lambalar numarasızdır. search satırındaki kesikli lamba susturulmuş bir kontroldür (bakım penceresi).&lt;/<span class='k'>figcaption</span>&gt;
 &lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
@@ -373,22 +353,19 @@
     <svg viewBox="0 0 1000 200" aria-hidden="true">
       <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
       <path class="ln-pencil" d="M50 92V110M210 92V110M770 92V110"/>
-      <path class="ln-draw ln-bad" style="stroke-width:2" d="M490 92V110"/>
+      <path class="ln-strong ln-bad" d="M490 92V110"/>
       <rect class="ln-draw fill-paper" x="10" y="110" width="80" height="32"/>
       <rect class="ln-draw fill-paper" x="100" y="110" width="60" height="32"/>
       <rect class="ln-draw fill-paper" x="170" y="110" width="80" height="32"/>
       <rect class="ln-draw fill-paper" x="250" y="110" width="60" height="32"/>
-      <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="310" y="110" width="360" height="32"/>
+      <rect class="ln-strong ln-c fill-soft s-bad" x="310" y="110" width="360" height="32"/>
       <rect class="ln-ghost" x="700" y="110" width="140" height="32"/>
       <rect class="ln-ghost" x="855" y="110" width="135" height="32"/>
       <path class="ln-draw" d="M670 126H698M698 126l-9-4M698 126l-9 4"/>
-      <circle class="ln-draw fill-paper" cx="50" cy="80" r="12"/>
-      <circle class="ln-draw fill-paper" cx="210" cy="80" r="12"/>
-      <circle style="fill:var(--bad);stroke:var(--bad)" cx="490" cy="80" r="12"/>
-      <circle class="ln-ghost" cx="770" cy="80" r="12"/>
-      <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
-        <text x="50" y="80">1</text><text x="210" y="80">2</text><text x="490" y="80" style="fill:var(--paper)">3</text><text x="770" y="80" style="fill:var(--ink-3)">4</text>
-      </g>
+      <g class="lamp"><circle cx="50" cy="80" r="12"/><text x="50" y="80">1</text></g>
+      <g class="lamp"><circle cx="210" cy="80" r="12"/><text x="210" y="80">2</text></g>
+      <g class="lamp" data-state="on"><circle cx="490" cy="80" r="12"/><text x="490" y="80">3</text></g>
+      <g class="lamp" data-state="ghost"><circle cx="770" cy="80" r="12"/><text x="770" y="80">4</text></g>
     </svg>
     <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Hazırlık</span></p>
     <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Aktarım · 10 birim = 1 dk</span></p>
@@ -397,14 +374,14 @@
     <p class="dl" style="--x:90;--y:168;--w:80;text-align:center">kilit</p>
     <p class="dl" style="--x:160;--y:150;--w:100;text-align:center">görüntü</p>
     <p class="dl" style="--x:240;--y:168;--w:80;text-align:center">şifrele</p>
-    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center;color:var(--bad)">bölge kopyası · 36 dk · zaman aşımı</p>
-    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center;color:var(--ink-3)">sağlama</p>
-    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center;color:var(--ink-3)">kayıt</p>
+    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center">bölge kopyası · 36 dk · zaman aşımı</p>
+    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center">sağlama</p>
+    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center">kayıt</p>
   </div>
-  <ol class="plain">
+  <ol class="lamps">
     <li>İş kuyruğa alınamadı: önceki çalışma hâlâ kilidi tutuyor.</li>
     <li>Anlık görüntü alınamadı: disk kotası dolu.</li>
-    <li><b style="color:var(--bad)">Yanıyor ·</b> Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.</li>
+    <li data-state="on"><b>Yanıyor ·</b> Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.</li>
     <li>Sağlama başarısız: kopyanın sağlama toplamı kaynakla uyuşmuyor. Bu çalışmada ölçülemedi.</li>
   </ol>
   <figcaption class="figcap"><b>Şekil 2.</b> Kopya fazı düştüğü için doğrulama bölgesi hiç çalışmadı; fazları ve lambası hayalettir.</figcaption>
@@ -418,22 +395,19 @@
     &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 1000 200</span>" aria-hidden="<span class='s'>true</span>"&gt;
       &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990</span>"/&gt;
       &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M50 92V110M210 92V110M770 92V110</span>"/&gt;
-      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" style="<span class='s'>stroke-width:2</span>" d="<span class='s'>M490 92V110</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M490 92V110</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>110</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>100</span>" y="<span class='s'>110</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>170</span>" y="<span class='s'>110</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>250</span>" y="<span class='s'>110</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
-      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-bad</span>" style="<span class='s'>fill:var(--bad-soft)</span>" x="<span class='s'>310</span>" y="<span class='s'>110</span>" width="<span class='s'>360</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>310</span>" y="<span class='s'>110</span>" width="<span class='s'>360</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>700</span>" y="<span class='s'>110</span>" width="<span class='s'>140</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>855</span>" y="<span class='s'>110</span>" width="<span class='s'>135</span>" height="<span class='s'>32</span>"/&gt;
       &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M670 126H698M698 126l-9-4M698 126l-9 4</span>"/&gt;
-      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>50</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;
-      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>210</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;
-      &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>490</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;
-      &lt;<span class='k'>circle</span> class="<span class='s'>ln-ghost</span>" cx="<span class='s'>770</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;
-      &lt;<span class='k'>g</span> style="<span class='s'>font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central</span>"&gt;
-        &lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>80</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>210</span>" y="<span class='s'>80</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>490</span>" y="<span class='s'>80</span>" style="<span class='s'>fill:var(--paper)</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>770</span>" y="<span class='s'>80</span>" style="<span class='s'>fill:var(--ink-3)</span>"&gt;4&lt;/<span class='k'>text</span>&gt;
-      &lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>50</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>80</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>210</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>210</span>" y="<span class='s'>80</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>490</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>490</span>" y="<span class='s'>80</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>ghost</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>770</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>770</span>" y="<span class='s'>80</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
     &lt;/<span class='k'>svg</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:6;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Hazırlık&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:170;--y:6;--w:500</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Aktarım · 10 birim = 1 dk&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
@@ -442,14 +416,14 @@
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:90;--y:168;--w:80;text-align:center</span>"&gt;kilit&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:160;--y:150;--w:100;text-align:center</span>"&gt;görüntü&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:168;--w:80;text-align:center</span>"&gt;şifrele&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:150;--w:360;text-align:center;color:var(--bad)</span>"&gt;bölge kopyası · 36 dk · zaman aşımı&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:150;--w:140;text-align:center;color:var(--ink-3)</span>"&gt;sağlama&lt;/<span class='k'>p</span>&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:855;--y:150;--w:135;text-align:center;color:var(--ink-3)</span>"&gt;kayıt&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:150;--w:360;text-align:center</span>"&gt;bölge kopyası · 36 dk · zaman aşımı&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:150;--w:140;text-align:center</span>"&gt;sağlama&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:855;--y:150;--w:135;text-align:center</span>"&gt;kayıt&lt;/<span class='k'>p</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>ol</span> class="<span class='s'>plain</span>"&gt;
+  &lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
     &lt;<span class='k'>li</span>&gt;İş kuyruğa alınamadı: önceki çalışma hâlâ kilidi tutuyor.&lt;/<span class='k'>li</span>&gt;
     &lt;<span class='k'>li</span>&gt;Anlık görüntü alınamadı: disk kotası dolu.&lt;/<span class='k'>li</span>&gt;
-    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--bad)</span>"&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.&lt;/<span class='k'>li</span>&gt;
     &lt;<span class='k'>li</span>&gt;Sağlama başarısız: kopyanın sağlama toplamı kaynakla uyuşmuyor. Bu çalışmada ölçülemedi.&lt;/<span class='k'>li</span>&gt;
   &lt;/<span class='k'>ol</span>&gt;
   &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 2.&lt;/<span class='k'>b</span>&gt; Kopya fazı düştüğü için doğrulama bölgesi hiç çalışmadı; fazları ve lambası hayalettir.&lt;/<span class='k'>figcaption</span>&gt;
@@ -466,39 +440,33 @@
 <div class="drawing" style="--aw:440;--ah:90">
   <svg viewBox="0 0 440 90" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
-    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="150" y="54" width="170" height="26"/>
+    <rect class="ln-strong ln-c fill-soft s-bad" x="150" y="54" width="170" height="26"/>
     <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
     <path class="ln-pencil" d="M75 36V54"/>
-    <path class="ln-draw ln-bad" style="stroke-width:2" d="M235 36V54"/>
-    <circle class="ln-draw fill-paper" cx="75" cy="24" r="11"/>
-    <circle style="fill:var(--bad);stroke:var(--bad)" cx="235" cy="24" r="11"/>
-    <g style="font:600 12px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
-      <text x="75" y="24">1</text><text x="235" y="24" style="fill:var(--paper)">2</text>
-    </g>
+    <path class="ln-strong ln-bad" d="M235 36V54"/>
+    <g class="lamp"><circle cx="75" cy="24" r="11"/><text x="75" y="24">1</text></g>
+    <g class="lamp" data-state="on"><circle cx="235" cy="24" r="11"/><text x="235" y="24">2</text></g>
   </svg>
 </div>
-<ol class="plain">
+<ol class="lamps">
   <li>Derleme başlamadı.</li>
-  <li><b style="color:var(--bad)">Yanıyor ·</b> Testler düştü: 3 birim testi.</li>
+  <li data-state="on"><b>Yanıyor ·</b> Testler düştü: 3 birim testi.</li>
 </ol>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:90</span>"&gt;
   &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 90</span>" aria-hidden="<span class='s'>true</span>"&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>54</span>" width="<span class='s'>130</span>" height="<span class='s'>26</span>"/&gt;
-    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-bad</span>" style="<span class='s'>fill:var(--bad-soft)</span>" x="<span class='s'>150</span>" y="<span class='s'>54</span>" width="<span class='s'>170</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>150</span>" y="<span class='s'>54</span>" width="<span class='s'>170</span>" height="<span class='s'>26</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>54</span>" width="<span class='s'>100</span>" height="<span class='s'>26</span>"/&gt;
     &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M75 36V54</span>"/&gt;
-    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" style="<span class='s'>stroke-width:2</span>" d="<span class='s'>M235 36V54</span>"/&gt;
-    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad);stroke:var(--bad)</span>" cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;
-    &lt;<span class='k'>g</span> style="<span class='s'>font:600 12px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central</span>"&gt;
-      &lt;<span class='k'>text</span> x="<span class='s'>75</span>" y="<span class='s'>24</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;<span class='k'>text</span> x="<span class='s'>235</span>" y="<span class='s'>24</span>" style="<span class='s'>fill:var(--paper)</span>"&gt;2&lt;/<span class='k'>text</span>&gt;
-    &lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M235 36V54</span>"/&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>75</span>" y="<span class='s'>24</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>235</span>" y="<span class='s'>24</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
   &lt;/<span class='k'>svg</span>&gt;
 &lt;/<span class='k'>div</span>&gt;
-&lt;<span class='k'>ol</span> class="<span class='s'>plain</span>"&gt;
+&lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
   &lt;<span class='k'>li</span>&gt;Derleme başlamadı.&lt;/<span class='k'>li</span>&gt;
-  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span> style="<span class='s'>color:var(--bad)</span>"&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Testler düştü: 3 birim testi.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Yanıyor ·&lt;/<span class='k'>b</span>&gt; Testler düştü: 3 birim testi.&lt;/<span class='k'>li</span>&gt;
 &lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
 </div>
 <div class="demo">
@@ -509,9 +477,9 @@
     <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
     <rect class="ln-draw fill-paper" x="150" y="54" width="170" height="26"/>
     <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
-    <circle style="fill:var(--ok)" cx="75" cy="24" r="8"/>
-    <circle style="fill:var(--bad)" cx="235" cy="24" r="8"/>
-    <circle style="fill:var(--warn)" cx="380" cy="24" r="8"/>
+    <g class="lamp s-ok" data-state="on"><circle cx="75" cy="24" r="8"/></g>
+    <g class="lamp s-bad" data-state="on"><circle cx="235" cy="24" r="8"/></g>
+    <g class="lamp s-warn" data-state="on"><circle cx="380" cy="24" r="8"/></g>
   </svg>
 </div>
   </div>
@@ -520,9 +488,9 @@
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>54</span>" width="<span class='s'>130</span>" height="<span class='s'>26</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>150</span>" y="<span class='s'>54</span>" width="<span class='s'>170</span>" height="<span class='s'>26</span>"/&gt;
     &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>54</span>" width="<span class='s'>100</span>" height="<span class='s'>26</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--ok)</span>" cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--bad)</span>" cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;
-    &lt;<span class='k'>circle</span> style="<span class='s'>fill:var(--warn)</span>" cx="<span class='s'>380</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-ok</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-bad</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>380</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
   &lt;/<span class='k'>svg</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>

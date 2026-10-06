@@ -62,7 +62,7 @@
     <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-block</code> + işaret</p>
     <p class="dl" style="--x:480;--y:130;--w:400">Denenen ama reddedilen yol.</p>
     <p class="dl" style="--x:250;--y:170;--w:220"><code>.ln-draw .ln-ok</code></p>
-    <p class="dl" style="--x:480;--y:170;--w:400">Sağlıklı yol; yanında bir <span class="state ok">Hazır</span> etiketiyle.</p>
+    <p class="dl" style="--x:480;--y:170;--w:400">Sağlıklı yol; yanında bir <span class="state s-ok">Hazır</span> etiketiyle.</p>
     <p class="dl" style="--x:250;--y:210;--w:220"><code>.ln-draw .ln-warn</code></p>
     <p class="dl" style="--x:480;--y:210;--w:400">Çalışıyor ama dikkat istiyor.</p>
     <p class="dl" style="--x:250;--y:250;--w:220"><code>.ln-strong .ln-bad</code></p>
@@ -121,11 +121,11 @@
       <text class="dim-t" x="400" y="38" text-anchor="middle">ağırlık %70</text>
       <text class="dim-t" x="400" y="108" text-anchor="middle">ağırlık %30</text>
     </svg>
-    <p class="dl" style="--x:34;--y:122;--w:150"><span class="stamp-k">Yük dengeleyici</span><br>lb-internal</p>
-    <p class="dl" style="--x:534;--y:34;--w:180">app-a <span class="state ok">Sağlıklı</span></p>
-    <p class="dl" style="--x:534;--y:104;--w:180">app-b <span class="state warn">Yavaş</span></p>
-    <p class="dl" style="--x:534;--y:174;--w:180">app-c <span class="state bad">Düştü</span></p>
-    <p class="dl" style="--x:534;--y:244;--w:180;color:var(--ink-3)">app-d · planlı</p>
+    <p class="dl" style="--x:34;--y:122;--w:150"><span class="stamp-k">Yük dengeleyici</span>lb-internal</p>
+    <p class="dl" style="--x:534;--y:34;--w:180">app-a <span class="state s-ok">Sağlıklı</span></p>
+    <p class="dl" style="--x:534;--y:104;--w:180">app-b <span class="state s-warn">Yavaş</span></p>
+    <p class="dl" style="--x:534;--y:174;--w:180">app-c <span class="state s-bad">Düştü</span></p>
+    <p class="dl" style="--x:534;--y:244;--w:180">app-d · planlı</p>
     <p class="dl" style="--x:782;--y:235;--w:104">şablon<br>asg-web</p>
   </div>
   <figcaption class="figcap"><b>Şekil 1.</b> Kalın yol trafiğin çoğunu taşır; turuncu yol yavaş ama açık. app-c sağlık kontrolünden kaldığı için yol engelli. app-d şablondan (kesikli) üretilecek, henüz yok (hayalet).</figcaption>
@@ -150,11 +150,11 @@
       <path class="ln-strong" d="M275 104V162H754M754 162l-9-5M754 162l-9 5"/>
       <rect class="fill-draw" x="28" y="48" width="10" height="10"/>
     </svg>
-    <p class="dl" style="--x:44;--y:48;--w:100"><span class="stamp-k">Tam</span><br>Pzt 02:00</p>
-    <p class="dl" style="--x:222;--y:48;--w:112"><span class="stamp-k">Artımlı</span><br>Sal 02:00</p>
-    <p class="dl" style="--x:412;--y:48;--w:112"><span class="stamp-k">Artımlı</span><br><span class="state bad">Bozuk</span></p>
-    <p class="dl" style="--x:602;--y:48;--w:112;color:var(--ink-3)"><span class="stamp-k">Artımlı</span><br>erişilemez</p>
-    <p class="dl" style="--x:772;--y:140;--w:112"><span class="stamp-k">Hedef</span><br>db-restore</p>
+    <p class="dl" style="--x:44;--y:48;--w:100"><span class="stamp-k">Tam</span>Pzt 02:00</p>
+    <p class="dl" style="--x:222;--y:48;--w:112"><span class="stamp-k">Artımlı</span>Sal 02:00</p>
+    <p class="dl" style="--x:412;--y:48;--w:112"><span class="stamp-k">Artımlı</span><span class="state s-bad">Bozuk</span></p>
+    <p class="dl" style="--x:602;--y:48;--w:112"><span class="stamp-k">Artımlı</span>erişilemez</p>
+    <p class="dl" style="--x:772;--y:140;--w:112"><span class="stamp-k">Hedef</span>db-restore</p>
     <p class="dl" style="--x:300;--y:170;--w:420">geri yükleme noktası · Sal 02:00</p>
   </div>
   <figcaption class="figcap"><b>Şekil 2.</b> Çarşamba yedeği bozuk olduğu için zincir orada kırılır; perşembe yedeği var ama ona ulaşılamaz. Kalın yol, seçilen geri yükleme noktasıdır.</figcaption>
@@ -237,7 +237,7 @@
     <path class="ln-draw ln-bad" d="M306 39V71M314 45l14 20M328 45l-14 20"/>
   </svg>
   <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → ödeme API</p>
-  <p class="dl" style="--x:10;--y:70;--w:290"><span class="state bad">Reddedildi</span> izin yok</p>
+  <p class="dl" style="--x:10;--y:70;--w:290"><span class="state s-bad">Reddedildi</span> izin yok</p>
 </div>
 </demo>
 <demo label="Yapma · yalnız renk">

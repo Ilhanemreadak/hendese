@@ -65,9 +65,10 @@
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Yedi tür</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Anatomi ve etiket</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Uzun gövde</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
-    <a class="nav-link" href="#p6"><span class="num">06</span><span>Erişilebilirlik</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p7"><span class="num">07</span><span>Erişilebilirlik</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -83,7 +84,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Callout<em>Akışı bölmeden düşülen yan not.</em></h1>
     <p class="intro">Callout, okuma metninin yanına sol çizgili kısa bir not ekler. Yedi tür vardır; renk ve ikon türe bağlıdır, etiket metni serbesttir. Gövde paragraf, liste ve kod taşıyabilir.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.co</code> · <code>.co-info</code> · <code>.co-important</code> · <code>.co-tip</code> · <code>.co-warn</code> · <code>.co-sec</code> · <code>.co-success</code> · <code>.co-trouble</code></dd><dt>Parçalar</dt><dd><code>.co-ic</code> (ikon) · <code>.co-label</code> (etiket) · <code>.co-body</code> (gövde)</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.co</code> · <code>.co-info</code> · <code>.co-important</code> · <code>.co-tip</code> · <code>.co-warn</code> · <code>.co-sec</code> · <code>.co-success</code> · <code>.co-trouble</code></dd><dt>Durum</dt><dd>Tür bir roldür; renk gerekirse <code>.s-*</code> ile ezilir</dd><dt>Parçalar</dt><dd><code>.co-ic</code> (ikon) · <code>.co-label</code> (etiket) · <code>.co-body</code> (gövde)</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -188,8 +189,39 @@
 <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Not</span><div class="co-body"><p>Gövde yalnızca paragrafların kenar boşluğunu düzenler. Callout bir liste ya da kod bloğuyla bitiyorsa alttaki boşluk biraz büyük kalır; bu yüzden uzun notları bir paragrafla kapatmak iyi bir alışkanlıktır.</p></div></div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Callout kendi başına değil, bir adımın ya da paragrafın hemen altında durur; ilgili olduğu yere yakın olmalıdır.</p></header>
+<article class="chapter" id="p4" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durumlar</h2><p class="lead">Callout türü bir roldür, durum değil: co-warn “dikkat isteyen adım” demektir, “şu an bir sorun var” değil. Rengi .s-* ile ezmek mümkündür ama çoğu zaman gerekmez.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · sabit rol, değişen durum</span>
+  <div class="demo-view">
+<div class="co co-info s-ok"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Son dağıtım · başarılı</span><div class="co-body"><p><code>web-api:1.9.0</code> 10:42'de prod'a çıktı; 3 kopyanın 3'ü hazır.</p></div></div>
+<div class="co co-info s-bad"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Son dağıtım · başarısız</span><div class="co-body"><p><code>web-api:1.9.1</code> sağlık denetimini geçemedi; önceki sürüm çalışmaya devam ediyor.</p></div></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>co co-info s-ok</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Son dağıtım · başarılı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;web-api:1.9.0&lt;/<span class='k'>code</span>&gt; 10:42'de prod'a çıktı; 3 kopyanın 3'ü hazır.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>co co-info s-bad</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Son dağıtım · başarısız&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;web-api:1.9.1&lt;/<span class='k'>code</span>&gt; sağlık denetimini geçemedi; önceki sürüm çalışmaya devam ediyor.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Not her zaman aynı türdedir (son dağıtımın özeti), yalnızca sonucu değişir; rengi o sonuçtan gelen <code>.s-ok</code> ya da <code>.s-bad</code> verir, sonucu etiket de yazar. Sonuç canlı değişiyorsa callout yerine <code>.readout</code> ve <code>aria-live</code> daha uygundur.</p></div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · anlamı rol taşır</span>
+  <div class="demo-view">
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Bitti sayılır</span><div class="co-body"><p>Beş çözümleyicinin beşi yeni adresi döndürüyor.</p></div></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>co co-success</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bitti sayılır&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Beş çözümleyicinin beşi yeni adresi döndürüyor.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · rol ile renk çelişir</span>
+  <div class="demo-view">
+<div class="co co-warn s-ok"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Beş çözümleyicinin beşi yeni adresi döndürüyor.</p></div></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>co co-warn s-ok</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Dikkat&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Beş çözümleyicinin beşi yeni adresi döndürüyor.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="prose"><p>Uyarı ikonu ve “Dikkat” etiketi yeşil çizilince okur hangisine inanacağını bilemez. Kural: rol doğruysa <code>.s-*</code> eklemeyin; yalnız rol sabit kalıp sonuç değişiyorsa ekleyin. Callout'ın devre dışı ya da bekliyor hali yoktur; bekleyen bir bölgeye <code>aria-busy="true"</code> verilir.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Bağlam içinde</h2><p class="lead">Callout kendi başına değil, bir adımın ya da paragrafın hemen altında durur; ilgili olduğu yere yakın olmalıdır.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · adım içinde</span>
   <div class="demo-view">
@@ -235,20 +267,20 @@
 <div class="demo">
   <span class="demo-label">Örnek · koyu sahne içinde</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:4px 18px">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:4px 18px">
   <div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Erişim süresi</span><div class="co-body"><p>Geçici yönetici yetkisi 2 saat sonra kendiliğinden geri alınır.</p></div></div>
   <div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Onaylandı</span><div class="co-body"><p>İstek iki onaylayıcıdan geçti.</p></div></div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-sm);padding:4px 18px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:4px 18px</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>co co-sec</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Erişim süresi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Geçici yönetici yetkisi 2 saat sonra kendiliğinden geri alınır.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>co co-success</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Onaylandı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;İstek iki onaylayıcıdan geçti.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="p5" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Callout dikkat çeker; her paragrafa eklenirse hiçbiri dikkat çekmez. Bir bölümde bir ya da iki tane yeter.</p></header>
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Callout dikkat çeker; her paragrafa eklenirse hiçbiri dikkat çekmez. Bir bölümde bir ya da iki tane yeter.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · tek not, doğru tür</span>
@@ -289,8 +321,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p6" data-section data-title="Erişilebilirlik">
-  <header class="ch-head"><p class="ch-num">06</p><h2>Erişilebilirlik</h2><p class="lead">Tür bilgisi renkte ve ikonda saklıdır; ikisi de ekran okuyucuya ulaşmaz. Taşıyıcı olan etikettir.</p></header>
+<article class="chapter" id="p7" data-section data-title="Erişilebilirlik">
+  <header class="ch-head"><p class="ch-num">07</p><h2>Erişilebilirlik</h2><p class="lead">Tür bilgisi renkte ve ikonda saklıdır; ikisi de ekran okuyucuya ulaşmaz. Taşıyıcı olan etikettir.</p></header>
 <div class="prose">
   <ul>
     <li>Etiket görünür metindir ve okunur; <b>Dikkat</b>, <b>Güvenlik</b> gibi türü belli eden bir kelime seçin ya da konuyu yazın (<b>Geri alma yok</b>).</li>

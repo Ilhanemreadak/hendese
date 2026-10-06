@@ -108,11 +108,11 @@
 <article class="chapter" id="g1" data-section data-title="Temel">
   <header class="ch-head"><p class="ch-num">01</p><h2>Temel</h2></header>
   <ul class="parts">
-    <li><a href="renkler.html"><b>Renkler</b><span>Yüzey, mürekkep, vurgu, durum, servis ve kod token'ları; <code>light-dark()</code>, tema zorlama, ezme ve kontrast.</span></a></li>
-    <li><a href="tipografi.html"><b>Tipografi</b><span>Üç aile, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.</span></a></li>
-    <li><a href="olcu-ve-hareket.html"><b>Ölçü ve hareket</b><span><code>--r-*</code>, kabuk ölçüleri, <code>--dur-1..5</code>, üç eğri ve canlı örnekler; reduced-motion davranışı.</span></a></li>
+    <li><a href="renkler.html"><b>Renkler</b><span>Yüzey, mürekkep, vurgu, durum, servis ve kod token'ları; <code>light-dark()</code>, tek renkle tema, ezme, yüksek kontrast ve zorunlu renk.</span></a></li>
+    <li><a href="tipografi.html"><b>Tipografi</b><span>Üç aile, <code>--fs-*</code> yazı ölçeği, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.</span></a></li>
+    <li><a href="olcu-ve-hareket.html"><b>Ölçü ve hareket</b><span><code>--sp-*</code> boşluk cetveli, <code>--r-*</code>, kabuk ölçüleri, <code>--z-*</code>, tek hareket takımı (<code>--dur-1..5</code>, üç eğri) ve kalkan takma adlar; reduced-motion davranışı.</span></a></li>
     <li><a href="ikonlar.html"><b>İkonlar</b><span>Sprite, boyutlar, bileşen içi kullanım, yeni ikon ekleme ve <code>aria</code> kuralları.</span></a></li>
-    <li><a href="iskelet.html"><b>Sayfa iskeleti</b><span>Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code> ve tam iskelet.</span></a></li>
+    <li><a href="iskelet.html"><b>Sayfa iskeleti</b><span>Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code>, <code>col</code> kabı ve tam iskelet.</span></a></li>
   </ul>
 </article>
 
@@ -120,7 +120,7 @@
   <header class="ch-head"><p class="ch-num">02</p><h2>Bileşenler</h2></header>
   <ul class="parts">
     <li><a href="dugmeler.html"><b>Düğmeler</b><span><code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; durumlar ve araç çubukları.</span></a></li>
-    <li><a href="rozetler.html"><b>Rozetler</b><span><code>.pill</code>, <code>.state</code>, <code>.chip</code>; servis renkleri, tablo hücresi, başlık ve liste içinde.</span></a></li>
+    <li><a href="rozetler.html"><b>Rozetler</b><span><code>.pill</code>, <code>.state</code>, <code>.chip</code>; <code>.s-*</code> durum ve servis renkleri, tablo hücresi, başlık ve liste içinde.</span></a></li>
     <li><a href="callout.html"><b>Callout</b><span>Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.</span></a></li>
     <li><a href="kod-blogu.html"><b>Kod bloğu</b><span><code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.</span></a></li>
     <li><a href="diff-seridi.html"><b>Diff şeridi</b><span><code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; ayar değişikliği, bağımlılık yükseltmesi, veritabanı göçü.</span></a></li>
@@ -129,7 +129,7 @@
     <li><a href="adimlar.html"><b>Adımlar</b><span><code>ol.steps</code> ve <code>.check</code>; işe başlama, olay müdahalesi ve sürüm prosedürü.</span></a></li>
     <li><a href="kontrol-listesi.html"><b>Kontrol listesi</b><span><code>.runbook[data-store]</code>, <code>hendese:runbook</code> olayı; sürüm, olay ve işe başlama listeleri.</span></a></li>
     <li><a href="secim-gruplari.html"><b>Seçim grupları</b><span><code>.choice</code> çipleri, <code>.choice.is-seg</code> segmentleri; klavye ve canlı bir yapılandırıcı.</span></a></li>
-    <li><a href="gosterge.html"><b>Gösterge</b><span><code>.readout</code>, <code>.ok</code>, <code>.bad</code>; maliyet, düzenli ifade ve kapasite hesapları.</span></a></li>
+    <li><a href="gosterge.html"><b>Gösterge</b><span><code>.readout</code> ve <code>.s-*</code> durumları; maliyet, düzenli ifade ve kapasite hesapları.</span></a></li>
     <li><a href="degisken-kaydi.html"><b>Değişken kaydı</b><span><code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; adım adım ilerleyen ortam değişkenleri.</span></a></li>
     <li><a href="damga.html"><b>Damga</b><span><code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; onay, sahiplik ve sürüm damgaları.</span></a></li>
     <li><a href="saha-defteri.html"><b>Saha defteri</b><span><code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.</span></a></li>
@@ -148,7 +148,7 @@
     <li><a href="olcu-aletleri.html"><b>Ölçü aletleri</b><span>Regex kumpası, kadran ve doğrusal ölçer; istenen ile gerçek arasındaki fark.</span></a></li>
     <li><a href="hat-ve-makas.html"><b>Hat ve makas</b><span>Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.</span></a></li>
     <li><a href="ariza-panosu.html"><b>Arıza panosu</b><span>Faz şeridi, bölge parantezleri, numaralı lambalar; istek yolu, servis sağlık matrisi, gece işi.</span></a></li>
-    <li><a href="koyu-sahne.html"><b>Koyu sahne</b><span><code>.scene-dark</code>: kapsayıcı içinde token dönüşümü; çizimler, pafta ve bileşenler.</span></a></li>
+    <li><a href="koyu-sahne.html"><b>Koyu sahne</b><span><code>.scene-dark</code> ve <code>.scene-light</code>: kapsayıcı içinde token dönüşümü ve otomatik zemin; çizimler, pafta ve bileşenler.</span></a></li>
   </ul>
 </article>
 
@@ -160,7 +160,7 @@
     <li><a href="fig-sahnesi.html"><b>Fig sahnesi</b><span><code>.fig-sheet</code> + <code>Hendese.figScene()</code>: etkileşimli çizim, sonuç satırı, zamanlı vuruş, <code>still</code> fonksiyonu.</span></a></li>
     <li><a href="hud.html"><b>HUD</b><span><code>#hud</code> + <code>.hud-slot</code>: sahnelerin paylaştığı sabit gösterge, serbest alanlar, ilerleme çubuğu.</span></a></li>
     <li><a href="taslak-ve-belirme.html"><b>Taslak ve belirme</b><span><code>.sketch-pending</code> → <code>.sketch</code> kalem taslağı ve saf CSS <code>[data-reveal]</code> / <code>[data-reveal="draw"]</code>.</span></a></li>
-    <li><a href="dar-varyant.html"><b>Dar varyant</b><span>Kap sorgusuyla ikinci çizim: <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>, <code>sc.aw</code> ile koordinat seçimi.</span></a></li>
+    <li><a href="dar-varyant.html"><b>Dar varyant</b><span>Paketteki dar varyant: <code>fig</code> kabı, <code>--naw</code> / <code>--nah</code>, <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>; <code>api.aw</code> ile koordinat seçimi.</span></a></li>
   </ul>
 </article>
 

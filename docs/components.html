@@ -90,7 +90,7 @@ html:not(.js) .choice{display:none}
 
 <article class="chapter" id="c1" data-section data-title="Düğmeler ve rozetler">
   <header class="ch-head"><p class="ch-num">01</p><h2>Düğmeler ve rozetler</h2><p class="lead">Dört düğme ve üç küçük etiket. Düğmeler gerçek <code>&lt;button&gt;</code> öğesidir; rozetler yalnızca bilgi taşır, tıklanmaz.</p></header>
-  <div class="prose"><p><code>.btn</code> metinli eylem, <code>.icon-btn</code> yalnızca ikonlu eylem içindir; ikonlu düğmede <code>aria-label</code> zorunludur. <code>.toggle-btn</code> aç/kapa durumunu <code>aria-pressed</code> ile taşır: basılıyken kırmızı (engelleyici bir anahtar), <code>.is-accent</code> ile vurgu renginde.</p></div>
+  <div class="prose"><p><code>.btn</code> metinli eylem, <code>.icon-btn</code> yalnızca ikonlu eylem içindir; ikonlu düğmede <code>aria-label</code> zorunludur. <code>.toggle-btn</code> aç/kapa durumunu <code>aria-pressed</code> ile taşır: basılıyken kırmızı (engelleyici bir anahtar), <code>.is-accent</code> ile vurgu renginde. Devre dışı düğme kesikli kenarla çizilir: <code>disabled</code> odaktan çıkarır, <code>aria-disabled="true"</code> odakta tutar (tıklamayı betik yok sayar).</p></div>
   <div class="demo">
     <span class="demo-label">Örnek · düğmeler</span>
     <div class="demo-view">
@@ -98,12 +98,14 @@ html:not(.js) .choice{display:none}
   <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Kopyala</button>
   <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
   <button class="icon-btn" type="button" aria-label="Menüyü aç"><svg><use href="#i-menu"/></svg></button>
+  <button class="btn" type="button" disabled>Yayınla</button>
 </div>
     </div>
     <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pillrow"&gt;
   &lt;button class="btn" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;Kopyala&lt;/button&gt;
   &lt;button class="btn" type="button"&gt;&lt;svg&gt;&lt;use href="#i-reset"/&gt;&lt;/svg&gt;Sıfırla&lt;/button&gt;
   &lt;button class="icon-btn" type="button" aria-label="Menüyü aç"&gt;&lt;svg&gt;&lt;use href="#i-menu"/&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class="btn" type="button" disabled&gt;Yayınla&lt;/button&gt;
 &lt;/div&gt;</code></pre></figure>
   </div>
   <div class="demo">
@@ -119,43 +121,45 @@ html:not(.js) .choice{display:none}
   &lt;button class="toggle-btn is-accent" type="button" aria-pressed="true"&gt;Ayrıntılı günlük&lt;/button&gt;
 &lt;/div&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p><code>.pill</code> rengini <code>--c</code>, zeminini <code>--c-soft</code> değişkeninden alır. <code>.pill-ok</code> ve <code>.pill-neutral</code> ikisini de verir; servis sınıfları (<code>.s-gitlab</code>, <code>.s-aws</code>, <code>.s-argo</code>, <code>.s-accent</code>, <code>.s-sec</code>) yalnızca <code>--c</code> verir, zemini siz eklersiniz.</p></div>
+  <div class="prose"><p><code>.pill</code> rengini <code>--c</code>, zeminini <code>--c-soft</code> değişkeninden alır; ikisini de <code>.s-*</code> sınıfları verir: <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code>, <code>.s-neutral</code>, <code>.s-accent</code> ve servis renkleri (<code>.s-gitlab</code>, <code>.s-aws</code>, <code>.s-k8s</code>, <code>.s-argo</code>; zemin kendiliğinden %10). Sınıfsız rozet nötrdür ve kabının rengini almaz. Eski adlar (<code>.pill-ok</code>, <code>.pill-neutral</code>, <code>.state.ok</code>…) 1.0'a kadar çalışır.</p></div>
   <div class="demo">
     <span class="demo-label">Örnek · rozetler</span>
     <div class="demo-view">
 <div class="pillrow">
-  <span class="pill pill-ok">çalışıyor</span>
-  <span class="pill pill-neutral">taslak</span>
-  <span class="pill s-gitlab" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">kaynak</span>
-  <span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">imaj kaydı</span>
-  <span class="pill s-argo" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eşitleme</span>
-  <span class="pill s-sec" style="--c-soft:var(--sec-soft)">gizli</span>
+  <span class="pill s-ok">çalışıyor</span>
+  <span class="pill s-warn">yavaş</span>
+  <span class="pill s-neutral">taslak</span>
+  <span class="pill s-gitlab">kaynak</span>
+  <span class="pill s-aws">imaj kaydı</span>
+  <span class="pill s-argo">eşitleme</span>
+  <span class="pill s-sec">gizli</span>
 </div>
     </div>
     <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pillrow"&gt;
-  &lt;span class="pill pill-ok"&gt;çalışıyor&lt;/span&gt;
-  &lt;span class="pill pill-neutral"&gt;taslak&lt;/span&gt;
-  &lt;span class="pill s-gitlab" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)"&gt;kaynak&lt;/span&gt;
-  &lt;span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)"&gt;imaj kaydı&lt;/span&gt;
-  &lt;span class="pill s-argo" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)"&gt;eşitleme&lt;/span&gt;
-  &lt;span class="pill s-sec" style="--c-soft:var(--sec-soft)"&gt;gizli&lt;/span&gt;
+  &lt;span class="pill s-ok"&gt;çalışıyor&lt;/span&gt;
+  &lt;span class="pill s-warn"&gt;yavaş&lt;/span&gt;
+  &lt;span class="pill s-neutral"&gt;taslak&lt;/span&gt;
+  &lt;span class="pill s-gitlab"&gt;kaynak&lt;/span&gt;
+  &lt;span class="pill s-aws"&gt;imaj kaydı&lt;/span&gt;
+  &lt;span class="pill s-argo"&gt;eşitleme&lt;/span&gt;
+  &lt;span class="pill s-sec"&gt;gizli&lt;/span&gt;
 &lt;/div&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p><code>.state</code> çizimlerdeki durum etiketidir (SUCCEEDED, PENDING…); boyutunu çizim birimi <code>--u</code>'dan hesaplar. Çizim dışında kullanırken kapsayıcıya <code>--u:1px</code> verin. <code>.chip</code> küçük, büyük harfli mono etikettir: şekil başlığı, sütun adı, sayaç.</p></div>
+  <div class="prose"><p><code>.state</code> çizimlerdeki durum etiketidir (SUCCEEDED, PENDING…); boyutunu çizim birimi <code>--u</code>'dan hesaplar; çizim dışında birim 1px'tir. Rengi aynı <code>.s-*</code> sınıflarından alır. <code>.chip</code> küçük, büyük harfli mono etikettir: şekil başlığı, sütun adı, sayaç.</p></div>
   <div class="demo">
     <span class="demo-label">Örnek · durum etiketi ve çip</span>
     <div class="demo-view">
-<p class="pillrow" style="--u:1px">
-  <span class="state ok">başarılı</span>
-  <span class="state warn">bekliyor</span>
-  <span class="state bad">reddedildi</span>
+<p class="pillrow">
+  <span class="state s-ok">başarılı</span>
+  <span class="state s-warn">bekliyor</span>
+  <span class="state s-bad">reddedildi</span>
 </p>
 <p class="chip">Şekil 1 · dağıtım izi</p>
     </div>
-    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;p class="pillrow" style="--u:1px"&gt;
-  &lt;span class="state ok"&gt;başarılı&lt;/span&gt;
-  &lt;span class="state warn"&gt;bekliyor&lt;/span&gt;
-  &lt;span class="state bad"&gt;reddedildi&lt;/span&gt;
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;p class="pillrow"&gt;
+  &lt;span class="state s-ok"&gt;başarılı&lt;/span&gt;
+  &lt;span class="state s-warn"&gt;bekliyor&lt;/span&gt;
+  &lt;span class="state s-bad"&gt;reddedildi&lt;/span&gt;
 &lt;/p&gt;
 &lt;p class="chip"&gt;Şekil 1 · dağıtım izi&lt;/p&gt;</code></pre></figure>
   </div>
@@ -336,20 +340,20 @@ html:not(.js) .choice{display:none}
 <div class="tbl"><table>
   <thead><tr><th>Servis</th><th>Ortam</th><th>Etiket</th><th>Durum</th></tr></thead>
   <tbody>
-    <tr><td>web-api</td><td>prod</td><td><code>prod-3f9c2a1b</code></td><td><span class="pill pill-ok">çalışıyor</span></td></tr>
-    <tr><td>ornek-servis</td><td>test</td><td><code>test-81d07e4c</code></td><td><span class="pill pill-neutral">bekliyor</span></td></tr>
+    <tr><td>web-api</td><td>prod</td><td><code>prod-3f9c2a1b</code></td><td><span class="pill s-ok">çalışıyor</span></td></tr>
+    <tr><td>ornek-servis</td><td>test</td><td><code>test-81d07e4c</code></td><td><span class="pill s-neutral">bekliyor</span></td></tr>
   </tbody>
 </table></div>
     </div>
     <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="tbl"&gt;&lt;table&gt;
   &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Servis&lt;/th&gt;&lt;th&gt;Ortam&lt;/th&gt;&lt;th&gt;Etiket&lt;/th&gt;&lt;th&gt;Durum&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
   &lt;tbody&gt;
-    &lt;tr&gt;&lt;td&gt;web-api&lt;/td&gt;&lt;td&gt;prod&lt;/td&gt;&lt;td&gt;&lt;code&gt;prod-3f9c2a1b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill pill-ok"&gt;çalışıyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td&gt;ornek-servis&lt;/td&gt;&lt;td&gt;test&lt;/td&gt;&lt;td&gt;&lt;code&gt;test-81d07e4c&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill pill-neutral"&gt;bekliyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;web-api&lt;/td&gt;&lt;td&gt;prod&lt;/td&gt;&lt;td&gt;&lt;code&gt;prod-3f9c2a1b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill s-ok"&gt;çalışıyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;ornek-servis&lt;/td&gt;&lt;td&gt;test&lt;/td&gt;&lt;td&gt;&lt;code&gt;test-81d07e4c&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill s-neutral"&gt;bekliyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p><code>.tbl table</code> en az 620px genişliktedir; <code>.tbl.wide</code> bunu 820px'e çıkarır. Kap daha darsa tablo yatay kayar.</p></div>
+  <div class="prose"><p><code>.tbl table</code> en az 620px genişliktedir; <code>.tbl.wide</code> bunu 820px'e çıkarır. Kap daha darsa tablo yatay kayar. Sayı sütununa <code>th.num</code> / <code>td.num</code> verin: sağa yaslı, eşit genişlikli rakam.</p></div>
   <div class="demo">
     <span class="demo-label">Örnek · <span lang="en">.tbl.wide</span></span>
     <div class="demo-view">
@@ -371,7 +375,7 @@ html:not(.js) .choice{display:none}
   &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;</code></pre></figure>
   </div>
-  <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Dar ekran</span><div class="co-body"><p>720px'in altında satırlar karta dönüşür: başlık satırı gizlenir, her hücrenin solunda kendi sütun adı yazılır. Bu adları <code>Hendese.init()</code> her <code>td</code>'ye <code>data-th</code> olarak yazar; JS olmadan tablo yatay kaydırmaya devam eder.</p></div></div>
+  <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Dar ekran</span><div class="co-body"><p>İçerik sütunu 720px'ten darsa satırlar karta dönüşür (kap sorgusu): başlık satırı gizlenir, her hücrenin solunda kendi sütun adı yazılır. Bu adları <code>Hendese.init()</code> her <code>td</code>'ye <code>data-th</code> olarak yazar; JS olmadan tablo yatay kaydırmaya devam eder.</p></div></div>
 </article>
 
 <article class="chapter" id="c5" data-section data-title="Tanım listesi ve şekil yazısı">
@@ -404,21 +408,21 @@ html:not(.js) .choice{display:none}
 &lt;/div&gt;
 &lt;p class="figcap"&gt;&lt;b&gt;Şekil 4.&lt;/b&gt; Etiket kalıbı derleme ile eşitleme arasındaki tek sözleşmedir.&lt;/p&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p><code>.prose</code> satır uzunluğunu 72 karakterde tutar ve paragrafları <code>--ink-2</code> ile yazar. <code>.mono</code> satır içi mono yazı içindir; <code>code</code>'dan farklı olarak zemin çizmez. <code>dl.kv</code> 860px'in altında tek sütuna iner.</p></div>
+  <div class="prose"><p><code>.prose</code> satır uzunluğunu 72 karakterde tutar ve paragrafları <code>--ink-2</code> ile yazar. <code>.mono</code> satır içi mono yazı içindir; <code>code</code>'dan farklı olarak zemin çizmez. <code>dl.kv</code> içerik sütunu 640px'ten darsa tek sütuna iner.</p></div>
 </article>
 
 <article class="chapter" id="c6" data-section data-title="Adımlar">
-  <header class="ch-head"><p class="ch-num">06</p><h2>Adımlar</h2><p class="lead">Sıralı iş için numaralı kartlar. Numara CSS sayacıyla basılır; her adım bir başlık, kısa açıklama ve isteğe bağlı bir kontrol satırı taşır.</p></header>
+  <header class="ch-head"><p class="ch-num">06</p><h2>Adımlar</h2><p class="lead">Sıralı iş için numaralı kartlar. Numara liste sayacıyla basılır (<code>start</code> çalışır); her adım bir başlık, kısa açıklama ve isteğe bağlı bir kontrol satırı taşır.</p></header>
   <div class="demo">
     <span class="demo-label">Örnek · <span lang="en">ol.steps</span></span>
     <div class="demo-view">
 <ol class="steps">
-  <li>
-    <h3>İmaj deposunu oluşturun</h3>
+  <li data-state="done">
+    <h3>İmaj deposunu oluşturun <span class="visually-hidden">(tamamlandı)</span></h3>
     <p>Depo adı servis adıyla aynı olsun: <code>web-api</code>.</p>
     <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: depo listede görünüyor.</span></p>
   </li>
-  <li>
+  <li aria-current="step">
     <h3>Derlemeyi bağlayın</h3>
     <p>Kaynak deposundaki her itme yeni bir etiket üretir.</p>
     <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: ilk derleme yeşil bitti.</span></p>
@@ -426,18 +430,19 @@ html:not(.js) .choice{display:none}
 </ol>
     </div>
     <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;ol class="steps"&gt;
-  &lt;li&gt;
-    &lt;h3&gt;İmaj deposunu oluşturun&lt;/h3&gt;
+  &lt;li data-state="done"&gt;
+    &lt;h3&gt;İmaj deposunu oluşturun &lt;span class="visually-hidden"&gt;(tamamlandı)&lt;/span&gt;&lt;/h3&gt;
     &lt;p&gt;Depo adı servis adıyla aynı olsun: &lt;code&gt;web-api&lt;/code&gt;.&lt;/p&gt;
     &lt;p class="check"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;&lt;span&gt;Kontrol: depo listede görünüyor.&lt;/span&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
+  &lt;li aria-current="step"&gt;
     &lt;h3&gt;Derlemeyi bağlayın&lt;/h3&gt;
     &lt;p&gt;Kaynak deposundaki her itme yeni bir etiket üretir.&lt;/p&gt;
     &lt;p class="check"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;&lt;span&gt;Kontrol: ilk derleme yeşil bitti.&lt;/span&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;</code></pre></figure>
   </div>
+  <div class="prose"><p>Şimdiki adım <code>aria-current="step"</code> ile 2px çizim kenarı alır. <code>data-state="done"</code> numarayı yeşile, <code>data-state="blocked"</code> kırmızıya ve kenarı kesikliye çevirir; durum ekran okuyucuya ulaşmadığı için görünür ya da <code>.visually-hidden</code> bir metinle de söylenir. Kontrol satırı <code>.check.s-warn</code> ve <code>.check.s-bad</code> alabilir.</p></div>
 </article>
 
 <article class="chapter" id="c7" data-section data-title="Kontrol listesi">
@@ -481,7 +486,7 @@ html:not(.js) .choice{display:none}
   <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-runbook"]');
 var out = document.getElementById('rb-out');
 function show(done, total) {
-  out.classList.toggle('ok', done === total);
+  out.classList.toggle('s-ok', done === total);
   out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;Hazır.&lt;/b&gt; Tüm maddeler işaretli.&lt;/p&gt;'
     : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; madde işaretli.&lt;/p&gt;';
 }
@@ -523,7 +528,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
 &lt;div class="readout" id="secim-out" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;test&lt;/b&gt; ortamına &lt;b&gt;kademeli&lt;/b&gt; dağıtım.&lt;/p&gt;&lt;/div&gt;</code></pre></figure>
   </div>
   <div class="prose">
-    <p><code>.readout</code> seçimin sonucunu yazar; <code>aria-live="polite"</code> ekran okuyucuya değişikliği bildirir. <code>.readout.ok</code> ve <code>.readout.bad</code> sol çizgiyi ve kalın metni duruma göre boyar; örnekte <b>prod</b> ile <b>tek seferde</b> birlikte seçilince <code>.bad</code> olur.</p>
+    <p><code>.readout</code> seçimin sonucunu yazar; <code>aria-live="polite"</code> ekran okuyucuya değişikliği bildirir. <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> ve <code>.s-sec</code> sol çizgiyi ve kalın metni duruma göre boyar (eski <code>.ok</code> / <code>.bad</code> 1.0'a kadar çalışır); örnekte <b>prod</b> ile <b>tek seferde</b> birlikte seçilince <code>.s-bad</code> olur.</p>
     <p>Sonucu JS ile hesaplanan denetimler JS yoksa anlamsızdır. Bu sayfa onları şöyle gizler; <code>js</code> sınıfını <code>&lt;head&gt;</code>'deki tema satırı ekler:</p>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
@@ -567,7 +572,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   &lt;span class="stamp-name"&gt;web-api&lt;/span&gt;
 &lt;/div&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p><code>.survey-log</code> numaralı not girdileridir: solda numara ve künye (<code>.sl-meta</code>), sağda etiketli paragraflar (<code>.sl-body</code>). 720px'in altında künye metnin üstüne iner.</p></div>
+  <div class="prose"><p><code>.survey-log</code> numaralı not girdileridir: solda numara ve künye (<code>.sl-meta</code>), sağda etiketli paragraflar (<code>.sl-body</code>). İçerik sütunu 720px'ten darsa künye metnin üstüne iner. Girdiye <code>.s-ok</code>, <code>.s-warn</code> ya da <code>.s-bad</code> verilirse numara o renge boyanır.</p></div>
   <div class="demo">
     <span class="demo-label">Örnek · <span lang="en">.survey-log</span></span>
     <div class="demo-view">
@@ -646,7 +651,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   &lt;div&gt;&lt;dt&gt;Çizen&lt;/dt&gt;&lt;dd&gt;platform ekibi&lt;/dd&gt;&lt;/div&gt;
 &lt;/dl&gt;</code></pre></figure>
   </div>
-  <div class="prose"><p>Antet 380px genişliktedir ve kabından taşmaz; 720px'in altında tam genişliğe yayılır. <code>.tb-head</code> satırının değeri kalın yazılır. Hero'nun sağ sütunu (<code>.hero</code> ikinci sütunu) antet için ayrılmıştır.</p></div>
+  <div class="prose"><p>Antet 380px genişliktedir ve kabından taşmaz; içerik sütunu 720px'ten darsa tam genişliğe yayılır. <code>.tb-head</code> satırının değeri kalın yazılır. Hero'nun sağ sütunu (<code>.hero</code> ikinci sütunu) antet için ayrılmıştır.</p></div>
 </article>
 
 </div>
@@ -678,7 +683,7 @@ document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
   function val(name) { return document.querySelector('input[name="' + name + '"]:checked').value; }
   function show() {
     var o = val('ortam'), s = val('strateji'), risk = o === 'prod' && s === 'tek seferde';
-    out.classList.toggle('bad', risk);
+    out.classList.toggle('s-bad', risk);
     out.innerHTML = '<p><b>' + o + '</b> ortamına <b>' + s + '</b> dağıtım.' + (risk ? ' Üretimde tüm kopyalar aynı anda değişir; geri dönüş penceresi yok.' : '') + '</p>';
   }
   ['ortam-sec', 'strateji-sec'].forEach(function (id) { document.getElementById(id).addEventListener('change', show); });

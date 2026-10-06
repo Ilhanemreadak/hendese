@@ -27,7 +27,7 @@ function base(cfg, el, dr) {
   return { live: false, hoca: null, hud: null, still: cfg.still || null, dr: dr, aw: +dr.getAttribute('data-aw') || 1000, ah: +dr.getAttribute('data-ah') || 600 };
 }
 /* kap sorgusu --aw/--ah'ı değiştirebilir (dar varyant): her measure() hesaplanmış değeri okur */
-function readAw(s) { var cs = getComputedStyle(s.dr); s.aw = +cs.getPropertyValue('--aw') || s.aw; s.ah = +cs.getPropertyValue('--ah') || s.ah; }
+export function readAw(s) { var cs = getComputedStyle(s.dr); s.aw = +cs.getPropertyValue('--aw') || s.aw; s.ah = +cs.getPropertyValue('--ah') || s.ah; }
 function commonApi(s, el, dr, f) {
   return { el: el, drawing: dr, get aw() { return s.aw; }, get ah() { return s.ah; }, seg: seg, ease: ease, lerp: lerp, clamp01: clamp01, cls: f.cls,
     live: function () { return s.live; }, poke: poke };

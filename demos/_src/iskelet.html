@@ -1,21 +1,21 @@
-<!-- meta {"title":"Sayfa iskeleti","group":"Temel","order":50,"tagline":"Ray, tuval, bölüm; hepsi bu sayfanın kendisi.","intro":"Hendese sayfası sabit bir kabuktan oluşur: solda ray, ortada tuval, üstte okuma çubuğu ve arkada cetvel çizgileri. Okuduğunuz sayfa bu kabuğun canlı örneğidir; aşağıdaki küçük modeller yalnızca parçaları ayırmak için.","summary":"Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code> ve tam iskelet.","facts":{"Sınıflar":"<code>.shell</code> · <code>.rail</code> · <code>.nav-group</code> <code>.nav-link</code> <code>.nav-page</code> · <code>.rail-foot</code> · <code>.hero</code> · <code>.chapter</code> <code>.ch-head</code>","Öznitelikler":"<code>[data-section][data-title]</code> · <code>data-hoca=\"quiet\"</code>","JS":"<code>Hendese.init()</code> çekmeceyi, bölüm takibini ve okuma çubuğunu bağlar"}} -->
+<!-- meta {"title":"Sayfa iskeleti","group":"Temel","order":50,"tagline":"Ray, tuval, bölüm; hepsi bu sayfanın kendisi.","intro":"Hendese sayfası sabit bir kabuktan oluşur: solda ray, ortada tuval, üstte okuma çubuğu ve arkada cetvel çizgileri. Okuduğunuz sayfa bu kabuğun canlı örneğidir; aşağıdaki küçük modeller yalnızca parçaları ayırmak için.","summary":"Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code>, <code>col</code> kabı ve tam iskelet.","facts":{"Sınıflar":"<code>.shell</code> · <code>.rail</code> · <code>.nav-group</code> <code>.nav-link</code> <code>.nav-page</code> · <code>.rail-foot</code> · <code>.hero</code> · <code>.chapter</code> <code>.ch-head</code>","Öznitelikler":"<code>[data-section][data-title]</code> · <code>data-hoca=\"quiet\"</code>","JS":"<code>Hendese.init()</code> çekmeceyi, bölüm takibini ve okuma çubuğunu bağlar"}} -->
 
 <chapter title="Kabuk haritası" lead="Her parçanın tek bir işi ve çoğunun JS'in aradığı sabit bir id'si var. id'ler belgelenmiş sözleşmenin parçasıdır; değiştirirseniz ilgili davranış sessizce kapanır.">
 <demo label="Model · geniş ekranda kabuk" nocode>
-<div style="display:grid;grid-template-columns:170px minmax(0,1fr);height:300px;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;font:500 11px/1.4 var(--font-mono);color:var(--ink-2)">
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);height:300px;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;font:500 var(--fs-xs)/1.4 var(--font-mono);color:var(--ink-2)">
   <div style="display:grid;grid-template-rows:auto minmax(0,1fr) 54px auto;border-right:1px solid var(--line-2);background:var(--bg)">
-    <span style="padding:8px 10px;border-bottom:1px solid var(--line)">.rail-head · .brand</span>
-    <span style="padding:8px 10px">.rail-nav<br>.nav-group<br>.nav-page<br>.nav-link × n</span>
-    <span style="padding:8px 10px;border-top:1px solid var(--line)">#hoca-home</span>
-    <span style="padding:8px 10px;border-top:1px solid var(--line)">.rail-foot · #rail-pos</span>
+    <span style="padding:var(--sp-3) var(--sp-4);border-bottom:1px solid var(--line)">.rail-head · .brand</span>
+    <span style="padding:var(--sp-3) var(--sp-4)">.rail-nav<br>.nav-group<br>.nav-page<br>.nav-link × n</span>
+    <span style="padding:var(--sp-3) var(--sp-4);border-top:1px solid var(--line)">#hoca-home</span>
+    <span style="padding:var(--sp-3) var(--sp-4);border-top:1px solid var(--line)">.rail-foot · #rail-pos</span>
   </div>
   <div style="position:relative;background:var(--surface)">
     <span style="position:absolute;top:0;left:0;width:38%;height:2px;background:var(--accent)"></span>
     <span style="position:absolute;top:6px;right:10px;color:var(--accent-2)">.progress · #progress-bar</span>
     <span style="position:absolute;inset:0 12%;border-inline:1px dashed var(--pencil)"></span>
-    <div style="position:absolute;inset:28px 12% 0;padding:0 14px;display:grid;grid-template-rows:auto 1fr;gap:10px">
-      <span style="padding:10px;border:1px solid var(--line);background:var(--paper)">section.hero#top · .hero-label · h1 em · .intro · .kv</span>
-      <span style="padding:10px;border:1px solid var(--line);background:var(--paper)">article.chapter[data-section][data-title]<br>.ch-head · .ch-num · h2 · .lead<br>…</span>
+    <div style="position:absolute;inset:var(--sp-9) 12% 0;padding:0 var(--sp-6);display:grid;grid-template-rows:auto 1fr;gap:var(--sp-4)">
+      <span style="padding:var(--sp-4);border:1px solid var(--line);background:var(--paper)">section.hero#top · .hero-label · h1 em · .intro · .kv</span>
+      <span style="padding:var(--sp-4);border:1px solid var(--line);background:var(--paper)">article.chapter[data-section][data-title]<br>.ch-head · .ch-num · h2 · .lead<br>…</span>
     </div>
     <span style="position:absolute;bottom:6px;left:10px;color:var(--ink-3)">.rulers (kesikli: --canvas-max kenarları)</span>
   </div>
@@ -31,7 +31,7 @@
     <tr><td>Ray</td><td><code>aside.rail#rail</code> · <code>#nav-close</code> · <code>#rail-pos</code></td><td>İçindekiler, konum sayacı, tema düğmesi</td></tr>
     <tr><td>Perde</td><td><code>div.scrim#scrim</code></td><td>Çekmece açıkken tıklanınca kapatır</td></tr>
     <tr><td>Hoca'nın evi</td><td><code>div.hoca-home#hoca-home</code></td><td>Sahne yokken Hoca'nın durduğu yer</td></tr>
-    <tr><td>İçerik</td><td><code>main#content &gt; .canvas</code></td><td>En çok <code>--canvas-max</code> genişliğinde, ortalı tuval</td></tr>
+    <tr><td>İçerik</td><td><code>main#content &gt; .canvas</code></td><td>En çok <code>--canvas-max</code> genişliğinde, ortalı tuval; <code>main</code> aynı zamanda <code>col</code> kabıdır</td></tr>
     <tr><td>Bölümler</td><td><code>[data-section][data-title]</code></td><td>Bölüm takibinin saydığı her şey; ilki <code>#top</code></td></tr>
   </tbody>
 </table></div>
@@ -65,13 +65,13 @@
 </div>
 <div class="dodont">
 <demo label="Yap · kısa bölüm adı">
-<nav aria-label="Kısa adlar" style="width:220px;padding-left:8px">
+<nav aria-label="Kısa adlar" style="width:220px;padding-left:var(--sp-3)">
   <a class="nav-link" href="#p4"><span class="num">04</span><span>Bölüm takibi</span></a>
   <a class="nav-link" href="#p5"><span class="num">05</span><span>Dar alan</span></a>
 </nav>
 </demo>
 <demo label="Yapma · cümle uzunluğunda ad">
-<nav aria-label="Uzun adlar" style="width:220px;padding-left:8px">
+<nav aria-label="Uzun adlar" style="width:220px;padding-left:var(--sp-3)">
   <a class="nav-link" href="#p4"><span class="num">04</span><span>Kaydırırken etkin bölümün nasıl bulunduğu ve sayacın güncellenmesi</span></a>
   <a class="nav-link" href="#p5"><span class="num">05</span><span>Ekran daraldığında</span></a>
 </nav>
@@ -108,7 +108,7 @@
 
 <chapter title="Bölüm takibi" lead="Kaydırdıkça etkin bölüm bulunur; rayda işaretlenir, sayaç ve üst çubuk güncellenir, adres çubuğundaki parça eşitlenir. Hepsi data-section ve data-title özniteliklerinden.">
 <div class="readout" id="isk-pos" aria-live="polite"><p>Konum okunmadı.</p></div>
-<div class="pillrow" style="margin:12px 0 20px">
+<div class="pillrow" style="margin:var(--sp-5) 0 var(--sp-8)">
   <button class="btn" type="button" id="isk-read"><svg aria-hidden="true"><use href="#i-info"/></svg>Konumu oku</button>
   <button class="btn" type="button" id="isk-jump">Kabuk haritasına git</button>
 </div>
@@ -140,6 +140,44 @@ location.hash = <span class="s">'#p1'</span>;</code></pre></figure>
 </demo>
 <div class="prose"><p>Örnekte çubuk görünsün diye <code>display:flex;position:static</code> satır içi verildi ve id'ler kaldırıldı. Gerçek çubukta <code>#nav-open</code> <code>aria-controls="rail"</code> ve <code>aria-expanded</code> taşır; çekmece açıkken odak rayın içinde döner, Esc ya da perdeye tıklama kapatır ve odak düğmeye geri gelir.</p></div>
 <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Neden 1100px</span><div class="co-body"><p>Eşik CSS'te medya sorgusu, JS'te <code>matchMedia('(min-width:1100px)')</code> olarak iki yerde yazılıdır ve bir ayar değil sözleşmedir. Medya sorguları değişken okuyamadığı için token yoktur.</p></div></div>
+</chapter>
+
+<chapter title="Sütun genişliği" lead="Bileşenler pencereye değil, içinde durdukları sütuna bakar. main öğesi col adlı bir kaptır; tablo, künye listesi, adımlar ve pafta kendi kırılımlarını bu kabın genişliğinden okur.">
+<div class="prose"><p><code>main</code> <code>container: col / inline-size</code> taşır. Bir bileşen dar bir sütuna (yan panel, iki sütunlu düzenin yarısı, sticky sahnenin metin sütunu) konduğunda pencere geniş olsa da dar düzenine geçer. Kendi dar sütununuzu kap yapmak için aynı adı verin; en yakın <code>col</code> kabı kazanır.</p></div>
+<demo label="Örnek · aynı işaretleme, iki sütun">
+<div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--sp-8);align-items:start">
+  <div>
+    <p class="chip">Geniş sütun</p>
+    <div class="tbl"><table>
+      <thead><tr><th>İşçi</th><th>Kopya</th><th>Kuyruk</th></tr></thead>
+      <tbody>
+        <tr><td>billing-worker</td><td>4</td><td>120 iş/dk</td></tr>
+        <tr><td>email-worker</td><td>2</td><td>35 iş/dk</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div style="container:col / inline-size">
+    <p class="chip">Dar sütun · col kabı</p>
+    <div class="tbl"><table>
+      <thead><tr><th>İşçi</th><th>Kopya</th><th>Kuyruk</th></tr></thead>
+      <tbody>
+        <tr><td>billing-worker</td><td>4</td><td>120 iş/dk</td></tr>
+        <tr><td>email-worker</td><td>2</td><td>35 iş/dk</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Kap</th><th>Kırılım</th><th>Ne değişir</th></tr></thead>
+  <tbody>
+    <tr><td><code>col</code></td><td>≤ 760px</td><td>Pafta (<code>.frame</code>) tek sütuna iner, antet sola yaslanır</td></tr>
+    <tr><td><code>col</code></td><td>≤ 719px</td><td>Tablo satırları karta döner, saha defteri ve adımlar tek sütun olur, antet tam genişlik</td></tr>
+    <tr><td><code>col</code></td><td>≤ 640px</td><td>Künye listesi (<code>.kv</code>) tek sütun</td></tr>
+    <tr><td><code>fig</code></td><td>≤ 575px</td><td>Dar varyantı olan çizim (<code>.is-nar</code>) ikinci çizime geçer</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Pencere genişliğine bakan istisnalar kabuğun kendisidir: ray, üst çubuk, hero, Hoca ve 1100px canlı hareket eşiği. <code>.sticky-text</code> de bir <code>col</code> kabıdır; sticky sahnenin metin sütunundaki tablo bu yüzden kendiliğinden kart olur.</p></div>
 </chapter>
 
 <chapter title="Tam iskelet" lead="Kopyalayıp doldurulacak en küçük tam sayfa. Bu bölüm sessizdir: Hoca rayda evinde kalır ve ray soluklaşır, çünkü uzun bir kod okurken dikkat dağıtılmaz." hoca="quiet">

@@ -1,4 +1,4 @@
-.hoca-layer { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.hoca-layer { position: fixed; inset: 0; pointer-events: none; z-index: var(--z-hoca, 60); overflow: hidden; }
 .hoca { position: absolute; left: 0; top: 0; width: 88px; height: 72px; pointer-events: none; }
 .hoca-img { display: block; width: 88px; height: 72px; image-rendering: pixelated; transform-origin: 50% 100%; }
 

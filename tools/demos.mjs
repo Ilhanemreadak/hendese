@@ -10,6 +10,8 @@ import path from 'node:path';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const SRC = path.join(root, 'demos/_src'), OUT = path.join(root, 'demos');
 const GROUPS = ['Temel', 'Bileşenler', 'Blueprint', 'Hareket', 'Hoca'];
+const problems = [];   // yapı hataları biriktirilir: sayfalar yine üretilir, süreç sonunda hata koduyla biter
+const REQUIRED = { 'Bileşenler': ['Durumlar', 'Yap / yapma'], 'Blueprint': ['Yap / yapma'], 'Hareket': ['Hareket kapalıyken', 'API'], 'Hoca': ['Hareket kapalıyken', 'API'] };
 // büyük harfe çevrilen yerlerde İngilizce ad Türkçe kuralla İ alır (BLUEPRİNT); lang=en düzeltir
 const gName = g => g === 'Blueprint' ? '<span lang="en">Blueprint</span>' : g;
 const icons = fs.readFileSync(path.join(root, 'src/icons.svg'), 'utf8').split('\n').slice(1).join('\n').trim();
@@ -34,8 +36,14 @@ const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
   if (!m) throw new Error(`${f}: meta yorumu yok`);
   const meta = JSON.parse(m[1]);
   if (!GROUPS.includes(meta.group)) throw new Error(`${f}: bilinmeyen grup ${meta.group}`);
+  for (const k of ['title', 'group', 'order', 'tagline', 'intro', 'summary']) if (meta[k] == null || meta[k] === '') problems.push(`${f}: meta.${k} eksik`);
+  // STANDART.md §8: grubun zorunlu bölümleri
+  const titles = [...raw.matchAll(/<chapter title="([^"]*)"/g)].map(x => x[1]);
+  for (const need of REQUIRED[meta.group] || []) if (!titles.some(t => t.startsWith(need))) problems.push(`${f}: "${need}…" bölümü yok (STANDART.md §8)`);
   return { slug: f.slice(0, -5), ...meta, body: raw.slice(m[0].length) };
 }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || a.order - b.order);
+const dupe = pages.find((p, i) => pages.some((q, j) => j < i && q.group === p.group && q.order === p.order));
+if (dupe) problems.push(`${dupe.slug}: ${dupe.group} grubunda order ${dupe.order} iki kez`);
 
 const head = title => `<!doctype html>
 <html lang="tr">
@@ -152,3 +160,4 @@ ${list.map(p => `    <li><a href="${p.slug}.html"><b>${p.title}</b><span>${p.sum
 fs.writeFileSync(path.join(OUT, 'index.html'), head('Parça galerisi · Hendese') + rail(navAll) + '\n'
   + hero('Hendese · Parçalar', 'Parça galerisi', 'Her parça kendi sayfasında.', `${pages.length} parça; her sayfada varyantlar, durumlar, gerçek bir kullanım bağlamı ve yapılmaması gerekenler. Örneklerin altındaki işaretleme kopyalanıp kullanılabilir.`) + '\n\n' + gallery + '\n' + foot(''));
 console.log(`demos: ${pages.length} parça sayfası + index.html`);
+if (problems.length) { console.error('STANDART.md §8 ihlalleri:\n  ' + problems.join('\n  ')); process.exit(1); }

@@ -229,10 +229,10 @@ Hendese.pinScene({
     <tr><td><code>el</code></td><td>Sahnenin seçicisi (<code>.pin</code> öğesi). İçinde <code>.route-stage</code> ve <code>.drawing</code> bulunmalı.</td></tr>
     <tr><td><code>chap</code></td><td>HUD başlığı; <code>hud</code> nesnesine <code>chap</code> alanı olarak eklenir.</td></tr>
     <tr><td><code>still</code></td><td>Reduced motion'da Hoca'nın durgun kopyası: <code>{x, y, pose, face, bubble, bubbleUp, tag}</code>, çizim biriminde.</td></tr>
-    <tr><td><code>render(p, api)</code></td><td>Her karede; <code>p</code> 0..1 yumuşatılmış iz ilerlemesi. Döner: <code>{hud?, hoca?}</code>.</td></tr>
+    <tr><td><code>render(p, api)</code></td><td>Her karede; <code>p</code> 0..1 yumuşatılmış iz ilerlemesi. Döner: <code>{hud?, tb?, hoca?}</code>; <code>tb</code> 0..1 göstergeyi antet haline (<code>.hud-tb</code>) geçirir.</td></tr>
     <tr><td><code>measure(api)</code></td><td>Yeniden ölçümde (yeniden boyutlandırma, font yüklenmesi). Düzen okumak için tek yer.</td></tr>
     <tr><td><code>reset(api)</code></td><td>Canlı mod kapanınca, motor kendi yazdıklarını temizledikten sonra.</td></tr>
-    <tr><td><code>api</code></td><td><code>el, stage, drawing, aw, ah, set(k, v)</code> (<code>--k</code>'yı <code>.route-stage</code>'e yazar), <code>cls(node, c, on)</code>, <code>live()</code>, <code>poke()</code>, <code>seg, ease, lerp, clamp01</code>.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, stage, drawing, aw, ah</code> (<code>aw</code>/<code>ah</code> her ölçümde hesaplanmış <code>--aw</code>/<code>--ah</code>'tan okunur), <code>set(k, v)</code> (<code>--k</code>'yı <code>.route-stage</code>'e yazar), <code>cls(node, c, on)</code>, <code>live()</code>, <code>poke()</code>, <code>seg, ease, lerp, clamp01</code>.</td></tr>
     <tr><td><code>hud</code> dönüşü</td><td>Serbest alanlar: her anahtar aynı <code>data-hud</code> değerli öğeye yazılır; <code>fill</code> 0..1 çubuğu ölçekler.</td></tr>
     <tr><td><code>hoca</code> dönüşü</td><td><code>{x, y, pose, face, bubble, bubbleUp, tag, squash}</code>; <code>x, y</code> ayakların alt ortası, çizim biriminde.</td></tr>
   </tbody>

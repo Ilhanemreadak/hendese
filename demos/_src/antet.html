@@ -1,4 +1,4 @@
-<!-- meta {"title":"Antet","group":"Bileşenler","order":150,"tagline":"Paftanın künyesi.","intro":"<code>.titleblock</code> teknik çizimin köşesindeki künye tablosudur: bir şeklin ya da sayfanın neyi, hangi ortamda, hangi ölçekte ve ne zaman gösterdiğini tek bakışta söyler. İşaretleme bir <code>&lt;dl&gt;</code>; ilk satır <code>.tb-head</code> ile paftanın adını taşır.","summary":"<code>dl.titleblock</code>, <code>.tb-head</code>; tek başına, bir şekle bağlı ve sayfa başında.","facts":{"Sınıflar":"<code>.titleblock</code> · <code>.tb-head</code>","Yapı":"<code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code>","Genişlik":"380px, kabından taşmaz; 720px altında tam genişlik","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Antet","group":"Bileşenler","order":150,"tagline":"Paftanın künyesi.","intro":"<code>.titleblock</code> teknik çizimin köşesindeki künye tablosudur: bir şeklin ya da sayfanın neyi, hangi ortamda, hangi ölçekte ve ne zaman gösterdiğini tek bakışta söyler. İşaretleme bir <code>&lt;dl&gt;</code>; ilk satır <code>.tb-head</code> ile paftanın adını taşır.","summary":"<code>dl.titleblock</code>, <code>.tb-head</code>; tek başına, bir şekle bağlı ve sayfa başında.","facts":{"Sınıflar":"<code>.titleblock</code> · <code>.tb-head</code>","Yapı":"<code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code>","Genişlik":"380px, kabından taşmaz; içerik sütunu 720px'ten darsa tam genişlik","Durum":"Kendi durum rengi yok; <code>.state.s-*</code> ile bir satırda yazılır","JS":"Gerekmez"}} -->
 
 <chapter title="Anatomi" lead="Her satır bir alan: solda 132px etiket, sağda değer. Satırları kalem rengi ince çizgiler ayırır; ilk satırın değeri kalındır.">
 <demo label="Örnek · ağ paftası">
@@ -109,7 +109,7 @@
 <header style="display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between">
   <div style="flex:1 1 300px">
     <p class="chip">Runbook · RB-019</p>
-    <h3 style="margin:8px 0 8px;font-size:26px;letter-spacing:-.02em">Önbellek kümesini yenileme</h3>
+    <h3 style="margin:8px 0 8px;font-size:var(--fs-2xl);letter-spacing:-.02em">Önbellek kümesini yenileme</h3>
     <p style="margin:0;color:var(--ink-2);max-width:48ch">Düğümleri tek tek değiştirerek kesintisiz sürüm yükseltme. Tahmini süre 40 dakika.</p>
   </div>
   <dl class="titleblock">
@@ -120,6 +120,34 @@
   </dl>
 </header>
 </demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Antetin kendi durum rengi ya da kesikli taslak hali yoktur. Paftanın durumu bir satırda, .state etiketiyle yazılır; boş ve uzun değerler için birer kural yeter.">
+<demo label="Örnek · taslak ve onaylı pafta">
+<div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-warn">taslak</span></dd></div>
+    <div><dt>Revizyon</dt><dd>B · gözden geçiriliyor</dd></div>
+    <div><dt>Onaylayan</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span></dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-ok">onaylı</span></dd></div>
+    <div><dt>Revizyon</dt><dd>C · 2026-10-06</dd></div>
+    <div><dt>Onaylayan</dt><dd>platform ekibi</dd></div>
+  </dl>
+</div>
+</demo>
+<demo label="Örnek · geçersiz kalmış pafta, uzun değer">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>Eski giriş yolu</dd></div>
+  <div><dt>Durum</dt><dd><span class="state s-bad">geçersiz</span> yerine RB-024</dd></div>
+  <div><dt>İmaj</dt><dd>web-api@sha256:4c1e9a0b7d2f6e8a</dd></div>
+  <div><dt>Bölge</dt><dd>eu-west-1 · eu-central-1 · us-east-1</dd></div>
+</dl>
+</demo>
+<div class="prose"><p>Durumu antetin rengiyle değil satırdaki kelimeyle söyleyin; <code>.state</code> çizim dışında 1px birimle basılır. Boş alan satırını silmeyin: “—” görünür, ekran okuyucu <code>.visually-hidden</code> metni duyar ve okur alanın unutulmadığını bilir. Dilin kuralına göre taslak pafta kesikli çerçeveyle çizilmeliydi; antet bunu henüz desteklemiyor. Satır içi stille taklit etmeyin.</p></div>
 </chapter>
 
 <chapter title="Yap / yapma" lead="Antet bir künyedir, açıklama alanı değil. Kısa alanlar, ölçülebilir değerler ve tek bir başlık satırı.">

@@ -64,8 +64,9 @@
     <div class="nav-group">Bu sayfa</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Varyantlar</span></a>
-    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -81,7 +82,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Adımlar<em>Sıralı iş için numaralı kartlar.</em></h1>
     <p class="intro"><code>ol.steps</code> her maddeyi numaralı bir karta çevirir. Numara CSS sayacıyla iki haneli basılır. Her adım bir başlık, kısa bir açıklama ve isteğe bağlı bir kontrol satırı taşır: okur adımı bitirdiğini neye bakarak anlayacağını bilir.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.steps</code> · <code>.check</code></dd><dt>Yapı</dt><dd><code>ol.steps &gt; li &gt; h3 + p + p.check</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.steps</code> · <code>.check</code> · <code>.s-warn</code> · <code>.s-bad</code></dd><dt>Durum</dt><dd><code>aria-current="step"</code> · <code>data-state="done|blocked"</code> · <code>start</code></dd><dt>Yapı</dt><dd><code>ol.steps &gt; li &gt; h3 + p + p.check</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
   </div>
 </section>
 
@@ -109,7 +110,7 @@
 <div class="tbl"><table>
   <thead><tr><th>Parça</th><th>Görev</th></tr></thead>
   <tbody>
-    <tr><td><code>li::before</code></td><td>Numara rozeti; <code>01</code>, <code>02</code>… CSS sayacı <code>s</code>'den</td></tr>
+    <tr><td><code>li::before</code></td><td>Numara rozeti; <code>01</code>, <code>02</code>… liste sayacı <code>list-item</code>'dan, yani <code>start</code>'ı izler</td></tr>
     <tr><td><code>h3</code></td><td>Emir kipinde, tek eylem</td></tr>
     <tr><td><code>p</code></td><td>Nasıl yapılacağı; 72 karakterde durur</td></tr>
     <tr><td><code>p.check</code></td><td>Bitiş ölçütü; yeşil, onay ikonlu</td></tr>
@@ -118,7 +119,7 @@
 </article>
 
 <article class="chapter" id="p2" data-section data-title="Varyantlar">
-  <header class="ch-head"><p class="ch-num">02</p><h2>Varyantlar</h2><p class="lead">Adım yalnızca bir başlık kadar kısa ya da kod ve not taşıyacak kadar uzun olabilir. Numaralamayı ortadan sürdürmek için sayacı satır içinde başlatın.</p></header>
+  <header class="ch-head"><p class="ch-num">02</p><h2>Varyantlar</h2><p class="lead">Adım yalnızca bir başlık kadar kısa ya da kod ve not taşıyacak kadar uzun olabilir. Numaralamayı ortadan sürdürmek için start özniteliği yeter.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · yalnız başlıklar</span>
   <div class="demo-view">
@@ -160,7 +161,7 @@
 <div class="demo">
   <span class="demo-label">Örnek · numaralamayı sürdürmek</span>
   <div class="demo-view">
-<ol class="steps" style="counter-reset:s 3" start="4">
+<ol class="steps" start="4">
   <li>
     <h3>Trafiği yeni hedefe verin</h3>
     <p>Yük dengeleyicide ağırlığı <code>100 / 0</code> yapın.</p>
@@ -171,7 +172,7 @@
   </li>
 </ol>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>" style="<span class='s'>counter-reset:s 3</span>" start="<span class='s'>4</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>" start="<span class='s'>4</span>"&gt;
   &lt;<span class='k'>li</span>&gt;
     &lt;<span class='k'>h3</span>&gt;Trafiği yeni hedefe verin&lt;/<span class='k'>h3</span>&gt;
     &lt;<span class='k'>p</span>&gt;Yük dengeleyicide ağırlığı &lt;<span class='k'>code</span>&gt;100 / 0&lt;/<span class='k'>code</span>&gt; yapın.&lt;/<span class='k'>p</span>&gt;
@@ -182,11 +183,77 @@
   &lt;/<span class='k'>li</span>&gt;
 &lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
 </div>
-<div class="prose"><p>Numaralar <code>start</code> özniteliğini değil CSS sayacını izler; bu yüzden ikisini birlikte verin: <code>start</code> ekran okuyucu için, <code>counter-reset:s 3</code> görünen numara için.</p></div>
+<div class="prose"><p>Görünen numara tarayıcının liste sayacından (<code>list-item</code>) gelir; <code>start="4"</code> hem ekran okuyucuya hem rozete yeter. Eski sürümlerde gereken <code>counter-reset:s 3</code> satırını silin.</p></div>
 </article>
 
-<article class="chapter" id="p3" data-section data-title="Bağlam içinde">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Bağlam içinde</h2><p class="lead">Üç tipik iş: yeni bir geliştiricinin erişim alması, bir olaya müdahale ve bir sürümün yayına alınması.</p></header>
+<article class="chapter" id="p3" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Bir adım şimdiki, tamamlanmış ya da engelli olabilir. Durum ARIA ile (aria-current) ya da data-state ile verilir ve her zaman metinle de söylenir; renk yalnız pekiştirir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · tamamlandı, şimdiki, engelli</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li data-state="done">
+    <h3>Yedeği alın <span class="visually-hidden">(tamamlandı)</span></h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: yedek kovada, boyutu 4,2 GB.</span></p>
+  </li>
+  <li aria-current="step">
+    <h3>Göçü çalıştırın <span class="state s-accent">şimdi</span></h3>
+    <p><code>migrate up</code> ile <code>0043</code> numaralı göçü uygulayın.</p>
+    <p class="check s-warn"><svg><use href="#i-warn"/></svg><span>Kontrol: tablo kilidi 30 saniyeyi geçerse durdurun.</span></p>
+  </li>
+  <li data-state="blocked">
+    <h3>Okuma kopyasını yükseltin <span class="state s-bad">engelli</span></h3>
+    <p>Kopya gecikmesi 5 dakikanın üstünde; göç bitmeden başlamayın.</p>
+    <p class="check s-bad"><svg><use href="#i-x"/></svg><span>Durdurma ölçütü: gecikme artmaya devam ediyorsa geri alın.</span></p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>done</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Yedeği alın &lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;(tamamlandı)&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: yedek kovada, boyutu 4,2 GB.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> aria-current="<span class='s'>step</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Göçü çalıştırın &lt;<span class='k'>span</span> class="<span class='s'>state s-accent</span>"&gt;şimdi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;migrate up&lt;/<span class='k'>code</span>&gt; ile &lt;<span class='k'>code</span>&gt;0043&lt;/<span class='k'>code</span>&gt; numaralı göçü uygulayın.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check s-warn</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: tablo kilidi 30 saniyeyi geçerse durdurun.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>blocked</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Okuma kopyasını yükseltin &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;engelli&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Kopya gecikmesi 5 dakikanın üstünde; göç bitmeden başlamayın.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check s-bad</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Durdurma ölçütü: gecikme artmaya devam ediyorsa geri alın.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Şimdiki</td><td><code>aria-current="step"</code></td><td>2px çizim kenarı; ekran okuyucu “şimdiki adım” der</td></tr>
+    <tr><td>Tamamlandı</td><td><code>data-state="done"</code> + metin</td><td>Numara rozeti yeşil</td></tr>
+    <tr><td>Engelli</td><td><code>data-state="blocked"</code> + metin</td><td>Kesikli kenar, rozet kırmızı</td></tr>
+    <tr><td>Kontrol satırı</td><td><code>.check.s-warn</code> · <code>.check.s-bad</code></td><td>Uyarı ya da durdurma ölçütü; ikonu kendiniz seçin</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>data-state</code> ekran okuyucuya ulaşmaz. Durumu ya görünür yazın (<code>.state</code> etiketi) ya da <code>.visually-hidden</code> bir metinle başlığa ekleyin; yukarıdaki ilk adım ikinci yolu kullanır. Durumu bir betik değiştiriyorsa özniteliği ve metni birlikte güncelleyin.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · numaralama sürer, durum da sürer</span>
+  <div class="demo-view">
+<ol class="steps" start="7">
+  <li data-state="done"><h3>Trafiği yeni hedefe verin <span class="state s-ok">bitti</span></h3></li>
+  <li aria-current="step"><h3>Bir saat hata oranını izleyin <span class="visually-hidden">(şimdiki adım)</span></h3></li>
+  <li><h3>Eski hedefi kapatın</h3></li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>" start="<span class='s'>7</span>"&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>done</span>"&gt;&lt;<span class='k'>h3</span>&gt;Trafiği yeni hedefe verin &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;bitti&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> aria-current="<span class='s'>step</span>"&gt;&lt;<span class='k'>h3</span>&gt;Bir saat hata oranını izleyin &lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;(şimdiki adım)&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Eski hedefi kapatın&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Üç tipik iş: yeni bir geliştiricinin erişim alması, bir olaya müdahale ve bir sürümün yayına alınması.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · işe başlama</span>
   <div class="demo-view">
@@ -212,9 +279,9 @@
 <div class="demo">
   <span class="demo-label">Örnek · olay müdahalesi</span>
   <div class="demo-view">
-<ol class="steps" style="--u:1px">
+<ol class="steps">
   <li>
-    <h3>Olayı ilan edin <span class="state warn">ilk 5 dakika</span></h3>
+    <h3>Olayı ilan edin <span class="state s-warn">ilk 5 dakika</span></h3>
     <p>Olay kanalını açın, önem derecesini yazın, bir koordinatör atayın.</p>
   </li>
   <li>
@@ -257,8 +324,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Yap / yapma</h2><p class="lead">İyi adım tek eylemdir ve bittiği görülebilir. Bir adımda üç iş varsa üç adım yazın.</p></header>
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">İyi adım tek eylemdir ve bittiği görülebilir. Bir adımda üç iş varsa üç adım yazın.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · tek eylem, ölçülebilir bitiş</span>

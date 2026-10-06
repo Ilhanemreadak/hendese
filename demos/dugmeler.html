@@ -64,8 +64,9 @@
     <div class="nav-group">Bu sayfa</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Varyantlar</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Aç/kapa</span></a>
-    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
-    <a class="nav-link" href="#p4"><span class="num">04</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
@@ -81,7 +82,7 @@
     <p class="hero-label">Hendese · Bileşenler</p>
     <h1>Düğmeler<em>Metinli, ikonlu, aç/kapa.</em></h1>
     <p class="intro">Üç düğme türü var ve üçü de gerçek <code>&lt;button&gt;</code> öğesi. Vurgulu bir "birincil" düğme yok: blueprint dilinde eylem, rengiyle değil yeriyle ve etiketiyle öne çıkar.</p>
-<dl class="kv"><dt>Sınıflar</dt><dd><code>.btn</code> · <code>.icon-btn</code> · <code>.toggle-btn</code> · <code>.is-accent</code> · <code>.pillrow</code></dd><dt>Durum</dt><dd><code>aria-pressed</code> (aç/kapa)</dd><dt>JS</dt><dd>Gerekmez; aç/kapa için tek satır sayfa betiği</dd></dl>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.btn</code> · <code>.icon-btn</code> · <code>.toggle-btn</code> · <code>.is-accent</code> · <code>.pillrow</code></dd><dt>Durum</dt><dd><code>aria-pressed</code> (aç/kapa) · <code>disabled</code> · <code>aria-disabled="true"</code></dd><dt>JS</dt><dd>Gerekmez; aç/kapa için tek satır sayfa betiği</dd></dl>
   </div>
 </section>
 
@@ -133,8 +134,62 @@
   b.addEventListener('click', () =&gt; b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))));</code></pre></figure>
 </article>
 
-<article class="chapter" id="p3" data-section data-title="Bağlam içinde">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Bağlam içinde</h2><p class="lead">Düğmeler tek başına değil, bir satırın sonunda ya da bir kartın altında yaşar. Aşağıda üç tipik yerleşim.</p></header>
+<article class="chapter" id="p3" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Devre dışı düğme kesikli kenar ve soluk mürekkeple çizilir: dilde kesikli çizgi “henüz gerçek değil” demektir. İki yolu var; farkı klavyede ortaya çıkar.</p></header>
+<div class="demo">
+  <span class="demo-label">true</span>
+  <div class="demo-view">
+disabled</span>, <span lang='en'>aria-disabled</span>">
+<div class="pillrow">
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="btn" type="button" disabled><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="btn" type="button" aria-disabled="true" aria-describedby="dg-neden"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="icon-btn" type="button" aria-label="Kapat" disabled><svg><use href="#i-x"/></svg></button>
+</div>
+<p class="figcap" id="dg-neden">Sıradaki iş bitmeden yeniden deneme açılmaz.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>disabled&lt;/<span class='k'>span</span>&gt;, &lt;<span class='k'>span</span> lang='en'&gt;aria-disabled&lt;/<span class='k'>span</span>&gt;"&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" disabled&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" aria-disabled="<span class='s'>true</span>" aria-describedby="<span class='s'>dg-neden</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Kapat</span>" disabled&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>" id="<span class='s'>dg-neden</span>"&gt;Sıradaki iş bitmeden yeniden deneme açılmaz.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Yol</th><th>Odak</th><th>Tıklama</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td><code>disabled</code></td><td>Tab atlar</td><td>Tarayıcı engeller</td><td>Düğme o an anlamsızsa ve nedenini söylemek gerekmiyorsa</td></tr>
+    <tr><td><code>aria-disabled="true"</code></td><td>Odaklanır; ekran okuyucu “devre dışı” der</td><td>Tıklama gelir, betik yok sayar</td><td>Neden kapalı olduğu söylenmeliyse; gerekçeyi <code>aria-describedby</code> ile bağlayın</td></tr>
+  </tbody>
+</table></div>
+<div class="demo">
+  <span class="demo-label">Örnek · aç/kapa: basılı değil, basılı, devre dışı</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Testleri atla</button>
+  <button class="toggle-btn" type="button" aria-pressed="true">Önbelleği yok say</button>
+  <button class="toggle-btn" type="button" aria-pressed="true" disabled>Kilitli: prod</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false" disabled>Ayrıntılı günlük</button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>false</span>"&gt;Testleri atla&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>"&gt;Önbelleği yok say&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>" disabled&gt;Kilitli: prod&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn is-accent</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>false</span>" disabled&gt;Ayrıntılı günlük&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Devre dışı basılı düğme kenar rengini korur ama kesikli çizilir; zemin ve yazı söner. Hangi konumda kilitli kaldığını etiketle de söyleyin (“Kilitli: prod”). <code>aria-disabled</code> kullanan sayfa tıklamayı kendisi durdurur:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>btn.addEventListener('click', e =&gt; {
+  if (btn.getAttribute('aria-disabled') === 'true') return e.preventDefault();
+  /* … */
+});</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Düğmeler tek başına değil, bir satırın sonunda ya da bir kartın altında yaşar. Aşağıda üç tipik yerleşim.</p></header>
 <div class="demo">
   <span class="demo-label">Örnek · bölüm başı eylem satırı</span>
   <div class="demo-view">
@@ -155,7 +210,7 @@
   <div class="demo-view">
 <div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:440px">
   <p style="margin:0 0 4px"><b>Önbellek temizlensin mi?</b></p>
-  <p style="margin:0 0 14px;color:var(--ink-2);font-size:14px">Bir sonraki derleme bağımlılıkları baştan indirir; yaklaşık 4 dakika sürer.</p>
+  <p style="margin:0 0 14px;color:var(--ink-2);font-size:var(--fs-md)">Bir sonraki derleme bağımlılıkları baştan indirir; yaklaşık 4 dakika sürer.</p>
   <div class="pillrow" style="justify-content:flex-end">
     <button class="btn" type="button">Vazgeç</button>
     <button class="btn" type="button"><svg><use href="#i-check"/></svg>Temizle</button>
@@ -164,7 +219,7 @@
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:440px</span>"&gt;
   &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 4px</span>"&gt;&lt;<span class='k'>b</span>&gt;Önbellek temizlensin mi?&lt;/<span class='k'>b</span>&gt;&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 14px;color:var(--ink-2);font-size:14px</span>"&gt;Bir sonraki derleme bağımlılıkları baştan indirir; yaklaşık 4 dakika sürer.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 14px;color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;Bir sonraki derleme bağımlılıkları baştan indirir; yaklaşık 4 dakika sürer.&lt;/<span class='k'>p</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>justify-content:flex-end</span>"&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;Vazgeç&lt;/<span class='k'>button</span>&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Temizle&lt;/<span class='k'>button</span>&gt;
@@ -174,7 +229,7 @@
 <div class="demo">
   <span class="demo-label">Örnek · koyu sahne içinde</span>
   <div class="demo-view">
-<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:16px">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:16px">
   <div class="pillrow">
     <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Kopyala</button>
     <button class="toggle-btn" type="button" aria-pressed="true">Testleri atla</button>
@@ -182,7 +237,7 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-sm);padding:16px</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:16px</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Kopyala&lt;/<span class='k'>button</span>&gt;
     &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>"&gt;Testleri atla&lt;/<span class='k'>button</span>&gt;
@@ -192,8 +247,8 @@
 </div>
 </article>
 
-<article class="chapter" id="p4" data-section data-title="Yap / yapma">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Yap / yapma</h2><p class="lead">Düğme bir eylemdir; bağlantı bir yerdir. Etiket fiille başlar ve ne olacağını söyler.</p></header>
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Düğme bir eylemdir; bağlantı bir yerdir. Etiket fiille başlar ve ne olacağını söyler.</p></header>
 <div class="dodont">
 <div class="demo">
   <span class="demo-label">Yap · fiil + nesne</span>
