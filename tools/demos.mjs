@@ -29,7 +29,7 @@ const codeBox = (code, lang = 'HTML', file = 'işaretleme') =>
   `<figure class="code"><figcaption class="code-head"><span class="code-file">${file}</span><span class="code-lang">${lang}</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>${code}</code></pre></figure>`;
 
 const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
-  const raw = fs.readFileSync(path.join(SRC, f), 'utf8');
+  const raw = fs.readFileSync(path.join(SRC, f), 'utf8').replace(/\r\n/g, '\n');
   const m = raw.match(/^<!-- meta (\{[\s\S]*?\}) -->/);
   if (!m) throw new Error(`${f}: meta yorumu yok`);
   const meta = JSON.parse(m[1]);
