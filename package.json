@@ -1,0 +1,44 @@
+{
+  "name": "hendese",
+  "version": "0.1.0",
+  "description": "Blueprint (teknik çizim) tasarım dili: token'lar, bileşenler, scroll sahne motoru ve piksel maskot Hoca.",
+  "private": true,
+  "type": "module",
+  "style": "dist/hendese.css",
+  "main": "dist/hendese.js",
+  "module": "src/js/index.js",
+  "exports": {
+    ".": {
+      "style": "./dist/hendese.css",
+      "import": "./src/js/index.js",
+      "default": "./dist/hendese.js"
+    },
+    "./css": "./dist/hendese.css",
+    "./css/inline": "./dist/hendese.inline.css",
+    "./src/*": "./src/*",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "docs/",
+    "starter/",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test": "npm run build && npm run test:unit && npm run test:e2e",
+    "release": "node tools/release.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "esbuild": "^0.28.2"
+  }
+}

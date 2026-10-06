@@ -1,0 +1,10 @@
+/* Hendese · baskı: kabuk, HUD, maskot ve etkileşim düğmeleri gizlenir; sahneler statik son halde basılır
+   (canlı kurallar zaten @media screen içinde). */
+@media print{
+  .rail,.topbar,.progress,.scrim,.rulers,.hoca-home,.hud,.hoca-layer,.hoca,.code-copy,.rb-reset{display:none!important}
+  .shell{display:block}
+  .canvas{max-width:none;padding:0}
+  .chapter{break-inside:avoid;padding-top:28px}
+  .co,.tbl,.code{box-shadow:none}
+  .frame,.sticky-fig,.fig-sheet{break-inside:avoid}
+}

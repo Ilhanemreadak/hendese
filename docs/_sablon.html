@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAYFA BAŞLIĞI · Hendese</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<!-- @@ICONS: dist/icons.svg içeriği (ilk yorum satırı hariç) buraya -->
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Sayfalar</div>
+    <a class="nav-page" href="index.html">Başlangıç</a>
+    <a class="nav-page" href="tokens.html">Token'lar</a>
+    <a class="nav-page" href="components.html">Bileşenler</a>
+    <a class="nav-page" href="blueprint.html">Blueprint ve tarifler</a>
+    <a class="nav-page" href="motion.html">Hareket motoru</a>
+    <a class="nav-page" href="hoca.html">Hoca</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#b1"><span class="num">01</span><span>Bölüm adı</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · SAYFA</p>
+    <h1>Başlık<em>Alt başlık.</em></h1>
+    <p class="intro">Giriş paragrafı.</p>
+  </div>
+</section>
+
+<article class="chapter" id="b1" data-section data-title="Bölüm adı">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Bölüm adı</h2><p class="lead">Lead.</p></header>
+  <!-- örnek kutusu: canlı örnek + işaretleme -->
+  <div class="demo">
+    <span class="demo-label">Örnek</span>
+    <div class="demo-view">…canlı örnek…</div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;…kaçışlı işaretleme…&gt;</code></pre></figure>
+  </div>
+</article>
+
+</div>
+</main>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* sahne kayıtları buraya */
+Hendese.start();
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hareket motoru · Hendese</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="assets/docs.css">
+<style>
+/* sayfaya özel örnek çizimleri (.m- öneki). Varsayılan = bitmiş hal; canlı kurallar yalnızca .is-live altında. */
+.m-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.m-ink{stroke:var(--draw);stroke-width:2.5;stroke-dasharray:1;stroke-dashoffset:0}
+.m-lbl b{display:block;font:600 max(9.5px,calc(11 * var(--u)))/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
+@media screen{
+  .is-live .m-box:not(.on){stroke:var(--pencil);fill:transparent}
+  .is-live .m-lbl:not(.on){opacity:.35}
+  .is-live .m-mod{opacity:var(--m-in,1);transform:translateY(calc((1 - var(--m-in,1)) * -30px))}
+}
+.m-mod{transition:none}
+.m-slot{stroke:var(--pencil);stroke-dasharray:4 4;fill:none}
+.m-part{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.is-live .m-part:not(.in){opacity:0;transform:translateY(-24px)}
+html.motion .m-part{transition:opacity var(--dur-2),transform var(--dur-3) var(--ease-snap)}
+.m-part.cur{stroke-width:2.5}
+.m-needle{stroke:var(--bad);stroke-width:3;stroke-linecap:round;transform-box:view-box;transform-origin:300px 220px;transform:rotate(var(--m-ang,0deg))}
+html.motion .m-needle{transition:transform var(--dur-3) var(--ease-snap)}
+.m-sketch .pencil *{vector-effect:non-scaling-stroke}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Sayfalar</div>
+    <a class="nav-page" href="index.html">Başlangıç</a>
+    <a class="nav-page" href="tokens.html">Token'lar</a>
+    <a class="nav-page" href="components.html">Bileşenler</a>
+    <a class="nav-page" href="blueprint.html">Blueprint ve tarifler</a>
+    <a class="nav-page" href="motion.html" aria-current="page">Hareket motoru</a>
+    <a class="nav-page" href="hoca.html">Hoca</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#m1"><span class="num">01</span><span>Sözleşme</span></a>
+    <a class="nav-link" href="#m2"><span class="num">02</span><span>Pin sahnesi</span></a>
+    <a class="nav-link" href="#m3"><span class="num">03</span><span>Sticky anlatım</span></a>
+    <a class="nav-link" href="#m4"><span class="num">04</span><span>Fig sahnesi</span></a>
+    <a class="nav-link" href="#m5"><span class="num">05</span><span>HUD</span></a>
+    <a class="nav-link" href="#m6"><span class="num">06</span><span>CSS-only hareket</span></a>
+    <a class="nav-link" href="#m7"><span class="num">07</span><span>Dar varyant</span></a>
+    <a class="nav-link" href="#m8"><span class="num">08</span><span>API başvurusu</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Hareket motoru</p>
+    <h1>Kaydırınca çizilen paftalar<em>Animasyon, bitmiş çizime giden yoldur; çizimin kendisi değil.</em></h1>
+    <p class="intro">Tek bir rAF döngüsü, üç sahne türü (pin, sticky, fig), bir gösterge (HUD) ve sahneler arasında yürüyen Hoca. Hepsi boşta uyur; hareket kapalıysa sayfa son haliyle durur.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Modül</dt><dd>core · nav · scenes · hud · hoca</dd></div>
+    <div><dt>Eşik</dt><dd>≥ 1100px, reduced-motion yok</dd></div>
+    <div><dt>Bağımlılık</dt><dd>yok</dd></div>
+  </dl>
+</section>
+
+<article class="chapter" id="m1" data-section data-title="Sözleşme" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Sözleşme: varsayılan = bitmiş hal</h2><p class="lead">Her sahnenin HTML'i ve CSS'i, animasyon bittiğinde görünecek hali tarif eder. JS yalnızca canlı modda o hale giden yolu oynatır.</p></header>
+  <div class="prose">
+    <p>Canlı mod üç koşulun hepsinde açılır: <code>Hendese.start()</code> çağrıldı, ekran en az <b>1100px</b> geniş ve kullanıcı <code>prefers-reduced-motion</code> istemiyor. Açıkken <code>html</code> öğesine <code>.motion</code>, her sahneye <code>.is-live</code> eklenir. Koşullardan biri değişirse sahneler kapanır, yazılan tüm satır içi stiller ve sınıflar temizlenir, <code>reset(api)</code> çağrılır.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Mod</th><th>Ne görünür</th><th>Hoca</th></tr></thead>
+    <tbody>
+      <tr><td>Canlı (≥1100px)</td><td>Yapışkan sahneler, kaydırmaya bağlı çizim, HUD</td><td>Sahneler arasında yürür; boşta raydaki evinde</td></tr>
+      <tr><td>Reduced motion (masaüstü)</td><td>Bitmiş çizimler, iz yok, HUD yok</td><td>Her sahnede <code>still</code> pozunda durgun kopya</td></tr>
+      <tr><td>&lt; 1100px</td><td>Bitmiş çizimler tek sütunda; ray çekmeceye döner</td><td>Gizli</td></tr>
+      <tr><td>Baskı</td><td>Bitmiş çizimler; kabuk, HUD, düğmeler gizli</td><td>Gizli</td></tr>
+      <tr><td>JS yok</td><td>Bitmiş çizimler; JS gerektiren kontroller <code>html:not(.js)</code> ile gizlenir</td><td>Yok</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Kural</span><div class="co-body">CSS değişkenlerini hep <code>var(--k,1)</code> diye okuyun: JS bir şey yazmadıysa <b>1 = son hal</b>. Canlı kuralları <code>@media screen{ .is-live … }</code> içine koyun ki baskı da son hali alsın. <code>render()</code> içinde düzen okumayın; ölçüm <code>measure()</code> içindir.</div></aside>
+</article>
+
+<article class="chapter" id="m2" data-section data-title="Pin sahnesi">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Pin sahnesi: uzun iz, yapışkan pafta</h2><p class="lead">Sahne <code>--track</code> yüksekliğinde bir izde yapışkan durur; kaydırma ilerlemesi <code>p</code> (0..1, yumuşatılmış) <code>render(p, api)</code>'ye gelir.</p></header>
+  <p class="prose">Aşağıdaki örnekte mürekkep dört istasyonu sırayla birleştirir, HUD aşamayı yazar, Hoca mürekkebin arkasından yürür ve sonda bir cümle söyler.</p>
+</article>
+<div class="pin m-pin" id="m-pin" style="--track:260vh">
+  <div class="route-stage">
+    <div class="frame">
+      <div class="frame-bg" aria-hidden="true"></div>
+      <div class="f-head"><p class="chip">02 · Şekil 1</p><p class="fig-cap">Kaynaktan çalışan servise dört istasyon</p></div>
+      <div class="f-side"><div class="hud-slot"></div>
+        <ol class="beats" aria-label="İstasyonlar">
+          <li><b>Kaynak</b>Değişiklik depoya itilir.</li>
+          <li><b>Derleme</b>İmaj üretilir ve etiketlenir.</li>
+          <li><b>Kayıt</b>Etiketli imaj kayıt defterine gider.</li>
+          <li><b>Dağıtım</b>Küme yeni etiketi çeker.</li>
+        </ol>
+      </div>
+      <div class="f-map">
+        <div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420">
+          <svg viewBox="0 0 900 420" aria-hidden="true">
+            <rect class="ln-pencil" x="10" y="10" width="880" height="400" stroke-dasharray="4 4"/>
+            <path class="m-ink" pathLength="1" d="M150 200H750"/>
+            <rect class="m-box" data-st="0" x="60" y="150" width="140" height="100"/>
+            <rect class="m-box" data-st="1" x="260" y="150" width="140" height="100"/>
+            <rect class="m-box" data-st="2" x="460" y="150" width="140" height="100"/>
+            <rect class="m-box" data-st="3" x="660" y="150" width="140" height="100"/>
+            <path class="dim" d="M260 280V300M600 280V300M260 290H600"/>
+            <text class="dim-t" x="430" y="318" text-anchor="middle">CI · ortalama 3 dk</text>
+          </svg>
+          <p class="dl m-lbl" data-st="0" style="--x:72;--y:178;--w:120"><b>Kaynak</b>main</p>
+          <p class="dl m-lbl" data-st="1" style="--x:272;--y:178;--w:120"><b>Derleme</b><span class="state ok">ok</span></p>
+          <p class="dl m-lbl" data-st="2" style="--x:472;--y:178;--w:120"><b>Kayıt</b>prod-3f9c2a1b</p>
+          <p class="dl m-lbl" data-st="3" style="--x:672;--y:178;--w:120"><b>Dağıtım</b>web-api</p>
+        </div>
+      </div>
+      <div class="f-foot"><p class="figcap"><b>Şekil 1.</b> Düz çizgi gerçek akış; ölçü çizgisi CI süresini gösterir. Hareket kapalıyken çizim tamamlanmış görünür.</p></div>
+    </div>
+  </div>
+</div>
+<div class="canvas-follow">
+  <div class="demo">
+    <span class="demo-label">Kayıt kodu</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.js</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">var</span> ink = Hendese.$(<span class="s">'#m-pin .m-ink'</span>), boxes = Hendese.$$(<span class="s">'#m-pin [data-st]'</span>), beats = Hendese.$$(<span class="s">'#m-pin .beats li'</span>);
+Hendese.pinScene({
+  el: <span class="s">'#m-pin'</span>, chap: <span class="s">'02 · Pin sahnesi'</span>,
+  still: { x: <span class="v">760</span>, y: <span class="v">380</span>, pose: <span class="s">'happy'</span>, face: -<span class="v">1</span>, bubble: <span class="s">'Etiket tek sözleşme.'</span> },   <span class="c">// reduced motion</span>
+  reset: <span class="k">function</span> () { ink.style.strokeDashoffset = <span class="s">''</span>; },                 <span class="c">// canlı mod kapanınca</span>
+  render: <span class="k">function</span> (p, api) {
+    <span class="k">var</span> d = api.seg(p, <span class="v">.05</span>, <span class="v">.85</span>), n = Math.min(<span class="v">3</span>, Math.floor(d * <span class="v">4</span>));
+    ink.style.strokeDashoffset = (<span class="v">1</span> - d).toFixed(<span class="v">4</span>);                     <span class="c">// pathLength="1"</span>
+    boxes.forEach(<span class="k">function</span> (b) { api.cls(b, <span class="s">'on'</span>, +b.dataset.st &lt;= n); });
+    beats.forEach(<span class="k">function</span> (li, i) { api.cls(li, <span class="s">'on'</span>, i === n); });
+    <span class="k">var</span> x = api.lerp(<span class="v">90</span>, <span class="v">760</span>, d);
+    <span class="k">return</span> {
+      hud: { stage: [<span class="s">'Kaynak'</span>, <span class="s">'Derleme'</span>, <span class="s">'Kayıt'</span>, <span class="s">'Dağıtım'</span>][n], service: <span class="s">'web-api'</span>, tag: <span class="s">'prod-3f9c2a1b'</span>, env: <span class="s">'prod'</span>, pct: Math.round(d * <span class="v">100</span>) + <span class="s">'%'</span>, fill: d },
+      hoca: { x: x, y: <span class="v">380</span>, pose: d &lt; <span class="v">1</span> ? (Math.floor(x / <span class="v">16</span>) % <span class="v">2</span> ? <span class="s">'walkA'</span> : <span class="s">'walkB'</span>) : <span class="s">'happy'</span>, face: <span class="v">1</span>, bubble: d &gt;= <span class="v">1</span> ? <span class="s">'Etiket tek sözleşme.'</span> : <span class="k">null</span> }
+    };
+  }
+});</code></pre></figure>
+  </div>
+</div>
+
+<article class="chapter" id="m3" data-section data-title="Sticky anlatım">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Sticky anlatım: yapışkan şekil, kayan metin</h2><p class="lead">Metin sütunundaki her <code>[data-beat]</code> okuma çizgisini (%45) geçtiğinde etkin olur. <code>render(i, t, api)</code>: <code>i</code> etkin beat, <code>t</code> o beat içindeki ilerleme.</p></header>
+  <div class="sticky m-sticky" id="m-sticky">
+    <div class="sticky-fig">
+      <div class="frame-bg" aria-hidden="true"></div>
+      <div class="sf-head"><div><p class="chip">03 · Şekil 2</p><p class="sf-cap">Tezgâhta montaj: her adım bir parçayı yerine takar</p></div></div>
+      <div class="f-map">
+        <div class="drawing" data-aw="600" data-ah="420" style="--aw:600;--ah:420">
+          <svg viewBox="0 0 600 420" aria-hidden="true">
+            <rect class="ln-draw" x="40" y="320" width="520" height="24"/>
+            <path class="ln-pencil" d="M40 344l20 40M560 344l-20 40"/>
+            <rect class="m-slot" x="70" y="200" width="140" height="110"/><rect class="m-slot" x="230" y="200" width="140" height="110"/><rect class="m-slot" x="390" y="200" width="140" height="110"/>
+            <rect class="m-part" data-step="0" x="70" y="200" width="140" height="110"/>
+            <rect class="m-part" data-step="1" x="230" y="200" width="140" height="110"/>
+            <rect class="m-part" data-step="2" x="390" y="200" width="140" height="110"/>
+          </svg>
+          <p class="dl" style="--x:82;--y:240;--w:120"><b class="chip">Modül 1</b>kaynak</p>
+          <p class="dl" style="--x:242;--y:240;--w:120"><b class="chip">Modül 2</b>ortam</p>
+          <p class="dl" style="--x:402;--y:240;--w:120"><b class="chip">Modül 3</b>çıktı</p>
+        </div>
+      </div>
+      <p class="figcap"><b>Şekil 2.</b> Kesikli kutular boş yuvalar; dolu kutular takılmış modüller.</p>
+    </div>
+    <ol class="sticky-text steps">
+      <li data-beat="0"><h3>Kaynağı bağla</h3><p>Depo ve dal seçilir; ilk modül yuvasına oturur.</p></li>
+      <li data-beat="1"><h3>Ortamı seç</h3><p>Derleme imajı, makine boyutu ve ayrıcalıklı mod belirlenir.</p></li>
+      <li data-beat="2"><h3>Çıktıyı tanımla</h3><p>Etiketlenmiş imaj kayıt defterine yazılır. Üç modül yerinde.</p></li>
+    </ol>
+  </div>
+  <div class="demo">
+    <span class="demo-label">Kayıt kodu</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.js</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">var</span> parts = Hendese.$$(<span class="s">'#m-sticky [data-step]'</span>);
+Hendese.stickyScene({
+  el: <span class="s">'#m-sticky'</span>,
+  still: { x: <span class="v">470</span>, y: <span class="v">300</span>, pose: <span class="s">'clipboard'</span>, face: -<span class="v">1</span> },
+  render: <span class="k">function</span> (i, t, api) {
+    parts.forEach(<span class="k">function</span> (el, k) { api.cls(el, <span class="s">'in'</span>, k &lt;= i); api.cls(el, <span class="s">'cur'</span>, k === i); });
+    <span class="k">return</span> { hoca: { x: <span class="v">140</span> + i * <span class="v">160</span>, y: <span class="v">316</span>, pose: <span class="s">'pointUp'</span>, face: <span class="v">1</span> } };
+  }
+});</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="m4" data-section data-title="Fig sahnesi">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Fig sahnesi: öğrencinin oynattığı çizim</h2><p class="lead">Kaydırma ilerlemesi yok. Durum ve olaylar sayfanındır (her modda çalışır); sahne yalnızca Hoca'yı ve zamanlı vuruşları yönetir. Durum değişince <code>api.poke()</code>.</p></header>
+  <figure class="fig-sheet" id="m-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <p class="chip">04 · Şekil 3</p><p class="fig-cap">Kadran: istenen değer ile gerçek değer</p>
+    <fieldset class="choice is-seg">
+      <legend>İstenen kopya sayısı</legend>
+      <label><input type="radio" name="m-rep" value="1"><span>1</span></label>
+      <label><input type="radio" name="m-rep" value="2"><span>2</span></label>
+      <label><input type="radio" name="m-rep" value="3" checked><span>3</span></label>
+    </fieldset>
+    <div class="drawing" data-aw="600" data-ah="300" style="--aw:600;--ah:300">
+      <svg viewBox="0 0 600 300" aria-hidden="true">
+        <path class="ln-draw" d="M120 220a180 180 0 0 1 360 0"/>
+        <path class="ln-pencil" d="M120 220h360"/>
+        <path class="dim" d="M300 40v14M162 102l10 10M438 102l-10 10"/>
+        <line class="m-needle" x1="300" y1="220" x2="300" y2="70"/>
+        <circle class="ln-strong fill-paper" cx="300" cy="220" r="8"/>
+      </svg>
+      <p class="dl" style="--x:96;--y:232;--w:60">0</p>
+      <p class="dl" style="--x:452;--y:232;--w:60">4</p>
+    </div>
+    <div class="readout ok" id="m-readout" aria-live="polite"><p><b>Eşit.</b> İstenen 3, çalışan 3.</p></div>
+    <p class="figcap"><b>Şekil 3.</b> İbre seçilen değeri gösterir; sonuç satırı aynı bilgiyi metinle verir.</p>
+  </figure>
+  <div class="demo">
+    <span class="demo-label">Kayıt kodu</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.js</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">var</span> want = <span class="v">3</span>, beat = <span class="v">0</span>, fig = Hendese.figScene({
+  el: <span class="s">'#m-fig'</span>,
+  still: <span class="k">function</span> () { <span class="k">return</span> { x: <span class="v">520</span>, y: <span class="v">290</span>, pose: <span class="s">'glasses'</span>, face: -<span class="v">1</span> }; },   <span class="c">// fonksiyon: durum değişince Hendese.refresh()</span>
+  render: <span class="k">function</span> (api, t) {
+    <span class="k">var</span> busy = t - beat &lt; <span class="v">1200</span>;
+    <span class="k">return</span> { hoca: { x: <span class="v">520</span>, y: <span class="v">290</span>, pose: busy ? <span class="s">'pointUp'</span> : <span class="s">'glasses'</span>, face: -<span class="v">1</span>, bubble: busy ? <span class="s">'İbre: '</span> + want : <span class="k">null</span> }, busy: busy };
+  }
+});
+Hendese.$$(<span class="s">'[name=m-rep]'</span>).forEach(<span class="k">function</span> (r) { r.addEventListener(<span class="s">'change'</span>, <span class="k">function</span> () {
+  want = +r.value; <span class="c">/* … ibreyi ve sonuç satırını güncelle … */</span>
+  beat = performance.now(); fig.poke(); Hendese.refresh();
+}); });</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="m5" data-section data-title="HUD">
+  <header class="ch-head"><p class="ch-num">05</p><h2>HUD: tek sabit gösterge</h2><p class="lead">Sayfada bir tane <code>#hud</code> bulunur. Her karede, <code>hud</code> döndüren sahnelerden en görünürü göstergeyi kendi <code>.hud-slot</code>'una çeker.</p></header>
+  <div class="demo">
+    <span class="demo-label">İşaretleme (sayfa sonunda bir kez)</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.html</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="hud" id="hud" aria-hidden="true"&gt;
+  &lt;div class="hud-tb"&gt; … antet satırları (hero'da gösterilir, tb=1) … &lt;/div&gt;
+  &lt;div class="hud-live"&gt;
+    &lt;div class="hud-h"&gt;&lt;span data-hud="chap"&gt;&lt;/span&gt;&lt;span data-hud="pct"&gt;0%&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Aşama&lt;/span&gt;&lt;b data-hud="stage"&gt;&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Servis&lt;/span&gt;&lt;b data-hud="service"&gt;&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Etiket&lt;/span&gt;&lt;b data-hud="tag"&gt;&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Ortam&lt;/span&gt;&lt;b data-hud="env"&gt;&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-bar"&gt;&lt;i id="hud-fill"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <p class="prose">Alan adları serbesttir: sahnenin döndürdüğü <code>hud</code> nesnesindeki her anahtar, aynı <code>data-hud</code> değerli öğeye yazılır; <code>fill</code> çubuğu 0..1 ölçekler, <code>chap</code> sahne kaydındaki <code>chap</code>'ten gelir.</p>
+</article>
+
+<article class="chapter" id="m6" data-section data-title="CSS-only hareket">
+  <header class="ch-head"><p class="ch-num">06</p><h2>CSS-only hareket: taslak ve beliriş</h2><p class="lead">Sahne gerektirmeyen küçük vurgular için iki araç. İkisi de desteklenmeyen tarayıcıda ve reduced-motion'da son hali gösterir.</p></header>
+  <h3>Kalem taslağı → mürekkep</h3>
+  <p class="prose">Kapsayıcıya önce <code>.sketch-pending</code>, sonra <code>.sketch</code> ekleyin: <code>.pencil</code> grubundaki yollar 2 saniyede çizilir. Yollarda <code>pathLength="1"</code> olmalı.</p>
+  <div class="demo">
+    <span class="demo-label">Örnek</span>
+    <div class="demo-view">
+      <div class="m-sketch" id="m-sketch">
+        <div class="drawing" data-aw="600" data-ah="160" style="--aw:600;--ah:160">
+          <svg viewBox="0 0 600 160" aria-hidden="true"><g class="pencil"><path pathLength="1" d="M20 120H580"/><path pathLength="1" d="M60 120V40H260V120"/><path pathLength="1" d="M340 120V60H540V120"/></g></svg>
+        </div>
+      </div>
+      <button class="btn" type="button" id="m-sketch-btn"><svg><use href="#i-reset"/></svg>Yeniden çiz</button>
+    </div>
+  </div>
+  <h3>[data-reveal]</h3>
+  <p class="prose">Öğe görüş alanına girerken belirir (<code>animation-timeline: view()</code>). <code>data-reveal="draw"</code> SVG yollarını çizer (yine <code>pathLength="1"</code>). Anlatım taşıyan içerik için kullanmayın; o iş pin ve sticky sahnelerinindir.</p>
+  <div class="demo">
+    <span class="demo-label">Örnek</span>
+    <div class="demo-view">
+      <aside class="co co-tip" data-reveal><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body">Bu not görüş alanına girerken belirdi; desteklenmiyorsa zaten görünür.</div></aside>
+      <div class="drawing" data-aw="600" data-ah="80" style="--aw:600;--ah:80" data-reveal="draw"><svg viewBox="0 0 600 80" aria-hidden="true"><path class="ln-draw" pathLength="1" d="M20 60H200L240 20H580"/></svg></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;aside class="co co-tip" data-reveal&gt;…&lt;/aside&gt;
+&lt;div class="drawing" data-reveal="draw" …&gt;&lt;svg …&gt;&lt;path class="ln-draw" pathLength="1" d="…"/&gt;&lt;/svg&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="m7" data-section data-title="Dar varyant">
+  <header class="ch-head"><p class="ch-num">07</p><h2>Dar varyant: kap sorgusuyla ikinci çizim</h2><p class="lead">Yoğun bir sticky çizim dar masaüstünde sıkışıyorsa, aynı paftanın dar bir varyantını çizin ve kap sorgusuyla değiştirin. Motor <code>--aw/--ah</code>'ı her ölçümde yeniden okur.</p></header>
+  <div class="demo">
+    <span class="demo-label">Desen</span>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">/* 1. canlı modda f-map adlandırılmış kap olur */</span>
+<span class="k">@media</span> screen{ <span class="k">#ornek</span> .sticky.is-live .f-map{container-name:fig} }
+<span class="c">/* 2. dar kapta çizim ölçüsü ve SVG grubu değişir; etiketler --nx/--ny/--nw'ye geçer */</span>
+<span class="k">@container</span> fig (max-width:575px){
+  <span class="k">#ornek</span> .drawing{--aw:<span class="v">600</span> !important;--ah:<span class="v">780</span> !important}
+  <span class="k">#ornek</span> .is-wide{display:none} <span class="k">#ornek</span> .is-nar{display:inline}
+  <span class="k">#ornek</span> .dl{left:calc(var(--nx,var(--x)) / var(--aw) * <span class="v">100</span>%);top:calc(var(--ny,var(--y)) / var(--ah) * <span class="v">100</span>%)}
+  <span class="k">#ornek</span> .dl[style*="--nw"]{width:calc(var(--nw) / var(--aw) * <span class="v">100</span>%)}
+}
+<span class="c">/* 3. JS: koordinat tablosunu ölçüye göre seçin — render içinde api.aw değil sahnenin ölçtüğü değer:
+   still/hoca koordinatları için s.aw &lt; 700 ? DAR : GENIS */</span></code></pre></figure>
+  </div>
+  <p class="prose">1100–1279px aralığında şekil sütununa daha fazla yer vermek için sticky kapsayıcıya <code>.sticky--dense</code> ekleyin.</p>
+</article>
+
+<article class="chapter" id="m8" data-section data-title="API başvurusu">
+  <header class="ch-head"><p class="ch-num">08</p><h2>API başvurusu</h2></header>
+  <div class="tbl wide api"><table>
+    <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+    <tbody>
+      <tr><td><code>Hendese.init(opts)</code></td><td>Tema, çekmece, bölüm takibi, HUD ve bileşenleri bağlar. <code>opts</code>: <code>strings</code>, <code>themeKey</code> (varsayılan <code>hendese-theme</code>), <code>topId</code> (<code>top</code>), <code>englishStems</code> (RegExp).</td></tr>
+      <tr><td><code>Hendese.start()</code></td><td>Sahneler kaydedildikten sonra bir kez: Hoca, hash demirleme, ölçüm, canlı mod. <code>init</code> çağrılmadıysa onu da çağırır.</td></tr>
+      <tr><td><code>pinScene(cfg)</code></td><td><code>{el, chap, still, measure(api), reset(api), render(p, api) → {hud?, hoca?}}</code></td></tr>
+      <tr><td><code>stickyScene(cfg)</code></td><td>Aynı, <code>render(i, t, api)</code>. Beat'ler <code>.on</code> / <code>.past</code> alır.</td></tr>
+      <tr><td><code>figScene(cfg)</code></td><td><code>render(api, t, vis) → {hoca?, busy?}</code>. Durum değişince <code>poke()</code>.</td></tr>
+      <tr><td><code>scene(raw)</code></td><td>Düşük seviye: <code>{measure, setLive, tick(y, dt, t), hoca, hud, still, dr, aw, ah}</code> nesnesini doğrudan kaydeder (kamera hareketli özel sahneler).</td></tr>
+      <tr><td><code>api</code></td><td><code>el, drawing, aw, ah, set(k, v)</code> (<code>--k</code> yazar), <code>cls(node, c, on)</code>, <code>live()</code>, <code>poke()</code>, <code>seg, ease, lerp, clamp01</code>; pin'de <code>stage</code>, sticky'de <code>fig, beats</code>.</td></tr>
+      <tr><td><code>hoca</code> talebi</td><td><code>{x, y}</code> çizim biriminde (ayakların alt ortası) + <code>pose, face (1|-1), bubble, bubbleUp, tag, squash, hidden</code>.</td></tr>
+      <tr><td><code>Hendese.refresh()</code></td><td>Reduced-motion'daki durgun Hoca kopyalarını yeniden yerleştirir.</td></tr>
+      <tr><td><code>Hendese.state</code></td><td>Getter'lar: <code>motion, idle, y, vh, section, scenes</code>. Kopyalamayın; her seferinde okuyun.</td></tr>
+      <tr><td><code>Hendese.hoca</code></td><td><code>dismissed</code> (sahnelerin okuduğu paylaşımlı bayrak), <code>dismiss()</code>.</td></tr>
+      <tr><td><code>Hendese.lockTo(id)</code>, <code>poke()</code>, <code>wake()</code>, <code>measure()</code></td><td>Parça gezinmesi kilidi, döngüyü uyandırma, yeniden ölçüm.</td></tr>
+      <tr><td>Olaylar</td><td><code>hendese:theme</code> (document, <code>detail</code> = tema), <code>hendese:runbook</code> (<code>{done, total}</code>), <code>hendese:explore</code> (<code>{key}</code>).</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+</div>
+</main>
+</div>
+
+<div class="hud" id="hud" aria-hidden="true">
+  <div class="hud-tb">
+    <div class="hud-h"><span>Pafta</span><span>Hendese</span></div>
+    <div class="hud-r"><span>Sürüm</span><b>0.1</b></div>
+    <div class="hud-r"><span>Sayfa</span><b>Hareket motoru</b></div>
+    <div class="hud-r"><span>Ölçek</span><b>1:1</b></div>
+    <div class="hud-r"><span>Tarih</span><b>2026</b></div>
+    <div class="hud-r"><span>Kapsam</span><b>pin · sticky · fig</b></div>
+  </div>
+  <div class="hud-live">
+    <div class="hud-h"><span data-hud="chap">—</span><span data-hud="pct">0%</span></div>
+    <div class="hud-r"><span>Aşama</span><b data-hud="stage">—</b></div>
+    <div class="hud-r"><span>Servis</span><b data-hud="service">—</b></div>
+    <div class="hud-r"><span>Etiket</span><b data-hud="tag">—</b></div>
+    <div class="hud-r"><span>Ortam</span><b data-hud="env">—</b></div>
+    <div class="hud-bar"><i id="hud-fill"></i></div>
+  </div>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function(){
+  var $=Hendese.$,$$=Hendese.$$;
+  /* 02 pin */
+  var ink=$('#m-pin .m-ink'),boxes=$$('#m-pin [data-st]'),beats=$$('#m-pin .beats li'),BUB='Etiket tek sözleşme.';
+  Hendese.pinScene({
+    el:'#m-pin',chap:'02 · Pin sahnesi',
+    still:{x:760,y:380,pose:'happy',face:-1,bubble:BUB},
+    reset:function(){ink.style.strokeDashoffset=''},
+    render:function(p,api){
+      var d=api.seg(p,.05,.85),n=Math.min(3,Math.floor(d*4));
+      ink.style.strokeDashoffset=(1-d).toFixed(4);
+      boxes.forEach(function(b){api.cls(b,'on',+b.getAttribute('data-st')<=n)});
+      beats.forEach(function(li,i){api.cls(li,'on',i===n)});
+      var x=api.lerp(90,760,d);
+      return {hud:{stage:['Kaynak','Derleme','Kayıt','Dağıtım'][n],service:'web-api',tag:d>.5?'prod-3f9c2a1b':'—',env:'prod',pct:Math.round(d*100)+'%',fill:d},
+        hoca:{x:x,y:380,pose:d<1?(Math.floor(x/16)%2?'walkA':'walkB'):'happy',face:d<1?1:-1,bubble:d>=1?BUB:null}};
+    }
+  });
+  /* 03 sticky */
+  var parts=$$('#m-sticky [data-step]');
+  Hendese.stickyScene({
+    el:'#m-sticky',chap:'03 · Sticky',
+    still:{x:470,y:300,pose:'clipboard',face:-1},
+    render:function(i,t,api){
+      parts.forEach(function(el,k){api.cls(el,'in',k<=i);api.cls(el,'cur',k===i)});
+      return {hoca:{x:140+i*160,y:316,pose:'pointUp',face:1}};
+    }
+  });
+  /* 04 fig */
+  var want=3,beat=-1e9,needle=$('#m-fig .m-needle'),out=$('#m-readout'),RUN=3;
+  function draw(){needle.style.setProperty('--m-ang',(-90+want*45)+'deg');var eq=want===RUN;out.className='readout '+(eq?'ok':'bad');
+    out.innerHTML=eq?'<p><b>Eşit.</b> İstenen '+want+', çalışan '+RUN+'.</p>':'<p><b>Fark var.</b> İstenen '+want+', çalışan '+RUN+'; denetleyici eşitleyecek.</p>'}
+  var fig=Hendese.figScene({
+    el:'#m-fig',
+    still:function(){return {x:520,y:290,pose:want===RUN?'glasses':'worried',face:-1}},
+    render:function(api,t){var busy=t-beat<1200;
+      return {hoca:{x:520,y:290,pose:busy?'pointUp':(want===RUN?'glasses':'worried'),face:-1,bubble:busy?'İbre: '+want:null},busy:busy}}
+  });
+  $$('[name=m-rep]').forEach(function(r){r.addEventListener('change',function(){want=+r.value;draw();beat=performance.now();fig.poke();Hendese.refresh()})});
+  draw();
+  /* 06 sketch */
+  var sk=$('#m-sketch');
+  $('#m-sketch-btn').addEventListener('click',function(){sk.classList.remove('sketch');sk.classList.add('sketch-pending');void sk.offsetWidth;requestAnimationFrame(function(){sk.classList.remove('sketch-pending');sk.classList.add('sketch')})});
+})();
+Hendese.start();
+</script>
+</body>
+</html>

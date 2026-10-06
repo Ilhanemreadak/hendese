@@ -1,0 +1,12 @@
+/* Hendese · tüm tema. Kullanım: <link rel="stylesheet" href="hendese/dist/hendese.css">
+   Katman sırası sabittir; sizin katmansız CSS'iniz her katmanı ezer (seçici gücüne bakılmaksızın). */
+@layer hendese.tokens, hendese.base, hendese.layout, hendese.components, hendese.blueprint, hendese.motion, hendese.hoca, hendese.print;
+@import url("fonts.css");
+@import url("tokens.css") layer(hendese.tokens);
+@import url("base.css") layer(hendese.base);
+@import url("layout.css") layer(hendese.layout);
+@import url("components.css") layer(hendese.components);
+@import url("blueprint.css") layer(hendese.blueprint);
+@import url("motion.css") layer(hendese.motion);
+@import url("hoca.css") layer(hendese.hoca);
+@import url("print.css") layer(hendese.print);
