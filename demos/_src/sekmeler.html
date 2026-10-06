@@ -1,0 +1,282 @@
+<!-- meta {"title":"Sekmeler","group":"Bileşenler","order":180,"tagline":"Aynı şeyin seçenekleri, tek yerde.","intro":"<code>.tabs[data-tabs]</code> aynı içeriğin birbirinin yerine geçen hallerini (biçim, ortam, araç) üst üste koyar ve bir seferde birini gösterir. Sekmeler gerçek <code>&lt;button&gt;</code> öğesidir; ARIA rolleri, ok tuşları ve gezici <code>tabindex</code> paketle gelir. JS yoksa ya da sayfa basılırsa tüm paneller alt alta okunur.","summary":"<code>.tabs[data-tabs]</code>, <code>role=\"tab|tabpanel\"</code>, klavye, <code>hendese:tab</code> olayı; yapılandırma biçimleri ve ortam ayarları.","facts":{"Sınıflar":"<code>.tabs</code> · <code>[data-tabs]</code> · <code>.tab-h</code>","Yapı":"<code>role=\"tablist\"</code> · <code>role=\"tab\"</code> + <code>aria-controls</code> · <code>role=\"tabpanel\"</code> + <code>aria-labelledby</code>","Durum":"<code>aria-selected</code> (paket yazar) · <code>hidden</code> (paket yazar)","Olay":"<code>hendese:tab</code> · <code>detail.id</code>","JS":"<code>Hendese.init()</code> sekmeleri kendiliğinden bağlar"}} -->
+
+<chapter title="Anatomi" lead="Üstte sekme şeridi, altında her sekmeye bir panel. Sekme aria-controls ile panelini, panel aria-labelledby ile sekmesini gösterir. Seçili olmayan paneli paket gizler; HTML'de hiçbir panele hidden yazılmaz.">
+<demo label="Örnek · aynı ayar, üç biçim">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Yapılandırma biçimi">
+    <button type="button" role="tab" id="sk-t-yaml" aria-controls="sk-p-yaml" aria-selected="true">YAML</button>
+    <button type="button" role="tab" id="sk-t-json" aria-controls="sk-p-json">JSON</button>
+    <button type="button" role="tab" id="sk-t-hcl" aria-controls="sk-p-hcl">HCL</button>
+  </div>
+  <div role="tabpanel" id="sk-p-yaml" aria-labelledby="sk-t-yaml" tabindex="0">
+    <h3 class="tab-h">YAML</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">replicas</span>: <span class="v">3</span>
+<span class="k">resources</span>:
+  <span class="k">limits</span>:
+    <span class="k">memory</span>: <span class="s">512Mi</span>
+<span class="k">env</span>:
+  <span class="k">INDEX_BATCH</span>: <span class="s">"200"</span></code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-json" aria-labelledby="sk-t-json" tabindex="0">
+    <h3 class="tab-h">JSON</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/values.json</span><span class="code-lang">JSON</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code>{
+  <span class="k">"replicas"</span>: <span class="v">3</span>,
+  <span class="k">"resources"</span>: { <span class="k">"limits"</span>: { <span class="k">"memory"</span>: <span class="s">"512Mi"</span> } },
+  <span class="k">"env"</span>: { <span class="k">"INDEX_BATCH"</span>: <span class="s">"200"</span> }
+}</code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-hcl" aria-labelledby="sk-t-hcl" tabindex="0">
+    <h3 class="tab-h">HCL</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/main.tf</span><span class="code-lang">HCL</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">module</span> <span class="s">"search_indexer"</span> {
+  <span class="k">replicas</span>     = <span class="v">3</span>
+  <span class="k">memory_limit</span> = <span class="s">"512Mi"</span>
+  <span class="k">env</span>          = { <span class="k">INDEX_BATCH</span> = <span class="s">"200"</span> }
+}</code></pre></figure>
+  </div>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.tabs[data-tabs]</code></dt><dd>Kap. <code>data-tabs</code> paketin bağlanacağı yeri işaretler; <code>.tabs</code> görünüşü verir.</dd>
+  <dt><code>[role="tablist"]</code></dt><dd>Sekme şeridi. <code>aria-label</code> ile neyin seçildiğini söyler (“Yapılandırma biçimi”). Sığmazsa yatay kayar.</dd>
+  <dt><code>[role="tab"]</code></dt><dd><code>&lt;button type="button"&gt;</code>; benzersiz <code>id</code> ve panelin id'sini taşıyan <code>aria-controls</code>. İlk seçili olana <code>aria-selected="true"</code> yazılır; yoksa ilk sekme seçilir.</dd>
+  <dt><code>[role="tabpanel"]</code></dt><dd><code>aria-labelledby</code> sekmeye bağlanır, <code>tabindex="0"</code> ile klavyeyle odaklanır.</dd>
+  <dt><code>.tab-h</code></dt><dd>Panelin ilk öğesi, sekmenin adını taşıyan başlık. JS varken ekranda görsel olarak gizlidir; JS'siz ve baskıda görünür (bkz. bölüm 4).</dd>
+</dl>
+</chapter>
+
+<chapter title="Klavye" lead="Şerit tek bir Tab durağıdır: Tab seçili sekmeye girer, bir sonraki Tab panele geçer. Sekmeler arasında oklarla gezilir; ok seçimi de değiştirir.">
+<div class="tbl"><table>
+  <thead><tr><th>Tuş</th><th>Ne olur</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Tab</kbd></td><td>Seçili sekmeye girer; şeritten çıkıp panele geçer. Seçili olmayan sekmeler <code>tabindex="-1"</code> taşır (gezici <code>tabindex</code>).</td></tr>
+    <tr><td><kbd>→</kbd> · <kbd>←</kbd></td><td>Sonraki ya da önceki sekmeyi seçer ve odaklar; sonda başa, başta sona döner.</td></tr>
+    <tr><td><kbd>Home</kbd> · <kbd>End</kbd></td><td>İlk ya da son sekmeyi seçer.</td></tr>
+    <tr><td><kbd>Enter</kbd> · <kbd>Boşluk</kbd></td><td>Odak zaten seçili sekmede olduğu için ayrıca gerekmez; tıklama gibi çalışır.</td></tr>
+  </tbody>
+</table></div>
+<demo label="Örnek · ortama göre ayarlar; oklarla deneyin">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Ortam">
+    <button type="button" role="tab" id="sk-t-stg" aria-controls="sk-p-stg" aria-selected="true">staging</button>
+    <button type="button" role="tab" id="sk-t-prod" aria-controls="sk-p-prod">prod</button>
+    <button type="button" role="tab" id="sk-t-dr" aria-controls="sk-p-dr">dr</button>
+  </div>
+  <div role="tabpanel" id="sk-p-stg" aria-labelledby="sk-t-stg" tabindex="0">
+    <h3 class="tab-h" lang="en">staging</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>staging · eu-central-1</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>1</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>debug</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>15m</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>kapalı</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div role="tabpanel" id="sk-p-prod" aria-labelledby="sk-t-prod" tabindex="0">
+    <h3 class="tab-h">prod</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>prod · eu-west-1</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>4</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>info</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>8h</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>600 / dk</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div role="tabpanel" id="sk-p-dr" aria-labelledby="sk-t-dr" tabindex="0">
+    <h3 class="tab-h">dr</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>dr · us-east-2</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>0 (soğuk yedek)</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>info</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>8h</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>600 / dk</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Panel kendisi odaklanabildiği için içinde odaklanacak öğe olmasa da klavye kullanıcısı panele ulaşır ve ekran okuyucu içeriği okur. Panelin içinde zaten odaklanabilir bir öğe varsa (kaydırılabilir kod bloğu gibi) panelin <code>tabindex</code>'i yine zararsızdır.</p></div>
+</chapter>
+
+<chapter title="Olay ve dinleyici" lead="Her seçimde kap üzerinde kabarcıklı hendese:tab olayı yayılır; detail.id seçilen sekmenin id'sidir. Açılıştaki ilk seçim olay yaymaz.">
+<demo label="Örnek · seçim → gösterge">
+<div class="tabs" data-tabs id="sk-olay">
+  <div role="tablist" aria-label="Kurulum aracı">
+    <button type="button" role="tab" id="sk-t-kubectl" aria-controls="sk-p-kubectl" aria-selected="true">kubectl</button>
+    <button type="button" role="tab" id="sk-t-helm" aria-controls="sk-p-helm">helm</button>
+    <button type="button" role="tab" id="sk-t-kustomize" aria-controls="sk-p-kustomize">kustomize</button>
+  </div>
+  <div role="tabpanel" id="sk-p-kubectl" aria-labelledby="sk-t-kubectl" tabindex="0">
+    <h3 class="tab-h">kubectl</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · kubectl</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> apply -f manifests/report-cron/ -n <span class="s">reports</span></code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-helm" aria-labelledby="sk-t-helm" tabindex="0">
+    <h3 class="tab-h">helm</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · helm</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">helm</span> upgrade --install report-cron charts/report-cron -n <span class="s">reports</span> -f values-prod.yaml</code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-kustomize" aria-labelledby="sk-t-kustomize" tabindex="0">
+    <h3 class="tab-h" lang="en">kustomize</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · kustomize</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> apply -k overlays/prod/report-cron</code></pre></figure>
+  </div>
+</div>
+<div class="readout" id="sk-olay-out" aria-live="polite"><p>Seçili araç: <b>kubectl</b>. Başka bir sekme seçin.</p></div>
+</demo>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var tabs = document.getElementById('sk-olay'), out = document.getElementById('sk-olay-out');
+tabs.addEventListener('hendese:tab', function (e) {
+  var tab = document.getElementById(e.detail.id);
+  out.innerHTML = '&lt;p&gt;Seçili araç: &lt;b&gt;' + tab.textContent + '&lt;/b&gt;. Komut panelde.&lt;/p&gt;';
+});</code></pre></figure>
+<div class="prose"><p>Olay kabarcıklandığı için birden çok sekme grubu tek bir dinleyiciyle izlenebilir; seçimi saklamak isteyen sayfa (<code>localStorage</code>, adres çubuğu) bunu bu olayda yapar. Paket seçimi saklamaz.</p></div>
+</chapter>
+
+<chapter title="JS'siz ve baskıda" lead="Bitmiş hal: JS çalışmazsa sekme şeridi gizlenir ve tüm paneller alt alta görünür. Baskıda da şerit basılmaz, gizli paneller açılır; kâğıtta hiçbir seçenek kaybolmaz.">
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Şerit</th><th>Paneller</th><th>Panel başlığı</th></tr></thead>
+  <tbody>
+    <tr><td>JS var, ekran</td><td>Görünür</td><td>Yalnız seçili panel; diğerleri <code>hidden</code></td><td>Görsel olarak gizli; ekran okuyucu okur</td></tr>
+    <tr><td>JS yok</td><td>Gizli (<code>html:not(.js)</code>)</td><td>Hepsi alt alta</td><td>Görünür</td></tr>
+    <tr><td>Baskı</td><td>Gizli</td><td>Hepsi alt alta; <code>hidden</code> panel de basılır</td><td>Görünür</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Her panel kendi başlığıyla başlar</span><div class="co-body"><p>Şerit yokken okur hangi panelin hangi seçenek olduğunu yalnız panelin içinden anlar. Bu yüzden her panelin ilk öğesi sekmenin adını taşıyan <code>&lt;h3 class="tab-h"&gt;</code> başlığıdır. JS varken ekranda görsel olarak gizlenir (şerit aynı şeyi zaten söylüyor); JS'siz ve baskıda küçük, büyük harfli bir başlık olarak görünür. Bu sayfadaki tüm örnekler böyle yazıldı; yazdırma önizlemesinde deneyin.</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> role="<span class='s'>tabpanel</span>" id="<span class='s'>p-json</span>" aria-labelledby="<span class='s'>t-json</span>" tabindex="<span class='s'>0</span>"&gt;
+  &lt;<span class='k'>h3</span> class="<span class='s'>tab-h</span>"&gt;JSON&lt;/<span class='k'>h3</span>&gt;
+  …
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+<div class="prose"><p>Panellere HTML'de <code>hidden</code> yazmayın: JS gelmezse o paneller hiç görünmez. Gizleme yalnız paketin işidir (STANDART.md §5: JS yalnızca saklayabilir). Başlık düzeyi sayfaya göre seçilir; bölüm başlığı <code>h2</code> ise <code>h3</code>.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Sekmeler bir figür paftasının içinde aynı şeklin farklı kesitlerini değiştirebilir; şekil adı ve yazısı sekmenin dışında, sabit kalır.">
+<demo label="Örnek · pafta içinde, bölgeye göre kapasite">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Şekil 2</p>
+  <p class="fig-cap">billing-worker kapasitesi</p>
+  <div class="tabs" data-tabs>
+    <div role="tablist" aria-label="Bölge">
+      <button type="button" role="tab" id="sk-t-euw" aria-controls="sk-p-euw" aria-selected="true">eu-west-1</button>
+      <button type="button" role="tab" id="sk-t-euc" aria-controls="sk-p-euc">eu-central-1</button>
+    </div>
+    <div role="tabpanel" id="sk-p-euw" aria-labelledby="sk-t-euw" tabindex="0">
+      <h3 class="tab-h">eu-west-1</h3>
+      <dl class="titleblock">
+        <div class="tb-head"><dt>Bölge</dt><dd>eu-west-1</dd></div>
+        <div><dt>İşçi</dt><dd>6 · otomatik ölçekli (2–12)</dd></div>
+        <div><dt>Kuyruk</dt><dd>invoice-queue · FIFO</dd></div>
+        <div><dt>Tepe</dt><dd>1 800 ileti / dk</dd></div>
+      </dl>
+    </div>
+    <div role="tabpanel" id="sk-p-euc" aria-labelledby="sk-t-euc" tabindex="0">
+      <h3 class="tab-h">eu-central-1</h3>
+      <dl class="titleblock">
+        <div class="tb-head"><dt>Bölge</dt><dd>eu-central-1</dd></div>
+        <div><dt>İşçi</dt><dd>2 · sabit</dd></div>
+        <div><dt>Kuyruk</dt><dd>invoice-queue-dr · FIFO</dd></div>
+        <div><dt>Tepe</dt><dd>400 ileti / dk</dd></div>
+      </dl>
+    </div>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> İki bölgede aynı işçi; eu-central-1 yalnız yedek trafik taşır.</figcaption>
+</figure>
+</demo>
+<demo label="Örnek · koyu sahnede" view="scene-dark">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Günlük kaynağı">
+    <button type="button" role="tab" id="sk-t-app" aria-controls="sk-p-app" aria-selected="true">uygulama</button>
+    <button type="button" role="tab" id="sk-t-lb" aria-controls="sk-p-lb">yük dengeleyici</button>
+  </div>
+  <div role="tabpanel" id="sk-p-app" aria-labelledby="sk-t-app" tabindex="0">
+    <h3 class="tab-h">uygulama</h3>
+    <p><code>web-api</code> son 15 dakikada 3 hata yazdı; hepsi <code>upstream timeout</code>.</p>
+  </div>
+  <div role="tabpanel" id="sk-p-lb" aria-labelledby="sk-t-lb" tabindex="0">
+    <h3 class="tab-h">yük dengeleyici</h3>
+    <p>Yük dengeleyici son 15 dakikada 41 kez <code>504</code> döndü; hedef grubu <code>web-api-tg</code>.</p>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Sekmenin iki durumu var: seçili ve seçili değil. Seçili sekme koyu mürekkep ve altında 2px çizim çizgisi taşır; odak her sekmede görünür halkadır.">
+<demo label="Örnek · ikinci sekme seçili açılır">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Sürüm">
+    <button type="button" role="tab" id="sk-t-v1" aria-controls="sk-p-v1">v2.13.0</button>
+    <button type="button" role="tab" id="sk-t-v2" aria-controls="sk-p-v2" aria-selected="true">v2.14.0 · güncel</button>
+    <button type="button" role="tab" id="sk-t-v3" aria-controls="sk-p-v3">v2.15.0-rc.1</button>
+  </div>
+  <div role="tabpanel" id="sk-p-v1" aria-labelledby="sk-t-v1" tabindex="0"><h3 class="tab-h">v2.13.0</h3><p><b>v2.13.0</b> · önbellek anahtarı şemaya bağlandı.</p></div>
+  <div role="tabpanel" id="sk-p-v2" aria-labelledby="sk-t-v2" tabindex="0"><h3 class="tab-h">v2.14.0 · güncel</h3><p><b>v2.14.0</b> · yeniden deneme sayısı 3'ten 5'e çıktı; zaman aşımı değişmedi.</p></div>
+  <div role="tabpanel" id="sk-p-v3" aria-labelledby="sk-t-v3" tabindex="0"><h3 class="tab-h">v2.15.0-rc.1</h3><p><b>v2.15.0-rc.1</b> · aday sürüm; yalnız staging'de.</p></div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>Nasıl verilir</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Seçili</td><td><code>aria-selected="true"</code>; açılışta HTML'den, sonra paket yazar</td><td>Koyu mürekkep, altta 2px <code>--draw</code> çizgisi; zorunlu renk modunda <code>Highlight</code> çerçeve</td></tr>
+    <tr><td>Seçili değil</td><td><code>aria-selected="false"</code>, <code>tabindex="-1"</code></td><td>Soluk mürekkep; üzerine gelince koyulaşır</td></tr>
+    <tr><td>Odak</td><td><code>:focus-visible</code></td><td>Sekmenin içine çizilen vurgu halkası</td></tr>
+    <tr><td>Devre dışı</td><td>Yok</td><td>Bilerek yok; aşağıya bakın</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Neden devre dışı sekme yok</span><div class="co-body"><p>Devre dışı sekme bir seçeneğin var olduğunu söyler ama neden açılmadığını söylemez; klavyede de atlanır. Seçenek bu bağlamda yoksa sekmeyi hiç çizmeyin. Seçenek var ama içi henüz boşsa sekmeyi açık bırakın ve panelde nedenini yazın: <code>.empty</code> ile “dr ortamında henüz dağıtım yok” gibi.</p></div></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Sekmeler aynı şeyin birbirinin yerine geçen halleridir; okur yalnız birine bakar. Sırayla yapılacak adımlar sekmeye konmaz.">
+<div class="dodont">
+<demo label="Yap · aynı komut, üç paket yöneticisi">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Paket yöneticisi">
+    <button type="button" role="tab" id="sk-t-apt" aria-controls="sk-p-apt" aria-selected="true">apt</button>
+    <button type="button" role="tab" id="sk-t-dnf" aria-controls="sk-p-dnf">dnf</button>
+    <button type="button" role="tab" id="sk-t-brew" aria-controls="sk-p-brew">brew</button>
+  </div>
+  <div role="tabpanel" id="sk-p-apt" aria-labelledby="sk-t-apt" tabindex="0"><h3 class="tab-h">apt</h3><p><code>sudo apt install jq</code></p></div>
+  <div role="tabpanel" id="sk-p-dnf" aria-labelledby="sk-t-dnf" tabindex="0"><h3 class="tab-h">dnf</h3><p><code>sudo dnf install jq</code></p></div>
+  <div role="tabpanel" id="sk-p-brew" aria-labelledby="sk-t-brew" tabindex="0"><h3 class="tab-h">brew</h3><p><code>brew install jq</code></p></div>
+</div>
+</demo>
+<demo label="Yapma · sıralı adımlar sekmede">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Sürüm adımları">
+    <button type="button" role="tab" id="sk-t-a1" aria-controls="sk-p-a1" aria-selected="true">1 · derle</button>
+    <button type="button" role="tab" id="sk-t-a2" aria-controls="sk-p-a2">2 · test</button>
+    <button type="button" role="tab" id="sk-t-a3" aria-controls="sk-p-a3">3 · yayınla</button>
+  </div>
+  <div role="tabpanel" id="sk-p-a1" aria-labelledby="sk-t-a1" tabindex="0"><h3 class="tab-h">1 · derle</h3><p><code>make build</code></p></div>
+  <div role="tabpanel" id="sk-p-a2" aria-labelledby="sk-t-a2" tabindex="0"><h3 class="tab-h">2 · test</h3><p><code>make test</code></p></div>
+  <div role="tabpanel" id="sk-p-a3" aria-labelledby="sk-t-a3" tabindex="0"><h3 class="tab-h">3 · yayınla</h3><p><code>make release</code></p></div>
+</div>
+</demo>
+</div>
+<div class="prose"><p>Sıralı adımlar bir arada görünmeli: okur ikinci adımı yaparken birinciyi de görür, hangisinde olduğunu bilir. Bunun için <code>.steps</code> kullanın:</p></div>
+<demo label="Örnek · aynı içerik, doğru parça">
+<ol class="steps">
+  <li><h3>Derleyin</h3><p><code>make build</code></p></li>
+  <li><h3>Test edin</h3><p><code>make test</code></p></li>
+  <li><h3>Yayınlayın</h3><p><code>make release</code></p></li>
+</ol>
+</demo>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Sekme sayısı</span><div class="co-body"><p>İki ile beş sekme okunur. Daha fazlası şeritte kayar ve okur seçenekleri göremez; o durumda <code>&lt;select&gt;</code> ya da ayrı bölümler daha iyidir. Sekme adı kısa bir addır, cümle değil.</p></div></div>
+</chapter>
+
+<script data-page>
+/* hendese:tab → gösterge */
+(function () {
+  var tabs = document.getElementById('sk-olay'), out = document.getElementById('sk-olay-out');
+  tabs.addEventListener('hendese:tab', function (e) {
+    var tab = document.getElementById(e.detail.id);
+    out.innerHTML = '<p>Seçili araç: <b>' + tab.textContent + '</b>. Komut panelde; <code>detail.id</code> = <code>' + e.detail.id + '</code>.</p>';
+  });
+})();
+</script>

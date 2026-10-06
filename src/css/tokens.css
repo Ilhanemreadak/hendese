@@ -38,11 +38,9 @@
   --ease-out:cubic-bezier(.2,.7,.2,1);        /* varsayılan: hızlı başla, yumuşak dur */
   --ease-in-out:cubic-bezier(.45,0,.55,1);    /* sahne içi yer değiştirme */
   --ease-snap:cubic-bezier(.3,1.6,.55,1);     /* yerine oturma, hafif taşma */
-  /* kullanımdan kalkan adlar (0.3'te silinir) */
-  --ease:var(--ease-out);--t-fast:var(--dur-1);--t-med:var(--dur-3);
 
   /* CSS content ile basılan arayüz metinleri; başka dil için ezin */
-  --str-selected:"SEÇİLİ";--str-station:"İstasyon";
+  --str-selected:"SEÇİLİ";--str-station:"İstasyon";--str-error:"Hata:";--str-required:" · zorunlu";
 
   /* yüzeyler                 açık                     koyu */
   --bg:         light-dark(#f4f4ef,               #0f1318);

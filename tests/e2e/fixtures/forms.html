@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="tr">
+<head><meta charset="utf-8"><title>0.3 fikstürü</title><link rel="stylesheet" href="../../../dist/hendese.css"></head>
+<body>
+<!-- 0.3 parçalarının davranışı: sekme klavyesi, diyalog, geçersiz alan -->
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Ortam">
+    <button role="tab" id="t1" aria-controls="p1" aria-selected="true">staging</button>
+    <button role="tab" id="t2" aria-controls="p2">prod</button>
+    <button role="tab" id="t3" aria-controls="p3">dr</button>
+  </div>
+  <div role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0"><h3 class="tab-h">staging</h3>bir</div>
+  <div role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0">iki</div>
+  <div role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0">üç</div>
+</div>
+<button class="btn" id="open" command="show-modal" commandfor="dlg">Aç</button>
+<dialog class="dialog" id="dlg" aria-labelledby="dlg-h"><div class="dialog-head"><h2 id="dlg-h">Onay</h2></div><form method="dialog" class="dialog-foot"><button class="btn" value="no">Vazgeç</button></form></dialog>
+<div class="field"><label for="f1">Bölge</label><input id="f1" aria-describedby="f1-e"><p class="field-error" id="f1-e">bölge kodu gerekli</p></div>
+<script src="../../../dist/hendese.js"></script>
+<script>Hendese.init(); Hendese.start();</script>
+</body>
+</html>

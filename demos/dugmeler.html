@@ -61,6 +61,12 @@
     <a class="nav-page" href="damga.html">Damga</a>
     <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
     <a class="nav-page" href="antet.html">Antet</a>
+    <a class="nav-page" href="form-alanlari.html">Form alanları</a>
+    <a class="nav-page" href="isaretler.html">Onay, radyo ve kaydırıcı</a>
+    <a class="nav-page" href="sekmeler.html">Sekmeler</a>
+    <a class="nav-page" href="diyalog.html">Diyalog</a>
+    <a class="nav-page" href="olcu-notu.html">Ölçü notu</a>
+    <a class="nav-page" href="bos-durum.html">Boş durum</a>
     <div class="nav-group">Bu sayfa</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Varyantlar</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Aç/kapa</span></a>
@@ -137,9 +143,8 @@
 <article class="chapter" id="p3" data-section data-title="Durumlar">
   <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Devre dışı düğme kesikli kenar ve soluk mürekkeple çizilir: dilde kesikli çizgi “henüz gerçek değil” demektir. İki yolu var; farkı klavyede ortaya çıkar.</p></header>
 <div class="demo">
-  <span class="demo-label">true</span>
+  <span class="demo-label">Örnek · etkin, <span lang='en'>disabled</span>, <span lang='en'>aria-disabled</span></span>
   <div class="demo-view">
-disabled</span>, <span lang='en'>aria-disabled</span>">
 <div class="pillrow">
   <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
   <button class="btn" type="button" disabled><svg><use href="#i-reset"/></svg>Yeniden dene</button>
@@ -148,8 +153,7 @@ disabled</span>, <span lang='en'>aria-disabled</span>">
 </div>
 <p class="figcap" id="dg-neden">Sıradaki iş bitmeden yeniden deneme açılmaz.</p>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>disabled&lt;/<span class='k'>span</span>&gt;, &lt;<span class='k'>span</span> lang='en'&gt;aria-disabled&lt;/<span class='k'>span</span>&gt;"&gt;
-&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
   &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
   &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" disabled&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;
   &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" aria-disabled="<span class='s'>true</span>" aria-describedby="<span class='s'>dg-neden</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yeniden dene&lt;/<span class='k'>button</span>&gt;

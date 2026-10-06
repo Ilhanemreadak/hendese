@@ -23,7 +23,7 @@ Bileşen CSS'inde (`base`, `layout`, `components`, `blueprint`, `motion`) ham de
 
 Kurallar:
 
-- **Kullanımdan kalkan adlar:** `--ease`, `--t-fast`, `--t-med`. 0.3'te silinir.
+- **Silinen adlar (0.3):** `--ease`, `--t-fast`, `--t-med`; yerine `--ease-out`, `--dur-1`, `--dur-3`.
 - **Yapısal istisnalar:** satırın sonuna `/* std:ok <gerekçe> */` yazılır. Örnek: kod sütununu kaydıran 54px. Toplam istisna sayısının üst sınırı 15'tir.
 - **Özelleştirme:** tema `@layer` içindedir. Kullanan proje kendi katmansız CSS'inde token'ları ezer; seçici gücü gerekmez.
 
@@ -37,7 +37,7 @@ Durum taşıyan her bileşen rengini iki değişkenden okur: `--c` (çizgi ve me
 | `.s-neutral` · `.s-accent` | nötr · vurgu |
 | `.s-gitlab` · `.s-aws` · `.s-k8s` · `.s-argo` | servis rengi; zemin otomatik %10 |
 
-`.s-*` sınıflarını kabul eden bileşenler: `.pill`, `.state`, `.readout`, `.check`, `.co`, `.steps>li`, `.survey-log>li`, `.cells>i` ve 0.3'teki form alanları.
+`.s-*` sınıflarını kabul eden bileşenler: `.pill`, `.state`, `.readout`, `.check`, `.co`, `.steps>li`, `.survey-log>li`, `.cells>i`, `.lamp`. Form alanının durumu yalnız §3 "Geçersiz" ile verilir; "başarılı" yeşil alan yoktur (yalnız renkle anlam olur).
 
 Kullanımdan kalkan takma adlar 1.0'da silinir: `.pill-ok`, `.pill-neutral`, `.state.ok/.warn/.bad`, `.readout.ok/.bad`, `.p-auto/.p-manual/.p-inline`. `.co-*` sınıfları renk değil rol adıdır (ipucu, sorun…) ve kalır.
 

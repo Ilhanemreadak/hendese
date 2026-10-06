@@ -72,3 +72,41 @@ test('büyük harfli her etikette İngilizce kelime lang=en alır', async ({ pag
   await page.goto(url('tests/e2e/fixtures/lang'));
   expect(await page.evaluate(() => ['#a', '#b', '#c'].map(s => document.querySelectorAll(s + ' [lang="en"]').length))).toEqual([1, 1, 0]);
 });
+
+// 0.3 parçaları
+test('sekmeler: ok tuşları ve End seçer, panel değişir, roving tabindex', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/forms'));
+  await expect(page.locator('#p2')).toBeHidden();
+  await page.focus('#t1'); await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#t2')).toBeFocused();
+  await expect(page.locator('#t2')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#p2')).toBeVisible(); await expect(page.locator('#p1')).toBeHidden();
+  await page.keyboard.press('End'); await expect(page.locator('#t3')).toHaveAttribute('tabindex', '0');
+  await page.keyboard.press('ArrowRight'); await expect(page.locator('#t1')).toBeFocused();
+});
+
+test('sekmeler JS olmadan: şerit gizli, tüm paneller görünür', async ({ browser }) => {
+  const ctx = await browser.newContext({ javaScriptEnabled: false }), page = await ctx.newPage();
+  await page.goto(url('tests/e2e/fixtures/forms'));
+  await expect(page.locator('[role="tablist"]')).toBeHidden();
+  for (const id of ['#p1', '#p2', '#p3']) await expect(page.locator(id)).toBeVisible();
+  await ctx.close();
+});
+
+test('diyalog: commandfor açar, Esc kapatır, odak geri döner', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/forms'));
+  await page.click('#open');
+  await expect(page.locator('#dlg')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#dlg')).toBeHidden();
+  await expect(page.locator('#open')).toBeFocused();
+});
+
+test('form alanı: aria-invalid hata metnini gösterir', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/forms'));
+  await expect(page.locator('#f1-e')).toBeHidden();
+  await expect(page.locator('#f1')).not.toHaveAttribute('aria-describedby', /f1-e/);   // gizli hata okunmasın
+  await page.evaluate(() => document.getElementById('f1').setAttribute('aria-invalid', 'true'));
+  await expect(page.locator('#f1-e')).toBeVisible();
+  await expect(page.locator('#f1')).toHaveAttribute('aria-describedby', /f1-e/);
+});

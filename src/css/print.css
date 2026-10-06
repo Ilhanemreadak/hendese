@@ -7,4 +7,7 @@
   .chapter{break-inside:avoid;padding-top:28px}
   .co,.tbl,.code{box-shadow:none}
   .frame,.sticky-fig,.fig-sheet{break-inside:avoid}
+  .tabs [role="tablist"]{display:none}
+  .tabs [role="tabpanel"][hidden]{display:block}
+  .js .tabs [role="tabpanel"]>.tab-h{position:static;width:auto;height:auto;clip:auto}
 }

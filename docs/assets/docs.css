@@ -1,7 +1,7 @@
 /* Yalnızca dokümantasyon sayfalarına özel: örnek kutusu, token örnekleri, sayfa listesi. Paketin parçası değildir. */
 .demo{margin:14px 0 22px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
 .demo-view{padding:20px 22px}
-.demo-view>:first-child{margin-top:0}.demo-view>:last-child{margin-bottom:0}
+.demo-view>:first-child:not(dialog){margin-top:0}.demo-view>:last-child:not(dialog){margin-bottom:0}   /* diyalog ortalanmak için margin:auto ister */
 .demo>.code{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--r-md) var(--r-md)}
 .demo-label{display:block;padding:7px 14px;border-bottom:1px solid var(--line);font:500 10.5px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0 20px}

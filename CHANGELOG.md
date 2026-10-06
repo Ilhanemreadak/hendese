@@ -2,6 +2,38 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
+## [0.3.0] - 2026-10-06
+
+Yeni parçalar; hepsi `STANDART.md`'ye göre yazıldı ve advisor incelemesinden geçti.
+
+### Eklendi
+- Form alanı:
+  - kap ve alanlar: `.field` (etiket, input, textarea, select), `.field-help`, `.field-error`, `.field-row`, birimli alan `.field-unit`;
+  - durumlar: geçersiz `aria-invalid="true"` ya da `:user-invalid` (kenar ve hata metni), devre dışı kesikli kenar, `:required` için `--str-required` işareti (erişilebilir ada girmez);
+  - hata metni yalnız alan geçersizken `aria-describedby`'a bağlanır (`widgets.js`).
+- Onay, radyo ve kaydırıcı: `.field-check` (yerel öğe, `accent-color`), `fieldset.field`, `input[type=range]` + `output`.
+- Sekmeler:
+  - yapı: `.tabs[data-tabs]` (ARIA tablist, roving tabindex, oklar/Home/End), panel başlığı `.tab-h`, olay `hendese:tab`;
+  - JS'siz ve baskıda tüm paneller başlıklarıyla görünür.
+- Diyalog: yerel `<dialog class="dialog">`, `command`/`commandfor` ile açılır; Invoker Commands desteklemeyen tarayıcı için küçük yedek.
+- Ölçü notu: `popovertarget` + `.dim-tip[popover]`, tıklayınca açılan ipucu; anchor positioning varsa düğmeye bağlanır.
+- Boş durum: `.empty`.
+- Parça sayfaları: form alanları; onay, radyo ve kaydırıcı; sekmeler; diyalog; ölçü notu; boş durum. Bileşenler dokümanına "Form ve kaplar" bölümü.
+- Metin token'ları: `--str-error`, `--str-required`.
+
+### Değişti (kırıcı)
+- `--ease`, `--t-fast`, `--t-med` silindi; yerine `--ease-out`, `--dur-1`, `--dur-3`.
+
+### Düzeltildi
+- Parça sayfası üreticisi, etiket değerinde HTML olan `<demo label="…">` öğesini kesiyordu (düğmeler sayfasında etiket "true" görünüyordu).
+- Doküman örnek kutusunun son öğe kuralı yerel diyaloğun `margin:auto` değerini eziyordu; diyalog ekranın altında açılıyordu.
+
+### Bilinçli olarak eklenmedi
+- Anahtar (switch): `.toggle-btn` ve onay kutusu karşılıyor.
+- Bildirim (toast): geri bildirim satır içi veriliyor (kopyalama etiketi, `.readout`, `.rb-done`).
+- Yükleniyor iskeleti: statik sayfa eşzamansız içerik yüklemiyor; bekleme `aria-busy` ve metinle anlatılır.
+- Zaman çizelgesi: `.survey-log` ve `.s-*` karşılıyor.
+
 ## [0.2.0] - 2026-10-06
 
 Sistem mantığı ve standart sürümü. Ayrıntı: `STANDART.md`.

@@ -116,7 +116,8 @@ for (const [i, p] of pages.entries()) {
   const chapters = [];
   let body = p.body
     .replace(/<script data-page>([\s\S]*?)<\/script>/g, (_, s) => { script += dedent(s) + '\n'; return ''; })
-    .replace(/<demo([^>]*)>([\s\S]*?)<\/demo>/g, (_, a, html) => {
+    // öznitelik değerindeki ">" etiketi bitirmesin: tırnaklı değer bir bütündür
+    .replace(/<demo((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>([\s\S]*?)<\/demo>/g, (_, a, html) => {
       const o = attrs(a), src = dedent(html);
       return `<div class="demo">
   <span class="demo-label">${o.label || 'Örnek'}</span>
@@ -125,7 +126,7 @@ ${src}
   </div>${o.nocode ? '' : '\n  ' + codeBox(hl(src))}
 </div>`;
     })
-    .replace(/<chapter([^>]*)>([\s\S]*?)<\/chapter>/g, (_, a, inner) => {
+    .replace(/<chapter((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>([\s\S]*?)<\/chapter>/g, (_, a, inner) => {
       const o = attrs(a), num = String(++n).padStart(2, '0'), id = `p${n}`;
       chapters.push(`    <a class="nav-link" href="#${id}"><span class="num">${num}</span><span>${o.title}</span></a>`);
       return `<article class="chapter" id="${id}" data-section data-title="${o.title}"${o.hoca ? ` data-hoca="${o.hoca}"` : ''}>

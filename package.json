@@ -1,6 +1,6 @@
 {
   "name": "hendese",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Blueprint (teknik çizim) tasarım dili: token'lar, bileşenler, scroll sahne motoru ve piksel maskot Hoca.",
   "private": true,
   "type": "module",

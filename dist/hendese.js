@@ -1,4 +1,4 @@
-/* Hendese 0.2.0 */
+/* Hendese 0.3.0 */
 var Hendese = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -1228,11 +1228,92 @@ var Hendese = (() => {
       if (selected) select(selected);
     });
   }
+  function tabs() {
+    $$("[data-tabs]").forEach(function(root) {
+      var list = $$('[role="tab"]', root).filter(function(t) {
+        return t.closest("[data-tabs]") === root;
+      });
+      list.forEach(function(t) {
+        if (!t.hasAttribute("type")) t.type = "button";
+      });
+      function select(t, focus, quiet) {
+        list.forEach(function(x) {
+          var on = x === t, p = document.getElementById(x.getAttribute("aria-controls"));
+          x.setAttribute("aria-selected", String(on));
+          x.tabIndex = on ? 0 : -1;
+          if (p) p.hidden = !on;
+        });
+        if (focus) t.focus();
+        if (!quiet) root.dispatchEvent(new CustomEvent("hendese:tab", { bubbles: true, detail: { id: t.id } }));
+      }
+      list.forEach(function(t, i) {
+        t.addEventListener("click", function() {
+          select(t);
+        });
+        t.addEventListener("keydown", function(e) {
+          var k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: list.length - 1 }[e.key];
+          if (k == null) return;
+          e.preventDefault();
+          select(list[(k + list.length) % list.length], true);
+        });
+      });
+      if (list.length) select(list.filter(function(t) {
+        return t.getAttribute("aria-selected") === "true";
+      })[0] || list[0], false, true);
+    });
+  }
+  function dialogs() {
+    if ("commandForElement" in HTMLButtonElement.prototype) return;
+    $$("button[commandfor]").forEach(function(b) {
+      b.addEventListener("click", function() {
+        var d = document.getElementById(b.getAttribute("commandfor")), c = b.getAttribute("command");
+        if (!d || !d.showModal) return;
+        if (c === "show-modal" && !d.open) d.showModal();
+        else if (c === "close") {
+          if (b.hasAttribute("value")) d.close(b.value);
+          else d.close();
+        } else if (c === "request-close") {
+          if (d.requestClose) d.requestClose();
+          else d.close();
+        }
+      });
+    });
+  }
+  function fields() {
+    $$(".field-error[id]").forEach(function(e) {
+      var c = $('[aria-describedby~="' + e.id + '"]', e.closest(".field"));
+      if (!c) return;
+      var base2 = c.getAttribute("aria-describedby").split(/\s+/).filter(function(x) {
+        return x !== e.id;
+      });
+      function sync() {
+        var bad = c.getAttribute("aria-invalid") === "true";
+        try {
+          bad = bad || c.matches(":user-invalid");
+        } catch (x) {
+        }
+        var ids = bad ? base2.concat(e.id) : base2;
+        if (ids.length) c.setAttribute("aria-describedby", ids.join(" "));
+        else c.removeAttribute("aria-describedby");
+      }
+      ["input", "change", "blur", "invalid"].forEach(function(t) {
+        c.addEventListener(t, sync);
+      });
+      if (c.form) c.form.addEventListener("reset", function() {
+        setTimeout(sync);
+      });
+      new MutationObserver(sync).observe(c, { attributeFilter: ["aria-invalid"] });
+      sync();
+    });
+  }
   function init5() {
     tables();
     copy();
     runbooks();
     explorers();
+    tabs();
+    dialogs();
+    fields();
   }
 
   // src/js/lang.js
@@ -1261,7 +1342,7 @@ var Hendese = (() => {
   }
 
   // src/js/index.js
-  var version = true ? "0.2.0" : "dev";
+  var version = true ? "0.3.0" : "dev";
   var O = null;
   var started = false;
   function init6(opts) {
