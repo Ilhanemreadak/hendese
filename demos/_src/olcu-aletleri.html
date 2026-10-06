@@ -1,0 +1,240 @@
+<!-- meta {"title":"Ölçü aletleri","group":"Blueprint","order":60,"tagline":"Bir değeri kurala karşı ölç, farkı göster.","intro":"İki alet var. Kumpas bir metni düzenli ifadeye karşı karakter karakter ölçer: nerede geçtiğini, nerede kaldığını, neyin eksik olduğunu. Kadran ve doğrusal ölçer istenen değer ile gerçek değeri aynı ölçek üstünde gösterir; aradaki fark işaretlenir ve yazıyla da söylenir.","summary":"Regex kumpası, kadran ve doğrusal ölçer; istenen ile gerçek arasındaki fark.","facts":{"Sınıflar":"<code>.drawing</code> · <code>.dl</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.fill-*</code> · <code>.state</code>","Satır içi stil":"İbre kalınlığı, fark yayı ve hücre dolgusu (token ile)","JS":"Gerekmez"}} -->
+
+<chapter title="Kumpas" lead="Sabit çene ^ metnin başında, kayan çene $ son hücrenin sağ kenarında durur. Her karakter bir hücredir; altındaki çizgi o hücreyi ölçen kalıp parçasıdır.">
+<demo label="Örnek · sürüm etiketi kalıba uymuyor">
+<div class="drawing" style="--aw:900;--ah:220">
+  <svg viewBox="0 0 900 220" aria-hidden="true">
+    <path class="ln-draw" d="M20 206H880"/>
+    <path class="ln-pencil" d="M20 212H880"/>
+    <path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/>
+    <path class="ln-pencil" d="M120 46v6M146 46v6M172 46v6M198 46v6M224 46v6M250 46v6M276 46v6M302 46v6M328 46v6M354 46v6M380 46v6M406 46v6M432 46v6M458 46v6M484 46v6M510 46v6M536 46v6M562 46v6M588 46v6M614 46v6M640 46v6M666 46v6M692 46v6M718 46v6M744 46v6M770 46v6M796 46v6M822 46v6M848 46v6"/>
+    <path class="ln-draw fill-paper" d="M100 30H120V124L112 132H100Z"/>
+    <text class="dim-t" x="110" y="22" text-anchor="middle" style="font-size:18px">^</text>
+    <path class="ln-pencil fill-paper" d="M120 80H302V120H120ZM146 80V120M172 80V120M198 80V120M224 80V120M250 80V120M276 80V120"/>
+    <path class="ln-strong ln-ok" d="M120 118.5H302"/>
+    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="302" y="80" width="26" height="40"/>
+    <path class="ln-pencil ln-dash" d="M328 80H406V120H328ZM354 80V120M380 80V120"/>
+    <path class="ln-bad" style="fill:var(--bad)" d="M315 126l-6 10h12z"/>
+    <g style="font:600 20px var(--font-mono);text-anchor:middle;fill:var(--ink)">
+      <text x="133" y="107">v</text><text x="159" y="107">2</text><text x="185" y="107">.</text><text x="211" y="107">1</text><text x="237" y="107">3</text><text x="263" y="107">.</text><text x="289" y="107">0</text>
+      <text x="315" y="107" style="fill:var(--bad)">-</text>
+      <text x="341" y="107" style="fill:var(--ink-3)">r</text><text x="367" y="107" style="fill:var(--ink-3)">c</text><text x="393" y="107" style="fill:var(--ink-3)">1</text>
+    </g>
+    <path class="ln-draw fill-paper" d="M406 22H448V54H428V124L418 132H406Z"/>
+    <text class="dim-t" x="427" y="16" text-anchor="middle" style="font-size:18px">$</text>
+    <path class="ln-strong ln-ok" d="M120 150H145M147 150H301"/>
+    <path class="ln-strong ln-bad" d="M303 150H328"/>
+    <rect class="ln-pencil fill-paper" x="520" y="148" width="22" height="26"/>
+    <path class="ln-strong ln-ok" d="M520 172.5H542"/>
+    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="610" y="148" width="22" height="26"/>
+    <rect class="ln-strong ln-bad ln-dash" style="fill:var(--bad-soft)" x="700" y="148" width="22" height="26"/>
+    <rect class="ln-pencil ln-dash" x="790" y="148" width="22" height="26"/>
+  </svg>
+  <p class="dl" style="--x:120;--y:156;--w:40;color:var(--ok)">^v</p>
+  <p class="dl" style="--x:150;--y:156;--w:150;color:var(--ok)">\d+\.\d+\.\d+</p>
+  <p class="dl" style="--x:304;--y:156;--w:30;color:var(--bad)">$</p>
+  <div class="dl" style="--x:520;--y:64;--w:360;color:var(--ink)"><span class="state bad">Uymaz</span> 8. karakter <b>-</b> beklenmiyor: kalıp sürüm numarasıyla bitmeli, ön sürüm eki kabul edilmez.</div>
+  <p class="dl" style="--x:548;--y:152;--w:60">geçti</p>
+  <p class="dl" style="--x:638;--y:152;--w:60">kaldı</p>
+  <p class="dl" style="--x:728;--y:152;--w:60">eksik</p>
+  <p class="dl" style="--x:818;--y:152;--w:80">bakılmadı</p>
+</div>
+</demo>
+<div class="prose"><p>Ölçülen metin <code>v2.13.0-rc1</code>, kalıp <code>^v\d+\.\d+\.\d+$</code>. Hücre genişliği 26 birimdir; karakterler SVG içinde mono yazılır, çünkü hücreyle birlikte ölçeklenmeleri gerekir. Kalıp parçaları ve hüküm ise HTML etiketidir. Dört hücre durumu:</p>
+<ul>
+  <li><b>geçti</b> · ince çerçeve, yeşil alt çizgi (<code>.ln-strong .ln-ok</code>);</li>
+  <li><b>kaldı</b> · kalın kırmızı çerçeve, açık kırmızı dolgu, altında ▲ işareti;</li>
+  <li><b>eksik</b> · aynı, ama kesikli ve boş: kalıp bir karakter bekliyor, metin bitmiş;</li>
+  <li><b>bakılmadı</b> · kesikli ve soluk: ölçüm daha önce durdu.</li>
+</ul></div>
+</chapter>
+
+<chapter title="Kumpas sonuçları" lead="Aynı alet iki hükümle: her şey geçtiğinde yalnız yeşil çizgiler kalır; metin kısa kaldığında kayan çene boş bir hücrenin ötesinde durur.">
+<demo label="Örnek · dal adı · uyar">
+<div class="drawing" style="--aw:900;--ah:190">
+  <svg viewBox="0 0 900 190" aria-hidden="true">
+    <path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/>
+    <path class="ln-pencil" d="M120 46v6M146 46v6M172 46v6M198 46v6M224 46v6M250 46v6M276 46v6M302 46v6M328 46v6M354 46v6M380 46v6M406 46v6M432 46v6M458 46v6M484 46v6M510 46v6M536 46v6M562 46v6M588 46v6M614 46v6M640 46v6M666 46v6M692 46v6M718 46v6M744 46v6M770 46v6M796 46v6M822 46v6M848 46v6"/>
+    <path class="ln-draw fill-paper" d="M100 30H120V124L112 132H100Z"/>
+    <text class="dim-t" x="110" y="22" text-anchor="middle" style="font-size:18px">^</text>
+    <path class="ln-pencil fill-paper" d="M120 80H510V120H120ZM146 80V120M172 80V120M198 80V120M224 80V120M250 80V120M276 80V120M302 80V120M328 80V120M354 80V120M380 80V120M406 80V120M432 80V120M458 80V120M484 80V120"/>
+    <path class="ln-strong ln-ok" d="M120 118.5H510"/>
+    <g style="font:600 20px var(--font-mono);text-anchor:middle;fill:var(--ink)">
+      <text x="133" y="107">r</text><text x="159" y="107">e</text><text x="185" y="107">l</text><text x="211" y="107">e</text><text x="237" y="107">a</text><text x="263" y="107">s</text><text x="289" y="107">e</text><text x="315" y="107">/</text>
+      <text x="341" y="107">2</text><text x="367" y="107">0</text><text x="393" y="107">2</text><text x="419" y="107">6</text><text x="445" y="107">-</text><text x="471" y="107">1</text><text x="497" y="107">0</text>
+    </g>
+    <path class="ln-draw fill-paper" d="M510 22H552V54H532V124L522 132H510Z"/>
+    <text class="dim-t" x="531" y="16" text-anchor="middle" style="font-size:18px">$</text>
+    <path class="ln-strong ln-ok" d="M120 150H327M329 150H431M433 150H457M459 150H510"/>
+  </svg>
+  <p class="dl" style="--x:120;--y:156;--w:200;color:var(--ok)">^release/</p>
+  <p class="dl" style="--x:330;--y:156;--w:100;color:var(--ok)">\d{4}</p>
+  <p class="dl" style="--x:436;--y:156;--w:20;color:var(--ok)">-</p>
+  <p class="dl" style="--x:460;--y:156;--w:60;color:var(--ok)">\d{2}$</p>
+  <div class="dl" style="--x:580;--y:70;--w:300;color:var(--ink)"><span class="state ok">Uyar</span> 15 karakterin tamamı kalıba uyuyor; dal korumalı yayın dalı sayılır.</div>
+</div>
+</demo>
+<demo label="Örnek · gizli anahtar adı · eksik">
+<div class="drawing" style="--aw:900;--ah:190">
+  <svg viewBox="0 0 900 190" aria-hidden="true">
+    <path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/>
+    <path class="ln-pencil" d="M120 46v6M146 46v6M172 46v6M198 46v6M224 46v6M250 46v6M276 46v6M302 46v6M328 46v6M354 46v6M380 46v6M406 46v6M432 46v6M458 46v6M484 46v6M510 46v6M536 46v6M562 46v6M588 46v6M614 46v6M640 46v6M666 46v6M692 46v6M718 46v6M744 46v6M770 46v6M796 46v6M822 46v6M848 46v6"/>
+    <path class="ln-draw fill-paper" d="M100 30H120V124L112 132H100Z"/>
+    <text class="dim-t" x="110" y="22" text-anchor="middle" style="font-size:18px">^</text>
+    <path class="ln-pencil fill-paper" d="M120 80H354V120H120ZM146 80V120M172 80V120M198 80V120M224 80V120M250 80V120M276 80V120M302 80V120M328 80V120"/>
+    <path class="ln-strong ln-ok" d="M120 118.5H354"/>
+    <rect class="ln-strong ln-bad ln-dash" style="fill:var(--bad-soft)" x="354" y="80" width="26" height="40"/>
+    <path class="ln-bad" style="fill:var(--bad)" d="M367 126l-6 10h12z"/>
+    <g style="font:600 20px var(--font-mono);text-anchor:middle;fill:var(--ink)">
+      <text x="133" y="107">d</text><text x="159" y="107">b</text><text x="185" y="107">-</text><text x="211" y="107">p</text><text x="237" y="107">a</text><text x="263" y="107">s</text><text x="289" y="107">s</text><text x="315" y="107">-</text><text x="341" y="107">v</text>
+    </g>
+    <path class="ln-draw fill-paper" d="M380 22H422V54H402V124L392 132H380Z"/>
+    <text class="dim-t" x="401" y="16" text-anchor="middle" style="font-size:18px">$</text>
+    <path class="ln-strong ln-ok" d="M120 150H353"/>
+    <path class="ln-strong ln-bad" d="M355 150H380"/>
+  </svg>
+  <p class="dl" style="--x:120;--y:156;--w:230;color:var(--ok)">^db-pass-v</p>
+  <p class="dl" style="--x:356;--y:156;--w:60;color:var(--bad)">\d+$</p>
+  <div class="dl" style="--x:480;--y:70;--w:400;color:var(--ink)"><span class="state bad">Uymaz</span> Sürüm numarası eksik: kalıp sonda en az bir rakam bekliyor, metin <b>v</b> ile bitiyor.</div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Kadran" lead="İnce ok uçlu ibre istenen durumu, kalın ibre gerçek durumu gösterir. Aradaki fark turuncu bir yayla işaretlenir; sayı ve kelime kadranın üstünde yazılıdır.">
+<demo label="Örnek · istenen 6 kopya, çalışan 3">
+<div class="drawing" style="--aw:640;--ah:370">
+  <svg viewBox="0 0 640 370" aria-hidden="true">
+    <path class="ln-draw" d="M122.7 218.2A210 210 0 0 1 517.3 218.2"/>
+    <path class="ln-draw" d="M122.7 218.2L137.7 223.6M159.1 155L171.4 165.3M215 108.1L223 122M283.5 83.2L286.3 98.9M356.5 83.2L353.7 98.9M425 108.1L417 122M480.9 155L468.6 165.3M517.3 218.2L502.3 223.6"/>
+    <path class="ln-pencil" d="M138.1 185L145.9 189.5M185 129.1L190.8 136M248.2 92.7L251.3 101.1M320 80L320 89M391.8 92.7L388.7 101.1M455 129.1L449.2 136M501.9 185L494.1 189.5"/>
+    <text class="dim-t" x="94.5" y="212" text-anchor="middle">0</text>
+    <text class="dim-t" x="136.2" y="140" text-anchor="middle">2</text>
+    <text class="dim-t" x="200" y="86" text-anchor="middle">4</text>
+    <text class="dim-t" x="278.3" y="58" text-anchor="middle">6</text>
+    <text class="dim-t" x="361.7" y="58" text-anchor="middle">8</text>
+    <text class="dim-t" x="440" y="86" text-anchor="middle">10</text>
+    <text class="dim-t" x="503.8" y="140" text-anchor="middle">12</text>
+    <text class="dim-t" x="545.5" y="212" text-anchor="middle">14</text>
+    <path class="ln-warn" style="stroke-width:6" d="M177.3 119.9A222 222 0 0 1 281.5 71.4"/>
+    <g style="transform-box:view-box;transform-origin:320px 290px;transform:rotate(-40deg)">
+      <path style="stroke:var(--ink);stroke-width:5;stroke-linecap:round" d="M320 300V150"/>
+      <circle class="fill-paper" style="stroke:var(--ink);stroke-width:1.5" cx="320" cy="290" r="12"/>
+    </g>
+    <g style="transform-box:view-box;transform-origin:320px 290px;transform:rotate(-10deg)">
+      <path class="ln-draw" style="stroke-width:2" d="M320 290V108"/>
+      <path class="fill-draw" d="M320 96l-6 12h12z"/>
+    </g>
+    <circle class="fill-draw" cx="320" cy="290" r="4"/>
+    <path class="ln-draw" style="stroke-width:2" d="M440 312H470"/>
+    <path style="stroke:var(--ink);stroke-width:5;stroke-linecap:round" d="M440 342H470"/>
+  </svg>
+  <p class="dl" style="--x:0;--y:0;--w:640;text-align:center"><span class="state warn">Fark · 3 kopya</span></p>
+  <p class="dl" style="--x:480;--y:302;--w:160">istenen · 6</p>
+  <p class="dl" style="--x:480;--y:332;--w:160">gerçek · 3</p>
+  <p class="dl" style="--x:20;--y:310;--w:300">web-api · ölçek: kopya sayısı</p>
+</div>
+</demo>
+<div class="prose"><p>Ölçek 0–14 kopya, her kopya 10°; 0 değeri −70°'dir. İbreler dik çizilir, açı tek bir <code>rotate</code> ile verilir: <code>transform-box: view-box</code> ve kadran merkezinde bir <code>transform-origin</code>. Değer değişince yalnızca açı değişir; fark yayı da aynı açılar arasında, biraz daha büyük bir yarıçapta çizilir.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">açı</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- açı = −70 + 10 × değer (derece); merkez 320, 290 --&gt;
+&lt;g style="transform-box:view-box;transform-origin:320px 290px;transform:rotate(-40deg)"&gt;…&lt;/g&gt;  &lt;!-- gerçek: 3 --&gt;
+&lt;g style="transform-box:view-box;transform-origin:320px 290px;transform:rotate(-10deg)"&gt;…&lt;/g&gt;  &lt;!-- istenen: 6 --&gt;</code></pre></figure>
+</chapter>
+
+<chapter title="Doğrusal ölçer" lead="Kadranın düz hali: değer aralığı yataysa ya da yer darsa. Kabul bölgesi açık renkle taranır, eşik ince okla, gerçek değer kalın çubukla çizilir.">
+<demo label="Örnek · kopya gecikmesi">
+<div class="drawing" style="--aw:900;--ah:150">
+  <svg viewBox="0 0 900 150" aria-hidden="true">
+    <rect style="fill:var(--ok-soft)" x="60" y="86" width="160" height="14"/>
+    <path class="ln-draw" d="M60 100H860"/>
+    <path class="ln-draw" d="M60 100v12M140 100v12M220 100v12M300 100v12M380 100v12M460 100v12M540 100v12M620 100v12M700 100v12M780 100v12M860 100v12"/>
+    <text class="dim-t" x="60" y="130" text-anchor="middle">0</text>
+    <text class="dim-t" x="220" y="130" text-anchor="middle">2</text>
+    <text class="dim-t" x="380" y="130" text-anchor="middle">4</text>
+    <text class="dim-t" x="540" y="130" text-anchor="middle">6</text>
+    <text class="dim-t" x="700" y="130" text-anchor="middle">8</text>
+    <text class="dim-t" x="860" y="130" text-anchor="middle">10 s</text>
+    <path class="ln-warn" style="stroke-width:6" d="M220 76H556"/>
+    <path class="ln-draw" style="stroke-width:2" d="M220 112V58"/>
+    <path class="fill-draw" d="M220 46l-6 12h12z"/>
+    <path style="stroke:var(--ink);stroke-width:5;stroke-linecap:round" d="M556 114V60"/>
+  </svg>
+  <p class="dl" style="--x:120;--y:18;--w:200;text-align:center">istenen · en çok 2 s</p>
+  <p class="dl" style="--x:456;--y:28;--w:200;text-align:center">gerçek · 6,2 s</p>
+  <p class="dl" style="--x:660;--y:28;--w:220"><span class="state warn">Gecikmeli</span></p>
+</div>
+</demo>
+<div class="prose"><p>orders-db-3 kopyası birincilin 6,2 saniye gerisinde; kabul bölgesi 0–2 saniye. Turuncu çizgi farkın kendisidir (4,2 s). Ölçek doğrusaldır: 80 birim = 1 saniye. Kabul bölgesinin dolgusu <code>--ok-soft</code> token'ıdır.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Ölçer bir kararın gerekçesini gösterir: neden yenilendi, neden durduruldu. Paftada yan sütun kararı adım adım anlatır.">
+<demo label="Örnek · sertifika yenileme kapısı">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">05 · Şekil 1</p>
+    <p class="fig-cap">api.ornek.net sertifikası eşiğin altında</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Ölç</b>Her gece sertifikanın bitiş tarihi okunur ve kalan gün hesaplanır.</li>
+      <li><b>2 · Karşılaştır</b>Kalan gün eşikle karşılaştırılır; eşik 30 gün.</li>
+      <li><b>3 · Yenile</b>Eşiğin altındaysa yenileme işi tetiklenir; iş başarısızsa alarm açılır.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:150">
+      <svg viewBox="0 0 600 150" aria-hidden="true">
+        <rect style="fill:var(--ok-soft)" x="196" y="86" width="312" height="14"/>
+        <path class="ln-draw" d="M40 100H508"/>
+        <path class="ln-draw" d="M40 100v12M196 100v12M352 100v12M508 100v12"/>
+        <path class="ln-pencil" d="M92 100v7M144 100v7M248 100v7M300 100v7M404 100v7M456 100v7"/>
+        <text class="dim-t" x="40" y="130" text-anchor="middle">0</text>
+        <text class="dim-t" x="196" y="130" text-anchor="middle">30</text>
+        <text class="dim-t" x="352" y="130" text-anchor="middle">60</text>
+        <text class="dim-t" x="508" y="130" text-anchor="middle">90 gün</text>
+        <path class="ln-bad" style="stroke-width:6" d="M102 76H196"/>
+        <path class="ln-draw" style="stroke-width:2" d="M196 112V58"/>
+        <path class="fill-draw" d="M196 46l-6 12h12z"/>
+        <path style="stroke:var(--ink);stroke-width:5;stroke-linecap:round" d="M102 114V60"/>
+      </svg>
+      <p class="dl" style="--x:10;--y:18;--w:130">kalan · 12 gün</p>
+      <p class="dl" style="--x:180;--y:18;--w:160">eşik · en az 30</p>
+      <p class="dl" style="--x:360;--y:40;--w:220"><span class="state bad">Yenile</span></p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Kalan 12 gün, 30 günlük eşiğin altında; yenileme işi bu gece tetiklendi.</p>
+    <p class="figcap"><b>Şekil 1.</b> Yeşil bant kabul bölgesidir (30–90 gün). Kırmızı çizgi eşiğe kalan farktır: 18 gün.</p>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Ölçer bir sayıyı gösterir ama sayının yerini tutmaz. İstenen ve gerçek değer, birimleriyle birlikte yazılı olmalıdır.">
+<div class="dodont">
+<demo label="Yap · değer, birim ve hüküm">
+<div class="drawing" style="--aw:440;--ah:120">
+  <svg viewBox="0 0 440 120" aria-hidden="true">
+    <rect style="fill:var(--ok-soft)" x="20" y="66" width="100" height="10"/>
+    <path class="ln-draw" d="M20 76H420M20 76v8M120 76v8M220 76v8M320 76v8M420 76v8"/>
+    <path class="ln-warn" style="stroke-width:5" d="M120 58H300"/>
+    <path class="ln-draw" style="stroke-width:2" d="M120 84V46"/>
+    <path style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" d="M300 86V48"/>
+  </svg>
+  <p class="dl" style="--x:20;--y:6;--w:200">p95 eşik · 200 ms</p>
+  <p class="dl" style="--x:236;--y:6;--w:200">gerçek · 380 ms</p>
+  <p class="dl" style="--x:20;--y:92;--w:400"><span class="state warn">Yavaş</span> fark 180 ms</p>
+</div>
+</demo>
+<demo label="Yapma · yalnız işaretler">
+<div class="drawing" style="--aw:440;--ah:120">
+  <svg viewBox="0 0 440 120" aria-hidden="true">
+    <path class="ln-draw" d="M20 76H420M20 76v8M120 76v8M220 76v8M320 76v8M420 76v8"/>
+    <path class="ln-draw" style="stroke-width:2" d="M120 84V46"/>
+    <path style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" d="M300 86V48"/>
+  </svg>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Kumpasın karakterleri ve kadranın sayıları SVG içindedir ve ekran okuyucuya ulaşmaz. Hüküm (<code>.state</code> + cümle) her zaman HTML'de yazılmalıdır: hangi karakter, hangi değer, ne kadar fark. Renk tek başına yetmez; kaldı ve eksik hücreler çerçeve kalınlığı ve desenle de ayrılır.</p></div></div>
+</chapter>

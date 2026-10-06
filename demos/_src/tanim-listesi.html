@@ -1,0 +1,121 @@
+<!-- meta {"title":"Tanım listesi","group":"Bileşenler","order":70,"tagline":"Ad–değer çiftleri, şekil yazısı ve okuma metni.","intro":"Üç metin parçası: kısa ad–değer çiftleri için <code>dl.kv</code>, bir şeklin ya da tablonun altına <code>.figcap</code>, uzun okuma için <code>.prose</code>. Satır içi kod, mono yazı ve bağlantılar bunların içinde yaşar.","summary":"<code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.","facts":{"Sınıflar":"<code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code>","Ölçüler":"<code>.kv</code> ad sütunu 200px, 860px altında tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch","JS":"Gerekmez"}} -->
+
+
+<chapter title="Tanım listesi" lead="dl.kv iki sütunlu bir ızgaradır: solda kalın ad, sağda değer. Değer kısa olmalı; bir kelime, bir sayı, bir tanımlayıcı.">
+<demo label="Örnek · servis kartı">
+<dl class="kv">
+  <dt>Servis</dt><dd>web-api</dd>
+  <dt>Sahibi</dt><dd>platform ekibi</dd>
+  <dt>Bölge</dt><dd><code>eu-west-1</code></dd>
+  <dt>Kopya</dt><dd>3 (en az 2, en çok 8)</dd>
+  <dt>Durum</dt><dd><span class="pill pill-ok">sağlıklı</span></dd>
+  <dt><code>HEALTHCHECK</code></dt><dd><span class="mono">GET /healthz</span> · 10 sn aralık</dd>
+</dl>
+</demo>
+<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. 860px'in altında ad ve değer alt alta iner. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Aynı yapı bir DNS kaydını, bir alarmı ya da bir önbellek ayarını anlatır. Okur adları dikey tarar, aradığını bulur.">
+<demo label="Örnek · DNS kaydı">
+<dl class="kv">
+  <dt>Ad</dt><dd><code>api.ornek.com</code></dd>
+  <dt>Tür</dt><dd><span class="mono">CNAME</span></dd>
+  <dt>Hedef</dt><dd><code>web-api-lb-1182.eu-west-1.elb.amazonaws.com</code></dd>
+  <dt>TTL</dt><dd>300 sn</dd>
+</dl>
+</demo>
+<demo label="Örnek · alarm ayrıntısı">
+<p class="chip" style="margin-bottom:6px">Alarm · 5xx oranı</p>
+<dl class="kv" style="--u:1px">
+  <dt>Durum</dt><dd><span class="state bad">tetiklendi</span></dd>
+  <dt>Eşik</dt><dd>%2 · 5 dakika</dd>
+  <dt>Son değer</dt><dd>%3.7</dd>
+  <dt>Bildirim</dt><dd>nöbetçi-platform, <a href="#p2">olay kanalı</a></dd>
+</dl>
+</demo>
+<demo label="Örnek · koyu sahne içinde">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:14px 18px">
+  <dl class="kv" style="margin:0">
+    <dt>Önbellek</dt><dd><code>cache-eu</code></dd>
+    <dt>Politika</dt><dd><span class="mono">allkeys-lfu</span></dd>
+    <dt>İsabet oranı</dt><dd>%94</dd>
+  </dl>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Şekil yazısı" lead="figcap bir şeklin, tablonun ya da kod bloğunun hemen altında durur. Kalın ilk kelime numarayı, kalanı tek cümlelik açıklamayı taşır.">
+<demo label="Örnek · tablo altında">
+<div class="tbl"><table>
+  <thead><tr><th>Sürüm</th><th>Tarih</th><th>Değişiklik</th></tr></thead>
+  <tbody>
+    <tr><td>1.9.0</td><td>6 Ekim</td><td>Alarm kurallarına sessiz saat</td></tr>
+    <tr><td>1.8.2</td><td>29 Eylül</td><td>Bağlantı havuzu düzeltmesi</td></tr>
+  </tbody>
+</table></div>
+<p class="figcap"><b>Tablo 3.</b> Son iki sürüm; tam liste sürüm notlarında.</p>
+</demo>
+<demo label="Örnek · kod bloğu altında">
+<figure class="code" style="margin-bottom:0">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">dig</span> +short api.ornek.com</code></pre>
+</figure>
+<p class="figcap"><b>Şekil 5.</b> Kısa sorgu yalnızca yanıtı yazar; TTL ve yetkili sunucu için <span class="mono">+noall +answer</span> kullanın.</p>
+</demo>
+</chapter>
+
+<chapter title="Okuma metni" lead="prose satırı 72 karakterde tutar ve gövdeyi ikincil mürekkeple yazar. İçinde başlık, liste, satır içi kod, mono yazı ve bağlantı olabilir.">
+<demo label="Örnek · sürüm notu">
+<div class="prose">
+  <h3>1.9.0 sürüm notu</h3>
+  <p>Bu sürüm alarm kurallarına <b>sessiz saat</b> penceresi ekliyor. Pencere içinde tetiklenen alarmlar kaydedilir ama nöbetçiye bildirilmez; ayrıntı için <a href="#p1">tanım listesi</a> bölümüne bakın.</p>
+  <h4>Değişenler</h4>
+  <ul>
+    <li><code>quiet_hours</code> alanı her kurala eklenebilir.</li>
+    <li>Varsayılan zaman dilimi <span class="mono">Europe/Istanbul</span>.</li>
+    <li>Eski <code>mute_until</code> alanı bir sonraki büyük sürümde kalkacak.</li>
+  </ul>
+  <h4>Yükseltme</h4>
+  <ol>
+    <li>Kural dosyalarını <code>alarm lint</code> ile denetleyin.</li>
+    <li>Önce staging'e, bir gün sonra prod'a dağıtın.</li>
+  </ol>
+</div>
+</demo>
+<div class="prose"><p><code>code</code> zemin çizer ve okurun yazacağı ya da kopyalayacağı değer içindir. <code>.mono</code> zemin çizmez; saat dilimi, kayıt türü gibi teknik ama kopyalanmayan adlar içindir.</p></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Tanım listesi bir sözlüktür, bir hikâye değil. Değer uzadıkça okur sütunu taramayı bırakır.">
+<div class="dodont">
+<demo label="Yap · kısa değer, ayrıntı metinde">
+<dl class="kv">
+  <dt>Saklama</dt><dd>14 gün</dd>
+  <dt>Şifreleme</dt><dd>KMS, müşteri anahtarı</dd>
+</dl>
+</demo>
+<demo label="Yapma · değerde paragraf">
+<dl class="kv">
+  <dt>Saklama</dt><dd>Yedekler denetim gereği on dört gün saklanır, ardından otomatik olarak silinir; daha uzun süre gerekirse platform ekibine yazın.</dd>
+</dl>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · sıra varsa adımlar">
+<ol class="steps">
+  <li><h3>Yedeği alın</h3></li>
+  <li><h3>Göçü çalıştırın</h3></li>
+</ol>
+</demo>
+<demo label="Yapma · sırayı tanım listesine yazmak">
+<dl class="kv">
+  <dt>Birinci</dt><dd>Yedeği alın</dd>
+  <dt>İkinci</dt><dd>Göçü çalıştırın</dd>
+</dl>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu <code>dl</code>'yi tanım listesi olarak duyurur ve öğe sayısını söyler. <code>dt</code>/<code>dd</code> dışındaki çocuklar bu yapıyı bozar. Bağlantılar metin içinde altı çizili kalır; yalnızca renkle ayırmayın.</p></div></div>
+</chapter>

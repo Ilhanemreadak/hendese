@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Hareket</div>
+    <a class="nav-page" href="pin-sahnesi.html">Pin sahnesi</a>
+    <a class="nav-page" href="sticky-anlatim.html">Sticky anlatım</a>
+    <a class="nav-page" href="fig-sahnesi.html">Fig sahnesi</a>
+    <a class="nav-page" href="hud.html" aria-current="page">HUD</a>
+    <a class="nav-page" href="taslak-ve-belirme.html">Taslak ve belirme</a>
+    <a class="nav-page" href="dar-varyant.html">Dar varyant</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Canlı örnek · alarm → nöbetçi</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Devir · ikinci sahne</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Hareket kapalıyken</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Hareket</p>
+    <h1>HUD<em>Tek sabit gösterge.</em></h1>
+    <p class="intro">Sayfada tek bir <code>#hud</code> bulunur. Canlı modda, <code>hud</code> döndüren sahnelerden en görünürü göstergeyi kendi <code>.hud-slot</code> yuvasına çeker ve alanlarını doldurur. Hareket kapalıyken gösterge hiç görünmez; bu yüzden içindeki her bilgi metinde de yazılıdır.</p>
+<dl class="kv"><dt>İşaretleme</dt><dd><code>#hud.hud</code> · <code>.hud-live</code> · <code>.hud-h</code> · <code>.hud-r</code> · <code>.hud-bar</code> &gt; <code>#hud-fill</code> · <code>[data-hud]</code></dd><dt>Yuva</dt><dd>Sahne içinde <code>.hud-slot</code> (pin: <code>.f-side</code>, sticky: <code>.sf-head</code>)</dd><dt>JS</dt><dd>Sahnenin <code>render</code>'ı <code>{hud: {…}}</code> döndürür; ayrı API yok</dd></dl>
+  </div>
+</section>
+
+<style>
+/* sayfaya özel: durgun HUD örnekleri (.hd-mock) ve sahne çizimleri (.hd-). */
+.hd-mock{position:relative;width:260px;height:176px;background:var(--paper);border:1px solid var(--line-2);border-radius:4px;font-family:var(--font-mono);color:var(--ink);--tb:0}
+.hd-row{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-start}
+.hd-row .figcap{max-width:44ch;margin:0;font-size:13px;color:var(--ink-3)}
+.hd-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.hd-line{stroke:var(--bad);stroke-width:2.5;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--al,1))}
+.hd-scene .dl b{display:block}
+@media screen{
+  .is-live .hd-box:not(.on){stroke:var(--pencil);fill:transparent}
+  .is-live .hd-lbl:not(.on){opacity:.35}
+}
+html.motion .hd-box,html.motion .hd-lbl{transition:opacity var(--dur-2),fill var(--dur-2),stroke var(--dur-2)}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Bir başlık satırı, dört alan satırı ve bir ilerleme çubuğu. Etiketler işaretlemede sabittir; değerleri sahne yazar.</p></header>
+<div class="hd-row">
+  <div class="hd-mock" aria-hidden="true">
+    <div class="hud-live">
+      <div class="hud-h"><span>02 · Alarm akışı</span><span>58%</span></div>
+      <div class="hud-r"><span>Aşama</span><b>İkincil çağrıldı</b></div>
+      <div class="hud-r"><span>Kaynak</span><b>odeme-api · 5xx</b></div>
+      <div class="hud-r"><span>Sahip</span><b>ikincil nöbetçi</b></div>
+      <div class="hud-r"><span>Süre</span><b>9 dk</b></div>
+      <div class="hud-bar"><i style="transform:scaleX(.58)"></i></div>
+    </div>
+  </div>
+  <p class="figcap"><b>Şekil 1.</b> Göstergenin durgun bir kopyası (yalnızca bu sayfada, anlatım için). Gerçek gösterge <code>position: fixed</code> çalışır, 260 × 176 px'tir ve yalnız <code>html.motion</code> altında görünür.</p>
+</div>
+<div class="prose"><p>Gösterge sayfanın sonunda bir kez yazılır. Her <code>[data-hud]</code> öğesi, sahnenin döndürdüğü <code>hud</code> nesnesindeki aynı adlı alanı gösterir; adlar serbesttir. <code>chap</code> sahne kaydındaki <code>chap</code> değerinden gelir, <code>fill</code> (0..1) metin değil çubuğun ölçeğidir.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa sonunda bir kez</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="hud" id="hud" aria-hidden="true"&gt;
+  &lt;div class="hud-live"&gt;
+    &lt;div class="hud-h"&gt;&lt;span data-hud="chap"&gt;—&lt;/span&gt;&lt;span data-hud="pct"&gt;0%&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Aşama&lt;/span&gt;&lt;b data-hud="stage"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Kaynak&lt;/span&gt;&lt;b data-hud="source"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Sahip&lt;/span&gt;&lt;b data-hud="owner"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Süre&lt;/span&gt;&lt;b data-hud="took"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-bar"&gt;&lt;i id="hud-fill"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Altı satır</span><div class="co-body"><p><code>.hud-live</code> altı eşit satırlık bir ızgaradır: başlık, dört alan, çubuk. Alan sayısını değiştirmeyin; az bilgi için bir satırı <code>—</code> bırakın.</p></div></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Canlı örnek · alarm → nöbetçi">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Canlı örnek · alarm → nöbetçi</h2><p class="lead">Bir hata oranı eşiği aşar, birincil nöbetçi çağrılır, yanıt gelmeyince ikincile geçilir. HUD her an kimin sorumlu olduğunu yazar.</p></header>
+<div class="pin hd-scene" id="hd-alarm" style="--track:280vh">
+  <div class="route-stage">
+    <div class="frame">
+      <div class="frame-bg" aria-hidden="true"></div>
+      <div class="f-head"><p class="chip">02 · Şekil 2</p><p class="fig-cap">odeme-api: alarmdan onaya</p></div>
+      <div class="f-side"><div class="hud-slot"></div>
+        <ol class="beats" aria-label="Alarm adımları">
+          <li><b>Eşik aşıldı</b>5xx oranı üç dakika boyunca %2'nin üstünde kaldı; alarm tetiklendi.</li>
+          <li><b>Birincil çağrıldı</b>Nöbet çizelgesindeki birincil kişiye çağrı gitti.</li>
+          <li><b>İkincile geçti</b>Beş dakika onay gelmedi; çağrı ikincil nöbetçiye yükseltildi.</li>
+          <li><b>Onaylandı</b>İkincil nöbetçi 9. dakikada onayladı ve olayı üstlendi.</li>
+        </ol>
+      </div>
+      <div class="f-map">
+        <div class="drawing" data-aw="900" data-ah="400" style="--aw:900;--ah:400">
+          <svg viewBox="0 0 900 400" aria-hidden="true">
+            <rect class="ln-pencil" x="30" y="80" width="220" height="160"/>
+            <path class="ln-warn ln-dash" stroke-width="1.5" d="M30 170H250"/>
+            <path class="hd-line" pathLength="1" d="M30 220L70 214L110 218L150 196L180 150L210 132L250 128"/>
+            <path class="ln-draw" d="M250 165H300M440 150L500 105M440 180L500 245M660 105H700V160H720M660 245H700V190H720"/>
+            <path class="ln-block" d="M580 140V210"/>
+            <rect class="hd-box" data-st="0" x="300" y="130" width="140" height="70"/>
+            <rect class="hd-box" data-st="1" x="500" y="70" width="160" height="70"/>
+            <rect class="hd-box" data-st="2" x="500" y="210" width="160" height="70"/>
+            <rect class="hd-box" data-st="3" x="720" y="140" width="150" height="70"/>
+          </svg>
+          <p class="dl" style="--x:30;--y:52;--w:220"><b>5xx oranı</b></p>
+          <p class="dl" style="--x:180;--y:176;--w:70">%2</p>
+          <p class="dl hd-lbl" data-st="0" style="--x:312;--y:146;--w:120"><b>Alarm</b>3 dk &gt; %2</p>
+          <p class="dl hd-lbl" data-st="1" style="--x:512;--y:86;--w:140"><b>Birincil</b>yanıt yok</p>
+          <p class="dl hd-lbl" data-st="2" style="--x:512;--y:226;--w:140"><b>İkincil</b>5. dk</p>
+          <p class="dl hd-lbl" data-st="3" style="--x:732;--y:156;--w:130"><b>Onay</b>9. dk</p>
+          <p class="dl" style="--x:590;--y:164;--w:110">5 dk</p>
+        </div>
+      </div>
+      <div class="f-foot"><p class="figcap"><b>Şekil 2.</b> Sarı kesikli çizgi eşik, kırmızı çizgi hata oranı. Kırmızı kesik, birincil nöbetçiden yükseltmeye geçen zaman aşımı.</p></div>
+    </div>
+  </div>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var STAGE = ['Eşik aşıldı', 'Birincil çağrıldı', 'İkincil çağrıldı', 'Onaylandı'],
+    OWNER = ['—', 'birincil nöbetçi', 'ikincil nöbetçi', 'ikincil nöbetçi'];
+Hendese.pinScene({
+  el: '#hd-alarm', chap: '02 · Alarm akışı',              // HUD başlığı
+  render: function (p, api) {
+    var d = api.seg(p, .05, .9), n = Math.min(3, Math.floor(d * 4));
+    /* … kutular, beat'ler, api.set('al', …) … */
+    return { hud: {
+      stage: STAGE[n], source: 'odeme-api · 5xx', owner: OWNER[n],
+      took: Math.round(d * 9) + ' dk', pct: Math.round(d * 100) + '%', fill: d
+    } };
+  }
+});</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Devir · ikinci sahne">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Devir · ikinci sahne</h2><p class="lead">Aynı sayfada HUD isteyen ikinci bir sahne olabilir. Her karede en görünür sahne kazanır; geçişte gösterge bir yuvadan sönüp diğerinde belirir.</p></header>
+<div class="prose"><p>Sticky anlatımda yuva <code>.sf-head</code> içindedir. Gösterge aynı dört etiketi kullanır, bu yüzden alanları iki sahneye uyacak kadar genel seçin: aşama, kaynak, sahip, süre. Sahne ekranın kenarına yaklaştıkça göstergenin opaklığı azalır; iki sahne arasında okurken bir an hiçbir gösterge görünmeyebilir.</p></div>
+<div class="sticky hd-scene" id="hd-backup">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">03 · Şekil 3</p><p class="sf-cap">Gece yedek işi: dört adım</p></div><div class="hud-slot"></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="600" data-ah="300" style="--aw:600;--ah:300">
+        <svg viewBox="0 0 600 300" aria-hidden="true">
+          <path class="ln-draw" d="M240 75H340M440 110V170M340 205H240"/>
+          <rect class="hd-box" data-st="0" x="40" y="40" width="200" height="70"/>
+          <rect class="hd-box" data-st="1" x="340" y="40" width="200" height="70"/>
+          <rect class="hd-box" data-st="2" x="340" y="170" width="200" height="70"/>
+          <rect class="hd-box" data-st="3" x="40" y="170" width="200" height="70"/>
+        </svg>
+        <p class="dl hd-lbl" data-st="0" style="--x:52;--y:56;--w:180"><b>Anlık görüntü</b>02:00 · 185 GB</p>
+        <p class="dl hd-lbl" data-st="1" style="--x:352;--y:56;--w:180"><b>Sıkıştırma</b>185 → 61 GB</p>
+        <p class="dl hd-lbl" data-st="2" style="--x:352;--y:186;--w:180"><b>Uzak kopya</b>ikinci bölge</p>
+        <p class="dl hd-lbl" data-st="3" style="--x:52;--y:186;--w:180"><b>Doğrulama</b>sağlama toplamı tutar</p>
+      </div>
+    </div>
+    <p class="figcap"><b>Şekil 3.</b> Yedek, alındığı yerden çıkıp başka bir bölgede doğrulanınca tamamdır.</p>
+  </div>
+  <ol class="sticky-text steps">
+    <li data-beat="0"><h3>Anlık görüntü al</h3><p>Saat 02:00'de siparis-db'nin tutarlı bir anlık görüntüsü alınır: 185 GB.</p></li>
+    <li data-beat="1"><h3>Sıkıştır</h3><p>Görüntü sıkıştırılır ve 61 GB'a iner. Bu adım işin en uzun kısmıdır, yaklaşık 18 dakika.</p></li>
+    <li data-beat="2"><h3>Uzak bölgeye kopyala</h3><p>Sıkıştırılmış dosya ikinci bölgedeki depolamaya yazılır; tek bölgede duran yedek, bölge kaybında işe yaramaz.</p></li>
+    <li data-beat="3"><h3>Doğrula</h3><p>Uzak kopyanın sağlama toplamı kaynakla karşılaştırılır. Toplam süre 31 dakika; iş başarılı.</p></li>
+  </ol>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.stickyScene({
+  el: '#hd-backup', chap: '03 · Gece yedeği',
+  render: function (i, t, api) {
+    var f = (i + t) / 4;                                     // beat içi ilerleme çubuğa da yansır
+    return { hud: { stage: STEP[i], source: 'siparis-db', owner: 'yedek işi', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
+  }
+});</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Hareket kapalıyken">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Hareket kapalıyken</h2><p class="lead">Reduced motion, 1100px altı, baskı ve JS yok: gösterge hiç görünmez. Bu bir eksik değil, sözleşmedir.</p></header>
+<div class="prose">
+  <p><code>.hud</code> varsayılan olarak <code>display: none</code>'dır; yalnızca <code>html.motion</code> altında sabit konumlu göstergeye döner. <code>.hud-slot</code> da canlı mod dışında yer kaplamaz, böylece yan sütunda boşluk kalmaz. Yukarıdaki iki sahnede göstergenin yazdığı her şey (aşama, sahip, süre) adım metinlerinde de geçer: “İkincil nöbetçi 9. dakikada onayladı”, “Toplam süre 31 dakika”.</p>
+  <p>Gösterge <code>aria-hidden="true"</code>'dur; ekran okuyucu onu hiç okumaz. Aynı bilgiyi canlı modda da metin taşır.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Gösterge</th><th>Bilgi nerede</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı</td><td>En görünür sahnenin yuvasında</td><td>Gösterge + adım metni</td></tr>
+    <tr><td>Reduced motion, &lt; 1100px, baskı, JS yok</td><td>Yok</td><td>Adım metni</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Gösterge bir bakışta okunur: kısa değerler, değişen alanlar, metinde de geçen bilgiler.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · kısa, değişen değerler</span>
+  <div class="demo-view">
+<div class="hd-mock" aria-hidden="true">
+  <div class="hud-live">
+    <div class="hud-h"><span>03 · Gece yedeği</span><span>75%</span></div>
+    <div class="hud-r"><span>Aşama</span><b>Uzak kopya</b></div>
+    <div class="hud-r"><span>Kaynak</span><b>siparis-db</b></div>
+    <div class="hud-r"><span>Sahip</span><b>yedek işi</b></div>
+    <div class="hud-r"><span>Süre</span><b>27 dk</b></div>
+    <div class="hud-bar"><i style="transform:scaleX(.75)"></i></div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · cümle ve sabit alanlar</span>
+  <div class="demo-view">
+<div class="hd-mock" aria-hidden="true">
+  <div class="hud-live">
+    <div class="hud-h"><span>Şekil</span><span>—</span></div>
+    <div class="hud-r"><span>Aşama</span><b>Sıkıştırılmış dosya ikinci bölgeye yazılıyor</b></div>
+    <div class="hud-r"><span>Kaynak</span><b>—</b></div>
+    <div class="hud-r"><span>Sahip</span><b>—</b></div>
+    <div class="hud-r"><span>Süre</span><b>—</b></div>
+    <div class="hud-bar"><i></i></div>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+<div class="prose"><p>Sağdaki örnekte cümle kesilir, üç alan hiç değişmez ve çubuk ilerlemez: gösterge yer kaplar ama bir şey söylemez. Değerler 20 karakteri geçmesin; geçen kısım üç noktayla kesilir.</p></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Yalnız göstergede bilgi</span><div class="co-body"><p>Göstergede olup metinde olmayan bir değer, reduced motion kullanan, dar ekranda okuyan ya da sayfayı basan herkes için kaybolur.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>API</h2><p class="lead">HUD'un ayrı bir çağrısı yok: Hendese.init() göstergeyi bulur, sahnelerin render dönüşü onu doldurur.</p></header>
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>#hud.hud</code></td><td>Sayfada bir tane. <code>Hendese.init()</code> içinde aranır; yoksa HUD hiç çalışmaz.</td></tr>
+    <tr><td><code>[data-hud="ad"]</code></td><td><code>hud.ad</code> değerinin yazılacağı öğe (<code>textContent</code>). Değer değişmedikçe yeniden yazılmaz.</td></tr>
+    <tr><td><code>#hud-fill</code></td><td><code>hud.fill</code> (0..1) ile <code>scaleX</code> ölçeklenen çubuk.</td></tr>
+    <tr><td><code>.hud-slot</code></td><td>Sahne içinde göstergenin ineceği yer; konumu ve genişliği <code>measure</code>'da ölçülür.</td></tr>
+    <tr><td><code>render → {hud}</code></td><td>Pin ve sticky sahnelerinde. Fig sahnesi HUD talep etmez.</td></tr>
+    <tr><td><code>cfg.chap</code></td><td><code>hud.chap</code> olarak eklenir (sahne <code>hud</code> içinde <code>chap</code> verirse o kazanır).</td></tr>
+    <tr><td>Seçim</td><td>Her karede <code>alpha</code>'sı en yüksek talep; alpha, sahnenin ekrana giriş ve çıkışında 0'a iner.</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<div class="hud" id="hud" aria-hidden="true">
+  <div class="hud-live">
+    <div class="hud-h"><span data-hud="chap">—</span><span data-hud="pct">0%</span></div>
+    <div class="hud-r"><span>Aşama</span><b data-hud="stage">—</b></div>
+    <div class="hud-r"><span>Kaynak</span><b data-hud="source">—</b></div>
+    <div class="hud-r"><span>Sahip</span><b data-hud="owner">—</b></div>
+    <div class="hud-r"><span>Süre</span><b data-hud="took">—</b></div>
+    <div class="hud-bar"><i id="hud-fill"></i></div>
+  </div>
+</div>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="fig-sahnesi.html" rel="prev"><small>Önceki · Hareket</small>Fig sahnesi</a><a href="taslak-ve-belirme.html" rel="next"><small>Sonraki · Hareket</small>Taslak ve belirme</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  var $$ = Hendese.$$;
+  /* 02 · alarm akışı */
+  var STAGE = ['Eşik aşıldı', 'Birincil çağrıldı', 'İkincil çağrıldı', 'Onaylandı'], OWNER = ['—', 'birincil nöbetçi', 'ikincil nöbetçi', 'ikincil nöbetçi'];
+  var aEls = $$('#hd-alarm [data-st]'), aBeats = $$('#hd-alarm .beats li');
+  Hendese.pinScene({
+    el: '#hd-alarm', chap: '02 · Alarm akışı',
+    render: function (p, api) {
+      var d = api.seg(p, .05, .9), n = Math.min(3, Math.floor(d * 4));
+      api.set('al', api.seg(d, 0, .25));
+      aEls.forEach(function (el) { api.cls(el, 'on', +el.getAttribute('data-st') <= n); });
+      aBeats.forEach(function (li, i) { api.cls(li, 'on', i === n); });
+      return { hud: { stage: STAGE[n], source: 'odeme-api · 5xx', owner: OWNER[n], took: Math.round(d * 9) + ' dk', pct: Math.round(d * 100) + '%', fill: d } };
+    }
+  });
+  /* 03 · gece yedeği */
+  var STEP = ['Anlık görüntü', 'Sıkıştırma', 'Uzak kopya', 'Doğrulama'], TOOK = ['2 dk', '20 dk', '27 dk', '31 dk'];
+  var bEls = $$('#hd-backup [data-st]');
+  Hendese.stickyScene({
+    el: '#hd-backup', chap: '03 · Gece yedeği',
+    render: function (i, t, api) {
+      var f = (i + t) / 4;
+      bEls.forEach(function (el) { api.cls(el, 'on', +el.getAttribute('data-st') <= i); });
+      return { hud: { stage: STEP[i], source: 'siparis-db', owner: 'yedek işi', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
+    }
+  });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

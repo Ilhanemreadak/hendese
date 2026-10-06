@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dar varyant · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Hareket</div>
+    <a class="nav-page" href="pin-sahnesi.html">Pin sahnesi</a>
+    <a class="nav-page" href="sticky-anlatim.html">Sticky anlatım</a>
+    <a class="nav-page" href="fig-sahnesi.html">Fig sahnesi</a>
+    <a class="nav-page" href="hud.html">HUD</a>
+    <a class="nav-page" href="taslak-ve-belirme.html">Taslak ve belirme</a>
+    <a class="nav-page" href="dar-varyant.html" aria-current="page">Dar varyant</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Sorun ve desen</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Canlı örnek · bölgeler arası yük devri</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Koordinatlar ve Hoca</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Hareket kapalıyken</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Hareket</p>
+    <h1>Dar varyant<em>Aynı pafta, ikinci çizim.</em></h1>
+    <p class="intro">Yoğun bir sticky çizim dar masaüstünde (1100–1279px) sıkışıyorsa küçültmek yerine aynı paftanın dar bir çizimini yapın ve kap sorgusuyla değiştirin. Motor çizim ölçüsünü (<code>--aw</code>/<code>--ah</code>) her ölçümde yeniden okur; etiketler <code>--nx</code>/<code>--ny</code>/<code>--nw</code> ile ikinci konumlarına geçer.</p>
+<dl class="kv"><dt>Desen</dt><dd><code>container-name</code> + <code>@container (max-width:575px)</code> · <code>.is-wide</code> / <code>.is-nar</code> (sayfa sınıfları)</dd><dt>Etiket</dt><dd><code>--x/--y/--w</code> geniş, <code>--nx/--ny/--nw</code> dar</dd><dt>JS</dt><dd><code>stickyScene</code> dönüşünün <code>aw</code>/<code>ah</code> alanı; <code>api.aw</code> değil</dd></dl>
+  </div>
+</section>
+
+<style>
+/* sayfaya özel (.dv-). Dar varyant paketin sınıfı değil, bir tariftir: kurallar bu sayfadadır. */
+.dv-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.dv-toA,.dv-repl{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
+.dv-toB{stroke:var(--draw);stroke-width:2.5}
+.dv-fail .dl b{display:block}
+.dv-t:not(.dv-end){display:none}
+.dv-fail .is-nar{display:none}
+.dv-mini{container:dvfig / inline-size;max-width:340px;padding:12px;border:1px dashed var(--line-2);border-radius:var(--r-sm)}
+@media screen{
+  .is-live .dv-t{display:none}
+  .is-live .dv-t.on{display:inline}
+  .is-live .sticky-fig:not(.dv-s2) .dv-toA{stroke:var(--draw);stroke-width:2.5;stroke-dasharray:none}
+  .is-live .sticky-fig:not(.dv-s2) .dv-toB{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
+  .is-live .dv-s1:not(.dv-s3) .dv-A{stroke:var(--bad);stroke-dasharray:6 4}
+  #dv-fail.is-live .f-map{container-name:dvfig}
+}
+@container dvfig (max-width:575px){
+  .dv-fail .drawing{--aw:600 !important;--ah:780 !important}
+  .dv-fail .is-wide{display:none}
+  .dv-fail .is-nar{display:block}
+  .dv-fail .dl{left:calc(var(--nx,var(--x)) / var(--aw) * 100%);top:calc(var(--ny,var(--y)) / var(--ah) * 100%)}
+  .dv-fail .dl[style*="--nw"]{width:calc(var(--nw) / var(--aw) * 100%)}
+}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Sorun ve desen" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Sorun ve desen</h2><p class="lead">Geniş bir çizim dar bir sütunda contain ile küçülür; etiketler okunmaz hale gelir. Çözüm küçültmek değil, aynı bilgiyi dikey bir düzende yeniden çizmek.</p></header>
+<div class="prose">
+  <p>Canlı sticky sahnede şekil sütunu <code>.f-map</code> bir boyut kabıdır (<code>container-type: size</code>) ve çizim ona <code>contain</code> mantığıyla sığar. 1100–1279px arasında bu sütun 500px'in altına iner; 900 × 420 birimlik yatay bir çizim yarı boyuna düşer. Desen dört parçadır:</p>
+  <ol>
+    <li>Canlı modda <code>.f-map</code>'e bir kap adı verilir.</li>
+    <li>Dar kapta <code>.drawing</code>'in <code>--aw</code>/<code>--ah</code> değeri <code>!important</code> ile değişir; aspect-ratio ve <code>--u</code> kendiliğinden uyar.</li>
+    <li>İki SVG bulunur: <code>.is-wide</code> ve <code>.is-nar</code>; dar kapta biri gizlenir, diğeri görünür.</li>
+    <li>HTML etiketleri <code>--nx</code>/<code>--ny</code>/<code>--nw</code> taşır; dar kapta konum bunlardan hesaplanır, yoksa geniş değer kullanılır.</li>
+  </ol>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>.dv-fail .is-nar { display: none; }
+@media screen { #dv-fail.is-live .f-map { container-name: dvfig; } }          /* 1 */
+@container dvfig (max-width: 575px) {
+  .dv-fail .drawing { --aw: 600 !important; --ah: 780 !important; }           /* 2 */
+  .dv-fail .is-wide { display: none; }  .dv-fail .is-nar { display: block; } /* 3 */
+  .dv-fail .dl { left: calc(var(--nx, var(--x)) / var(--aw) * 100%);         /* 4 */
+                 top:  calc(var(--ny, var(--y)) / var(--ah) * 100%); }
+  .dv-fail .dl[style*="--nw"] { width: calc(var(--nw) / var(--aw) * 100%); }
+}</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420"&gt;
+  &lt;svg class="is-wide" viewBox="0 0 900 420" aria-hidden="true"&gt;…&lt;/svg&gt;
+  &lt;svg class="is-nar"  viewBox="0 0 600 780" aria-hidden="true"&gt;…&lt;/svg&gt;
+  &lt;p class="dl" style="--x:520;--y:76;--w:220; --nx:52;--ny:346;--nw:220"&gt;…&lt;/p&gt;
+&lt;/div&gt;</code></pre></figure>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Canlı örnek · bölgeler arası yük devri">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Canlı örnek · bölgeler arası yük devri</h2><p class="lead">Bölge A düşer, DNS kaydı Bölge B'ye çevrilir, B birincil olur. 1280px ve üstünde yatay çizim; 1100–1279px arasında aynı sahne dikey çizime geçer.</p></header>
+<div class="prose"><p>Pencereyi 1100–1279px arasına daraltırsanız sahne yeniden ölçülür ve dikey çizim görünür; Hoca da dar çizimin koordinatlarına geçer. Hareket kapalıyken her genişlikte yatay çizim, son haliyle görünür.</p></div>
+<div class="sticky dv-fail" id="dv-fail">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">02 · Şekil 1</p><p class="sf-cap">Bölge A'dan Bölge B'ye yük devri</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420">
+        <svg class="is-wide" viewBox="0 0 900 420" aria-hidden="true">
+          <path class="ln-draw" d="M200 205H260"/>
+          <path class="dv-toA" d="M410 190L520 115"/>
+          <path class="dv-toB" d="M410 220L520 305"/>
+          <path class="dv-repl" d="M640 170V250"/>
+          <rect class="dv-box" x="40" y="170" width="160" height="70"/>
+          <rect class="dv-box" x="260" y="170" width="150" height="70"/>
+          <rect class="dv-box dv-A" x="520" y="60" width="240" height="110"/>
+          <rect class="dv-box" x="520" y="250" width="240" height="110"/>
+        </svg>
+        <svg class="is-nar" viewBox="0 0 600 780" aria-hidden="true">
+          <path class="ln-draw" d="M300 100V170"/>
+          <path class="dv-toA" d="M260 240L160 330"/>
+          <path class="dv-toB" d="M340 240L440 330"/>
+          <path class="dv-repl" d="M280 400H320"/>
+          <rect class="dv-box" x="200" y="30" width="200" height="70"/>
+          <rect class="dv-box" x="200" y="170" width="200" height="70"/>
+          <rect class="dv-box dv-A" x="40" y="330" width="240" height="140"/>
+          <rect class="dv-box" x="320" y="330" width="240" height="140"/>
+        </svg>
+        <p class="dl" style="--x:52;--y:186;--w:140;--nx:212;--ny:46;--nw:180"><b>Kullanıcı</b>tarayıcı</p>
+        <p class="dl" style="--x:272;--y:186;--w:130;--nx:212;--ny:186;--nw:180"><b>DNS</b><span class="dv-t" data-b="0">→ A</span><span class="dv-t" data-b="1">→ A</span><span class="dv-t" data-b="2">→ B · TTL 60</span><span class="dv-t dv-end" data-b="3">→ B</span></p>
+        <p class="dl" style="--x:532;--y:76;--w:220;--nx:52;--ny:346;--nw:220"><b>Bölge A</b><span class="dv-t" data-b="0"><span class="state ok">birincil</span></span><span class="dv-t" data-b="1"><span class="state bad">düştü</span></span><span class="dv-t" data-b="2"><span class="state bad">düştü</span></span><span class="dv-t dv-end" data-b="3"><span class="state">yedek</span></span></p>
+        <p class="dl" style="--x:532;--y:266;--w:220;--nx:332;--ny:346;--nw:220"><b>Bölge B</b><span class="dv-t" data-b="0"><span class="state">yedek</span></span><span class="dv-t" data-b="1"><span class="state">yedek</span></span><span class="dv-t" data-b="2"><span class="state warn">devralıyor</span></span><span class="dv-t dv-end" data-b="3"><span class="state ok">birincil</span></span></p>
+        <p class="dl" style="--x:652;--y:200;--w:100;--nx:250;--ny:480;--nw:100">eşleme</p>
+      </div>
+    </div>
+    <p class="figcap"><b>Şekil 1.</b> Kalın çizgi trafiğin gittiği bölge, kesikli çizgi yedek yol. Bölgeler arasındaki kesikli çizgi veri eşlemesi.</p>
+  </div>
+  <ol class="sticky-text steps">
+    <li data-beat="0"><h3>Normal işleyiş</h3><p>DNS kaydı Bölge A'yı gösterir. Bölge B, A'nın verisini sürekli eşleyen bir yedek olarak bekler.</p></li>
+    <li data-beat="1"><h3>Bölge A düşer</h3><p>A'daki sağlık kontrolü üç kez üst üste başarısız olur. Kullanıcılar hata almaya başlar.</p></li>
+    <li data-beat="2"><h3>DNS B'ye çevrilir</h3><p>Kayıt Bölge B'ye yönlendirilir. TTL 60 saniye olduğu için en geç bir dakika içinde tüm istemciler yeni adresi görür.</p></li>
+    <li data-beat="3"><h3>B birincil olur</h3><p>Bölge B trafiğin tamamını alır. A onarıldığında bu kez yedek rolüne döner; eşleme ters yönde sürer.</p></li>
+  </ol>
+</div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Koordinatlar ve Hoca">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Koordinatlar ve Hoca</h2><p class="lead">CSS değişince çizim birimi de değişir. Hoca ve still koordinatlarını sahnenin o an ölçtüğü değere göre seçin.</p></header>
+<div class="prose"><p>Sticky sahne her <code>measure()</code>'da <code>.drawing</code>'in hesaplanmış <code>--aw</code>/<code>--ah</code> değerini okur ve kendi <code>aw</code>/<code>ah</code> alanına yazar. <code>render</code>'a gelen <code>api.aw</code> ise kayıt anındaki değerdir ve güncellenmez; bu yüzden karşılaştırmayı <code>stickyScene</code>'in döndürdüğü nesne üzerinden yapın. <code>still</code> yalnız hareket kapalıyken kullanıldığı için her zaman geniş çizimin koordinatlarıdır.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var GENIS = { x: 840, y: 410 }, DAR = { x: 300, y: 760 };
+var sc = Hendese.stickyScene({
+  el: '#dv-fail', chap: '02 · Yük devri',
+  still: { x: 840, y: 410, pose: 'helm', face: -1 },          // hareket kapalı: hep geniş çizim
+  render: function (i, t, api) {
+    [1, 2, 3].forEach(function (k) { api.cls(api.fig, 'dv-s' + k, i &gt;= k); });
+    var at = sc.aw &lt; 700 ? DAR : GENIS;                         // api.aw değil: o kayıt anındaki değer
+    return { hoca: { x: at.x, y: at.y, pose: ['idle', 'worried', 'terminal', 'helm'][i], face: -1 } };
+  }
+});</code></pre></figure>
+<h3>Dar çizim, durgun</h3>
+<div class="prose"><p>Aşağıdaki kopya aynı işaretlemenin 340px'lik bir kap içindeki halidir; kap sorgusu burada canlı mod olmadan da çalışır. Hareket kapalı okurlar dar çizimi buradan görebilir.</p></div>
+<div class="dv-fail dv-mini">
+  <div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420">
+    <svg class="is-wide" viewBox="0 0 900 420" aria-hidden="true"><rect class="dv-box" x="40" y="170" width="160" height="70"/></svg>
+    <svg class="is-nar" viewBox="0 0 600 780" aria-hidden="true">
+      <path class="ln-draw" d="M300 100V170"/>
+      <path class="dv-toA" d="M260 240L160 330"/>
+      <path class="dv-toB" d="M340 240L440 330"/>
+      <path class="dv-repl" d="M280 400H320"/>
+      <rect class="dv-box" x="200" y="30" width="200" height="70"/>
+      <rect class="dv-box" x="200" y="170" width="200" height="70"/>
+      <rect class="dv-box" x="40" y="330" width="240" height="140"/>
+      <rect class="dv-box" x="320" y="330" width="240" height="140"/>
+    </svg>
+    <p class="dl" style="--x:52;--y:186;--w:140;--nx:212;--ny:46;--nw:180"><b>Kullanıcı</b>tarayıcı</p>
+    <p class="dl" style="--x:272;--y:186;--w:130;--nx:212;--ny:186;--nw:180"><b>DNS</b>→ B</p>
+    <p class="dl" style="--x:532;--y:76;--w:220;--nx:52;--ny:346;--nw:220"><b>Bölge A</b><span class="state">yedek</span></p>
+    <p class="dl" style="--x:532;--y:266;--w:220;--nx:332;--ny:346;--nw:220"><b>Bölge B</b><span class="state ok">birincil</span></p>
+    <p class="dl" style="--x:652;--y:200;--w:100;--nx:250;--ny:480;--nw:100">eşleme</p>
+  </div>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Hareket kapalıyken">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Hareket kapalıyken</h2><p class="lead">Kap adı yalnızca canlı modda verilir; hareket kapalıyken sahne her genişlikte geniş çizimi, son haliyle gösterir.</p></header>
+<div class="prose">
+  <p>Reduced motion'da ve 1100px altında <code>.sticky</code> tek sütundur, şekil tam genişlikte durur ve yatay çizim zaten rahat sığar. Bu yüzden <code>container-name</code> <code>.is-live</code> altında tanımlıdır: dar çizim yalnızca canlı sahnenin sıkıştığı durumda devreye girer. Telefon genişliğinde de dar çizim isteniyorsa kap adını <code>.is-live</code> dışında verin; o zaman <code>.f-map</code>'e <code>container-type</code>'ı da siz vermelisiniz, çünkü paket onu yalnız canlıda tanımlar.</p>
+  <p>Hoca'nın durgun kopyası (<code>still</code>) geniş çizimin koordinatıyla yerleşir. JS yoksa iki SVG'den yalnız <code>.is-wide</code> görünür ve etiketler <code>--x</code>/<code>--y</code> konumlarındadır.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Çizim</th><th>Etiket konumu</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı, şekil sütunu &gt; 575px</td><td><code>.is-wide</code></td><td><code>--x/--y/--w</code></td></tr>
+    <tr><td>Canlı, şekil sütunu ≤ 575px</td><td><code>.is-nar</code>, <code>--aw:600;--ah:780</code></td><td><code>--nx/--ny/--nw</code></td></tr>
+    <tr><td>Reduced motion, &lt; 1100px, baskı, JS yok</td><td><code>.is-wide</code>, son hal</td><td><code>--x/--y/--w</code></td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Dar çizim aynı bilgiyi taşır; yalnız düzen değişir.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · aynı öğeler, yeni düzen</span>
+  <div class="demo-view">
+<p>Dört kutu, dört çizgi, beş etiket; dar çizimde hepsi var, yalnız yerleri değişti. Durum sınıfları (<code>.dv-A</code>, <code>.dv-toB</code>) iki SVG'de de aynı adla durur, böylece <code>render</code> tek kod yolu kalır.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · darda bilgi atmak</span>
+  <div class="demo-view">
+<p>Dar çizimde eşleme çizgisini ya da TTL etiketini “yer yok” diye çıkarmak, 1100–1279px'deki okura farklı bir anlatı verir.</p>
+  </div>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · sahnenin ölçtüğü aw</span>
+  <div class="demo-view">
+<p><code>var at = sc.aw &lt; 700 ? DAR : GENIS;</code></p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · api.aw ya da innerWidth</span>
+  <div class="demo-view">
+<p><code>api.aw</code> kayıttaki değerde kalır; <code>innerWidth</code> ise sütun genişliğini değil pencereyi söyler ve <code>.sticky--dense</code> gibi değişiklikleri kaçırır.</p>
+  </div>
+</div>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>API</h2><p class="lead">Desenin paketteki karşılığı tek bir davranış: sticky sahne --aw/--ah'ı her ölçümde yeniden okur. Geri kalanı sayfanın CSS'idir.</p></header>
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>stickyScene(cfg)</code> dönüşü · <code>aw</code>, <code>ah</code></td><td>Her <code>measure()</code>'da <code>getComputedStyle(.drawing)</code> ile güncellenir; Hoca koordinatları da bununla çevrilir.</td></tr>
+    <tr><td><code>api.aw</code>, <code>api.ah</code></td><td>Kayıt anındaki <code>data-aw</code>/<code>data-ah</code>; değişmez.</td></tr>
+    <tr><td><code>--nx</code>, <code>--ny</code>, <code>--nw</code></td><td>Sayfa kuralı: dar kapta <code>.dl</code> konumu ve genişliği (çizim biriminde).</td></tr>
+    <tr><td><code>.is-wide</code>, <code>.is-nar</code></td><td>Sayfa sınıfları; paket bunlar için kural içermez. <code>.is-nar</code>'ı varsayılanda gizlemek sayfanın işidir.</td></tr>
+    <tr><td><code>.sticky.is-live .f-map</code></td><td>Paket burada <code>container-type: size</code> verir; kap adını sayfa ekler.</td></tr>
+    <tr><td><code>.sticky--dense</code></td><td>Alternatif ya da ek: 1100–1279px'de şekil sütununu genişletir.</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="taslak-ve-belirme.html" rel="prev"><small>Önceki · Hareket</small>Taslak ve belirme</a><a href="hoca-pozlar.html" rel="next"><small>Sonraki · Hoca</small>Hoca · pozlar</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  var GENIS = { x: 840, y: 410 }, DAR = { x: 300, y: 760 }, ts = Hendese.$$('#dv-fail .dv-t');
+  var sc = Hendese.stickyScene({
+    el: '#dv-fail', chap: '02 · Yük devri',
+    still: { x: 840, y: 410, pose: 'helm', face: -1 },
+    render: function (i, t, api) {
+      [1, 2, 3].forEach(function (k) { api.cls(api.fig, 'dv-s' + k, i >= k); });
+      ts.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+      var at = sc.aw < 700 ? DAR : GENIS;
+      return { hoca: { x: at.x, y: at.y, pose: ['idle', 'worried', 'terminal', 'helm'][i], face: -1 } };
+    }
+  });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

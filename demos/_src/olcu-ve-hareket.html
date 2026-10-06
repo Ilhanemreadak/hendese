@@ -1,0 +1,194 @@
+<!-- meta {"title":"Ölçü ve hareket","group":"Temel","order":30,"tagline":"Köşe, kabuk ölçüsü, süre ve eğri.","intro":"Bileşenler ölçü ve süre yazmaz; köşeleri, kabuk genişliklerini, geçiş sürelerini ve eğrileri token'lardan okur. Hareketi azaltma tercihi açıksa her geçiş sıfıra iner ve son hal hemen görünür.","summary":"<code>--r-*</code>, kabuk ölçüleri, <code>--dur-1..5</code>, üç eğri ve canlı örnekler; reduced-motion davranışı.","facts":{"Token'lar":"<code>--r-sm</code> <code>--r-md</code> <code>--r-lg</code> · <code>--rail-w</code> <code>--side-w</code> <code>--canvas-max</code> <code>--topbar-h</code> · <code>--dur-1..5</code> · <code>--ease-out</code> <code>--ease-in-out</code> <code>--ease-snap</code>","Sınıf":"<code>html.motion</code> (canlı mod)","JS":"Gerekmez; örneklerdeki oynat düğmeleri birkaç satırlık sayfa betiği"}} -->
+
+<chapter title="Köşeler" lead="Üç yarıçap yeterli: küçük kontrol, kart ve büyük pano. Köşe büyüdükçe yüzey de büyür; küçük bir çipe büyük köşe vermek onu düğmeye benzetir.">
+<demo label="Örnek · üç köşe, üç ölçek">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px">
+  <span style="padding:4px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);font:500 13px/1.4 var(--font-mono);color:var(--ink-2)">prod · eu-west-1</span>
+  <div style="width:240px;padding:12px 14px;border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--surface)">
+    <p class="chip">Kuyruk</p>
+    <p style="margin:4px 0 0;font-size:14px;color:var(--ink-2)">billing-worker · 4 kopya · 120 iş/dk</p>
+  </div>
+  <div style="width:300px;padding:16px 18px;border:1px solid var(--line-2);border-radius:var(--r-lg);background:var(--scene-bg)">
+    <p class="chip">Pano</p>
+    <p style="margin:4px 0 0;font-size:14px;color:var(--ink-2)">Üç servisin gecikme, hata ve doygunluk grafikleri bu yüzeyde durur.</p>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
+  <tbody>
+    <tr><td><code>--r-sm</code></td><td><code>6px</code></td><td>Tablo kabı, seçim çipi, aç/kapa düğmesi</td></tr>
+    <tr><td><code>--r-md</code></td><td><code>10px</code></td><td>Kod bloğu, adım kartı, örnek kutusu</td></tr>
+    <tr><td><code>--r-lg</code></td><td><code>14px</code></td><td>Kontrol listesi, pafta zemini</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Bilinen sapma</span><div class="co-body"><p>Birkaç küçük kontrol köşesini token'dan değil sabit değerden alır: <code>.btn</code> 7px, <code>.icon-btn</code> 8px, kod bloğundaki kopyala düğmesi 6px. Kendi bileşenlerinizde yalnızca <code>--r-*</code> kullanın.</p></div></div>
+</chapter>
+
+<chapter title="Kabuk ölçüleri" lead="Ray, tuval ve pafta yan sütunu token'dır; ekran eşikleri ise CSS değişkeni olamadığı için sabittir: 1100px ve 720px.">
+<demo label="Şema · 1440px genişlikte kabuk" nocode>
+<div style="display:grid;grid-template-columns:17.2% minmax(0,1fr);height:150px;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;font:500 11px/1.4 var(--font-mono);color:var(--ink-2)">
+  <div style="border-right:1px solid var(--line-2);background:var(--bg);padding:8px">--rail-w<br>248px</div>
+  <div style="display:grid;grid-template-columns:5.6% minmax(0,1fr) 5.6%;background:var(--surface)">
+    <span></span>
+    <div style="border-inline:1px dashed var(--pencil);background:var(--paper);padding:8px;display:grid;grid-template-columns:minmax(0,1fr) 26%;gap:8px">
+      <span>--canvas-max · 1040px</span>
+      <span style="border-left:1px dashed var(--pencil);padding-left:6px">--side-w<br>230–290px</span>
+    </div>
+    <span></span>
+  </div>
+</div>
+<p class="figcap"><b>Şema.</b> Ray solda sabit; tuval kalan alanda ortalanır. Pafta (<code>.frame</code>) kendi içinde sağda <code>--side-w</code> genişliğinde bir yan sütun açar. 1100px altında ray çekmeceye dönüşür, yerine <code>--topbar-h</code> (52px) yüksekliğinde üst çubuk gelir.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
+  <tbody>
+    <tr><td><code>--rail-w</code></td><td><code>248px</code></td><td>Sol ray ve cetvel çizgilerinin başlangıcı</td></tr>
+    <tr><td><code>--canvas-max</code></td><td><code>1040px</code></td><td>İçerik tuvalinin en büyük genişliği</td></tr>
+    <tr><td><code>--side-w</code></td><td><code>clamp(230px,20vw,290px)</code></td><td>Paftanın yan sütunu (beat'ler, HUD)</td></tr>
+    <tr><td><code>--topbar-h</code></td><td><code>52px</code></td><td>Dar ekranda üst çubuk</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Tuvali daraltmak istediğiniz bir belge için tek satır yeter: <code>:root{--canvas-max:880px}</code>. Cetvel çizgileri aynı token'ı okuduğu için yeni kenarlarla birlikte kayar.</p></div>
+</chapter>
+
+<chapter title="Süreler ve eğriler" lead="Beş süre ve üç eğri. Süre hareketin büyüklüğüne göre seçilir; eğri hareketin karakterini belirler. Oynat düğmesine basın.">
+<demo label="Örnek · beş süre, aynı eğri" nocode>
+<div id="oh-dur" style="display:grid;gap:8px">
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--dur-1 · 120ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-1) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--dur-2 · 250ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-2) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--dur-3 · 320ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-3) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--dur-4 · 650ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--dur-5 · 2s</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-5) var(--ease-out)"></i></div>
+  </div>
+</div>
+<button class="toggle-btn is-accent" type="button" aria-pressed="false" data-play="oh-dur" style="margin-top:14px">Oynat</button>
+</demo>
+<demo label="Örnek · üç eğri, aynı süre (--dur-4)">
+<div id="oh-ease" style="display:grid;gap:8px">
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--ease-out</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip"><span lang="en">--ease-in-out</span></p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-in-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+    <p class="chip">--ease-snap</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-snap)"></i></div>
+  </div>
+</div>
+<button class="toggle-btn is-accent" type="button" aria-pressed="false" data-play="oh-ease" style="margin-top:14px">Oynat</button>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Değer</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td><code>--dur-1</code></td><td><code>120ms</code></td><td>Anlık geri bildirim: kenar rengi, üzerine gelme</td></tr>
+    <tr><td><code>--dur-2</code></td><td><code>250ms</code></td><td>Küçük durum değişimi: rozet, ikon</td></tr>
+    <tr><td><code>--dur-3</code></td><td><code>320ms</code></td><td>Satır vurgusu, panel açılması</td></tr>
+    <tr><td><code>--dur-4</code></td><td><code>650ms</code></td><td>Sahne içinde yer değiştirme</td></tr>
+    <tr><td><code>--dur-5</code></td><td><code>2s</code></td><td>Yalnızca kalem taslağının mürekkebe çizilmesi</td></tr>
+    <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(.2,.7,.2,1)</code></td><td>Varsayılan: hızlı başla, yumuşak dur</td></tr>
+    <tr><td><code>--ease-in-out</code></td><td><code>cubic-bezier(.45,0,.55,1)</code></td><td>Görünür bir yoldan bir yerden ötekine</td></tr>
+    <tr><td><code>--ease-snap</code></td><td><code>cubic-bezier(.3,1.6,.55,1)</code></td><td>Yerine oturma; hafifçe taşar ve geri döner</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Eski adlar</span><div class="co-body"><p>Paketin kendi bileşenleri hâlâ <code>--t-fast</code> (160ms), <code>--t-med</code> (320ms) ve <code>--ease</code> okur. Yeni kodda <code>--dur-*</code> ve <code>--ease-*</code> kullanın; <code>--ease-out</code> zaten <code>var(--ease)</code>'e eşittir.</p></div></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Hareket bir durum değişimini görünür kılmak içindir, süs için değil. Aşağıdaki iki örnekte hareket okuyucuya neyin değiştiğini gösterir.">
+<demo label="Örnek · önbellek temizleme (--dur-4, --ease-out)">
+<div style="max-width:460px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+    <p style="margin:0;margin-right:auto"><b>cache-eu-1</b> <span class="mono" style="color:var(--ink-3)">· 18 400 anahtar</span></p>
+    <button class="btn" type="button" id="oh-purge"><svg><use href="#i-reset"/></svg>Temizle</button>
+  </div>
+  <div style="height:6px;background:var(--surface-3);border-radius:3px;overflow:hidden"><i id="oh-purge-bar" style="display:block;height:100%;width:0;background:var(--ok);transition:width var(--dur-4) var(--ease-out)"></i></div>
+  <div class="readout" id="oh-purge-out" aria-live="polite"><p>Hazır; temizlemek ısınana kadar isabet oranını düşürür.</p></div>
+</div>
+</demo>
+<demo label="Örnek · adım vurgusu (--dur-3)">
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+  <div class="register" id="oh-reg" style="width:320px">
+    <p class="register-h"><b>Göç 0042</b><span>orders-db</span></p>
+    <dl>
+      <div class="now"><dt>01</dt><dd>Gölge tabloyu oluştur</dd></div>
+      <div><dt>02</dt><dd>Satırları kopyala</dd></div>
+      <div><dt>03</dt><dd>Yazmaları çiftle</dd></div>
+      <div><dt>04</dt><dd>Tabloları değiştir</dd></div>
+    </dl>
+  </div>
+  <button class="btn" type="button" id="oh-next">Sonraki adım</button>
+</div>
+</demo>
+<div class="prose"><p><code>.register</code> satırları <code>background-color</code> geçişini zaten <code>--dur-3</code> ile yapar; sizin yalnızca <code>.now</code> sınıfını taşımanız yeterli.</p></div>
+</chapter>
+
+<chapter title="Hareketi azaltma" lead="İşletim sisteminde hareketi azaltma açıksa base.css tüm geçiş ve animasyon sürelerini sıfıra yakın çeker. Yukarıdaki örnekler o durumda beklemeden son konuma atlar.">
+<div class="readout" id="oh-motion" aria-live="polite"><p>Durum okunuyor…</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}</code></pre></figure>
+<div class="prose"><p>Bu güvenlik ağı satır içi <code>style</code> ile yazılmış geçişleri de yakalar. Yine de konum değiştiren, kaydırmaya bağlı ya da dikkat çeken her harekette sözleşme şudur: <b>geçişi <code>html.motion</code> altına koyun.</b> Bu sınıf yalnızca JS çalışırken, ekran 1100px ve üstündeyken ve hareketi azaltma kapalıyken vardır.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">uygulama.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">/* son hal her zaman doğru; geçiş yalnızca canlı modda */</span>
+.deploy-card{transform:none}
+html.motion .deploy-card{transition:transform var(--dur-3) var(--ease-out)}</code></pre></figure>
+<div class="dodont">
+<demo label="Yap · tek özellik, token süre">
+<button class="btn" type="button" style="transition:background var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out)">Günlüğü indir</button>
+</demo>
+<demo label="Yapma · her şey, sabit uzun süre">
+<button class="btn" type="button" style="transition:all 900ms linear">Günlüğü indir</button>
+</demo>
+</div>
+<div class="prose"><p>İkisinin de üzerine gelin. Sağdaki düğme 900ms boyunca ara renkte kalır; kullanıcı imleci çoktan çekmiştir. <code>all</code> ayrıca düzeni etkileyen özellikleri de canlandırır.</p></div>
+</chapter>
+
+<script data-page>
+document.querySelectorAll('[data-play]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on));
+    b.textContent = on ? 'Geri al' : 'Oynat';
+    document.querySelectorAll('#' + b.getAttribute('data-play') + ' [data-move]').forEach(function (i) {
+      i.style.transform = on ? 'translateX(calc(100cqw - 22px))' : '';
+    });
+  });
+});
+(function () {
+  var btn = document.getElementById('oh-purge'), bar = document.getElementById('oh-purge-bar'), out = document.getElementById('oh-purge-out');
+  btn.addEventListener('click', function () {
+    var done = bar.style.width === '100%';
+    bar.style.width = done ? '0' : '100%';
+    out.className = done ? 'readout' : 'readout ok';
+    out.innerHTML = done ? '<p>Hazır; temizlemek ısınana kadar isabet oranını düşürür.</p>' : '<p><b>Temizlendi.</b> 18 400 anahtar silindi; önbellek yeniden ısınıyor.</p>';
+  });
+  var rows = document.querySelectorAll('#oh-reg dl > div'), k = 0;
+  document.getElementById('oh-next').addEventListener('click', function () {
+    rows[k].classList.remove('now'); k = (k + 1) % rows.length; rows[k].classList.add('now');
+  });
+  var rm = matchMedia('(prefers-reduced-motion: reduce)'), m = document.getElementById('oh-motion');
+  function show() {
+    m.innerHTML = rm.matches
+      ? '<p><b>Hareketi azaltma açık.</b> Bu sayfadaki geçişler anında biter; <code>html.motion</code> yok.</p>'
+      : '<p><b>Hareketi azaltma kapalı.</b> Geçişler oynar; <code>html.motion</code> ' + (document.documentElement.classList.contains('motion') ? 'var (canlı mod).' : 'yok (ekran 1100px altında).') + '</p>';
+  }
+  /* html.motion Hendese.start() içinde yazılır; bu betik ondan önce çalıştığı için bir tur bekle */
+  rm.addEventListener('change', function () { setTimeout(show); }); setTimeout(show);
+})();
+</script>

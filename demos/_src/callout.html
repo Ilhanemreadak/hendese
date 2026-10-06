@@ -1,0 +1,128 @@
+<!-- meta {"title":"Callout","group":"Bileşenler","order":30,"tagline":"Akışı bölmeden düşülen yan not.","intro":"Callout, okuma metninin yanına sol çizgili kısa bir not ekler. Yedi tür vardır; renk ve ikon türe bağlıdır, etiket metni serbesttir. Gövde paragraf, liste ve kod taşıyabilir.","summary":"Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.","facts":{"Sınıflar":"<code>.co</code> · <code>.co-info</code> · <code>.co-important</code> · <code>.co-tip</code> · <code>.co-warn</code> · <code>.co-sec</code> · <code>.co-success</code> · <code>.co-trouble</code>","Parçalar":"<code>.co-ic</code> (ikon) · <code>.co-label</code> (etiket) · <code>.co-body</code> (gövde)","JS":"Gerekmez"}} -->
+
+
+<chapter title="Yedi tür" lead="Her türün sabit bir rengi ve ikonu vardır. Aşağıdaki notların hepsi aynı işten, bir alan adının yeni DNS sağlayıcısına taşınmasından alındı.">
+<demo label="Örnek · DNS taşıma notları" nocode>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Bilgi</span><div class="co-body"><p>Eski kayıtların TTL değeri 3600 saniye; değişiklik en geç bir saat içinde her yere yayılır.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Önemli</span><div class="co-body"><p>Taşımadan 24 saat önce TTL'i <code>300</code>'e indirin; yoksa geri dönüş de bir saat sürer.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body"><p>Yeni sunucuyu doğrudan sorgulayarak kayıtları önceden doğrulayın: <code>dig @ns1.yeni-saglayici.net api.ornek.com</code>.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>NS kayıtlarını değiştirdiğiniz anda eski bölgedeki MX kayıtları <b>okunmaz olur</b>; e-posta kayıtlarını önce taşıyın.</p></div></div>
+<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Güvenlik</span><div class="co-body"><p>Sağlayıcı API anahtarı yalnızca bu işin süresi için verilir; iş bitince kasadan silinir.</p></div></div>
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Tamamlandı</span><div class="co-body"><p>Beş genel çözümleyicinin beşi de yeni adresi döndürüyor.</p></div></div>
+<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Sorun giderme</span><div class="co-body"><p><code>SERVFAIL</code> alıyorsanız DNSSEC imzası eski anahtarla kalmış olabilir; DS kaydını kayıt kuruluşunda güncelleyin.</p></div></div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Sınıf</th><th>İkon</th><th>Renk</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td><code>.co-info</code></td><td><code>#i-info</code></td><td><code>--ink-2</code></td><td>Arka plan bilgisi; okumasanız da iş yürür</td></tr>
+    <tr><td><code>.co-important</code></td><td><code>#i-info</code></td><td><code>--accent</code></td><td>Atlanırsa sonraki adım bozulur</td></tr>
+    <tr><td><code>.co-tip</code></td><td><code>#i-bulb</code></td><td><code>--ok</code></td><td>Kısayol, daha iyi bir yol</td></tr>
+    <tr><td><code>.co-warn</code></td><td><code>#i-warn</code></td><td><code>--warn</code></td><td>Geri alınması zor ya da yan etkili adım</td></tr>
+    <tr><td><code>.co-sec</code></td><td><code>#i-shield</code></td><td><code>--sec</code></td><td>Yetki, anahtar, kişisel veri</td></tr>
+    <tr><td><code>.co-success</code></td><td><code>#i-check</code></td><td><code>--ok</code></td><td>Bitiş ölçütü: şunu görüyorsanız tamam</td></tr>
+    <tr><td><code>.co-trouble</code></td><td><code>#i-wrench</code></td><td><code>--bad</code></td><td>Belirti → neden → çözüm</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Anatomi ve etiket" lead="Üç parça: ikon, etiket ve gövde. İkon ve etiket aynı satırda, gövde altta tam genişlikte durur. Etiket türün adı olmak zorunda değildir; notun konusunu söyleyebilir.">
+<demo label="Örnek · tek callout">
+<div class="co co-warn">
+  <span class="co-ic"><svg><use href="#i-warn"/></svg></span>
+  <span class="co-label">Bakım penceresi</span>
+  <div class="co-body">
+    <p>Göç sırasında <code>orders</code> tablosu yaklaşık 40 saniye yazmaya kapalı kalır.</p>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · aynı tür, farklı etiketler" nocode>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Geri alma yok</span><div class="co-body"><p>Silinen anlık görüntü kurtarılamaz.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Sürüm 3.0 ile değişti</span><div class="co-body"><p><code>retry</code> ayarı artık saniye değil milisaniye alıyor.</p></div></div>
+<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Yalnızca platform ekibi</span><div class="co-body"><p>Bu adım üretim hesabında yönetici rolü ister.</p></div></div>
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Bitti sayılır</span><div class="co-body"><p>Pano üzerinde hata oranı 15 dakika boyunca %0.1'in altında.</p></div></div>
+</demo>
+<div class="prose"><p>Etiket büyük harfe çevrilir ve Türkçe kurallarıyla yazılır (<i>i</i> → <i>İ</i>). İngilizce bir kelimeyi etikette kullanacaksanız <code>lang="en"</code> ile sarın ya da <code>Hendese.init({ englishStems })</code> seçeneğini kullanın.</p></div>
+</chapter>
+
+<chapter title="Uzun gövde" lead="Gövde birden çok paragraf, liste ve kod bloğu taşıyabilir. Callout 80 karakter genişlikte kalır; uzun not yine de okunur.">
+<demo label="Örnek · liste ve kod içeren gövde">
+<div class="co co-trouble">
+  <span class="co-ic"><svg><use href="#i-wrench"/></svg></span>
+  <span class="co-label">İşçi kuyruğu boşalmıyor</span>
+  <div class="co-body">
+    <p><b>Belirti:</b> <code>billing-worker</code> çalışıyor görünüyor ama kuyruktaki ileti sayısı artmaya devam ediyor.</p>
+    <p>Sırasıyla bakın:</p>
+    <ul>
+      <li>İşçinin görünürlük zaman aşımı, işin süresinden kısa mı?</li>
+      <li>Ölü mektup kuyruğuna düşen ileti var mı?</li>
+      <li>Son sürümle gelen bir şema değişikliği iletileri reddediyor mu?</li>
+    </ul>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>kubectl -n billing logs deploy/billing-worker --since=15m | grep -c REJECT</code></pre></figure>
+    <p>Sayı sıfırdan büyükse son sürümü geri alın ve şema değişikliğini ayrı bir sürümde yeniden deneyin.</p>
+  </div>
+</div>
+</demo>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Not</span><div class="co-body"><p>Gövde yalnızca paragrafların kenar boşluğunu düzenler. Callout bir liste ya da kod bloğuyla bitiyorsa alttaki boşluk biraz büyük kalır; bu yüzden uzun notları bir paragrafla kapatmak iyi bir alışkanlıktır.</p></div></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Callout kendi başına değil, bir adımın ya da paragrafın hemen altında durur; ilgili olduğu yere yakın olmalıdır.">
+<demo label="Örnek · adım içinde">
+<ol class="steps">
+  <li>
+    <h3>Önbelleği boşaltın</h3>
+    <p><code>cache-eu</code> kümesinde <code>FLUSHDB</code> çalıştırın.</p>
+    <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>İlk birkaç dakika veritabanı yükü iki katına çıkar; trafiğin düşük olduğu saatte yapın.</p></div></div>
+  </li>
+  <li>
+    <h3>Isınmayı izleyin</h3>
+    <p>İsabet oranı panoda %80'in üstüne çıkana kadar bekleyin.</p>
+  </li>
+</ol>
+</demo>
+<demo label="Örnek · okuma metni arasında">
+<div class="prose">
+  <p>Maliyet raporu her ayın ilk iş günü üretilir ve hesap başına harcamayı bir önceki ayla karşılaştırır.</p>
+  <div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body"><p>Etiketsiz kaynaklar raporda <b>dağıtılmamış</b> satırında toplanır; önce o satırı küçültün.</p></div></div>
+  <p>Rapordaki her satır bir ekibe aittir; sahibi olmayan satır bir sonraki ay kapatılır.</p>
+</div>
+</demo>
+<demo label="Örnek · koyu sahne içinde">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:4px 18px">
+  <div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Erişim süresi</span><div class="co-body"><p>Geçici yönetici yetkisi 2 saat sonra kendiliğinden geri alınır.</p></div></div>
+  <div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Onaylandı</span><div class="co-body"><p>İstek iki onaylayıcıdan geçti.</p></div></div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Callout dikkat çeker; her paragrafa eklenirse hiçbiri dikkat çekmez. Bir bölümde bir ya da iki tane yeter.">
+<div class="dodont">
+<demo label="Yap · tek not, doğru tür">
+<p style="margin:0">Yeni bölge <code>eu-central-1</code> olarak açıldı.</p>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Önemli</span><div class="co-body"><p>Eski bölgedeki kova 30 gün sonra silinecek.</p></div></div>
+</demo>
+<demo label="Yapma · üst üste notlar">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Yeni bölge açıldı.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Önemli</span><div class="co-body"><p>Adı eu-central-1.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Bilgi</span><div class="co-body"><p>Kova silinecek.</p></div></div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · uyarı bir riski anlatır">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Bu komut tüm ortamların ayarlarını aynı anda değiştirir.</p></div></div>
+</demo>
+<demo label="Yapma · sıradan bilgiye uyarı rengi">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Bu sayfa her hafta güncellenir.</p></div></div>
+</demo>
+</div>
+</chapter>
+
+<chapter title="Erişilebilirlik" lead="Tür bilgisi renkte ve ikonda saklıdır; ikisi de ekran okuyucuya ulaşmaz. Taşıyıcı olan etikettir.">
+<div class="prose">
+  <ul>
+    <li>Etiket görünür metindir ve okunur; <b>Dikkat</b>, <b>Güvenlik</b> gibi türü belli eden bir kelime seçin ya da konuyu yazın (<b>Geri alma yok</b>).</li>
+    <li>İkon süstür; <code>&lt;svg&gt;</code> içinde başlık yoktur ve okunmaz.</li>
+    <li>Callout bir <code>role="alert"</code> değildir. Sayfa açıldığında zaten oradadır; canlı bir hata mesajı için ayrı bir <code>aria-live</code> bölgesi kullanın.</li>
+    <li>Renkler iki temada da kontrast eşiğini geçer; <code>.scene-dark</code> içinde koyu değerler kullanılır.</li>
+  </ul>
+</div>
+</chapter>

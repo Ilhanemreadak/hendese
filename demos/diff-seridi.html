@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diff şeridi · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="dugmeler.html">Düğmeler</a>
+    <a class="nav-page" href="rozetler.html">Rozetler</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="kod-blogu.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-seridi.html" aria-current="page">Diff şeridi</a>
+    <a class="nav-page" href="tablo.html">Tablo</a>
+    <a class="nav-page" href="tanim-listesi.html">Tanım listesi</a>
+    <a class="nav-page" href="adimlar.html">Adımlar</a>
+    <a class="nav-page" href="kontrol-listesi.html">Kontrol listesi</a>
+    <a class="nav-page" href="secim-gruplari.html">Seçim grupları</a>
+    <a class="nav-page" href="gosterge.html">Gösterge</a>
+    <a class="nav-page" href="degisken-kaydi.html">Değişken kaydı</a>
+    <a class="nav-page" href="damga.html">Damga</a>
+    <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
+    <a class="nav-page" href="antet.html">Antet</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Değişiklik türleri</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Metinde anahtar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Dar alan</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Diff şeridi<em>Değişen satırı işaretler, kopyayı kirletmez.</em></h1>
+    <p class="intro">Diff şeridi bir kod bloğunda değişen satırları sol kenarda <code>Δ</code> işaretleriyle gösterir. İşaretler <code>&lt;code&gt;</code> öğesinin dışındadır; okur bloğu kopyaladığında artı, eksi ya da işaret almaz. Metindeki <code>.diff-key</code> aynı işareti anarak açıklamayı satıra bağlar.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.diff-src</code> · <code>.diff-gut</code> · <code>.diff-key</code> · <code>.plus</code> · <code>.minus</code></dd><dt>Öznitelikler</dt><dd><code>style="--l:N"</code> (1'den başlayan satır no) · <code>data-m</code> (işaret metni)</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Üç katman: kod bloğunu saran .diff-src, onun içinde ekran okuyucudan gizli .diff-gut şeridi ve her değişen satır için bir i öğesi. Satır numarası --l ile, işaret metni data-m ile verilir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · tek değişiklik</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">ingress.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:5" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">web-api</span>
+  <span class="k">annotations</span>:
+    <span class="k">nginx.ingress.kubernetes.io/proxy-body-size</span>: <span class="s">"8m"</span>
+    <span class="k">nginx.ingress.kubernetes.io/proxy-read-timeout</span>: <span class="s">"120"</span></code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Rapor uç noktası uzun sürdüğü için okuma zaman aşımı 60 saniyeden 120 saniyeye çıktı (satır 5).</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;ingress.yaml&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;metadata&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;name&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;annotations&lt;/<span class='k'>span</span>&gt;:
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;nginx.ingress.kubernetes.io/proxy-body-size&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"8m"&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;nginx.ingress.kubernetes.io/proxy-read-timeout&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"120"&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Rapor uç noktası uzun sürdüğü için okuma zaman aşımı 60 saniyeden 120 saniyeye çıktı (satır 5).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Öğe</th><th>Nerede</th><th>Görev</th></tr></thead>
+  <tbody>
+    <tr><td><code>.diff-src</code></td><td><code>figure.code</code> içinde, <code>pre</code>'yi sarar</td><td>Sol kenarda 40px şerit açar, kodu içeri iter</td></tr>
+    <tr><td><code>.diff-gut</code></td><td><code>.diff-src</code>'nin ilk çocuğu</td><td>İşaretleri taşır; <code>aria-hidden="true"</code>, seçilemez</td></tr>
+    <tr><td><code>&lt;i style="--l:N"&gt;</code></td><td><code>.diff-gut</code> içinde</td><td>N. satırı yeşil çizgi ve hafif zeminle boyar</td></tr>
+    <tr><td><code>data-m</code></td><td><code>i</code> ve <code>.diff-key</code> üzerinde</td><td>Şeritte ve metinde basılan kısa işaret</td></tr>
+    <tr><td><code>.diff-key</code></td><td>Açıklama metninde</td><td>Aynı işareti çerçeveli olarak tekrar eder</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Değişiklik türleri">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Değişiklik türleri</h2><p class="lead">Aynı yapı her türlü değişikliği anlatır. Bir değişiklik birden çok satıra yayılıyorsa ilk satıra işaret, sonrakilere boş data-m verin; şerit kesintisiz görünür.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · bağımlılık yükseltmesi</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">package.json</span>
+    <span class="code-lang">JSON</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i><i style="--l:5" data-m="Δ2"></i></div>
+<pre tabindex="0"><code>{
+  <span class="k">"dependencies"</span>: {
+    <span class="k">"pg"</span>: <span class="s">"^8.13.0"</span>,
+    <span class="k">"pino"</span>: <span class="s">"^9.4.0"</span>,
+    <span class="k">"undici"</span>: <span class="s">"^6.21.0"</span>
+  }
+}</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Veritabanı sürücüsü 8.11'den 8.13'e çıktı; bağlantı havuzundaki sızıntı düzeltmesini getiriyor. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>HTTP istemcisinde güvenlik yaması.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;package.json&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;JSON&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:3</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;{
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"dependencies"&lt;/<span class='k'>span</span>&gt;: {
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"pg"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^8.13.0"&lt;/<span class='k'>span</span>&gt;,
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"pino"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^9.4.0"&lt;/<span class='k'>span</span>&gt;,
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"undici"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^6.21.0"&lt;/<span class='k'>span</span>&gt;
+  }
+}&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Veritabanı sürücüsü 8.11'den 8.13'e çıktı; bağlantı havuzundaki sızıntı düzeltmesini getiriyor. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;HTTP istemcisinde güvenlik yaması.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · veritabanı göçü, çok satırlı değişiklik</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">0043_fatura_indeksi.sql</span>
+    <span class="code-lang">SQL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i><i style="--l:6" data-m=""></i></div>
+<pre tabindex="0"><code><span class="k">BEGIN</span>;
+<span class="k">ALTER TABLE</span> invoices <span class="k">ADD COLUMN</span> due_on date;
+<span class="c">-- vadesi geçmiş faturaları hızlı bulmak için</span>
+<span class="k">CREATE INDEX CONCURRENTLY</span> invoices_due_open_idx
+  <span class="k">ON</span> invoices (due_on)
+  <span class="k">WHERE</span> paid_at <span class="k">IS NULL</span>;
+<span class="k">COMMIT</span>;</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Yeni vade sütunu. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Yalnızca ödenmemiş faturaları kapsayan kısmi indeks (satır 4–6).</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;0043_fatura_indeksi.sql&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;SQL&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:6</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;BEGIN&lt;/<span class='k'>span</span>&gt;;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; invoices &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ADD COLUMN&lt;/<span class='k'>span</span>&gt; due_on date;
+&lt;<span class='k'>span</span> class="<span class='s'>c</span>"&gt;-- vadesi geçmiş faturaları hızlı bulmak için&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;CREATE INDEX CONCURRENTLY&lt;/<span class='k'>span</span>&gt; invoices_due_open_idx
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ON&lt;/<span class='k'>span</span>&gt; invoices (due_on)
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;WHERE&lt;/<span class='k'>span</span>&gt; paid_at &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;IS NULL&lt;/<span class='k'>span</span>&gt;;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;COMMIT&lt;/<span class='k'>span</span>&gt;;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Yeni vade sütunu. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Yalnızca ödenmemiş faturaları kapsayan kısmi indeks (satır 4–6).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin varsayılan 13px yazı boyuna ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Metinde anahtar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Metinde anahtar</h2><p class="lead">diff-key açıklamayı satıra bağlar. Paragraf içinde, değişiklik listesinde ya da bir tanım listesinde aynı şekilde kullanılır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · değişiklik listesi</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">redis.conf</span>
+    <span class="code-lang">CONF</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:1" data-m="Δ1"></i><i style="--l:2" data-m="Δ2"></i><i style="--l:4" data-m="Δ3"></i></div>
+<pre tabindex="0"><code><span class="k">maxmemory</span> <span class="v">6gb</span>
+<span class="k">maxmemory-policy</span> <span class="s">allkeys-lfu</span>
+<span class="k">timeout</span> <span class="v">0</span>
+<span class="k">tcp-keepalive</span> <span class="v">60</span></code></pre>
+</div>
+</figure>
+<ul style="list-style:none;padding:0">
+  <li><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Bellek sınırı 4 GB'tan 6 GB'a çıktı.</li>
+  <li><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Çıkarma politikası LRU yerine LFU: sık okunan anahtarlar kalır.</li>
+  <li><i class="diff-key" data-m="Δ3" aria-hidden="true"></i>Ölü bağlantılar 60 saniyede fark edilir.</li>
+</ul>
+<p class="figcap"><b>Özet.</b> <span class="plus">+3</span> değişen satır, <span class="minus">−0</span> silinen satır.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;redis.conf&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;CONF&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:1</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ3</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxmemory&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;6gb&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxmemory-policy&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;allkeys-lfu&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;timeout&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;0&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;tcp-keepalive&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;60&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>ul</span> style="<span class='s'>list-style:none;padding:0</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Bellek sınırı 4 GB'tan 6 GB'a çıktı.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Çıkarma politikası LRU yerine LFU: sık okunan anahtarlar kalır.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ3</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Ölü bağlantılar 60 saniyede fark edilir.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ul</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Özet.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;+3&lt;/<span class='k'>span</span>&gt; değişen satır, &lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;−0&lt;/<span class='k'>span</span>&gt; silinen satır.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · tanım listesinde</span>
+  <div class="demo-view">
+<dl class="kv">
+  <dt><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Bellek</dt><dd>4 GB → 6 GB</dd>
+  <dt><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Politika</dt><dd><code>allkeys-lru</code> → <code>allkeys-lfu</code></dd>
+</dl>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>dl</span> class="<span class='s'>kv</span>"&gt;
+  &lt;<span class='k'>dt</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Bellek&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;4 GB → 6 GB&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Politika&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>code</span>&gt;allkeys-lru&lt;/<span class='k'>code</span>&gt; → &lt;<span class='k'>code</span>&gt;allkeys-lfu&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+&lt;/<span class='k'>dl</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Dar alan">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Dar alan</h2><p class="lead">Şerit pre'nin dışında durduğu için uzun satır yatay kaydırıldığında işaretler yerinde kalır; yalnızca kod kayar.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · dar kolonda uzun satır</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">main.tf</span>
+    <span class="code-lang">HCL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_db_instance"</span> <span class="s">"orders"</span> {
+  <span class="k">instance_class</span> = <span class="s">"db.r6g.large"</span>
+  <span class="k">backup_retention_period</span> = <span class="v">14</span> <span class="c"># denetim gereği 7 günden 14 güne çıkarıldı, bkz. erişim politikası madde 4.2</span>
+}</code></pre>
+</div>
+</figure>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;main.tf&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;HCL&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:3</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;resource&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"aws_db_instance"&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"orders"&lt;/<span class='k'>span</span>&gt; {
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;instance_class&lt;/<span class='k'>span</span>&gt; = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"db.r6g.large"&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;backup_retention_period&lt;/<span class='k'>span</span>&gt; = &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;14&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>c</span>"&gt;# denetim gereği 7 günden 14 güne çıkarıldı, bkz. erişim politikası madde 4.2&lt;/<span class='k'>span</span>&gt;
+}&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Kopyalanan metin çalışan metindir. Değişikliği işaretlemek için kodun içine karakter eklemeyin.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · işaret şeritte</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">image</span>: <span class="s">web-api:1.9.0</span>
+<span class="k">replicas</span>: <span class="v">4</span></code></pre>
+</div>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;image&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;web-api:1.9.0&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;replicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;4&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · artı eksi kodun içinde</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>  image: web-api:1.9.0
+- replicas: 3
++ replicas: 4</code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;  image: web-api:1.9.0
+- replicas: 3
++ replicas: 4&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Şerit ve <code>.diff-key</code> ekran okuyucudan gizlidir. Bu yüzden açıklama metni değişikliği kendi başına anlatmalı: hangi değer neydi, ne oldu, gerekirse hangi satır. İşaret yalnızca gözle okuyan için bir kısayoldur.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="kod-blogu.html" rel="prev"><small>Önceki · Bileşenler</small>Kod bloğu</a><a href="tablo.html" rel="next"><small>Sonraki · Bileşenler</small>Tablo</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

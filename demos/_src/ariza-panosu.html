@@ -1,0 +1,230 @@
+<!-- meta {"title":"Arıza panosu","group":"Blueprint","order":80,"tagline":"Hangi fazda, hangi lamba yanıyor.","intro":"Arıza panosu bir sürecin ya da servis grubunun nerede bozulduğunu tek bakışta gösterir: fazlar bir şeritte, olası arızalar numaralı lambalarda. Her lamba alttaki listenin bir satırıdır; liste çizimin metin karşılığıdır ve her zaman yazılır.","summary":"Faz şeridi, bölge parantezleri, numaralı lambalar; istek yolu, servis sağlık matrisi, gece işi.","facts":{"Sınıflar":"<code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code>","Satır içi stil":"Yanan lamba ve faz dolgusu (<code>--bad</code>, <code>--bad-soft</code>), lamba numarası yazısı","JS":"Gerekmez"}} -->
+
+<chapter title="Anatomi" lead="Üstte bölge parantezleri, ortada faz şeridi, şeridin üstünde lambalar, altında süre cetveli. Orta bölge süreyle orantılıdır; yan bölgeler değildir.">
+<demo label="Örnek · bir isteğin yolu, yavaş sorgu">
+<div class="drawing" style="--aw:1000;--ah:300">
+  <svg viewBox="0 0 1000 300" aria-hidden="true">
+    <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
+    <path class="ln-pencil" d="M10 166H370M670 166H990"/>
+    <path class="ln-pencil" d="M50 122V150M130 122V150M270 122V150M520 90V98M947 122V150"/>
+    <path class="ln-draw ln-bad" style="stroke-width:2" d="M520 122V150"/>
+    <rect class="ln-draw fill-paper" x="10" y="150" width="80" height="32"/>
+    <rect class="ln-draw fill-paper" x="100" y="150" width="60" height="32"/>
+    <rect class="ln-draw fill-paper" x="170" y="150" width="40" height="32"/>
+    <rect class="ln-draw fill-paper" x="210" y="150" width="120" height="32"/>
+    <rect class="ln-draw fill-paper" x="330" y="150" width="40" height="32"/>
+    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="370" y="150" width="300" height="32"/>
+    <rect class="ln-draw fill-paper" x="700" y="150" width="90" height="32"/>
+    <rect class="ln-draw fill-paper" x="805" y="150" width="85" height="32"/>
+    <rect class="ln-draw fill-paper" x="905" y="150" width="85" height="32"/>
+    <path class="ln-draw" d="M670 166H698M698 166l-9-4M698 166l-9 4"/>
+    <circle class="ln-draw fill-paper" cx="50" cy="110" r="12"/>
+    <circle class="ln-draw fill-paper" cx="130" cy="110" r="12"/>
+    <circle class="ln-draw fill-paper" cx="270" cy="110" r="12"/>
+    <circle style="fill:var(--bad);stroke:var(--bad)" cx="520" cy="110" r="12"/>
+    <circle class="ln-draw fill-paper" cx="520" cy="78" r="12"/>
+    <circle class="ln-draw fill-paper" cx="947" cy="110" r="12"/>
+    <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
+      <text x="50" y="110">1</text><text x="130" y="110">2</text><text x="270" y="110">3</text>
+      <text x="520" y="110" style="fill:var(--paper)">4</text><text x="520" y="78">5</text><text x="947" y="110">6</text>
+    </g>
+    <path class="ln-draw" d="M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
+    <path class="ln-pencil" d="M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5"/>
+  </svg>
+  <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Bağlantı</span></p>
+  <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Uygulama · orantılı</span></p>
+  <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Yanıt</span></p>
+  <p class="dl" style="--x:0;--y:190;--w:100;text-align:center">DNS</p>
+  <p class="dl" style="--x:90;--y:208;--w:80;text-align:center">TLS</p>
+  <p class="dl" style="--x:150;--y:190;--w:80;text-align:center">LB</p>
+  <p class="dl" style="--x:210;--y:208;--w:120;text-align:center">web-api</p>
+  <p class="dl" style="--x:310;--y:190;--w:80;text-align:center">önbellek</p>
+  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center;color:var(--bad)">veritabanı · 120 ms</p>
+  <p class="dl" style="--x:695;--y:190;--w:100;text-align:center">serileştir</p>
+  <p class="dl" style="--x:797;--y:208;--w:100;text-align:center">sıkıştır</p>
+  <p class="dl" style="--x:897;--y:190;--w:100;text-align:center">istemci</p>
+  <p class="dl" style="--x:140;--y:276;--w:60;text-align:center;color:var(--ink-3)">0</p>
+  <p class="dl" style="--x:240;--y:276;--w:60;text-align:center;color:var(--ink-3)">40</p>
+  <p class="dl" style="--x:340;--y:276;--w:60;text-align:center;color:var(--ink-3)">80</p>
+  <p class="dl" style="--x:440;--y:276;--w:60;text-align:center;color:var(--ink-3)">120</p>
+  <p class="dl" style="--x:540;--y:276;--w:60;text-align:center;color:var(--ink-3)">160</p>
+  <p class="dl" style="--x:630;--y:276;--w:80;text-align:center;color:var(--ink-3)">200 ms</p>
+</div>
+<ol class="plain">
+  <li>DNS çözümlenemedi: kayıt yok ya da çözümleyiciye ulaşılamıyor.</li>
+  <li>TLS el sıkışması düştü: sertifika süresi dolmuş ya da zincir eksik.</li>
+  <li>web-api 5xx döndü: uygulama hatası, yığın izi günlükte.</li>
+  <li><b style="color:var(--bad)">Yanıyor ·</b> Veritabanı fazı 120 ms sürdü (bütçe 30 ms): <code>orders</code> tablosunda indekssiz sorgu.</li>
+  <li>Bağlantı havuzu doldu: istekler veritabanını beklerken sıraya girdi.</li>
+  <li>İstemci zaman aşımı: yanıt 2 saniyede tamamlanmadı.</li>
+</ol>
+</demo>
+<div class="prose"><p>Orta bölge orantılıdır: 10 birim = 4 ms, cetvel 40 ms'de bir işaretli. Yan bölgeler orantısızdır ve <code>.dim</code> parantezleriyle ayrılır; aradaki ok sürecin sonraki bölgeye geçtiğini gösterir. Aynı fazın iki olası arızası varsa ikinci lamba birincinin üstüne dizilir (4 ve 5).</p></div>
+</chapter>
+
+<chapter title="Lamba durumları" lead="Lamba sönük, yanıyor ya da uyarıda olabilir. Bakımdaki lamba kesikli, ölçülemeyen lamba hayalet çizilir. Numara her durumda okunur kalır.">
+<demo label="Örnek · beş durum">
+<div class="drawing" style="--aw:900;--ah:120">
+  <svg viewBox="0 0 900 120" aria-hidden="true">
+    <circle class="ln-draw fill-paper" cx="60" cy="40" r="14"/>
+    <circle style="fill:var(--bad);stroke:var(--bad)" cx="240" cy="40" r="14"/>
+    <circle style="fill:var(--warn);stroke:var(--warn)" cx="420" cy="40" r="14"/>
+    <circle class="ln-draw ln-dash fill-paper" cx="600" cy="40" r="14"/>
+    <circle class="ln-ghost" cx="780" cy="40" r="14"/>
+    <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
+      <text x="60" y="40">1</text><text x="240" y="40" style="fill:var(--paper)">2</text><text x="420" y="40" style="fill:var(--paper)">3</text><text x="600" y="40">4</text><text x="780" y="40" style="fill:var(--ink-3)">5</text>
+    </g>
+  </svg>
+  <p class="dl" style="--x:0;--y:66;--w:120;text-align:center">sönük<br>sorun yok</p>
+  <p class="dl" style="--x:180;--y:66;--w:120;text-align:center">yanıyor<br>arıza</p>
+  <p class="dl" style="--x:360;--y:66;--w:120;text-align:center">uyarı<br>eşiğe yakın</p>
+  <p class="dl" style="--x:540;--y:66;--w:120;text-align:center">bakımda<br>susturuldu</p>
+  <p class="dl" style="--x:720;--y:66;--w:120;text-align:center">hayalet<br>ölçülemiyor</p>
+</div>
+</demo>
+<div class="prose"><p>Yanan lambanın bağlı olduğu leader ve faz da kırmızı çizilir; uyarıdaki lamba yalnızca kendisi boyanır. Bir panoda aynı anda birden fazla lamba yanabilir, ama listede yanan satırlar en başta değil, kendi numaralarının yerinde durur: numara sırası çizimdeki konum sırasıdır.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Aynı dil bir servis grubunun sağlık matrisine de uyar: satırlar servisler, sütunlar kontroller. Yalnızca yanan lambalar numara alır.">
+<demo label="Örnek · servis sağlık matrisi">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 1</p>
+  <p class="fig-cap">prod · beş servis, beş kontrol</p>
+  <div class="drawing" style="--aw:900;--ah:280">
+    <svg viewBox="0 0 900 280" aria-hidden="true">
+      <path class="ln-pencil" d="M20 44H880M20 92H880M20 137H880M20 182H880M20 227H880M20 272H880"/>
+      <path class="pencil-2" d="M270 44V272M390 44V272M510 44V272M630 44V272M750 44V272"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="70" r="11"/>
+      <circle style="fill:var(--warn);stroke:var(--warn)" cx="570" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="115" r="11"/>
+      <circle style="fill:var(--bad);stroke:var(--bad)" cx="810" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="205" r="11"/>
+      <circle style="fill:var(--bad);stroke:var(--bad)" cx="450" cy="205" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="205" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="205" r="11"/>
+      <circle class="ln-draw ln-dash fill-paper" cx="810" cy="205" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="250" r="11"/>
+      <g style="font:600 12px var(--font-mono);fill:var(--paper);text-anchor:middle;dominant-baseline:central">
+        <text x="570" y="70">1</text><text x="810" y="115">2</text><text x="450" y="205">3</text>
+      </g>
+    </svg>
+    <p class="dl" style="--x:270;--y:14;--w:120;text-align:center"><span class="stamp-k">Canlılık</span></p>
+    <p class="dl" style="--x:390;--y:14;--w:120;text-align:center"><span class="stamp-k">Hazırlık</span></p>
+    <p class="dl" style="--x:510;--y:14;--w:120;text-align:center"><span class="stamp-k">p95</span></p>
+    <p class="dl" style="--x:630;--y:14;--w:120;text-align:center"><span class="stamp-k">Hata</span></p>
+    <p class="dl" style="--x:750;--y:14;--w:120;text-align:center"><span class="stamp-k">Bağımlılık</span></p>
+    <p class="dl" style="--x:24;--y:60;--w:240">web-api</p>
+    <p class="dl" style="--x:24;--y:105;--w:240">billing-worker</p>
+    <p class="dl" style="--x:24;--y:150;--w:240">auth</p>
+    <p class="dl" style="--x:24;--y:195;--w:240">search</p>
+    <p class="dl" style="--x:24;--y:240;--w:240">orders-db</p>
+  </div>
+  <ol class="plain">
+    <li><b style="color:var(--warn)">Uyarı ·</b> web-api p95 gecikmesi 480 ms; eşik 500 ms.</li>
+    <li><b style="color:var(--bad)">Yanıyor ·</b> billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.</li>
+    <li><b style="color:var(--bad)">Yanıyor ·</b> search hazır değil: indeks yeniden kuruluyor, trafik almıyor.</li>
+  </ol>
+  <figcaption class="figcap"><b>Şekil 1.</b> Sönük lambalar numarasızdır. search satırındaki kesikli lamba susturulmuş bir kontroldür (bakım penceresi).</figcaption>
+</figure>
+</demo>
+<demo label="Örnek · gece yedekleme işi, koyu pafta">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 2</p>
+  <p class="fig-cap">nightly-backup · 02:00 çalışması</p>
+  <div class="drawing" style="--aw:1000;--ah:200">
+    <svg viewBox="0 0 1000 200" aria-hidden="true">
+      <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
+      <path class="ln-pencil" d="M50 92V110M210 92V110M770 92V110"/>
+      <path class="ln-draw ln-bad" style="stroke-width:2" d="M490 92V110"/>
+      <rect class="ln-draw fill-paper" x="10" y="110" width="80" height="32"/>
+      <rect class="ln-draw fill-paper" x="100" y="110" width="60" height="32"/>
+      <rect class="ln-draw fill-paper" x="170" y="110" width="80" height="32"/>
+      <rect class="ln-draw fill-paper" x="250" y="110" width="60" height="32"/>
+      <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="310" y="110" width="360" height="32"/>
+      <rect class="ln-ghost" x="700" y="110" width="140" height="32"/>
+      <rect class="ln-ghost" x="855" y="110" width="135" height="32"/>
+      <path class="ln-draw" d="M670 126H698M698 126l-9-4M698 126l-9 4"/>
+      <circle class="ln-draw fill-paper" cx="50" cy="80" r="12"/>
+      <circle class="ln-draw fill-paper" cx="210" cy="80" r="12"/>
+      <circle style="fill:var(--bad);stroke:var(--bad)" cx="490" cy="80" r="12"/>
+      <circle class="ln-ghost" cx="770" cy="80" r="12"/>
+      <g style="font:600 13px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
+        <text x="50" y="80">1</text><text x="210" y="80">2</text><text x="490" y="80" style="fill:var(--paper)">3</text><text x="770" y="80" style="fill:var(--ink-3)">4</text>
+      </g>
+    </svg>
+    <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Hazırlık</span></p>
+    <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Aktarım · 10 birim = 1 dk</span></p>
+    <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Doğrulama</span></p>
+    <p class="dl" style="--x:0;--y:150;--w:100;text-align:center">kuyruk</p>
+    <p class="dl" style="--x:90;--y:168;--w:80;text-align:center">kilit</p>
+    <p class="dl" style="--x:160;--y:150;--w:100;text-align:center">görüntü</p>
+    <p class="dl" style="--x:240;--y:168;--w:80;text-align:center">şifrele</p>
+    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center;color:var(--bad)">bölge kopyası · 36 dk · zaman aşımı</p>
+    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center;color:var(--ink-3)">sağlama</p>
+    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center;color:var(--ink-3)">kayıt</p>
+  </div>
+  <ol class="plain">
+    <li>İş kuyruğa alınamadı: önceki çalışma hâlâ kilidi tutuyor.</li>
+    <li>Anlık görüntü alınamadı: disk kotası dolu.</li>
+    <li><b style="color:var(--bad)">Yanıyor ·</b> Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.</li>
+    <li>Sağlama başarısız: kopyanın sağlama toplamı kaynakla uyuşmuyor. Bu çalışmada ölçülemedi.</li>
+  </ol>
+  <figcaption class="figcap"><b>Şekil 2.</b> Kopya fazı düştüğü için doğrulama bölgesi hiç çalışmadı; fazları ve lambası hayalettir.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Lamba bir listeye işaret eden bir numaradır. Numarasız, listesiz renkli noktalar bir pano değil, bir bulmacadır.">
+<div class="dodont">
+<demo label="Yap · numara ve liste">
+<div class="drawing" style="--aw:440;--ah:90">
+  <svg viewBox="0 0 440 90" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
+    <rect class="ln-strong ln-bad" style="fill:var(--bad-soft)" x="150" y="54" width="170" height="26"/>
+    <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
+    <path class="ln-pencil" d="M75 36V54"/>
+    <path class="ln-draw ln-bad" style="stroke-width:2" d="M235 36V54"/>
+    <circle class="ln-draw fill-paper" cx="75" cy="24" r="11"/>
+    <circle style="fill:var(--bad);stroke:var(--bad)" cx="235" cy="24" r="11"/>
+    <g style="font:600 12px var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central">
+      <text x="75" y="24">1</text><text x="235" y="24" style="fill:var(--paper)">2</text>
+    </g>
+  </svg>
+</div>
+<ol class="plain">
+  <li>Derleme başlamadı.</li>
+  <li><b style="color:var(--bad)">Yanıyor ·</b> Testler düştü: 3 birim testi.</li>
+</ol>
+</demo>
+<demo label="Yapma · yalnız renk">
+<div class="drawing" style="--aw:440;--ah:90">
+  <svg viewBox="0 0 440 90" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
+    <rect class="ln-draw fill-paper" x="150" y="54" width="170" height="26"/>
+    <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
+    <circle style="fill:var(--ok)" cx="75" cy="24" r="8"/>
+    <circle style="fill:var(--bad)" cx="235" cy="24" r="8"/>
+    <circle style="fill:var(--warn)" cx="380" cy="24" r="8"/>
+  </svg>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Lamba numarası SVG içindedir; ekran okuyucu yalnızca listeyi okur. Bu yüzden yanan satır listede kelimeyle işaretlenir (“Yanıyor ·”) ve renk tek başına bırakılmaz. Liste <code>&lt;ol&gt;</code> olmalıdır: sıra numarası lambanın numarasıdır.</p></div></div>
+</chapter>

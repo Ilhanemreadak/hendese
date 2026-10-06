@@ -1,0 +1,165 @@
+<!-- meta {"title":"Değişken kaydı","group":"Bileşenler","order":120,"tagline":"Bir adımın o anki hali.","intro":"<code>.register</code> bir sürecin belirli bir anındaki değişkenleri ad / değer satırları olarak gösterir; bu adımda değişen satır <code>.now</code> ile vurgulanır. Bir hattın ortam değişkenleri, bir göçün kilit durumu ya da bir DNS sorgusunun alanları için uygundur.","summary":"<code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; adım adım ilerleyen ortam değişkenleri.","facts":{"Sınıflar":"<code>.register</code> · <code>.register-h</code> · <code>dl &gt; div</code> · <code>div.now</code>","Yapı":"<code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> satırları","JS":"Gerekmez; değerleri ve <code>.now</code> sınıfını sayfa betiği değiştirir"}} -->
+
+<chapter title="Anatomi" lead="Başlık satırında solda kaydın adı, sağda konum bilgisi; altında ad / değer satırları. Ad sütunu en uzun ada göre genişler.">
+<demo label="Örnek · DNS sorgusu">
+<div class="register" style="max-width:360px">
+  <p class="register-h"><b>Sorgu</b><span>ns-1 · 09:42:07</span></p>
+  <dl>
+    <div><dt>QNAME</dt><dd>api.example.com.</dd></div>
+    <div><dt>QTYPE</dt><dd>A</dd></div>
+    <div class="now"><dt>ANSWER</dt><dd>203.0.113.24</dd></div>
+    <div><dt>TTL</dt><dd>300</dd></div>
+    <div><dt>RCODE</dt><dd>NOERROR</dd></div>
+  </dl>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.register-h</code></dt><dd>Başlık satırı: <code>&lt;b&gt;</code> kaydın adı (büyük harf, çizim rengi), <code>&lt;span&gt;</code> adım ya da zaman.</dd>
+  <dt><code>dl &gt; div</code></dt><dd>Bir satır. İçindeki <code>dt</code> ad, <code>dd</code> değerdir; satırlar ortak bir ızgarayı paylaşır, değerler hizalı başlar.</dd>
+  <dt><code>div.now</code></dt><dd>Bu adımda değişen satır; vurgu dolgusu alır ve adı koyulaşır. Dolgu yumuşak bir geçişle gelir.</dd>
+</dl>
+</chapter>
+
+<chapter title="Adım adım" lead="Bir hattın ortam değişkenleri iş ilerledikçe dolar. Düğmeyle bir sonraki adıma geçin; değişen satırlar vurgulanır, gösterge ne olduğunu yazar.">
+<demo label="Örnek · hat değişkenleri, canlı">
+<div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start">
+  <div class="register" id="dk-hat">
+    <p class="register-h"><b>Değişkenler</b><span id="dk-adim">adım 1 / 4</span></p>
+    <dl>
+      <div data-k="sha"><dt>COMMIT_SHA</dt><dd>3f9c2a1b</dd></div>
+      <div data-k="tag"><dt>IMAGE_TAG</dt><dd>—</dd></div>
+      <div data-k="reg"><dt>REGISTRY</dt><dd>—</dd></div>
+      <div data-k="env"><dt>DEPLOY_ENV</dt><dd>—</dd></div>
+      <div data-k="st"><dt>STATUS</dt><dd>checkout</dd></div>
+    </dl>
+  </div>
+  <div>
+    <div class="pillrow">
+      <button class="btn" type="button" id="dk-ileri"><svg><use href="#i-check"/></svg>Sonraki adım</button>
+      <button class="btn" type="button" id="dk-bas"><svg><use href="#i-reset"/></svg>Baştan</button>
+    </div>
+    <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Kaynak <code>main</code> dalından alındı.</p></div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Kayıt yalnızca görünümdür; adımları sayfa betiği yürütür. Her adımda önce tüm satırlardan <code>.now</code> kaldırılır, sonra değişen satırlara eklenir:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>function set(reg, changes) {
+  reg.querySelectorAll('dl &gt; div').forEach(function (row) {
+    var k = row.getAttribute('data-k'), hit = k in changes;
+    if (hit) row.querySelector('dd').textContent = changes[k];
+    row.classList.toggle('now', hit);
+  });
+}
+set(document.getElementById('dk-hat'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
+</chapter>
+
+<chapter title="Durumlar" lead="Henüz değeri olmayan satır, uzun değer ve aynı adımda birden çok değişiklik.">
+<demo label="Örnek · boş, uzun, çoklu">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start">
+  <div class="register">
+    <p class="register-h"><b>Rol</b><span>billing-worker</span></p>
+    <dl>
+      <div><dt>ROLE_ARN</dt><dd>arn:aws:iam::123456789012:role/billing-worker-prod-eu-west-1</dd></div>
+      <div><dt>SESSION</dt><dd>—</dd></div>
+      <div><dt>EXPIRES</dt><dd>—</dd></div>
+    </dl>
+  </div>
+  <div class="register">
+    <p class="register-h"><b>Ölçekleme</b><span>10:15 → 10:16</span></p>
+    <dl>
+      <div class="now"><dt>REPLICAS</dt><dd>3 → 6</dd></div>
+      <div class="now"><dt>QUEUE_DEPTH</dt><dd>1.240</dd></div>
+      <div><dt>CPU_TARGET</dt><dd>%70</dd></div>
+    </dl>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Değer uzunsa herhangi bir yerden kırılır; kayıt kabından taşmaz. Henüz atanmamış değer için boş bırakmak yerine bir tire yazın: satırın varlığı bir sonraki adımda dolacağını söyler.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Kayıt bir kod parçasının ya da bir çizimin yanında durur ve okura o noktada nelerin bilindiğini söyler.">
+<demo label="Örnek · göç betiğinin yanında">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start">
+  <figure class="code" style="margin:0"><figcaption class="code-head"><span class="code-file">0042_add_invoice_index.sql</span><span class="code-lang">SQL</span></figcaption><pre tabindex="0"><code>SELECT pg_advisory_lock(42);
+CREATE INDEX CONCURRENTLY idx_invoice_due
+  ON invoice (due_date);
+UPDATE schema_version SET v = 42;
+SELECT pg_advisory_unlock(42);</code></pre></figure>
+  <div class="register">
+    <p class="register-h"><b>Göç</b><span>satır 2 / 5</span></p>
+    <dl>
+      <div><dt>SCHEMA</dt><dd>41</dd></div>
+      <div class="now"><dt>LOCK</dt><dd>42 · tutuluyor</dd></div>
+      <div><dt>INDEX</dt><dd>—</dd></div>
+    </dl>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · koyu panel, istek izi">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <div class="register" style="max-width:420px">
+    <p class="register-h"><b>İstek</b><span>iz 7a1f · span 3 / 6</span></p>
+    <dl>
+      <div><dt>SERVICE</dt><dd>web-api</dd></div>
+      <div><dt>ROUTE</dt><dd>GET /v1/invoices</dd></div>
+      <div class="now"><dt>UPSTREAM</dt><dd>billing-worker · 184 ms</dd></div>
+      <div><dt>CACHE</dt><dd>miss</dd></div>
+    </dl>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Vurgu yalnızca bu adımda değişen satırdadır. Her satır vurgulanırsa hiçbiri vurgulanmamış olur.">
+<div class="dodont">
+<demo label="Yap · tek değişiklik vurgulu">
+<div class="register">
+  <p class="register-h"><b>Önbellek</b><span>adım 3 / 3</span></p>
+  <dl>
+    <div><dt>KEY</dt><dd>invoice:8812</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · silindi</dd></div>
+    <div><dt>HITS</dt><dd>41</dd></div>
+  </dl>
+</div>
+</demo>
+<demo label="Yapma · her satır vurgulu">
+<div class="register">
+  <p class="register-h"><b>Önbellek</b><span>adım 3 / 3</span></p>
+  <dl>
+    <div class="now"><dt>KEY</dt><dd>invoice:8812</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · silindi</dd></div>
+    <div class="now"><dt>HITS</dt><dd>41</dd></div>
+  </dl>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>&lt;dl&gt;</code> ad / değer çiftlerini ekran okuyucuya doğru verir; satırları saran <code>&lt;div&gt;</code> HTML'de geçerlidir. <code>.now</code> yalnızca görsel bir vurgudur: neyin değiştiği önemliyse bunu yanındaki bir <code>.readout</code> içinde, <code>aria-live</code> ile metin olarak da söyleyin.</p></div></div>
+</chapter>
+
+<script data-page>
+/* hat değişkenleri: adım adım */
+(function () {
+  var reg = document.getElementById('dk-hat'), step = document.getElementById('dk-adim'), out = document.getElementById('dk-out');
+  var steps = [
+    { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Kaynak <code>main</code> dalından alındı.' },
+    { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · İmaj derlendi, etiket kısa SHA\'dan üretildi.' },
+    { c: { reg: '123456789012.dkr.ecr.eu-west-1', st: 'push' }, now: ['reg', 'st'], t: '<b>push</b> · İmaj kayıt deposuna gönderildi.' },
+    { c: { env: 'prod', st: 'deploy · tamam' }, now: ['env', 'st'], t: '<b>deploy</b> · <code>prod-3f9c2a1b</code> üretimde.' }
+  ], i = 0;
+  function render() {
+    var s = steps[i];
+    reg.querySelectorAll('dl > div').forEach(function (row) {
+      var k = row.getAttribute('data-k');
+      if (k in s.c) row.querySelector('dd').textContent = s.c[k];
+      row.classList.toggle('now', s.now.indexOf(k) > -1);
+    });
+    step.textContent = 'adım ' + (i + 1) + ' / ' + steps.length;
+    out.classList.toggle('ok', i === steps.length - 1);
+    out.innerHTML = '<p>' + s.t + '</p>';
+    document.getElementById('dk-ileri').disabled = i === steps.length - 1;
+  }
+  document.getElementById('dk-ileri').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
+  document.getElementById('dk-bas').addEventListener('click', function () { i = 0; render(); });
+  render();
+})();
+</script>

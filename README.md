@@ -20,7 +20,7 @@ dist/head.js            flaşsız tema satırı
 dist/icons.svg          ikon sprite'ı
 ```
 
-Dokümantasyon `docs/` klasöründedir; `docs/index.html` dosyasını tarayıcıda açın. Kopyala-başla sayfası `starter/index.html`.
+Dokümantasyon `docs/` klasöründedir; `docs/index.html` dosyasını tarayıcıda açın. Her parçanın varyantları, bağlam örnekleri ve yap/yapma çiftleri ayrı sayfalardadır: `demos/index.html` (kaynaklar `demos/_src/`, üretici `tools/demos.mjs`, `npm run build` içinde koşar). Kopyala-başla sayfası `starter/index.html`.
 
 ## Hızlı başlangıç
 

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablo · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="dugmeler.html">Düğmeler</a>
+    <a class="nav-page" href="rozetler.html">Rozetler</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="kod-blogu.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-seridi.html">Diff şeridi</a>
+    <a class="nav-page" href="tablo.html" aria-current="page">Tablo</a>
+    <a class="nav-page" href="tanim-listesi.html">Tanım listesi</a>
+    <a class="nav-page" href="adimlar.html">Adımlar</a>
+    <a class="nav-page" href="kontrol-listesi.html">Kontrol listesi</a>
+    <a class="nav-page" href="secim-gruplari.html">Seçim grupları</a>
+    <a class="nav-page" href="gosterge.html">Gösterge</a>
+    <a class="nav-page" href="degisken-kaydi.html">Değişken kaydı</a>
+    <a class="nav-page" href="damga.html">Damga</a>
+    <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
+    <a class="nav-page" href="antet.html">Antet</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Genişlik ve kaydırma</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Hücre içerikleri</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Dar ekran</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Tablo<em>Karşılaştırmak için satır ve sütun.</em></h1>
+    <p class="intro"><code>.tbl</code> kabı bir <code>&lt;table&gt;</code>'ı çerçeveler ve gerektiğinde yatay kaydırır. İlk sütun mürekkep rengindedir, başlıklar mono ve büyük harflidir. Dar ekranda satırlar karta döner; her hücrenin etiketini <code>Hendese.init()</code> yazar.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.tbl</code> · <code>.tbl.wide</code> · hücre içinde <code>code</code>, <code>small</code>, <code>.pill</code>, <code>.state</code>, <code>.plus</code>, <code>.minus</code></dd><dt>En küçük genişlik</dt><dd>620px (<code>.tbl</code>) · 820px (<code>.tbl.wide</code>)</dd><dt>JS</dt><dd><code>Hendese.init()</code> her <code>td</code>'ye <code>data-th</code> yazar (dar ekran etiketi)</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Kap .tbl, içinde düz bir table. thead zorunludur; dar ekran etiketleri oradan okunur. Hücrede small ikincil bilgi, code satır kırmayan değer içindir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · ortamlar</span>
+  <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Ortam</th><th>Küme</th><th>Bölge</th><th>Son dağıtım</th></tr></thead>
+  <tbody>
+    <tr><td>prod</td><td><code>eks-prod-01</code></td><td><code>eu-west-1</code></td><td>Bugün 10:42 <small>(1.8.2)</small></td></tr>
+    <tr><td>staging</td><td><code>eks-stg-01</code></td><td><code>eu-west-1</code></td><td>Bugün 09:15 <small>(1.9.0-rc.2)</small></td></tr>
+    <tr><td>dev</td><td><code>eks-dev-01</code></td><td><code>eu-central-1</code></td><td>Dün 18:03 <small>(main@4c1e9a0)</small></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Ortam&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Küme&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bölge&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Son dağıtım&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;prod&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eks-prod-01&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Bugün 10:42 &lt;<span class='k'>small</span>&gt;(1.8.2)&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;staging&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eks-stg-01&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Bugün 09:15 &lt;<span class='k'>small</span>&gt;(1.9.0-rc.2)&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;dev&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eks-dev-01&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-central-1&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Dün 18:03 &lt;<span class='k'>small</span>&gt;(main@4c1e9a0)&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Kabın kenarlığı, köşesi ve zemini <code>.tbl</code>'den gelir; <code>table</code>'a sınıf vermeyin. Son satırın alt çizgisi kendiliğinden kalkar.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Genişlik ve kaydırma">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Genişlik ve kaydırma</h2><p class="lead">Tablo en az 620px genişliktedir, .tbl.wide ile 820px. Kap daha darsa tablo sıkışmaz, yatay kayar.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · geniş tablo, CI aşamaları</span>
+  <div class="demo-view">
+<div class="tbl wide"><table>
+  <thead><tr><th>Aşama</th><th>Görüntü</th><th>Önbellek</th><th>Süre</th><th>Başarı</th><th>Not</th></tr></thead>
+  <tbody>
+    <tr><td>Bağımlılıklar</td><td><code>node:22-alpine</code></td><td>Açık</td><td>0:48</td><td>%99.6</td><td>Kilit dosyası değişmedikçe atlanır</td></tr>
+    <tr><td>Birim testleri</td><td><code>node:22-alpine</code></td><td>Kapalı</td><td>2:15</td><td>%97.1</td><td>Paralel 4 iş</td></tr>
+    <tr><td>İmaj</td><td><code>docker:27</code></td><td>Katman</td><td>3:02</td><td>%99.9</td><td>Etiket: <code>main-4c1e9a0</code></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl wide</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Aşama&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Görüntü&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Önbellek&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Süre&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Başarı&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Not&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;Bağımlılıklar&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;node:22-alpine&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Açık&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;0:48&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%99.6&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Kilit dosyası değişmedikçe atlanır&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;Birim testleri&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;node:22-alpine&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Kapalı&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;2:15&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%97.1&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Paralel 4 iş&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;İmaj&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;docker:27&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Katman&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;3:02&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%99.9&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Etiket: &lt;<span class='k'>code</span>&gt;main-4c1e9a0&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · dar kolonda kaydırma</span>
+  <div class="demo-view">
+<div style="max-width:380px">
+  <div class="tbl" tabindex="0" role="region" aria-label="Önbellek düğümleri, yatay kaydırılabilir"><table>
+    <thead><tr><th>Düğüm</th><th>Bellek</th><th>İsabet</th><th>Bağlantı</th></tr></thead>
+    <tbody>
+      <tr><td>cache-eu-1</td><td>5.1 / 6 GB</td><td>%94</td><td>1 204</td></tr>
+      <tr><td>cache-eu-2</td><td>4.8 / 6 GB</td><td>%93</td><td>1 187</td></tr>
+    </tbody>
+  </table></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:380px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>tbl</span>" tabindex="<span class='s'>0</span>" role="<span class='s'>region</span>" aria-label="<span class='s'>Önbellek düğümleri, yatay kaydırılabilir</span>"&gt;&lt;<span class='k'>table</span>&gt;
+    &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Düğüm&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bellek&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;İsabet&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bağlantı&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+    &lt;<span class='k'>tbody</span>&gt;
+      &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;cache-eu-1&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;5.1 / 6 GB&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%94&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;1 204&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+      &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;cache-eu-2&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;4.8 / 6 GB&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%93&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;1 187&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;/<span class='k'>tbody</span>&gt;
+  &lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Kaydırılan kap</span><div class="co-body"><p>Kap kaydırılabiliyorsa klavye kullanıcısı ona ulaşabilmeli. <code>.tbl</code>'ye <code>tabindex="0"</code>, <code>role="region"</code> ve tabloyu anlatan bir <code>aria-label</code> verin; kod bloklarındaki <code>pre</code> ile aynı kural.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Hücre içerikleri">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Hücre içerikleri</h2><p class="lead">Hücre tek bir olguyu taşır: bir değer, bir durum, bir sayı. Sayıları sağa yaslayın ve eşit genişlikli rakam kullanın; karşılaştırma alt alta okunur.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · aylık maliyet raporu</span>
+  <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Hesap</th><th>Sahibi</th><th style="text-align:right">Eylül</th><th style="text-align:right">Ekim</th><th style="text-align:right">Fark</th></tr></thead>
+  <tbody>
+    <tr><td>prod-uygulama</td><td>platform</td><td style="text-align:right;font-variant-numeric:tabular-nums">$18 420</td><td style="text-align:right;font-variant-numeric:tabular-nums">$17 980</td><td style="text-align:right;font-variant-numeric:tabular-nums"><span class="plus">−2.4%</span></td></tr>
+    <tr><td>prod-veri</td><td>veri</td><td style="text-align:right;font-variant-numeric:tabular-nums">$9 310</td><td style="text-align:right;font-variant-numeric:tabular-nums">$11 045</td><td style="text-align:right;font-variant-numeric:tabular-nums"><span class="minus">+18.6%</span></td></tr>
+    <tr><td>staging</td><td>platform</td><td style="text-align:right;font-variant-numeric:tabular-nums">$2 870</td><td style="text-align:right;font-variant-numeric:tabular-nums">$2 905</td><td style="text-align:right;font-variant-numeric:tabular-nums">+1.2%</td></tr>
+  </tbody>
+</table></div>
+<p class="figcap"><b>Tablo 2.</b> Fark sütununda yeşil tasarruf, kırmızı artış demektir; renk yalnızca işareti pekiştirir.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Hesap&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Sahibi&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span> style="<span class='s'>text-align:right</span>"&gt;Eylül&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span> style="<span class='s'>text-align:right</span>"&gt;Ekim&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span> style="<span class='s'>text-align:right</span>"&gt;Fark&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;prod-uygulama&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;platform&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$18 420&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$17 980&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;−2.4%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;prod-veri&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;veri&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$9 310&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$11 045&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;+18.6%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;staging&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;platform&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$2 870&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;$2 905&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span> style="<span class='s'>text-align:right;font-variant-numeric:tabular-nums</span>"&gt;+1.2%&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Tablo 2.&lt;/<span class='k'>b</span>&gt; Fark sütununda yeşil tasarruf, kırmızı artış demektir; renk yalnızca işareti pekiştirir.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · erişim yetkileri</span>
+  <div class="demo-view">
+<div class="tbl" style="--u:1px"><table>
+  <thead><tr><th>Kişi ya da rol</th><th>Kaynak</th><th>Yetki</th><th>Bitiş</th><th>Durum</th></tr></thead>
+  <tbody>
+    <tr><td>nobetci-platform</td><td><code>prod/*</code></td><td><span class="pill s-sec" style="--c-soft:var(--sec-soft)">yönetici</span></td><td>süresiz</td><td><span class="state ok">etkin</span></td></tr>
+    <tr><td>a.yilmaz</td><td><code>prod/billing</code></td><td><span class="pill pill-neutral">okuma</span></td><td>12 Ekim</td><td><span class="state warn">onay bekliyor</span></td></tr>
+    <tr><td>eski-ci-rolu</td><td><code>staging/*</code></td><td><span class="pill pill-neutral">yazma</span></td><td>1 Ekim</td><td><span class="state bad">süresi doldu</span></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>" style="<span class='s'>--u:1px</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Kişi ya da rol&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Kaynak&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Yetki&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bitiş&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Durum&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;nobetci-platform&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;prod/*&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>" style="<span class='s'>--c-soft:var(--sec-soft)</span>"&gt;yönetici&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;süresiz&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;etkin&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;a.yilmaz&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;prod/billing&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;okuma&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;12 Ekim&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;eski-ci-rolu&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;staging/*&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;yazma&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;1 Ekim&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;süresi doldu&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Dar ekran">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Dar ekran</h2><p class="lead">720px altında başlık satırı gizlenir ve her satır bir karta döner. Her hücrenin solunda kendi sütun adı yazar; bu adları init her td'ye data-th olarak işler.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · JS'nin yazdığı etiketler</span>
+  <div class="demo-view">
+<div class="tbl" id="tb-kuyruk"><table>
+  <thead><tr><th>İşçi</th><th>Kuyruk</th><th>Eşzamanlılık</th><th>Durum</th></tr></thead>
+  <tbody>
+    <tr><td>billing-worker</td><td><code>faturalar</code></td><td>8</td><td><span class="pill pill-ok">çalışıyor</span></td></tr>
+    <tr><td>mail-worker</td><td><code>e-posta</code></td><td>4</td><td><span class="pill pill-neutral">duraklatıldı</span></td></tr>
+  </tbody>
+</table></div>
+<div class="readout" aria-live="polite"><p id="tb-etiket">Etiketler okunuyor…</p></div>
+  </div>
+</div>
+<div class="prose"><p>Kartlı görünüm bir medya sorgusudur; kabın değil pencerenin genişliğine bakar. Görmek için pencereyi 720px'in altına daraltın. JS çalışmazsa tablo kartlara dönmez, yatay kaydırmaya devam eder.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">init sonrası işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;tr&gt;
+  &lt;td data-th="İşçi"&gt;billing-worker&lt;/td&gt;
+  &lt;td data-th="Kuyruk"&gt;&lt;code&gt;faturalar&lt;/code&gt;&lt;/td&gt;
+  &lt;td data-th="Eşzamanlılık"&gt;8&lt;/td&gt;
+  &lt;td data-th="Durum"&gt;&lt;span class="pill pill-ok"&gt;çalışıyor&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre></figure>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Kısa başlık</span><div class="co-body"><p>Kart etiketi 88px genişliğe sığar. Başlıkları kısa tutun (<i>Eşzamanlılık</i> sığmazsa <i>Paralel</i> yazın); birimi başlığa değil hücreye koyun.</p></div></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Tablo karşılaştırmak içindir. Okur bir sütunu yukarıdan aşağı tarayabilmeli; hücrede paragraf ya da düzen tablosu bunu bozar.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · hücre başına bir olgu</span>
+  <div class="demo-view">
+<div class="tbl" tabindex="0" role="region" aria-label="Alarm eşikleri"><table>
+  <thead><tr><th>Alarm</th><th>Eşik</th><th>Pencere</th></tr></thead>
+  <tbody>
+    <tr><td>5xx oranı</td><td>%2</td><td>5 dk</td></tr>
+    <tr><td>p95 gecikme</td><td>800 ms</td><td>10 dk</td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>" tabindex="<span class='s'>0</span>" role="<span class='s'>region</span>" aria-label="<span class='s'>Alarm eşikleri</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Alarm&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Eşik&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Pencere&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;5xx oranı&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;%2&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;5 dk&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;p95 gecikme&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;800 ms&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;10 dk&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · hücrede cümle</span>
+  <div class="demo-view">
+<div class="tbl" tabindex="0" role="region" aria-label="Alarm açıklamaları"><table>
+  <thead><tr><th>Alarm</th><th>Açıklama</th></tr></thead>
+  <tbody>
+    <tr><td>5xx oranı</td><td>Beş dakika içinde isteklerin yüzde ikisinden fazlası hata dönerse nöbetçiye haber verilir.</td></tr>
+    <tr><td>p95 gecikme</td><td>On dakika boyunca 800 milisaniyeyi geçerse.</td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>" tabindex="<span class='s'>0</span>" role="<span class='s'>region</span>" aria-label="<span class='s'>Alarm açıklamaları</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Alarm&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Açıklama&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;5xx oranı&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;Beş dakika içinde isteklerin yüzde ikisinden fazlası hata dönerse nöbetçiye haber verilir.&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;p95 gecikme&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;On dakika boyunca 800 milisaniyeyi geçerse.&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Başlıklar gerçek <code>&lt;th&gt;</code> olmalı; ekran okuyucu hücreyi okurken sütun adını da söyler. Tabloyu sayfa düzeni için kullanmayın. Bir başlık gerekiyorsa tablodan önce bir <code>.chip</code> ya da altına <code>.figcap</code> koyun.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="diff-seridi.html" rel="prev"><small>Önceki · Bileşenler</small>Diff şeridi</a><a href="tanim-listesi.html" rel="next"><small>Sonraki · Bileşenler</small>Tanım listesi</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  var out = document.getElementById('tb-etiket');
+  if (!out) return;
+  var tds = document.querySelectorAll('#tb-kuyruk tbody tr:first-child td'), names = [];
+  for (var i = 0; i < tds.length; i++) names.push(tds[i].getAttribute('data-th') || '(yok)');
+  out.innerHTML = '<b>İlk satırın etiketleri:</b> ' + names.join(' · ');
+})();
+Hendese.start();
+</script>
+</body>
+</html>

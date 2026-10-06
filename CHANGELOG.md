@@ -2,6 +2,15 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
+## [Yayımlanmamış]
+
+### Eklendi
+- Parça sayfaları (`demos/`): 37 parçanın her biri kendi sayfasında; varyantlar, durumlar, bağlam örnekleri, yap/yapma çiftleri ve galeri (`demos/index.html`). Kaynaklar `demos/_src/`, üretici `tools/demos.mjs` (`npm run build` içinde).
+- e2e: her parça sayfası açık + koyu temada konsol hatası, dış istek, taşma ve axe denetiminden geçer.
+
+### Düzeltildi
+- Doküman örnek kutusundaki kod sıfırlaması (`.demo .code`) örneğin içindeki canlı kod bloklarını da etkiliyordu; artık yalnızca kutunun kendi kod alanına uygulanır.
+
 ## [0.1.0] - 2026-10-06
 
 ### Eklendi

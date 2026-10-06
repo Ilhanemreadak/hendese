@@ -1,0 +1,191 @@
+<!-- meta {"title":"Hoca · davranış","group":"Hoca","order":20,"tagline":"Kim konuşur, nereye yürür.","intro":"Sahneler Hoca'yı yalnızca talep eder; her karede kimin sahip olacağına kontrolcü karar verir. Talep yoksa Hoca raydaki evine döner. Yakın iki nokta arasında yürür, uzaksa söner ve yeni yerde belirir; böylece ilgisiz içeriğin üstünden geçmez.","summary":"Kontrolcü: ev, sahne talebi, yürüme / sönme devri, <code>data-hoca=\"quiet\"</code>, durgun kopyalar, <code>Hendese.hoca.dismiss()</code>.","facts":{"Ev":"<code>#hoca-home</code> (rayın altı)","Sessiz bölüm":"<code>data-hoca=\"quiet\"</code> → evde %45 opak","JS":"<code>render → {hoca}</code> · <code>still</code> · <code>Hendese.refresh()</code> · <code>Hendese.hoca.dismiss()</code>"}} -->
+
+<style>
+/* sayfaya özel (.hb-). */
+.hb-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hb-pair .fig-sheet{margin:0}
+.hb-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.hb-msg{stroke:var(--draw);stroke-width:1;fill:var(--draw)}
+.hb-disk{fill:var(--bad)}
+.hb-fig .dl b{display:block}
+@media (max-width:900px){.hb-pair{grid-template-columns:minmax(0,1fr)}}
+html:not(.js) .hb-ctl{display:none}
+</style>
+
+<chapter title="Kontrolcü" lead="Hoca'yı çizen modül yalnızca söyleneni çizer; kimin konuşacağına kontrolcü karar verir. Kurallar kısa ve sabittir." hoca="quiet">
+<div class="tbl wide"><table>
+  <thead><tr><th>Durum</th><th>Ne olur</th></tr></thead>
+  <tbody>
+    <tr><td>Hiçbir sahne talep etmiyor</td><td>Raydaki <code>#hoca-home</code> evinde <code>idle</code> durur.</td></tr>
+    <tr><td>Etkin bölüm <code>data-hoca="quiet"</code></td><td>Evdeki Hoca %45 opaklığa iner, ray kutusu da soluklaşır (<code>.rail.hoca-quiet</code>). Sahne talebini engellemez.</td></tr>
+    <tr><td>Birden çok sahne talep ediyor</td><td>Kayıt sırasındaki ilk sahne kazanır.</td></tr>
+    <tr><td>Sahip değişti, iki nokta ≤ 260 px</td><td>650 ms yürür (<code>walkA/B</code>, yön hareket yönü); yürürken balon ve etiket gizli.</td></tr>
+    <tr><td>Eve ya da evden, &gt; 260 px, parça gezinmesi</td><td>320 ms: eski yerde söner, yeni yerde belirir.</td></tr>
+    <tr><td>Aynı sahne, yeni koordinat</td><td>Kontrolcü ara değer üretmez; yumuşak hareket sahnenin işidir (pin sahnesinde <code>p</code> zaten yumuşatılmıştır).</td></tr>
+    <tr><td>Reduced motion (masaüstü)</td><td>Hareket yok: her sahnenin <code>still</code> değeri çizime durgun kopya olarak yerleşir.</td></tr>
+    <tr><td>&lt; 1100px, baskı</td><td>Gizli.</td></tr>
+  </tbody>
+</table></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sahne talebi</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>render: function (api, t) {
+  return { hoca: {
+    x: 350, y: 210,              // çizim biriminde, ayakların alt ortası
+    pose: 'clipboard', face: -1, // 1 sağa, -1 sola bakar
+    bubble: null, bubbleUp: false, tag: null, squash: 0
+  } };                           // hoca: null → talep yok
+}</code></pre></figure>
+</chapter>
+
+<chapter title="Canlı örnek · devir" lead="İki şekil yan yana. Hoca'yı hangisinin istediğini seçin. Devir sahneler arasında olur: yakın noktaya yürür, uzak noktaya söner ve belirir, aynı sahnede ise atlar.">
+<fieldset class="choice is-seg hb-ctl">
+  <legend>Hoca'yı isteyen</legend>
+  <label><input type="radio" name="hb-own" value="left" checked><span>Sol şekil</span></label>
+  <label><input type="radio" name="hb-own" value="near"><span>Sağ · yakın nokta</span></label>
+  <label><input type="radio" name="hb-own" value="far"><span>Sağ · uzak nokta</span></label>
+  <label><input type="radio" name="hb-own" value="none"><span>Hiçbiri</span></label>
+</fieldset>
+<div class="hb-pair">
+  <figure class="fig-sheet hb-fig" id="hb-left">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <p class="chip">02 · Şekil 1</p><p class="fig-cap">Kuyruk tüketicisi</p>
+    <div class="drawing" data-aw="400" data-ah="220" style="--aw:400;--ah:220">
+      <svg viewBox="0 0 400 220" aria-hidden="true">
+        <rect class="ln-pencil" x="20" y="60" width="200" height="40" stroke-dasharray="4 4"/>
+        <rect class="hb-msg" x="30" y="70" width="20" height="20"/><rect class="hb-msg" x="56" y="70" width="20" height="20"/><rect class="hb-msg" x="82" y="70" width="20" height="20"/><rect class="hb-msg" x="108" y="70" width="20" height="20"/>
+        <path class="ln-draw" d="M220 80H260"/>
+        <rect class="hb-box" x="260" y="50" width="110" height="60"/>
+      </svg>
+      <p class="dl" style="--x:20;--y:30;--w:200"><b>Kuyruk</b></p>
+      <p class="dl" style="--x:270;--y:62;--w:100"><b>Tüketici</b>3 kopya</p>
+      <p class="dl" style="--x:20;--y:110;--w:220">bekleyen · 4 ileti</p>
+    </div>
+    <p class="figcap"><b>Şekil 1.</b> Kuyrukta dört ileti, üç tüketici kopyası.</p>
+  </figure>
+  <figure class="fig-sheet hb-fig" id="hb-right">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <p class="chip">02 · Şekil 2</p><p class="fig-cap">Günlük diski</p>
+    <div class="drawing" data-aw="400" data-ah="220" style="--aw:400;--ah:220">
+      <svg viewBox="0 0 400 220" aria-hidden="true">
+        <rect class="ln-draw" x="120" y="60" width="260" height="30"/>
+        <rect class="hb-disk" x="120" y="60" width="237" height="30"/>
+        <path class="ln-warn ln-dash" stroke-width="1.5" d="M328 50V100"/>
+      </svg>
+      <p class="dl" style="--x:120;--y:30;--w:260"><b>/var/log</b></p>
+      <p class="dl" style="--x:120;--y:104;--w:260">%91 dolu · eşik %85</p>
+    </div>
+    <p class="figcap"><b>Şekil 2.</b> Disk %91 dolu; sarı kesik çizgi %85 uyarı eşiği.</p>
+  </figure>
+</div>
+<div class="readout" id="hb-out" aria-live="polite"><p><b>Sol şekil talep ediyor.</b> Hoca kuyruğun yanında, panosuyla.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var own = 'left', AT = { near: { x: 60, y: 210 }, far: { x: 350, y: 210 } };
+function off() { return Hendese.hoca.dismissed; }               // kullanıcı kapattıysa talep yok
+var L = Hendese.figScene({ el: '#hb-left',
+  still: function () { return own === 'left' &amp;&amp; !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null; },
+  render: function () { return { hoca: own === 'left' &amp;&amp; !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null }; }
+});
+var R = Hendese.figScene({ el: '#hb-right',
+  still: function () { var a = AT[own]; return a &amp;&amp; !off() ? { x: a.x, y: a.y, pose: 'worried', face: 1 } : null; },
+  render: function () { var a = AT[own];
+    return { hoca: a &amp;&amp; !off() ? { x: a.x, y: a.y, pose: 'worried', face: own === 'far' ? -1 : 1, bubble: 'Disk %91 dolu.' } : null }; }
+});
+/* seçim değişince: */ own = value; L.poke(); R.poke();
+if (!Hendese.state.motion) Hendese.refresh();                 // canlıda refresh devri keser</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">260 px</span><div class="co-body"><p>Eşik viewport pikselidir, çizim birimi değil. 1440px genişlikte iki nokta arası yaklaşık 170 px (yürür) ve 480 px'tir (söner); daha dar bir pencerede mesafeler kısalır.</p></div></div>
+</chapter>
+
+<chapter title="Sessiz bölüm ve kapatma" lead="Bu bölüm data-hoca=quiet taşır: okurken Hoca evinde soluk durur. Okur Hoca'yı tümden kapatmak isterse sahneler talep etmeyi bırakır." hoca="quiet">
+<div class="prose">
+  <p>Bölüm takibi etkin bölümü bulduğunda <code>data-hoca="quiet"</code> değerine bakar: varsa evdeki Hoca %45 opaklığa iner ve rayın Hoca kutusu soluklaşır. Uzun başvuru tabloları, API bölümleri ve kurallar gibi Hoca'nın söyleyecek bir şeyi olmayan yerler için uygundur. Bir sahne bu bölümde talep ederse yine konuşur; sessizlik yalnız evdeki duruşu etkiler.</p>
+  <p><code>Hendese.hoca.dismiss()</code> paylaşımlı <code>dismissed</code> bayrağını açar ve döngüyü uyandırır. Bayrağı sahneler okur ve <code>hoca: null</code> döndürür; yukarıdaki iki şekil böyle yazılmıştır. Hoca evinde kalır. Geri almak için <code>Hendese.hoca.dismissed = false</code>.</p>
+</div>
+<div class="pillrow hb-ctl">
+  <button class="btn" type="button" id="hb-dismiss"><svg><use href="#i-x"/></svg>Hoca'yı sahnelerden çek</button>
+  <button class="btn" type="button" id="hb-back"><svg><use href="#i-reset"/></svg>Geri çağır</button>
+</div>
+<div class="readout" id="hb-dout" aria-live="polite"><p><b>Açık.</b> Sahneler Hoca'yı talep edebilir.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>function sync() { if (!Hendese.state.motion) Hendese.refresh(); }   // yalnız durgun kopyalar için
+kapat.addEventListener('click', function () { Hendese.hoca.dismiss(); sync(); });
+geri.addEventListener('click', function () { Hendese.hoca.dismissed = false; sync(); });</code></pre></figure>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Kalıcı değil</span><div class="co-body"><p>Bayrak yalnız bu sayfa açıkken yaşar; sayfa yenilenince Hoca geri gelir. Kalıcı olsun istiyorsanız tercihi kendiniz saklayın ve <code>Hendese.start()</code>'tan önce <code>Hendese.hoca.dismissed = true</code> yazın.</p></div></div>
+</chapter>
+
+<chapter title="Hareket kapalıyken" lead="Reduced motion'da Hoca yürümez, sönmez, ev yoktur: talep eden her sahnenin çiziminde bir durgun kopya durur.">
+<div class="prose">
+  <p>Motor canlı mod kapanınca sabit katmanı gizler ve <code>still</code> taşıyan her sahne için çizimin içine bir kopya koyar (<code>left</code>/<code>top</code> çizim biriminden yüzdeye çevrilir). <code>still</code> bir fonksiyonsa her <code>Hendese.refresh()</code> çağrısında yeniden okunur; <code>null</code> dönerse o sahnede kopya olmaz. Yukarıdaki seçim ve kapatma düğmeleri bu yüzden, canlı mod kapalıyken, <code>refresh()</code> çağırır: reduced motion'da da Hoca seçilen şekle geçer, kapatınca kaybolur.</p>
+  <p>1100px altında ve baskıda kopyalar da gizlidir. Hoca hiçbir modda bilgi taşımadığı için bu bir kayıp değildir.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Ev</th><th>Sahne talebi</th><th>Devir</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı</td><td>Var (sessizde %45)</td><td><code>render → hoca</code></td><td>Yürüme / sönme</td></tr>
+    <tr><td>Reduced motion (masaüstü)</td><td>Yok</td><td><code>still</code> → durgun kopya</td><td>Yok; <code>refresh()</code> yeniden yerleştirir</td></tr>
+    <tr><td>&lt; 1100px, baskı</td><td>Yok</td><td>Yok</td><td>Yok</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Hoca sahneye eşlik eder; dikkat çekmek için bölümler arasında koşturulmaz.">
+<div class="dodont">
+<demo label="Yap · sahne başına bir nokta" nocode>
+<p>Her sahne Hoca'yı tek, boş bir yerde ister: önemli bir etiketin üstünde değil, çizimin kenarında. Yakın sahneler arasında kısa bir yürüyüş doğal görünür.</p>
+</demo>
+<demo label="Yapma · her karede yeni yer" nocode>
+<p>Bir fig sahnesi koordinatı her karede değiştirirse Hoca zıplar; kontrolcü aynı sahne içinde ara değer üretmez. Sürekli hareket gerekiyorsa pin sahnesi kullanın.</p>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · kapatmaya saygı" nocode>
+<p><code>render</code> ve <code>still</code> ilk iş <code>Hendese.hoca.dismissed</code>'a bakar ve <code>null</code> döndürür.</p>
+</demo>
+<demo label="Yapma · bayrağı yok saymak" nocode>
+<p>Bayrağı okumayan bir sahne, okur Hoca'yı kapattıktan sonra da onu çağırır; kapatma düğmesi işe yaramaz görünür.</p>
+</demo>
+</div>
+</chapter>
+
+<chapter title="API" lead="Kontrolcünün kendi çağrısı yok; Hendese.start() onu kurar. Sahneler talep eder, sayfa yalnızca bayrağı ve durgun kopyaları yönetir.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>#hoca-home</code></td><td>Raydaki ev. Yoksa ve hiçbir sahne <code>still</code> taşımıyorsa Hoca hiç oluşturulmaz.</td></tr>
+    <tr><td><code>data-hoca="quiet"</code></td><td><code>[data-section]</code> öğesinde: o bölüm etkinken evdeki Hoca %45 opak.</td></tr>
+    <tr><td><code>render → {hoca}</code></td><td><code>{x, y, pose, face, bubble, bubbleUp, tag, squash}</code>, çizim biriminde; <code>null</code> → talep yok.</td></tr>
+    <tr><td><code>still</code></td><td>Nesne ya da fonksiyon; reduced motion'daki durgun kopya. <code>null</code> → kopya yok.</td></tr>
+    <tr><td><code>Hendese.refresh()</code></td><td>Durgun kopyaları kaldırıp <code>still</code> değerlerine göre yeniden koyar. Devir durumunu da sıfırlar: canlı modda çağrılırsa süren yürüyüş ya da sönme kesilir ve Hoca yeni yerine atlar.</td></tr>
+    <tr><td><code>Hendese.hoca.dismiss()</code></td><td><code>dismissed = true</code> ve döngüyü uyandırır.</td></tr>
+    <tr><td><code>Hendese.hoca.dismissed</code></td><td>Okunur / yazılır paylaşımlı bayrak; yazmak da döngüyü uyandırır.</td></tr>
+    <tr><td><code>Hendese.lockTo(id)</code></td><td>Parça gezinmesi kilidi; kilit sürerken sahne talepleri yok sayılır: Hoca eve söner, kilit bitince hedefteki sahnede belirir.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  var own = 'left', AT = { near: { x: 60, y: 210 }, far: { x: 350, y: 210 } }, out = $('#hb-out');
+  var WHO = { left: 'Sol şekil', near: 'Sağ şekil, yakın nokta', far: 'Sağ şekil, uzak nokta', none: 'Talep yok' };
+  function say(prev) {
+    var sc = function (o) { return o === 'none' ? 'ev' : o === 'left' ? 'L' : 'R'; }, p = sc(prev), n = sc(own), how;
+    if (p === n) how = 'Aynı sahne, yeni nokta: kontrolcü ara değer üretmez, Hoca yeni noktaya atlar.';
+    else if (p === 'ev' || n === 'ev') how = 'Eve ya da evden: Hoca eski yerinde söner, yenide belirir.';
+    else if (prev === 'far' || own === 'far') how = 'Mesafe 260 px’i aşıyor: Hoca eski yerinde söner, yenide belirir.';
+    else how = 'İki nokta 260 px’ten yakın: Hoca 650 ms yürür, yürürken balon gizli.';
+    out.innerHTML = '<p><b>' + WHO[own] + '.</b> ' + how + '</p>';
+  }
+  function off() { return Hendese.hoca.dismissed; }
+  function sync() { if (!Hendese.state.motion) Hendese.refresh(); }
+  var L = Hendese.figScene({
+    el: '#hb-left',
+    still: function () { return own === 'left' && !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null; },
+    render: function () { return { hoca: own === 'left' && !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null }; }
+  });
+  var R = Hendese.figScene({
+    el: '#hb-right',
+    still: function () { var a = AT[own]; return a && !off() ? { x: a.x, y: a.y, pose: 'worried', face: 1 } : null; },
+    render: function () { var a = AT[own]; return { hoca: a && !off() ? { x: a.x, y: a.y, pose: 'worried', face: own === 'far' ? -1 : 1, bubble: 'Disk %91 dolu.' } : null }; }
+  });
+  $$('[name=hb-own]').forEach(function (r) { r.addEventListener('change', function () { var prev = own; own = r.value; say(prev); L.poke(); R.poke(); sync(); }); });
+  var dout = $('#hb-dout');
+  $('#hb-dismiss').addEventListener('click', function () { Hendese.hoca.dismiss(); sync(); dout.innerHTML = '<p><b>Çekildi.</b> Sahneler talep etmiyor; Hoca yalnız evinde.</p>'; });
+  $('#hb-back').addEventListener('click', function () { Hendese.hoca.dismissed = false; sync(); dout.innerHTML = '<p><b>Açık.</b> Sahneler Hoca\'yı talep edebilir.</p>'; });
+})();
+</script>

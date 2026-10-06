@@ -1,0 +1,117 @@
+<!-- meta {"title":"Tipografi","group":"Temel","order":20,"tagline":"İki aile ve bir piksel yazı.","intro":"IBM Plex Sans gövde ve başlıklar, IBM Plex Mono kod ve etiketler, Pixelify Sans yalnızca Hoca için. Üçü de pakete gömülü gelir; Türkçe harfler latin-ext alt kümesindedir ve dışarıya istek atılmaz.","summary":"Üç aile, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.","facts":{"Token'lar":"<code>--font-sans</code> · <code>--font-mono</code> · <code>--font-pixel</code>","Sınıflar":"<code>.hero h1 em</code> · <code>.ch-head</code> · <code>.lead</code> · <code>.prose</code> · <code>.chip</code> · <code>.mono</code> · <code>.figcap</code>","JS":"Gerekmez; büyük harfli İngilizce kelimeler için isteğe bağlı <code>englishStems</code>"}} -->
+
+<chapter title="Üç aile" lead="Her ailenin tek bir işi var. Ağırlıklar pakete gömülü dosyalardır; listede olmayan bir ağırlık istenirse tarayıcı sahte kalın üretir.">
+<demo label="Örnek · aileler ve işleri">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
+    <p class="chip">--font-sans · 400 500 600 700</p>
+    <p style="margin:8px 0 4px;font:600 24px/1.2 var(--font-sans);letter-spacing:-.02em;color:var(--ink)">Sürüm notu</p>
+    <p style="margin:0;font:400 14.5px/1.55 var(--font-sans);color:var(--ink-2)">Gövde metni, başlıklar, düğme etiketleri.</p>
+  </div>
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
+    <p class="chip">--font-mono · 400 500</p>
+    <p style="margin:8px 0 4px;font:500 20px/1.3 var(--font-mono);color:var(--ink)">web-api:1.14.2</p>
+    <p style="margin:0;font:400 13px/1.55 var(--font-mono);color:var(--ink-2)">Kod, etiket, antet, sayaç.</p>
+  </div>
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:14px 16px">
+    <p class="chip"><span lang="en">--font-pixel</span> · 400 500</p>
+    <p style="margin:8px 0 4px;font:500 22px/1.3 var(--font-pixel);color:var(--ink)">Hoca</p>
+    <p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">Konuşma balonu ve raydaki plaka.</p>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Yedek zincir</th><th>Ağırlık</th><th>İş</th></tr></thead>
+  <tbody>
+    <tr><td><code>--font-sans</code></td><td>Segoe UI, system-ui, -apple-system</td><td>400 · 500 · 600 · 700</td><td>Gövde ve başlıklar</td></tr>
+    <tr><td><code>--font-mono</code></td><td>Cascadia Code, Consolas, ui-monospace</td><td>400 · 500</td><td>Kod, etiket, antet, sayaçlar</td></tr>
+    <tr><td><code>--font-pixel</code></td><td><code>--font-mono</code></td><td>400 · 500</td><td>Yalnızca Hoca</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Dosyalar</span><div class="co-body"><p>WOFF2 dosyaları <code>dist/fonts/</code> altındadır ve kendi sunucunuzdan yüklenir. Tek dosyalık sayfalar için fontları base64 olarak taşıyan <code>dist/hendese.inline.css</code> kullanılır. Lisans: SIL Open Font License 1.1.</p></div></div>
+</chapter>
+
+<chapter title="Hiyerarşi" lead="Bir sayfada beş düzey yeterli: hero başlığı ve alt satırı, bölüm başı, lead, gövde ve etiket. Büyük başlıklar clamp ile ekran genişliğine uyar.">
+<demo label="Örnek · hero">
+<div class="hero" style="padding:0">
+  <div class="hero-copy">
+    <p class="hero-label">Platform · Sürüm notu</p>
+    <h1>Sürüm 1.14<em>Kuyruk işçileri artık kendi kendine ölçekleniyor.</em></h1>
+    <p class="intro">billing-worker kuyruk derinliğine göre 2 ile 12 kopya arasında büyür. Bu notta neyin değiştiği ve neyi kontrol etmeniz gerektiği var.</p>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · bölüm başı ve gövde">
+<header class="ch-head">
+  <p class="ch-num">02 <small>Yaklaşık 3 dk</small></p>
+  <h2>Ölçekleme kuralı</h2>
+  <p class="lead">Kopya sayısı her 30 saniyede bir, son beş dakikanın ortalamasına göre yeniden hesaplanır.</p>
+</header>
+<div class="prose">
+  <p>Kuyrukta 500'den fazla iş birikirse yeni bir kopya açılır; derinlik 50'nin altına inip <b>10 dakika</b> orada kalırsa bir kopya kapanır. Ani dalgalanmalar ölçeklemeyi tetiklemez.</p>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Seçici</th><th>Boyut / satır</th><th>Ağırlık</th><th>Renk</th></tr></thead>
+  <tbody>
+    <tr><td><code>.hero h1</code></td><td><code>clamp(44px,4.6vw,68px)</code> / 1.02</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.hero h1 em</code></td><td>0.5em / 1.2, blok</td><td>500</td><td><code>--ink-2</code></td></tr>
+    <tr><td><code>.chapter h2</code></td><td><code>clamp(26px,2.4vw,32px)</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.ch-num</code></td><td>11.5px mono, büyük harf</td><td>400</td><td><code>--accent</code></td></tr>
+    <tr><td><code>.lead</code> · <code>.intro</code></td><td>17px, en çok 64ch</td><td>400</td><td><code>--ink-2</code></td></tr>
+    <tr><td><code>body</code> · <code>.prose</code></td><td>16px / 1.65, en çok 72ch</td><td>400</td><td><code>--ink</code> · <code>--ink-2</code></td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>.chapter h2</code> ve <code>.chapter h3</code> yalnızca <code>.chapter</code> içinde biçimlenir; başlığı bölüm dışına taşırsanız tarayıcının varsayılan ölçüsüne döner.</p></div>
+</chapter>
+
+<chapter title="Metin içi öğeler" lead="Akış metninde dört küçük araç: satır içi kod, mono yazı, etiket çipi ve şekil yazısı. Kod blokları ise iki temada da koyu kalan ayrı bir sistemdir.">
+<demo label="Örnek · önbellek notu">
+<p class="chip">Not 7 · önbellek</p>
+<div class="prose">
+  <p>Ürün sayfaları <span class="mono">cache-eu-1</span> üzerinde 5 dakika tutulur. Fiyat değişince anahtar <code>product:{id}:v2</code> silinir; sayfa bir sonraki istekte yeniden üretilir. Toplu güncellemelerde tek tek silmek yerine sürüm önekini artırın.</p>
+</div>
+<p class="figcap"><b>Tablo 2.</b> İsabet oranı son 24 saatte %94; ıskaların çoğu fiyat güncellemesinden hemen sonra.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Öğe</th><th>Görünüm</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td><code>code</code></td><td>mono .86em, <code>--surface-3</code> zemin</td><td>Kopyalanabilecek değer: anahtar, komut, yol</td></tr>
+    <tr><td><code>.mono</code></td><td>mono .92em, zeminsiz</td><td>Ad ya da kimlik; vurgulanmadan hizalı okunsun</td></tr>
+    <tr><td><code>.chip</code></td><td>11px mono, büyük harf, <code>--ink-3</code></td><td>Şekil ya da bölüm etiketi</td></tr>
+    <tr><td><code>.figcap</code></td><td>13px, <code>--ink-3</code>, <code>b</code> <code>--ink-2</code></td><td>Şekil ve tablo yazısı</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Türkçe karakterler" lead="Plex ailelerinin latin-ext alt kümesi Türkçe harflerin tamamını kapsar. Asıl tuzak harfler değil, CSS ile büyük harfe çevirme kuralıdır.">
+<demo label="Örnek · üç ailede aynı cümle">
+<p style="margin:0 0 6px;font:400 18px/1.5 var(--font-sans)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p style="margin:0 0 6px;font:400 16px/1.5 var(--font-mono)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p style="margin:0;font:400 16px/1.5 var(--font-pixel)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+</demo>
+<div class="prose"><p>Sayfa <code>lang="tr"</code> olduğunda <code>text-transform:uppercase</code> Türkçe kuralı uygular: <code>i</code> → <code>İ</code>, <code>ı</code> → <code>I</code>. Türkçe kelimeler için doğru, büyük harfle basılan İngilizce teknik kelimeler için yanlıştır. <code>.chip</code>, <code>.ch-num</code>, tablo başlıkları ve örnek etiketleri büyük harfle basılır.</p></div>
+<div class="dodont">
+<demo label="Yap · İngilizce kelimeye lang">
+<p class="chip">dağıtım hattı · <span lang="en">pipeline</span> · <span lang="en">init</span></p>
+</demo>
+<demo label="Yapma · lang olmadan">
+<p class="chip">dağıtım hattı · pipeline · init</p>
+</demo>
+</div>
+<div class="prose"><p>Elle <code>lang</code> yazmak her zaman kazanır. Çok sayıda etiket varsa kökleri bir kez verin; büyük harfle basılan çizim, beat ve çip metinlerindeki eşleşen kelimeler <code>&lt;span lang="en"&gt;</code> içine alınır:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.init({ englishStems: <span class="s">/pipeline|init|build|image/i</span> });</code></pre></figure>
+</chapter>
+
+<chapter title="Piksel yazının sınırları" lead="Pixelify Sans yalnızca Hoca'nın sesidir: konuşma balonu ve raydaki plaka. Gövde metninde, başlıkta ya da veri gösteriminde kullanılmaz.">
+<div class="dodont">
+<demo label="Yap · kısa konuşma, tek cümle">
+<p style="display:inline-block;margin:0;padding:5px 9px 6px;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:400 13.5px/1.4 var(--font-pixel)">Önbellek ısındı, devam edebiliriz.</p>
+</demo>
+<demo label="Yapma · veri ve uzun metin">
+<p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">0O 1l 5S 8B · istek kimliği 10l0O-8B5S: bu ayırt edilemez. Uzun paragraflar da piksel yazıda hızla yorar.</p>
+</demo>
+</div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Neden bu kadar dar</span><div class="co-body"><p>Piksel yazıda benzer karakterler (<code>0/O</code>, <code>1/l</code>) ayrışmaz, rakamlar eşit genişlikte değildir ve küçük boyutta harf aralığı düzensizleşir. Yalnızca 400 ve 500 ağırlıkları gelir. Hoca'nın balonu <code>.hoca-bubble.mono</code> ile mono yazıya da geçebilir; kod ya da değer içeren konuşmalarda onu kullanın.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Ağırlık sınırı</span><div class="co-body"><p>Paket ağırlıkları sabittir: mono 400/500, sans 400–700. Mono'da 600 yazarsanız tarayıcı sahte kalın üretir; mono vurgu için 500 kullanın.</p></div></div>
+</chapter>

@@ -1,0 +1,256 @@
+<!-- meta {"title":"İzometrik kutu","group":"Blueprint","order":50,"tagline":"Kapalı bir birimi üç yüzüyle çiz.","intro":"İzometrik kutu bir sunucuyu, bir depolama katmanını ya da bir kuyruktaki mesajı gölgesiz bir derinlikle gösterir: ön yüz kâğıt, üst ve yan yüz sahne zemini. Tarif yalnızca paketin çizgi ve dolgu sınıflarını kullanır; yeni bir sınıf gerekmez.","summary":"Ön yüz + iki paralelkenar; sunucu rafı, depolama katmanları, kuyruk ve düğüm havuzu.","facts":{"Sınıflar":"<code>.ln-draw</code> · <code>.ln-strong</code> · <code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.fill-paper</code> · <code>.fill-scene</code>","Kaydırma":"büyük <code>dx +36, dy −22</code> · küçük <code>dx +20, dy −12</code>","JS":"Gerekmez"}} -->
+
+<chapter title="Anatomi" lead="Ön yüz W × H bir dikdörtgendir. Üst ve sağ yüz, aynı kenarların dx, dy kadar kaydırılmış paralelkenarlarıdır. Işık hep aynı yönden gelir.">
+<demo label="Örnek · yüzler ve ölçüler">
+<div class="drawing" style="--aw:900;--ah:340">
+  <svg viewBox="0 0 900 340" aria-hidden="true">
+    <path class="ln-draw fill-scene" d="M180 110L216 88H536L500 110Z"/>
+    <path class="ln-draw fill-scene" d="M500 110L536 88V258L500 280Z"/>
+    <rect class="ln-draw fill-paper" x="180" y="110" width="320" height="170"/>
+    <path class="ln-pencil" d="M188 118h8M188 118v8M492 272h-8M492 272v-8"/>
+    <path class="dim" d="M180 288V316M500 288V316M180 308H500M180 308l8-3v6zM500 308l-8-3v6z"/>
+    <text class="dim-t" x="340" y="330" text-anchor="middle">W = 320</text>
+    <path class="dim" d="M172 110H140M172 280H140M150 110V280M150 110l-3 8h6zM150 280l-3-8h6z"/>
+    <text class="dim-t" x="138" y="195" text-anchor="middle" transform="rotate(-90 138 195)">H = 170</text>
+    <circle class="fill-draw" cx="358" cy="99" r="3"/>
+    <circle class="fill-draw" cx="518" cy="184" r="3"/>
+    <circle class="fill-draw" cx="536" cy="88" r="3"/>
+    <path class="ln-pencil" d="M358 99V40H600M518 184H600M536 88L560 112H600"/>
+  </svg>
+  <p class="dl" style="--x:198;--y:126;--w:290"><span class="stamp-k">Ön yüz</span><br>.fill-paper · W × H</p>
+  <p class="dl" style="--x:604;--y:28;--w:280"><span class="stamp-k">Üst yüz</span><br>.fill-scene</p>
+  <p class="dl" style="--x:604;--y:100;--w:280"><span class="stamp-k">Kaydırma</span><br>dx = +36 · dy = −22</p>
+  <p class="dl" style="--x:604;--y:172;--w:280"><span class="stamp-k">Yan yüz</span><br>.fill-scene</p>
+</div>
+</demo>
+<div class="prose"><p>Çizim sırası önemlidir: önce üst ve yan yüz, en son ön yüz. Böylece ön yüzün kâğıt dolgusu kenar birleşimlerini temiz kapatır. Köşe çentikleri (<code>.ln-pencil</code>) isteğe bağlıdır; büyük kutularda yüzün çerçevesini belirtir.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">tarif</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- ön yüz sol üst köşesi (x, y), boyut W × H, kaydırma dx, dy (dy negatif) --&gt;
+&lt;path class="ln-draw fill-scene" d="M x y  L x+dx y+dy  H x+W+dx  L x+W y  Z"/&gt;          &lt;!-- üst --&gt;
+&lt;path class="ln-draw fill-scene" d="M x+W y  L x+W+dx y+dy  V y+H+dy  L x+W y+H  Z"/&gt;  &lt;!-- sağ --&gt;
+&lt;rect class="ln-draw fill-paper" x="x" y="y" width="W" height="H"/&gt;                &lt;!-- ön --&gt;</code></pre></figure>
+</chapter>
+
+<chapter title="Yığınlar" lead="Kutular üst üste konunca alttakinin üst yüzü üsttekinin altında kalır. Aşağıdan yukarıya çizin; her yeni kutu altındakinin çizgilerini kapatır.">
+<demo label="Örnek · sunucu rafı">
+<div class="drawing" style="--aw:900;--ah:290">
+  <svg viewBox="0 0 900 290" aria-hidden="true">
+    <path class="ln-draw fill-scene" d="M60 220L80 208H380L360 220Z"/>
+    <path class="ln-draw fill-scene" d="M360 220L380 208V260L360 272Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="220" width="300" height="52"/>
+    <path class="ln-draw fill-scene" d="M60 168L80 156H380L360 168Z"/>
+    <path class="ln-draw fill-scene" d="M360 168L380 156V208L360 220Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="168" width="300" height="52"/>
+    <path class="ln-draw fill-scene" d="M60 116L80 104H380L360 116Z"/>
+    <path class="ln-draw fill-scene" d="M360 116L380 104V156L360 168Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="116" width="300" height="52"/>
+    <path class="ln-ghost" d="M60 64L80 52H380L360 64ZM360 64L380 52V104L360 116Z"/>
+    <rect class="ln-ghost" x="60" y="64" width="300" height="52"/>
+    <circle class="fill-draw" cx="340" cy="142" r="3"/>
+    <circle class="fill-draw" cx="340" cy="194" r="3"/>
+    <circle class="fill-draw" cx="340" cy="246" r="3"/>
+    <path class="ln-pencil" d="M384 80H466"/>
+  </svg>
+  <p class="dl" style="--x:74;--y:80;--w:250;color:var(--ink-3)">web-4 · boş yuva</p>
+  <p class="dl" style="--x:74;--y:132;--w:250">web-3 · 4 vCPU <span class="state ok">Hazır</span></p>
+  <p class="dl" style="--x:74;--y:184;--w:250">web-2 · 4 vCPU <span class="state ok">Hazır</span></p>
+  <p class="dl" style="--x:74;--y:236;--w:250">web-1 · 4 vCPU <span class="state warn">Yoğun</span></p>
+  <p class="dl callout" style="--x:466;--y:66;--w:300"><b>Boş yuva</b>web-4 bir sonraki kapasite artışında eklenir; şimdilik hayalet.</p>
+  <p class="dl" style="--x:466;--y:236;--w:380">raf eu-west-1a · toplam 12 vCPU · 48 GB</p>
+</div>
+</demo>
+<demo label="Örnek · depolama katmanları">
+<div class="drawing" style="--aw:900;--ah:290">
+  <svg viewBox="0 0 900 290" aria-hidden="true">
+    <path class="ln-draw fill-scene" d="M40 220L68 203H488L460 220Z"/>
+    <path class="ln-draw fill-scene" d="M460 220L488 203V253L460 270Z"/>
+    <rect class="ln-draw fill-paper" x="40" y="220" width="420" height="50"/>
+    <path class="ln-draw fill-scene" d="M114 161L142 144H442L414 161Z"/>
+    <path class="ln-draw fill-scene" d="M414 161L442 144V194L414 211Z"/>
+    <rect class="ln-draw fill-paper" x="114" y="161" width="300" height="50"/>
+    <path class="ln-draw fill-scene" d="M188 102L216 85H376L348 102Z"/>
+    <path class="ln-draw fill-scene" d="M348 102L376 85V135L348 152Z"/>
+    <rect class="ln-strong fill-paper" x="188" y="102" width="160" height="50"/>
+    <path class="ln-pencil" d="M376 118H560M442 178H560M488 238H560"/>
+    <path class="dim" d="M540 30H570M540 270H570M550 30V270M550 30l-3 8h6zM550 270l-3-8h6z"/>
+  </svg>
+  <p class="dl" style="--x:202;--y:118;--w:140">Sıcak · 2 TB</p>
+  <p class="dl" style="--x:128;--y:177;--w:270">Ilık · 18 TB · disk</p>
+  <p class="dl" style="--x:54;--y:236;--w:390">Soğuk · 120 TB · arşiv</p>
+  <p class="dl" style="--x:580;--y:22;--w:300"><span class="stamp-k">Erişim süresi</span><br>yukarı çıktıkça kısalır</p>
+  <p class="dl" style="--x:580;--y:110;--w:300">&lt; 10 ms · SSD</p>
+  <p class="dl" style="--x:580;--y:170;--w:300">≈ 50 ms · disk</p>
+  <p class="dl" style="--x:580;--y:230;--w:300">saatler · geri çağırma gerekir</p>
+</div>
+</demo>
+<div class="prose"><p>Üst katmanı alttakinin üst yüzüne oturtmak için ön yüzünü kaydırmanın yarısı kadar geri ve yukarı alın (burada <code>+14, −8.5</code>, sonra kenarlardan içeri). Tam kenara oturan kutu, katmanlar yerine tek bir blok gibi okunur.</p></div>
+</chapter>
+
+<chapter title="Durumlar" lead="Kutunun durumu çizgi sınıfıyla verilir; dolgu aynı kalır. Kelimeyi kutunun içine ya da altına yazın.">
+<demo label="Örnek · beş durum">
+<div class="drawing" style="--aw:900;--ah:200">
+  <svg viewBox="0 0 900 200" aria-hidden="true">
+    <path class="ln-draw fill-scene" d="M20 50L40 38H160L140 50ZM140 50L160 38V118L140 130Z"/>
+    <rect class="ln-draw fill-paper" x="20" y="50" width="120" height="80"/>
+    <path class="ln-strong fill-scene" d="M200 50L220 38H340L320 50ZM320 50L340 38V118L320 130Z"/>
+    <rect class="ln-strong fill-paper" x="200" y="50" width="120" height="80"/>
+    <path class="ln-draw ln-dash fill-scene" d="M380 50L400 38H520L500 50ZM500 50L520 38V118L500 130Z"/>
+    <rect class="ln-draw ln-dash fill-paper" x="380" y="50" width="120" height="80"/>
+    <path class="ln-ghost" d="M560 50L580 38H700L680 50ZM680 50L700 38V118L680 130Z"/>
+    <rect class="ln-ghost" x="560" y="50" width="120" height="80"/>
+    <path class="ln-draw ln-bad fill-scene" d="M740 50L760 38H880L860 50ZM860 50L880 38V118L860 130Z"/>
+    <rect class="ln-draw ln-bad fill-paper" x="740" y="50" width="120" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:62;--w:100">cache-1</p>
+  <p class="dl" style="--x:212;--y:62;--w:100">cache-2</p>
+  <p class="dl" style="--x:392;--y:62;--w:100">cache-3</p>
+  <p class="dl" style="--x:572;--y:62;--w:100;color:var(--ink-3)">cache-0</p>
+  <p class="dl" style="--x:752;--y:62;--w:100">cache-4<br><span class="state bad">Düştü</span></p>
+  <p class="dl" style="--x:20;--y:146;--w:150"><code>.ln-draw</code><br>çalışıyor</p>
+  <p class="dl" style="--x:200;--y:146;--w:150"><code>.ln-strong</code><br>seçili</p>
+  <p class="dl" style="--x:380;--y:146;--w:150"><code>.ln-dash</code><br>planlı</p>
+  <p class="dl" style="--x:560;--y:146;--w:150"><code>.ln-ghost</code><br>kaldırıldı</p>
+  <p class="dl" style="--x:740;--y:146;--w:150"><code>.ln-bad</code><br>arızalı</p>
+</div>
+</demo>
+<div class="prose"><p>Üst ve yan yüz tek bir <code>&lt;path&gt;</code> içinde yazılabilir (iki alt yol, <code>Z</code> ile kapanır); durum sınıfını iki öğeye vermek yeter. Hayalet kutu dolgusuzdur: arkasında ne varsa görünür, çünkü o parça henüz ya da artık orada değildir.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Kutular bir sistemin parçalarını aynı ölçekte yan yana koyar. İki tipik kompozisyon: kuyruk ve işçiler, düğüm havuzundaki podlar.">
+<demo label="Örnek · kuyruk + işçiler">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Şekil 1</p>
+  <p class="fig-cap">jobs-eu kuyruğu üç işçiye dağıtıyor</p>
+  <div class="drawing" style="--aw:900;--ah:240">
+    <svg viewBox="0 0 900 240" aria-hidden="true">
+      <path class="ln-draw fill-scene" d="M20 110L34 101H144L130 110ZM130 110L144 101V155L130 164Z"/>
+      <rect class="ln-draw fill-paper" x="20" y="110" width="110" height="54"/>
+      <path class="ln-draw" d="M144 137H194M194 137l-8-4M194 137l-8 4"/>
+      <path class="ln-pencil" d="M180 164H580"/>
+      <path class="ln-draw fill-scene" d="M200 120L214 111H258L244 120ZM244 120L258 111V155L244 164Z"/>
+      <rect class="ln-draw fill-paper" x="200" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-scene" d="M260 120L274 111H318L304 120ZM304 120L318 111V155L304 164Z"/>
+      <rect class="ln-draw fill-paper" x="260" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-scene" d="M320 120L334 111H378L364 120ZM364 120L378 111V155L364 164Z"/>
+      <rect class="ln-draw fill-paper" x="320" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-scene" d="M380 120L394 111H438L424 120ZM424 120L438 111V155L424 164Z"/>
+      <rect class="ln-draw fill-paper" x="380" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-scene" d="M440 120L454 111H498L484 120ZM484 120L498 111V155L484 164Z"/>
+      <rect class="ln-draw fill-paper" x="440" y="120" width="44" height="44"/>
+      <path class="ln-strong fill-scene" d="M500 120L514 111H558L544 120ZM544 120L558 111V155L544 164Z"/>
+      <rect class="ln-strong fill-paper" x="500" y="120" width="44" height="44"/>
+      <path class="ln-draw" d="M560 140H630M630 62V140M630 62H694M694 62l-8-4M694 62l-8 4M630 132H694M694 132l-8-4M694 132l-8 4"/>
+      <path class="ln-ghost" d="M630 140V202H694"/>
+      <path class="ln-draw fill-scene" d="M700 40L714 31H884L870 40ZM870 40L884 31V75L870 84Z"/>
+      <rect class="ln-draw fill-paper" x="700" y="40" width="170" height="44"/>
+      <path class="ln-draw fill-scene" d="M700 110L714 101H884L870 110ZM870 110L884 101V145L870 154Z"/>
+      <rect class="ln-draw fill-paper" x="700" y="110" width="170" height="44"/>
+      <path class="ln-ghost" d="M700 180L714 171H884L870 180ZM870 180L884 171V215L870 224Z"/>
+      <rect class="ln-ghost" x="700" y="180" width="170" height="44"/>
+    </svg>
+    <p class="dl" style="--x:30;--y:128;--w:96">web-api</p>
+    <p class="dl" style="--x:200;--y:50;--w:360"><span class="stamp-k">Kuyruk</span><br>jobs-eu · ilk giren ilk çıkar</p>
+    <p class="dl" style="--x:200;--y:176;--w:280">6 gösterilen · toplam 1.240</p>
+    <p class="dl" style="--x:490;--y:176;--w:70;text-align:center">sıradaki</p>
+    <p class="dl" style="--x:712;--y:52;--w:150">işçi-1 <span class="state ok">Çalışıyor</span></p>
+    <p class="dl" style="--x:712;--y:122;--w:150">işçi-2 <span class="state ok">Çalışıyor</span></p>
+    <p class="dl" style="--x:712;--y:192;--w:150;color:var(--ink-3)">işçi-3 · planlı</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 1.</b> Her küp bir mesajdır; kalın küp sıradaki mesaj. Derinlik 1.000'i geçerse üçüncü işçi açılır (hayalet).</figcaption>
+</figure>
+</demo>
+<demo label="Örnek · düğüm havuzu ve podlar">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Şekil 2</p>
+  <p class="fig-cap">node-c boşaltılıyor</p>
+  <div class="drawing" style="--aw:900;--ah:210">
+    <svg viewBox="0 0 900 210" aria-hidden="true">
+      <path class="ln-draw fill-scene" d="M40 120L76 98H296L260 120ZM260 120L296 98V168L260 190Z"/>
+      <rect class="ln-draw fill-paper" x="40" y="120" width="220" height="70"/>
+      <path class="ln-draw fill-scene" d="M330 120L366 98H586L550 120ZM550 120L586 98V168L550 190Z"/>
+      <rect class="ln-draw fill-paper" x="330" y="120" width="220" height="70"/>
+      <path class="ln-draw ln-warn fill-scene" d="M620 120L656 98H876L840 120ZM840 120L876 98V168L840 190Z"/>
+      <rect class="ln-draw ln-warn fill-paper" x="620" y="120" width="220" height="70"/>
+      <path class="ln-draw fill-scene" d="M74 75L86 68H126L114 75ZM114 75L126 68V102L114 109Z"/>
+      <rect class="ln-draw fill-paper" x="74" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-scene" d="M134 75L146 68H186L174 75ZM174 75L186 68V102L174 109Z"/>
+      <rect class="ln-draw fill-paper" x="134" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-scene" d="M194 75L206 68H246L234 75ZM234 75L246 68V102L234 109Z"/>
+      <rect class="ln-draw fill-paper" x="194" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-scene" d="M364 75L376 68H416L404 75ZM404 75L416 68V102L404 109Z"/>
+      <rect class="ln-draw fill-paper" x="364" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-scene" d="M424 75L436 68H476L464 75ZM464 75L476 68V102L464 109Z"/>
+      <rect class="ln-draw fill-paper" x="424" y="75" width="40" height="34"/>
+      <path class="ln-ghost" d="M484 75L496 68H536L524 75ZM524 75L536 68V102L524 109Z"/>
+      <rect class="ln-ghost" x="484" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-scene" d="M654 75L666 68H706L694 75ZM694 75L706 68V102L694 109Z"/>
+      <rect class="ln-draw fill-paper" x="654" y="75" width="40" height="34"/>
+      <path class="ln-draw ln-dash" d="M680 66V40H510V58"/>
+      <path class="ln-draw" d="M510 62l-4 -8M510 62l4 -8"/>
+    </svg>
+    <p class="dl" style="--x:54;--y:134;--w:200"><span class="stamp-k">node-a</span><br>3 pod</p>
+    <p class="dl" style="--x:344;--y:134;--w:200"><span class="stamp-k">node-b</span><br>2 pod + 1 bekleyen</p>
+    <p class="dl" style="--x:634;--y:134;--w:200"><span class="stamp-k">node-c</span><br><span class="state warn">Boşaltılıyor</span></p>
+    <p class="dl" style="--x:520;--y:8;--w:200;text-align:center">yeniden planlanır</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> Podlar düğümün üst yüzüne oturan küçük kutulardır. node-c'deki pod, node-b'deki boş yere (hayalet) taşınacak; kesikli ok henüz olmamış bir hareketi gösterir.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Koyu sahnede" lead="Aynı tarif .scene-dark altında değişmeden çalışır: kâğıt ve sahne dolgusu koyu tonlara, çizim rengi açık maviye döner.">
+<demo label="Örnek · birincil ve okuma kopyası">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">05 · Şekil 3</p>
+  <p class="fig-cap">Bölgeler arası kopya</p>
+  <div class="drawing" style="--aw:900;--ah:190">
+    <svg viewBox="0 0 900 190" aria-hidden="true">
+      <path class="ln-draw fill-scene" d="M60 70L96 48H336L300 70ZM300 70L336 48V138L300 160Z"/>
+      <rect class="ln-strong fill-paper" x="60" y="70" width="240" height="90"/>
+      <path class="ln-draw fill-scene" d="M560 70L596 48H836L800 70ZM800 70L836 48V138L800 160Z"/>
+      <rect class="ln-draw fill-paper" x="560" y="70" width="240" height="90"/>
+      <path class="ln-draw ln-dash" d="M336 115H554"/>
+      <path class="ln-draw" d="M554 115l-8-4M554 115l-8 4"/>
+      <text class="dim-t" x="445" y="106" text-anchor="middle">eşzamansız · 0,8 s</text>
+    </svg>
+    <p class="dl" style="--x:76;--y:84;--w:210"><span class="stamp-k">eu-west-1</span><br>orders-db · birincil<br><span class="state ok">Yazılır</span></p>
+    <p class="dl" style="--x:576;--y:84;--w:210"><span class="stamp-k">eu-central-1</span><br>orders-db · kopya<br><span class="state warn">Salt okunur</span></p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 3.</b> Kesikli ok eşzamansız kopyalamadır: kopya birincilin biraz gerisinden gelir.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Bütün kutular aynı kaydırmayı kullanır; ön yüz her zaman kâğıttır. Işık iki yönden gelirse çizim düzlemi kırılır.">
+<div class="dodont">
+<demo label="Yap · tek kaydırma, ön yüz kâğıt">
+<div class="drawing" style="--aw:440;--ah:180">
+  <svg viewBox="0 0 440 180" aria-hidden="true">
+    <path class="ln-draw fill-scene" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
+    <rect class="ln-draw fill-paper" x="20" y="60" width="150" height="80"/>
+    <path class="ln-draw fill-scene" d="M240 60L260 48H410L390 60ZM390 60L410 48V128L390 140Z"/>
+    <rect class="ln-draw fill-paper" x="240" y="60" width="150" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:72;--w:130">api</p>
+  <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">dx +20, dy −12 · iki kutuda aynı</p>
+</div>
+</demo>
+<demo label="Yapma · ters yüzler, karışık yön">
+<div class="drawing" style="--aw:440;--ah:180">
+  <svg viewBox="0 0 440 180" aria-hidden="true">
+    <path class="ln-draw fill-paper" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
+    <rect class="ln-draw fill-scene" x="20" y="60" width="150" height="80"/>
+    <path class="ln-draw fill-scene" d="M240 60L220 48H370L390 60ZM240 60L220 48V128L240 140Z"/>
+    <rect class="ln-draw fill-paper" x="240" y="60" width="150" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:72;--w:130">api</p>
+  <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">ön yüz sahne, ikinci kutu sola bakıyor</p>
+</div>
+</demo>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Gölge yok</span><div class="co-body"><p>Derinliği yalnızca yüzler verir; <code>filter: drop-shadow</code>, gradyan ya da yarı saydam koyu bir dolgu eklemeyin. Kutunun anlamı içindeki etiket ve <code>.state</code> kelimesindedir, SVG <code>aria-hidden="true"</code> kalır.</p></div></div>
+</chapter>

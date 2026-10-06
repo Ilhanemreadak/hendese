@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rozetler · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="dugmeler.html">Düğmeler</a>
+    <a class="nav-page" href="rozetler.html" aria-current="page">Rozetler</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="kod-blogu.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-seridi.html">Diff şeridi</a>
+    <a class="nav-page" href="tablo.html">Tablo</a>
+    <a class="nav-page" href="tanim-listesi.html">Tanım listesi</a>
+    <a class="nav-page" href="adimlar.html">Adımlar</a>
+    <a class="nav-page" href="kontrol-listesi.html">Kontrol listesi</a>
+    <a class="nav-page" href="secim-gruplari.html">Seçim grupları</a>
+    <a class="nav-page" href="gosterge.html">Gösterge</a>
+    <a class="nav-page" href="degisken-kaydi.html">Değişken kaydı</a>
+    <a class="nav-page" href="damga.html">Damga</a>
+    <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
+    <a class="nav-page" href="antet.html">Antet</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Renkler</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durum etiketi</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Rozetler<em>Durumu ve aidiyeti tek kelimeyle söyler.</em></h1>
+    <p class="intro">Üç küçük etiket: yuvarlak ve renkli <code>.pill</code>, köşeli ve büyük harfli <code>.state</code>, zeminsiz mono <code>.chip</code>. Hiçbiri tıklanmaz; bir satırın, başlığın ya da şeklin yanında durup ne olduğunu ya da hangi durumda olduğunu söyler.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.pill</code> · <code>.pill-ok</code> · <code>.pill-neutral</code> · <code>.s-gitlab</code> · <code>.s-aws</code> · <code>.s-argo</code> · <code>.s-k8s</code> · <code>.s-accent</code> · <code>.s-sec</code> · <code>.state</code> · <code>.chip</code></dd><dt>Değişkenler</dt><dd><code>--c</code> (çizgi + yazı), <code>--c-soft</code> (zemin), <code>--u</code> (<code>.state</code> ölçeği)</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Üç etiketin işi farklıdır. Pill bir şeyin türünü ya da sonucunu, state bir çizimdeki ya da kayıttaki anlık durumu, chip ise bir şeklin ya da bölümün adını taşır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · üç etiket yan yana</span>
+  <div class="demo-view">
+<div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+  <span class="pill pill-ok">yayında</span>
+  <span class="state ok" style="--u:1px">başarılı</span>
+  <p class="chip">Şekil 2 · sürüm akışı</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:18px;flex-wrap:wrap</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;yayında&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state ok</span>" style="<span class='s'>--u:1px</span>"&gt;başarılı&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Şekil 2 · sürüm akışı&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Sınıf</th><th>Biçim</th><th>Renk kaynağı</th><th>Tipik yer</th></tr></thead>
+  <tbody>
+    <tr><td><code>.pill</code></td><td>Yuvarlak, 11px mono, küçük harf</td><td><code>--c</code> + <code>--c-soft</code></td><td>Tablo hücresi, liste başı, başlık yanı</td></tr>
+    <tr><td><code>.state</code></td><td>Köşeli, kalın, büyük harf</td><td><code>currentColor</code> (<code>.ok</code>, <code>.warn</code>, <code>.bad</code>)</td><td>Çizim etiketi, iş kaydı, adım başlığı</td></tr>
+    <tr><td><code>.chip</code></td><td>Çerçevesiz, büyük harf, aralıklı</td><td><code>--ink-3</code></td><td>Şekil başlığı, sütun adı, sayaç</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Renkler">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Renkler</h2><p class="lead">Pill rengini iki değişkenden okur: --c çizgiyi ve yazıyı, --c-soft zemini boyar. Hazır iki sınıf ikisini birden verir; servis sınıfları yalnızca --c verir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · hazır sınıflar</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill pill-ok">sağlıklı</span>
+  <span class="pill pill-neutral">askıda</span>
+  <span class="pill pill-neutral">arşivlendi</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;sağlıklı&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;askıda&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;arşivlendi&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · servis sınıfları, zemin elle</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill s-gitlab" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">kaynak deposu</span>
+  <span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eu-west-1</span>
+  <span class="pill s-k8s" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">küme</span>
+  <span class="pill s-argo" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eşitleme</span>
+  <span class="pill s-accent" style="--c-soft:var(--accent-soft)">yeni</span>
+  <span class="pill s-sec" style="--c-soft:var(--sec-soft)">gizli bilgi</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-gitlab</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;kaynak deposu&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-k8s</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;küme&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-argo</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;eşitleme&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-accent</span>" style="<span class='s'>--c-soft:var(--accent-soft)</span>"&gt;yeni&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>" style="<span class='s'>--c-soft:var(--sec-soft)</span>"&gt;gizli bilgi&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Servis sınıfı <code>--c-soft</code> vermediği için zemin saydam kalır; bu da geçerli bir görünümdür. Uyarı ve hata için ayrı sınıf yoktur; durum token'larını doğrudan verin:</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · durum token'larıyla rozet</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill" style="--c:var(--warn);--c-soft:var(--warn-soft)">yavaş</span>
+  <span class="pill" style="--c:var(--bad);--c-soft:var(--bad-soft)">düştü</span>
+  <span class="pill s-aws">zeminsiz</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--warn);--c-soft:var(--warn-soft)</span>"&gt;yavaş&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--bad);--c-soft:var(--bad-soft)</span>"&gt;düştü&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;zeminsiz&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Durum etiketi">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durum etiketi</h2><p class="lead">state çizim dilinden gelir: köşeli, büyük harfli, rengini kendi yazısından alır. Değiştiricisiz hali nötrdür.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · dört durum</span>
+  <div class="demo-view">
+<p class="pillrow" style="--u:1px">
+  <span class="state">sırada</span>
+  <span class="state ok">tamamlandı</span>
+  <span class="state warn">yeniden deneniyor</span>
+  <span class="state bad">zaman aşımı</span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:1px</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state</span>"&gt;sırada&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;tamamlandı&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;yeniden deneniyor&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;zaman aşımı&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Boyutu çizim birimi <code>--u</code>'dan hesaplanır: <code>max(9.5px, 11 × --u)</code>. Çizimin içinde <code>--u</code> çizimin genişliğinden gelir; çizim dışında kapsayıcıya <code>--u:1px</code> verin. Daha büyük bir etiket için birimi büyütün; en küçük boyut 9.5px'te durur.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · birim ile ölçek</span>
+  <div class="demo-view">
+<div style="display:grid;gap:10px">
+  <p class="pillrow" style="--u:.8px;margin:0"><span class="state ok">0.8px</span><span class="state bad">alt sınır 9.5px</span></p>
+  <p class="pillrow" style="--u:1px;margin:0"><span class="state ok">1px</span><span class="state bad">varsayılan</span></p>
+  <p class="pillrow" style="--u:1.3px;margin:0"><span class="state ok">1.3px</span><span class="state bad">pano başlığı</span></p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:10px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:.8px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;0.8px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;alt sınır 9.5px&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:1px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;1px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;varsayılan&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:1.3px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;1.3px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;pano başlığı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Etiketler tek başına değil, bir verinin yanında anlam kazanır. Tablo hücresi, başlık ve liste en sık üç yerdir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · kuyruk işçileri tablosu</span>
+  <div class="demo-view">
+<p class="chip" style="margin-bottom:8px">Tablo 1 · fatura işçisi kuyrukları</p>
+<div class="tbl"><table>
+  <thead><tr><th>Kuyruk</th><th>Bölge</th><th>Bekleyen</th><th>Durum</th></tr></thead>
+  <tbody>
+    <tr><td>fatura-olustur</td><td><span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eu-west-1</span></td><td>12</td><td><span class="pill pill-ok">akıyor</span></td></tr>
+    <tr><td>e-posta-gonder</td><td><span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eu-west-1</span></td><td>4 810</td><td><span class="pill" style="--c:var(--warn);--c-soft:var(--warn-soft)">birikiyor</span></td></tr>
+    <tr><td>iade-isle</td><td><span class="pill s-aws" style="--c-soft:color-mix(in srgb,var(--c) 10%,transparent)">eu-central-1</span></td><td>0</td><td><span class="pill pill-neutral">durduruldu</span></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:8px</span>"&gt;Tablo 1 · fatura işçisi kuyrukları&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Kuyruk&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bölge&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Bekleyen&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Durum&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;fatura-olustur&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;12&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;akıyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;e-posta-gonder&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;4 810&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--warn);--c-soft:var(--warn-soft)</span>"&gt;birikiyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;iade-isle&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 10%,transparent)</span>"&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;0&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;durduruldu&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · başlık yanında</span>
+  <div class="demo-view">
+<h3 style="margin:0 0 6px">Önbellek katmanı <span class="pill s-accent" style="--c-soft:var(--accent-soft)">deneysel</span></h3>
+<p style="margin:0 0 18px;color:var(--ink-2)">Okuma isteklerinin %70'i artık veritabanına inmeden yanıtlanıyor.</p>
+<h3 style="margin:0 0 6px;--u:1px">Gece yedeği <span class="state bad">başarısız</span></h3>
+<p style="margin:0;color:var(--ink-2)">03:00 yedeği disk kotasına takıldı; sabah 09:00'da elle yeniden alındı.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>h3</span> style="<span class='s'>margin:0 0 6px</span>"&gt;Önbellek katmanı &lt;<span class='k'>span</span> class="<span class='s'>pill s-accent</span>" style="<span class='s'>--c-soft:var(--accent-soft)</span>"&gt;deneysel&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+&lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 18px;color:var(--ink-2)</span>"&gt;Okuma isteklerinin %70'i artık veritabanına inmeden yanıtlanıyor.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>h3</span> style="<span class='s'>margin:0 0 6px;--u:1px</span>"&gt;Gece yedeği &lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;başarısız&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+&lt;<span class='k'>p</span> style="<span class='s'>margin:0;color:var(--ink-2)</span>"&gt;03:00 yedeği disk kotasına takıldı; sabah 09:00'da elle yeniden alındı.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · sürüm notu listesi</span>
+  <div class="demo-view">
+<ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+  <li><span class="pill pill-ok">eklendi</span> Alarm kurallarına sessiz saat penceresi.</li>
+  <li><span class="pill s-sec" style="--c-soft:var(--sec-soft)">güvenlik</span> Oturum çerezleri artık yalnızca HTTPS üzerinden gönderiliyor.</li>
+  <li><span class="pill" style="--c:var(--bad);--c-soft:var(--bad-soft)">kaldırıldı</span> Eski <code>/v1/metrics</code> uç noktası.</li>
+  <li><span class="pill pill-neutral">iç</span> Bağımlılık güncellemeleri, davranış değişikliği yok.</li>
+</ul>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ul</span> style="<span class='s'>list-style:none;padding:0;margin:0;display:grid;gap:8px</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;eklendi&lt;/<span class='k'>span</span>&gt; Alarm kurallarına sessiz saat penceresi.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>" style="<span class='s'>--c-soft:var(--sec-soft)</span>"&gt;güvenlik&lt;/<span class='k'>span</span>&gt; Oturum çerezleri artık yalnızca HTTPS üzerinden gönderiliyor.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--bad);--c-soft:var(--bad-soft)</span>"&gt;kaldırıldı&lt;/<span class='k'>span</span>&gt; Eski &lt;<span class='k'>code</span>&gt;/v1/metrics&lt;/<span class='k'>code</span>&gt; uç noktası.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;iç&lt;/<span class='k'>span</span>&gt; Bağımlılık güncellemeleri, davranış değişikliği yok.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ul</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · koyu sahne içinde</span>
+  <div class="demo-view">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-sm);padding:16px;--u:1px">
+  <p class="chip" style="margin-bottom:10px">Şekil 4 · test ortamına dağıtım</p>
+  <div class="pillrow" style="align-items:center">
+    <span class="pill s-gitlab" style="--c-soft:color-mix(in srgb,var(--c) 12%,transparent)">kaynak</span>
+    <span class="pill s-k8s" style="--c-soft:color-mix(in srgb,var(--c) 12%,transparent)">staging</span>
+    <span class="state ok">eşitlendi</span>
+    <span class="state warn">2 pod bekliyor</span>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-sm);padding:16px;--u:1px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:10px</span>"&gt;Şekil 4 · test ortamına dağıtım&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-gitlab</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 12%,transparent)</span>"&gt;kaynak&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-k8s</span>" style="<span class='s'>--c-soft:color-mix(in srgb,var(--c) 12%,transparent)</span>"&gt;staging&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;eşitlendi&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;2 pod bekliyor&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Rozet bir kelimedir; cümle değil, düğme hiç değil. Renk anlamı pekiştirir ama tek başına taşımaz.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · kelime anlamı söyler</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill pill-ok">geçti</span>
+  <span class="pill" style="--c:var(--bad);--c-soft:var(--bad-soft)">kaldı</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;geçti&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--bad);--c-soft:var(--bad-soft)</span>"&gt;kaldı&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · anlam yalnızca renkte</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill pill-ok">test</span>
+  <span class="pill" style="--c:var(--bad);--c-soft:var(--bad-soft)">test</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill pill-ok</span>"&gt;test&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill</span>" style="<span class='s'>--c:var(--bad);--c-soft:var(--bad-soft)</span>"&gt;test&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · tek kelime, ayrıntı yanında</span>
+  <div class="demo-view">
+<p style="margin:0"><span class="pill pill-neutral">askıda</span> Sahibi izinde; 14 Ekim'de devralınacak.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;askıda&lt;/<span class='k'>span</span>&gt; Sahibi izinde; 14 Ekim'de devralınacak.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · cümleyi rozete sığdırmak</span>
+  <div class="demo-view">
+<p style="margin:0"><span class="pill pill-neutral">sahibi izinde, 14 ekimde devralınacak</span></p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill pill-neutral</span>"&gt;sahibi izinde, 14 ekimde devralınacak&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Rozetler düz metindir; ekran okuyucu yazıyı okur, rengi okumaz. Bu yüzden durum kelimesi kendi başına anlaşılır olmalı. Rozete tıklama davranışı eklemeyin; filtre ya da seçim gerekiyorsa <code>.toggle-btn</code> veya <code>.choice</code> kullanın. Durum canlı değişiyorsa kapsayıcıya <code>aria-live="polite"</code> verin.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="dugmeler.html" rel="prev"><small>Önceki · Bileşenler</small>Düğmeler</a><a href="callout.html" rel="next"><small>Sonraki · Bileşenler</small>Callout</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

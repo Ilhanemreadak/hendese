@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taslak ve belirme · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Hareket</div>
+    <a class="nav-page" href="pin-sahnesi.html">Pin sahnesi</a>
+    <a class="nav-page" href="sticky-anlatim.html">Sticky anlatım</a>
+    <a class="nav-page" href="fig-sahnesi.html">Fig sahnesi</a>
+    <a class="nav-page" href="hud.html">HUD</a>
+    <a class="nav-page" href="taslak-ve-belirme.html" aria-current="page">Taslak ve belirme</a>
+    <a class="nav-page" href="dar-varyant.html">Dar varyant</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Canlı örnek · kalem taslağı</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Canlı örnek · belirme</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Hareket kapalıyken</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Hareket</p>
+    <h1>Taslak ve belirme<em>Sahnesiz iki küçük hareket.</em></h1>
+    <p class="intro">Kalem taslağı bir çizimi iki saniyede kalemle çizer; <code>[data-reveal]</code> bir öğeyi görüş alanına girerken belirtir. İkisi de sahne kaydı istemez, ikisi de desteklenmeyen tarayıcıda ve reduced motion'da doğrudan son hali gösterir.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.sketch-pending</code> · <code>.sketch</code> · <code>.pencil</code> (SVG grubu)</dd><dt>Öznitelik</dt><dd><code>data-reveal</code> · <code>data-reveal="draw"</code></dd><dt>JS</dt><dd>Taslak: iki sınıfı değiştiren birkaç satır. Belirme: yok (<code>animation-timeline: view()</code>)</dd></dl>
+  </div>
+</section>
+
+<style>
+/* sayfaya özel (.ts-). Taslak için yolların pathLength="1" olması şart. */
+.ts-sk .pencil{stroke-width:1.5}
+.ts-ink{stroke:var(--draw);stroke-width:1.5;fill:none}
+.ts-sk .dl b{display:block}
+@media screen{
+  .sketch-pending .ts-ink,.sketch-pending .dl{opacity:0}
+  .sketch .ts-ink,.sketch .dl{transition:opacity var(--dur-3) var(--ease) 1.8s}
+}
+.ts-sk .drawing,.fig-sheet .drawing{max-width:760px;margin-left:0}
+.ts-actions{display:flex;justify-content:flex-end;margin-top:10px}
+html:not(.js) .ts-actions{display:none}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">İki araç, iki ayrı iş. Taslak bir çizimin nasıl kurulduğunu gösterir; belirme okuma akışına küçük bir vurgu ekler.</p></header>
+<div class="prose">
+  <p><b>Kalem taslağı.</b> Kapsayıcıya önce <code>.sketch-pending</code> eklenir (kalem yolları görünmez olur), ardından bir sonraki karede <code>.sketch</code> ile değiştirilir: <code>.pencil</code> grubundaki her yol <code>stroke-dashoffset</code> geçişiyle iki saniyede (<code>--dur-5</code>) çizilir. Yolların <code>pathLength="1"</code> taşıması gerekir; kısa ve uzun yollar aynı sürede biter.</p>
+  <p><b>[data-reveal].</b> Öğe görüş alanına girerken belirir; <code>data-reveal="draw"</code> ise içindeki SVG şekillerini çizer. Zamanlama tamamen CSS'tir (<code>animation-timeline: view()</code>), JS yoktur, kaydırma geri alınınca animasyon da geri sarılır.</p>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- kalem taslağı: kapsayıcıya sınıf, yollara pathLength --&gt;
+&lt;div class="ornek-taslak"&gt;
+  &lt;div class="drawing" data-aw="600" data-ah="200" style="--aw:600;--ah:200"&gt;
+    &lt;svg viewBox="0 0 600 200" aria-hidden="true"&gt;
+      &lt;g class="pencil"&gt;&lt;path pathLength="1" d="…"/&gt; …&lt;/g&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- belirme: öznitelik yeter --&gt;
+&lt;aside class="co co-tip" data-reveal&gt;…&lt;/aside&gt;
+&lt;div class="drawing" data-reveal="draw" …&gt;&lt;svg …&gt;&lt;path class="ln-draw" pathLength="1" d="…"/&gt;&lt;/svg&gt;&lt;/div&gt;</code></pre></figure>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Canlı örnek · kalem taslağı">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Canlı örnek · kalem taslağı</h2><p class="lead">Bir ağ planı önce kalemle çizilir, sonra mürekkep çizgileri ve etiketler gelir. Şekil görüş alanına girince bir kez oynar; düğme yeniden oynatır.</p></header>
+<figure class="fig-sheet ts-sk" id="ts-net">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Şekil 1</p><p class="fig-cap">İki alt ağ, bir yönlendirici</p>
+  <div class="drawing" data-aw="720" data-ah="300" style="--aw:720;--ah:300">
+    <svg viewBox="0 0 720 300" aria-hidden="true">
+      <g class="pencil">
+        <path pathLength="1" d="M40 60H320V250H40Z"/>
+        <path pathLength="1" d="M400 60H680V250H400Z"/>
+        <path pathLength="1" d="M330 20H390V50H330Z"/>
+        <path pathLength="1" d="M180 60V35H330M540 60V35H390"/>
+        <path pathLength="1" d="M70 110H150V160H70ZM190 110H270V160H190ZM430 110H510V160H430ZM550 110H630V160H550Z"/>
+      </g>
+      <path class="ts-ink" d="M110 160V200H230V160M470 160V200H590V160"/>
+      <path class="dim" d="M40 275V285M320 275V285M40 280H320"/>
+    </svg>
+    <p class="dl" style="--x:52;--y:72;--w:200"><b>Alt ağ A</b>10.0.1.0/24</p>
+    <p class="dl" style="--x:412;--y:72;--w:200"><b>Alt ağ B</b>10.0.2.0/24</p>
+    <p class="dl" style="--x:330;--y:26;--w:60">yön.</p>
+    <p class="dl" style="--x:120;--y:204;--w:160">uygulama</p>
+    <p class="dl" style="--x:480;--y:204;--w:160">veritabanı</p>
+    <p class="dl" style="--x:120;--y:286;--w:160">254 adres</p>
+  </div>
+  <div class="ts-actions"><button class="btn" type="button" data-replay="ts-net"><svg><use href="#i-reset"/></svg>Yeniden çiz</button></div>
+  <p class="figcap"><b>Şekil 1.</b> İnce çizgiler kalem taslağı, kalın çizgiler sonradan gelen mürekkep. Hareket kapalıyken hepsi baştan görünür.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>function sketch(el) {                       // .sketch-pending → (bir kare) → .sketch
+  el.classList.remove('sketch'); el.classList.add('sketch-pending');
+  void el.offsetWidth;
+  requestAnimationFrame(function () { el.classList.remove('sketch-pending'); el.classList.add('sketch'); });
+}
+/* görüş alanına girince bir kez; reduced motion'da hiç gizlenmez */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches &amp;&amp; 'IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+    if (e.isIntersecting) { sketch(e.target); io.unobserve(e.target); } }); }, { threshold: .35 });
+  el.classList.add('sketch-pending'); io.observe(el);
+}</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Mürekkep gecikmesi</span><div class="co-body"><p>Paket yalnızca kalem yollarını çizer. Mürekkebin ve etiketlerin taslaktan sonra gelmesi bu sayfanın kuralıdır: <code>.sketch-pending .ts-ink{opacity:0}</code> ve <code>.sketch .ts-ink{transition: opacity … 1.8s}</code>, ikisi de <code>@media screen</code> içinde.</p></div></div>
+<h3>Varyasyon · yalnız kalem</h3>
+<div class="prose"><p>Mürekkep katmanı olmadan, ölçü çizgisiyle birlikte kalemle çizilen bir dolap planı. Aynı iki sınıf, farklı içerik; etiketler yine taslaktan sonra gelir.</p></div>
+<figure class="fig-sheet ts-sk" id="ts-rack">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Şekil 2</p><p class="fig-cap">Sistem dolabı: üç sunucu, bir anahtar</p>
+  <div class="drawing" data-aw="720" data-ah="240" style="--aw:720;--ah:240">
+    <svg viewBox="0 0 720 240" aria-hidden="true">
+      <g class="pencil">
+        <path pathLength="1" d="M200 20H520V220H200Z"/>
+        <path pathLength="1" d="M220 40H500V70H220Z"/>
+        <path pathLength="1" d="M220 90H500V120H220Z"/>
+        <path pathLength="1" d="M220 130H500V160H220Z"/>
+        <path pathLength="1" d="M220 170H500V200H220Z"/>
+        <path pathLength="1" d="M560 20V220M552 20H568M552 220H568"/>
+      </g>
+    </svg>
+    <p class="dl" style="--x:20;--y:44;--w:180">anahtar · 1U</p>
+    <p class="dl" style="--x:20;--y:94;--w:180">sunucu 1 · 1U</p>
+    <p class="dl" style="--x:20;--y:134;--w:180">sunucu 2 · 1U</p>
+    <p class="dl" style="--x:20;--y:174;--w:180">sunucu 3 · 1U</p>
+    <p class="dl" style="--x:580;--y:110;--w:120">12U</p>
+  </div>
+  <div class="ts-actions"><button class="btn" type="button" data-replay="ts-rack"><svg><use href="#i-reset"/></svg>Yeniden çiz</button></div>
+  <p class="figcap"><b>Şekil 2.</b> Dolabın yüksekliği 12U; sağdaki ölçü çizgisi bunu gösterir. Anahtar ile ilk sunucu arasında bir birim boşluk var.</p>
+</figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Canlı örnek · belirme">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Canlı örnek · belirme</h2><p class="lead">Okurken yanından geçilen küçük vurgular: bir ipucu, bir uyarı, sağlık kontrolünün izlediği yol. Hepsi görüş alanına girerken belirir, JS olmadan.</p></header>
+<aside class="co co-tip" data-reveal><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body"><p>Sağlık kontrolü yolunu uygulamanın gerçekten bağımlı olduğu her şeye değdirin; yalnızca “süreç ayakta” demek yetmez.</p></div></aside>
+<div class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 3</p><p class="fig-cap">Sağlık kontrolünün izlediği yol</p>
+  <div class="drawing" data-aw="720" data-ah="140" style="--aw:720;--ah:140" data-reveal="draw">
+    <svg viewBox="0 0 720 140" aria-hidden="true">
+      <path class="ln-draw" pathLength="1" d="M40 70H200"/>
+      <path class="ln-draw" pathLength="1" d="M300 70H440"/>
+      <path class="ln-draw" pathLength="1" d="M540 70H660"/>
+      <rect class="ln-strong fill-paper" pathLength="1" x="200" y="40" width="100" height="60"/>
+      <rect class="ln-strong fill-paper" pathLength="1" x="440" y="40" width="100" height="60"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:90;--w:160">/saglik</p>
+    <p class="dl" style="--x:212;--y:60;--w:80">uygulama</p>
+    <p class="dl" style="--x:452;--y:60;--w:80">veritabanı</p>
+    <p class="dl" style="--x:600;--y:90;--w:100">200 OK</p>
+  </div>
+  <p class="figcap"><b>Şekil 3.</b> İstek uygulamadan geçip veritabanına bir sorgu atar; ikisi de yanıt verirse 200 döner.</p>
+</div>
+<div class="co co-warn" data-reveal><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Sağlık kontrolü pahalı bir sorgu çalıştırmamalı; yük dengeleyici onu her birkaç saniyede bir çağırır.</p></div></div>
+<div class="demo">
+  <span class="demo-label">Örnek · işaretleme</span>
+  <div class="demo-view">
+<aside class="co co-tip" data-reveal>
+  <span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span>
+  <div class="co-body"><p>Belirme yalnızca küçük vurgular içindir.</p></div>
+</aside>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>aside</span> class="<span class='s'>co co-tip</span>" data-reveal&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-bulb</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;İpucu&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Belirme yalnızca küçük vurgular içindir.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>aside</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+
+<article class="chapter" id="p4" data-section data-title="Hareket kapalıyken">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Hareket kapalıyken</h2><p class="lead">İki araç da son hali varsayılan sayar. Bir şey eksik kalıyorsa yanlış olan işaretlemedir.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>Kalem taslağı</th><th>[data-reveal]</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı, destekleyen tarayıcı</td><td>2 sn'de çizilir</td><td>Görüş alanına girerken belirir / çizilir</td></tr>
+    <tr><td>Reduced motion</td><td>Bu sayfada hiç gizlenmez; olsa da geçişler ~0 sürer</td><td>Animasyon yok, öğe görünür</td></tr>
+    <tr><td><code>animation-timeline</code> desteklenmiyor</td><td>Etkilenmez</td><td>Öğe görünür</td></tr>
+    <tr><td>Baskı</td><td>Kurallar <code>@media screen</code> içinde: tam çizim</td><td>Görünür</td></tr>
+    <tr><td>JS yok</td><td>Sınıf eklenmez: tam çizim, düğme gizli</td><td>Etkilenmez (zaten JS'siz)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Taslak 1100px altında da oynar; o sınır yalnız sahne motoru içindir. Dar ekranda oynatmak istemiyorsanız <code>sketch-pending</code>'i eklemeden önce <code>Hendese.state.motion</code>'a bakın.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Belirme bir süsleme katmanıdır; okuma akışını yavaşlatmamalı, bilgiyi saklamamalı.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · küçük vurgu</span>
+  <div class="demo-view">
+<aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body"><p>Bir not, bir şekil, bir çizgi: sayfada birkaç yer.</p></div></aside>
+<p class="figcap"><code>data-reveal</code> ipucu ve şekil gibi kendi başına duran öğelerde.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · her paragraf beliriyor</span>
+  <div class="demo-view">
+<p>Her paragraf ve liste maddesi <code>data-reveal</code> taşıyınca metin okurdan bir adım geride kalır; hızlı kaydıran okur yarı saydam satırlar görür.</p>
+  </div>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · varsayılan görünür</span>
+  <div class="demo-view">
+<p>Gizleme yalnızca pakette, <code>@supports</code> ve <code>prefers-reduced-motion: no-preference</code> altında yapılır. Sayfa CSS'i öğeyi gizlemez.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · kendi opacity:0'ınız</span>
+  <div class="demo-view">
+<p><code>[data-reveal]{opacity:0}</code> gibi bir sayfa kuralı, desteklemeyen tarayıcıda içeriği kalıcı olarak gizler.</p>
+  </div>
+</div>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>API</h2><p class="lead">Paket iki sınıf ve bir öznitelik verir; zamanlama ve tetikleme sayfanındır.</p></header>
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>.sketch-pending</code></td><td>Kapsayıcıda: <code>.pencil</code> içindeki yollar görünmez (<code>stroke-dashoffset: 1</code>). Yalnız ekranda.</td></tr>
+    <tr><td><code>.sketch</code></td><td>Kapsayıcıda: yollar <code>--dur-5</code> (2 sn) boyunca çizilir. Bir kare önce <code>.sketch-pending</code> olmalı.</td></tr>
+    <tr><td><code>.pencil</code></td><td>SVG grubu; kalem rengi ve inceliği. Yollarında <code>pathLength="1"</code> şart.</td></tr>
+    <tr><td><code>data-reveal</code></td><td>Görüş alanına girerken saydamlık ve 12px kayma (<code>entry 0%</code> → <code>entry 60%</code>).</td></tr>
+    <tr><td><code>data-reveal="draw"</code></td><td>İçindeki <code>path, line, polyline, rect, circle</code> şekillerini çizer (<code>entry 10%</code> → <code>cover 45%</code>); şekillerde <code>pathLength="1"</code> şart.</td></tr>
+    <tr><td>Koşul</td><td>Belirme: <code>@supports (animation-timeline: view())</code> ve <code>prefers-reduced-motion: no-preference</code>. Taslak: <code>@media screen</code>.</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="hud.html" rel="prev"><small>Önceki · Hareket</small>HUD</a><a href="dar-varyant.html" rel="next"><small>Sonraki · Hareket</small>Dar varyant</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  function sketch(el) {
+    el.classList.remove('sketch'); el.classList.add('sketch-pending');
+    void el.offsetWidth;
+    requestAnimationFrame(function () { el.classList.remove('sketch-pending'); el.classList.add('sketch'); });
+  }
+  var els = Hendese.$$('.ts-sk');
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { sketch(e.target); io.unobserve(e.target); } }); }, { threshold: .35 });
+    els.forEach(function (el) { el.classList.add('sketch-pending'); io.observe(el); });
+  }
+  Hendese.$$('[data-replay]').forEach(function (b) { b.addEventListener('click', function () { sketch(document.getElementById(b.getAttribute('data-replay'))); }); });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

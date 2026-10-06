@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hat ve makas · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group"><span lang="en">Blueprint</span></div>
+    <a class="nav-page" href="pafta.html">Pafta</a>
+    <a class="nav-page" href="cizim-birimleri.html">Çizim birimleri</a>
+    <a class="nav-page" href="cizgi-aileleri.html">Çizgi aileleri</a>
+    <a class="nav-page" href="istasyon-gezgini.html">İstasyon gezgini</a>
+    <a class="nav-page" href="izometrik-kutu.html">İzometrik kutu</a>
+    <a class="nav-page" href="olcu-aletleri.html">Ölçü aletleri</a>
+    <a class="nav-page" href="hat-ve-makas.html" aria-current="page">Hat ve makas</a>
+    <a class="nav-page" href="ariza-panosu.html">Arıza panosu</a>
+    <a class="nav-page" href="koyu-sahne.html">Koyu sahne</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Makas türleri</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
+    <h1>Hat ve makas<em>Trafik hangi yoldan gidiyor, hangisi kapalı.</em></h1>
+    <p class="intro">Yönlendirme çizimleri demiryolu dilini kullanır: ray kalın çizgidir, makas yolun ayrıldığı noktadır, kullanılmayan kol hayalettir, filtre kolu kırmızıdır. Kanarya, mavi/yeşil ve bölge yedeği gibi trafik kararları bu dille tek bakışta okunur.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.ln-strong</code> (ray) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.callout</code> · <code>.state</code> · <code>.deck-cap</code></dd><dt>Satır içi stil</dt><dd>Filtre kolu: <code>stroke:var(--bad)</code>, 5 birim</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Ray trafiği taşıyan yoldur ve kalın çizilir. Makasta yol ayrılır; o an kullanılmayan kol hayalet kalır. Filtre kolu bir rayı keser ve kırmızıdır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · bir makas ve bir filtre</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:250">
+  <svg viewBox="0 0 900 250" aria-hidden="true">
+    <path class="ln-strong" d="M40 110H340L380 70H880"/>
+    <path class="ln-ghost" d="M340 110L380 150H880"/>
+    <circle class="fill-draw" cx="340" cy="110" r="4"/>
+    <path class="ln-strong" d="M40 210H250"/>
+    <path class="ln-ghost" d="M250 210H330"/>
+    <path class="ln-draw" d="M250 160V236"/>
+    <circle class="ln-draw fill-paper" cx="250" cy="160" r="5"/>
+    <path style="stroke:var(--bad);stroke-width:5;stroke-linecap:round" d="M250 186V234"/>
+  </svg>
+  <p class="dl" style="--x:40;--y:84;--w:260">istekler · lb-public</p>
+  <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">makas</p>
+  <p class="dl" style="--x:420;--y:44;--w:200">ray · .ln-strong</p>
+  <p class="dl" style="--x:420;--y:158;--w:240;color:var(--ink-3)">kullanılmayan kol · .ln-ghost</p>
+  <p class="dl" style="--x:40;--y:184;--w:200">tarama botları</p>
+  <p class="dl" style="--x:266;--y:164;--w:200;color:var(--bad)">filtre kolu · WAF</p>
+  <p class="dl callout" style="--x:700;--y:26;--w:180">web-api v2</p>
+  <p class="dl callout" style="--x:700;--y:164;--w:180;border-style:dashed;color:var(--ink-3)">web-api v1 · boşta</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:250</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 250</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 110H340L380 70H880</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M340 110L380 150H880</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>340</span>" cy="<span class='s'>110</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 210H250</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M250 210H330</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M250 160V236</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>250</span>" cy="<span class='s'>160</span>" r="<span class='s'>5</span>"/&gt;
+    &lt;<span class='k'>path</span> style="<span class='s'>stroke:var(--bad);stroke-width:5;stroke-linecap:round</span>" d="<span class='s'>M250 186V234</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:84;--w:260</span>"&gt;istekler · lb-public&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:118;--w:80;text-align:center</span>"&gt;makas&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:420;--y:44;--w:200</span>"&gt;ray · .ln-strong&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:420;--y:158;--w:240;color:var(--ink-3)</span>"&gt;kullanılmayan kol · .ln-ghost&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:184;--w:200</span>"&gt;tarama botları&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:266;--y:164;--w:200;color:var(--bad)</span>"&gt;filtre kolu · WAF&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:700;--y:26;--w:180</span>"&gt;web-api v2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:700;--y:164;--w:180;border-style:dashed;color:var(--ink-3)</span>"&gt;web-api v1 · boşta&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Makas noktası <code>circle.fill-draw</code> ile işaretlenir. Filtre kolu bir direk (<code>.ln-draw</code>), bir mafsal (<code>circle.ln-draw.fill-paper</code>) ve rayı kesen kalın kırmızı bir çubuktur; kolun ötesindeki yol hayalettir, çünkü oraya hiçbir şey ulaşmaz. Varış etiketleri <code>.callout</code> kutusudur; boşta olan kesikli çerçeve alır.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Makas türleri">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Makas türleri</h2><p class="lead">Aynı makas üç farklı kararı çizer: trafiği ağırlıkla bölmek, bir taraftan ötekine bir anda geçmek ya da sağlıksız tarafı kapatmak.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · kanarya · ağırlıklı bölme</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:190">
+  <svg viewBox="0 0 900 190" aria-hidden="true">
+    <path class="ln-strong" d="M40 90H680"/>
+    <path class="ln-draw" d="M320 90L370 150H680"/>
+    <circle class="fill-draw" cx="320" cy="90" r="4"/>
+    <text class="dim-t" x="520" y="80" text-anchor="middle">%95</text>
+    <text class="dim-t" x="520" y="140" text-anchor="middle">%5</text>
+  </svg>
+  <p class="dl" style="--x:40;--y:64;--w:260">istekler</p>
+  <p class="dl callout" style="--x:690;--y:74;--w:190">4.2.0 · kararlı</p>
+  <p class="dl callout" style="--x:690;--y:132;--w:190">4.3.0 <span class="state warn">Gözlemde</span></p>
+  <p class="dl" style="--x:380;--y:160;--w:300">hata %0,3 · eşik %1 · 30 dk</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:190</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 190</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 90H680</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M320 90L370 150H680</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>320</span>" cy="<span class='s'>90</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>520</span>" y="<span class='s'>80</span>" text-anchor="<span class='s'>middle</span>"&gt;%95&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>520</span>" y="<span class='s'>140</span>" text-anchor="<span class='s'>middle</span>"&gt;%5&lt;/<span class='k'>text</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:64;--w:260</span>"&gt;istekler&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:690;--y:74;--w:190</span>"&gt;4.2.0 · kararlı&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:690;--y:132;--w:190</span>"&gt;4.3.0 &lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;Gözlemde&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:380;--y:160;--w:300</span>"&gt;hata %0,3 · eşik %1 · 30 dk&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Kanaryada iki yol da gerçektir, bu yüzden ikisi de düz çizilir. Trafiğin çoğunu taşıyan kalın, azını taşıyan ince çizgidir; oran çizginin üstünde yazılıdır.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · mavi/yeşil · önce ve sonra</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:210">
+  <svg viewBox="0 0 900 210" aria-hidden="true">
+    <path class="ln-pencil ln-dash" d="M450 0V210"/>
+    <path class="ln-strong" d="M20 120H150L190 80H330"/>
+    <path class="ln-draw" d="M150 120L190 160H330"/>
+    <circle class="fill-draw" cx="150" cy="120" r="4"/>
+    <path class="ln-strong" d="M490 120H620L660 160H800"/>
+    <path class="ln-ghost" d="M620 120L660 80H800"/>
+    <circle class="fill-draw" cx="620" cy="120" r="4"/>
+  </svg>
+  <p class="sl deck-cap" style="--x:20;--y:14"><b>ÖNCE</b>trafik mavide</p>
+  <p class="sl deck-cap" style="--x:490;--y:14"><b>SONRA</b>trafik yeşilde</p>
+  <p class="dl" style="--x:340;--y:70;--w:100">mavi</p>
+  <p class="dl" style="--x:340;--y:150;--w:110">yeşil · boşta</p>
+  <p class="dl" style="--x:810;--y:70;--w:90;color:var(--ink-3)">mavi</p>
+  <p class="dl" style="--x:810;--y:150;--w:90">yeşil</p>
+  <p class="dl" style="--x:20;--y:182;--w:420">yeşil kuruldu ve testleri geçti</p>
+  <p class="dl" style="--x:490;--y:182;--w:410;color:var(--ink-3)">mavi geri dönüş için bir saat bekletilir</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:210</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 210</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil ln-dash</span>" d="<span class='s'>M450 0V210</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M20 120H150L190 80H330</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M150 120L190 160H330</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>120</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M490 120H620L660 160H800</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M620 120L660 80H800</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>620</span>" cy="<span class='s'>120</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:14</span>"&gt;&lt;<span class='k'>b</span>&gt;ÖNCE&lt;/<span class='k'>b</span>&gt;trafik mavide&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:490;--y:14</span>"&gt;&lt;<span class='k'>b</span>&gt;SONRA&lt;/<span class='k'>b</span>&gt;trafik yeşilde&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:70;--w:100</span>"&gt;mavi&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:150;--w:110</span>"&gt;yeşil · boşta&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:810;--y:70;--w:90;color:var(--ink-3)</span>"&gt;mavi&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:810;--y:150;--w:90</span>"&gt;yeşil&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:182;--w:420</span>"&gt;yeşil kuruldu ve testleri geçti&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:490;--y:182;--w:410;color:var(--ink-3)</span>"&gt;mavi geri dönüş için bir saat bekletilir&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Mavi/yeşilde makas tek hamlede döner. “Sonra” çiziminde mavi kol hayalettir: önceki konumdur ve geri dönüş yolu olarak durur. Ara durum yoktur; bu yüzden çizim iki ayrı paneldir, kesikli kılavuz çizgisi onları ayırır.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Bağlam içinde</h2><p class="lead">Makas bir arıza ya da bakım anında neyin değiştiğini anlatır. İki kompozisyon: bölge yedeğine geçiş ve gece bakım penceresi.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · bölge yedeğine geçiş</span>
+  <div class="demo-view">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Şekil 1</p>
+    <p class="fig-cap">Birincil bölge sağlıksız, trafik yedekte</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Kontrol</b>DNS her 10 saniyede iki bölgeye de sağlık isteği gönderir.</li>
+      <li><b>2 · Karar</b>Birincil üç denemede de yanıt vermezse makas yedeğe döner.</li>
+      <li><b>3 · Yayılma</b>İstemciler yeni adresi TTL dolunca alır; en geç 60 saniye.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:250">
+      <svg viewBox="0 0 600 250" aria-hidden="true">
+        <path class="ln-strong" d="M20 130H200"/>
+        <circle class="fill-draw" cx="200" cy="130" r="4"/>
+        <path class="ln-block" d="M200 130L240 60H380"/>
+        <path class="ln-draw ln-bad" d="M386 44V76M394 48l14 24M408 48l-14 24"/>
+        <rect class="ln-draw ln-bad fill-paper" x="420" y="36" width="160" height="50"/>
+        <path class="ln-strong" d="M200 130L240 200H414M414 200l-9-5M414 200l-9 5"/>
+        <rect class="ln-strong fill-paper" x="420" y="175" width="160" height="50"/>
+        <text class="dim-t" x="110" y="158" text-anchor="middle">TTL 60 s</text>
+      </svg>
+      <p class="dl" style="--x:20;--y:102;--w:180">api.ornek.net</p>
+      <p class="dl" style="--x:240;--y:14;--w:200;color:var(--bad)">sağlık · 3/3 başarısız</p>
+      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state bad">Sağlıksız</span></p>
+      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state ok">Etkin</span></p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Birincil bölge sağlık kontrolünden kaldı; DNS makası yedek bölgeye çevirdi ve yol engellendi.</p>
+    <p class="figcap"><b>Şekil 1.</b> Kırmızı kesik çizgi ve durdurma işareti denenen ama kapatılan yoldur; kalın ray şu an trafiği taşıyan yoldur.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Şekil 1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Birincil bölge sağlıksız, trafik yedekte&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>header</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;
+    &lt;<span class='k'>ol</span> class="<span class='s'>beats</span>"&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;1 · Kontrol&lt;/<span class='k'>b</span>&gt;DNS her 10 saniyede iki bölgeye de sağlık isteği gönderir.&lt;/<span class='k'>li</span>&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;2 · Karar&lt;/<span class='k'>b</span>&gt;Birincil üç denemede de yanıt vermezse makas yedeğe döner.&lt;/<span class='k'>li</span>&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;3 · Yayılma&lt;/<span class='k'>b</span>&gt;İstemciler yeni adresi TTL dolunca alır; en geç 60 saniye.&lt;/<span class='k'>li</span>&gt;
+    &lt;/<span class='k'>ol</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:250</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 250</span>" aria-hidden="<span class='s'>true</span>"&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M20 130H200</span>"/&gt;
+        &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>200</span>" cy="<span class='s'>130</span>" r="<span class='s'>4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M200 130L240 60H380</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M386 44V76M394 48l14 24M408 48l-14 24</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-bad fill-paper</span>" x="<span class='s'>420</span>" y="<span class='s'>36</span>" width="<span class='s'>160</span>" height="<span class='s'>50</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M200 130L240 200H414M414 200l-9-5M414 200l-9 5</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>420</span>" y="<span class='s'>175</span>" width="<span class='s'>160</span>" height="<span class='s'>50</span>"/&gt;
+        &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>110</span>" y="<span class='s'>158</span>" text-anchor="<span class='s'>middle</span>"&gt;TTL 60 s&lt;/<span class='k'>text</span>&gt;
+      &lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:102;--w:180</span>"&gt;api.ornek.net&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:14;--w:200;color:var(--bad)</span>"&gt;sağlık · 3/3 başarısız&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:432;--y:44;--w:140</span>"&gt;eu-west-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state bad</span>"&gt;Sağlıksız&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:432;--y:183;--w:140</span>"&gt;eu-central-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state ok</span>"&gt;Etkin&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bir cümleyle&lt;/<span class='k'>span</span>&gt;Birincil bölge sağlık kontrolünden kaldı; DNS makası yedek bölgeye çevirdi ve yol engellendi.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 1.&lt;/<span class='k'>b</span>&gt; Kırmızı kesik çizgi ve durdurma işareti denenen ama kapatılan yoldur; kalın ray şu an trafiği taşıyan yoldur.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · gece bakım penceresi, koyu pafta</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 2</p>
+  <p class="fig-cap">Bakım sırasında yazmalar kuyruğa</p>
+  <div class="drawing" style="--aw:900;--ah:240">
+    <svg viewBox="0 0 900 240" aria-hidden="true">
+      <path class="ln-strong" d="M40 130H220"/>
+      <circle class="fill-draw" cx="220" cy="130" r="4"/>
+      <path class="ln-strong" d="M220 130L260 60H654M654 60l-9-5M654 60l-9 5"/>
+      <path class="ln-block" d="M220 130H600"/>
+      <path class="ln-draw ln-bad" d="M606 114V146M614 118l14 24M628 118l-14 24"/>
+      <path class="ln-draw" d="M220 130L260 200H654M654 200l-8-4M654 200l-8 4"/>
+      <rect class="ln-draw fill-paper" x="660" y="36" width="220" height="48"/>
+      <rect class="ln-draw ln-warn fill-paper" x="660" y="106" width="220" height="48"/>
+      <rect class="ln-draw fill-paper" x="660" y="176" width="220" height="48"/>
+    </svg>
+    <p class="dl" style="--x:40;--y:104;--w:170">istekler</p>
+    <p class="dl" style="--x:300;--y:34;--w:300">GET · okuma</p>
+    <p class="dl" style="--x:300;--y:104;--w:300;color:var(--bad)">POST · doğrudan yazma</p>
+    <p class="dl" style="--x:300;--y:174;--w:300">POST · kuyruğa</p>
+    <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · kopya</p>
+    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state warn">Bakımda</span></p>
+    <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · yazma kuyruğu</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> Okumalar kopyadan devam eder. Birincile doğrudan yazma kapalıdır; yazmalar kuyrukta bekler ve bakım bitince sırayla işlenir.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Şekil 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Bakım sırasında yazmalar kuyruğa&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:240</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 240</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 130H220</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>220</span>" cy="<span class='s'>130</span>" r="<span class='s'>4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M220 130L260 60H654M654 60l-9-5M654 60l-9 5</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M220 130H600</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M606 114V146M614 118l14 24M628 118l-14 24</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 130L260 200H654M654 200l-8-4M654 200l-8 4</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>36</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-warn fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>106</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>176</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:104;--w:170</span>"&gt;istekler&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:34;--w:300</span>"&gt;GET · okuma&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:104;--w:300;color:var(--bad)</span>"&gt;POST · doğrudan yazma&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:174;--w:300</span>"&gt;POST · kuyruğa&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:50;--w:200</span>"&gt;orders-db-2 · kopya&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:120;--w:200</span>"&gt;orders-db-1 &lt;<span class='k'>span</span> class="<span class='s'>state warn</span>"&gt;Bakımda&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:190;--w:200</span>"&gt;jobs-eu · yazma kuyruğu&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 2.&lt;/<span class='k'>b</span>&gt; Okumalar kopyadan devam eder. Birincile doğrudan yazma kapalıdır; yazmalar kuyrukta bekler ve bakım bitince sırayla işlenir.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Yap / yapma</h2><p class="lead">Bir makasta aynı anda tek bir kol gerçek trafik taşır; öteki hayalettir. İki kalın kol, okuyanı hangi yolun açık olduğu konusunda yalnız bırakır.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · tek gerçek kol</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-ghost" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2 · etkin</p>
+  <p class="dl" style="--x:310;--y:118;--w:120;color:var(--ink-3)">v1 · önceki</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M10 75H150L190 40H430</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M150 75L190 110H430</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>75</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:14;--w:100</span>"&gt;v2 · etkin&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:118;--w:120;color:var(--ink-3)</span>"&gt;v1 · önceki&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · iki kalın kol</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-strong" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2</p>
+  <p class="dl" style="--x:330;--y:118;--w:100">v1</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M10 75H150L190 40H430</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M150 75L190 110H430</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>75</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:14;--w:100</span>"&gt;v2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:118;--w:100</span>"&gt;v1&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Kalın ve hayalet çizgi arasındaki fark görsel bir farktır. Hangi yolun açık, hangisinin kapalı olduğu varış etiketinde (<code>.state</code>) ve şekil yazısında da söylenmelidir. Engellenen yol yalnız kırmızıyla değil, kesik desen ve durdurma işaretiyle de çizilir.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="olcu-aletleri.html" rel="prev"><small>Önceki · <span lang="en">Blueprint</span></small>Ölçü aletleri</a><a href="ariza-panosu.html" rel="next"><small>Sonraki · <span lang="en">Blueprint</span></small>Arıza panosu</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

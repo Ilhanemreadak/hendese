@@ -2,7 +2,7 @@
 .demo{margin:14px 0 22px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
 .demo-view{padding:20px 22px}
 .demo-view>:first-child{margin-top:0}.demo-view>:last-child{margin-bottom:0}
-.demo .code{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--r-md) var(--r-md)}
+.demo>.code{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--r-md) var(--r-md)}
 .demo-label{display:block;padding:7px 14px;border-bottom:1px solid var(--line);font:500 10.5px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0 20px}
 .swatches div{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;font:12px/1.4 var(--font-mono);color:var(--ink-2);background:var(--surface)}
@@ -13,3 +13,18 @@
 .nav-page:hover{color:var(--ink-2)}
 .nav-page[aria-current="page"]{color:var(--ink);font-weight:600}
 .api{font-size:14px}
+/* parça sayfaları (demos/): galeri kartları, yap/yapma çifti, önceki/sonraki */
+.parts{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.parts a{display:block;height:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink-2);text-decoration:none;font-size:13.5px;line-height:1.45;transition:border-color var(--dur-1) var(--ease-out)}
+.parts a:hover,.parts a:focus-visible{border-color:var(--accent)}
+.parts b{display:block;margin-bottom:3px;color:var(--ink);font-size:14.5px}
+.dodont{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 22px}
+.dodont>.demo{margin:0}
+.dodont>.demo:first-child{border-top:2px solid var(--ok)}.dodont>.demo:first-child .demo-label{color:var(--ok)}
+.dodont>.demo:last-child{border-top:2px solid var(--bad)}.dodont>.demo:last-child .demo-label{color:var(--bad)}
+.pager{display:flex;justify-content:space-between;gap:14px;margin:40px 0 24px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{padding:10px 14px;border:1px solid var(--line);border-radius:var(--r-md);color:var(--ink);text-decoration:none;font-weight:600;font-size:14.5px}
+.pager a:hover,.pager a:focus-visible{border-color:var(--accent)}
+.pager a[rel=next]{text-align:right;margin-left:auto}
+.pager small{display:block;font:500 10.5px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:760px){.dodont{grid-template-columns:1fr}}

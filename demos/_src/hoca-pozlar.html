@@ -1,0 +1,159 @@
+<!-- meta {"title":"Hoca · pozlar","group":"Hoca","order":10,"tagline":"Karakter, 21 poz, balon.","intro":"Hoca turuncu, piksel bir blok karakterdir. Canvas ile boyanır, görsel dosyası yoktur. Öğretmenliği gözlükten, elindeki eşyadan ve pozundan gelir; konuşması tek kısa cümledir ve metinde zaten yazanı tekrar eder.","summary":"Karakter ölçüleri, 21 pozun galerisi, <code>place()</code> oyun alanı ve balon kuralları.","facts":{"Sprite":"44 × 36 hücre, ×2 → 88 × 72 px","JS":"<code>Hendese.createHoca()</code> → <code>render</code> · <code>place</code> · <code>clearPlaced</code> · <code>size</code> · <code>anchors</code>","Görünür":"≥ 1100px, ekran; <code>aria-hidden</code>"}} -->
+
+<style>
+/* sayfaya özel (.hp-): galeri hücreleri ve sahneler; Hoca kopyaları place() ile içine konur. */
+.hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0 22px}
+.hp-cell,.hp-stage{position:relative;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--scene-bg)}
+.hp-cell{height:150px}
+.hp-cell span{position:absolute;left:8px;top:6px;font:500 11px/1.4 var(--font-mono);color:var(--ink-2)}
+.hp-cell::after,.hp-stage::after{content:"";position:absolute;left:12px;right:12px;bottom:22px;border-top:1px dashed var(--pencil)}
+.hp-stage{height:170px}
+.hp-stage.is-tall{height:220px}
+.hp-anchor{position:absolute;left:50%;bottom:22px;width:15px;height:15px;transform:translate(-50%,50%);pointer-events:none;
+  background:linear-gradient(var(--bad),var(--bad)) center/1px 100% no-repeat,linear-gradient(var(--bad),var(--bad)) center/100% 1px no-repeat}
+.hp-row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end}
+.hp-row label.hp-txt{display:grid;gap:4px;font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.hp-row input[type=text]{font:14px/1.4 var(--font-pixel);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink);width:240px}
+.hp-row select{font:13px/1.4 var(--font-mono);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)}
+html:not(.js) .hp-row{display:none}
+</style>
+
+<chapter title="Karakter" lead="Düz bir blok gövde, iki göz yarığı, yan çıkıntılar ve dört bacak. Ölçüleri sabittir; Hoca ölçeklenmez.">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:start">
+  <div class="hp-stage is-tall" id="hp-hero" aria-hidden="true"><i class="hp-anchor"></i></div>
+  <dl class="kv" style="grid-template-columns:150px minmax(0,1fr);margin:0">
+    <dt>Izgara</dt><dd>44 × 36 hücre, her hücre 2 × 2 px; ekranda 88 × 72 px. Ölçek yok, kenarlar keskin (<code>image-rendering: pixelated</code>).</dd>
+    <dt>Bağlantı noktası</dt><dd>Ayakların alt ortası (<code>{x: 44, y: 68}</code>); <code>sit</code> pozunda oturma noktası (<code>{x: 44, y: 60}</code>). Soldaki kırmızı artı bu noktadır.</dd>
+    <dt>Kişilik</dt><dd>Küçük gözlük, elindeki eşya, poz. Yüz ifadesi yalnızca göz yarıklarıyla verilir.</dd>
+    <dt>Boyama</dt><dd>Her poz bir kez canvas'a çizilip veri adresine çevrilir; dışarıdan dosya yüklenmez.</dd>
+    <dt>Erişilebilirlik</dt><dd>Katman ve tüm kopyalar <code>aria-hidden</code>; Hoca'nın söylediği her şey metinde de yazılıdır.</dd>
+  </dl>
+</div>
+<div class="prose"><p>Motor kendi Hoca örneğini <code>Hendese.start()</code> içinde oluşturur (rayda <code>#hoca-home</code> ya da <code>still</code> taşıyan bir sahne varsa). Bu sayfadaki galeri ve oyun alanı <code>Hendese.createHoca()</code> ile ayrı örnekler açar ve kopyaları <code>place()</code> ile kutuların içine koyar.</p></div>
+</chapter>
+
+<chapter title="Poz galerisi" lead="21 poz. Kesikli çizgi zemin; her kopya ayakları çizgiye basacak şekilde yerleşir.">
+<div class="hp-grid" id="hp-grid">
+  <div class="hp-cell"><span>idle</span></div><div class="hp-cell"><span>carry</span></div><div class="hp-cell"><span>walkA</span></div>
+  <div class="hp-cell"><span>walkB</span></div><div class="hp-cell"><span>stepA</span></div><div class="hp-cell"><span>stepB</span></div>
+  <div class="hp-cell"><span>pointUp</span></div><div class="hp-cell"><span>pointDown</span></div><div class="hp-cell"><span>glasses</span></div>
+  <div class="hp-cell"><span>terminal</span></div><div class="hp-cell"><span>stamp</span></div><div class="hp-cell"><span>worried</span></div>
+  <div class="hp-cell"><span>happy</span></div><div class="hp-cell"><span>sit</span></div><div class="hp-cell"><span>shrug</span></div>
+  <div class="hp-cell"><span>clipboard</span></div><div class="hp-cell"><span>keycard</span></div><div class="hp-cell"><span>crate</span></div>
+  <div class="hp-cell"><span>crateWalkA</span></div><div class="hp-cell"><span>crateWalkB</span></div><div class="hp-cell"><span>helm</span></div>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Grup</th><th>Pozlar</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td>Durma</td><td><code>idle</code>, <code>sit</code></td><td>Evde ya da bir sahnenin sonunda, bir şey olmazken.</td></tr>
+    <tr><td>Yürüme</td><td><code>walkA/B</code> (kartla), <code>stepA/B</code> (elleri boş), <code>crateWalkA/B</code> (kutuyla)</td><td>Konuma bağlı iki kare: <code>Math.floor(x / 16) % 2</code>. Yalnız <code>x</code> değişirken.</td></tr>
+    <tr><td>İşaret</td><td><code>pointUp</code>, <code>pointDown</code></td><td>Bir etikete ya da az önce değişen parçaya dikkat çekmek.</td></tr>
+    <tr><td>İnceleme</td><td><code>glasses</code>, <code>clipboard</code></td><td>Bir değeri okurken, bir listeyi denetlerken.</td></tr>
+    <tr><td>İş</td><td><code>terminal</code>, <code>stamp</code>, <code>keycard</code>, <code>helm</code>, <code>carry</code>, <code>crate</code></td><td>Komut çalıştırma, onay, yetki, dağıtım, bir şeyi taşıma.</td></tr>
+    <tr><td>Duygu</td><td><code>happy</code>, <code>worried</code>, <code>shrug</code></td><td>Sonuç: başarı, risk, belirsizlik. Sahne başına bir kez.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Oyun alanı" lead="Poz, yön, balon ve etiketi değiştirip place() çağrısının ne çizdiğini görün. Altındaki kod her değişiklikte güncellenir.">
+<div class="hp-row">
+  <label class="hp-txt">Poz<select id="hp-pose"></select></label>
+  <fieldset class="choice is-seg"><legend>Yön</legend>
+    <label><input type="radio" name="hp-face" value="1"><span>sağa</span></label>
+    <label><input type="radio" name="hp-face" value="-1" checked><span>sola</span></label>
+  </fieldset>
+  <fieldset class="choice is-seg"><legend>Balon</legend>
+    <label><input type="radio" name="hp-up" value="0" checked><span>yan</span></label>
+    <label><input type="radio" name="hp-up" value="1"><span>üst</span></label>
+  </fieldset>
+  <label class="hp-txt">Balon metni<input type="text" id="hp-bub" value="Sertifika 90 gün geçerli."></label>
+  <label class="hp-txt">Etiket<input type="text" id="hp-tag" value=""></label>
+</div>
+<div class="hp-stage is-tall" id="hp-play" aria-hidden="true"></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">çağrı</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code id="hp-call">hoca.place(kap, { left: '62%', top: 'calc(100% - 22px)', pose: 'stamp', face: -1, bubble: "Sertifika 90 gün geçerli.", bubbleUp: false, tag: null });</code></pre></figure>
+</chapter>
+
+<chapter title="Balon kuralları" lead="Balon tek kısa cümledir, metinde zaten geçen bir bilgiyi tekrar eder ve sahne başına bir kez, anahtar anda çıkar.">
+<div class="prose">
+  <ul>
+    <li><b>Kısa.</b> En çok 230px genişlik; iki satırı geçen cümle balona sığmaz, okura yük olur.</li>
+    <li><b>Yeni bilgi yok.</b> Balon ekran okuyucuya ulaşmaz ve dar ekranda görünmez; söylediği her şey sayfada yazılı olmalı.</li>
+    <li><b>Yer.</b> Balon Hoca'nın solunda durur. <code>render()</code>'da solda yer yoksa sağa geçer; <code>place()</code>'te ise kendiliğinden geçmez, Hoca'yı balona yer kalacak yere koyun. <code>bubbleUp</code> balonu baş hizasının üstüne kaldırır.</li>
+    <li><b>Yazı tipi.</b> Pixelify Sans'ın kapsamadığı bir karakter (örneğin ≠) varsa balon tümüyle mono yazı tipine düşer.</li>
+  </ul>
+</div>
+<div class="dodont">
+<demo label="Yap · tek cümle, metinde var" nocode>
+<div class="hp-stage" id="hp-do" aria-hidden="true"></div>
+<p class="figcap">Sonuç satırı “Yedek doğrulandı: sağlama toplamı tutuyor” diyor; balon bunu kısaltıyor.</p>
+</demo>
+<demo label="Yapma · paragraf, yeni bilgi" nocode>
+<div class="hp-stage" id="hp-dont" aria-hidden="true"></div>
+<p class="figcap">Uzun ve sayfada geçmeyen bir talimat: dar ekranda, baskıda ve ekran okuyucuda kaybolur.</p>
+</demo>
+</div>
+<demo label="Örnek · mono yedeği ve üst balon" nocode>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+  <div class="hp-stage" id="hp-mono" aria-hidden="true"></div>
+  <div class="hp-stage" id="hp-up" aria-hidden="true"></div>
+</div>
+<p class="figcap">Solda “≠” içeren balon mono yazı tipine düştü. Sağda <code>bubbleUp: true</code>: balon başın üstünde, kuyruğu alt köşede.</p>
+</demo>
+</chapter>
+
+<chapter title="Hareket kapalıyken ve dar ekranda" lead="Hoca yalnızca 1100px ve üstünde, ekranda görünür. Reduced motion onu durdurur ama silmez.">
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>Hoca</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı (≥ 1100px)</td><td>Sabit katmanda; motor <code>render()</code> ile sahneden sahneye taşır.</td></tr>
+    <tr><td>Reduced motion (masaüstü)</td><td>Her sahnenin <code>still</code> pozunda durgun kopya; bu sayfadaki galeri gibi <code>place()</code> ile.</td></tr>
+    <tr><td>&lt; 1100px</td><td>Katman ve tüm kopyalar gizli (<code>display: none !important</code>). Galeride yalnızca poz adları kalır.</td></tr>
+    <tr><td>Baskı</td><td>Gizli.</td></tr>
+    <tr><td>JS yok</td><td>Yok; Hoca tümüyle JS ile boyanır.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Balon geçişi</span><div class="co-body"><p>Balon iki adımlı (<code>steps(2)</code>) kısa bir geçişle belirir; reduced motion'da geçiş yoktur.</p></div></div>
+</chapter>
+
+<chapter title="API" lead="createHoca() bağımsız bir sprite örneği döndürür. Sahnelerdeki Hoca'yı motor yönetir; onu doğrudan çağırmazsınız.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>Hendese.createHoca()</code></td><td>Tüm pozları boyar, <code>body</code>'ye sabit bir katman (<code>.hoca-layer</code>) ekler ve örneği döndürür. Her çağrı yeni bir katman ve boyama demektir; sayfa başına bir iki örnek yeter.</td></tr>
+    <tr><td><code>render(s)</code></td><td>Sabit katmanda çizer. <code>s</code>: <code>{visible, x, y</code> (viewport px), <code>pose, face</code> (1 | -1), <code>squash</code> (0..1), <code>bubble, bubbleUp, tag, alpha}</code>.</td></tr>
+    <tr><td><code>place(kap, o)</code></td><td>Kabın içine durgun kopya koyar; kap konumlandırılmış olmalı (<code>position: relative</code>). <code>o</code>: <code>{left, top</code> (CSS uzunluğu), <code>pose, face, bubble, bubbleUp, tag}</code>.</td></tr>
+    <tr><td><code>clearPlaced()</code></td><td>Bu örneğin koyduğu tüm kopyaları kaldırır.</td></tr>
+    <tr><td><code>size</code></td><td><code>{w: 88, h: 72, scale: 2}</code>.</td></tr>
+    <tr><td><code>anchors</code></td><td>Poz adı → bağlantı noktası (px): <code>{x: 44, y: 68}</code>, <code>sit</code> için <code>{x: 44, y: 60}</code>.</td></tr>
+    <tr><td>Sınıflar</td><td><code>.hoca</code>, <code>.hoca-img</code>, <code>.hoca-bubble</code> (<code>.on</code>, <code>.is-up</code>, <code>.is-right</code>, <code>.mono</code>), <code>.hoca-tag</code>, <code>.hoca-still</code>.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  var POSES = ['idle', 'carry', 'walkA', 'walkB', 'stepA', 'stepB', 'pointUp', 'pointDown', 'glasses', 'terminal', 'stamp', 'worried', 'happy', 'sit', 'shrug', 'clipboard', 'keycard', 'crate', 'crateWalkA', 'crateWalkB', 'helm'];
+  var FLOOR = 'calc(100% - 22px)';
+  /* galeri + durgun örnekler: tek örnek */
+  var g = Hendese.createHoca();
+  $$('#hp-grid .hp-cell').forEach(function (c, i) { g.place(c, { left: '50%', top: FLOOR, pose: POSES[i], face: 1 }); });
+  g.place($('#hp-hero'), { left: '50%', top: FLOOR, pose: 'idle', face: 1 });
+  g.place($('#hp-do'), { left: '78%', top: FLOOR, pose: 'happy', face: -1, bubble: 'Yedek doğrulandı.' });
+  g.place($('#hp-dont'), { left: '88%', top: FLOOR, pose: 'pointUp', face: -1, bubble: 'Geri dönmeden önce eski örneği silmeyi ve günlükleri ayrıca arşivlemeyi unutmayın, yoksa sorun olur.' });
+  g.place($('#hp-mono'), { left: '80%', top: FLOOR, pose: 'worried', face: -1, bubble: 'İstenen ≠ çalışan' });
+  g.place($('#hp-up'), { left: '80%', top: FLOOR, pose: 'glasses', face: -1, bubble: 'Eşik %2.', bubbleUp: true });
+  /* oyun alanı: ayrı örnek, galeriyi silmeden yenilenir */
+  var pg = Hendese.createHoca(), sel = $('#hp-pose'), stage = $('#hp-play');
+  POSES.forEach(function (p) { var o = document.createElement('option'); o.value = o.textContent = p; sel.appendChild(o); });
+  sel.value = 'stamp';
+  function play() {
+    var face = +$('[name=hp-face]:checked').value, up = $('[name=hp-up]:checked').value === '1', bub = $('#hp-bub').value.trim() || null, tag = $('#hp-tag').value.trim() || null;
+    pg.clearPlaced();
+    pg.place(stage, { left: '62%', top: FLOOR, pose: sel.value, face: face, bubble: bub, bubbleUp: up, tag: tag });
+    $('#hp-call').textContent = "hoca.place(kap, { left: '62%', top: '" + FLOOR + "', pose: '" + sel.value + "', face: " + face + ', bubble: ' + (bub ? JSON.stringify(bub) : 'null') + ', bubbleUp: ' + up + ', tag: ' + (tag ? JSON.stringify(tag) : 'null') + ' });';
+  }
+  [sel, $('#hp-bub'), $('#hp-tag')].concat($$('[name=hp-face],[name=hp-up]')).forEach(function (el) { el.addEventListener('input', play); el.addEventListener('change', play); });
+  play();
+})();
+</script>

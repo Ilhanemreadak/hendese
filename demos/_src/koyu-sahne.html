@@ -1,0 +1,206 @@
+<!-- meta {"title":"Koyu sahne","group":"Blueprint","order":90,"tagline":"Bir kapsayıcıyı temadan bağımsız koyu çiz.","intro":"<code>.scene-dark</code> bir kapsayıcının <code>color-scheme</code> değerini koyuya çevirir. Token'lar <code>light-dark()</code> ile tanımlı olduğu için içerideki her çizgi, dolgu ve bileşen koyu tonlara çözülür; açık temada da. “Ağın içi”, “gece nöbeti” gibi bağlamsal olarak farklı bir yeri göstermek için kullanılır.","summary":"<code>.scene-dark</code>: kapsayıcı içinde token dönüşümü; çizimler, pafta ve bileşenler.","facts":{"Sınıf":"<code>.scene-dark</code>","Ne yapar":"<code>color-scheme: dark</code> + <code>color: var(--ink)</code>","Kapsayıcıya düşen":"Zemin: <code>background: var(--scene-bg)</code> (ya da <code>.frame-bg</code>)","JS":"Gerekmez"}} -->
+
+<chapter title="Nasıl çalışır" lead="Sınıf iki şey yapar: kapsayıcının renk şemasını koyu yapar ve metin rengini yeniden okur. Zemin kapsayıcının işidir; fig-sheet ve frame bunu frame-bg ile zaten yapar.">
+<demo label="Örnek · aynı işaretleme, iki şema">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+  <div style="padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)">
+    <p class="chip">Sayfa teması</p>
+    <p style="margin:6px 0 12px">billing-worker kuyruğu boşalttı.</p>
+    <div class="pillrow" style="align-items:center"><span class="state ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
+  </div>
+  <div class="scene-dark" style="padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--scene-bg)">
+    <p class="chip">.scene-dark</p>
+    <p style="margin:6px 0 12px">billing-worker kuyruğu boşalttı.</p>
+    <div class="pillrow" style="align-items:center"><span class="state ok">Boşta</span><button class="btn" type="button">Günlüğü aç</button></div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>İki kutunun işaretlemesi yalnızca sınıf adında ayrılır. Sağdaki kutuda <code>--scene-bg</code>, <code>--ink</code>, <code>--ok</code> ve düğmenin yüzey token'ları koyu değerlerine çözülür. Sayfa zaten koyu temadaysa iki kutu aynı görünür.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">paketteki kural</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* light-dark() token'ları kullanıldıkları öğenin color-scheme'ine göre çözülür */
+.scene-dark{color-scheme:dark;color:var(--ink)}</code></pre></figure>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Zemin sizde</span><div class="co-body"><p>Sınıf zemin vermez. Çıplak bir <code>div.scene-dark</code> açık temada açık zeminin üstüne açık renkli metin yazar. Kapsayıcıya <code>background: var(--scene-bg)</code> (ya da <code>--surface</code>) verin veya içine bir <code>.frame-bg</code> katmanı koyun.</p></div></div>
+</chapter>
+
+<chapter title="Çizimler" lead="Çizgi ve dolgu sınıfları token okuduğu için çizim koyu sahnede değişmeden çalışır. Kâğıt dolgusu koyu bir yüze, çizim rengi açık maviye döner.">
+<demo label="Örnek · fig-sheet · CDN önbelleği">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Şekil 1</p>
+  <p class="fig-cap">Gece trafiği uç noktada kalıyor</p>
+  <div class="drawing" style="--aw:900;--ah:180">
+    <svg viewBox="0 0 900 180" aria-hidden="true">
+      <path class="dim" d="M105 56V22M440 56V22M790 56V22M105 30H790M105 30l8-3v6zM440 30l-8-3v6zM440 30l8-3v6zM790 30l-8-3v6z"/>
+      <text class="dim-t" x="272" y="24" text-anchor="middle">≈ 8 ms</text>
+      <text class="dim-t" x="615" y="24" text-anchor="middle">≈ 90 ms</text>
+      <rect class="ln-draw fill-paper" x="20" y="60" width="170" height="90"/>
+      <rect class="ln-strong fill-paper" x="330" y="60" width="220" height="90"/>
+      <rect class="ln-draw fill-paper" x="700" y="60" width="180" height="90"/>
+      <path class="ln-strong" d="M190 105H324M324 105l-9-5M324 105l-9 5"/>
+      <path class="ln-draw ln-dash" d="M550 105H694"/>
+      <path class="ln-draw" d="M694 105l-8-4M694 105l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:34;--y:74;--w:150"><span class="stamp-k">İstemci</span><br>tarayıcı</p>
+    <p class="dl" style="--x:344;--y:74;--w:200"><span class="stamp-k">Edge</span><br>edge-fra<br><span class="state ok">İsabet %94</span></p>
+    <p class="dl" style="--x:714;--y:74;--w:160"><span class="stamp-k">Origin</span><br>web-api</p>
+    <p class="dl" style="--x:560;--y:112;--w:130;text-align:center">ıskalamada</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 1.</b> Kalın yol isteklerin çoğunun izlediği yoldur; kesikli yol yalnızca önbellek ıskalandığında kullanılır.</figcaption>
+</figure>
+</demo>
+<demo label="Örnek · çıplak kapsayıcı · kasa erişimi">
+<div class="scene-dark" style="padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)">
+  <div class="drawing" style="--aw:900;--ah:180">
+    <svg viewBox="0 0 900 180" aria-hidden="true">
+      <rect class="ln-strong fill-paper" x="640" y="45" width="240" height="90"/>
+      <rect class="ln-draw fill-paper" x="20" y="20" width="200" height="56"/>
+      <rect class="ln-draw fill-paper" x="20" y="104" width="200" height="56"/>
+      <path class="ln-draw ln-ok" d="M220 48H500L540 72H634M634 72l-8-4M634 72l-8 4"/>
+      <path class="ln-block" d="M220 132H560"/>
+      <path class="ln-draw ln-bad" d="M566 116V148M574 120l14 24M588 120l-14 24"/>
+    </svg>
+    <p class="dl" style="--x:34;--y:38;--w:180">billing-worker</p>
+    <p class="dl" style="--x:34;--y:122;--w:180">ci-runner</p>
+    <p class="dl" style="--x:654;--y:58;--w:220"><span class="stamp-k">Kasa</span><br>secret/billing/*<br><span class="state ok">Okunabilir</span></p>
+    <p class="dl" style="--x:260;--y:20;--w:240">rol: billing-read</p>
+    <p class="dl" style="--x:260;--y:104;--w:300"><span class="state bad">Reddedildi</span> politika yok</p>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>İkinci örnekte pafta yok: <code>.scene-dark</code> doğrudan bir <code>div</code>'e verilmiş, zemin satır içi <code>var(--scene-bg)</code> ile okunmuş. Çizimin içi hiç değişmedi.</p></div>
+</chapter>
+
+<chapter title="Bileşenler" lead="Düğme, durum etiketi, uyarı kutusu, antet ve kayıt kutusu da yalnızca token okur. Koyu sahne içinde ek sınıf gerekmez.">
+<demo label="Örnek · bileşenler koyu sahnede">
+<div class="scene-dark" style="padding:18px 20px;border-radius:var(--r-md);background:var(--scene-bg)">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start">
+    <div style="display:grid;gap:14px">
+      <div class="pillrow">
+        <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+        <button class="toggle-btn" type="button" aria-pressed="true">Alarmları sustur</button>
+        <button class="icon-btn" type="button" aria-label="Bilgi"><svg><use href="#i-info"/></svg></button>
+      </div>
+      <p class="pillrow" style="margin:0"><span class="state ok">Eşitlendi</span><span class="state warn">Gecikmeli</span><span class="state bad">Düştü</span><span class="pill pill-ok">3 / 3 hazır</span></p>
+      <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Bakım penceresi</span><div class="co-body"><p>02:00–03:00 arasında orders-db salt okunur.</p></div></div>
+      <div class="readout"><p><b>search</b> indeksi yeniden kuruluyor; tahmini bitiş 02:40.</p></div>
+    </div>
+    <div style="display:grid;gap:14px">
+      <dl class="titleblock">
+        <div class="tb-head"><dt>Nöbet</dt><dd>ödeme ekibi</dd></div>
+        <div><dt>Birincil</dt><dd>nöbetçi-1</dd></div>
+        <div><dt>Bölge</dt><dd>eu-west-1</dd></div>
+      </dl>
+      <div class="register">
+        <p class="register-h"><b>Son olay</b><span>02:14</span></p>
+        <dl>
+          <div><dt>SERVICE</dt><dd>billing-worker</dd></div>
+          <div class="now"><dt>STATE</dt><dd>onay bekliyor</dd></div>
+        </dl>
+      </div>
+      <div class="stamp"><span class="stamp-k">Olay</span><span class="stamp-name">INC-2417</span></div>
+    </div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Kod blokları (<code>.code</code>) iki temada da zaten koyudur ve <code>--code-*</code> token'larını kullanır; koyu sahnede değişmezler. Hoca maskotu ve sayfa kabuğu (<code>.rail</code>, <code>.topbar</code>) bu sınıfın kapsamı dışındadır.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Koyu sahne bir yeri işaret eder: ağın içi, gece vardiyası, üretim ortamı. Tipik kullanım bütün bir paftayı koyu yapmaktır.">
+<demo label="Örnek · ağın içi · koyu pafta ve gezgin">
+<div class="frame scene-dark" data-explorer="ks-ag">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">04 · Şekil 2</p>
+    <p class="fig-cap">vpc-prod içinden bakış</p>
+  </header>
+  <div class="f-side">
+    <div class="prose">
+      <p>Pafta koyu, çünkü burada ağın dışından değil içinden bakıyoruz. Üç alt ağ yatay kesikli çizgilerle ayrılır.</p>
+      <p>Bir durağa tıklayın; panel o parçanın hangi trafiği kabul ettiğini anlatır.</p>
+    </div>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:340">
+      <svg viewBox="0 0 600 340" aria-hidden="true">
+        <path class="ln-pencil ln-dash" d="M0 122H600M0 237H600"/>
+        <path class="ln-draw" d="M185 65H209M209 65l-7-4M209 65l-7 4"/>
+        <path class="ln-draw" d="M300 100V139M300 139l-4-7M300 139l4-7"/>
+        <path class="ln-draw" d="M300 215V254M300 254l-4-7M300 254l4-7"/>
+        <path class="ln-draw ln-dash" d="M385 180H495V106"/>
+        <path class="ln-draw" d="M495 106l-4 7M495 106l4 7"/>
+        <path class="ln-block" d="M215 295H120"/>
+        <path class="ln-draw ln-bad" d="M114 279V311M106 283l-14 24M92 283l14 24"/>
+      </svg>
+      <p class="sl" style="--x:540;--y:104">genel</p>
+      <p class="sl" style="--x:550;--y:219">özel</p>
+      <p class="sl" style="--x:555;--y:319">veri</p>
+      <p class="sl" style="--x:400;--y:186">yalnızca dışarı</p>
+      <p class="sl" style="--x:10;--y:258;color:var(--bad)">internet → db</p>
+      <button class="station" type="button" data-key="igw" aria-pressed="false" aria-controls="ks-ag" style="--x:15;--y:30;--w:170;--h:70"><span class="st-name">Ağ geçidi</span><span class="st-sub">internet</span></button>
+      <button class="station" type="button" data-key="lb" aria-pressed="true" aria-controls="ks-ag" style="--x:215;--y:30;--w:170;--h:70;--svc:var(--sec)"><span class="st-name">lb-public</span><span class="st-sub">:443</span></button>
+      <button class="station" type="button" data-key="nat" aria-pressed="false" aria-controls="ks-ag" style="--x:415;--y:30;--w:170;--h:70"><span class="st-name">NAT</span><span class="st-sub">çıkış</span></button>
+      <button class="station" type="button" data-key="web" aria-pressed="false" aria-controls="ks-ag" style="--x:215;--y:145;--w:170;--h:70;--svc:var(--ok)"><span class="st-name">web-api</span><span class="st-sub">10.0.1.0/24</span></button>
+      <button class="station" type="button" data-key="db" aria-pressed="false" aria-controls="ks-ag" style="--x:215;--y:260;--w:170;--h:70;--svc:var(--warn)"><span class="st-name">orders-db</span><span class="st-sub">10.0.2.0/24</span></button>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">Bir cümleyle</span>İstekler yalnızca yük dengeleyiciden girer; uygulama dışarı NAT ile çıkar, veritabanına internetten yol yoktur.</p>
+    <div class="st-detail" id="ks-ag" aria-live="polite">
+      <div data-for="igw"><b>Ağ geçidi.</b> VPC'nin internetle tek bağlantısı. Yalnızca genel alt ağdaki kaynaklar ona doğrudan yönlenir.</div>
+      <div data-for="lb" class="show"><b>lb-public.</b> 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.</div>
+      <div data-for="nat"><b>NAT.</b> Özel alt ağdan dışarıya çıkışı sağlar; dışarıdan içeriye bağlantı kabul etmez.</div>
+      <div data-for="web"><b>web-api.</b> Yalnızca yük dengeleyiciden gelen trafiği kabul eder; dış servislere NAT üzerinden gider.</div>
+      <div data-for="db"><b>orders-db.</b> Yalnızca web-api'nin güvenlik grubundan 5432 portuna izin verir. İnternetten yol yoktur.</div>
+    </div>
+    <p class="figcap"><b>Şekil 2.</b> Düz oklar izin verilen trafik, kesikli ok yalnızca dışa çıkış, kırmızı kesik çizgi reddedilen yoldur.</p>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Koyu sahnede renkler token'dan okunmalıdır. Sabit bir renk açık tema için seçilmiştir; koyu zeminde ya kaybolur ya da bağırır.">
+<div class="dodont">
+<demo label="Yap · sınıf ve token">
+<div class="scene-dark" style="padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)">
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="10" y="25" width="150" height="60"/>
+      <rect class="ln-draw fill-paper" x="280" y="25" width="150" height="60"/>
+      <path class="ln-draw" d="M160 55H274M274 55l-8-4M274 55l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:22;--y:44;--w:130">web-api</p>
+    <p class="dl" style="--x:292;--y:44;--w:130">orders-db</p>
+  </div>
+</div>
+</demo>
+<demo label="Yapma · sabit renkli çizgi">
+<div class="scene-dark" style="padding:12px;border-radius:var(--r-sm);background:var(--scene-bg)">
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <rect x="10" y="25" width="150" height="60" stroke="#2352c9" stroke-width="1.5"/>
+      <rect x="280" y="25" width="150" height="60" stroke="#2352c9" stroke-width="1.5"/>
+      <path d="M160 55H274M274 55l-8-4M274 55l-8 4" stroke="#2352c9" stroke-width="1.5"/>
+    </svg>
+    <p class="dl" style="--x:22;--y:44;--w:130">web-api</p>
+    <p class="dl" style="--x:292;--y:44;--w:130">orders-db</p>
+  </div>
+</div>
+</demo>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Ne</th><th>Koyu sahnede</th><th>Not</th></tr></thead>
+  <tbody>
+  <tr><td>Yüzey, mürekkep, çizgi token'ları</td><td>Döner</td><td><code>--paper</code>, <code>--scene-bg</code>, <code>--ink-*</code>, <code>--draw</code>, <code>--pencil*</code>, <code>--line*</code>.</td></tr>
+  <tr><td>Durum ve servis renkleri</td><td>Döner</td><td><code>--ok</code>, <code>--warn</code>, <code>--bad</code>, <code>--sec</code> ve <code>-soft</code> eşleri; koyu değerler daha açıktır.</td></tr>
+  <tr><td>Kod blokları</td><td>Değişmez</td><td><code>--code-*</code> zaten iki temada da koyu.</td></tr>
+  <tr><td>Kapsayıcı zemini</td><td>Sizde</td><td>Sınıf zemin vermez; <code>.frame-bg</code> ya da satır içi <code>background</code>.</td></tr>
+  <tr><td>Sabit renkler</td><td>Değişmez</td><td>SVG'de <code>stroke="#…"</code> ya da satır içi hex kullanmayın.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Koyu token'lar koyu zeminde en az AA karşıtlığı verecek biçimde seçilmiştir; sayfa açık temadayken de bu geçerlidir. Koyu sahneyi yalnızca bağlam için kullanın: okuyucu temayı açığa almışsa, uzun metinleri koyu kutuya koymak tercihini yok sayar.</p></div></div>
+</chapter>
+
+<script data-page>
+document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+});
+</script>

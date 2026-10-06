@@ -1,0 +1,194 @@
+<!-- meta {"title":"Saha defteri","group":"Bileşenler","order":140,"tagline":"Numaralı notlar, künyeli girdiler.","intro":"<code>.survey-log</code> sıralı bir not defteridir: her girdinin solunda numarası ve künyesi, sağında etiketli paragrafları durur. Olay sonrası zaman çizelgesi, değişiklik günlüğü ya da ölçüm kaydı gibi “ne zaman, nerede, ne gördük, ne yaptık” sorularını sırayla cevaplayan metinler için.","summary":"<code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.","facts":{"Sınıflar":"<code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code>","Yapı":"<code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code>","Dar ekran":"720px altında künye metnin üstüne iner","JS":"Gerekmez"}} -->
+
+<chapter title="Anatomi" lead="Solda 200px künye sütunu, sağda okunabilir genişlikte metin. Üstte kalın bir çizgi defteri açar, her girdinin altında ince bir çizgi onu kapatır.">
+<demo label="Örnek · tek girdi">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">K-07</span>
+      <dl><dt>Tarih</dt><dd>2026-10-05</dd><dt>Ortam</dt><dd>staging</dd><dt>Yazan</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Önbellek yeniden başlatıldıktan sonra ilk 10 dakikada veritabanı okuma yükü üç katına çıktı.</p>
+      <span class="sl-label">Karar</span>
+      <p>Yeniden başlatmadan önce en sık 1.000 anahtar ısıtılacak; betik <code>cache-warm</code> işine eklendi.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<dl class="kv">
+  <dt><code>.sl-no</code></dt><dd>Girdi numarası. Liste sırası zaten <code>&lt;ol&gt;</code>'dan gelir; numara okurun başka yerden atıf yapabilmesi içindir (“bkz. K-07”).</dd>
+  <dt><code>.sl-meta dl</code></dt><dd>Künye: tarih, ortam, kaynak gibi kısa alanlar. Uzun değer satır içinde kırılır.</dd>
+  <dt><code>.sl-label</code></dt><dd>Paragrafın türü. Her girdide aynı etiket sırasını kullanmak defteri taranabilir kılar.</dd>
+</dl>
+</chapter>
+
+<chapter title="Olay sonrası zaman çizelgesi" lead="Saat sırasıyla ne görüldüğü ve ne yapıldığı. Künyede saat ve kaynak, metinde gözlem ile eylem ayrı etiketlerde.">
+<demo label="Örnek · ödeme kuyruğu tıkanması">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-01</span>
+      <dl><dt>Saat</dt><dd>09:41</dd><dt>Kaynak</dt><dd>alarm</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p><code>billing-worker</code> kuyruk derinliği 5 dakikada 120'den 4.800'e çıktı; işçilerin hepsi ayakta.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-02</span>
+      <dl><dt>Saat</dt><dd>09:48</dd><dt>Kaynak</dt><dd>günlük</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Her işte ödeme sağlayıcısına yapılan çağrı 30 saniyede zaman aşımına düşüyor.</p>
+      <span class="sl-label">Eylem</span>
+      <p>Sağlayıcının durum sayfası kontrol edildi; bilinen bir kesinti yok.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-03</span>
+      <dl><dt>Saat</dt><dd>10:02</dd><dt>Kaynak</dt><dd>ağ</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>NAT ağ geçidinde bağlantı sayısı sınıra dayanmış; yeni dış bağlantılar reddediliyor.</p>
+      <span class="sl-label">Eylem</span>
+      <p>İkinci ağ geçidi açıldı, işçi alt ağının yönlendirmesi ikiye bölündü.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-04</span>
+      <dl><dt>Saat</dt><dd>10:31</dd><dt>Kaynak</dt><dd>gösterge</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Sonuç</span>
+      <p>Kuyruk 29 dakikada boşaldı. Kayıp iş yok; 212 ödeme gecikmeli işlendi.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="Değişiklik günlüğü ve ölçüm kaydı" lead="Aynı defter iki farklı türde kayıt tutar. Değişiklikte etki ve geri dönüş, ölçümde değer ve yorum etiketlenir.">
+<demo label="Örnek · altyapı değişiklik günlüğü">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-41</span>
+      <dl><dt>Tarih</dt><dd>2026-09-29</dd><dt>Sürüm</dt><dd>infra v318</dd><dt>Yazan</dt><dd>ağ ekibi</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Değişiklik</span>
+      <p>İç DNS bölgesinin varsayılan TTL değeri 300'den 60 saniyeye indi.</p>
+      <span class="sl-label">Etki</span>
+      <p>Çözümleyici sorgu sayısı yaklaşık beş katına çıkar; maliyet farkı aylık 3 $ altında.</p>
+      <span class="sl-label">Geri dönüş</span>
+      <p><code>ttl = 300</code> ile aynı değişiklik yeniden uygulanır.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-42</span>
+      <dl><dt>Tarih</dt><dd>2026-10-01</dd><dt>Sürüm</dt><dd>infra v319</dd><dt>Yazan</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Değişiklik</span>
+      <p>Derleme işçileri spot makinelere taşındı.</p>
+      <span class="sl-label">Etki</span>
+      <p>Derleme maliyeti %58 düştü; geri alınan makinede iş baştan başlar.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<demo label="Örnek · gecikme ölçümleri">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-01</span>
+      <dl><dt>Ortam</dt><dd>prod</dd><dt>Araç</dt><dd>k6 · 200 VU</dd><dt>Süre</dt><dd>10 dk</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Ölçüm</span>
+      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill pill-ok">%0,02</span></p>
+      <span class="sl-label">Yorum</span>
+      <p>p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-02</span>
+      <dl><dt>Ortam</dt><dd>prod</dd><dt>Araç</dt><dd>k6 · 400 VU</dd><dt>Süre</dt><dd>10 dk</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Ölçüm</span>
+      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill pill-neutral">%0,9</span></p>
+      <span class="sl-label">Yorum</span>
+      <p>Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="Koyu sahne" lead="Defter koyu panelde de aynı kalır; çizgiler ve künye renkleri kapsayıcının temasına göre çözülür.">
+<demo label="Örnek · nöbet defteri, koyu panel">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px 22px">
+  <p class="chip">Nöbet defteri · gece</p>
+  <ol class="survey-log">
+    <li>
+      <div class="sl-meta">
+        <span class="sl-no">G-01</span>
+        <dl><dt>Saat</dt><dd>02:14</dd><dt>Alarm</dt><dd>disk-usage</dd></dl>
+      </div>
+      <div class="sl-body">
+        <span class="sl-label">Gözlem</span>
+        <p><code>logs-db</code> diskinde doluluk %91; büyüme saatte %1.</p>
+        <span class="sl-label">Eylem</span>
+        <p>30 günden eski bölümler arşive taşındı, doluluk %64'e indi. Sabah ekibine devredildi.</p>
+      </div>
+    </li>
+  </ol>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Gözlem ile yorumu ayırın: ne görüldüğü bir etikette, ne düşünüldüğü ya da yapıldığı başka bir etikette.">
+<div class="dodont">
+<demo label="Yap · ayrı etiketler">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Saat</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>5xx oranı %4.</p>
+      <span class="sl-label">Eylem</span>
+      <p>Son sürüm geri alındı.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<demo label="Yapma · her şey tek paragrafta">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Saat</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <p>Hatalar arttı galiba sürümden, geri aldık sonra düzeldi gibi.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>&lt;ol&gt;</code> ekran okuyucuya girdi sayısını ve sırasını verir; künyedeki <code>&lt;dl&gt;</code> alan adlarını değerleriyle eşler. <code>.sl-label</code> yalnızca görsel bir başlıktır, başlık düzeninde yer almaz; etiket metnini kısa ve kendi başına anlamlı tutun.</p></div></div>
+</chapter>

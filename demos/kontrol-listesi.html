@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontrol listesi · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
+    <a class="nav-page" href="index.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="dugmeler.html">Düğmeler</a>
+    <a class="nav-page" href="rozetler.html">Rozetler</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="kod-blogu.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-seridi.html">Diff şeridi</a>
+    <a class="nav-page" href="tablo.html">Tablo</a>
+    <a class="nav-page" href="tanim-listesi.html">Tanım listesi</a>
+    <a class="nav-page" href="adimlar.html">Adımlar</a>
+    <a class="nav-page" href="kontrol-listesi.html" aria-current="page">Kontrol listesi</a>
+    <a class="nav-page" href="secim-gruplari.html">Seçim grupları</a>
+    <a class="nav-page" href="gosterge.html">Gösterge</a>
+    <a class="nav-page" href="degisken-kaydi.html">Değişken kaydı</a>
+    <a class="nav-page" href="damga.html">Damga</a>
+    <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
+    <a class="nav-page" href="antet.html">Antet</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Olay ve dinleyici</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Erişilebilirlik ve API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Kontrol listesi<em>İşaretle, say, hatırla.</em></h1>
+    <p class="intro"><code>.runbook</code> elle yürütülen bir işin maddelerini sıralar: sayaç, ilerleme çubuğu, sıfırlama ve tamamlandı satırı paketle gelir. Kutular gerçek <code>&lt;input type="checkbox"&gt;</code> öğesidir; seçimler istenirse tarayıcıda saklanır.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.runbook</code> · <code>.rb-head</code> · <code>.rb-count</code> · <code>.rb-bar</code> · <code>.rb-reset</code> · <code>.rb-list</code> · <code>.rb-item</code> · <code>.rb-done</code></dd><dt>Saklama</dt><dd><code>data-store</code> → <code>localStorage</code> anahtarı</dd><dt>Olay</dt><dd><code>hendese:runbook</code> · <code>detail.done</code>, <code>detail.total</code></dd><dt>JS</dt><dd><code>Hendese.init()</code> listeleri kendiliğinden bağlar</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Üstte sayaç, çubuk ve sıfırlama; ortada maddeler; altta yalnızca her şey işaretlenince açılan tamamlandı satırı. Örnekteki seçimler bu tarayıcıda saklanır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · sürüm öncesi kontrol</span>
+  <div class="demo-view">
+<div class="runbook" data-store="hendese-demo-kl-surum">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>main</code> dalında son hattın tüm işleri yeşil</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Veritabanı göçü <code>0042_add_invoice_index</code> staging'de çalıştırıldı</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İmaj etiketi <code>prod-7c1e94d0</code> kayıt deposunda görünüyor</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Sürüm notu kanala gönderildi, nöbetçi haberdar</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Geri dönüş komutu hazır: önceki etiket <code>prod-2b80f3aa</code></span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Sürüm çıkabilir.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-surum</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sıfırla&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;main&lt;/<span class='k'>code</span>&gt; dalında son hattın tüm işleri yeşil&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Veritabanı göçü &lt;<span class='k'>code</span>&gt;0042_add_invoice_index&lt;/<span class='k'>code</span>&gt; staging'de çalıştırıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;İmaj etiketi &lt;<span class='k'>code</span>&gt;prod-7c1e94d0&lt;/<span class='k'>code</span>&gt; kayıt deposunda görünüyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Sürüm notu kanala gönderildi, nöbetçi haberdar&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Geri dönüş komutu hazır: önceki etiket &lt;<span class='k'>code</span>&gt;prod-2b80f3aa&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sürüm çıkabilir.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<dl class="kv">
+  <dt><code>.runbook</code></dt><dd>Kap. <code>data-store</code> verilirse seçimler bu anahtarla <code>localStorage</code>'a yazılır.</dd>
+  <dt><code>.rb-count</code></dt><dd>Paket <code>n / toplam</code> metnini her değişiklikte yeniden yazar; ilk değer yalnızca JS yokken görünür.</dd>
+  <dt><code>.rb-bar &gt; i</code></dt><dd>İlerleme çubuğu; genişliği yüzde olarak paket verir. Süs olduğu için <code>aria-hidden</code>.</dd>
+  <dt><code>.rb-reset</code></dt><dd>İsteğe bağlı. Tüm kutuları boşaltır, kaydı günceller, odağı ilk kutuya taşır.</dd>
+  <dt><code>.rb-item</code></dt><dd><code>&lt;label&gt;</code> içinde gizli kutu, çizilen <code>.box</code> ve metin <code>.txt</code>. Tüm satır tıklanabilir.</dd>
+  <dt><code>.rb-done</code></dt><dd>Gizlidir; tüm maddeler işaretlenince <code>.runbook.complete</code> ile açılır.</dd>
+</dl>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Durumlar</h2><p class="lead">Boş, yarım ve tamam. Durum işaretli kutulardan hesaplanır; tamam sınıfını sayfa değil paket ekler.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · üç durum yan yana</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start">
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Alarm sahibi atandı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eşik değeri yazıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Bildirim kanalı seçildi</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Alarm hazır.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">2 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">DNS kaydı düşürüldü</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL 60 saniyeye indi</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Yeni hedef sağlıklı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL eski değerine döndü</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Geçiş bitti.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">3 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Önbellek boşaltıldı</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İsabet oranı izlendi</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Isınma tamamlandı</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Önbellek sıcak.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Alarm sahibi atandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Eşik değeri yazıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Bildirim kanalı seçildi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Alarm hazır.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;2 / 4&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;DNS kaydı düşürüldü&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;TTL 60 saniyeye indi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Yeni hedef sağlıklı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;TTL eski değerine döndü&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Geçiş bitti.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;3 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Önbellek boşaltıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;İsabet oranı izlendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Isınma tamamlandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Önbellek sıcak.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Bu üç listede <code>data-store</code> yok: saklanmazlar ve başlangıç durumu HTML'deki <code>checked</code> özniteliğinden gelir. Sıfırlama düğmesi de isteğe bağlıdır; yalnızca bir kez yürütülen kısa listelerde çıkarılabilir.</p></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Saklanan listede başlangıç</span><div class="co-body"><p><code>data-store</code> verilen listede açılışta kayıt okunur; kayıt yoksa <b>tüm kutular boş başlar</b> ve HTML'deki <code>checked</code> yok sayılır. Önceden işaretli madde gerekiyorsa o listeyi saklamayın.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Olay ve dinleyici">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Olay ve dinleyici</h2><p class="lead">Liste her değişiklikte kendi üzerinde kabarcıklı hendese:runbook olayı yayar. Aşağıdaki gösterge bu olayı dinler ve sıradaki adımı yazar.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · olay müdahalesi, canlı gösterge</span>
+  <div class="demo-view">
+<div class="runbook" data-store="hendese-demo-kl-olay">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Olay kanalını aç, rolleri ata</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>billing-worker</code> kuyruk derinliğini ve hata oranını kaydet</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Son sürümü geri al ya da işçiyi durdur</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kuyruğun boşaldığını 15 dakika izle</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Durum sayfasını güncelle, olayı kapat</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Müdahale tamam.</div>
+</div>
+<div class="readout" id="kl-olay-out" aria-live="polite"><p>Henüz müdahale yok.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-olay</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sıfırla&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Olay kanalını aç, rolleri ata&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; kuyruk derinliğini ve hata oranını kaydet&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Son sürümü geri al ya da işçiyi durdur&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Kuyruğun boşaldığını 15 dakika izle&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Durum sayfasını güncelle, olayı kapat&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Müdahale tamam.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-olay-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Henüz müdahale yok.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>İlk olay açılışta, <code>Hendese.init()</code> sırasında yayılır; sayfa betiği dinleyiciyi bundan sonra bağladığı için ilk durumu kendisi okumalıdır. Göstergenin sınıfı da durumla değişir: hiç madde yokken <code>.bad</code>, hepsi işaretliyken <code>.ok</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-olay"]');
+var out = document.getElementById('kl-olay-out');
+function show(done, total) {
+  var next = rb.querySelector('input:not(:checked) ~ .txt');
+  out.classList.toggle('bad', done === 0);
+  out.classList.toggle('ok', done === total);
+  out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;Olay kapatılabilir.&lt;/b&gt; …&lt;/p&gt;'
+    : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; · Sıradaki: ' + next.innerHTML + '&lt;/p&gt;';
+}
+rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Birden çok liste tek bir dinleyiciyle toplanabilir, koyu bir panele ya da dar bir yan sütuna yerleşebilir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · işe başlama, iki liste tek gösterge</span>
+  <div class="demo-view">
+<div id="kl-uye">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start">
+    <div>
+      <p class="chip">Hesaplar</p>
+      <div class="runbook" data-store="hendese-demo-kl-uye-hesap" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kurum içi kimlik açıldı</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kod deposu grubuna eklendi</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Salt okunur bulut rolü verildi</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Hesaplar hazır.</div>
+      </div>
+    </div>
+    <div>
+      <p class="chip">Araçlar</p>
+      <div class="runbook" data-store="hendese-demo-kl-uye-arac" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">VPN istemcisi kuruldu</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>kubectl</code> bağlamı <code>staging</code></span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İlk değişiklik incelemeye açıldı</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Araçlar hazır.</div>
+      </div>
+    </div>
+  </div>
+  <div class="readout" id="kl-uye-out" aria-live="polite"><p>İlk gün: <b>0 / 6</b> madde.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>kl-uye</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start</span>"&gt;
+    &lt;<span class='k'>div</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Hesaplar&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-uye-hesap</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+          &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+          &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Kurum içi kimlik açıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Kod deposu grubuna eklendi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Salt okunur bulut rolü verildi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Hesaplar hazır.&lt;/<span class='k'>div</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Araçlar&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-uye-arac</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+          &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+          &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;VPN istemcisi kuruldu&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;kubectl&lt;/<span class='k'>code</span>&gt; bağlamı &lt;<span class='k'>code</span>&gt;staging&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;İlk değişiklik incelemeye açıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Araçlar hazır.&lt;/<span class='k'>div</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-uye-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;İlk gün: &lt;<span class='k'>b</span>&gt;0 / 6&lt;/<span class='k'>b</span>&gt; madde.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Olay kabarcıklandığı için dinleyici ortak kapsayıcıya bir kez bağlanır; toplam, kapsayıcıdaki tüm kutulardan yeniden sayılır.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · nöbet devri, koyu panel</span>
+  <div class="demo-view">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <p class="chip">Nöbet devri · eu-west-1</p>
+  <div class="runbook" data-store="hendese-demo-kl-nobet" style="margin-bottom:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Açık alarmlar devralana tek tek anlatıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Sessize alınan alarmların bitiş saati yazıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Süren bakım pencereleri paylaşıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Çağrı yönlendirmesi yeni nöbetçiye geçti</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Devir tamam.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Nöbet devri · eu-west-1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-nobet</span>" style="<span class='s'>margin-bottom:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 4&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sıfırla&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Açık alarmlar devralana tek tek anlatıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Sessize alınan alarmların bitiş saati yazıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Süren bakım pencereleri paylaşıldı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Çağrı yönlendirmesi yeni nöbetçiye geçti&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Devir tamam.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · dar yan sütun</span>
+  <div class="demo-view">
+<div style="max-width:320px">
+  <div class="runbook" data-store="hendese-demo-kl-dar" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eski sertifikanın bitiş tarihi not edildi</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Yeni sertifika yük dengeleyiciye bağlandı ve <code>openssl s_client</code> ile doğrulandı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eski sertifika silindi</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Yenileme bitti.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:320px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-dar</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sıfırla&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Eski sertifikanın bitiş tarihi not edildi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Yeni sertifika yük dengeleyiciye bağlandı ve &lt;<span class='k'>code</span>&gt;openssl s_client&lt;/<span class='k'>code</span>&gt; ile doğrulandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Eski sertifika silindi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yenileme bitti.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Her madde tek bir eylemdir ve yapıldığı doğrulanabilir. Belirsiz ya da birleşik madde, işaretlendiğinde bile ne olduğunu söylemez.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · tek eylem, doğrulanabilir</span>
+  <div class="demo-view">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 3</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>/healthz</code> 200 dönüyor</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Hata oranı %0,5'in altında</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kuyruk derinliği 100'ün altında</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Servis sağlıklı.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;/healthz&lt;/<span class='k'>code</span>&gt; 200 dönüyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Hata oranı %0,5'in altında&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Kuyruk derinliği 100'ün altında&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Servis sağlıklı.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · belirsiz ve birleşik madde</span>
+  <div class="demo-view">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 2</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Her şey kontrol edildi</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Testleri çalıştır, göçü yap, sürümü çıkar ve haber ver</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Tamam.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 2&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Her şey kontrol edildi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Testleri çalıştır, göçü yap, sürümü çıkar ve haber ver&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Tamam.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Anahtar adı</span><div class="co-body"><p><code>data-store</code> değeri olduğu gibi kullanılır. Aynı anahtarı iki listeye vermek birinin kaydını ötekine yazar; <code>uygulama-sayfa-liste</code> gibi sayfa başına benzersiz bir ad seçin.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Erişilebilirlik ve API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Erişilebilirlik ve API</h2><p class="lead">Kutular yerel onay kutusudur; klavye, ekran okuyucu ve form davranışı tarayıcıdan gelir.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Öğe</th><th>Değer</th><th>Not</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-store</code></td><td>metin</td><td><code>localStorage</code> anahtarı; yoksa liste saklanmaz.</td></tr>
+    <tr><td><code>hendese:runbook</code></td><td><code>{done, total}</code></td><td>Açılışta bir kez ve her değişiklikte; kabarcıklı.</td></tr>
+    <tr><td><code>.complete</code></td><td>sınıf</td><td>Tüm kutular işaretliyken listeye eklenir; <code>.rb-done</code> görünür.</td></tr>
+    <tr><td><code>.rb-reset</code></td><td>düğme</td><td>Kutuları boşaltır, kaydeder, odağı ilk kutuya verir.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Tab kutudan kutuya geçer, Boşluk işaretler; odak halkası çizilen <code>.box</code> üzerinde görünür. <code>.rb-count</code> öğesindeki <code>aria-live="polite"</code> sayacın değişimini okutur. Üstü çizili metin yalnızca görseldir; durum kutunun kendisinden okunur.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="adimlar.html" rel="prev"><small>Önceki · Bileşenler</small>Adımlar</a><a href="secim-gruplari.html" rel="next"><small>Sonraki · Bileşenler</small>Seçim grupları</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* olay müdahalesi → gösterge */
+(function () {
+  var rb = document.querySelector('[data-store="hendese-demo-kl-olay"]');
+  var out = document.getElementById('kl-olay-out');
+  function show(done, total) {
+    var next = rb.querySelector('input:not(:checked) ~ .txt');
+    out.classList.toggle('bad', done === 0);
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === 0 ? '<p><b>Müdahale başlamadı.</b> İlk adım: ' + next.innerHTML + '</p>'
+      : done === total ? '<p><b>Olay kapatılabilir.</b> ' + total + ' adımın tamamı işaretli; zaman çizelgesini saha defterine geçirin.</p>'
+      : '<p><b>' + done + ' / ' + total + '</b> · Sıradaki: ' + next.innerHTML + '</p>';
+  }
+  rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+  show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);
+})();
+/* iki liste, tek dinleyici (kabarcıklanma) */
+(function () {
+  var box = document.getElementById('kl-uye'), out = document.getElementById('kl-uye-out');
+  function show() {
+    var done = box.querySelectorAll('.runbook input:checked').length, total = box.querySelectorAll('.runbook input').length;
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === total ? '<p><b>İlk gün tamam.</b> Hesaplar ve araçlar hazır.</p>' : '<p>İlk gün: <b>' + done + ' / ' + total + '</b> madde.</p>';
+  }
+  box.addEventListener('hendese:runbook', show);
+  show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

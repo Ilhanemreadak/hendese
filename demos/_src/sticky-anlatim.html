@@ -1,0 +1,229 @@
+<!-- meta {"title":"Sticky anlatım","group":"Hareket","order":20,"tagline":"Yapışkan şekil, kayan metin.","intro":"Şekil sütunu ekrana yapışır, metin sütunu akar. Her <code>[data-beat]</code> okuma çizgisini (ekranın %45'i) geçtiğinde etkin olur ve şekil o adımın haline geçer. Hareket kapalıyken şekil bitmiş haliyle metnin üstünde durur.","summary":"<code>.sticky</code> + <code>Hendese.stickyScene()</code>: yapışkan şekil, <code>[data-beat]</code> adımları, <code>.on</code> / <code>.past</code>.","facts":{"Sınıflar":"<code>.sticky</code> · <code>.sticky-fig</code> · <code>.sf-head</code> · <code>.sticky-text</code> · <code>[data-beat]</code> · <code>.sticky--dense</code>","JS":"<code>Hendese.stickyScene(cfg)</code>; <code>render(i, t, api)</code>","Durum":"Beat'lerde <code>.on</code> (etkin) ve <code>.past</code> (geçilmiş)"}} -->
+
+<style>
+/* sayfaya özel çizim sınıfları (.sa-). Varsayılan = bitmiş hal. */
+.sa-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.sa-off{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+.sa-l1{stroke:var(--draw);stroke-width:calc(1px + 7px * (1 - var(--kp,1)))}
+.sa-l2{stroke:var(--accent);stroke-width:calc(1px + 7px * var(--kp,1))}
+.sa-split{fill:var(--accent);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(var(--kp,1))}
+.sa-pc:not(.sa-end){display:none}
+.sa-rp{fill:var(--ok);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(var(--rp,1))}
+@media screen{
+  .is-live .sa-pc{display:none}
+  .is-live .sa-pc.on{display:inline}
+  .is-live .sa-v1:not(.gone){stroke:var(--draw);stroke-dasharray:none;fill:var(--paper)}
+  .is-live .sa-v1lbl:not(.gone) .sa-dead{display:none}
+  .is-live .sa-show:not(.in){opacity:0}
+}
+html.motion .sa-split,html.motion .sa-l1,html.motion .sa-l2{transition:transform var(--dur-3) var(--ease),stroke-width var(--dur-3) var(--ease)}
+html.motion .sa-show{transition:opacity var(--dur-2)}
+.sticky .dl b{display:block}
+</style>
+
+<chapter title="Anatomi" lead="İki sütun: solda yapışkan şekil, sağda okunan metin. Pin sahnesinden farkı, ilerlemeyi iz değil metnin kendisi belirler." hoca="quiet">
+<div class="prose"><p>Canlı modda <code>.sticky</code> iki sütunlu ızgaraya döner; <code>.sticky-fig</code> 100vh yüksekliğinde yapışır, <code>.sticky-text</code> içindeki her <code>[data-beat]</code> en az 30vh yer kaplar. Motor her karede okuma çizgisini (ekranın %45'i) geçen son beat'i bulur: <code>i</code> onun sırası, <code>t</code> bir sonraki beat'e kadar olan ilerlemedir (0..1). Etkin beat <code>.on</code>, öncekiler <code>.past</code> alır.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">iskelet</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="sticky" id="ornek"&gt;
+  &lt;div class="sticky-fig"&gt;                              &lt;!-- canlıda 100vh yapışkan --&gt;
+    &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
+    &lt;div class="sf-head"&gt;&lt;div&gt;&lt;p class="chip"&gt;Şekil 1&lt;/p&gt;&lt;p class="sf-cap"&gt;…&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="f-map"&gt;
+      &lt;div class="drawing" data-aw="600" data-ah="420" style="--aw:600;--ah:420"&gt;…&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="figcap"&gt;…&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;ol class="sticky-text steps"&gt;                        &lt;!-- metin akar --&gt;
+    &lt;li data-beat="0"&gt;&lt;h3&gt;…&lt;/h3&gt;&lt;p&gt;…&lt;/p&gt;&lt;/li&gt;
+    &lt;li data-beat="1"&gt;…&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Pin mi sticky mi</span><div class="co-body"><p>Metin uzun ya da beat başına birkaç paragraf varsa sticky; şekil asıl anlatıcıysa ve metin birkaç satırsa pin. Sticky'de okuyucu kendi hızında okur, şekil onu izler.</p></div></div>
+</chapter>
+
+<chapter title="Canlı örnek · kanarya yayını" lead="Yeni sürüm önce küçük bir trafik payıyla denenir; metrikler temizse pay büyür. Dört beat, dört trafik oranı.">
+<div class="sticky" id="sa-canary">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">02 · Şekil 1</p><p class="sf-cap">Trafik payı kararlı sürümden kanaryaya geçer</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="600" data-ah="420" style="--aw:600;--ah:420">
+        <svg viewBox="0 0 600 420" aria-hidden="true">
+          <path class="sa-l1" d="M260 80L160 220"/>
+          <path class="sa-l2" d="M340 80L440 220"/>
+          <rect class="sa-box" x="200" y="20" width="200" height="60"/>
+          <rect class="sa-off sa-v1" x="60" y="220" width="200" height="80"/>
+          <rect class="sa-box" x="340" y="220" width="200" height="80"/>
+          <rect class="ln-pencil" x="60" y="324" width="480" height="12"/>
+          <rect class="sa-split" x="60" y="324" width="480" height="12"/>
+        </svg>
+        <p class="dl" style="--x:212;--y:36;--w:180"><b>Yük dengeleyici</b></p>
+        <p class="dl sa-v1lbl" style="--x:72;--y:236;--w:180"><b>v1 · kararlı</b><span class="sa-pc" data-b="0">%100</span><span class="sa-pc" data-b="1">%95</span><span class="sa-pc" data-b="2">%50</span><span class="sa-pc sa-end" data-b="3">%0</span> <span class="state sa-dead">kapatıldı</span></p>
+        <p class="dl" style="--x:352;--y:236;--w:180"><b>v2 · kanarya</b><span class="sa-pc" data-b="0">%0</span><span class="sa-pc" data-b="1">%5</span><span class="sa-pc" data-b="2">%50</span><span class="sa-pc sa-end" data-b="3">%100</span> <span class="state ok">sağlıklı</span></p>
+        <p class="dl" style="--x:60;--y:342;--w:300">kanarya payı</p>
+      </div>
+    </div>
+    <p class="figcap"><b>Şekil 1.</b> Çizgi kalınlığı ve alttaki çubuk kanaryaya giden trafik payını gösterir. Kesikli kutu kapatılan sürüm.</p>
+  </div>
+  <ol class="sticky-text steps">
+    <li data-beat="0"><h3>Kanaryayı ayağa kaldır</h3><p>v2 tek bir kopya olarak açılır ve sağlık kontrolünden geçer. Henüz trafik almaz; kararlı sürüm her isteği karşılamaya devam eder.</p></li>
+    <li data-beat="1"><h3>Trafiğin %5'ini ver</h3><p>Yük dengeleyici isteklerin yirmide birini kanaryaya yollar. On beş dakika boyunca hata oranı ve gecikme kararlı sürümle karşılaştırılır.</p></li>
+    <li data-beat="2"><h3>Payı yarıya çıkar</h3><p>Metrikler eşikler içindeyse pay %50'ye çıkar. Bir eşik aşılırsa geri alma tek adımdır: payı sıfıra indirmek.</p></li>
+    <li data-beat="3"><h3>Tamamını devret</h3><p>Kanarya trafiğin tamamını alır, v1 kapatılır. Yayın bitti; Hoca'nın balonu da bunu söyler: trafik %100 kanaryada.</p></li>
+  </ol>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var pcs = Hendese.$$('#sa-canary .sa-pc'), v1 = Hendese.$$('#sa-canary .sa-v1, #sa-canary .sa-v1lbl'), K = [0, .05, .5, 1];
+Hendese.stickyScene({
+  el: '#sa-canary', chap: '02 · Kanarya',
+  still: { x: 500, y: 410, pose: 'happy', face: -1, bubble: 'Trafik %100 kanaryada.' },
+  render: function (i, t, api) {
+    api.set('kp', K[i]);                                    // çizgi kalınlığı + çubuk: var(--kp,1)
+    pcs.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+    v1.forEach(function (el) { api.cls(el, 'gone', i === 3); });
+    return { hoca: { x: 500, y: 410, pose: i &lt; 3 ? 'clipboard' : 'happy', face: -1, bubble: i === 3 ? 'Trafik %100 kanaryada.' : null } };
+  }
+});</code></pre></figure>
+</chapter>
+
+<chapter title="Varyasyon · zengin beat'ler" lead="Beat bir paragraftan fazlası olabilir: tablo, uyarı, kod. Yoğun bir çizim için .sticky--dense şekil sütununu dar masaüstünde genişletir; t ise beat içindeki ilerlemeyi verir.">
+<div class="prose"><p>Yedekten geri dönüş dört adımdır. Üçüncü adımda günlüklerin oynatılması <code>t</code> ile çizilir: okuyucu beat'in içinde ilerledikçe yeşil çubuk dolar. Metin sütunundaki tablolar canlı modda yatay kaydırma yerine satır kartlarına döner.</p></div>
+<div class="sticky sticky--dense" id="sa-restore">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">03 · Şekil 2</p><p class="sf-cap">siparis-db: 14:05 anına geri dönüş</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="600" data-ah="380" style="--aw:600;--ah:380">
+        <svg viewBox="0 0 600 380" aria-hidden="true">
+          <path class="ln-draw" d="M40 70H560"/>
+          <path class="ln-pencil" d="M60 62V78M190 62V78M320 62V78"/>
+          <path class="ln-ok" stroke-width="2.5" d="M420 52V88"/>
+          <path class="ln-block" d="M446 52V88"/>
+          <path class="ln-pencil" d="M560 62V78"/>
+          <rect class="ln-pencil" x="320" y="128" width="100" height="14"/>
+          <rect class="sa-rp sa-show" data-s="2" x="320" y="128" width="100" height="14"/>
+          <path class="ln-ghost sa-show" data-s="1" d="M320 78V200"/>
+          <rect class="ln-draw fill-paper sa-show" data-s="1" x="220" y="200" width="200" height="76"/>
+        </svg>
+        <p class="dl" style="--x:30;--y:86;--w:60">00:00</p>
+        <p class="dl" style="--x:160;--y:86;--w:60">06:00</p>
+        <p class="dl" style="--x:290;--y:86;--w:60">12:00</p>
+        <p class="dl" style="--x:392;--y:22;--w:120"><span class="state ok">14:05</span></p>
+        <p class="dl" style="--x:458;--y:22;--w:120"><span class="state bad">14:07 hata</span></p>
+        <p class="dl" style="--x:536;--y:86;--w:60">şimdi</p>
+        <p class="dl sa-show" data-s="2" style="--x:320;--y:148;--w:200">günlük oynatma</p>
+        <p class="dl sa-show" data-s="1" style="--x:232;--y:214;--w:180"><b>siparis-db-geri</b>yeni örnek <span class="state ok sa-show" data-s="3">doğrulandı</span></p>
+      </div>
+    </div>
+    <p class="figcap"><b>Şekil 2.</b> Üst çizgi zaman ekseni; yeşil işaret seçilen geri dönüş anı, kırmızı kesik hatalı dağıtım. Yeni örnek eski veritabanının yanında açılır.</p>
+  </div>
+  <div class="sticky-text">
+    <section data-beat="0"><h3>Geri dönüş anını seç</h3><p>Hatalı dağıtım 14:07'de. Dönüş anı bundan hemen önce, 14:05 olarak seçilir. Taban olarak o andan önceki son anlık görüntü kullanılır.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Anlık görüntü</th><th>Boyut</th><th>Durum</th></tr></thead>
+        <tbody>
+          <tr><td>00:00</td><td>182 GB</td><td>tutuluyor</td></tr>
+          <tr><td>06:00</td><td>184 GB</td><td>tutuluyor</td></tr>
+          <tr><td>12:00</td><td>185 GB</td><td>taban olarak seçildi</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section data-beat="1"><h3>Yanına yeni örnek aç</h3><p>12:00 görüntüsünden <code>siparis-db-geri</code> adlı yeni bir örnek açılır. Bozuk veritabanı yerinde kalır; inceleme için gerekebilir.</p></section>
+    <section data-beat="2"><h3>Günlükleri 14:05'e kadar oynat</h3><p>12:00'den sonraki işlem günlükleri sırayla uygulanır ve tam 14:05'te durdurulur. Bu adım veri boyutuna göre dakikalar sürebilir.</p></section>
+    <section data-beat="3"><h3>Doğrula, sonra trafiği çevir</h3><p>Satır sayıları ve son sipariş numarası beklenenle karşılaştırılır. Tutarlıysa uygulamanın bağlantı adresi yeni örneğe çevrilir.</p>
+      <div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Kayıp pencere</span><div class="co-body"><p>14:05 ile 14:07 arasındaki iki dakikanın yazmaları yeni örnekte yoktur; bunları uygulama günlüğünden ayrıca çıkarın.</p></div></div>
+    </section>
+  </div>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var parts = Hendese.$$('#sa-restore .sa-show');
+Hendese.stickyScene({
+  el: '#sa-restore', chap: '03 · Geri dönüş',
+  still: { x: 500, y: 360, pose: 'stamp', face: -1 },
+  render: function (i, t, api) {
+    parts.forEach(function (el) { api.cls(el, 'in', +el.getAttribute('data-s') &lt;= i); });
+    api.set('rp', i &lt; 2 ? 0 : i === 2 ? t : 1);              // beat 2 içinde t ile dolar
+    return { hoca: { x: 500, y: 360, pose: ['pointDown', 'idle', 'terminal', 'stamp'][i], face: -1 } };
+  }
+});</code></pre></figure>
+</chapter>
+
+<chapter title="Hareket kapalıyken" lead="Reduced motion, 1100px altı, baskı ve JS yok: şekil bitmiş haliyle metnin üstünde, beat'ler normal bir liste olarak altında durur.">
+<div class="prose">
+  <p>Canlı mod kapalıyken <code>.sticky</code> tek sütundur ve hiçbir şey yapışmaz. Şekil son beat'in halini gösterir: yukarıdaki kanarya örneğinde trafik %100 kanaryada, v1 kapatılmış; geri dönüş örneğinde yeni örnek doğrulanmış. Beat'lerin opaklığı tamdır, <code>.on</code> / <code>.past</code> sınıfı yoktur. Bu yüzden ara adımların bilgisi metinde yazılı olmalıdır; şekil yalnızca son durumu gösterir.</p>
+  <p>Reduced motion'da masaüstünde Hoca, <code>still</code> verilen her sahnede durgun bir kopya olarak çizimin içine yerleşir. Motor canlı moddan çıkarken <code>api.cls</code> ve <code>api.set</code> ile yazılanları kendisi siler.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Şekil</th><th>Beat'ler</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı</td><td>Yapışkan, etkin beat'in hali</td><td>%45 çizgisinde <code>.on</code>, öncekiler <code>.past</code></td></tr>
+    <tr><td>Reduced motion</td><td>Bitmiş hal, akışta; Hoca <code>still</code></td><td>Düz liste, hepsi tam opak</td></tr>
+    <tr><td>&lt; 1100px, baskı, JS yok</td><td>Bitmiş hal, akışta</td><td>Düz liste</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Şekil metni izler; metin şekli açıklar. İkisi de tek başına anlaşılır olmalı.">
+<div class="dodont">
+<demo label="Yap · beat metni durumu söyler">
+<ol class="steps">
+  <li><h3>Trafiğin %5'ini ver</h3><p>Yük dengeleyici isteklerin yirmide birini kanaryaya yollar.</p></li>
+</ol>
+</demo>
+<demo label="Yapma · bilgi yalnızca şekilde">
+<ol class="steps">
+  <li><h3>İkinci adım</h3><p>Şekle bakın.</p></li>
+</ol>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · her beat bir durum değişikliği" nocode>
+<p>Dört beat, dört trafik oranı. Şekildeki her değişiklik tam olarak bir beat'e karşılık gelir; okuyucu neyin değiştiğini hep bilir.</p>
+</demo>
+<demo label="Yapma · beat içinde çok şey değişsin" nocode>
+<p>Tek beat'te üç kutu belirip iki çizgi kayboluyorsa okuyucu hangisini izleyeceğini bilemez. <code>t</code> ile yapılan tek bir sürekli değişiklik (çubuğun dolması gibi) yeter.</p>
+</demo>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Beat yüksekliği</span><div class="co-body"><p>Canlıda her beat en az 30vh'dir; metin kısa olsa da adımlar arasında nefes payı kalır. Beat'leri yapay boşlukla uzatmayın.</p></div></div>
+</chapter>
+
+<chapter title="API" lead="Kayıt Hendese.init() ile Hendese.start() arasında. Seçici bulunamazsa stickyScene null döner.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>el</code></td><td><code>.sticky</code> seçicisi; içinde <code>.sticky-fig</code> &gt; <code>.drawing</code> ve <code>[data-beat]</code> öğeleri.</td></tr>
+    <tr><td><code>render(i, t, api)</code></td><td><code>i</code> etkin beat (0'dan), <code>t</code> beat içi ilerleme 0..1. Döner: <code>{hud?, hoca?}</code>.</td></tr>
+    <tr><td><code>chap</code>, <code>still</code>, <code>measure(api)</code>, <code>reset(api)</code></td><td>Pin sahnesindeki gibi.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, fig, beats, drawing, aw, ah, set(k, v)</code> (<code>--k</code>'yı <code>.sticky-fig</code>'e yazar), <code>cls, live, poke, seg, ease, lerp, clamp01</code>.</td></tr>
+    <tr><td><code>.on</code> / <code>.past</code></td><td>Motorun beat'lere kendisi verdiği sınıflar; canlı mod kapanınca silinir.</td></tr>
+    <tr><td><code>.sticky--dense</code></td><td>1100–1279px'de şekil sütununu genişletir, iç boşlukları azaltır.</td></tr>
+    <tr><td><code>.hud-slot</code></td><td>İsteğe bağlı; <code>.sf-head</code> içine konur, HUD 232px genişlikte iner.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $$ = Hendese.$$;
+  /* 02 · kanarya */
+  var pcs = $$('#sa-canary .sa-pc'), v1 = $$('#sa-canary .sa-v1, #sa-canary .sa-v1lbl'), K = [0, .05, .5, 1], BUB = 'Trafik %100 kanaryada.';
+  Hendese.stickyScene({
+    el: '#sa-canary', chap: '02 · Kanarya',
+    still: { x: 500, y: 410, pose: 'happy', face: -1, bubble: BUB },
+    render: function (i, t, api) {
+      api.set('kp', K[i]);
+      pcs.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+      v1.forEach(function (el) { api.cls(el, 'gone', i === 3); });
+      return { hoca: { x: 500, y: 410, pose: i < 3 ? 'clipboard' : 'happy', face: -1, bubble: i === 3 ? BUB : null } };
+    }
+  });
+  /* 03 · geri dönüş */
+  var parts = $$('#sa-restore .sa-show');
+  Hendese.stickyScene({
+    el: '#sa-restore', chap: '03 · Geri dönüş',
+    still: { x: 500, y: 360, pose: 'stamp', face: -1 },
+    render: function (i, t, api) {
+      parts.forEach(function (el) { api.cls(el, 'in', +el.getAttribute('data-s') <= i); });
+      api.set('rp', i < 2 ? 0 : i === 2 ? t : 1);
+      return { hoca: { x: 500, y: 360, pose: ['pointDown', 'idle', 'terminal', 'stamp'][i], face: -1 } };
+    }
+  });
+})();
+</script>

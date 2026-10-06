@@ -1,0 +1,195 @@
+<!-- meta {"title":"Kod bloğu","group":"Bileşenler","order":40,"tagline":"İki temada da koyu, kopyalanmaya hazır.","intro":"<code>figure.code</code> bir başlık satırı (dosya, dil, kopyala) ve kaydırılabilir bir <code>&lt;pre&gt;</code> taşır. Renklendirme elle, dört sınıfla yapılır; kopyalama düğmesi <code>Hendese.init()</code> ile kendiliğinden çalışır ve yalnızca kodu alır.","summary":"<code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.","facts":{"Sınıflar":"<code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code>","Token":"<code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code>","JS":"Kopyalama: <code>Hendese.init()</code>; metinler <code>strings.copy / copied / copyFail</code>"}} -->
+
+
+<chapter title="Anatomi" lead="Başlık satırında solda dosya adı, sağda dil ve kopyala düğmesi durur. pre klavye ile odaklanabilir olmalı; uzun satırlar yatay kayar.">
+<demo label="Örnek · en küçük tam blok">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">.env.example</span>
+    <span class="code-lang">ENV</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">DATABASE_URL</span>=<span class="s">postgres://app@db.internal:5432/orders</span>
+<span class="k">CACHE_TTL</span>=<span class="v">300</span>
+<span class="k">LOG_LEVEL</span>=<span class="s">info</span></code></pre>
+</figure>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Parça</th><th>Görev</th><th>Zorunlu mu</th></tr></thead>
+  <tbody>
+    <tr><td><code>.code-head</code></td><td>Başlık satırı; <code>figcaption</code> olduğu için şekle ad verir</td><td>Hayır; yoksa kopyala düğmesi de olmaz</td></tr>
+    <tr><td><code>.code-file</code></td><td>Dosya adı ya da bağlam (<i>terminal</i>, <i>istek</i>)</td><td>Başlık varsa evet</td></tr>
+    <tr><td><code>.code-lang</code></td><td>Kısa dil adı, büyük harf</td><td>Hayır</td></tr>
+    <tr><td><code>.code-copy</code></td><td>Kopyala düğmesi; içinde ikon + <code>&lt;span&gt;</code></td><td>Hayır</td></tr>
+    <tr><td><code>pre[tabindex="0"]</code></td><td>Kaydırılabilir alan, klavyeyle odaklanır</td><td>Evet</td></tr>
+  </tbody>
+</table></div>
+<demo label="Örnek · başlıksız blok">
+<figure class="code">
+<pre tabindex="0"><code>make test</code></pre>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Diller ve vurgu" lead="Paket bir sözdizimi vurgulayıcı içermez. Dört sınıf yeter: k anahtar ya da komut, s metin değeri, c yorum, v değişken ya da sayı.">
+<div class="tbl"><table>
+  <thead><tr><th>Sınıf</th><th>Token</th><th>Ne için</th></tr></thead>
+  <tbody>
+    <tr><td><code>.k</code></td><td><code>--code-k</code></td><td>Anahtar, komut, talimat (<code>FROM</code>, <code>resource</code>)</td></tr>
+    <tr><td><code>.s</code></td><td><code>--code-s</code></td><td>Metin değeri, tırnaklı ifade</td></tr>
+    <tr><td><code>.c</code></td><td><code>--code-c</code></td><td>Yorum; italik</td></tr>
+    <tr><td><code>.v</code></td><td><code>--code-v</code></td><td>Değişken, sayı, okurun değiştireceği yer</td></tr>
+  </tbody>
+</table></div>
+<demo label="Örnek · YAML, zamanlanmış iş">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">cronjob-rapor.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="c"># her gece 02:30'da maliyet raporu</span>
+<span class="k">apiVersion</span>: <span class="s">batch/v1</span>
+<span class="k">kind</span>: <span class="s">CronJob</span>
+<span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">cost-report</span>
+<span class="k">spec</span>:
+  <span class="k">schedule</span>: <span class="s">"30 2 * * *"</span>
+  <span class="k">concurrencyPolicy</span>: <span class="s">Forbid</span>
+  <span class="k">successfulJobsHistoryLimit</span>: <span class="v">3</span></code></pre>
+</figure>
+</demo>
+<demo label="Örnek · diğer diller" nocode>
+<figure class="code"><figcaption class="code-head"><span class="code-file">yedek-al.sh</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="k">set</span> -euo pipefail
+<span class="v">STAMP</span>=$(date +%Y%m%d-%H%M)
+<span class="k">pg_dump</span> --format=custom <span class="s">"$DATABASE_URL"</span> &gt; <span class="s">"orders-${STAMP}.dump"</span>
+<span class="k">aws</span> s3 cp <span class="s">"orders-${STAMP}.dump"</span> s3://yedek-eu-west-1/orders/</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">alarm-kurali.json</span><span class="code-lang">JSON</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>{
+  <span class="k">"name"</span>: <span class="s">"web-api 5xx oranı"</span>,
+  <span class="k">"metric"</span>: <span class="s">"http_requests_total"</span>,
+  <span class="k">"threshold"</span>: <span class="v">0.02</span>,
+  <span class="k">"window"</span>: <span class="s">"5m"</span>,
+  <span class="k">"notify"</span>: [<span class="s">"nobetci-platform"</span>]
+}</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">Dockerfile</span><span class="code-lang">DOCKERFILE</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c"># derleme aşaması</span>
+<span class="k">FROM</span> node:22-alpine <span class="k">AS</span> build
+<span class="k">WORKDIR</span> /app
+<span class="k">COPY</span> package*.json ./
+<span class="k">RUN</span> npm ci &amp;&amp; npm run build
+
+<span class="c"># çalışma aşaması</span>
+<span class="k">FROM</span> node:22-alpine
+<span class="k">ENV</span> <span class="v">NODE_ENV</span>=<span class="s">production</span>
+<span class="k">COPY</span> --from=build /app/dist ./dist
+<span class="k">CMD</span> [<span class="s">"node"</span>, <span class="s">"dist/server.js"</span>]</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">kuyruk.tf</span><span class="code-lang">HCL</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_sqs_queue"</span> <span class="s">"faturalar"</span> {
+  <span class="k">name</span>                       = <span class="s">"faturalar-${var.env}"</span>
+  <span class="k">visibility_timeout_seconds</span> = <span class="v">120</span>
+  <span class="k">message_retention_seconds</span>  = <span class="v">345600</span> <span class="c"># 4 gün</span>
+}</code></pre></figure>
+</demo>
+</chapter>
+
+<chapter title="Kopyalama ve uzun satır" lead="Kopyala düğmesi code öğesinin düz metnini alır; sondaki boş satırları atar, vurgu etiketlerini almaz. Sonuç düğmenin üzerinde 1.6 saniye görünür.">
+<demo label="Örnek · deneyin, sonra yapıştırın">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">staging</span> rollout status deploy/web-api --timeout=<span class="v">120s</span></code></pre>
+</figure>
+</demo>
+<div class="prose"><p>Başarılı kopyada düğme <code>.done</code> sınıfı alır ve yeşile döner; pano izni yoksa gizli bir <code>textarea</code> ile yeniden dener, o da olmazsa <b>Kopyalanamadı</b> yazar. Düğme metinleri başka dile şöyle çevrilir:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.init({
+  strings: { copy: 'Copy', copied: 'Copied', copyFail: 'Copy failed' }
+});</code></pre></figure>
+<div class="prose"><p>Uzun satır kırılmaz; blok yatay kayar ve sayfa taşmaz. <code>pre</code> üzerindeki <code>tabindex="0"</code> sayesinde klavye kullanıcısı bloğa odaklanıp ok tuşlarıyla kaydırabilir.</p></div>
+<demo label="Örnek · dar alanda uzun satır">
+<div style="max-width:420px">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">istek</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">curl</span> -sS -X POST <span class="s">"https://api.ornek.com/v2/cache/invalidate?region=eu-west-1&amp;scope=product"</span> -H <span class="s">"Authorization: Bearer $TOKEN"</span></code></pre>
+</figure>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Açıklama ve imleç" lead="İki ek katman: pre.annotated satır gruplarına renkli etiket koyar; .ln.cur o an çalışan satırı vurgular. İkisi de kopyalanan metni değiştirmez.">
+<demo label="Örnek · açıklamalı göç betiği">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">0042_siparis_durumu.sql</span>
+    <span class="code-lang">SQL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre class="annotated" tabindex="0"><code><span class="grp g2" data-label="şema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
+</span><span class="grp g3" data-label="veri">  <span class="k">UPDATE</span> orders <span class="k">SET</span> status = <span class="s">'paid'</span> <span class="k">WHERE</span> paid_at <span class="k">IS NOT NULL</span>;
+</span><span class="grp g4" data-label="kısıt">  <span class="k">ALTER TABLE</span> orders <span class="k">ALTER COLUMN</span> status <span class="k">SET NOT NULL</span>;
+</span></code></pre>
+</figure>
+</demo>
+<div class="prose"><p>Yürütme imleci için her satırı <code>.ln</code> ile sarın ve satır sonunu <code>&lt;/span&gt;</code>'ın içine koyun. Aşağıdaki düğme imleci bir sonraki satıra taşır.</p></div>
+<demo label="Örnek · adım adım yürütme">
+<figure class="code" id="kb-run">
+  <figcaption class="code-head">
+    <span class="code-file">yayinla.sh</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="ln cur"><span class="k">npm</span> run test
+</span><span class="ln"><span class="k">docker</span> build -t web-api:<span class="v">$TAG</span> .
+</span><span class="ln"><span class="k">docker</span> push web-api:<span class="v">$TAG</span>
+</span><span class="ln"><span class="k">kubectl</span> set image deploy/web-api app=web-api:<span class="v">$TAG</span>
+</span></code></pre>
+</figure>
+<div class="pillrow" style="align-items:center">
+  <button class="btn" type="button" id="kb-next">Sonraki satır</button>
+  <span id="kb-pos" class="chip" aria-live="polite">satır 1 / 4</span>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Kod bloğu kopyalanmak için vardır. Okurun yapıştırdığı şey çalışmalı; istem işareti, çıktı ve süs kodun dışında kalmalı.">
+<div class="dodont">
+<demo label="Yap · yalnızca komut">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">redis-cli</span> -h cache-eu info stats</code></pre></figure>
+</demo>
+<demo label="Yapma · istem ve çıktı birlikte">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>$ redis-cli -h cache-eu info stats
+# Stats
+total_connections_received:91822</code></pre></figure>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · az vurgu, anlamlı yer">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="k">replicas</span>: <span class="v">3</span>
+<span class="k">image</span>: <span class="s">web-api:1.8.2</span></code></pre></figure>
+</demo>
+<demo label="Yapma · her şey aynı renkte vurgulu">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="v">replicas: 3</span>
+<span class="v">image: web-api:1.8.2</span></code></pre></figure>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Renkler <code>--code-bg</code> üzerinde iki temada da kontrast eşiğini geçer. Kopyala düğmesinin görünür bir metni vardır; ikonu tek başına bırakmayın. Kod ekran görüntüsü olarak değil metin olarak verilir: aranabilir, büyütülebilir ve kopyalanabilir kalır.</p></div></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var fig = document.getElementById('kb-run'), btn = document.getElementById('kb-next'), pos = document.getElementById('kb-pos');
+  if (!fig || !btn) return;
+  var lines = fig.querySelectorAll('.ln'), i = 0;
+  btn.addEventListener('click', function () {
+    lines[i].classList.remove('cur');
+    i = (i + 1) % lines.length;
+    lines[i].classList.add('cur');
+    pos.textContent = 'satır ' + (i + 1) + ' / ' + lines.length;
+  });
+})();
+</script>

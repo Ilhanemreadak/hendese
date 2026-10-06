@@ -1,0 +1,220 @@
+<!-- meta {"title":"Fig sahnesi","group":"Hareket","order":30,"tagline":"Okurun oynattığı çizim.","intro":"Kaydırma ilerlemesi yok: şekil akışta durur, okur bir seçim yapar ve çizim ona göre değişir. Durum ve olaylar sayfanındır ve her modda çalışır; sahne yalnızca Hoca'yı ve kısa, zamanlı vuruşları yönetir.","summary":"<code>.fig-sheet</code> + <code>Hendese.figScene()</code>: etkileşimli çizim, sonuç satırı, zamanlı vuruş, <code>still</code> fonksiyonu.","facts":{"Sınıflar":"<code>.fig-sheet</code> · <code>.frame-bg</code> · <code>.fig-cap</code> · <code>.choice.is-seg</code> · <code>.readout</code> · <code>.figcap</code>","JS":"<code>Hendese.figScene(cfg)</code>; <code>render(api, t, vis)</code>, <code>poke()</code>, <code>Hendese.refresh()</code>","Durum":"Sayfanın kendi değişkenleri; motor yalnız <code>.is-live</code> ekler"}} -->
+
+<style>
+/* sayfaya özel çizim sınıfları (.fs-). Durum sınıfları (fs-free, fs-none) her modda geçerlidir; geçişler yalnızca html.motion altında. */
+.fs-slot{stroke:var(--draw);stroke-width:1;fill:var(--draw)}
+.fs-slot.fs-free{fill:var(--paper)}
+.fs-slot.fs-none{stroke:var(--pencil);stroke-dasharray:3 3;fill:none}
+.fs-q{stroke:var(--bad);stroke-width:1.5;fill:var(--bad-soft)}
+.fs-q.fs-none{opacity:0}
+.fs-win{fill:var(--warn-soft);stroke:var(--warn);stroke-dasharray:5 4}
+.fs-mark{stroke:var(--draw);stroke-width:3;transform:translateX(calc(var(--fs-x,520) * 1px))}
+.fs-sheet .dl b{display:block}
+.fs-sheet .drawing{max-width:760px;margin-left:0}
+html.motion .fs-slot,html.motion .fs-q{transition:fill var(--dur-2),opacity var(--dur-2)}
+html.motion .fs-mark{transition:transform var(--dur-3) var(--ease)}
+html:not(.js) .fs-sheet .choice,html:not(.js) .fs-sheet .btn{display:none}
+</style>
+
+<chapter title="Anatomi" lead="Bir pafta, bir seçim, bir çizim, bir sonuç satırı. Hoca isteğe bağlıdır ve yalnızca canlı modda konuşur." hoca="quiet">
+<div class="prose"><p><code>.fig-sheet</code> akışta duran bir şekildir; yapışmaz, iz yoktur. Seçim denetimleri (<code>.choice</code>, düğmeler) sayfanın kendi betiğine bağlanır ve hareket kapalıyken de çalışır. <code>figScene</code> ise sahne görünürken her karede <code>render(api, t, vis)</code> çağırır: <code>t</code> milisaniye cinsinden zaman, <code>vis</code> şeklin görünen payıdır (0..1). Hoca, şeklin en az %45'i görünürken talep edilebilir.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">iskelet</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet" id="ornek"&gt;
+  &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;p class="chip"&gt;Şekil 1&lt;/p&gt;&lt;p class="fig-cap"&gt;…&lt;/p&gt;
+  &lt;fieldset class="choice is-seg"&gt;&lt;legend&gt;…&lt;/legend&gt; … &lt;/fieldset&gt;   &lt;!-- sayfanın betiği dinler --&gt;
+  &lt;div class="drawing" data-aw="640" data-ah="240" style="--aw:640;--ah:240"&gt;…&lt;/div&gt;
+  &lt;div class="readout ok" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;…&lt;/b&gt; …&lt;/p&gt;&lt;/div&gt;   &lt;!-- anlam burada --&gt;
+  &lt;p class="figcap"&gt;&lt;b&gt;Şekil 1.&lt;/b&gt; …&lt;/p&gt;
+&lt;/figure&gt;</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">İş bölümü</span><div class="co-body"><p>Sayfa: durumu tutar, çizimi ve sonuç satırını günceller. Sahne: Hoca'nın pozunu ve balonunu döndürür, zamanlı bir vuruş sürüyorsa <code>busy: true</code> der. Durum değişince sayfa <code>fig.poke()</code> ile döngüyü uyandırır.</p></div></div>
+</chapter>
+
+<chapter title="Canlı örnek · bağlantı havuzu" lead="Otuz eşzamanlı istek, seçilen boyutta bir veritabanı bağlantı havuzuna gelir. Havuz yetmezse istekler kuyrukta bekler.">
+<figure class="fig-sheet fs-sheet" id="fs-pool">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Şekil 1</p><p class="fig-cap">Havuz boyutu ile bekleyen istekler</p>
+  <fieldset class="choice is-seg">
+    <legend>Havuz boyutu</legend>
+    <label><input type="radio" name="fs-size" value="10"><span>10</span></label>
+    <label><input type="radio" name="fs-size" value="20"><span>20</span></label>
+    <label><input type="radio" name="fs-size" value="40" checked><span>40</span></label>
+  </fieldset>
+  <div class="drawing" data-aw="640" data-ah="240" style="--aw:640;--ah:240">
+    <svg viewBox="0 0 640 240" aria-hidden="true">
+      <rect class="ln-pencil" x="20" y="50" width="280" height="118" stroke-dasharray="4 4"/>
+      <rect class="ln-pencil" x="336" y="64" width="210" height="58" stroke-dasharray="4 4"/>
+      <rect class="fs-slot" x="30" y="60" width="20" height="20"/><rect class="fs-slot" x="56" y="60" width="20" height="20"/><rect class="fs-slot" x="82" y="60" width="20" height="20"/><rect class="fs-slot" x="108" y="60" width="20" height="20"/><rect class="fs-slot" x="134" y="60" width="20" height="20"/><rect class="fs-slot" x="160" y="60" width="20" height="20"/><rect class="fs-slot" x="186" y="60" width="20" height="20"/><rect class="fs-slot" x="212" y="60" width="20" height="20"/><rect class="fs-slot" x="238" y="60" width="20" height="20"/><rect class="fs-slot" x="264" y="60" width="20" height="20"/>
+      <rect class="fs-slot" x="30" y="86" width="20" height="20"/><rect class="fs-slot" x="56" y="86" width="20" height="20"/><rect class="fs-slot" x="82" y="86" width="20" height="20"/><rect class="fs-slot" x="108" y="86" width="20" height="20"/><rect class="fs-slot" x="134" y="86" width="20" height="20"/><rect class="fs-slot" x="160" y="86" width="20" height="20"/><rect class="fs-slot" x="186" y="86" width="20" height="20"/><rect class="fs-slot" x="212" y="86" width="20" height="20"/><rect class="fs-slot" x="238" y="86" width="20" height="20"/><rect class="fs-slot" x="264" y="86" width="20" height="20"/>
+      <rect class="fs-slot" x="30" y="112" width="20" height="20"/><rect class="fs-slot" x="56" y="112" width="20" height="20"/><rect class="fs-slot" x="82" y="112" width="20" height="20"/><rect class="fs-slot" x="108" y="112" width="20" height="20"/><rect class="fs-slot" x="134" y="112" width="20" height="20"/><rect class="fs-slot" x="160" y="112" width="20" height="20"/><rect class="fs-slot" x="186" y="112" width="20" height="20"/><rect class="fs-slot" x="212" y="112" width="20" height="20"/><rect class="fs-slot" x="238" y="112" width="20" height="20"/><rect class="fs-slot" x="264" y="112" width="20" height="20"/>
+      <rect class="fs-slot fs-free" x="30" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="56" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="82" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="108" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="134" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="160" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="186" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="212" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="238" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="264" y="138" width="20" height="20"/>
+      <circle class="fs-q fs-none" cx="350" cy="80" r="7"/><circle class="fs-q fs-none" cx="370" cy="80" r="7"/><circle class="fs-q fs-none" cx="390" cy="80" r="7"/><circle class="fs-q fs-none" cx="410" cy="80" r="7"/><circle class="fs-q fs-none" cx="430" cy="80" r="7"/><circle class="fs-q fs-none" cx="450" cy="80" r="7"/><circle class="fs-q fs-none" cx="470" cy="80" r="7"/><circle class="fs-q fs-none" cx="490" cy="80" r="7"/><circle class="fs-q fs-none" cx="510" cy="80" r="7"/><circle class="fs-q fs-none" cx="530" cy="80" r="7"/><circle class="fs-q fs-none" cx="350" cy="106" r="7"/><circle class="fs-q fs-none" cx="370" cy="106" r="7"/><circle class="fs-q fs-none" cx="390" cy="106" r="7"/><circle class="fs-q fs-none" cx="410" cy="106" r="7"/><circle class="fs-q fs-none" cx="430" cy="106" r="7"/><circle class="fs-q fs-none" cx="450" cy="106" r="7"/><circle class="fs-q fs-none" cx="470" cy="106" r="7"/><circle class="fs-q fs-none" cx="490" cy="106" r="7"/><circle class="fs-q fs-none" cx="510" cy="106" r="7"/><circle class="fs-q fs-none" cx="530" cy="106" r="7"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:20;--w:280"><b>Havuz</b></p>
+    <p class="dl" style="--x:336;--y:34;--w:210"><b>Kuyruk</b></p>
+    <p class="dl" style="--x:20;--y:180;--w:420" id="fs-pool-lbl">30 kullanımda · 10 boşta · 0 bekliyor</p>
+  </div>
+  <div class="readout ok" id="fs-pool-out" aria-live="polite"><p><b>Yeterli.</b> 30 istek de bağlantı aldı; 10 bağlantı boşta.</p></div>
+  <p class="figcap"><b>Şekil 1.</b> Dolu kare kullanımdaki bağlantı, boş kare boştaki bağlantı, kesikli kare havuzda olmayan yer. Kırmızı daireler bağlantı bekleyen istekler.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var LOAD = 30, size = 40, beat = -1e9;
+function draw() { /* kareleri, kuyruğu ve sonuç satırını size'a göre güncelle (her modda) */ }
+var fig = Hendese.figScene({
+  el: '#fs-pool',
+  still: function () { return { x: 600, y: 230, pose: size &gt;= LOAD ? 'glasses' : 'worried', face: -1 }; },
+  render: function (api, t) {
+    var busy = t - beat &lt; 1200, wait = Math.max(0, LOAD - size);
+    return { busy: busy, hoca: { x: 600, y: 230, face: -1,
+      pose: busy ? 'pointUp' : wait ? 'worried' : 'glasses',
+      bubble: busy ? (wait ? wait + ' istek bekliyor.' : (size - LOAD) + ' bağlantı boşta.') : null } };
+  }
+});
+Hendese.$$('[name=fs-size]').forEach(function (r) { r.addEventListener('change', function () {
+  size = +r.value; draw();
+  beat = performance.now(); fig.poke();     // zamanlı vuruşu başlat
+  Hendese.refresh();                        // reduced motion: durgun Hoca'yı yeni poza al
+}); });</code></pre></figure>
+</chapter>
+
+<chapter title="Zamanlı vuruş · sertifika yenileme" lead="Düğmeye basınca Hoca bir buçuk saniye damga vurur, sonra sakin poza döner. busy: true döndüğü sürece döngü uyumaz.">
+<figure class="fig-sheet fs-sheet" id="fs-cert">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 2</p><p class="fig-cap">api.example sertifikası: kalan geçerlilik</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:end;gap:6px 18px">
+    <fieldset class="choice is-seg">
+      <legend>Kalan gün</legend>
+      <label><input type="radio" name="fs-rem" value="90" checked><span>90</span></label>
+      <label><input type="radio" name="fs-rem" value="25"><span>25</span></label>
+      <label><input type="radio" name="fs-rem" value="5"><span>5</span></label>
+    </fieldset>
+    <button class="btn" type="button" id="fs-renew" style="margin-bottom:14px"><svg><use href="#i-reset"/></svg>Şimdi yenile</button>
+  </div>
+  <div class="drawing" id="fs-cert-dr" data-aw="640" data-ah="200" style="--aw:640;--ah:200">
+    <svg viewBox="0 0 640 200" aria-hidden="true">
+      <rect class="fs-win" x="40" y="70" width="160" height="40"/>
+      <rect class="ln-draw" x="40" y="70" width="480" height="40"/>
+      <path class="dim" d="M40 130V146M520 130V146M40 138H520"/>
+      <line class="fs-mark" x1="0" y1="54" x2="0" y2="126"/>
+    </svg>
+    <p class="dl" style="--x:40;--y:20;--w:220"><b>Yenileme penceresi</b>son 30 gün</p>
+    <p class="dl" style="--x:40;--y:152;--w:120">bitiş</p>
+    <p class="dl" style="--x:430;--y:152;--w:90">90 gün</p>
+  </div>
+  <div class="readout ok" id="fs-cert-out" aria-live="polite"><p><b>Geçerli.</b> 90 gün kaldı; yenileme penceresinin dışında.</p></div>
+  <p class="figcap"><b>Şekil 2.</b> Kalın dikey çizgi bugünü gösterir. Sarı kesikli alan otomatik yenilemenin denendiği son 30 gün.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var rem = 90, stamp = -1e9, cert = Hendese.figScene({
+  el: '#fs-cert',
+  still: function () { return { x: 590, y: 190, pose: rem &lt;= 5 ? 'worried' : 'glasses', face: -1 }; },
+  render: function (api, t) {
+    var busy = t - stamp &lt; 1500;                        // 1,5 sn'lik vuruş
+    return { busy: busy, hoca: { x: 590, y: 190, face: -1,
+      pose: busy ? 'stamp' : rem &lt;= 5 ? 'worried' : 'glasses',
+      bubble: busy ? 'Yeni sertifika: 90 gün.' : null } };
+  }
+});
+Hendese.$('#fs-renew').addEventListener('click', function () {
+  setRem(90);                                          // radyoyu, çizgiyi, sonuç satırını güncelle
+  stamp = performance.now(); cert.poke(); Hendese.refresh();
+});</code></pre></figure>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Uyku</span><div class="co-body"><p>Vuruş bitince <code>render</code> <code>busy: false</code> döner ve motor bir sonraki karede uyur; <code>Hendese.state.idle</code> yeniden <code>true</code> olur. Sürekli <code>busy: true</code> döndürmek döngüyü hiç uyutmaz.</p></div></div>
+</chapter>
+
+<chapter title="Hareket kapalıyken" lead="Denetimler her modda çalışır; değişen yalnızca Hoca'dır. Anlamı sonuç satırı taşır.">
+<div class="prose">
+  <p>Reduced motion'da, 1100px altında ve baskıda yukarıdaki iki şekil aynen çalışır: radyo düğmeleri kareleri ve çizgiyi günceller, sonuç satırı (<code>aria-live="polite"</code>) yeni durumu metinle söyler. Geçişler yalnızca <code>html.motion</code> altında tanımlı olduğu için değişiklik anında olur.</p>
+  <p>Masaüstünde reduced motion açıksa Hoca, <code>still</code> fonksiyonunun döndürdüğü pozda durgun bir kopya olarak çizime yerleşir. <code>still</code> bir fonksiyon olduğunda değeri her <code>Hendese.refresh()</code> çağrısında yeniden okunur; bu yüzden durumu değiştiren her işleyici sonunda <code>refresh()</code> çağırır. Zamanlı vuruşlar (damga, balon) reduced motion'da hiç oynamaz.</p>
+  <p>JS yoksa denetimlerin bir işlevi kalmaz; bu sayfada <code>html:not(.js) .fs-sheet .choice</code> kuralıyla gizlenirler ve şekil işaretlemedeki varsayılan durumla (40 bağlantı, 90 gün) görünür.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mod</th><th>Denetimler</th><th>Hoca</th></tr></thead>
+  <tbody>
+    <tr><td>Canlı</td><td>Çalışır, geçişli</td><td>Sahnede; vuruşta poz ve balon</td></tr>
+    <tr><td>Reduced motion (masaüstü)</td><td>Çalışır, anlık</td><td><code>still()</code> pozunda durgun kopya; <code>refresh()</code> ile güncellenir</td></tr>
+    <tr><td>&lt; 1100px, baskı</td><td>Çalışır (baskıda son seçim)</td><td>Gizli</td></tr>
+    <tr><td>JS yok</td><td>Gizli</td><td>Yok</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Şekil öğrenmek için oynanır; sonuç her zaman metinle de yazılır.">
+<div class="dodont">
+<demo label="Yap · sonuç satırı durumu söyler">
+<div class="readout bad" aria-live="polite"><p><b>Kuyruk var.</b> 30 isteğin 10'u bağlantı bekliyor; havuzu büyütün ya da sorguları kısaltın.</p></div>
+</demo>
+<demo label="Yapma · anlam yalnızca renkte">
+<div class="readout"><p>Bkz. kırmızı daireler.</p></div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · kısa vuruş, sonra uyku" nocode>
+<p>Vuruş 1–1,5 saniye; <code>busy</code> yalnızca bu sürede <code>true</code>. Hoca bir kez konuşur ve sonuç satırındaki bilgiyi tekrarlar.</p>
+</demo>
+<demo label="Yapma · sürekli animasyon" nocode>
+<p><code>render</code> her zaman <code>busy: true</code> döndürürse döngü hiç uyumaz, pil ve işlemci boşa harcanır; reduced motion'u da atlatmış olursunuz.</p>
+</demo>
+</div>
+</chapter>
+
+<chapter title="API" lead="Kayıt Hendese.init() ile Hendese.start() arasında yapılır; figScene sahne nesnesini döndürür.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <tbody>
+    <tr><td><code>el</code></td><td>Şeklin seçicisi; içinde bir <code>.drawing</code> bulunmalı.</td></tr>
+    <tr><td><code>render(api, t, vis)</code></td><td>Sahne ekrandayken ve canlıyken her uyanışta. <code>t</code> rAF zamanı (ms), <code>vis</code> görünen pay. Döner: <code>{hoca?, busy?}</code>.</td></tr>
+    <tr><td><code>still</code></td><td>Nesne ya da fonksiyon. Fonksiyonsa <code>Hendese.refresh()</code> her çağrıldığında yeniden okunur.</td></tr>
+    <tr><td><code>measure(api)</code>, <code>reset(api)</code></td><td>Yeniden ölçümde / canlı mod kapanınca.</td></tr>
+    <tr><td>Dönen nesne · <code>poke()</code></td><td>Döngüyü uyandırır; durum değişince ya da vuruş başlarken çağırın.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, drawing, aw, ah, cls(node, c, on), live(), poke(), seg, ease, lerp, clamp01</code>. Fig sahnesinde <code>set</code> yoktur; CSS değişkenlerini sayfa kendisi yazar.</td></tr>
+    <tr><td><code>Hendese.refresh()</code></td><td>Reduced motion'daki durgun Hoca kopyalarını kaldırıp <code>still</code> değerlerine göre yeniden yerleştirir.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  /* 02 · bağlantı havuzu */
+  var LOAD = 30, size = 40, beat = -1e9, slots = $$('#fs-pool .fs-slot'), qs = $$('#fs-pool .fs-q'), lbl = $('#fs-pool-lbl'), out = $('#fs-pool-out');
+  function draw() {
+    var used = Math.min(size, LOAD), wait = Math.max(0, LOAD - size);
+    slots.forEach(function (s, i) { s.classList.toggle('fs-none', i >= size); s.classList.toggle('fs-free', i >= used && i < size); });
+    qs.forEach(function (q, i) { q.classList.toggle('fs-none', i >= wait); });
+    lbl.textContent = used + ' kullanımda · ' + (size - used) + ' boşta · ' + wait + ' bekliyor';
+    out.className = 'readout ' + (wait ? 'bad' : 'ok');
+    out.innerHTML = wait ? '<p><b>Kuyruk var.</b> 30 isteğin ' + wait + " tanesi bağlantı bekliyor; ortalama yanıt süresi uzar.</p>" : '<p><b>Yeterli.</b> 30 istek de bağlantı aldı; ' + (size - used) + ' bağlantı boşta.</p>';
+  }
+  var fig = Hendese.figScene({
+    el: '#fs-pool',
+    still: function () { return { x: 600, y: 230, pose: size >= LOAD ? 'glasses' : 'worried', face: -1 }; },
+    render: function (api, t) {
+      var busy = t - beat < 1200, wait = Math.max(0, LOAD - size);
+      return { busy: busy, hoca: { x: 600, y: 230, face: -1, pose: busy ? 'pointUp' : wait ? 'worried' : 'glasses',
+        bubble: busy ? (wait ? wait + ' istek bekliyor.' : (size - LOAD) + ' bağlantı boşta.') : null } };
+    }
+  });
+  $$('[name=fs-size]').forEach(function (r) { r.addEventListener('change', function () { size = +r.value; draw(); beat = performance.now(); fig.poke(); Hendese.refresh(); }); });
+  draw();
+  /* 03 · sertifika */
+  var rem = 90, stamp = -1e9, dr = $('#fs-cert-dr'), cout = $('#fs-cert-out');
+  function setRem(v) {
+    rem = v;
+    $$('[name=fs-rem]').forEach(function (r) { r.checked = +r.value === v; });
+    dr.style.setProperty('--fs-x', 40 + v / 90 * 480);
+    var cls = v <= 5 ? 'bad' : v <= 30 ? '' : 'ok';
+    cout.className = 'readout ' + cls;
+    cout.innerHTML = v <= 5 ? '<p><b>Süre doluyor.</b> ' + v + ' gün kaldı; otomatik yenileme başarısız olmuş olabilir, elle yenileyin.</p>'
+      : v <= 30 ? '<p><b>Pencerede.</b> ' + v + ' gün kaldı; otomatik yenileme bir sonraki çalışmada denenecek.</p>'
+      : '<p><b>Geçerli.</b> ' + v + ' gün kaldı; yenileme penceresinin dışında.</p>';
+  }
+  var cert = Hendese.figScene({
+    el: '#fs-cert',
+    still: function () { return { x: 590, y: 190, pose: rem <= 5 ? 'worried' : 'glasses', face: -1 }; },
+    render: function (api, t) {
+      var busy = t - stamp < 1500;
+      return { busy: busy, hoca: { x: 590, y: 190, face: -1, pose: busy ? 'stamp' : rem <= 5 ? 'worried' : 'glasses', bubble: busy ? 'Yeni sertifika: 90 gün.' : null } };
+    }
+  });
+  $$('[name=fs-rem]').forEach(function (r) { r.addEventListener('change', function () { setRem(+r.value); cert.poke(); Hendese.refresh(); }); });
+  $('#fs-renew').addEventListener('click', function () { setRem(90); stamp = performance.now(); cert.poke(); Hendese.refresh(); });
+})();
+</script>
