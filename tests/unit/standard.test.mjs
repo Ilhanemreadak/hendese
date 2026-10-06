@@ -1,11 +1,11 @@
-// Standart denetimi (STANDART.md): bileşen CSS'i yalnız token kullanır, her sınıf bir sayfada gösterilir.
-// İstisna: satırda /* std:ok <gerekçe> */ — toplam sayısı sınırlıdır, sessizce çoğalamaz.
+// Guards the standard (STANDART.md): component CSS uses tokens only, and every class is shown on some page.
+// Exception: /* std:ok <reason> */ on the line; the total count is capped so exceptions cannot quietly multiply.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const DIR = 'src/css/';
-const EXEMPT = ['tokens.css', 'fonts.css', 'print.css', 'hoca.css', 'index.css'];   // token kaynağı, font, baskı, piksel çizim (3px ızgara)
+const EXEMPT = ['tokens.css', 'fonts.css', 'print.css', 'hoca.css', 'index.css'];   // token source, fonts, print, pixel art (3px grid)
 const FILES = fs.readdirSync(DIR).filter(f => f.endsWith('.css') && !EXEMPT.includes(f));
 const SPACING_FILES = ['components.css', 'blueprint.css'];
 const MAX_MARKERS = 15;
@@ -26,7 +26,7 @@ function scan(file) {
   fs.readFileSync(DIR + file, 'utf8').split('\n').forEach((raw, i) => {
     if (/std:ok\s+\S/.test(raw)) { markers++; return; }
     let line = '';
-    for (let k = 0; k < raw.length; k++) {   // yorumları ayıkla (çok satırlı dahil)
+    for (let k = 0; k < raw.length; k++) {   // strip comments (multi-line included)
       if (inComment) { if (raw.startsWith('*/', k)) { inComment = false; k++; } continue; }
       if (raw.startsWith('/*', k)) { inComment = true; k++; continue; }
       line += raw[k];
@@ -47,7 +47,7 @@ test('bileşen CSS yalnız token kullanır', () => {
   assert.ok(markers <= MAX_MARKERS, `std:ok istisnası ${markers} > ${MAX_MARKERS}`);
 });
 
-// JS'in yazdığı durum sınıfları ve iç yardımcılar sayfalarda elle yazılmaz
+// State classes set by JS and internal helpers are never hand-written in pages
 const INTERNAL = /^(on|past|now|show|complete|done|is-live|is-right|is-up|is-active|compact|hoca-quiet|nav-open|motion|js|intro-pending|intro-go|sketch|sketch-pending|face-l|hoca|hoca-still|hoca-img|hoca-layer|hoca-bubble|hoca-tag|mono|sun|moon|k|s|c|v|ln|cur)$/;
 test('her sınıf bir doküman ya da parça sayfasında gösterilir', () => {
   const css = ['components.css', 'blueprint.css'].map(f => fs.readFileSync(DIR + f, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\{[^{}]*\}/g, '{}')).join('\n');

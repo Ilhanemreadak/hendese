@@ -1,10 +1,10 @@
-// Hendese build: src/ → dist/. Tek bağımlılık esbuild.
-//   dist/hendese.css         tüm katmanlar; fontlar dist/fonts/ altına kopyalanır
-//   dist/hendese.inline.css  aynısı, fontlar base64 gömülü (tek dosyalık HTML sayfaları için)
+// Builds src/ into dist/; the only dependency is esbuild.
+//   dist/hendese.css         all layers; fonts are copied to dist/fonts/
+//   dist/hendese.inline.css  same, with fonts embedded as base64 (for single-file HTML pages)
 //   dist/hendese.js          IIFE, global `Hendese`
-//   dist/hendese.esm.js      ES modül (bundler'lar için)
-//   dist/head.js             flaşsız tema satırı (<head> içine satır içi koyun)
-//   dist/icons.svg           ikon sprite'ı
+//   dist/hendese.esm.js      ES module (for bundlers)
+//   dist/head.js             flash-free theme snippet (inline it in <head>)
+//   dist/icons.svg           icon sprite
 import { build } from 'esbuild';
 import fs from 'node:fs';
 

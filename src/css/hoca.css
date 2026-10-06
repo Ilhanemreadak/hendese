@@ -10,7 +10,7 @@
 }
 .hoca.face-l .hoca-tag { left: auto; right: 90px; }
 
-/* pixel border: 4 offset shadows leave notched corners; 3px = one sprite pixel */
+/* Pixel border: four offset shadows leave notched corners; 3px = one sprite pixel */
 .hoca-bubble {
   --b: var(--ink, #15171c);
   position: absolute; top: 38px; right: 82px; box-sizing: border-box;
@@ -29,7 +29,7 @@
   box-shadow: 0 3px var(--b), 0 6px var(--b), 3px 3px var(--b), 3px 6px var(--b), 6px 6px var(--b);
 }
 .hoca-bubble.is-right { right: auto; left: 82px; }
-/* per-scene option: bubble raised above the head line, tail at its lower-right corner */
+/* Per-scene option: bubble raised above the head line, tail at its lower-right corner */
 .hoca-bubble.is-up { top: -12px; }
 .hoca-bubble.is-up::after { top: 100%; }
 .hoca-bubble.is-right::after {

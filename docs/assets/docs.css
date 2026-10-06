@@ -1,7 +1,7 @@
-/* Yalnızca dokümantasyon sayfalarına özel: örnek kutusu, token örnekleri, sayfa listesi. Paketin parçası değildir. */
+/* Hendese · Docs: styles for the documentation pages only (demo box, token swatches, page list). Not part of the package. */
 .demo{margin:14px 0 22px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
 .demo-view{padding:20px 22px}
-.demo-view>:first-child:not(dialog){margin-top:0}.demo-view>:last-child:not(dialog){margin-bottom:0}   /* diyalog ortalanmak için margin:auto ister */
+.demo-view>:first-child:not(dialog){margin-top:0}.demo-view>:last-child:not(dialog){margin-bottom:0}   /* a dialog needs margin:auto to center */
 .demo>.code{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--r-md) var(--r-md)}
 .demo-label{display:block;padding:7px 14px;border-bottom:1px solid var(--line);font:500 10.5px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0 20px}
@@ -13,7 +13,7 @@
 .nav-page:hover{color:var(--ink-2)}
 .nav-page[aria-current="page"]{color:var(--ink);font-weight:600}
 .api{font-size:14px}
-/* parça sayfaları (demos/): galeri kartları, yap/yapma çifti, önceki/sonraki */
+/* Part pages (demos/): gallery cards, do/don't pair, previous/next */
 .parts{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
 .parts a{display:block;height:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink-2);text-decoration:none;font-size:13.5px;line-height:1.45;transition:border-color var(--dur-1) var(--ease-out)}
 .parts a:hover,.parts a:focus-visible{border-color:var(--accent)}

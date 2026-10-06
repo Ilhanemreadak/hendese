@@ -1,5 +1,5 @@
-// Parça sayfaları (demos/): konsol hatası yok, dış istek yok, yatay taşma yok, ciddi/kritik axe bulgusu yok (açık + koyu).
-// ponytail: görsel referans yok (35+ sayfa × 2 tema repoyu şişirir); docs sayfaları görsel testi zaten taşıyor.
+// Guards part pages (demos/): no console errors, no external requests, no horizontal overflow, no serious/critical axe findings (light + dark).
+// ponytail: no visual baselines (35+ pages × 2 themes would bloat the repo); the docs pages already carry the visual test.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { pathToFileURL } from 'node:url';
@@ -21,7 +21,7 @@ for (const p of PAGES) test(`demos/${p}`, async ({ page }) => {
     expect(errors, 'konsol hatası').toEqual([]);
     expect(external, 'dış istek').toEqual([]);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'yatay taşma').toBeLessThanOrEqual(0);
-    const r = await new AxeBuilder({ page }).analyze();   // axe kendi stil isteklerinde konsola CORS hatası yazar; hatalar bundan önce kontrol edildi
+    const r = await new AxeBuilder({ page }).analyze();   // axe logs CORS errors to the console for its own style requests; errors were checked before this
     errors.length = 0;
     expect(r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${theme} ${v.id}: ${v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')}`)).toEqual([]);
   }

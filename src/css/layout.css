@@ -1,10 +1,10 @@
-/* Hendese · layout: sol ray (rail) + cetvel çizgileri + içerik tuvali + bölüm başlıkları.
-   Rail/topbar kullanmayan sayfalar bu dosyayı atlayabilir. Çekmece davranışı js/tema.js içinde. */
-/* ---------- reading progress ---------- */
+/* Hendese · Layout: page shell with the left rail, ruler lines, content canvas and section headings.
+   Pages without a rail/top bar can skip this file. Drawer behavior lives in js/nav.js. */
+/* ---------- Reading progress ---------- */
 .progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:var(--z-progress);pointer-events:none}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width 60ms linear}   /* std:ok okuma çubuğu kaydırmayı izler, token süresi gecikme olur */
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width 60ms linear}   /* std:ok bar tracks scroll; a token duration would lag */
 
-/* ---------- shell ---------- */
+/* ---------- Shell ---------- */
 .shell{position:relative;z-index:1;display:grid;grid-template-columns:var(--rail-w) minmax(0,1fr);min-height:100vh}
 .rulers{position:fixed;inset:0 0 0 var(--rail-w);pointer-events:none;z-index:0;
   background:
@@ -48,9 +48,9 @@ html[data-theme="dark"] .icon-btn .sun{display:block}
 .topbar .cur{font-size:var(--fs-sm);color:var(--ink-3);font-family:var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
 .scrim{position:fixed;inset:0;background:var(--scrim);z-index:var(--z-scrim);opacity:0;pointer-events:none;transition:opacity var(--dur-3)}
 .canvas{max-width:var(--canvas-max);margin:0 auto;padding:0 clamp(20px,4vw,48px) 96px;min-width:0}
-main{min-width:0;overflow-x:clip;container:col / inline-size}   /* bileşenler sayfa değil sütun genişliğine göre düzenlenir */
+main{min-width:0;overflow-x:clip;container:col / inline-size}   /* components lay out against the column width, not the page */
 
-/* ---------- typography & chapters ---------- */
+/* ---------- Typography & chapters ---------- */
 .chapter{padding:72px 0 32px;border-top:1px solid var(--line);scroll-margin-top:20px}
 .ch-head{margin-bottom:26px}
 .ch-num{font-family:var(--font-mono);font-size:var(--fs-xs);line-height:1.4;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-variant-numeric:tabular-nums;margin-bottom:12px}
@@ -62,7 +62,7 @@ main{min-width:0;overflow-x:clip;container:col / inline-size}   /* bileşenler s
 .prose h3,.chapter h3{font-size:var(--fs-lg);margin:30px 0 10px;color:var(--ink)}
 .prose h4,.chapter h4{font-size:var(--fs-base);margin:20px 0 6px}
 
-/* hero (statik) */
+/* Hero (static) */
 .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px 48px;padding:64px 0 48px}
 .hero-label{margin:0 0 18px;font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .hero h1{margin:0 0 22px;max-width:16ch;font:600 var(--fs-display)/1.02 var(--font-sans);letter-spacing:-.035em;color:var(--ink)}

@@ -1,11 +1,11 @@
-/* Hendese · scroll sahneleri. Her sahne aynı arayüzü sunar:
-   {live, measure(), setLive(on), tick(y, dt, t) -> meşgul mü, hoca, hud, still, dr, aw, ah}
-   hoca/hud bu karenin talepleridir: Hoca'yı ilk talep eden, HUD'u en görünür olan alır.
-   render() içinde düzen OKUMAYIN (yalnız class / CSS değişkeni / transform yazın); ölçüm measure() içindir.
-   CSS varsayılanı = bitmiş hal; canlı mod kapanınca setLive(false) yazılan her şeyi temizler ve reset(api) çağrılır. */
+/* Hendese · Scenes: scroll-driven scenes. Every scene exposes the same interface:
+   {live, measure(), setLive(on), tick(y, dt, t) -> busy?, hoca, hud, still, dr, aw, ah}
+   hoca/hud are this frame's claims: the first claimant gets Hoca, the most visible one gets the HUD.
+   Do NOT READ layout inside render() (write only classes / CSS variables / transforms); measuring belongs in measure().
+   The CSS default = the finished state; when live mode turns off, setLive(false) clears everything written and reset(api) is called. */
 import { $, $$, S, SCENES, clamp01, seg, lerp, ease, absTop, poke } from './core.js';
 
-/* önbellekli class anahtarı; canlı mod kapanınca hepsi geri alınır */
+/* cached class toggle; everything is reverted when live mode turns off */
 function flagger() {
   var flags = new Map();
   return {
@@ -13,31 +13,31 @@ function flagger() {
     clear: function () { flags.forEach(function (m, node) { for (var c in m) node.classList.remove(c); }); flags.clear(); }
   };
 }
-/* önbellekli CSS değişkeni yazıcı (--k) */
+/* cached CSS variable writer (--k) */
 function setter(host) {
   var vars = {};
   return { set: function (k, v) { v = Math.round(v * 1000) / 1000; if (vars[k] !== v) { vars[k] = v; host.style.setProperty('--' + k, v); } },
     clear: function () { host.removeAttribute('style'); vars = {}; } };
 }
-/* çizim birimindeki Hoca talebini viewport px'e çevirir */
+/* converts a Hoca claim from drawing units to viewport px */
 function claim(h, x0, y0, nat, s) {
   return { x: x0 + h.x / s.aw * nat.w, y: y0 + h.y / s.ah * nat.h, pose: h.pose || 'idle', face: h.face || 1, bubble: h.bubble || null, bubbleUp: !!h.bubbleUp, tag: h.tag || null, squash: h.squash || 0, alpha: 1, hidden: !!h.hidden };
 }
 function base(cfg, el, dr) {
   return { live: false, hoca: null, hud: null, still: cfg.still || null, dr: dr, aw: +dr.getAttribute('data-aw') || 1000, ah: +dr.getAttribute('data-ah') || 600 };
 }
-/* kap sorgusu --aw/--ah'ı değiştirebilir (dar varyant): her measure() hesaplanmış değeri okur */
+/* a container query may change --aw/--ah (narrow variant): every measure() reads the computed value */
 export function readAw(s) { var cs = getComputedStyle(s.dr); s.aw = +cs.getPropertyValue('--aw') || s.aw; s.ah = +cs.getPropertyValue('--ah') || s.ah; }
 function commonApi(s, el, dr, f) {
   return { el: el, drawing: dr, get aw() { return s.aw; }, get ah() { return s.ah; }, seg: seg, ease: ease, lerp: lerp, clamp01: clamp01, cls: f.cls,
     live: function () { return s.live; }, poke: poke };
 }
 
-/* Düşük seviye kayıt: kendi tick/measure/setLive'ını yazan özel sahneler için (örn. kamera hareketli bir giriş sahnesi). */
+/* Low-level registration for custom scenes that implement their own tick/measure/setLive (e.g. an intro scene with a moving camera). */
 export function scene(raw) { SCENES.push(raw); return raw; }
 
-/* ---------- pin: uzun iz (--track) + yapışkan sahne; p = 0..1 iz ilerlemesi (yumuşatılmış) ----------
-   render(p, api) -> {hud?: {stage, service, tag, env, pct, fill}, tb?: 0..1 (HUD antet hali), hoca?: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}} */
+/* ---------- pin: long track (--track) + sticky stage; p = 0..1 track progress (smoothed) ----------
+   render(p, api) -> {hud?: {stage, service, tag, env, pct, fill}, tb?: 0..1 (HUD title block state), hoca?: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}} */
 export function pinScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var stage = $('.route-stage', el), dr = $('.drawing', el), slot = $('.hud-slot', el);
@@ -51,7 +51,7 @@ export function pinScene(cfg) {
     if (slot) { var q = slot.getBoundingClientRect(); slotR = { x: q.left - sr.left, y: q.top - sr.top, w: q.width }; } if (cfg.measure) cfg.measure(api); };
   s.tick = function (y, dt) {
     if (!s.live || !nat) return false;
-    if (y < top - S.vh * 1.5 || y > top + L + S.vh * 1.5) { s.hoca = s.hud = null; first = true; return false; } /* uzakta: iş yok */
+    if (y < top - S.vh * 1.5 || y > top + L + S.vh * 1.5) { s.hoca = s.hud = null; first = true; return false; } /* far away: nothing to do */
     var target = clamp01((y - top) / L);
     if (first) { p = target; first = false; } else { p += (target - p) * (1 - Math.pow(0.002, dt / 1000)); if (Math.abs(target - p) < 0.0004) p = target; }
     var out = cfg.render(p, api) || {}, stY = y < top ? top - y : y > top + L ? top + L - y : 0, h = out.hoca;
@@ -62,9 +62,9 @@ export function pinScene(cfg) {
   SCENES.push(s); return s;
 }
 
-/* ---------- sticky: yapışkan şekil + kayan metin beat'leri ([data-beat]) ----------
-   i = okuma çizgisini (%45) geçen son beat, t = o beat içindeki ilerleme. Beat'ler .on / .past alır.
-   render(i, t, api) pin ile aynı nesneyi döndürür. Dar varyant: api.aw/ah her measure()'da hesaplanmış --aw/--ah'tan güncellenir. */
+/* ---------- sticky: sticky figure + scrolling text beats ([data-beat]) ----------
+   i = last beat past the reading line (45%), t = progress within that beat. Beats get .on / .past.
+   render(i, t, api) returns the same object as pin. Narrow variant: api.aw/ah update from the computed --aw/--ah on every measure(). */
 export function stickyScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var fig = $('.sticky-fig', el), dr = $('.drawing', fig), slot = $('.hud-slot', fig), beats = $$('[data-beat]', el);
@@ -90,10 +90,10 @@ export function stickyScene(cfg) {
   SCENES.push(s); return s;
 }
 
-/* ---------- fig: akıştaki etkileşimli çizim (scroll ilerlemesi yok) ----------
-   Durum ve olay işleyicileri bölümündür (her modda çalışır). render(api, t, vis) ekranda ve canlıyken her kare çalışır;
-   vis = görünen pay. Döner: {hoca?, busy?: zamanlı bir beat sürüyorsa true}. Durum değişince api.poke() çağırın.
-   still bir fonksiyon olabilir: Hendese.refresh() her çağrıldığında yeniden okunur. */
+/* ---------- fig: interactive in-flow drawing (no scroll progress) ----------
+   State and event handlers belong to the section (they run in every mode). render(api, t, vis) runs every frame while on screen and live;
+   vis = visible fraction. Returns {hoca?, busy?: true while a timed beat is running}. Call api.poke() when state changes.
+   still may be a function: it is re-read on every Hendese.refresh() call. */
 export function figScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var dr = $('.drawing', el);

@@ -1,6 +1,6 @@
-/* Hendese · Hoca sprite: piksel maskot, canvas ile boyanır (görsel dosyası yok). Tek bir sabit katman + durgun kopyalar.
-   API: render({visible,x,y,pose,face,squash,bubble,bubbleUp,tag,alpha}) viewport px; place(kap,{left,top,pose,face,bubble,bubbleUp,tag});
-   clearPlaced(); size; anchors (bağlantı noktası = ayakların alt ortası, sit için oturma noktası). */
+/* Hendese · Hoca sprite: a pixel mascot painted with canvas (no image files). One fixed layer + still copies.
+   API: render({visible,x,y,pose,face,squash,bubble,bubbleUp,tag,alpha}) in viewport px; place(container,{left,top,pose,face,bubble,bubbleUp,tag});
+   clearPlaced(); size; anchors (anchor point = bottom center of the feet; the seat point for sit). */
 export function createHoca() {
   // Hoca = an orange pixel block mascot (flat block body, two eye slits, side nubs, four legs), drawn at 2x cell
   // resolution. Teacher personality comes only from glasses, props and poses. Grid 44x36 cells, drawn at x2.
@@ -68,7 +68,7 @@ export function createHoca() {
   };
   var LAPTOP_SCREEN = '#1c2530';
   var anchors = {};
-  for (var n in POSES) anchors[n] = n === 'sit' ? { x: 44, y: 60 } : { x: 44, y: 68 }; // feet bottom-centre (row 34) / seat point (row 30)
+  for (var n in POSES) anchors[n] = n === 'sit' ? { x: 44, y: 60 } : { x: 44, y: 68 }; // feet bottom center (row 34) / seat point (row 30)
 
   function paint(name) {
     var g = []; for (var y = 0; y < H; y++) { g.push([]); for (var x = 0; x < W; x++) g[y].push('.'); }

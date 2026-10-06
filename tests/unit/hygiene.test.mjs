@@ -1,10 +1,10 @@
-// Paket dışarıyla paylaşılacak: kaynakta, dokümanda ve çıktıda bu adlar geçmemeli.
+// Guards the public package: banned names must not appear in source, docs or build output.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const BANNED = new RegExp(['mat', 'l[iı]|cla', 'ude'].join(''), 'i');   // kelimeler bu dosyada da geçmesin diye parçalı
+const BANNED = new RegExp(['mat', 'l[iı]|cla', 'ude'].join(''), 'i');   // split into fragments so the words never appear in this file either
 const ROOTS = ['src', 'docs', 'demos', 'starter', 'dist', 'tools', 'tests', 'README.md', 'STANDART.md', 'CHANGELOG.md', 'package.json'];
 function* walk(p) {
   if (!fs.existsSync(p)) return;

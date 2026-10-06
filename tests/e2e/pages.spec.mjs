@@ -1,4 +1,4 @@
-// Her doküman sayfası: konsol hatası yok, dış istek yok, yatay taşma yok, ciddi/kritik axe bulgusu yok, görsel referans.
+// Guards every docs page: no console errors, no external requests, no horizontal overflow, no serious/critical axe findings, visual baseline.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { pathToFileURL } from 'node:url';
@@ -30,7 +30,7 @@ for (const p of PAGES) {
         expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'yatay taşma').toBeLessThanOrEqual(0);
       });
     }
-    // axe erişilebilir temel durumda koşar (reduced motion): canlı modda etkin olmayan beat'ler bilerek soluklaştırılır
+    // axe runs in the accessible base state (reduced motion): in live mode, inactive beats are deliberately dimmed
     for (const theme of ['light', 'dark']) test(`erişilebilirlik (axe) · ${theme}`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
       await open(page, p);

@@ -1,15 +1,15 @@
-/* Hendese · etkileşimli bileşenler (her modda çalışır; hareket gerektirmez). */
+/* Hendese · Widgets: interactive components (work in every mode; no motion required). */
 import { $, $$ } from './core.js';
 import { strings } from './strings.js';
 
-/* tablolar: dar ekranda satırlar kart olur; her hücreye başlığını data-th olarak yazar */
+/* tables: rows become cards on narrow screens; writes each cell's header into data-th */
 function tables() {
   $$('.tbl').forEach(function (w) { if (!w.hasAttribute('tabindex')) w.setAttribute('tabindex', '0'); });
   $$('.tbl table').forEach(function (t) { var ths = $$('thead th', t).map(function (th) { return th.textContent.trim(); });
     $$('tbody tr', t).forEach(function (tr) { $$('td', tr).forEach(function (td, i) { if (ths[i]) td.setAttribute('data-th', ths[i]); }); }); });
 }
 
-/* kod kopyala: figure.code > .code-copy > span + code */
+/* code copy: figure.code > .code-copy > span + code */
 function copy() {
   $$('.code').forEach(function (fig) { var btn = $('.code-copy', fig), code = $('code', fig); if (!btn || !code) return; var label = $('span', btn); label.setAttribute('aria-live', 'polite');
     btn.addEventListener('click', function () {
@@ -20,8 +20,8 @@ function copy() {
     }); });
 }
 
-/* kontrol listesi: <div class="runbook" data-store="localStorage-anahtarı"> (anahtar olduğu gibi kullanılır).
-   Her çizimde 'hendese:runbook' {done,total} olayı (kabarcıklı) yayılır. */
+/* runbook: <div class="runbook" data-store="localStorage-key"> (the key is used as is).
+   Every render dispatches a bubbling 'hendese:runbook' {done, total} event. */
 function runbooks() {
   $$('.runbook').forEach(function (rb) {
     var boxes = $$('input[type="checkbox"]', rb), count = $('.rb-count', rb), fill = $('.rb-bar i', rb), reset = $('.rb-reset', rb), key = rb.getAttribute('data-store');
@@ -36,8 +36,8 @@ function runbooks() {
   });
 }
 
-/* istasyon gezgini: <div data-explorer="panel-id"> içindeki [data-key] düğmeleri (aria-pressed); panelde [data-for="key"].
-   Üzerine gelme / odak önizler, ayrılınca seçili olana döner, tıklama seçer ve 'hendese:explore' {key} yayar. */
+/* station explorer: [data-key] buttons (aria-pressed) inside <div data-explorer="panel-id">; [data-for="key"] in the panel.
+   Hover / focus previews, leaving reverts to the selection, click selects and dispatches 'hendese:explore' {key}. */
 function explorers() {
   $$('[data-explorer]').forEach(function (ex) {
     var panel = document.getElementById(ex.getAttribute('data-explorer')); if (!panel) return;
@@ -55,8 +55,8 @@ function explorers() {
   });
 }
 
-/* sekmeler: [data-tabs] içindeki role=tab düğmeleri (roving tabindex). Klavye: oklar, Home/End. Seçilmeyen paneller hidden.
-   Her seçimde 'hendese:tab' {id} olayı yayılır (açılıştaki ilk seçim hariç). */
+/* tabs: role=tab buttons inside [data-tabs] (roving tabindex). Keyboard: arrows, Home/End. Unselected panels are hidden.
+   Every selection dispatches 'hendese:tab' {id} (except the initial selection on load). */
 function tabs() {
   $$('[data-tabs]').forEach(function (root) {
     var list = $$('[role="tab"]', root).filter(function (t) { return t.closest('[data-tabs]') === root; });
@@ -74,7 +74,7 @@ function tabs() {
   });
 }
 
-/* diyalog: tarayıcı Invoker Commands (commandfor/command) desteklemiyorsa düğmeleri bağlar */
+/* dialog: wires the buttons when the browser lacks Invoker Commands (commandfor/command) */
 function dialogs() {
   if ('commandForElement' in HTMLButtonElement.prototype) return;
   $$('button[commandfor]').forEach(function (b) {
@@ -82,7 +82,7 @@ function dialogs() {
   });
 }
 
-/* form alanı: gizli hata metni de describedby ile okunur; yalnız alan geçersizken (aria-invalid ya da :user-invalid) bağlanır */
+/* form field: hidden error text is also announced via describedby; linked only while the field is invalid (aria-invalid or :user-invalid) */
 function fields() {
   $$('.field-error[id]').forEach(function (e) {
     var c = $('[aria-describedby~="' + e.id + '"]', e.closest('.field')); if (!c) return;
@@ -90,7 +90,7 @@ function fields() {
     function sync() { var bad = c.getAttribute('aria-invalid') === 'true'; try { bad = bad || c.matches(':user-invalid'); } catch (x) {}
       var ids = bad ? base.concat(e.id) : base; if (ids.length) c.setAttribute('aria-describedby', ids.join(' ')); else c.removeAttribute('aria-describedby'); }
     ['input', 'change', 'blur', 'invalid'].forEach(function (t) { c.addEventListener(t, sync); });
-    if (c.form) c.form.addEventListener('reset', function () { setTimeout(sync); });   /* sıfırlama :user-invalid'i temizler */
+    if (c.form) c.form.addEventListener('reset', function () { setTimeout(sync); });   /* reset clears :user-invalid */
     new MutationObserver(sync).observe(c, { attributeFilter: ['aria-invalid'] }); sync();
   });
 }

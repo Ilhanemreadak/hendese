@@ -1,48 +1,48 @@
-/* Hendese · tasarım token'ları (tek kaynak).
-   Renkler light-dark() ile tek satırda: sistem teması varsayılan, html[data-theme="light|dark"] elle seçim.
-   Bileşenler sadece bu değişkenleri okur. Uyarlama: kendi CSS'inizde birkaç değeri ezin
-   (tema @layer içinde olduğundan katmansız kurallarınız her zaman kazanır). */
+/* Hendese · Tokens: the single source of design values.
+   Colors are one-liners via light-dark(): the system theme is the default, html[data-theme="light|dark"] forces a choice.
+   Components read only these variables. To customize, override a few values in your own CSS
+   (the theme lives inside @layer, so your unlayered rules always win). */
 :root{
   color-scheme:light dark;
 
-  /* tipografi */
+  /* Typography */
   --font-sans:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   --font-mono:"IBM Plex Mono","Cascadia Code",Consolas,ui-monospace,monospace;
   --font-pixel:"Pixelify Sans",var(--font-mono);
 
-  /* yazı ölçeği (px). Çizim içi boyutlar ölçek dışıdır: max(Npx, calc(M * var(--u))) çizimle ölçeklenir. */
-  --fs-xs:11px;      /* mono etiket, çip, tablo başlığı */
-  --fs-sm:12.5px;    /* kod, düğme, ikincil satır */
-  --fs-md:14px;      /* bileşen gövdesi, tablo, callout */
-  --fs-base:16px;    /* okuma metni */
-  --fs-lg:17.5px;    /* giriş paragrafı, h3 */
-  --fs-xl:22px;      /* damga adı, büyük numara */
-  --fs-2xl:30px;     /* pafta başlığı */
-  --fs-h2:clamp(26px,2.4vw,32px);          /* bölüm başlığı */
-  --fs-display:clamp(44px,4.6vw,68px);     /* hero başlığı */
-  --fs-display-sm:clamp(30px,9vw,40px);    /* hero başlığı, dar ekran */
+  /* Type scale (px). In-drawing sizes are off-scale: max(Npx, calc(M * var(--u))) scales with the drawing. */
+  --fs-xs:11px;      /* mono label, chip, table header */
+  --fs-sm:12.5px;    /* code, button, secondary line */
+  --fs-md:14px;      /* component body, table, callout */
+  --fs-base:16px;    /* reading text */
+  --fs-lg:17.5px;    /* lead paragraph, h3 */
+  --fs-xl:22px;      /* stamp name, large number */
+  --fs-2xl:30px;     /* sheet title */
+  --fs-h2:clamp(26px,2.4vw,32px);          /* section title */
+  --fs-display:clamp(44px,4.6vw,68px);     /* hero title */
+  --fs-display-sm:clamp(30px,9vw,40px);    /* hero title, narrow screen */
 
-  /* boşluk ölçeği (padding / margin / gap). 3px ve altı optik düzeltmedir, ölçek dışı kalır. */
+  /* Spacing scale (padding / margin / gap). 3px and below is optical correction and stays off-scale. */
   --sp-1:4px;--sp-2:6px;--sp-3:8px;--sp-4:10px;--sp-5:12px;--sp-6:14px;
   --sp-7:16px;--sp-8:20px;--sp-9:28px;--sp-10:32px;--sp-11:48px;
 
-  /* ölçüler ve köşe */
+  /* Dimensions and radii */
   --rail-w:248px;--side-w:clamp(230px,20vw,290px);--canvas-max:1040px;--topbar-h:52px;
   --r-xs:4px;--r-sm:6px;--r-md:10px;--r-lg:14px;--r-pill:999px;
 
-  /* katman sırası (sabit konumlu kabuk öğeleri). 0–2 yerel istiflemedir, token gerekmez. */
+  /* Stacking order (fixed-position shell elements). 0–2 is local stacking and needs no token. */
   --z-topbar:40;--z-scrim:45;--z-rail:50;--z-hud:55;--z-hoca:60;--z-progress:70;--z-skip:100;
 
-  /* hareket: süre + eğri. reduced-motion'da base.css tüm geçişleri ~0'a çeker. */
+  /* Motion: duration + easing. Under reduced motion, base.css pulls every transition to ~0. */
   --dur-1:120ms;--dur-2:250ms;--dur-3:320ms;--dur-4:650ms;--dur-5:2s;
-  --ease-out:cubic-bezier(.2,.7,.2,1);        /* varsayılan: hızlı başla, yumuşak dur */
-  --ease-in-out:cubic-bezier(.45,0,.55,1);    /* sahne içi yer değiştirme */
-  --ease-snap:cubic-bezier(.3,1.6,.55,1);     /* yerine oturma, hafif taşma */
+  --ease-out:cubic-bezier(.2,.7,.2,1);        /* default: fast start, soft stop */
+  --ease-in-out:cubic-bezier(.45,0,.55,1);    /* in-scene movement */
+  --ease-snap:cubic-bezier(.3,1.6,.55,1);     /* snap into place, slight overshoot */
 
-  /* CSS content ile basılan arayüz metinleri; başka dil için ezin */
+  /* UI strings printed via CSS content; override for other languages */
   --str-selected:"SEÇİLİ";--str-station:"İstasyon";--str-error:"Hata:";--str-required:" · zorunlu";
 
-  /* yüzeyler                 açık                     koyu */
+  /* Surfaces                 light                    dark */
   --bg:         light-dark(#f4f4ef,               #0f1318);
   --surface:    light-dark(#ffffff,               #161b22);
   --surface-2:  light-dark(#f8f8f4,               #1a2029);
@@ -54,23 +54,23 @@
   --ruler:      light-dark(rgba(22,28,40,.075),   rgba(170,185,210,.06));
   --scrim:      light-dark(rgba(20,28,45,.45),    rgba(4,6,10,.6));
 
-  /* metin */
+  /* Text */
   --ink:        light-dark(#15171c,               #e6e9ee);
   --ink-2:      light-dark(#4a505c,               #a7afbd);
   --ink-3:      light-dark(#60656e,               #8a93a3);
 
-  /* vurgu + blueprint çizgisi */
+  /* Accent + blueprint line */
   --accent:     light-dark(#2352c9,               #8aaeff);
   --accent-2:   light-dark(#1d45ad,               #a5c0ff);
   --accent-ink: light-dark(#ffffff,               #0b1020);
-  /* --accent'ten türeyenler: temayı tek renkle değiştirmek için yalnız --accent (ve bağlantı kontrastı için --accent-2) ezilir */
+  /* Derived from --accent: to retheme with one color, override only --accent (and --accent-2 for link contrast) */
   --accent-soft:light-dark(color-mix(in srgb,var(--accent) 9%,transparent), color-mix(in srgb,var(--accent) 12%,transparent));
   --draw:       var(--accent);
   --pencil:     color-mix(in srgb,var(--draw) 28%,transparent);
   --pencil-2:   color-mix(in srgb,var(--draw) 13%,transparent);
-  --scene-shade:light-dark(color-mix(in srgb,var(--draw) 8%,var(--scene-bg)), color-mix(in srgb,var(--draw) 18%,var(--scene-bg)));   /* izometrik yan yüz: pafta zemininden bir ton koyu */
+  --scene-shade:light-dark(color-mix(in srgb,var(--draw) 8%,var(--scene-bg)), color-mix(in srgb,var(--draw) 18%,var(--scene-bg)));   /* isometric side face: one shade darker than the sheet background */
 
-  /* durum */
+  /* Status */
   --ok:         light-dark(#127a4c,               #38c98a);
   --warn:       light-dark(#93610f,               #f2b53c);
   --bad:        light-dark(#c23434,               #f06a6a);
@@ -80,21 +80,21 @@
   --bad-soft:   light-dark(rgba(207,59,59,.10),   rgba(240,106,106,.13));
   --sec-soft:   light-dark(rgba(107,79,214,.10),  rgba(179,157,252,.13));
 
-  /* servis renkleri (bulut/CI diyagramları için isteğe bağlı) */
+  /* Service colors (optional, for cloud/CI diagrams) */
   --aws:        light-dark(#9c5600,               #ffa02e);
   --gitlab:     light-dark(#b54418,               #fc6d26);
   --k8s:        light-dark(#2a66d0,               #4f8ff7);
   --argo:       light-dark(#ad4829,               #f0805a);
 
-  /* kod blokları iki temada da koyu kalır: ayrı bir görsel sistem */
+  /* Code blocks stay dark in both themes: a separate visual system */
   --code-bg:#0a0d13;--code-line:rgba(255,255,255,.07);--code-ink:#dfe6f1;--code-ink-2:#c9d2e0;--code-muted:#8a96ad;
   --code-fill:rgba(255,255,255,.06);--code-fill-2:rgba(255,255,255,.12);
   --code-k:#8ec5ff;--code-s:#ffd28a;--code-c:#7f8ca3;--code-v:#b8f2a6;
 
-  /* gölge: yalnızca kayan çekmece (dil kuralı: gölge yok, istisna kabuk) */
+  /* Shadow: sliding drawer only (language rule: no shadows; the shell is the exception) */
   --shadow-drawer:0 0 0 1px var(--line),20px 0 60px -20px rgba(0,0,0,.6);
 }
-/* yüksek kontrast isteği: kalem çizgileri mürekkebe, ikincil metin bir kademe koyulaşır */
+/* High contrast request: pencil lines become ink, secondary text darkens one step */
 @media (prefers-contrast:more){
   :root{--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:color-mix(in srgb,var(--draw) 45%,transparent);--ink-3:var(--ink-2)}
 }

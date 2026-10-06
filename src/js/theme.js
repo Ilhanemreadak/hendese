@@ -1,5 +1,5 @@
-/* Hendese · tema: kayıtlı seçim > sistem tercihi. [data-theme-toggle] düğmeleri değiştirir, seçimi saklar,
-   'hendese:theme' olayını yayar. Flaşsız açılış için dist/head.js'i <head> içine satır içi koyun. */
+/* Hendese · Theme: persisted choice > system preference. [data-theme-toggle] buttons toggle it, persist the choice
+   and dispatch 'hendese:theme'. For a flash-free load, inline dist/head.js in <head>. */
 import { $$ } from './core.js';
 import { strings } from './strings.js';
 

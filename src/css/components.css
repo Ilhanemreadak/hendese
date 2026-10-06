@@ -1,4 +1,4 @@
-/* Hendese · bileşenler: kv, buton, pill, kod bloğu, callout, tablo, adımlar, kontrol listesi. */
+/* Hendese · Components: kv, button, pill, code block, callout, table, steps, runbook and form/interactive controls. */
 .chapter ol.plain>li{margin:var(--sp-3) 0}
 .kv{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--sp-3) var(--sp-7);font-size:var(--fs-md);margin:var(--sp-4) 0 var(--sp-7);max-width:80ch}
 .kv dt{font-weight:600;color:var(--ink)}
@@ -14,7 +14,7 @@
 
 .pillrow{display:flex;gap:var(--sp-2);flex-wrap:wrap;align-items:center}
 
-/* ---------- code ---------- */
+/* ---------- Code ---------- */
 .code{color-scheme:dark;margin:var(--sp-6) 0 var(--sp-8);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--code-bg);color:var(--code-ink)}
 .code-head{display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-6);border-bottom:1px solid var(--code-line);font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--code-muted)}
 .code-file{color:var(--code-ink);font-weight:500}
@@ -28,12 +28,12 @@
 .code pre{margin:0;padding:var(--sp-6) var(--sp-7);overflow:auto;font-family:var(--font-mono);font-size:var(--fs-sm);line-height:1.6;tab-size:2;scrollbar-width:thin}
 .code pre:focus-visible{outline-offset:-2px}
 .code .c{color:var(--code-c);font-style:italic}.code .k{color:var(--code-k)}.code .s{color:var(--code-s)}.code .v{color:var(--code-v)}
-.code pre.annotated{padding-left:124px}   /* std:ok açıklama sütunu (grp etiketi) */
-.grp{display:block;position:relative;border-left:2px solid var(--gc);margin:3px 0 3px -108px;padding-left:106px}   /* std:ok kart etiketi sütunu (88px + boşluk) */
+.code pre.annotated{padding-left:124px}   /* std:ok annotation column (grp label) */
+.grp{display:block;position:relative;border-left:2px solid var(--gc);margin:3px 0 3px -108px;padding-left:106px}   /* std:ok card label column (88px + gap) */
 .grp::after{content:attr(data-label);position:absolute;left:10px;top:3px;width:86px;text-align:right;font-size:var(--fs-xs);line-height:1.3;color:var(--gc);opacity:.95;pointer-events:none;user-select:none;font-style:normal;white-space:normal}
-.g1{--gc:var(--aws)}.g2{--gc:var(--code-k)}.g3{--gc:var(--code-v)}.g4{--gc:var(--argo)}.g5{--gc:var(--sec)}   /* .code koyu şemada: servis renkleri koyu değerine çözülür */
+.g1{--gc:var(--aws)}.g2{--gc:var(--code-k)}.g3{--gc:var(--code-v)}.g4{--gc:var(--argo)}.g5{--gc:var(--sec)}   /* .code is dark-scheme: service colors resolve to their dark values */
 
-/* ---------- callouts ---------- */
+/* ---------- Callouts ---------- */
 .co{--c:var(--ink-2);--c-soft:var(--surface-3);display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--sp-2) var(--sp-3);align-items:center;padding:2px 0 2px var(--sp-7);margin:var(--sp-8) 0;border-left:2px solid var(--c);max-width:80ch}
 .co-ic{display:grid;place-items:center;color:var(--c)}
 .co-ic svg{width:12px;height:12px}
@@ -49,7 +49,7 @@
 .co-success{--c:var(--ok);--c-soft:var(--ok-soft)}
 .co-trouble{--c:var(--bad);--c-soft:var(--bad-soft)}
 
-/* ---------- tables ---------- */
+/* ---------- Tables ---------- */
 .tbl{margin:var(--sp-5) 0 var(--sp-8);border:1px solid var(--line);border-radius:var(--r-sm);overflow:auto;background:var(--surface);scrollbar-width:thin}
 .tbl table{width:100%;border-collapse:collapse;font-size:var(--fs-md);min-width:620px}
 .tbl th{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);text-align:left;padding:var(--sp-4) var(--sp-5);border-bottom:1px solid var(--line-2);white-space:nowrap}
@@ -59,13 +59,13 @@
 .tbl td code,.tbl th code{font-size:var(--fs-sm);white-space:nowrap}
 .tbl td small{color:var(--ink-3);font-family:var(--font-mono);font-size:var(--fs-xs)}
 .tbl.wide table{min-width:820px}
-.tbl :is(th,td).num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}   /* sayı sütunu: sağa yaslı, sabit genişlikli rakam */
+.tbl :is(th,td).num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}   /* number column: right-aligned, tabular figures */
 .pill{--c:var(--ink-3);--c-soft:var(--surface-3);display:inline-block;font-family:var(--font-mono);font-size:var(--fs-xs);padding:1px var(--sp-2);border-radius:var(--r-pill);border:1px solid var(--c);color:var(--c);background:var(--c-soft);white-space:nowrap;line-height:1.5}
 .plus{color:var(--ok)}.minus{color:var(--bad)}
 
-/* ---------- steps ---------- */
+/* ---------- Steps ---------- */
 .steps{list-style:none;padding:0;margin:var(--sp-6) 0}
-.steps>li{--c:var(--accent);--c-soft:var(--accent-soft);position:relative;padding:var(--sp-6) var(--sp-7) var(--sp-6) 62px;border:1px solid var(--line);border-radius:var(--r-md);margin:var(--sp-4) 0;background:var(--surface)}   /* std:ok numara rozeti solda (32px + boşluk) */
+.steps>li{--c:var(--accent);--c-soft:var(--accent-soft);position:relative;padding:var(--sp-6) var(--sp-7) var(--sp-6) 62px;border:1px solid var(--line);border-radius:var(--r-md);margin:var(--sp-4) 0;background:var(--surface)}   /* std:ok number badge on the left (32px + gap) */
 .steps>li::before{content:counter(list-item,decimal-leading-zero);position:absolute;left:16px;top:15px;width:32px;height:32px;border-radius:var(--r-sm);background:var(--c-soft);color:var(--c);display:grid;place-items:center;font-family:var(--font-mono);font-size:var(--fs-sm);font-weight:500}
 .steps>li h3{margin:var(--sp-1) 0 var(--sp-2);font-size:var(--fs-base)}
 .steps>li p:not(.check){color:var(--ink-2);font-size:var(--fs-md);max-width:72ch}
@@ -73,7 +73,7 @@
 .check{--c:var(--ok);display:flex;gap:var(--sp-3);align-items:flex-start;margin-top:var(--sp-4);font-size:var(--fs-md);color:var(--c);font-weight:500}
 .check svg{width:14px;height:14px;flex:0 0 auto;margin-top:var(--sp-1)}
 
-/* ---------- runbook checklist ---------- */
+/* ---------- Runbook ---------- */
 .runbook{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden;margin:var(--sp-7) 0 var(--sp-3)}
 .rb-head{display:flex;align-items:center;gap:var(--sp-6);padding:var(--sp-5) var(--sp-7);border-bottom:1px solid var(--line)}
 .rb-count{font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -96,9 +96,9 @@
 
 
 
-/* ---------- seçim grubu: yerel radio'lar (klavye: Tab gruba girer, oklar seçer) ----------
-   <fieldset class="choice"><legend>Etiket</legend><label><input type="radio" name="x" checked><span>prod</span></label>…</fieldset>
-   .choice = çip görünümü, .choice.is-seg = segmentli düğme. JS yoksa gizlemek için: html:not(.js) .choice{display:none} */
+/* ---------- Choice group: native radios (keyboard: Tab enters the group, arrows select) ----------
+   <fieldset class="choice"><legend>Label</legend><label><input type="radio" name="x" checked><span>prod</span></label>…</fieldset>
+   .choice = chip look, .choice.is-seg = segmented button. To hide without JS: html:not(.js) .choice{display:none} */
 .choice{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:var(--sp-5) 0 var(--sp-6);padding:0;border:0;min-width:0}
 .choice legend{float:left;width:100%;margin:0 0 2px;padding:0;font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .choice label{position:relative;cursor:pointer}
@@ -109,22 +109,22 @@
 .choice input:checked+span{border-color:var(--draw);box-shadow:inset 0 0 0 1px var(--draw);color:var(--ink);font-weight:600}
 .choice.is-seg{gap:var(--sp-2)}
 .choice.is-seg input:checked+span{box-shadow:none;background:var(--accent-soft);font-weight:500}
-.choice input:checked+span small{color:var(--ink-2)}   /* --ink-3, --accent-soft zeminde koyu temada AA altında */
+.choice input:checked+span small{color:var(--ink-2)}   /* --ink-3 on --accent-soft falls below AA in the dark theme */
 .choice input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
 
-/* ---------- aç/kapa düğmesi: <button class="toggle-btn" aria-pressed="false"> ---------- */
+/* ---------- Toggle button: <button class="toggle-btn" aria-pressed="false"> ---------- */
 .toggle-btn{font:500 var(--fs-sm)/1.3 var(--font-mono);color:var(--ink-2);background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:var(--sp-2) var(--sp-4);min-height:32px;cursor:pointer}
 .toggle-btn:hover{border-color:var(--draw);color:var(--ink)}
 .toggle-btn[aria-pressed="true"]{border-color:var(--bad);color:var(--bad);background:var(--bad-soft)}
 .toggle-btn.is-accent[aria-pressed="true"]{border-color:var(--draw);color:var(--draw);background:var(--accent-soft)}
 
-/* ---------- sonuç satırı (seçimin sonucunu yazar): <div class="readout" aria-live="polite"> ---------- */
+/* ---------- Readout (states the result of a choice): <div class="readout" aria-live="polite"> ---------- */
 .readout{--c:var(--draw);margin:var(--sp-6) 0 0;padding:2px 0 2px var(--sp-6);border-left:3px solid var(--c);font-size:var(--fs-md);line-height:1.55;color:var(--ink-2);max-width:80ch}
 .readout p{margin:0}
 .readout b{color:var(--ink)}
 .readout:is(.s-ok,.s-warn,.s-bad,.s-sec,.ok,.bad) b{color:var(--c)}
 
-/* ---------- değişken kaydı (register): dl içinde ad / değer satırları ---------- */
+/* ---------- Variable register: name / value rows in a dl ---------- */
 .register{border:1px solid var(--line-2);background:var(--paper);padding:var(--sp-3) var(--sp-5) var(--sp-3);font:500 var(--fs-sm)/1.45 var(--font-mono)}
 .register-h{display:flex;justify-content:space-between;gap:var(--sp-5);margin:0 0 var(--sp-1);color:var(--ink-3);font-size:var(--fs-xs)}
 .register-h b{font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
@@ -135,12 +135,12 @@
 .register dl>div.now{background:var(--accent-soft)}
 .register dl>div.now dt{color:var(--ink-2)}
 
-/* ---------- damga etiketi: çift çerçeveli ad plakası ---------- */
+/* ---------- Stamp: double-framed name plate ---------- */
 .stamp{display:grid;gap:var(--sp-2);padding:var(--sp-4) var(--sp-6);border:1.5px solid var(--draw);outline:1px solid var(--pencil);outline-offset:-6px;background:var(--paper);text-align:center}
 .stamp-k{font:500 var(--fs-xs)/1.3 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
 .stamp-name{font:600 var(--fs-xl)/1.2 var(--font-mono);color:var(--ink);overflow-wrap:anywhere}
 
-/* ---------- saha defteri (survey log): numaralı not girdileri ---------- */
+/* ---------- Survey log: numbered note entries ---------- */
 .survey-log{list-style:none;margin:var(--sp-3) 0 0;padding:0;border-top:1.5px solid var(--draw)}
 .survey-log>li{--c:var(--draw);display:grid;grid-template-columns:200px minmax(0,68ch);column-gap:var(--sp-10);margin:0;padding:var(--sp-8) 0 var(--sp-7);border-bottom:1px solid var(--line-2)}
 .sl-meta{font:500 var(--fs-sm)/1.5 var(--font-mono);color:var(--ink-3)}
@@ -152,11 +152,11 @@
 .sl-body p:last-child{margin-bottom:0}
 .sl-label{display:block;font:500 var(--fs-xs)/1.6 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
-/* ---------- diff kenar şeridi: kod bloğunda değişen satırları işaretler; işaretler <code> dışında, kopyalama temiz kalır ----------
+/* ---------- Diff gutter: marks changed lines in a code block; markers sit outside <code>, so copying stays clean ----------
    <div class="diff-src"><div class="diff-gut" aria-hidden="true"><i style="--l:5" data-m="Δ1"></i></div><pre>…</pre></div>
-   Metindeki eşleşen anahtar: <i class="diff-key" data-m="Δ1" aria-hidden="true"></i> */
+   Matching key in the prose: <i class="diff-key" data-m="Δ1" aria-hidden="true"></i> */
 .diff-src{position:relative}
-.diff-src pre{padding-left:54px}   /* std:ok kod sütunu 40px şerit + boşluk */
+.diff-src pre{padding-left:54px}   /* std:ok code column: 40px gutter + gap */
 .diff-src::before{content:"";position:absolute;left:0;top:0;bottom:14px;width:40px;background:var(--code-bg);border-right:1px solid var(--code-line);z-index:1;pointer-events:none}
 .diff-gut{position:absolute;inset:0 0 var(--sp-6);font:var(--fs-sm)/1.6 var(--font-mono);pointer-events:none;user-select:none;z-index:2}
 .diff-gut i{position:absolute;left:0;right:0;top:calc(14px + (var(--l) - 1) * 1.6em);height:1.6em;background:linear-gradient(90deg,transparent 40px,var(--code-v) 40px 42px,color-mix(in srgb,var(--code-v) 9%,transparent) 42px)}
@@ -165,7 +165,7 @@
 .diff-key{font-style:normal;margin-right:var(--sp-1);padding:1px var(--sp-1);border:1px solid var(--ok);color:var(--ok);user-select:none}
 .diff-key::before{font-size:var(--fs-xs)}
 
-/* ---------- kod içi yürütme imleci: satırı vurgular, metin rengi değişmez ---------- */
+/* ---------- In-code execution cursor: highlights the line, text color unchanged ---------- */
 .code .ln{display:block;position:relative}
 .code .ln.cur{background-color:color-mix(in srgb,var(--code-k) 13%,transparent);box-shadow:inset 2px 0 0 var(--code-k)}
 
@@ -179,11 +179,11 @@
   .js .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .js .tbl tr{display:block;padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
   .js .tbl tr:last-child{border-bottom:0}
-  .js .tbl td{display:block;position:relative;border:0;padding:var(--sp-1) var(--sp-5) var(--sp-1) 108px;min-height:26px}   /* std:ok kart etiketi sütunu (88px + boşluk) */
+  .js .tbl td{display:block;position:relative;border:0;padding:var(--sp-1) var(--sp-5) var(--sp-1) 108px;min-height:26px}   /* std:ok card label column (88px + gap) */
   .js .tbl td::before{content:attr(data-th);position:absolute;left:12px;top:6px;width:88px;font-size:var(--fs-xs);line-height:1.3;color:var(--ink-3)}
   .js .tbl td:first-child{font-weight:600}
   .js .tbl td code,.js .tbl th code{white-space:normal}
-  .steps>li{padding:56px var(--sp-6) var(--sp-6) var(--sp-6)}   /* std:ok numara rozeti üstte */
+  .steps>li{padding:56px var(--sp-6) var(--sp-6) var(--sp-6)}   /* std:ok number badge on top */
   .steps>li::before{left:14px;top:14px}
   .rb-head{flex-wrap:wrap}
   .rb-bar{order:3;flex-basis:100%}
@@ -193,9 +193,9 @@
   .grp{margin-left:-16px;padding-left:var(--sp-6)}
 }
 
-/* ---------- etkileşim durumları (STANDART.md · Durumlar) ----------
-   devre dışı: :disabled / [aria-disabled="true"] → kesikli kenar (dilde kesikli = henüz gerçek değil), soluk mürekkep
-   şimdiki: [aria-current] → 2px çizim kenarı · tamamlandı / engelli: [data-state="done|blocked"] (metinle de söyleyin) */
+/* ---------- Interaction states (STANDART.md § 3) ----------
+   Disabled: :disabled / [aria-disabled="true"] → dashed border (in this language dashed = not real yet), faded ink.
+   Current: [aria-current] → 2px drawing-color border · done / blocked: [data-state="done|blocked"] (also say it in text). */
 :is(.btn,.icon-btn,.toggle-btn):is(:disabled,[aria-disabled="true"]){border-style:dashed;border-color:var(--line-2);color:var(--ink-3);background:transparent;cursor:not-allowed}
 .choice input:disabled+span{border-style:dashed;color:var(--ink-3);background:transparent}
 .choice label:has(input:disabled){cursor:not-allowed}
@@ -204,17 +204,17 @@
 .steps>li[data-state="done"]{--c:var(--ok);--c-soft:var(--ok-soft)}
 .steps>li[data-state="blocked"]{--c:var(--bad);--c-soft:var(--bad-soft);border-style:dashed}
 
-/* zorunlu renkler (Windows yüksek kontrast): zemin kaybolur, seçim ve ilerleme sistem rengiyle çizilir */
+/* Forced colors (Windows high contrast): backgrounds disappear, so selection and progress are drawn in system colors */
 @media (forced-colors:active){
   :is(.choice input:checked+span,.toggle-btn[aria-pressed="true"],.station[aria-pressed="true"],.steps>li[aria-current],.tabs [role="tab"][aria-selected="true"]){outline:2px solid Highlight;outline-offset:-2px}
   .rb-bar i,.hud-bar i,.rb-item input:checked+.box{forced-color-adjust:none;background:Highlight}
   :is(.btn,.icon-btn,.toggle-btn):disabled,.choice input:disabled+span{color:GrayText;border-color:GrayText}
 }
 
-/* ---------- form alanı ----------
-   <div class="field"><label for="x">Ad</label><input id="x" aria-describedby="x-h x-e"><p class="field-help" id="x-h">…</p><p class="field-error" id="x-e">…</p></div>
-   Denetimler yalnız .field içinde biçimlenir. Kenar --c (varsayılan --ink-3: 3:1 metin dışı kontrast); geçersizken --bad.
-   Hata metni HTML'de durur, alan geçersizken görünür (aria-invalid="true" ya da kullanıcı etkileşiminden sonra :user-invalid). */
+/* ---------- Form field ----------
+   <div class="field"><label for="x">Name</label><input id="x" aria-describedby="x-h x-e"><p class="field-help" id="x-h">…</p><p class="field-error" id="x-e">…</p></div>
+   Controls are styled only inside .field. Border is --c (default --ink-3: 3:1 non-text contrast); --bad when invalid.
+   The error text lives in the HTML and shows while the field is invalid (aria-invalid="true", or :user-invalid after user interaction). */
 .field{--c:var(--ink-3);display:grid;align-content:start;gap:var(--sp-1);margin:0 0 var(--sp-6);min-width:0;padding:0;border:0}
 .field>:is(label:not(.field-check),legend){padding:0;font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
 .field>label:has(+ :required,+ * :required)::after,.field>legend:has(~ * :required)::after{content:var(--str-required) / "";color:var(--ink-3);text-transform:none;letter-spacing:0}
@@ -230,28 +230,28 @@
 .field-error::before{content:var(--str-error) " ";font-weight:600}
 .field:has(:is([aria-invalid="true"],:user-invalid)){--c:var(--bad)}
 .field:has(:is([aria-invalid="true"],:user-invalid)) .field-error{display:block}
-/* onay kutusu ve radyo: yerel öğe, çizim rengi */
+/* Checkbox and radio: native control in the drawing color */
 .field>legend{margin-bottom:var(--sp-1)}
 .field-check{display:flex;align-items:flex-start;gap:var(--sp-3);font:400 var(--fs-md)/1.5 var(--font-sans);letter-spacing:0;text-transform:none;color:var(--ink-2);cursor:pointer}
 .field-check input{flex:none;width:16px;height:16px;margin:3px 0 0;accent-color:var(--draw)}
 .field-check:has(input:disabled){color:var(--ink-3);cursor:not-allowed}
-.field-check+.field-help{padding-inline-start:calc(1rem + var(--sp-3))}   /* onay metninin hizasında: kutu (1rem) + boşluk */
-/* kaydırıcı + değer: <input type="range"> <output> (rakamlar sabit genişlikli) */
+.field-check+.field-help{padding-inline-start:calc(1rem + var(--sp-3))}   /* aligned with the check label: box (1rem) + gap */
+/* Slider + value: <input type="range"> <output> (tabular figures) */
 .field input[type="range"]{width:100%;margin:0;accent-color:var(--draw)}
 .field output{display:inline-block;min-inline-size:4ch;font:500 var(--fs-sm)/1.4 var(--font-mono);font-variant-numeric:tabular-nums;color:var(--ink)}
-/* yan yana alanlar: sütun genişliğine göre sarar */
+/* Side-by-side fields: wrap according to the column width */
 .field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));column-gap:var(--sp-7)}
-/* birimli alan: <div class="field-unit"><input id="x" aria-describedby="x-u"><span id="x-u">ms</span></div> */
+/* Field with unit: <div class="field-unit"><input id="x" aria-describedby="x-u"><span id="x-u">ms</span></div> */
 .field-unit{display:flex}
 .field-unit>input{flex:1;min-width:0;border-start-end-radius:0;border-end-end-radius:0}
 .field-unit>span{display:grid;place-items:center;padding:0 var(--sp-4);border:1px solid var(--c);border-inline-start:0;border-radius:0 var(--r-sm) var(--r-sm) 0;font:500 var(--fs-sm)/1 var(--font-mono);color:var(--ink-3)}
 
-/* ---------- sekmeler ----------
+/* ---------- Tabs ----------
    <div class="tabs" data-tabs><div role="tablist" aria-label="…"><button role="tab" id="t1" aria-controls="p1" aria-selected="true">…</button>…</div>
    <div role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">…</div>…</div>
-   JS yoksa sekme şeridi gizlenir, tüm paneller alt alta görünür (bitmiş hal); baskıda da hepsi basılır.
-   Her panel kendi başlığıyla başlar (<h3 class="tab-h">YAML</h3>): JS varken ekranda gizlenir, JS'siz ve baskıda hangi panelin ne olduğunu söyler.
-   Sekme düğmeleri type="button" taşır (form içinde gönderim yapmasın). */
+   Without JS the tab strip is hidden and all panels stack (finished state); print shows them all too.
+   Each panel starts with its own heading (<h3 class="tab-h">YAML</h3>): hidden on screen with JS, it labels each panel without JS and in print.
+   Tab buttons carry type="button" (so they never submit inside a form). */
 .tabs{margin:var(--sp-6) 0 var(--sp-8)}
 .tabs [role="tablist"]{display:flex;gap:var(--sp-1);border-bottom:1px solid var(--line-2);overflow-x:auto;scrollbar-width:thin}
 html:not(.js) .tabs [role="tablist"]{display:none}
@@ -264,9 +264,9 @@ html:not(.js) .tabs [role="tablist"]{display:none}
 .tab-h{margin:0 0 var(--sp-3);font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .js .tabs [role="tabpanel"]>.tab-h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-/* ---------- diyalog: yerel <dialog class="dialog"> ----------
-   Açma: <button command="show-modal" commandfor="d1">; kapatma: <form method="dialog"> ya da command="close". Odak, Esc ve üst katman tarayıcıdan.
-   Görünüş damga gibi çift çerçeve; köşesiz (çizilen nesne). */
+/* ---------- Dialog: native <dialog class="dialog"> ----------
+   Open: <button command="show-modal" commandfor="d1">; close: <form method="dialog"> or command="close". Focus, Esc and top layer come from the browser.
+   Looks like a stamp: double frame, square corners (a drawn object). */
 .dialog{box-sizing:border-box;margin:auto;width:min(560px,calc(100vw - 2 * var(--sp-7)));max-height:calc(100dvh - 2 * var(--sp-10));padding:var(--sp-8) var(--sp-8) var(--sp-7);border:1.5px solid var(--draw);outline:1px solid var(--pencil);outline-offset:-6px;border-radius:0;background:var(--paper);color:var(--ink);overflow:auto;overscroll-behavior:contain}
 .dialog:focus-visible{outline:1px solid var(--pencil);outline-offset:-6px}
 .dialog::backdrop{background:var(--scrim)}
@@ -275,15 +275,15 @@ html:has(.dialog:modal){overflow:hidden}
 .dialog-head h2{font-size:var(--fs-lg)}
 .dialog-foot{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:var(--sp-3);margin:var(--sp-8) 0 0}
 
-/* ---------- ölçü notu (toggletip): <button popovertarget="n1" aria-label="…">…</button><div popover id="n1" class="dim-tip">…</div>
-   Tıklayınca açılır; fareyle üstüne gelme yok (anlam saklanmaz). Ölçü çizgisi gibi: alt ve yan kenarlar mürekkep, üst kalem; mono.
-   Popover DOM'da düğmenin hemen ardından gelir (okuma sırası).
-   Anchor positioning varsa düğmenin üstünde, yoksa tarayıcının ortaladığı popover. */
+/* ---------- Dimension note (toggletip): <button popovertarget="n1" aria-label="…">…</button><div popover id="n1" class="dim-tip">…</div>
+   Opens on click; no hover (meaning is never hidden behind it). Styled like a dimension line: bottom and side edges ink, top pencil; mono.
+   The popover follows the button directly in the DOM (reading order).
+   With anchor positioning it sits above the button; otherwise it is the browser-centered popover. */
 .dim-tip{max-width:min(320px,90vw);text-align:start;text-transform:none;letter-spacing:normal;white-space:normal;padding:var(--sp-1) var(--sp-4);border:1px solid var(--draw);border-top-color:var(--pencil);background:var(--paper);color:var(--ink);font:500 var(--fs-xs)/1.5 var(--font-mono)}
 @supports (position-area:block-start){
   .dim-tip{inset:auto;margin:var(--sp-2) 0;position-area:block-start;position-try-fallbacks:flip-block}
 }
 
-/* ---------- boş durum: henüz veri yok. Kesikli çerçeve = henüz gerçek değil ---------- */
+/* ---------- Empty state: no data yet. Dashed frame = not real yet ---------- */
 .empty{display:grid;justify-items:start;gap:var(--sp-3);margin:var(--sp-6) 0;padding:var(--sp-8);border:1px dashed var(--line-2);border-radius:var(--r-md);font-size:var(--fs-md);color:var(--ink-2)}
 .empty p{margin:0}

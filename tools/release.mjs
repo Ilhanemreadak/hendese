@@ -1,6 +1,6 @@
-// Sürüm: build → testler → CHANGELOG'da bu sürümün başlığı var mı → npm pack → zip → git tag.
-// Kullanım: önce `npm version <yama|minor|majör> --no-git-tag-version` ve CHANGELOG başlığı; sonra `npm run release`.
-// Uzak repo/registry yok (bkz. plan P6); çıktı releases/ altında.
+// Cuts a release: build → tests → check CHANGELOG has this version's heading → npm pack → zip → git tag.
+// Usage: first `npm version <patch|minor|major> --no-git-tag-version` and a CHANGELOG heading; then `npm run release`.
+// No remote repo/registry (see plan P6); output goes to releases/.
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 
@@ -18,7 +18,7 @@ run('npx playwright test');
 
 fs.mkdirSync('releases', { recursive: true });
 run('npm pack --pack-destination releases');
-// zip: dağıtım klasörü (npm kullanmayanlar için) — Windows'ta yerleşik tar zip yazabilir
+// zip: distribution bundle (for non-npm users); the built-in tar on Windows can write zip
 run(`tar -a -c -f releases/hendese-${v}.zip dist docs demos starter README.md STANDART.md CHANGELOG.md src/fonts/OFL-ibm-plex-sans.txt src/fonts/OFL-pixelify-sans.txt`);
 run(`git tag -a v${v} -m "hendese ${v}"`);
 console.log(`\nhazır: releases/hendese-${v}.tgz, releases/hendese-${v}.zip, etiket v${v}`);

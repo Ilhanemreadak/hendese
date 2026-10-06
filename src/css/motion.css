@@ -1,14 +1,14 @@
-/* Hendese · hareket katmanı: scroll sahneleri (pin / sticky / fig), HUD, intro, sketch-in, scroll-reveal.
-   SÖZLEŞME: varsayılan (statik) işaretleme = BİTMİŞ HAL. Canlı kurallar yalnızca @media screen + .is-live / html.motion altında.
-   Canlı mod = JS (Hendese.start) + genişlik ≥ 1100px + reduced-motion yok. Reduced-motion, dar ekran, baskı, JS'siz → statik son hal.
-   Değişkenler hep var(--k,1) ile okunur: JS yazmadıysa 1 = son hal. */
+/* Hendese · Motion: scroll scenes (pin / sticky / fig), HUD, intro, sketch-in and scroll-reveal.
+   CONTRACT: the default (static) markup IS THE FINISHED STATE. Live rules apply only under @media screen + .is-live / html.motion.
+   Live mode = JS (Hendese.start) + width ≥ 1100px + no reduced motion. Reduced motion, narrow screen, print, no JS → static finished state.
+   Variables are always read as var(--k,1): if JS has not written them, 1 = finished state. */
 
-/* ---------- ortak sahne iskeleti ---------- */
+/* ---------- Shared scene skeleton ---------- */
 .route-stage{padding:16px;box-sizing:border-box}
 .hud-slot{display:none}
 .cue{display:none}
 
-/* ---------- pin sahnesi: tam genişlik uzun iz (track) + yapışkan sahne ---------- */
+/* ---------- Pin scene: full-width tall track + sticky stage ---------- */
 /* <div class="pin" style="--track:300vh"><div class="route-stage"><div class="frame">…</div></div></div> */
 .pin{margin-inline:calc(50% - 50cqw);margin-block:8px 28px}
 .pin .route-stage{padding:10px}
@@ -16,7 +16,7 @@
 .pin .f-head .chip{margin:0}
 .pin .beats{gap:8px;font-size:var(--fs-sm)}
 
-/* ---------- sticky anlatım: yapışkan şekil sütunu + kayan metin beat'leri ([data-beat]) ---------- */
+/* ---------- Sticky scene: sticky figure column + scrolling text beats ([data-beat]) ---------- */
 .sticky{margin-inline:calc(50% - 50cqw);margin-block:8px 28px;padding-inline:10px}
 .sticky-fig{position:relative;padding:16px 20px 14px;box-sizing:border-box}
 .sticky-fig>.frame-bg{position:absolute;inset:0}
@@ -27,22 +27,22 @@
 .sticky-text{container:col / inline-size;max-width:72ch;padding:22px 12px 0}
 
 @media screen{
-  /* her canlı sahne: yapışkan 100vh sahne, çizim kabın içine "contain" sığar */
+  /* Every live scene: sticky 100vh stage; the drawing fits its container like "contain" */
   .is-live .route-stage{position:sticky;top:0;height:100vh}
   .is-live .frame{height:100%}
   .is-live .f-map{container-type:size;display:grid;place-items:center}
   .is-live .hud-slot{display:block;height:176px;margin-bottom:16px}
 
-  /* pin: iz yüksekliği --track; aktif beat mürekkep, diğerleri tek satıra katlanır */
+  /* Pin: track height is --track; the active beat is ink, the others collapse to one line */
   .pin.is-live{height:var(--track,300vh);margin-block:0}
   .pin.is-live .drawing{width:min(100cqw,calc(100cqh * var(--aw) / var(--ah)))}
   .pin.is-live .beats li{opacity:.4;transition:opacity var(--dur-2),border-color var(--dur-2)}
   .pin.is-live .beats li.on{opacity:1;border-color:var(--draw)}
-  /* only the current beat shows its text; the others collapse to their title line so the side column always fits */
-  .pin.is-live .beats li:not(.on){max-height:calc(var(--fs-xs) * 1.5);overflow:hidden}   /* yalnız başlık satırı (b: --fs-xs/1.5) */
+  /* Only the current beat shows its text; the others collapse to their title line so the side column always fits. */
+  .pin.is-live .beats li:not(.on){max-height:calc(var(--fs-xs) * 1.5);overflow:hidden}   /* title line only (b: --fs-xs/1.5) */
   .pin.is-live .beats li:not(.on) b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-  /* sticky: iki sütun; şekil 100vh yapışkan, metin beat'leri 45% çizgisinde .on olur */
+  /* Sticky: two columns; the figure is a sticky 100vh column, text beats turn .on at the 45% line */
   .sticky.is-live{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(340px,1fr);column-gap:32px;align-items:start}
   .sticky.is-live .sticky-fig{position:sticky;top:0;height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;border-block:10px solid transparent;background-clip:padding-box}
   .sticky.is-live .sticky-fig .f-map{container-type:size;display:grid;place-items:center;min-height:0}
@@ -52,12 +52,12 @@
   .sticky.is-live [data-beat]{min-height:30vh;opacity:.5;transition:opacity var(--dur-2)}
   .sticky.is-live [data-beat].on{opacity:1}
 
-  /* kalem taslağı → mürekkep: .sketch-pending (görünmez) → .sketch (2s'de çizilir). Yollar pathLength="1" ister. */
+  /* Pencil sketch → ink: .sketch-pending (invisible) → .sketch (draws in over 2s). Paths need pathLength="1". */
   .sketch-pending .pencil *{stroke-dasharray:1 1;stroke-dashoffset:1}
   .sketch .pencil *{stroke-dasharray:1 1;stroke-dashoffset:0;transition:stroke-dashoffset var(--dur-5) ease-out}
 }
 .hoca-still{z-index:2}
-/* yoğun pafta: 1100–1279px'de şekil sütunu genişler (ölçüleri sıkışan çizimler için) */
+/* Dense sheet: at 1100–1279px the figure column widens (for drawings with crowded dimensions) */
 @media screen and (min-width:1100px) and (max-width:1279px){
   .sticky--dense.is-live{grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);column-gap:20px}
   .sticky--dense.is-live .sticky-fig{padding:8px 12px}
@@ -65,7 +65,7 @@
   .sticky--dense.is-live .sticky-fig .figcap{margin-top:6px}
 }
 
-/* ---------- HUD: tek sabit gösterge; hero'daki antetten sahnedeki .hud-slot'a süzülür ---------- */
+/* ---------- HUD: a single fixed readout that glides from the hero title block into the scene's .hud-slot ---------- */
 .hud{display:none}
 html.motion .hud{display:block;position:fixed;left:0;top:0;z-index:var(--z-hud);width:260px;height:176px;visibility:hidden;pointer-events:none;
   background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r-xs);font-family:var(--font-mono);color:var(--ink);will-change:transform}
@@ -81,19 +81,17 @@ html.motion .hud{display:block;position:fixed;left:0;top:0;z-index:var(--z-hud);
 .hud-bar{align-self:center;margin:0 12px;height:5px;background:repeating-linear-gradient(90deg,var(--line-2) 0 1px,transparent 1px 10%);position:relative}
 .hud-bar i{position:absolute;inset:0;background:var(--draw);transform-origin:0 50%;transform:scaleX(0)}
 
-/* ---------- hero intro (tek seferlik; JS yalnızca canlı modda ekler) ---------- */
-
-/* ---------- hero one-time load sequence (JS adds these classes only in live mode) ---------- */
+/* ---------- Hero intro: one-time load sequence (JS adds these classes only in live mode) ---------- */
 .hero.intro-pending .hero-copy>*{opacity:0;transform:translateY(8px)}
 .hero.intro-pending.intro-go .hero-copy>*{opacity:1;transform:none;transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
 .hero.intro-pending.intro-go .hero-copy>:nth-child(2){transition-delay:var(--dur-1)}
 
-/* ---------- öğrenici etkileşimi geçişleri: yalnızca hareket açıkken ---------- */
-/* Örn.: html.motion .gauge-jaw{transition:transform var(--dur-3)}  — reduced-motion'da base.css hepsini kapatır. */
+/* ---------- Learner interaction transitions: only while motion is on ---------- */
+/* E.g. html.motion .gauge-jaw{transition:transform var(--dur-3)}; under reduced motion, base.css turns them all off. */
 
-/* ---------- [data-reveal]: saf CSS scroll-reveal (JS yok, ek iyileştirme) ----------
-   Desteklemeyen tarayıcı / reduced-motion / baskı → öğe zaten görünür (son hal). Okuma akışında küçük vurgu için;
-   anlatım taşıyan sahneler için pin/sticky kullanın. */
+/* ---------- [data-reveal]: pure-CSS scroll-reveal (no JS, progressive enhancement) ----------
+   Unsupported browser / reduced motion / print → the element is already visible (finished state). Meant for small accents in the reading flow;
+   use pin/sticky scenes for anything that carries the narrative. */
 @supports (animation-timeline: view()){
   @media screen and (prefers-reduced-motion:no-preference){
     [data-reveal]{animation:hd-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 60%}

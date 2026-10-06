@@ -1,6 +1,6 @@
-/* Hendese · blueprint dili: çizim paftası (frame), drawing birimleri, etiket/callout, çizgi kalınlıkları, antet (titleblock).
-   Kural: tek çizgi ailesi, mono small-caps etiketler, düz = gerçek / kesikli = örnek; gölge, gradient, glow yok. */
-/* pafta: sol = çizim, sağ = var(--side-w) yan sütun */
+/* Hendese · Blueprint: the drawing language (sheet frame, drawing units, labels/callouts, line weights, title block).
+   Rule: one line family, mono small-caps labels, solid = real / dashed = example; no shadows, gradients or glow. */
+/* Sheet: left = drawing, right = var(--side-w) side column */
 .frame{position:relative;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) var(--side-w);grid-template-rows:auto minmax(0,1fr) auto;column-gap:var(--sp-10);row-gap:var(--sp-6);padding:var(--sp-8) var(--sp-9) var(--sp-8)}
 .frame-bg{position:absolute;inset:0;border-radius:var(--r-lg);background:var(--scene-bg);border:1px solid var(--line)}
 .f-head,.f-side,.f-map,.f-foot{position:relative;min-width:0}
@@ -10,7 +10,7 @@
 .f-side{grid-column:2;grid-row:1/4}
 .chip{margin:0;font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 
-/* antet: <dl class="titleblock"><div><dt>..</dt><dd>..</dd></div>..</dl> */
+/* Title block: <dl class="titleblock"><div><dt>..</dt><dd>..</dd></div>..</dl> */
 .titleblock{margin:0;width:380px;max-width:100%;border:1px solid var(--draw);background:var(--paper);font-family:var(--font-mono)}
 .titleblock div{display:grid;grid-template-columns:132px minmax(0,1fr);border-top:1px solid var(--pencil)}
 .titleblock div:first-child{border-top:0}
@@ -18,51 +18,51 @@
 .titleblock dd{margin:0;padding:var(--sp-2) var(--sp-4);font-size:var(--fs-sm);line-height:1.5;color:var(--ink)}
 .titleblock .tb-head dd{font-weight:600}
 
-/* drawing: style="--aw:1000;--ah:560" (çizim birimi). --u = 1 birim px. İçinde <svg viewBox="0 0 aw ah"> + .dl etiketleri. */
+/* Drawing: style="--aw:1000;--ah:560" (drawing units). --u = one unit in px. Contains <svg viewBox="0 0 aw ah"> + .dl labels. */
 .drawing{--u:calc(100cqw / var(--aw));position:relative;aspect-ratio:var(--aw) / var(--ah);width:100%;max-width:1100px;margin:auto;container-type:inline-size}
 .drawing>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none}
 .drawing svg *{vector-effect:non-scaling-stroke}
 /* HTML label placed in drawing units: style="--x:..;--y:..;--w:..;--h:.." */
 .dl{position:absolute;left:calc(var(--x) / var(--aw) * 100%);top:calc(var(--y) / var(--ah) * 100%);width:calc(var(--w,200) / var(--aw) * 100%);margin:0;box-sizing:border-box;font:500 max(10.5px,calc(12.5 * var(--u)))/1.35 var(--font-mono);color:var(--ink-2)}
-/* Alphane technical callout: mono box + leader drawn in svg */
+/* Technical callout: mono box + leader line drawn in SVG */
 .callout{padding:calc(6 * var(--u)) calc(9 * var(--u));border:1px solid var(--draw);background:var(--paper);color:var(--ink)}
 .callout b{display:block;font:600 max(9.5px,calc(10.5 * var(--u)))/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
-/* state label: SUCCEEDED / PENDING / denied ... */
+/* State label: SUCCEEDED / PENDING / denied ... */
 .state{--c:var(--ink-3);display:inline-block;padding:0 var(--sp-2);border:1px solid currentColor;font:600 max(9.5px,calc(11 * var(--u,1px)))/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
-/* svg line weights: hairline / drawing / emphasis */
+/* SVG line weights: hairline / drawing / emphasis */
 .ln-pencil{stroke:var(--pencil);stroke-width:1}
 .ln-draw{stroke:var(--draw);stroke-width:1.5}
 .ln-strong{stroke:var(--draw);stroke-width:2.5}
 .dim{stroke:var(--draw);stroke-width:1}
 .dim-t{font:500 var(--fs-sm) var(--font-mono);fill:var(--draw)}
 .fill-paper{fill:var(--paper)}
-/* beat captions in the side column: all visible in static mode; in live mode only the current one is ink */
+/* Beat captions in the side column: all visible when static; in live mode only the current one is ink */
 .beats{list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-4);font-size:var(--fs-md);line-height:1.5;color:var(--ink-2)}
 .beats li{padding-left:var(--sp-5);border-left:2px solid var(--line-2)}
 .beats li b{display:block;font:600 var(--fs-xs)/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
 
-/* pafta içi başlık / yan sütun metni */
+/* In-sheet heading / side column text */
 .f-head h2{margin:var(--sp-1) 0 var(--sp-1);font:600 var(--fs-2xl)/1.15 var(--font-sans);letter-spacing:-.02em;color:var(--ink)}
 .f-head .lead{margin:0;max-width:72ch;font-size:var(--fs-base);line-height:1.5;color:var(--ink-2)}
 .f-side .prose{font-size:var(--fs-md);line-height:1.6;color:var(--ink-2)}
 .f-side .prose p{margin:0 0 var(--sp-5)}
 
-/* figür paftası: frame-bg üstünde akışta duran şekil (sticky/pin olmayan figürler için) */
+/* Figure sheet: an in-flow figure on top of frame-bg (for figures that are not sticky/pin scenes) */
 .fig-sheet{position:relative;margin:var(--sp-7) 0 var(--sp-9);padding:var(--sp-7) var(--sp-8) var(--sp-6)}
 .fig-sheet>.frame-bg{position:absolute;inset:0}
 .fig-sheet>:not(.frame-bg){position:relative}
 .fig-cap{margin:var(--sp-1) 0 var(--sp-5);font:600 var(--fs-lg)/1.3 var(--font-sans);letter-spacing:-.01em;color:var(--ink)}
 .fig-sheet .figcap{margin:var(--sp-5) 0 0;font-size:var(--fs-sm);line-height:1.5;color:var(--ink-3)}
 
-/* sabit 1000x600 birimlik pafta (eski "sheet" ızgarası) + kılavuz çizgisi */
+/* Fixed 1000x600-unit sheet (legacy "sheet" grid) + guide lines */
 .sheet{--u:calc(100cqw / 1000);position:relative;aspect-ratio:1000/600;width:100%;max-width:1100px;margin:auto;container-type:inline-size}
 .sheet svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none}
 .sheet svg *{vector-effect:non-scaling-stroke}
 .pencil{stroke:var(--pencil);stroke-width:1}
 .pencil-2{stroke:var(--pencil-2);stroke-width:2}
 
-/* istasyon gezgini (explorer): çizim birimleriyle konumlanan butonlar + altta detay paneli.
+/* Station explorer: buttons positioned in drawing units + a detail panel below.
    <button class="station" data-key="x" aria-pressed="false" style="--x;--y;--w;--h">  +  <div class="st-detail" data-explorer-panel><div data-for="x">..</div></div> */
 .sl,.station{position:absolute;left:calc(var(--x) / var(--aw,1000) * 100%);top:calc(var(--y) / var(--ah,600) * 100%);width:calc(var(--w) / var(--aw,1000) * 100%);height:calc(var(--h) / var(--ah,600) * 100%);margin:0;box-sizing:border-box}
 .sl{font:500 max(10.5px,calc(12 * var(--u)))/1.3 var(--font-mono);color:var(--ink-3);white-space:nowrap}
@@ -80,7 +80,7 @@
 .station[aria-pressed="true"]::after{content:var(--str-selected);position:absolute;top:-1px;right:-1px;padding:1px var(--sp-1);background:var(--draw);color:var(--paper);font:600 max(8.5px,calc(10 * var(--u)))/1.4 var(--font-mono);letter-spacing:.08em}
 .station:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* pafta altı: tek satır özet + detay paneli + şekil yazısı */
+/* Sheet footer: one-line summary + detail panel + figure caption */
 .f-foot{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--sp-4) var(--sp-9);align-items:start}
 .oneliner{grid-column:1/-1;margin:0;padding:0;border:0;background:none;font-size:var(--fs-md);line-height:1.5;color:var(--ink-2)}
 .oneliner .co-label{margin-right:var(--sp-3);font:600 var(--fs-xs)/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -90,19 +90,19 @@
 .st-detail .show{display:block}
 .f-foot .figcap{margin:0;font-size:var(--fs-sm);line-height:1.5;color:var(--ink-3)}
 
-/* durum çizgisi stilleri: düz = gerçek, kesikli = örnek/sınır, kırmızı kesik = engellenen yol */
+/* Status line styles: solid = real, dashed = example/boundary, red dashed = blocked path */
 .ln-dash{stroke-dasharray:7 5}
 .ln-ghost{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
 .ln-ok{stroke:var(--ok)}.ln-bad{stroke:var(--bad)}.ln-warn{stroke:var(--warn)}
 .ln-block{stroke:var(--bad);stroke-width:1.5;stroke-dasharray:4 3}
 .fill-scene{fill:var(--scene-bg)}.fill-draw{fill:var(--draw)}.fill-shade{fill:var(--scene-shade)}
-/* SVG durum: .s-* ile birlikte; bant zemini ve durum çizgisi */
+/* SVG status: used with .s-*; band fill and status line */
 .fill-soft{fill:var(--c-soft,var(--accent-soft))}.ln-c{stroke:var(--c,var(--draw))}
 
-/* koyu pafta: light-dark() token'ları kapsayıcının color-scheme'ine göre çözülür; bu sınıf altındaki her şey açık temada da koyu çizilir */
+/* Dark sheet: light-dark() tokens resolve against the container's color-scheme, so everything under this class draws dark even in the light theme */
 .scene-dark{color-scheme:dark;color:var(--ink)}
 .scene-light{color-scheme:light;color:var(--ink)}
-/* kendi pafta zemini yoksa sahne zemini kaba verilir */
+/* Without its own sheet background, the container gets the scene background */
 :is(.scene-dark,.scene-light):not(:has(>.frame-bg)){background:var(--scene-bg)}
 
 @container col (max-width:760px){
@@ -130,27 +130,27 @@
   .station[aria-pressed="true"]::after{font-size:var(--fs-xs)}
 }
 
-/* ---------- fig kabı + dar varyant ----------
-   Dar kapta (<576px) aynı paftanın ikinci çizimi: <div class="drawing" style="--aw;--ah;--naw;--nah"><svg class="is-wide">…<svg class="is-nar">…
-   etiketler --nx/--ny/--nw ile ikinci konumu taşır. Sahneler (api.aw/ah) hesaplanmış değeri okur. */
+/* ---------- Fig container + narrow variant ----------
+   In a narrow container (<576px) the same sheet swaps to a second drawing: <div class="drawing" style="--aw;--ah;--naw;--nah"><svg class="is-wide">…<svg class="is-nar">…
+   Labels carry their second position in --nx/--ny/--nw. Scenes (api.aw/ah) read the computed value. */
 .f-map,.fig-sheet,.sticky-fig{container:fig / inline-size}
 .drawing>.is-nar{display:none}
 @container fig (max-width:575px){
-  .drawing:has(>.is-nar){--aw:var(--naw) !important;--ah:var(--nah) !important}   /* std:ok satır içi --aw/--ah'ı ezmenin tek yolu */
+  .drawing:has(>.is-nar){--aw:var(--naw) !important;--ah:var(--nah) !important}   /* std:ok only way to override inline --aw/--ah */
   .drawing:has(>.is-nar)>.is-wide{display:none}
   .drawing:has(>.is-nar)>.is-nar{display:block}
   .drawing:has(>.is-nar) :is(.dl,.sl){left:calc(var(--nx,var(--x)) / var(--aw) * 100%);top:calc(var(--ny,var(--y)) / var(--ah) * 100%)}
   .drawing:has(>.is-nar) :is(.dl,.sl)[style*="--nw"]{width:calc(var(--nw) / var(--aw) * 100%)}
 }
 
-/* ---------- tarif parçaları (iki ve daha çok sayfada kullanılanlar) ---------- */
-/* anahtar etiketi çizim içinde çizimle ölçeklenir */
+/* ---------- Recipe parts (used on two or more pages) ---------- */
+/* Key label scales with the drawing when inside one */
 .drawing .stamp-k{display:block;font-size:max(9.5px,calc(10.5 * var(--u)));font-weight:600;line-height:1.4}
-/* hat etiketi (.dl ile konumlanır); .is-ghost = henüz gerçek değil */
+/* Line tag (positioned with .dl); .is-ghost = not real yet */
 .tag{width:auto;padding:0 calc(6 * var(--u));border:1px solid var(--draw);background:var(--paper);color:var(--ink);white-space:nowrap}
 .tag.is-ghost{border-style:dashed;border-color:var(--pencil);color:var(--ink-3)}
-/* hücre şeridi (kumpas): <span class="cells"><i class="s-ok">a</i><i data-state="miss"></i></span>
-   .s-ok alt çizgi, .s-bad kırmızı çerçeve; data-state="miss" eksik, "ghost" bakılmadı; data-mark işaret oku */
+/* Cell strip (caliper): <span class="cells"><i class="s-ok">a</i><i data-state="miss"></i></span>
+   .s-ok = underline, .s-bad = red frame; data-state="miss" = missing, "ghost" = not checked; data-mark = marker arrow */
 .cells{display:flex}
 .cells>i{display:grid;place-items:center;position:relative;width:calc(26 * var(--u));height:calc(40 * var(--u));box-sizing:border-box;border:1px solid var(--pencil);background:var(--paper);font:600 max(12px,calc(20 * var(--u)))/1 var(--font-mono);font-style:normal;color:var(--ink)}
 .cells>i+i{border-left:0}
@@ -159,15 +159,15 @@
 .cells>i[data-state="miss"]{border-style:dashed}
 .cells>i[data-state="ghost"]{border-style:dashed;background:transparent;color:var(--ink-3)}
 .cells>i[data-mark]::after{content:"▲";position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:max(10px,calc(14 * var(--u)));line-height:1.2;color:var(--bad)}
-/* kadran ibresi: dik çizilir, açı tek rotate ile; merkez view-box koordinatında --ox/--oy */
+/* Dial needle: drawn upright, angle set by a single rotate; pivot at --ox/--oy in view-box coordinates */
 .needle{transform-box:view-box;transform-origin:var(--ox,0) var(--oy,0)}
 .needle path{stroke:var(--draw);stroke-width:2}
 .needle .tip{fill:var(--draw);stroke:none}
-/* gerçek değer: kalın mürekkep ibre; işaretsiz ibre hedef/istenen değerdir */
+/* Actual value: thick ink needle; an unmarked needle is the target/desired value */
 .needle.is-actual path{stroke:var(--ink);stroke-width:5;stroke-linecap:round}
 .needle.is-actual circle{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
-/* arıza lambası: <g class="lamp" data-state="on"><circle/><text/></g>; liste: <ol class="lamps"><li data-state="on"> */
-.lamp{--c:var(--bad)}   /* yanınca durum rengi: varsayılan arıza; .s-warn vb. ile değişir */
+/* Fault lamp: <g class="lamp" data-state="on"><circle/><text/></g>; list: <ol class="lamps"><li data-state="on"> */
+.lamp{--c:var(--bad)}   /* status color when lit: fault by default; change with .s-warn etc. */
 .lamp circle{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
 .lamp text{font:600 var(--fs-sm) var(--font-mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
 .lamp[data-state="on"] circle{fill:var(--c);stroke:var(--c)}
@@ -178,10 +178,10 @@
 .lamps li::marker{font:600 var(--fs-sm) var(--font-mono);color:var(--draw)}
 .lamps>li[data-state="on"]{color:var(--ink)}
 
-/* ---------- durum standardı (STANDART.md · Durum) ----------
-   Durum taşıyan her bileşen --c / --c-soft okur ve kendi varsayılanını verir; .s-* her birine uygulanır.
-   Bu blok son katmandaki son kurallardır: bileşen varsayılanlarını her zaman ezer.
-   Kullanımdan kalkan takma adlar (1.0'da silinir): .pill-ok .pill-neutral .state.ok/.warn/.bad .readout.ok/.bad .p-auto/.p-manual/.p-inline */
+/* ---------- Status standard (STANDART.md § 2) ----------
+   Every status-bearing component reads --c / --c-soft and sets its own default; .s-* applies to all of them.
+   These are the last rules in the last layer, so they always override component defaults.
+   Deprecated aliases (removed in 1.0): .pill-ok .pill-neutral .state.ok/.warn/.bad .readout.ok/.bad .p-auto/.p-manual/.p-inline */
 .s-ok,.pill-ok,.state.ok,.readout.ok,.p-auto{--c:var(--ok);--c-soft:var(--ok-soft)}
 .s-warn,.state.warn,.p-manual{--c:var(--warn);--c-soft:var(--warn-soft)}
 .s-bad,.state.bad,.readout.bad,.p-inline{--c:var(--bad);--c-soft:var(--bad-soft)}

@@ -1,7 +1,7 @@
-/* Hendese · büyük harf düzeltmesi: lang="tr" sayfada CSS uppercase "i"yi "İ" yapar. Büyük harfle basılan HER etiketteki
-   İngilizce teknik kelimeler (Türkçe harfsiz + bilinen kök) <span lang="en"> içine alınır. Açık lang öznitelikleri kazanır.
-   Kökler projeye özgüdür: Hendese.init({englishStems:/build|deploy|…/i}). Verilmezse hiçbir şey yapılmaz.
-   Önce metin düğümleri kökle süzülür; getComputedStyle yalnız eşleşenlerde çağrılır, seçici listesi gerekmez. */
+/* Hendese · Lang: uppercase fix; on a lang="tr" page, CSS uppercase turns "i" into U+0130 (dotted capital I). In EVERY label rendered
+   in uppercase, English technical words (no Turkish letters + a known stem) are wrapped in <span lang="en">. Explicit lang attributes win.
+   Stems are project-specific: Hendese.init({englishStems:/build|deploy|…/i}). If omitted, nothing is done.
+   Text nodes are filtered by stem first; getComputedStyle runs only on matches, so no selector list is needed. */
 var WORD = /[A-Za-z][A-Za-z0-9_.-]*/g;
 export function wrapEnglish(EN, root) {
   if (!EN) return;

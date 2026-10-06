@@ -1,5 +1,5 @@
-/* Hendese · baskı: kabuk, HUD, maskot ve etkileşim düğmeleri gizlenir; sahneler statik son halde basılır
-   (canlı kurallar zaten @media screen içinde). */
+/* Hendese · Print: hides the shell, HUD, mascot and interactive buttons; scenes print in their static finished state
+   (live rules already sit inside @media screen). */
 @media print{
   .rail,.topbar,.progress,.scrim,.rulers,.hoca-home,.hud,.hoca-layer,.hoca,.code-copy,.rb-reset{display:none!important}
   .shell{display:block}

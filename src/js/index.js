@@ -1,5 +1,5 @@
-/* Hendese · giriş. IIFE derlemesinde global `Hendese` olur.
-   Akış: Hendese.init(opts)  →  sahneleri kaydet (pinScene / stickyScene / figScene / scene)  →  Hendese.start()
+/* Hendese · Entry: public API; the IIFE build exposes it as the global `Hendese`.
+   Flow: Hendese.init(opts)  →  register scenes (pinScene / stickyScene / figScene / scene)  →  Hendese.start()
    opts: { strings?, themeKey?: 'hendese-theme', topId?: 'top', englishStems?: RegExp } */
 import { $, $$, S, SCENES, clamp01, seg, lerp, ease, absTop, wake, poke, measure, evalMotion, MQ_RM, MQ_WIDE } from './core.js';
 import { strings } from './strings.js';
@@ -37,14 +37,14 @@ export function start() {
   if ('ResizeObserver' in window) { var q = false; new ResizeObserver(function () { if (q) return; q = true; requestAnimationFrame(function () { q = false; measure(); }); }).observe(main); }
   evalMotion();
   nav.reanchor();
-  /* web fontları ilk düzenden sonra gelir: yeniden ölç, hash hedefini yeniden demirle */
+  /* web fonts arrive after the first layout: re-measure and re-anchor the hash target */
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measure(); nav.reanchor(); });
 }
 
 export { $, $$, clamp01, seg, lerp, ease, absTop, wake, poke, measure, pinScene, stickyScene, figScene, scene, createHoca, strings };
 export const refresh = hocaCtl.refresh;
 export const lockTo = nav.lockTo;
-/* canlı değerler yalnızca getter ile (kopyalanırsa bayatlar) */
+/* live values are exposed only through getters (a copy would go stale) */
 export const state = {
   get motion() { return S.motion; }, get idle() { return S.sleeping; }, get y() { return S.y; }, get vh() { return S.vh; },
   get section() { return nav.current(); }, get scenes() { return SCENES.length; }

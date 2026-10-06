@@ -1,18 +1,18 @@
-// Parça sayfaları: demos/_src/<ad>.html kaynaklarından demos/<ad>.html + demos/index.html (galeri) üretir.
-// Kaynak biçimi (iskelet, ray, ikonlar, kod kutuları elle yazılmaz):
-//   <!-- meta {"title":"Düğmeler","group":"Bileşenler","order":10,"tagline":"…","intro":"…","summary":"…","facts":{"Sınıflar":"…"}} -->
-//   <chapter title="Varyantlar" lead="…"> … </chapter>        → numaralı bölüm, rayda bağlantı
-//   <demo label="Örnek · …" view="scene-dark" nocode> … </demo>  → örnek kutusu; içerik kaçışlanıp kod olarak da basılır
-//   <script data-page> … </script>                              → Hendese.init() ile start() arasına (sahne kayıtları)
+// Generates part pages: demos/<name>.html from demos/_src/<name>.html sources, plus demos/index.html (gallery).
+// Source format (skeleton, rail, icons and code boxes are never hand-written):
+//   <!-- meta {"title":"Buttons","group":"Bileşenler","order":10,"tagline":"…","intro":"…","summary":"…","facts":{"Classes":"…"}} -->
+//   <chapter title="Variants" lead="…"> … </chapter>            → numbered chapter, linked from the rail
+//   <demo label="Example · …" view="scene-dark" nocode> … </demo> → demo box; the content is also escaped and printed as code
+//   <script data-page> … </script>                              → placed between Hendese.init() and start() (scene registrations)
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const SRC = path.join(root, 'demos/_src'), OUT = path.join(root, 'demos');
 const GROUPS = ['Temel', 'Bileşenler', 'Blueprint', 'Hareket', 'Hoca'];
-const problems = [];   // yapı hataları biriktirilir: sayfalar yine üretilir, süreç sonunda hata koduyla biter
+const problems = [];   // structural errors are collected: pages are still generated, then the process exits with an error code
 const REQUIRED = { 'Bileşenler': ['Durumlar', 'Yap / yapma'], 'Blueprint': ['Yap / yapma'], 'Hareket': ['Hareket kapalıyken', 'API'], 'Hoca': ['Hareket kapalıyken', 'API'] };
-// büyük harfe çevrilen yerlerde İngilizce ad Türkçe kuralla İ alır (BLUEPRİNT); lang=en düzeltir
+// where text is uppercased, the English name gets a dotted İ under Turkish rules (BLUEPRİNT); lang=en fixes it
 const gName = g => g === 'Blueprint' ? '<span lang="en">Blueprint</span>' : g;
 const icons = fs.readFileSync(path.join(root, 'src/icons.svg'), 'utf8').split('\n').slice(1).join('\n').trim();
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -22,7 +22,7 @@ const dedent = s => {
   const n = Math.min(...lines.filter(l => l.trim()).map(l => l.match(/^ */)[0].length));
   return lines.map(l => l.slice(n)).join('\n');
 };
-// kaba HTML vurgusu: etiket adı .k, tırnaklı değer .s, yorum .c (kaçışlanmış metin üzerinde)
+// rough HTML highlighting: tag name .k, quoted value .s, comment .c (applied to escaped text)
 const hl = s => esc(s)
   .replace(/&lt;!--[\s\S]*?--&gt;/g, m => `<span class='c'>${m}</span>`)
   .replace(/(&lt;\/?)([\w-]+)/g, "$1<span class='k'>$2</span>")
@@ -37,7 +37,7 @@ const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
   const meta = JSON.parse(m[1]);
   if (!GROUPS.includes(meta.group)) throw new Error(`${f}: bilinmeyen grup ${meta.group}`);
   for (const k of ['title', 'group', 'order', 'tagline', 'intro', 'summary']) if (meta[k] == null || meta[k] === '') problems.push(`${f}: meta.${k} eksik`);
-  // STANDART.md §8: grubun zorunlu bölümleri
+  // STANDART.md §8: required chapters for the group
   const titles = [...raw.matchAll(/<chapter title="([^"]*)"/g)].map(x => x[1]);
   for (const need of REQUIRED[meta.group] || []) if (!titles.some(t => t.startsWith(need))) problems.push(`${f}: "${need}…" bölümü yok (STANDART.md §8)`);
   return { slug: f.slice(0, -5), ...meta, body: raw.slice(m[0].length) };
@@ -116,7 +116,7 @@ for (const [i, p] of pages.entries()) {
   const chapters = [];
   let body = p.body
     .replace(/<script data-page>([\s\S]*?)<\/script>/g, (_, s) => { script += dedent(s) + '\n'; return ''; })
-    // öznitelik değerindeki ">" etiketi bitirmesin: tırnaklı değer bir bütündür
+    // a ">" inside an attribute value must not close the tag: a quoted value is matched as a whole
     .replace(/<demo((?:\s+[\w-]+(?:="[^"]*")?)*)\s*>([\s\S]*?)<\/demo>/g, (_, a, html) => {
       const o = attrs(a), src = dedent(html);
       return `<div class="demo">
@@ -144,7 +144,7 @@ ${inner.trim()}
   fs.writeFileSync(path.join(OUT, `${p.slug}.html`), html);
 }
 
-// galeri
+// gallery
 const navAll = GROUPS.map(g => `    <div class="nav-group">${gName(g)}</div>\n` + pages.filter(p => p.group === g)
   .map(p => `    <a class="nav-page" href="${p.slug}.html">${p.title}</a>`).join('\n')).join('\n');
 const gallery = GROUPS.map((g, gi) => {

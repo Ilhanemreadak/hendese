@@ -1,8 +1,8 @@
-/* Hendese · Hoca kontrolcüsü. Sprite modülü (hoca.js) yalnızca söyleneni çizer; burası kimin konuştuğuna karar verir.
-   - Sahibi: Hoca'yı talep eden ilk sahne; yoksa raydaki ev (#hoca-home). [data-hoca="quiet"] bölümde evde soluk durur.
-   - Devir: yakın iki sahne noktası arasında kısa yürüyüş (650 ms); eve/evden, uzak mesafe (>260 px) ya da parça gezinmesi
-     sırasında olduğu yerde söner ve yeni yerde belirir (320 ms), böylece ilgisiz içeriğin üstünden geçmez.
-   - Reduced motion (masaüstü): her sahnenin `still` pozunda durgun bir kopya, hareket yok. */
+/* Hendese · Hoca controller: the sprite module (hoca.js) only draws what it is told; this module decides who speaks.
+   - Owner: the first scene that claims Hoca; otherwise the home position on the rail (#hoca-home). In a [data-hoca="quiet"] section it stays home, dimmed.
+   - Handoff: a short walk (650 ms) between two nearby scene points; to/from home, over long distances (>260 px) or during fragment
+     navigation it fades out in place and fades in at the new spot (320 ms), so it never crosses unrelated content.
+   - Reduced motion (desktop): a still copy in each scene's `still` pose, no movement. */
 import { $, S, SCENES, hooks, clamp01, lerp, ease, poke } from './core.js';
 import { createHoca } from './hoca.js';
 import { readAw } from './scenes.js';
@@ -10,7 +10,7 @@ import { current, isQuiet } from './nav.js';
 
 var hoca = null, homeEl, homePt = { x: 0, y: 0 }, H = { owner: null, from: null, t0: 0, pos: null, fade: null };
 var WALK_MAX = 260;
-export const state = { dismissed: false };   /* sahnelerin okuduğu paylaşımlı bayrak: kullanıcı Hoca'yı kapattı; sahne talebini null döndürsün */
+export const state = { dismissed: false };   /* shared flag read by scenes: the user dismissed Hoca, so scenes should return a null claim */
 
 function tick(t) {
   if (!S.motion) return false;
@@ -23,7 +23,7 @@ function tick(t) {
       else { H.from = { x: H.pos.x, y: H.pos.y }; H.t0 = t; H.fade = null; } }
     H.owner = want; }
   var s = { visible: !(sc && sc.hidden), x: tg.x, y: tg.y, pose: tg.pose, face: tg.face, bubble: tg.bubble, bubbleUp: !!tg.bubbleUp, tag: tg.tag, squash: tg.squash || 0, alpha: tg.alpha == null ? 1 : tg.alpha }, busy = false;
-  if (H.fade) { var f = H.fade, q = (t - f.t0) / 320;   /* ilk yarı: eski yerde söner; ikinci yarı: yenide belirir */
+  if (H.fade) { var f = H.fade, q = (t - f.t0) / 320;   /* first half: fade out at the old spot; second half: fade in at the new one */
     if (q >= 1) H.fade = null;
     else { busy = true; s.bubble = null; s.tag = null;
       if (q < .5) { s.x = f.x; s.y = f.y; s.pose = f.pose; s.face = f.face; s.squash = 0; s.alpha = f.a * (1 - 2 * q); } else s.alpha *= 2 * q - 1; } }
@@ -33,7 +33,7 @@ function tick(t) {
   H.pos = { x: s.x, y: s.y, pose: s.pose, face: s.face, alpha: s.alpha }; hoca.render(s); return busy;
 }
 
-/* durgun kopyaları yeniden yerleştirir (reduced motion masaüstünde); bir fig sahnesinin durumu değişince çağırın */
+/* re-places the still copies (reduced motion on desktop); call it when a fig scene's state changes */
 export function refresh() {
   if (!hoca) return;
   var wantStatic = !S.motion && matchMedia('(min-width:1100px)').matches;
@@ -42,7 +42,7 @@ export function refresh() {
   if (!S.motion) { hoca.render({ visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 }); H.owner = null; H.from = null; H.fade = null; H.pos = null; }
 }
 
-/* yalnızca ev ya da `still` taşıyan bir sahne varsa oluşturulur (tüm pozları boyamak bedava değil) */
+/* created only if there is a home position or a scene with `still` (painting every pose is not free) */
 export function init() {
   homeEl = $('#hoca-home');
   if (!homeEl && !SCENES.some(function (sc) { return sc.still; })) return;

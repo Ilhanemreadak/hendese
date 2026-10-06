@@ -1,7 +1,7 @@
-/* Hendese · gezinme: mobil çekmece, bölüm takibi (scroll-spy), okuma çubuğu, hash eşitleme, parça gezinmesi kilidi,
-   geç düzen kaymasında hedefe yeniden demirleme (reanchor).
-   HTML: [data-section][data-title] bölümler · #rail .nav-link[href="#id"] · #rail-pos · #topbar-cur · #progress-bar
-         [data-hoca="quiet"] bölümde Hoca evde kalır, ray soluklaşır. Sayfa başı id'si = opts.topId (varsayılan "top"). */
+/* Hendese · Navigation: mobile drawer, section tracking (scroll-spy), reading progress bar, hash sync, fragment (hash) navigation lock,
+   and re-anchoring to the target after late layout shifts (reanchor).
+   HTML: [data-section][data-title] sections · #rail .nav-link[href="#id"] · #rail-pos · #topbar-cur · #progress-bar
+         In a [data-hoca="quiet"] section Hoca stays home and the rail dims. Page-top id = opts.topId (default "top"). */
 import { $, $$, S, absTop, hooks, poke } from './core.js';
 import { strings } from './strings.js';
 import { pickSection } from './math.js';
@@ -10,7 +10,7 @@ var sections = [], secTops = [], links = {}, rail, railPos, topCur, bar, active 
 export function current() { return active; }
 export function isQuiet(id) { var el = id && document.getElementById(id); return !!(el && el.getAttribute('data-hoca') === 'quiet'); }
 
-/* bir parça gezinmesi yumuşak kaydırırken hedef aktif kalır ve hash yeniden yazılmaz (yazmak kaydırmayı keser) */
+/* while a fragment navigation smooth-scrolls, the target stays active and the hash is not rewritten (writing it interrupts the scroll) */
 export function lockTo(id) { if (!id || !document.getElementById(id)) return; S.lockId = id; S.lockUntil = Date.now() + 1600; }
 function pad(n) { return (n < 10 ? '0' : '') + n; }
 
@@ -37,14 +37,14 @@ function update(y) {
   if (bar) bar.style.width = (max > 0 ? Math.min(100, 100 * y / max) : 0) + '%';
 }
 
-/* hash hedefi, geç düzen (font, sahne kurulumu) otururken kullanıcı kendisi kaydırana dek yerinde tutulur */
+/* while late layout (fonts, scene setup) settles, the hash target is held in place until the user scrolls */
 export function reanchor() {
   if (!location.hash || Date.now() > S.anchorUntil) return;
   var el = document.getElementById(location.hash.slice(1));
   if (el && Math.abs(el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0)) > 3) { lockTo(el.id); el.scrollIntoView({ behavior: 'instant', block: 'start' }); }
 }
 
-/* ---------- mobil çekmece ---------- */
+/* ---------- mobile drawer ---------- */
 var openBtn, lastFocus = null;
 function navOpen() { return document.body.classList.contains('nav-open'); }
 function openNav() { lastFocus = document.activeElement; document.body.classList.add('nav-open'); openBtn.setAttribute('aria-expanded', 'true'); var f = $('.nav-link.is-active', rail) || $('.nav-link', rail); setTimeout(function () { if (f) f.focus(); }, 60); }
@@ -78,7 +78,7 @@ export function init(opts) {
   window.addEventListener('hashchange', function () { lockTo(location.hash.slice(1)); poke(); });
 }
 
-/* hash ile açılışta: yumuşak kaydırma 4 sn kapalı, hedef demirli; ilk kullanıcı girdisinde bırakılır */
+/* on load with a hash: smooth scrolling is off for 4 s and the target is anchored; released on the first user input */
 export function landing() {
   if (!location.hash) return;
   var html = document.documentElement;

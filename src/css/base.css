@@ -1,4 +1,4 @@
-/* Hendese · base: reset + temel tipografi. tokens.css'ten sonra yüklenir. */
+/* Hendese · Base: reset and base typography. Loads after tokens.css. */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -20,14 +20,14 @@ h1,h2,h3,h4{font-weight:600;line-height:1.2;margin:0;letter-spacing:-.01em}
 .sprite{position:absolute;width:0;height:0;overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}   /* std:ok reduced-motion her geçişi ezer */
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}   /* std:ok reduced motion overrides every transition */
 }
 
-/* ---------- yardımcılar ---------- */
-/* yalnız ekran okuyucu: görsel olarak gizli, erişilebilirlik ağacında var */
+/* ---------- Utilities ---------- */
+/* Screen-reader only: visually hidden, present in the accessibility tree */
 .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-/* sabit genişlikli rakam (sayaç, tutar, süre) */
+/* Tabular figures (counters, amounts, durations) */
 .tnum{font-variant-numeric:tabular-nums}
-/* ikon: viewBox'sız <svg><use href="#i-…"/></svg> boyutunu metinden alır (bileşenler kendi boyutunu verir) */
+/* Icon: a viewBox-less <svg><use href="#i-…"/></svg> takes its size from the text (components set their own size) */
 :where(svg:not([viewBox]):has(>use)){width:1em;height:1em}
 .ic{display:inline-block;vertical-align:-.125em;flex:none}

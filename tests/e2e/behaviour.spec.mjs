@@ -1,4 +1,4 @@
-// Davranış: çekmece (klavye), tema düğmesi, pin sahnesi ilerlemesi, reduced-motion durgun Hoca, seçim grubu.
+// Guards behaviour: drawer (keyboard), theme button, pin scene progress, reduced-motion still Hoca, choice group.
 import { test, expect } from '@playwright/test';
 import { pathToFileURL } from 'node:url';
 import path from 'node:path';
@@ -51,7 +51,7 @@ test('seçim grubu okla değişir, sonuç satırı güncellenir', async ({ page 
   await expect(page.locator('#m-readout')).toContainText('Fark var');
 });
 
-// 0.1.1 regresyonları
+// 0.1.1 regressions
 test('kontrol listesi: kayıt yoksa HTML checked korunur; tablo kabı odaklanabilir', async ({ page }) => {
   await page.goto(url('tests/e2e/fixtures/regress'));
   await page.evaluate(() => localStorage.removeItem('hendese-test-regress'));
@@ -73,7 +73,7 @@ test('büyük harfli her etikette İngilizce kelime lang=en alır', async ({ pag
   expect(await page.evaluate(() => ['#a', '#b', '#c'].map(s => document.querySelectorAll(s + ' [lang="en"]').length))).toEqual([1, 1, 0]);
 });
 
-// 0.3 parçaları
+// 0.3 parts
 test('sekmeler: ok tuşları ve End seçer, panel değişir, roving tabindex', async ({ page }) => {
   await page.goto(url('tests/e2e/fixtures/forms'));
   await expect(page.locator('#p2')).toBeHidden();
@@ -105,7 +105,7 @@ test('diyalog: commandfor açar, Esc kapatır, odak geri döner', async ({ page 
 test('form alanı: aria-invalid hata metnini gösterir', async ({ page }) => {
   await page.goto(url('tests/e2e/fixtures/forms'));
   await expect(page.locator('#f1-e')).toBeHidden();
-  await expect(page.locator('#f1')).not.toHaveAttribute('aria-describedby', /f1-e/);   // gizli hata okunmasın
+  await expect(page.locator('#f1')).not.toHaveAttribute('aria-describedby', /f1-e/);   // a hidden error must not be announced
   await page.evaluate(() => document.getElementById('f1').setAttribute('aria-invalid', 'true'));
   await expect(page.locator('#f1-e')).toBeVisible();
   await expect(page.locator('#f1')).toHaveAttribute('aria-describedby', /f1-e/);

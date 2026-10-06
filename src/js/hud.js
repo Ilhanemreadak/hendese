@@ -1,6 +1,6 @@
-/* Hendese · HUD: tek sabit gösterge. Hero'da antet (tb=1), sahnede .hud-slot konumunda canlı gösterge (tb=0).
+/* Hendese · HUD: a single fixed readout; a title block in the hero (tb=1), a live readout at the scene's .hud-slot (tb=0).
    HTML: #hud.hud > .hud-tb + .hud-live ([data-hud="chap|pct|stage|service|tag|env"]) + .hud-bar > i#hud-fill
-   Her karede en görünür (alpha'sı en yüksek) sahnenin talebi kazanır. */
+   Each frame, the claim of the most visible scene (highest alpha) wins. */
 import { $, $$, SCENES, hooks } from './core.js';
 
 var hud, fill, F = {}, V = {}, pos = '';

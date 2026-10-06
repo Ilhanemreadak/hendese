@@ -1,5 +1,5 @@
-/* Hendese · tüm tema. Kullanım: <link rel="stylesheet" href="hendese/dist/hendese.css">
-   Katman sırası sabittir; sizin katmansız CSS'iniz her katmanı ezer (seçici gücüne bakılmaksızın). */
+/* Hendese · Index: the full theme in one entry point. Usage: <link rel="stylesheet" href="hendese/dist/hendese.css">
+   The layer order is fixed; your unlayered CSS overrides every layer (regardless of specificity). */
 @layer hendese.tokens, hendese.base, hendese.layout, hendese.components, hendese.blueprint, hendese.motion, hendese.hoca, hendese.print;
 @import url("fonts.css");
 @import url("tokens.css") layer(hendese.tokens);
