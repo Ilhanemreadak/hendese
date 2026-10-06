@@ -38,8 +38,7 @@ export function refresh() {
   var wantStatic = !S.motion && matchMedia('(min-width:1100px)').matches;
   hoca.clearPlaced();
   if (wantStatic) SCENES.forEach(function (sc) { var o = typeof sc.still === 'function' ? sc.still() : sc.still; if (o) hoca.place(sc.dr, { left: (o.x / sc.aw * 100) + '%', top: (o.y / sc.ah * 100) + '%', pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null }); });
-  if (!S.motion) hoca.render({ visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
-  H.owner = null; H.from = null; H.fade = null; H.pos = null;
+  if (!S.motion) { hoca.render({ visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 }); H.owner = null; H.from = null; H.fade = null; H.pos = null; }
 }
 
 /* yalnızca ev ya da `still` taşıyan bir sahne varsa oluşturulur (tüm pozları boyamak bedava değil) */

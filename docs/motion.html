@@ -345,7 +345,7 @@ Hendese.$$(<span class="s">'[name=m-rep]'</span>).forEach(<span class="k">functi
     <tbody>
       <tr><td><code>Hendese.init(opts)</code></td><td>Tema, çekmece, bölüm takibi, HUD ve bileşenleri bağlar. <code>opts</code>: <code>strings</code>, <code>themeKey</code> (varsayılan <code>hendese-theme</code>), <code>topId</code> (<code>top</code>), <code>englishStems</code> (RegExp).</td></tr>
       <tr><td><code>Hendese.start()</code></td><td>Sahneler kaydedildikten sonra bir kez: Hoca, hash demirleme, ölçüm, canlı mod. <code>init</code> çağrılmadıysa onu da çağırır.</td></tr>
-      <tr><td><code>pinScene(cfg)</code></td><td><code>{el, chap, still, measure(api), reset(api), render(p, api) → {hud?, hoca?}}</code></td></tr>
+      <tr><td><code>pinScene(cfg)</code></td><td><code>{el, chap, still, measure(api), reset(api), render(p, api) → {hud?, tb?, hoca?}}</code> · <code>tb</code> 0..1: HUD antet haline geçer (ör. bölüm başında)</td></tr>
       <tr><td><code>stickyScene(cfg)</code></td><td>Aynı, <code>render(i, t, api)</code>. Beat'ler <code>.on</code> / <code>.past</code> alır.</td></tr>
       <tr><td><code>figScene(cfg)</code></td><td><code>render(api, t, vis) → {hoca?, busy?}</code>. Durum değişince <code>poke()</code>.</td></tr>
       <tr><td><code>scene(raw)</code></td><td>Düşük seviye: <code>{measure, setLive, tick(y, dt, t), hoca, hud, still, dr, aw, ah}</code> nesnesini doğrudan kaydeder (kamera hareketli özel sahneler).</td></tr>

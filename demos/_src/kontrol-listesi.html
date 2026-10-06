@@ -71,7 +71,7 @@
 </div>
 </demo>
 <div class="prose"><p>Bu üç listede <code>data-store</code> yok: saklanmazlar ve başlangıç durumu HTML'deki <code>checked</code> özniteliğinden gelir. Sıfırlama düğmesi de isteğe bağlıdır; yalnızca bir kez yürütülen kısa listelerde çıkarılabilir.</p></div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Saklanan listede başlangıç</span><div class="co-body"><p><code>data-store</code> verilen listede açılışta kayıt okunur; kayıt yoksa <b>tüm kutular boş başlar</b> ve HTML'deki <code>checked</code> yok sayılır. Önceden işaretli madde gerekiyorsa o listeyi saklamayın.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Saklanan listede başlangıç</span><div class="co-body"><p><code>data-store</code> verilen listede açılışta kayıt okunur. Kayıt yoksa HTML'deki <code>checked</code> işaretleri başlangıç halidir; ilk değişiklikten sonra kayıt esas alınır.</p></div></div>
 </chapter>
 
 <chapter title="Olay ve dinleyici" lead="Liste her değişiklikte kendi üzerinde kabarcıklı hendese:runbook olayı yayar. Aşağıdaki gösterge bu olayı dinler ve sıradaki adımı yazar.">

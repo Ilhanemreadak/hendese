@@ -50,3 +50,20 @@ test('seçim grubu okla değişir, sonuç satırı güncellenir', async ({ page 
   await expect(page.locator('[name=m-rep][value="2"]')).toBeChecked();
   await expect(page.locator('#m-readout')).toContainText('Fark var');
 });
+
+// 0.1.1 regresyonları
+test('kontrol listesi: kayıt yoksa HTML checked korunur; tablo kabı odaklanabilir', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/regress'));
+  await page.evaluate(() => localStorage.removeItem('hendese-test-regress'));
+  await page.reload();
+  await expect(page.locator('#rb .rb-count')).toHaveText('1 / 2');
+  await expect(page.locator('#tb')).toHaveAttribute('tabindex', '0');
+});
+
+test('sahnenin hidden talebi Hoca\'yı gizler (canlı mod)', async ({ page }) => {
+  await page.goto(url('tests/e2e/fixtures/regress'));
+  await page.evaluate(() => scrollTo(0, 200)); await idle(page);
+  await expect(page.locator('.hoca-layer > .hoca')).toBeVisible();
+  await page.evaluate(() => { window.__hidden = true; Hendese.refresh(); scrollBy(0, 2); }); await idle(page);
+  await expect(page.locator('.hoca-layer > .hoca')).toBeHidden();
+});

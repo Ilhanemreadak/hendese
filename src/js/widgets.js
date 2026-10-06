@@ -4,6 +4,7 @@ import { strings } from './strings.js';
 
 /* tablolar: dar ekranda satırlar kart olur; her hücreye başlığını data-th olarak yazar */
 function tables() {
+  $$('.tbl').forEach(function (w) { if (!w.hasAttribute('tabindex')) w.setAttribute('tabindex', '0'); });
   $$('.tbl table').forEach(function (t) { var ths = $$('thead th', t).map(function (th) { return th.textContent.trim(); });
     $$('tbody tr', t).forEach(function (tr) { $$('td', tr).forEach(function (td, i) { if (ths[i]) td.setAttribute('data-th', ths[i]); }); }); });
 }
@@ -28,7 +29,7 @@ function runbooks() {
     function render() { var n = boxes.filter(function (b) { return b.checked; }).length;
       if (count) count.textContent = n + ' / ' + boxes.length; if (fill) fill.style.width = (100 * n / boxes.length) + '%'; rb.classList.toggle('complete', n === boxes.length);
       rb.dispatchEvent(new CustomEvent('hendese:runbook', { bubbles: true, detail: { done: n, total: boxes.length } })); }
-    if (key) try { var s = JSON.parse(localStorage.getItem(key) || '[]'); boxes.forEach(function (b, i) { b.checked = !!s[i]; }); } catch (e) {}
+    if (key) try { var s = JSON.parse(localStorage.getItem(key)); if (Array.isArray(s)) boxes.forEach(function (b, i) { b.checked = !!s[i]; }); } catch (e) {}
     boxes.forEach(function (b) { b.addEventListener('change', function () { save(); render(); }); });
     if (reset) reset.addEventListener('click', function () { boxes.forEach(function (b) { b.checked = false; }); save(); render(); if (boxes[0]) boxes[0].focus(); });
     render();

@@ -1,4 +1,4 @@
-/* Hendese 0.1.0 */
+/* Hendese 0.1.1 */
 
 // src/js/math.js
 function clamp01(v) {
@@ -671,8 +671,9 @@ function createHoca() {
     i.src = srcs[o.pose] || srcs.idle;
     if ((o.face || 1) < 0) i.style.transform = "scale(-1,1)";
     c.appendChild(i);
+    var bb = null;
     if (o.bubble) {
-      var bb = document.createElement("div");
+      bb = document.createElement("div");
       bb.className = "hoca-bubble on" + (o.bubbleUp ? " is-up" : "") + (/[^\u0000-ɏ–—‘’“”…]/.test(o.bubble) ? " mono" : "");
       bb.textContent = o.bubble;
       c.appendChild(bb);
@@ -685,6 +686,7 @@ function createHoca() {
     }
     container.appendChild(c);
     placed.push(c);
+    if (bb && c.offsetLeft < bb.offsetWidth + 20) bb.classList.add("is-right");
   }
   function clearPlaced() {
     placed.forEach(function(c) {
@@ -778,11 +780,13 @@ function refresh() {
     var o = typeof sc.still === "function" ? sc.still() : sc.still;
     if (o) hoca.place(sc.dr, { left: o.x / sc.aw * 100 + "%", top: o.y / sc.ah * 100 + "%", pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null });
   });
-  if (!S.motion) hoca.render({ visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
-  H.owner = null;
-  H.from = null;
-  H.fade = null;
-  H.pos = null;
+  if (!S.motion) {
+    hoca.render({ visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
+    H.owner = null;
+    H.from = null;
+    H.fade = null;
+    H.pos = null;
+  }
 }
 function init4() {
   homeEl = $("#hoca-home");
@@ -806,6 +810,9 @@ function dismiss() {
 
 // src/js/widgets.js
 function tables() {
+  $$(".tbl").forEach(function(w) {
+    if (!w.hasAttribute("tabindex")) w.setAttribute("tabindex", "0");
+  });
   $$(".tbl table").forEach(function(t) {
     var ths = $$("thead th", t).map(function(th) {
       return th.textContent.trim();
@@ -876,8 +883,8 @@ function runbooks() {
       rb.dispatchEvent(new CustomEvent("hendese:runbook", { bubbles: true, detail: { done: n, total: boxes.length } }));
     }
     if (key) try {
-      var s = JSON.parse(localStorage.getItem(key) || "[]");
-      boxes.forEach(function(b, i) {
+      var s = JSON.parse(localStorage.getItem(key));
+      if (Array.isArray(s)) boxes.forEach(function(b, i) {
         b.checked = !!s[i];
       });
     } catch (e) {
@@ -1012,17 +1019,26 @@ function setter(host) {
   };
 }
 function claim(h, x0, y0, nat, s) {
-  return { x: x0 + h.x / s.aw * nat.w, y: y0 + h.y / s.ah * nat.h, pose: h.pose || "idle", face: h.face || 1, bubble: h.bubble || null, bubbleUp: !!h.bubbleUp, tag: h.tag || null, squash: h.squash || 0, alpha: 1 };
+  return { x: x0 + h.x / s.aw * nat.w, y: y0 + h.y / s.ah * nat.h, pose: h.pose || "idle", face: h.face || 1, bubble: h.bubble || null, bubbleUp: !!h.bubbleUp, tag: h.tag || null, squash: h.squash || 0, alpha: 1, hidden: !!h.hidden };
 }
 function base(cfg, el, dr) {
   return { live: false, hoca: null, hud: null, still: cfg.still || null, dr, aw: +dr.getAttribute("data-aw") || 1e3, ah: +dr.getAttribute("data-ah") || 600 };
+}
+function readAw(s) {
+  var cs = getComputedStyle(s.dr);
+  s.aw = +cs.getPropertyValue("--aw") || s.aw;
+  s.ah = +cs.getPropertyValue("--ah") || s.ah;
 }
 function commonApi(s, el, dr, f) {
   return {
     el,
     drawing: dr,
-    aw: s.aw,
-    ah: s.ah,
+    get aw() {
+      return s.aw;
+    },
+    get ah() {
+      return s.ah;
+    },
     seg,
     ease,
     lerp,
@@ -1062,6 +1078,7 @@ function pinScene(cfg) {
     if (!s.live) return;
     top = absTop(el);
     L = Math.max(1, el.offsetHeight - S.vh);
+    readAw(s);
     var sr = stage.getBoundingClientRect(), r = dr.getBoundingClientRect();
     nat = { x: r.left - sr.left, y: r.top - sr.top, w: r.width, h: r.height };
     SH = sr.height;
@@ -1089,7 +1106,7 @@ function pinScene(cfg) {
     }
     var out = cfg.render(p, api) || {}, stY = y < top ? top - y : y > top + L ? top + L - y : 0, h = out.hoca;
     s.hoca = h && stY > -SH * 0.35 && stY < SH * 0.6 ? claim(h, SX + nat.x, stY + nat.y, nat, s) : null;
-    s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: 0, alpha: clamp01(1 + stY / (SH * 0.12)) * clamp01(1 - stY / (SH * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
+    s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + stY / (SH * 0.12)) * clamp01(1 - stY / (SH * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return p !== target;
   };
   SCENES.push(s);
@@ -1121,9 +1138,7 @@ function stickyScene(cfg) {
     top = absTop(el);
     bot = top + el.offsetHeight;
     tops = beats.map(absTop);
-    var cs = getComputedStyle(dr);
-    s.aw = +cs.getPropertyValue("--aw") || s.aw;
-    s.ah = +cs.getPropertyValue("--ah") || s.ah;
+    readAw(s);
     var fr = fig.getBoundingClientRect(), r = dr.getBoundingClientRect();
     nat = { x: r.left - fr.left, y: r.top - fr.top, w: r.width, h: r.height };
     FH = fr.height;
@@ -1153,7 +1168,7 @@ function stickyScene(cfg) {
     }
     var out = cfg.render(i, t, api) || {}, fy = y < top ? top - y : y > bot - FH ? bot - FH - y : 0, h = out.hoca;
     s.hoca = h && fy > -FH * 0.35 && fy < S.vh * 0.6 ? claim(h, FX + nat.x, fy + nat.y, nat, s) : null;
-    s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: 0, alpha: clamp01(1 + fy / (FH * 0.12)) * clamp01(1 - fy / (S.vh * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
+    s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + fy / (FH * 0.12)) * clamp01(1 - fy / (S.vh * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return false;
   };
   SCENES.push(s);
@@ -1176,6 +1191,7 @@ function figScene(cfg) {
   };
   s.measure = function() {
     if (!s.live) return;
+    readAw(s);
     var r = dr.getBoundingClientRect();
     nat = { x: r.left, y: r.top + (window.scrollY || 0), w: r.width, h: r.height };
     if (cfg.measure) cfg.measure(api);
@@ -1197,7 +1213,7 @@ function figScene(cfg) {
 }
 
 // src/js/index.js
-var version = true ? "0.1.0" : "dev";
+var version = true ? "0.1.1" : "dev";
 var O = null;
 var started = false;
 function init6(opts) {

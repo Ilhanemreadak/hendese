@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Regresyon fikstürü</title>
+<link rel="stylesheet" href="../../../dist/hendese.css">
+</head>
+<body>
+<!-- 0.1.1 düzeltmelerinin fikstürü: HTML'deki checked korunur, taşan tablo odaklanır, fig sahnesinin hidden talebi Hoca'yı gizler -->
+<div id="hoca-home"></div>
+<div class="runbook" data-store="hendese-test-regress" id="rb">
+  <div class="rb-head"><span class="rb-count"></span></div>
+  <ul class="rb-list">
+    <li><label class="rb-item"><input type="checkbox" checked><span>bir</span></label></li>
+    <li><label class="rb-item"><input type="checkbox"><span>iki</span></label></li>
+  </ul>
+</div>
+<div class="tbl" id="tb"><table><thead><tr><th>a</th></tr></thead><tbody><tr><td>1</td></tr></tbody></table></div>
+<div style="height:300px"></div>
+<figure class="fig-sheet" id="fg"><div class="drawing" data-aw="400" data-ah="200" style="--aw:400;--ah:200;height:200px"></div></figure>
+<div style="height:1500px"></div>
+<script src="../../../dist/hendese.js"></script>
+<script>
+Hendese.init();
+window.__hidden = false;
+Hendese.figScene({ el: '#fg', render: function () { return { hoca: { x: 200, y: 100, hidden: window.__hidden } }; } });
+Hendese.start();
+</script>
+</body>
+</html>

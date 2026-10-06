@@ -2,13 +2,24 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
-## [Yayımlanmamış]
+## [0.1.1] - 2026-10-06
 
 ### Eklendi
 - Parça sayfaları (`demos/`): 37 parçanın her biri kendi sayfasında; varyantlar, durumlar, bağlam örnekleri, yap/yapma çiftleri ve galeri (`demos/index.html`). Kaynaklar `demos/_src/`, üretici `tools/demos.mjs` (`npm run build` içinde).
 - e2e: her parça sayfası açık + koyu temada konsol hatası, dış istek, taşma ve axe denetiminden geçer.
 
 ### Düzeltildi
+- Hareket motoru:
+  - sahnenin Hoca talebindeki `hidden` kontrolcüye ulaşmıyordu (belgelenmiş ama etkisizdi);
+  - `Hendese.refresh()` canlı modda devir durumunu sıfırlıyor, Hoca'nın yürüme/solma geçişi zıplamaya dönüşüyordu;
+  - `api.aw`/`api.ah` kayıt anında donuyordu; pin ve fig sahneleri kap sorgusuyla değişen `--aw`/`--ah`'ı okumuyordu. Artık her `measure()`'da güncellenir;
+  - pin ve sticky `render()` dönüşündeki `tb` (HUD antet hali) yok sayılıyordu;
+  - durgun Hoca kopyasında balon sol kenara sığmıyorsa sağa geçmiyordu.
+- Kontrol listesi: kayıt yokken HTML'deki `checked` işaretleri siliniyordu.
+- Taşan `.tbl` klavyeyle kaydırılamıyordu (axe `scrollable-region-focusable`); kap artık odaklanabilir.
+- Koyu temada seçili segmentteki ikincil metin (`.choice small`) AA kontrastının altındaydı.
+- Mono yazı 600 ağırlıkta tarayıcının sahte kalınıyla çiziliyordu; IBM Plex Mono 600 eklendi. Tüm `@font-face` kurallarına `unicode-range` eklendi (sayfa yalnız gereken alt kümeyi indirir).
+- `.pillrow` öğeleri dikeyde ortalanır (yan yana düğme ve durum etiketi); `.co-body` son öğesi liste ya da kod olsa da alt boşluk bırakmaz; yinelenen `.s-k8s` kuralı kaldırıldı.
 - Doküman örnek kutusundaki kod sıfırlaması (`.demo .code`) örneğin içindeki canlı kod bloklarını da etkiliyordu; artık yalnızca kutunun kendi kod alanına uygulanır.
 
 ## [0.1.0] - 2026-10-06

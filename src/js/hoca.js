@@ -157,9 +157,11 @@ export function createHoca() {
     i.className = 'hoca-img'; i.alt = ''; i.width = W * S; i.height = H * S; i.src = srcs[o.pose] || srcs.idle;
     if ((o.face || 1) < 0) i.style.transform = 'scale(-1,1)';
     c.appendChild(i);
-    if (o.bubble) { var bb = document.createElement('div'); bb.className = 'hoca-bubble on' + (o.bubbleUp ? ' is-up' : '') + (/[^\u0000-ɏ–—‘’“”…]/.test(o.bubble) ? ' mono' : ''); bb.textContent = o.bubble; c.appendChild(bb); }
+    var bb = null;
+    if (o.bubble) { bb = document.createElement('div'); bb.className = 'hoca-bubble on' + (o.bubbleUp ? ' is-up' : '') + (/[^\u0000-ɏ–—‘’“”…]/.test(o.bubble) ? ' mono' : ''); bb.textContent = o.bubble; c.appendChild(bb); }
     if (o.tag) { var tg = document.createElement('span'); tg.className = 'hoca-tag'; tg.textContent = o.tag; c.appendChild(tg); }
     container.appendChild(c); placed.push(c);
+    if (bb && c.offsetLeft < bb.offsetWidth + 20) bb.classList.add('is-right');
   }
   function clearPlaced() { placed.forEach(function (c) { c.remove(); }); placed = []; }
 

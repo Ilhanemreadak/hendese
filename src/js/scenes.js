@@ -21,13 +21,15 @@ function setter(host) {
 }
 /* çizim birimindeki Hoca talebini viewport px'e çevirir */
 function claim(h, x0, y0, nat, s) {
-  return { x: x0 + h.x / s.aw * nat.w, y: y0 + h.y / s.ah * nat.h, pose: h.pose || 'idle', face: h.face || 1, bubble: h.bubble || null, bubbleUp: !!h.bubbleUp, tag: h.tag || null, squash: h.squash || 0, alpha: 1 };
+  return { x: x0 + h.x / s.aw * nat.w, y: y0 + h.y / s.ah * nat.h, pose: h.pose || 'idle', face: h.face || 1, bubble: h.bubble || null, bubbleUp: !!h.bubbleUp, tag: h.tag || null, squash: h.squash || 0, alpha: 1, hidden: !!h.hidden };
 }
 function base(cfg, el, dr) {
   return { live: false, hoca: null, hud: null, still: cfg.still || null, dr: dr, aw: +dr.getAttribute('data-aw') || 1000, ah: +dr.getAttribute('data-ah') || 600 };
 }
+/* kap sorgusu --aw/--ah'ı değiştirebilir (dar varyant): her measure() hesaplanmış değeri okur */
+function readAw(s) { var cs = getComputedStyle(s.dr); s.aw = +cs.getPropertyValue('--aw') || s.aw; s.ah = +cs.getPropertyValue('--ah') || s.ah; }
 function commonApi(s, el, dr, f) {
-  return { el: el, drawing: dr, aw: s.aw, ah: s.ah, seg: seg, ease: ease, lerp: lerp, clamp01: clamp01, cls: f.cls,
+  return { el: el, drawing: dr, get aw() { return s.aw; }, get ah() { return s.ah; }, seg: seg, ease: ease, lerp: lerp, clamp01: clamp01, cls: f.cls,
     live: function () { return s.live; }, poke: poke };
 }
 
@@ -35,7 +37,7 @@ function commonApi(s, el, dr, f) {
 export function scene(raw) { SCENES.push(raw); return raw; }
 
 /* ---------- pin: uzun iz (--track) + yapışkan sahne; p = 0..1 iz ilerlemesi (yumuşatılmış) ----------
-   render(p, api) -> {hud?: {stage, service, tag, env, pct, fill}, hoca?: {x, y, pose, face, bubble, bubbleUp, tag, squash}} */
+   render(p, api) -> {hud?: {stage, service, tag, env, pct, fill}, tb?: 0..1 (HUD antet hali), hoca?: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}} */
 export function pinScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var stage = $('.route-stage', el), dr = $('.drawing', el), slot = $('.hud-slot', el);
@@ -44,7 +46,7 @@ export function pinScene(cfg) {
   var api = commonApi(s, el, dr, f); api.stage = stage; api.set = v.set;
   s.setLive = function (on) { s.live = on; el.classList.toggle('is-live', on); first = true;
     if (!on) { v.clear(); f.clear(); s.hoca = s.hud = null; if (cfg.reset) cfg.reset(api); } };
-  s.measure = function () { if (!s.live) return; top = absTop(el); L = Math.max(1, el.offsetHeight - S.vh);
+  s.measure = function () { if (!s.live) return; top = absTop(el); L = Math.max(1, el.offsetHeight - S.vh); readAw(s);
     var sr = stage.getBoundingClientRect(), r = dr.getBoundingClientRect(); nat = { x: r.left - sr.left, y: r.top - sr.top, w: r.width, h: r.height }; SH = sr.height; SX = sr.left;
     if (slot) { var q = slot.getBoundingClientRect(); slotR = { x: q.left - sr.left, y: q.top - sr.top, w: q.width }; } if (cfg.measure) cfg.measure(api); };
   s.tick = function (y, dt) {
@@ -54,7 +56,7 @@ export function pinScene(cfg) {
     if (first) { p = target; first = false; } else { p += (target - p) * (1 - Math.pow(0.002, dt / 1000)); if (Math.abs(target - p) < 0.0004) p = target; }
     var out = cfg.render(p, api) || {}, stY = y < top ? top - y : y > top + L ? top + L - y : 0, h = out.hoca;
     s.hoca = h && stY > -SH * .35 && stY < SH * .6 ? claim(h, SX + nat.x, stY + nat.y, nat, s) : null;
-    s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: 0, alpha: clamp01(1 + stY / (SH * .12)) * clamp01(1 - stY / (SH * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
+    s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + stY / (SH * .12)) * clamp01(1 - stY / (SH * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return p !== target;
   };
   SCENES.push(s); return s;
@@ -62,7 +64,7 @@ export function pinScene(cfg) {
 
 /* ---------- sticky: yapışkan şekil + kayan metin beat'leri ([data-beat]) ----------
    i = okuma çizgisini (%45) geçen son beat, t = o beat içindeki ilerleme. Beat'ler .on / .past alır.
-   Dar varyant: kap sorgusu --aw/--ah'ı değiştirirse measure() hesaplanmış değeri okur (api.aw/ah değil, sahnenin s.aw/ah'ı). */
+   render(i, t, api) pin ile aynı nesneyi döndürür. Dar varyant: api.aw/ah her measure()'da hesaplanmış --aw/--ah'tan güncellenir. */
 export function stickyScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var fig = $('.sticky-fig', el), dr = $('.drawing', fig), slot = $('.hud-slot', fig), beats = $$('[data-beat]', el);
@@ -71,8 +73,7 @@ export function stickyScene(cfg) {
   var api = commonApi(s, el, dr, f); api.fig = fig; api.beats = beats; api.set = v.set;
   s.setLive = function (on) { s.live = on; el.classList.toggle('is-live', on); cur = -1;
     if (!on) { v.clear(); f.clear(); s.hoca = s.hud = null; if (cfg.reset) cfg.reset(api); } };
-  s.measure = function () { if (!s.live) return; top = absTop(el); bot = top + el.offsetHeight; tops = beats.map(absTop);
-    var cs = getComputedStyle(dr); s.aw = +cs.getPropertyValue('--aw') || s.aw; s.ah = +cs.getPropertyValue('--ah') || s.ah;
+  s.measure = function () { if (!s.live) return; top = absTop(el); bot = top + el.offsetHeight; tops = beats.map(absTop); readAw(s);
     var fr = fig.getBoundingClientRect(), r = dr.getBoundingClientRect(); nat = { x: r.left - fr.left, y: r.top - fr.top, w: r.width, h: r.height }; FH = fr.height; FX = fr.left;
     if (slot) { var q = slot.getBoundingClientRect(); slotR = { x: q.left - fr.left, y: q.top - fr.top, w: q.width }; } if (cfg.measure) cfg.measure(api); };
   s.tick = function (y) {
@@ -83,7 +84,7 @@ export function stickyScene(cfg) {
     if (i !== cur) { cur = i; beats.forEach(function (b, k) { f.cls(b, 'on', k === i); f.cls(b, 'past', k < i); }); }
     var out = cfg.render(i, t, api) || {}, fy = y < top ? top - y : y > bot - FH ? bot - FH - y : 0, h = out.hoca;
     s.hoca = h && fy > -FH * .35 && fy < S.vh * .6 ? claim(h, FX + nat.x, fy + nat.y, nat, s) : null;
-    s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: 0, alpha: clamp01(1 + fy / (FH * .12)) * clamp01(1 - fy / (S.vh * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
+    s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + fy / (FH * .12)) * clamp01(1 - fy / (S.vh * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return false;
   };
   SCENES.push(s); return s;
@@ -100,7 +101,7 @@ export function figScene(cfg) {
   var api = commonApi(s, el, dr, f);
   s.setLive = function (on) { s.live = on; el.classList.toggle('is-live', on);
     if (!on) { f.clear(); s.hoca = null; if (cfg.reset) cfg.reset(api); } };
-  s.measure = function () { if (!s.live) return; var r = dr.getBoundingClientRect(); nat = { x: r.left, y: r.top + (window.scrollY || 0), w: r.width, h: r.height }; if (cfg.measure) cfg.measure(api); };
+  s.measure = function () { if (!s.live) return; readAw(s); var r = dr.getBoundingClientRect(); nat = { x: r.left, y: r.top + (window.scrollY || 0), w: r.width, h: r.height }; if (cfg.measure) cfg.measure(api); };
   s.tick = function (y, dt, t) {
     if (!s.live || !nat) return false;
     var fy = nat.y - y, vis = clamp01(Math.min(S.vh - fy, fy + nat.h, nat.h, S.vh) / Math.min(nat.h, S.vh));
