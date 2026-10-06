@@ -4,3 +4,4 @@ playwright-report/
 releases/
 *.tgz
 tools/_*.tmp.mjs
+.serena/
