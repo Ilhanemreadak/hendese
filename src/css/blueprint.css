@@ -63,7 +63,7 @@
 .pencil-2{stroke:var(--pencil-2);stroke-width:2}
 
 /* Station explorer: buttons positioned in drawing units + a detail panel below.
-   <button class="station" data-key="x" aria-pressed="false" style="--x;--y;--w;--h">  +  <div class="st-detail" data-explorer-panel><div data-for="x">..</div></div> */
+   <button class="station" data-key="x" aria-pressed="false" style="--x;--y;--w;--h">  +  <div class="st-detail" id="panel-id"><div data-for="x">..</div></div>, wired by <div data-explorer="panel-id"> */
 .sl,.station{position:absolute;left:calc(var(--x) / var(--aw,1000) * 100%);top:calc(var(--y) / var(--ah,600) * 100%);width:calc(var(--w) / var(--aw,1000) * 100%);height:calc(var(--h) / var(--ah,600) * 100%);margin:0;box-sizing:border-box}
 .sl{font:500 max(10.5px,calc(12 * var(--u)))/1.3 var(--font-mono);color:var(--ink-3);white-space:nowrap}
 .deck-cap{display:flex;align-items:center;gap:calc(8 * var(--u));font:400 max(11px,calc(14 * var(--u)))/1.3 var(--font-sans);color:var(--ink-2)}
@@ -77,7 +77,7 @@
 .svc-gitlab{--svc:var(--gitlab)}.svc-aws{--svc:var(--aws)}.svc-argo{--svc:var(--argo)}.svc-k8s{--svc:var(--k8s)}
 .station:hover{box-shadow:inset 0 0 0 1px var(--draw)}
 .station[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--draw)}
-.station[aria-pressed="true"]::after{content:var(--str-selected);position:absolute;top:-1px;right:-1px;padding:1px var(--sp-1);background:var(--draw);color:var(--paper);font:600 max(8.5px,calc(10 * var(--u)))/1.4 var(--font-mono);letter-spacing:.08em}
+.station[aria-pressed="true"]::after{content:var(--str-selected) / "";position:absolute;top:-1px;right:-1px;padding:1px var(--sp-1);background:var(--draw);color:var(--paper);font:600 max(8.5px,calc(10 * var(--u)))/1.4 var(--font-mono);letter-spacing:.08em}
 .station:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* Sheet footer: one-line summary + detail panel + figure caption */
@@ -86,8 +86,7 @@
 .oneliner .co-label{margin-right:var(--sp-3);font:600 var(--fs-xs)/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .st-detail{min-height:6.9em;padding-left:var(--sp-6);border-left:2px solid var(--draw);font-size:var(--fs-md);line-height:1.55;color:var(--ink-2)}
 .st-detail::before{content:var(--str-station);display:block;margin-bottom:3px;font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-.st-detail [data-for]{display:none}
-.st-detail .show{display:block}
+.js .st-detail [data-for]:not(.show){display:none}   /* without JS (and in print) every station description is shown */
 .f-foot .figcap{margin:0;font-size:var(--fs-sm);line-height:1.5;color:var(--ink-3)}
 
 /* Status line styles: solid = real, dashed = example/boundary, red dashed = blocked path */
@@ -180,7 +179,7 @@
 
 /* ---------- Status standard (STANDART.md § 2) ----------
    Every status-bearing component reads --c / --c-soft and sets its own default; .s-* applies to all of them.
-   These are the last rules in the last layer, so they always override component defaults.
+   These are the last rules of the blueprint layer, so they override component defaults; later layers (motion, hoca, print) must not set --c.
    Deprecated aliases (removed in 1.0): .pill-ok .pill-neutral .state.ok/.warn/.bad .readout.ok/.bad .p-auto/.p-manual/.p-inline */
 .s-ok,.pill-ok,.state.ok,.readout.ok,.p-auto{--c:var(--ok);--c-soft:var(--ok-soft)}
 .s-warn,.state.warn,.p-manual{--c:var(--warn);--c-soft:var(--warn-soft)}

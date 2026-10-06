@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr" data-theme-key="site-theme">
+<head>
+<meta charset="utf-8">
+<title>Dayanıklılık fikstürü</title>
+<script src="../../../dist/head.js"></script>
+<link rel="stylesheet" href="../../../dist/hendese.css">
+</head>
+<body>
+<!-- Fixture for the 0.4.0 fixes: failure isolation, keyed runbook storage, colspan card labels, section lock, late scenes -->
+<span id="rail-pos"></span>
+<main>
+<section id="s1" data-section data-title="Bir" style="height:900px">
+  <figure class="code" id="cp"><figcaption><button class="code-copy" type="button" aria-label="Kopyala"></button></figcaption><pre><code>x</code></pre></figure>
+  <div data-tabs><div role="tablist"><button role="tab" id="t1" aria-controls="p1" aria-selected="true">a</button><button role="tab" id="t2" aria-controls="p2">b</button></div>
+    <div role="tabpanel" id="p1">bir</div><div role="tabpanel" id="p2" hidden>iki</div></div>
+  <div class="runbook" data-store="hendese-test-robust" id="rb">
+    <div class="rb-head"><span class="rb-count"></span></div>
+    <ul class="rb-list">
+      <li><label class="rb-item"><input type="checkbox"><span>yeni</span></label></li>
+      <li><label class="rb-item"><input type="checkbox"><span>bir</span></label></li>
+      <li><label class="rb-item"><input type="checkbox"><span>iki</span></label></li>
+    </ul>
+  </div>
+  <div data-explorer="xp"><button class="station" data-key="a" aria-pressed="true">A</button><button class="station" data-key="b" aria-pressed="false">B</button></div>
+  <div class="st-detail" id="xp" aria-live="polite"><div data-for="a">alfa</div><div data-for="b">beta</div></div>
+  <div class="tbl"><table><thead><tr><th>Ad</th><th>Açık</th><th>Koyu <button type="button">i</button></th><th>Not</th></tr></thead>
+    <tbody><tr><td>a</td><td colspan="2">ikisi</td><td>n</td></tr></tbody></table></div>
+</section>
+<section id="s2" data-section data-title="İki" style="height:900px">
+  <figure id="inner" style="margin-top:400px">iç hedef</figure>
+  <figure class="fig-sheet" id="bad"><div class="drawing" data-aw="400" data-ah="200" style="--aw:400;--ah:200;height:200px"></div></figure>
+  <figure class="fig-sheet" id="good"><div class="drawing" data-aw="400" data-ah="200" style="--aw:400;--ah:200;height:200px"></div></figure>
+  <figure class="fig-sheet" id="late"><div class="drawing" data-aw="400" data-ah="200" style="--aw:400;--ah:200;height:200px"></div></figure>
+</section>
+<div style="height:1200px"></div>
+</main>
+<script src="../../../dist/hendese.js"></script>
+<script>
+Hendese.init();
+window.__thrown = 0; window.__ticks = 0;
+Hendese.figScene({ el: '#bad', render: function () { if (!window.__thrown++) throw new Error('scene failure (expected by the test)'); return { hoca: { x: 10, y: 10, pose: 'no-such-pose' } }; } });
+Hendese.figScene({ el: '#good', render: function (api, t) { window.__ticks++; window.__t = t; return {}; } });
+/* a raw scene that relies on this (methods are called on the scene object) */
+window.__raw = Hendese.scene({ live: false, hoca: null, hud: null, measure: function () {}, setLive: function (on) { this.live = on; }, tick: function () { return false; } });
+Hendese.start();
+</script>
+</body>
+</html>

@@ -38,4 +38,4 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .hoca-bubble { transition: none; } }
-@media print, (max-width: 1099px) { .hoca-layer, .hoca { display: none !important; } }
+@media print, (width < 1100px) { .hoca-layer, .hoca { display: none !important; } }

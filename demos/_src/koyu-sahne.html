@@ -174,7 +174,7 @@
     <p class="oneliner"><span class="co-label">Bir cümleyle</span>İstekler yalnızca yük dengeleyiciden girer; uygulama dışarı NAT ile çıkar, veritabanına internetten yol yoktur.</p>
     <div class="st-detail" id="ks-ag" aria-live="polite">
       <div data-for="igw"><b>Ağ geçidi.</b> VPC'nin internetle tek bağlantısı. Yalnızca genel alt ağdaki kaynaklar ona doğrudan yönlenir.</div>
-      <div data-for="lb" class="show"><b>lb-public.</b> 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.</div>
+      <div data-for="lb"><b>lb-public.</b> 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.</div>
       <div data-for="nat"><b>NAT.</b> Özel alt ağdan dışarıya çıkışı sağlar; dışarıdan içeriye bağlantı kabul etmez.</div>
       <div data-for="web"><b>web-api.</b> Yalnızca yük dengeleyiciden gelen trafiği kabul eder; dış servislere NAT üzerinden gider.</div>
       <div data-for="db"><b>orders-db.</b> Yalnızca web-api'nin güvenlik grubundan 5432 portuna izin verir. İnternetten yol yoktur.</div>

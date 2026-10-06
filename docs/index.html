@@ -114,7 +114,7 @@
   <figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">sh</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>npm i ../hendese                     <span class="c"># ya da releases/hendese-x.y.z.tgz</span>
 <span class="c"># bundler ile:</span>
 <span class="k">import</span> <span class="s">'hendese/css'</span>;
-<span class="k">import</span> * <span class="k">as</span> Hendese <span class="k">from</span> <span class="s">'hendese'</span>;   <span class="c">// ES modül (src/js/index.js)</span></code></pre></figure>
+<span class="k">import</span> * <span class="k">as</span> Hendese <span class="k">from</span> <span class="s">'hendese'</span>;   <span class="c">// ES modül (dist/hendese.esm.js)</span></code></pre></figure>
   <h3>3. Tek dosyalık sayfa</h3>
   <p class="prose">Çevrimdışı tek bir HTML dağıtacaksanız <code>dist/hendese.inline.css</code> (fontlar gömülü) ve <code>dist/hendese.js</code> içeriğini sayfaya <code>&lt;style&gt;</code> ve <code>&lt;script&gt;</code> olarak yapıştırın; ikon sprite'ını (<code>dist/icons.svg</code>) <code>&lt;body&gt;</code>'nin başına koyun.</p>
   <aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Tarayıcı desteği</span><div class="co-body">Son iki yılın güncel tarayıcıları: <code>light-dark()</code>, <code>:has()</code>, kap sorguları ve <code>@layer</code> gerekir. <code>[data-reveal]</code> scroll animasyonu desteklenmeyen tarayıcıda zarifçe kapanır.</div></aside>

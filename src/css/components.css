@@ -83,7 +83,7 @@
 .rb-item{position:relative;display:grid;grid-template-columns:20px minmax(0,1fr);gap:var(--sp-5);align-items:start;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-sm);cursor:pointer;font-size:var(--fs-md);color:var(--ink-2);transition:background var(--dur-1)}
 .rb-item:hover{background:var(--surface-2)}
 .rb-item input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
-.rb-item .box{width:20px;height:20px;border:1.5px solid var(--line-2);border-radius:var(--r-sm);display:grid;place-items:center;margin-top:2px;background:var(--surface);transition:background var(--dur-1),border-color var(--dur-1)}
+.rb-item .box{width:20px;height:20px;border:1.5px solid var(--ink-3);border-radius:var(--r-sm);display:grid;place-items:center;margin-top:2px;background:var(--surface);transition:background var(--dur-1),border-color var(--dur-1)}
 .rb-item .box svg{width:12px;height:12px;color:var(--accent-ink);opacity:0;transform:scale(.5);transition:opacity var(--dur-1),transform var(--dur-1)}
 .rb-item input:checked+.box{background:var(--ok);border-color:var(--ok)}
 .rb-item input:checked+.box svg{opacity:1;transform:none}
@@ -129,7 +129,7 @@
 .register-h{display:flex;justify-content:space-between;gap:var(--sp-5);margin:0 0 var(--sp-1);color:var(--ink-3);font-size:var(--fs-xs)}
 .register-h b{font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--draw)}
 .register dl{display:grid;grid-template-columns:max-content minmax(0,1fr);margin:0}
-.register dl>div{display:grid;grid-column:1/-1;grid-template-columns:subgrid;column-gap:var(--sp-5);padding:2px var(--sp-2);margin:0 -6px;transition:background-color var(--dur-3)}
+.register dl>div{display:grid;grid-column:1/-1;grid-template-columns:subgrid;column-gap:var(--sp-5);padding:2px var(--sp-2);margin:0 calc(-1 * var(--sp-2));transition:background-color var(--dur-3)}
 .register dt{color:var(--ink-3);font-size:var(--fs-xs)}
 .register dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
 .register dl>div.now{background:var(--accent-soft)}
@@ -177,6 +177,7 @@
   .survey-log>li{grid-template-columns:1fr;row-gap:var(--sp-4)}
   .js .tbl table,.js .tbl.wide table{min-width:0}
   .js .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .js .tbl thead :is(a,button,input,select,textarea,[tabindex]){visibility:hidden}   /* clipped controls must not take focus */
   .js .tbl tr{display:block;padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
   .js .tbl tr:last-child{border-bottom:0}
   .js .tbl td{display:block;position:relative;border:0;padding:var(--sp-1) var(--sp-5) var(--sp-1) 108px;min-height:26px}   /* std:ok card label column (88px + gap) */
@@ -190,7 +191,7 @@
   .co{max-width:none}
   .grp::after{display:none}
   .code pre.annotated{padding-left:var(--sp-7)}
-  .grp{margin-left:-16px;padding-left:var(--sp-6)}
+  .grp{margin-left:calc(-1 * var(--sp-7));padding-left:var(--sp-6)}
 }
 
 /* ---------- Interaction states (STANDART.md § 3) ----------
@@ -207,8 +208,10 @@
 /* Forced colors (Windows high contrast): backgrounds disappear, so selection and progress are drawn in system colors */
 @media (forced-colors:active){
   :is(.choice input:checked+span,.toggle-btn[aria-pressed="true"],.station[aria-pressed="true"],.steps>li[aria-current],.tabs [role="tab"][aria-selected="true"]){outline:2px solid Highlight;outline-offset:-2px}
-  .rb-bar i,.hud-bar i,.rb-item input:checked+.box{forced-color-adjust:none;background:Highlight}
-  :is(.btn,.icon-btn,.toggle-btn):disabled,.choice input:disabled+span{color:GrayText;border-color:GrayText}
+  .rb-bar i,.progress i,.rb-item input:checked+.box{forced-color-adjust:none;background:Highlight}
+  .rb-item input:checked+.box svg{color:HighlightText}
+  :is(.nav-link.is-active,.register dl>div.now,.code .ln.cur){outline:2px solid Highlight;outline-offset:-2px}
+  :is(.btn,.icon-btn,.toggle-btn):is(:disabled,[aria-disabled="true"]),.choice input:disabled+span{color:GrayText;border-color:GrayText}
 }
 
 /* ---------- Form field ----------
@@ -221,7 +224,7 @@
 .field :is(input:not([type="checkbox"],[type="radio"],[type="range"]),textarea,select){box-sizing:border-box;width:100%;min-height:34px;padding:var(--sp-1) var(--sp-4);border:1px solid var(--c);border-radius:var(--r-sm);background:var(--paper);color:var(--ink);font:400 var(--fs-md)/1.5 var(--font-sans)}
 .field :is(input,textarea,select).mono{font-family:var(--font-mono)}
 .field textarea{min-height:6em;resize:vertical}
-.field :is(input,textarea,select):hover:not(:disabled){border-color:var(--ink-2)}
+.field :is(input,textarea,select):hover:not(:disabled,[aria-invalid="true"],:user-invalid){border-color:var(--ink-2)}
 .field :is(input,textarea,select):focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--draw)}
 .field :is(input,textarea,select):disabled{border-style:dashed;color:var(--ink-3);background:transparent;cursor:not-allowed}
 .field :is(input,textarea,select):is([aria-invalid="true"],:user-invalid){border-color:var(--bad)}
@@ -243,8 +246,8 @@
 .field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));column-gap:var(--sp-7)}
 /* Field with unit: <div class="field-unit"><input id="x" aria-describedby="x-u"><span id="x-u">ms</span></div> */
 .field-unit{display:flex}
-.field-unit>input{flex:1;min-width:0;border-start-end-radius:0;border-end-end-radius:0}
-.field-unit>span{display:grid;place-items:center;padding:0 var(--sp-4);border:1px solid var(--c);border-inline-start:0;border-radius:0 var(--r-sm) var(--r-sm) 0;font:500 var(--fs-sm)/1 var(--font-mono);color:var(--ink-3)}
+.field .field-unit>input{flex:1;min-width:0;border-start-end-radius:0;border-end-end-radius:0}
+.field-unit>span{display:grid;place-items:center;padding:0 var(--sp-4);border:1px solid var(--c);border-inline-start:0;border-radius:0;border-start-end-radius:var(--r-sm);border-end-end-radius:var(--r-sm);font:500 var(--fs-sm)/1 var(--font-mono);color:var(--ink-3)}
 
 /* ---------- Tabs ----------
    <div class="tabs" data-tabs><div role="tablist" aria-label="…"><button role="tab" id="t1" aria-controls="p1" aria-selected="true">…</button>…</div>
@@ -268,7 +271,7 @@ html:not(.js) .tabs [role="tablist"]{display:none}
    Open: <button command="show-modal" commandfor="d1">; close: <form method="dialog"> or command="close". Focus, Esc and top layer come from the browser.
    Looks like a stamp: double frame, square corners (a drawn object). */
 .dialog{box-sizing:border-box;margin:auto;width:min(560px,calc(100vw - 2 * var(--sp-7)));max-height:calc(100dvh - 2 * var(--sp-10));padding:var(--sp-8) var(--sp-8) var(--sp-7);border:1.5px solid var(--draw);outline:1px solid var(--pencil);outline-offset:-6px;border-radius:0;background:var(--paper);color:var(--ink);overflow:auto;overscroll-behavior:contain}
-.dialog:focus-visible{outline:1px solid var(--pencil);outline-offset:-6px}
+.dialog:focus-visible{outline:2px solid var(--draw);outline-offset:-6px}
 .dialog::backdrop{background:var(--scrim)}
 html:has(.dialog:modal){overflow:hidden}
 .dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-5);margin:0 0 var(--sp-5)}

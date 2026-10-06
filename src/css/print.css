@@ -5,9 +5,16 @@
   .shell{display:block}
   .canvas{max-width:none;padding:0}
   .chapter{break-inside:avoid;padding-top:28px}
-  .co,.tbl,.code{box-shadow:none}
   .frame,.sticky-fig,.fig-sheet{break-inside:avoid}
   .tabs [role="tablist"]{display:none}
   .tabs [role="tabpanel"][hidden]{display:block}
   .js .tabs [role="tabpanel"]>.tab-h{position:static;width:auto;height:auto;clip:auto}
+  /* paper is light: browsers drop backgrounds by default, so dark themes and dark code blocks would print pale ink on white */
+  :root,html[data-theme],.scene-dark,.code{color-scheme:light}
+  .code{--code-bg:transparent;--code-line:var(--line);--code-ink:var(--ink);--code-ink-2:var(--ink-2);--code-muted:var(--ink-3);--code-fill:transparent;--code-fill-2:var(--line);--code-k:var(--accent);--code-s:var(--warn);--code-c:var(--ink-3);--code-v:var(--ok)}
+  /* scroll containers print only their visible box: let wide tables and long lines flow */
+  .tbl,.code pre{overflow:visible}
+  .tbl table,.tbl.wide table{min-width:0}
+  .code pre{white-space:pre-wrap;overflow-wrap:anywhere}
+  .st-detail [data-for]{display:block}
 }

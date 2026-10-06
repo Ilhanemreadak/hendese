@@ -377,7 +377,7 @@
     <p class="oneliner"><span class="co-label">Bir cümleyle</span>İstekler yalnızca yük dengeleyiciden girer; uygulama dışarı NAT ile çıkar, veritabanına internetten yol yoktur.</p>
     <div class="st-detail" id="ks-ag" aria-live="polite">
       <div data-for="igw"><b>Ağ geçidi.</b> VPC'nin internetle tek bağlantısı. Yalnızca genel alt ağdaki kaynaklar ona doğrudan yönlenir.</div>
-      <div data-for="lb" class="show"><b>lb-public.</b> 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.</div>
+      <div data-for="lb"><b>lb-public.</b> 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.</div>
       <div data-for="nat"><b>NAT.</b> Özel alt ağdan dışarıya çıkışı sağlar; dışarıdan içeriye bağlantı kabul etmez.</div>
       <div data-for="web"><b>web-api.</b> Yalnızca yük dengeleyiciden gelen trafiği kabul eder; dış servislere NAT üzerinden gider.</div>
       <div data-for="db"><b>orders-db.</b> Yalnızca web-api'nin güvenlik grubundan 5432 portuna izin verir. İnternetten yol yoktur.</div>
@@ -426,7 +426,7 @@
     &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bir cümleyle&lt;/<span class='k'>span</span>&gt;İstekler yalnızca yük dengeleyiciden girer; uygulama dışarı NAT ile çıkar, veritabanına internetten yol yoktur.&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ks-ag</span>" aria-live="<span class='s'>polite</span>"&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>igw</span>"&gt;&lt;<span class='k'>b</span>&gt;Ağ geçidi.&lt;/<span class='k'>b</span>&gt; VPC'nin internetle tek bağlantısı. Yalnızca genel alt ağdaki kaynaklar ona doğrudan yönlenir.&lt;/<span class='k'>div</span>&gt;
-      &lt;<span class='k'>div</span> data-for="<span class='s'>lb</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;lb-public.&lt;/<span class='k'>b</span>&gt; 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>lb</span>"&gt;&lt;<span class='k'>b</span>&gt;lb-public.&lt;/<span class='k'>b</span>&gt; 443 portundan gelen istekleri kabul eder ve özel alt ağdaki web-api'ye iletir.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>nat</span>"&gt;&lt;<span class='k'>b</span>&gt;NAT.&lt;/<span class='k'>b</span>&gt; Özel alt ağdan dışarıya çıkışı sağlar; dışarıdan içeriye bağlantı kabul etmez.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>web</span>"&gt;&lt;<span class='k'>b</span>&gt;web-api.&lt;/<span class='k'>b</span>&gt; Yalnızca yük dengeleyiciden gelen trafiği kabul eder; dış servislere NAT üzerinden gider.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>db</span>"&gt;&lt;<span class='k'>b</span>&gt;orders-db.&lt;/<span class='k'>b</span>&gt; Yalnızca web-api'nin güvenlik grubundan 5432 portuna izin verir. İnternetten yol yoktur.&lt;/<span class='k'>div</span>&gt;

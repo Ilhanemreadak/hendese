@@ -1,5 +1,6 @@
 // Guards the standard (STANDART.md): component CSS uses tokens only, and every class is shown on some page.
-// Exception: /* std:ok <reason> */ on the line; the total count is capped so exceptions cannot quietly multiply.
+// Exception: /* std:ok <reason> */ excuses the violations on its own line (one structural exception); unused markers fail,
+// and the total count is capped so exceptions cannot quietly multiply.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,37 +8,38 @@ import fs from 'node:fs';
 const DIR = 'src/css/';
 const EXEMPT = ['tokens.css', 'fonts.css', 'print.css', 'hoca.css', 'index.css'];   // token source, fonts, print, pixel art (3px grid)
 const FILES = fs.readdirSync(DIR).filter(f => f.endsWith('.css') && !EXEMPT.includes(f));
-const SPACING_FILES = ['components.css', 'blueprint.css'];
+const SPACING_FILES = ['components.css', 'blueprint.css'];   // shell geometry (layout, motion) is exempt from the spacing scale: STANDART.md §1
 const MAX_MARKERS = 15;
 
+// values are checked without strings and custom-property names, so "content" text and token names never match
+const bare = v => v.replace(/"[^"]*"|'[^']*'/g, '').replace(/--[\w-]+/g, '');
+const NAMED = /\b(black|white|red|green|blue|yellow|orange|purple|pink|gr[ae]y|silver|navy|teal|maroon|olive|lime|aqua|fuchsia|cyan|magenta|brown|gold)\b/i;
 const RULES = [
-  ['renk token dışında', (p, v) => /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(v)],
-  ['ham px yazı boyutu (--fs-* kullanın)', (p, v) => /^font(-size)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.-])\d*\.?\d+px/.test(v)],
-  ['ham px köşe (--r-* kullanın)', (p, v) => p === 'border-radius' && /(?<![\w.-])[1-9][\d.]*px/.test(v)],
+  ['renk token dışında', (p, v) => /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(/i.test(bare(v)) || NAMED.test(bare(v))],
+  ['ham yazı boyutu (--fs-* kullanın)', (p, v) => /^font(-size)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.])\d*\.?\d+(px|rem|pt)\b/.test(bare(v))],
+  ['ham px köşe (--r-* kullanın)', (p, v) => /^border(-[\w-]+)?-radius$/.test(p) && /(?<![\w.])[1-9][\d.]*px/.test(bare(v))],
   ['ham süre (--dur-* kullanın)', (p, v) => /^(transition|animation)(-duration|-delay)?$/.test(p) && /(?<![\w.-])\d*\.?\d+m?s\b/.test(v)],
   ['ham z-index (--z-* kullanın)', (p, v) => p === 'z-index' && /^\s*([3-9]|\d{2,})/.test(v)],
   ['kullanımdan kalkan token', (p, v) => /var\(--(t-fast|t-med|ease)\)/.test(v)],
   ['!important', (p, v) => /!important/.test(v)],
 ];
-const SPACING = (p, v) => /^(padding|margin|gap|row-gap|column-gap|inset)(-[\w-]+)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.-])([4-9]|\d{2,})(\.\d+)?px/.test(v);
+const SPACING = (p, v) => /^(padding|margin|gap|row-gap|column-gap|inset)(-[\w-]+)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.])-?([4-9]|\d{2,})(\.\d+)?px/.test(bare(v));
 
+const lineOf = (s, i) => s.slice(0, i).split('\n').length;
 function scan(file) {
-  const hits = []; let markers = 0, inComment = false;
-  fs.readFileSync(DIR + file, 'utf8').split('\n').forEach((raw, i) => {
-    if (/std:ok\s+\S/.test(raw)) { markers++; return; }
-    let line = '';
-    for (let k = 0; k < raw.length; k++) {   // strip comments (multi-line included)
-      if (inComment) { if (raw.startsWith('*/', k)) { inComment = false; k++; } continue; }
-      if (raw.startsWith('/*', k)) { inComment = true; k++; continue; }
-      line += raw[k];
-    }
-    for (const m of line.matchAll(/(?:^|[{;])\s*([\w-]+)\s*:\s*([^;{}]+)/g)) {
-      const [, p, v] = m, at = `${file}:${i + 1} ${p}:${v.trim().slice(0, 60)}`;
-      for (const [name, bad] of RULES) if (bad(p, v)) hits.push(`${name} · ${at}`);
-      if (SPACING_FILES.includes(file) && SPACING(p, v)) hits.push(`ham boşluk (--sp-* kullanın) · ${at}`);
-    }
-  });
-  return { hits, markers };
+  const src = fs.readFileSync(DIR + file, 'utf8'), hits = [];
+  const markers = [...src.matchAll(/\/\*\s*std:ok\s+\S[\s\S]*?\*\//g)].map(m => lineOf(src, m.index));
+  const used = new Set();
+  // comments are blanked (offsets and line numbers kept), then declarations are matched across lines
+  const text = src.replace(/\/\*[\s\S]*?\*\//g, c => c.replace(/[^\n]/g, ' '));
+  for (const m of text.matchAll(/(?:^|[{;])\s*([\w-]+)\s*:\s*([^;{}]+)/g)) {
+    const [, p, v] = m, line = lineOf(text, m.index + m[0].indexOf(p)), at = `${file}:${line} ${p}:${v.trim().replace(/\s+/g, ' ').slice(0, 60)}`;
+    const bad = RULES.filter(([, test]) => test(p, v)).map(([name]) => name);
+    if (SPACING_FILES.includes(file) && SPACING(p, v)) bad.push('ham boşluk (--sp-* kullanın)');
+    for (const name of bad) { if (markers.includes(line)) used.add(line); else hits.push(`${name} · ${at}`); }
+  }
+  for (const line of markers.filter(l => !used.has(l))) hits.push(`kullanılmayan std:ok · ${file}:${line}`);
+  return { hits, markers: markers.length };
 }
 
 test('bileşen CSS yalnız token kullanır', () => {

@@ -13,6 +13,7 @@
 .pin{margin-inline:calc(50% - 50cqw);margin-block:8px 28px}
 .pin .route-stage{padding:10px}
 .pin .frame{grid-template-columns:minmax(0,1fr) 232px;column-gap:22px;row-gap:10px;padding:16px 20px 14px}
+@container col (max-width:760px){.pin .frame{grid-template-columns:minmax(0,1fr)}}
 .pin .f-head .chip{margin:0}
 .pin .beats{gap:8px;font-size:var(--fs-sm)}
 
@@ -80,11 +81,16 @@ html.motion .hud{display:block;position:fixed;left:0;top:0;z-index:var(--z-hud);
 .hud-r b{font-size:var(--fs-sm);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
 .hud-bar{align-self:center;margin:0 12px;height:5px;background:repeating-linear-gradient(90deg,var(--line-2) 0 1px,transparent 1px 10%);position:relative}
 .hud-bar i{position:absolute;inset:0;background:var(--draw);transform-origin:0 50%;transform:scaleX(0)}
+@media (forced-colors:active){.hud-bar i{forced-color-adjust:none;background:Highlight}}
 
-/* ---------- Hero intro: one-time load sequence (JS adds these classes only in live mode) ---------- */
-.hero.intro-pending .hero-copy>*{opacity:0;transform:translateY(8px)}
-.hero.intro-pending.intro-go .hero-copy>*{opacity:1;transform:none;transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
-.hero.intro-pending.intro-go .hero-copy>:nth-child(2){transition-delay:var(--dur-1)}
+/* ---------- Hero intro: one-time load sequence ----------
+   Integrator hook: the library never adds these classes. In live mode only (Hendese.state.motion), the page adds .intro-pending
+   before the first paint and .intro-go once ready. */
+@media screen{
+  .hero.intro-pending .hero-copy>*{opacity:0;transform:translateY(8px)}
+  .hero.intro-pending.intro-go .hero-copy>*{opacity:1;transform:none;transition:opacity var(--dur-4) var(--ease-out),transform var(--dur-4) var(--ease-out)}
+  .hero.intro-pending.intro-go .hero-copy>:nth-child(2){transition-delay:var(--dur-1)}
+}
 
 /* ---------- Learner interaction transitions: only while motion is on ---------- */
 /* E.g. html.motion .gauge-jaw{transition:transform var(--dur-3)}; under reduced motion, base.css turns them all off. */
@@ -95,7 +101,7 @@ html.motion .hud{display:block;position:fixed;left:0;top:0;z-index:var(--z-hud);
 @supports (animation-timeline: view()){
   @media screen and (prefers-reduced-motion:no-preference){
     [data-reveal]{animation:hd-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
-    [data-reveal="draw"] :is(path,line,polyline,rect,circle){stroke-dasharray:1;stroke-dashoffset:0;animation:hd-draw linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
+    [data-reveal="draw"] :is(path,line,polyline,rect,circle)[pathLength="1"]{stroke-dasharray:1;stroke-dashoffset:0;animation:hd-draw linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
   }
 }
 @keyframes hd-reveal{from{opacity:0;translate:0 12px}}

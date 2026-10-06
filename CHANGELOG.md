@@ -2,6 +2,72 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
+## [0.4.0] - 2026-10-06
+
+Ön yayın denetiminin (`AUDIT.md`) yayınla ilgili olmayan bulguları düzeltildi. Kod içi yorumların hepsi İngilizceye çevrildi.
+
+### Değişti (kırıcı)
+- **Paket girişi:** `module`, `main` ve `exports["."]` artık derlenmiş `dist/hendese.esm.js` dosyasını gösterir; önceden derlenmemiş `src/js/index.js` geliyordu ve `version` değeri `'dev'` dönüyordu. IIFE (`dist/hendese.js`) `unpkg`/`jsdelivr` alanlarından ve `./dist/*` yolundan alınır. `./package.json` dışa açıldı; `engines.node >= 21`.
+- **Kontrol listesi kaydı:** ilerleme sıra numarasıyla değil öğe kimliğiyle saklanır (`id`, varsayılan olmayan `value`, yoksa öğe metni). Böylece araya adım eklemek, yapılmamış bir adımı "yapıldı" göstermez. Önceki sürümlerin dizi biçimi ilk açılışta bir kez taşınır.
+- **İstasyon gezgini:** bitmiş halde (JS'siz ve baskıda) bütün açıklamalar görünür; seçili olmayanları JS gizler. Sayfaya `class="show"` elle yazılmaz.
+- **Kahraman girişi:** `.intro-pending`/`.intro-go` kuralları `@media screen` altına alındı ve entegratör kancası olarak belgelendi; kütüphane bu sınıfları eklemez.
+- **`[data-reveal="draw"]`:** çizim animasyonu yalnız `pathLength="1"` taşıyan şekillere uygulanır; özniteliği olmayan şekiller artık kalıcı noktalı kalmaz.
+
+### Eklendi
+- `<html data-theme-key="…">`: `head.js` ve `Hendese.init()` özel tema anahtarını buradan okur; `init({themeKey})` artık ilk boyamada da geçerlidir.
+- Yazı tipi lisansları: IBM Plex Mono OFL metni eklendi; bütün OFL dosyaları `dist/fonts/` içine kopyalanır.
+- Regresyon testleri: `tests/e2e/robust.spec.mjs` (11 test) ve `math` uç değerleri.
+
+### Düzeltildi
+- **Motor:**
+  - Bir sahnede, kancada ya da bileşende atılan hata artık döngüyü kalıcı olarak durdurmaz; her çağrı ayrı çalışır ve hata raporlanır.
+  - Bilinmeyen Hoca pozu `idle` olarak çizilir.
+  - `start()` sonrasında kaydedilen sahneler hemen o anki moda girer; Hoca ilk ihtiyaçta oluşturulur.
+  - Eksik alt öğesi olan sahne uyarıyla atlanır; boş kök (`$(s, null)`) bütün belgeyi aramaz.
+  - Yükseksiz çizim `NaN` üretmez; `clamp01(NaN)` 0 döner.
+  - Sahne kapanınca yazarın satır içi stili ve sınıfları geri yüklenir.
+- **Gezinme:**
+  - Bölüm içindeki bir hedefe (şekil, dipnot) gidiş, çevreleyen bölümü işaretler; sayaç artık `0-1` göstermez.
+  - Yüzde kodlu (ASCII dışı) kimlikler eşleşir; `replaceState` her karede çağrılmaz ve `history.state` korunur.
+  - Derin bağlantı, kullanıcı kaydırana kadar hedef bölümde kalır.
+  - Çekmece, ekran 1100px üstüne çıkınca odak tuzağını bırakır.
+  - Okuma çubuğu esneme kaydırmasında eksiye düşmez.
+  - Kesirli genişliklerde (1099–1100px) CSS ve JS eşiği artık aynıdır: `(width < 1100px)`.
+- **HUD ve Hoca:**
+  - HUD, yeni sahnenin vermediği alanları temizler.
+  - `hoca.dismiss()` reduced motion'daki durgun kopyaları da kaldırır.
+  - Ev noktası olmayan sayfada Hoca, sol üst köşeye yürümek yerine gizlenir.
+- **Bileşenler:**
+  - Yalnız ikonlu kopyala düğmesi çalışır; sonuç ayrı bir durum düğümünden bir kez duyurulur; ardışık tıklamalarda zamanlayıcılar çakışmaz.
+  - Kart görünümündeki tablo etiketleri `colspan`'ı sayar, başlıktaki düğme ve ölçü notu metnini almaz; `<th data-th>` ile ezilebilir.
+  - Kart görünümünde gizli başlıktaki denetimler odak almaz.
+  - Gezgin önizlemesi canlı bölgeyi konuşturmaz; yalnız seçim duyurulur.
+  - Seçili rozeti erişilebilir ada girmez.
+  - Sekmeler Alt/Ctrl/Meta kombinasyonlarını tarayıcıya bırakır; olay yalnız seçim değişince yayılır.
+  - Form alanı, sayfanın sonradan eklediği `aria-describedby` kimliklerini korur.
+  - Boş kontrol listesi "tamamlandı" görünmez.
+- **Erişilebilirlik ve görünüm:**
+  - Kontrol listesi kutusu kenarı 3:1 kontrasta çıktı.
+  - Geçersiz alanın kırmızı kenarı üzerine gelince kaybolmaz.
+  - Atlama bağlantısı üzerine gelince kontrastını korur.
+  - Birimli alanın birleşen köşeleri düzleşti (mantıksal köşe özellikleri).
+  - Diyalog odak çerçevesi dinlenme çerçevesinden ayrışır.
+  - Zorunlu renk modu (forced colors): HUD çubuğu, okuma çubuğu, etkin bölüm bağlantısı, şimdiki kayıt satırı, kod imleci ve `aria-disabled` sistem renkleriyle çizilir.
+- **Düzen ve baskı:**
+  - Dar ekranda üst çubuk açık çekmeceyi ve kapat düğmesini örtmez.
+  - Pin çerçevesi dar sütunda tek sütuna iner.
+  - Baskıda kod blokları ve koyu tema koyu mürekkeple basılır.
+  - Geniş tablolar ve uzun kod satırları kâğıtta kesilmez.
+- **Araçlar:**
+  - Build ve demo üreticisi, boşluk ya da ASCII dışı karakter içeren yollarda çalışır (`fileURLToPath`).
+  - Yayın zip'i Node'da yazılır; önceki sürümlerde `tar -a` GNU tar ile zip yerine tar üretiyordu.
+  - Yayın betiği build sonrasında ağacın değişmediğini doğrular ve CHANGELOG'da en üstte tarihli başlık arar.
+  - Demo üreticisi kaynağı silinen sayfaları kaldırır, bütün yinelenen `order` değerlerini raporlar ve bozuk meta JSON'unda dosya adını verir.
+  - Standart testi:
+    - yorumları tüm dosyada temizler;
+    - çok satırlı değerleri, eksi boşlukları, modern renk fonksiyonlarını, adlı renkleri, `rem`/`pt` yazı boyutlarını ve kullanılmayan `std:ok` işaretlerini yakalar.
+  - `tools/icons-inline.mjs` kaldırıldı; sprite `docs/_sablon.html` içine bir kez gömüldü.
+
 ## [0.3.0] - 2026-10-06
 
 Yeni parçalar; hepsi `STANDART.md`'ye göre yazıldı ve advisor incelemesinden geçti.

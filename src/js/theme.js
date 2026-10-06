@@ -3,10 +3,13 @@
 import { $$ } from './core.js';
 import { strings } from './strings.js';
 
+/* storage key: init({themeKey}) > <html data-theme-key> (also read by head.js) > 'hendese-theme' */
 export function init(key) {
-  var html = document.documentElement;
-  if (!html.getAttribute('data-theme')) { var t0 = null; try { t0 = localStorage.getItem(key); } catch (e) {}
-    html.setAttribute('data-theme', t0 === 'dark' || t0 === 'light' ? t0 : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')); }
+  var html = document.documentElement, sys = matchMedia('(prefers-color-scheme: dark)');
+  key = key || html.getAttribute('data-theme-key') || 'hendese-theme';
+  function stored() { try { var t = localStorage.getItem(key); return t === 'dark' || t === 'light' ? t : null; } catch (e) { return null; } }
+  /* a stored choice always wins; otherwise keep what head.js or the page set, falling back to the system preference */
+  var t0 = stored(); if (t0 || !html.getAttribute('data-theme')) html.setAttribute('data-theme', t0 || (sys.matches ? 'dark' : 'light'));
   function labels() { var t = html.getAttribute('data-theme'); $$('[data-theme-toggle]').forEach(function (b) { var l = t === 'dark' ? strings.toLight : strings.toDark; b.setAttribute('aria-label', l); b.title = l; }); }
   $$('[data-theme-toggle]').forEach(function (b) { b.addEventListener('click', function () {
     var t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; html.setAttribute('data-theme', t);

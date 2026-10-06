@@ -1,4 +1,4 @@
-/* Hendese 0.3.0 */
+/* Hendese 0.4.0 */
 @layer hendese.tokens, hendese.base, hendese.layout, hendese.components, hendese.blueprint, hendese.motion, hendese.hoca, hendese.print;
 
 /* src/css/fonts.css */
@@ -670,7 +670,8 @@
     margin: 0;
     letter-spacing: -.01em;
   }
-  .skip {
+  .skip,
+  .skip:hover {
     position: absolute;
     left: 12px;
     top: -60px;
@@ -745,7 +746,6 @@
   }
   .shell {
     position: relative;
-    z-index: 1;
     display: grid;
     grid-template-columns: var(--rail-w) minmax(0, 1fr);
     min-height: 100vh;
@@ -867,19 +867,16 @@
   }
   .brand small,
   .nav-link > span:not(.num),
-  .nav-link::after,
   .nav-group {
     transition: opacity var(--dur-3) var(--ease-out), color var(--dur-1);
   }
   .rail.compact .brand small,
   .rail.compact .nav-link > span:not(.num),
-  .rail.compact .nav-link::after,
   .rail.compact .nav-group {
     opacity: 0;
   }
   .rail.compact:is(:hover, :focus-within) .brand small,
   .rail.compact:is(:hover, :focus-within) .nav-link > span:not(.num),
-  .rail.compact:is(:hover, :focus-within) .nav-link::after,
   .rail.compact:is(:hover, :focus-within) .nav-group {
     opacity: 1;
   }
@@ -1089,7 +1086,7 @@
     line-height: 1.6;
     color: var(--ink-2);
   }
-  @media (max-width: 1099px) {
+  @media (width < 1100px) {
     .shell {
       grid-template-columns: 1fr;
     }
@@ -1620,7 +1617,7 @@
   .rb-item .box {
     width: 20px;
     height: 20px;
-    border: 1.5px solid var(--line-2);
+    border: 1.5px solid var(--ink-3);
     border-radius: var(--r-sm);
     display: grid;
     place-items: center;
@@ -1822,7 +1819,7 @@
     grid-template-columns: subgrid;
     column-gap: var(--sp-5);
     padding: 2px var(--sp-2);
-    margin: 0 -6px;
+    margin: 0 calc(-1 * var(--sp-2));
     transition: background-color var(--dur-3);
   }
   .register dt {
@@ -2019,6 +2016,9 @@
       overflow: hidden;
       clip: rect(0 0 0 0);
     }
+    .js .tbl thead :is(a, button, input, select, textarea, [tabindex]) {
+      visibility: hidden;
+    }
     .js .tbl tr {
       display: block;
       padding: var(--sp-3) 0;
@@ -2075,7 +2075,7 @@
       padding-left: var(--sp-7);
     }
     .grp {
-      margin-left: -16px;
+      margin-left: calc(-1 * var(--sp-7));
       padding-left: var(--sp-6);
     }
   }
@@ -2116,12 +2116,19 @@
       outline-offset: -2px;
     }
     .rb-bar i,
-    .hud-bar i,
+    .progress i,
     .rb-item input:checked + .box {
       forced-color-adjust: none;
       background: Highlight;
     }
-    :is(.btn, .icon-btn, .toggle-btn):disabled,
+    .rb-item input:checked + .box svg {
+      color: HighlightText;
+    }
+    :is(.nav-link.is-active, .register dl > div.now, .code .ln.cur) {
+      outline: 2px solid Highlight;
+      outline-offset: -2px;
+    }
+    :is(.btn, .icon-btn, .toggle-btn):is(:disabled, [aria-disabled=true]),
     .choice input:disabled + span {
       color: GrayText;
       border-color: GrayText;
@@ -2169,7 +2176,7 @@
     min-height: 6em;
     resize: vertical;
   }
-  .field :is(input, textarea, select):hover:not(:disabled) {
+  .field :is(input, textarea, select):hover:not(:disabled, [aria-invalid=true], :user-invalid) {
     border-color: var(--ink-2);
   }
   .field :is(input, textarea, select):focus-visible {
@@ -2256,7 +2263,7 @@
   .field-unit {
     display: flex;
   }
-  .field-unit > input {
+  .field .field-unit > input {
     flex: 1;
     min-width: 0;
     border-start-end-radius: 0;
@@ -2268,7 +2275,9 @@
     padding: 0 var(--sp-4);
     border: 1px solid var(--c);
     border-inline-start: 0;
-    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    border-radius: 0;
+    border-start-end-radius: var(--r-sm);
+    border-end-end-radius: var(--r-sm);
     font: 500 var(--fs-sm)/1 var(--font-mono);
     color: var(--ink-3);
   }
@@ -2348,7 +2357,7 @@
     overscroll-behavior: contain;
   }
   .dialog:focus-visible {
-    outline: 1px solid var(--pencil);
+    outline: 2px solid var(--draw);
     outline-offset: -6px;
   }
   .dialog::backdrop {
@@ -2756,7 +2765,7 @@
     box-shadow: inset 0 0 0 2px var(--draw);
   }
   .station[aria-pressed=true]::after {
-    content: var(--str-selected);
+    content: var(--str-selected) / "";
     position: absolute;
     top: -1px;
     right: -1px;
@@ -2810,11 +2819,8 @@
     text-transform: uppercase;
     color: var(--ink-3);
   }
-  .st-detail [data-for] {
+  .js .st-detail [data-for]:not(.show) {
     display: none;
-  }
-  .st-detail .show {
-    display: block;
   }
   .f-foot .figcap {
     margin: 0;
@@ -3176,6 +3182,11 @@
     row-gap: 10px;
     padding: 16px 20px 14px;
   }
+  @container col (max-width:760px) {
+    .pin .frame {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
   .pin .f-head .chip {
     margin: 0;
   }
@@ -3426,17 +3437,25 @@
     transform-origin: 0 50%;
     transform: scaleX(0);
   }
-  .hero.intro-pending .hero-copy > * {
-    opacity: 0;
-    transform: translateY(8px);
+  @media (forced-colors: active) {
+    .hud-bar i {
+      forced-color-adjust: none;
+      background: Highlight;
+    }
   }
-  .hero.intro-pending.intro-go .hero-copy > * {
-    opacity: 1;
-    transform: none;
-    transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out);
-  }
-  .hero.intro-pending.intro-go .hero-copy > :nth-child(2) {
-    transition-delay: var(--dur-1);
+  @media screen {
+    .hero.intro-pending .hero-copy > * {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .hero.intro-pending.intro-go .hero-copy > * {
+      opacity: 1;
+      transform: none;
+      transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out);
+    }
+    .hero.intro-pending.intro-go .hero-copy > :nth-child(2) {
+      transition-delay: var(--dur-1);
+    }
   }
   @supports (animation-timeline: view()) {
     @media screen and (prefers-reduced-motion: no-preference) {
@@ -3445,7 +3464,7 @@
         animation-timeline: view();
         animation-range: entry 0% entry 60%;
       }
-      [data-reveal=draw] :is(path, line, polyline, rect, circle) {
+      [data-reveal=draw] :is(path, line, polyline, rect, circle)[pathLength="1"] {
         stroke-dasharray: 1;
         stroke-dashoffset: 0;
         animation: hd-draw linear both;
@@ -3579,7 +3598,7 @@
       transition: none;
     }
   }
-  @media print, (max-width: 1099px) {
+  @media print, (width < 1100px) {
     .hoca-layer,
     .hoca {
       display: none !important;
@@ -3614,11 +3633,6 @@
       break-inside: avoid;
       padding-top: 28px;
     }
-    .co,
-    .tbl,
-    .code {
-      box-shadow: none;
-    }
     .frame,
     .sticky-fig,
     .fig-sheet {
@@ -3635,6 +3649,40 @@
       width: auto;
       height: auto;
       clip: auto;
+    }
+    :root,
+    html[data-theme],
+    .scene-dark,
+    .code {
+      color-scheme: light;
+    }
+    .code {
+      --code-bg:transparent;
+      --code-line:var(--line);
+      --code-ink:var(--ink);
+      --code-ink-2:var(--ink-2);
+      --code-muted:var(--ink-3);
+      --code-fill:transparent;
+      --code-fill-2:var(--line);
+      --code-k:var(--accent);
+      --code-s:var(--warn);
+      --code-c:var(--ink-3);
+      --code-v:var(--ok);
+    }
+    .tbl,
+    .code pre {
+      overflow: visible;
+    }
+    .tbl table,
+    .tbl.wide table {
+      min-width: 0;
+    }
+    .code pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .st-detail [data-for] {
+      display: block;
     }
   }
 }

@@ -48,7 +48,7 @@ Yeni parça eklerken ya da bir parçayı değiştirirken **[STANDART.md](STANDAR
 | Seçenek | Varsayılan | Açıklama |
 |---|---|---|
 | `strings` | Türkçe metinler | Arayüz metinleri. |
-| `themeKey` | `'hendese-theme'` | localStorage anahtarı. |
+| `themeKey` | `'hendese-theme'` | localStorage anahtarı. `head.js` de aynı anahtarı okusun diye `<html data-theme-key="…">` olarak da verilebilir. |
 | `topId` | `'top'` | Sayfa başının id'si. |
 | `englishStems` | yok | `RegExp`: büyük harfle basılan her etiketteki İngilizce kelimelere `lang="en"` ekler (Türkçe büyük İ sorunu). |
 
@@ -72,7 +72,7 @@ npm install            # yalnızca geliştirme araçları: esbuild, Playwright, 
 npm run build          # src/ → dist/
 npm run test:unit      # node:test
 npm run test:e2e       # Playwright: konsol hatası, dış istek, taşma, erişilebilirlik (axe), görsel
-npm run release        # build → test → CHANGELOG kontrolü → npm pack → zip → git tag
+npm run release        # CHANGELOG kontrolü → build → test → npm pack → zip → git tag
 ```
 
 Görsel testlerin referans görüntüleri ilk kez `npx playwright test --update-snapshots` ile üretilir. Referanslar işletim sistemine bağlıdır; CI'ya geçildiğinde Linux imajında yeniden üretilmeleri gerekir.

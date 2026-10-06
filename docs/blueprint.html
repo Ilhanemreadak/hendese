@@ -488,7 +488,7 @@
 
 <article class="chapter" id="b5" data-section data-title="İstasyon gezgini">
   <header class="ch-head"><p class="ch-num">05</p><h2>İstasyon gezgini</h2><p class="lead">Bir hattaki her durağı tıklanabilir yapar; seçilen istasyonun açıklaması paftanın altında görünür.</p></header>
-<p>Kapsayıcıya <code>data-explorer="panel-id"</code> verin. İçindeki <code>[data-key][aria-pressed]</code> düğmeleri gezgin olur; panel, aynı kimlikli öğedeki <code>[data-for="anahtar"]</code> blokları arasında geçiş yapar. Üzerine gelme ve odak önizler, ayrılınca seçili olana döner; tıklama seçer ve <code>hendese:explore</code> olayı (<code>detail.key</code>) yayar. JavaScript yoksa <code>.show</code> sınıflı ilk blok görünür kalır.</p>
+<p>Kapsayıcıya <code>data-explorer="panel-id"</code> verin. İçindeki <code>[data-key][aria-pressed]</code> düğmeleri gezgin olur; panel, aynı kimlikli öğedeki <code>[data-for="anahtar"]</code> blokları arasında geçiş yapar. Üzerine gelme ve odak önizler, ayrılınca seçili olana döner; tıklama seçer ve <code>hendese:explore</code> olayı (<code>detail.key</code>) yayar. JavaScript yoksa ve baskıda bütün bloklar görünür; <code>.show</code> sınıfını JS yazar.</p>
 <div class="demo">
   <span class="demo-label">Tarif · istasyon gezgini (explorer)</span>
   <div class="demo-view">
@@ -525,7 +525,7 @@
   <div class="f-foot">
     <p class="oneliner"><span class="co-label">Bir cümleyle</span>Push → derleme imajı üretir → kayıt deposu saklar → küme yeni imajla güncellenir.</p>
     <div class="st-detail" id="bp-detail" aria-live="polite">
-      <div data-for="src" class="show"><b>Kaynak.</b> Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.</div>
+      <div data-for="src"><b>Kaynak.</b> Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.</div>
       <div data-for="build"><b>Derleme.</b> Her çalıştırmada sıfırdan açılan geçici bir konteyner. İmajı üretir, etiketler ve gönderir; dağıtım yapmaz.</div>
       <div data-for="reg"><b>Kayıt.</b> İmaj deposu. Etiket biçimi <code>prod-&lt;8 hane&gt;</code>; CI ile CD arasındaki tek sözleşme budur.</div>
       <div data-for="cluster"><b>Küme.</b> Yeni etiketi gören dağıtım aracı istenen durumu günceller; podlar sırayla yenilenir.</div>
@@ -567,7 +567,7 @@
   &lt;div class="f-foot"&gt;
     &lt;p class="oneliner"&gt;&lt;span class="co-label"&gt;Bir cümleyle&lt;/span&gt;Push → derleme imajı üretir → kayıt deposu saklar → küme yeni imajla güncellenir.&lt;/p&gt;
     &lt;div class="st-detail" id="bp-detail" aria-live="polite"&gt;
-      &lt;div data-for="src" class="show"&gt;&lt;b&gt;Kaynak.&lt;/b&gt; Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.&lt;/div&gt;
+      &lt;div data-for="src"&gt;&lt;b&gt;Kaynak.&lt;/b&gt; Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.&lt;/div&gt;
       &lt;div data-for="build"&gt;&lt;b&gt;Derleme.&lt;/b&gt; Her çalıştırmada sıfırdan açılan geçici bir konteyner. İmajı üretir, etiketler ve gönderir; dağıtım yapmaz.&lt;/div&gt;
       &lt;div data-for="reg"&gt;&lt;b&gt;Kayıt.&lt;/b&gt; İmaj deposu. Etiket biçimi &lt;code&gt;prod-&amp;lt;8 hane&amp;gt;&lt;/code&gt;; CI ile CD arasındaki tek sözleşme budur.&lt;/div&gt;
       &lt;div data-for="cluster"&gt;&lt;b&gt;Küme.&lt;/b&gt; Yeni etiketi gören dağıtım aracı istenen durumu günceller; podlar sırayla yenilenir.&lt;/div&gt;

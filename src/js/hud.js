@@ -4,7 +4,9 @@
 import { $, $$, SCENES, hooks } from './core.js';
 
 var hud, fill, F = {}, V = {}, pos = '';
-function set(o) { for (var k in o) { if (V[k] !== o[k]) { V[k] = o[k]; if (k === 'fill') { if (fill) fill.style.transform = 'scaleX(' + o[k] + ')'; } else if (F[k]) F[k].textContent = o[k]; } } }
+/* every field is written on each claim, so a field the new owner omits does not keep the previous owner's value */
+function set(o) { Object.keys(F).concat('fill').forEach(function (k) { var v = o[k] == null ? (k === 'fill' ? 0 : '') : o[k];
+  if (V[k] !== v) { V[k] = v; if (k === 'fill') { if (fill) fill.style.transform = 'scaleX(' + v + ')'; } else F[k].textContent = v; } }); }
 function place(x, y, w, tb, alpha) {
   var key = Math.round(x) + ',' + Math.round(y) + ',' + Math.round(w) + ',' + tb.toFixed(3) + ',' + alpha.toFixed(3); if (key === pos) return; pos = key;
   hud.style.transform = 'translate3d(' + Math.round(x) + 'px,' + Math.round(y) + 'px,0)'; hud.style.width = Math.round(w) + 'px';

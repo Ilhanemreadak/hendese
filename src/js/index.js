@@ -13,20 +13,20 @@ import { pinScene, stickyScene, figScene, scene } from './scenes.js';
 import { createHoca } from './hoca.js';
 
 export const version = typeof __VERSION__ !== 'undefined' ? __VERSION__ : 'dev';
-var O = null, started = false;
+var O = null;
 
 export function init(opts) {
   if (O) return; O = opts || {};
   document.documentElement.classList.add('js');
   Object.assign(strings, O.strings);
-  theme.init(O.themeKey || 'hendese-theme');
+  theme.init(O.themeKey);
   nav.init(O);
   hud.init();
   widgets.init();
 }
 
 export function start() {
-  if (started) return; started = true; init();
+  if (S.started) return; S.started = true; init();
   wrapEnglish(O.englishStems);
   hocaCtl.init();
   nav.landing();
@@ -50,6 +50,6 @@ export const state = {
   get section() { return nav.current(); }, get scenes() { return SCENES.length; }
 };
 export const hoca = {
-  get dismissed() { return hocaCtl.state.dismissed; }, set dismissed(v) { hocaCtl.state.dismissed = !!v; poke(); },
+  get dismissed() { return hocaCtl.state.dismissed; }, set dismissed(v) { hocaCtl.state.dismissed = !!v; hocaCtl.refresh(); poke(); },
   dismiss: hocaCtl.dismiss
 };

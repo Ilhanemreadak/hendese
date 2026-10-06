@@ -1,8 +1,8 @@
-/* Hendese 0.3.0 */
+/* Hendese 0.4.0 */
 
 // src/js/math.js
 function clamp01(v) {
-  return v < 0 ? 0 : v > 1 ? 1 : v;
+  return v > 0 ? v < 1 ? v : 1 : 0;
 }
 function seg(p, a, b) {
   return clamp01((p - a) / (b - a));
@@ -21,16 +21,32 @@ function pickSection(tops, ids, line, atBottom, topId) {
 }
 
 // src/js/core.js
-var $ = (s, r) => (r || document).querySelector(s);
-var $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
+var $ = (s, r) => r === null ? null : (r || document).querySelector(s);
+var $$ = (s, r) => r === null ? [] : Array.prototype.slice.call((r || document).querySelectorAll(s));
 function absTop(el) {
   return el.getBoundingClientRect().top + (window.scrollY || 0);
 }
-var MQ_RM = matchMedia("(prefers-reduced-motion: reduce)");
-var MQ_WIDE = matchMedia("(min-width:1100px)");
-var S = { motion: false, y: window.scrollY || 0, vh: innerHeight, docH: 1, dirty: true, sleeping: true, last: 0, lockUntil: 0, lockId: null, anchorUntil: 0 };
+function mq(q) {
+  return typeof matchMedia === "function" ? matchMedia(q) : { matches: false, addEventListener: function() {
+  } };
+}
+var MQ_RM = mq("(prefers-reduced-motion: reduce)");
+var MQ_WIDE = mq("(min-width:1100px)");
+var S = { motion: false, started: false, y: 0, vh: 0, docH: 1, dirty: true, sleeping: true, last: 0, lockUntil: 0, lockId: null, anchorUntil: 0 };
 var SCENES = [];
 var hooks = { scroll: [], frame: [], measure: [], afterMeasure: [], motion: [] };
+var reported = /* @__PURE__ */ new Set();
+function guard(f, ctx, args) {
+  try {
+    return f.apply(ctx, args);
+  } catch (e) {
+    var k = String(e && e.stack || e);
+    if (reported.has(k)) return;
+    reported.add(k);
+    if (typeof reportError === "function") reportError(e);
+    else console.error(e);
+  }
+}
 function wake() {
   if (S.sleeping) {
     S.sleeping = false;
@@ -43,19 +59,19 @@ function poke() {
   wake();
 }
 function frame(t) {
-  var dt = Math.min(64, t - S.last);
+  var dt = Math.max(0, Math.min(64, t - S.last));
   S.last = t;
   if (S.dirty) {
     S.y = window.scrollY || 0;
     S.dirty = false;
     hooks.scroll.forEach(function(f) {
-      f(S.y);
+      guard(f, null, [S.y]);
     });
   }
   var busy = false;
-  for (var i = 0; i < SCENES.length; i++) if (SCENES[i].tick(S.y, dt, t)) busy = true;
+  for (var i = 0; i < SCENES.length; i++) if (guard(SCENES[i].tick, SCENES[i], [S.y, dt, t])) busy = true;
   hooks.frame.forEach(function(f) {
-    if (f(t, dt)) busy = true;
+    if (guard(f, null, [t, dt])) busy = true;
   });
   if (busy || S.dirty) requestAnimationFrame(frame);
   else S.sleeping = true;
@@ -64,13 +80,13 @@ function measure() {
   S.vh = innerHeight;
   S.docH = document.documentElement.scrollHeight;
   hooks.measure.forEach(function(f) {
-    f();
+    guard(f);
   });
   SCENES.forEach(function(sc) {
-    sc.measure();
+    guard(sc.measure, sc);
   });
   hooks.afterMeasure.forEach(function(f) {
-    f();
+    guard(f);
   });
   poke();
 }
@@ -78,10 +94,10 @@ function evalMotion() {
   S.motion = !MQ_RM.matches && MQ_WIDE.matches;
   document.documentElement.classList.toggle("motion", S.motion);
   SCENES.forEach(function(sc) {
-    sc.setLive(S.motion);
+    guard(sc.setLive, sc, [S.motion]);
   });
   hooks.motion.forEach(function(f) {
-    f(S.motion);
+    guard(f, null, [S.motion]);
   });
   measure();
 }
@@ -98,15 +114,18 @@ var strings = {
 
 // src/js/theme.js
 function init(key) {
-  var html = document.documentElement;
-  if (!html.getAttribute("data-theme")) {
-    var t0 = null;
+  var html = document.documentElement, sys = matchMedia("(prefers-color-scheme: dark)");
+  key = key || html.getAttribute("data-theme-key") || "hendese-theme";
+  function stored() {
     try {
-      t0 = localStorage.getItem(key);
+      var t = localStorage.getItem(key);
+      return t === "dark" || t === "light" ? t : null;
     } catch (e) {
+      return null;
     }
-    html.setAttribute("data-theme", t0 === "dark" || t0 === "light" ? t0 : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   }
+  var t0 = stored();
+  if (t0 || !html.getAttribute("data-theme")) html.setAttribute("data-theme", t0 || (sys.matches ? "dark" : "light"));
   function labels() {
     var t = html.getAttribute("data-theme");
     $$("[data-theme-toggle]").forEach(function(b) {
@@ -148,9 +167,19 @@ function isQuiet(id) {
   var el = id && document.getElementById(id);
   return !!(el && el.getAttribute("data-hoca") === "quiet");
 }
+function hashId() {
+  var h = location.hash.slice(1);
+  try {
+    return decodeURIComponent(h);
+  } catch (e) {
+    return h;
+  }
+}
 function lockTo(id) {
-  if (!id || !document.getElementById(id)) return;
-  S.lockId = id;
+  var el = id && document.getElementById(id);
+  if (el && id !== TOP) el = el.closest("[data-section]");
+  if (!el || !el.id) return;
+  S.lockId = el.id;
   S.lockUntil = Date.now() + 1600;
 }
 function pad(n) {
@@ -186,27 +215,30 @@ function setActive(id) {
   }
 }
 function syncHash(id) {
-  var want = id === TOP ? "" : "#" + id;
-  if (location.hash !== want) {
+  var want = id === TOP ? "" : id;
+  if (hashId() !== want) {
     try {
-      history.replaceState(null, "", want || location.pathname + location.search);
+      history.replaceState(history.state, "", want ? "#" + want : location.pathname + location.search);
     } catch (e) {
     }
   }
+}
+function clamp(v) {
+  return Math.max(0, Math.min(100, v));
 }
 function update(y) {
   if (!sections.length) return;
   var max = S.docH - S.vh, cur = pickSection(secTops, sections.map(function(s) {
     return s.id;
   }), y + S.vh * 0.34, max > 0 && y + S.vh >= S.docH - 4, TOP);
-  var locked = Date.now() < S.lockUntil && S.lockId;
+  var now = Date.now(), locked = (now < S.lockUntil || now < S.anchorUntil) && S.lockId;
   setActive(locked ? S.lockId : cur);
   if (!locked) syncHash(cur);
-  if (bar) bar.style.width = (max > 0 ? Math.min(100, 100 * y / max) : 0) + "%";
+  if (bar) bar.style.width = (max > 0 ? clamp(100 * y / max) : 0) + "%";
 }
 function reanchor() {
   if (!location.hash || Date.now() > S.anchorUntil) return;
-  var el = document.getElementById(location.hash.slice(1));
+  var el = document.getElementById(hashId());
   if (el && Math.abs(el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0)) > 3) {
     lockTo(el.id);
     el.scrollIntoView({ behavior: "instant", block: "start" });
@@ -301,14 +333,18 @@ function init2(opts) {
     poke();
   });
   window.addEventListener("hashchange", function() {
-    lockTo(location.hash.slice(1));
+    lockTo(hashId());
     poke();
+  });
+  MQ_WIDE.addEventListener("change", function(e) {
+    if (e.matches && openBtn && navOpen()) closeNav(false);
   });
 }
 function landing() {
   if (!location.hash) return;
   var html = document.documentElement;
   S.anchorUntil = Date.now() + 4e3;
+  lockTo(hashId());
   html.style.scrollBehavior = "auto";
   setTimeout(function() {
     html.style.scrollBehavior = "";
@@ -328,14 +364,15 @@ var F = {};
 var V = {};
 var pos = "";
 function set(o) {
-  for (var k in o) {
-    if (V[k] !== o[k]) {
-      V[k] = o[k];
+  Object.keys(F).concat("fill").forEach(function(k) {
+    var v = o[k] == null ? k === "fill" ? 0 : "" : o[k];
+    if (V[k] !== v) {
+      V[k] = v;
       if (k === "fill") {
-        if (fill) fill.style.transform = "scaleX(" + o[k] + ")";
-      } else if (F[k]) F[k].textContent = o[k];
+        if (fill) fill.style.transform = "scaleX(" + v + ")";
+      } else F[k].textContent = v;
     }
-  }
+  });
 }
 function place(x, y, w, tb, alpha) {
   var key = Math.round(x) + "," + Math.round(y) + "," + Math.round(w) + "," + tb.toFixed(3) + "," + alpha.toFixed(3);
@@ -638,6 +675,7 @@ function createHoca() {
       el.hidden = !s.visible;
     }
     if (!s.visible) return;
+    if (!srcs[s.pose]) s.pose = "idle";
     setPose(s.pose);
     var a = anchors[s.pose], tx = Math.round(s.x - a.x), ty = Math.round(s.y - a.y);
     if (tx !== L.tx || ty !== L.ty) {
@@ -711,21 +749,22 @@ function flagger() {
     cls: function(node, c, on) {
       var m = flags.get(node);
       if (!m) flags.set(node, m = {});
-      if (m[c] !== on) {
-        m[c] = on;
+      if (!m[c]) m[c] = { had: node.classList.contains(c) };
+      if (m[c].on !== on) {
+        m[c].on = on;
         node.classList.toggle(c, on);
       }
     },
     clear: function() {
       flags.forEach(function(m, node) {
-        for (var c in m) node.classList.remove(c);
+        for (var c in m) node.classList.toggle(c, m[c].had);
       });
       flags.clear();
     }
   };
 }
 function setter(host) {
-  var vars = {};
+  var vars = {}, authored = host.getAttribute("style");
   return {
     set: function(k, v) {
       v = Math.round(v * 1e3) / 1e3;
@@ -735,7 +774,8 @@ function setter(host) {
       }
     },
     clear: function() {
-      host.removeAttribute("style");
+      if (authored == null) host.removeAttribute("style");
+      else host.setAttribute("style", authored);
       vars = {};
     }
   };
@@ -772,14 +812,32 @@ function commonApi(s, el, dr, f) {
     poke
   };
 }
+function add(s) {
+  SCENES.push(s);
+  if (S.started) {
+    guard(s.setLive, s, [S.motion]);
+    hooks.motion.forEach(function(f) {
+      guard(f, null, [S.motion]);
+    });
+    measure();
+  }
+  return s;
+}
+function need(cfg, parts) {
+  for (var k in parts) if (!parts[k]) {
+    console.warn("Hendese: " + cfg.el + " has no " + k + "; scene skipped");
+    return false;
+  }
+  return true;
+}
 function scene(raw) {
-  SCENES.push(raw);
-  return raw;
+  return add(raw);
 }
 function pinScene(cfg) {
   var el = $(cfg.el);
   if (!el) return null;
   var stage = $(".route-stage", el), dr = $(".drawing", el), slot = $(".hud-slot", el);
+  if (!need(cfg, { ".route-stage": stage, ".drawing": dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), v = setter(stage);
   var top = 0, L = 1, p = 0, first = true, nat = null, SH = 1, SX = 0, slotR = null;
   var api = commonApi(s, el, dr, f);
@@ -831,13 +889,13 @@ function pinScene(cfg) {
     s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + stY / (SH * 0.12)) * clamp01(1 - stY / (SH * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return p !== target;
   };
-  SCENES.push(s);
-  return s;
+  return add(s);
 }
 function stickyScene(cfg) {
   var el = $(cfg.el);
   if (!el) return null;
   var fig = $(".sticky-fig", el), dr = $(".drawing", fig), slot = $(".hud-slot", fig), beats = $$("[data-beat]", el);
+  if (!need(cfg, { ".sticky-fig": fig, ".drawing": dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), v = setter(fig);
   var top = 0, bot = 1, tops = [], FH = 1, nat = null, FX = 0, slotR = null, cur = -1;
   var api = commonApi(s, el, dr, f);
@@ -893,13 +951,13 @@ function stickyScene(cfg) {
     s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + fy / (FH * 0.12)) * clamp01(1 - fy / (S.vh * 0.4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return false;
   };
-  SCENES.push(s);
-  return s;
+  return add(s);
 }
 function figScene(cfg) {
   var el = $(cfg.el);
   if (!el) return null;
   var dr = $(".drawing", el);
+  if (!need(cfg, { ".drawing": dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), nat = null;
   var api = commonApi(s, el, dr, f);
   s.setLive = function(on) {
@@ -919,7 +977,7 @@ function figScene(cfg) {
     if (cfg.measure) cfg.measure(api);
   };
   s.tick = function(y, dt, t) {
-    if (!s.live || !nat) return false;
+    if (!s.live || !nat || !nat.h) return false;
     var fy = nat.y - y, vis = clamp01(Math.min(S.vh - fy, fy + nat.h, nat.h, S.vh) / Math.min(nat.h, S.vh));
     if (vis <= 0) {
       s.hoca = null;
@@ -930,8 +988,7 @@ function figScene(cfg) {
     return !!out.busy;
   };
   s.poke = poke;
-  SCENES.push(s);
-  return s;
+  return add(s);
 }
 
 // src/js/hoca-controller.js
@@ -941,6 +998,17 @@ var homePt = { x: 0, y: 0 };
 var H = { owner: null, from: null, t0: 0, pos: null, fade: null };
 var WALK_MAX = 260;
 var state = { dismissed: false };
+var HIDDEN = { visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 };
+function hide() {
+  if (hoca) hoca.render(HIDDEN);
+  H.owner = null;
+  H.from = null;
+  H.fade = null;
+  H.pos = null;
+}
+function ensure() {
+  return hoca || (hoca = createHoca());
+}
 function tick(t) {
   if (!S.motion) return false;
   var sc = null, want = "home";
@@ -951,6 +1019,11 @@ function tick(t) {
       break;
     }
   }
+  if (!sc && !homeEl) {
+    if (H.owner) hide();
+    return false;
+  }
+  ensure();
   var tg = sc ? sc : { x: homePt.x, y: homePt.y, pose: "idle", face: 1, bubble: null, tag: null, alpha: isQuiet(current()) ? 0.45 : 1 };
   if (want !== H.owner) {
     if (H.owner && H.pos && !(sc && sc.hidden)) {
@@ -1003,28 +1076,21 @@ function tick(t) {
   return busy;
 }
 function refresh() {
-  if (!hoca) return;
-  var wantStatic = !S.motion && matchMedia("(min-width:1100px)").matches;
-  hoca.clearPlaced();
+  var wantStatic = !S.motion && MQ_WIDE.matches;
+  if (!hoca && !(wantStatic && SCENES.some(function(sc) {
+    return sc.still && sc.dr;
+  }))) return;
+  ensure().clearPlaced();
   if (wantStatic) SCENES.forEach(function(sc) {
-    if (sc.still && sc.dr) readAw(sc);
+    if (!sc.still || !sc.dr) return;
+    readAw(sc);
     var o = typeof sc.still === "function" ? sc.still() : sc.still;
     if (o) hoca.place(sc.dr, { left: o.x / sc.aw * 100 + "%", top: o.y / sc.ah * 100 + "%", pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null });
   });
-  if (!S.motion) {
-    hoca.render({ visible: false, x: 0, y: 0, pose: "idle", face: 1, bubble: null, tag: null, squash: 0, alpha: 0 });
-    H.owner = null;
-    H.from = null;
-    H.fade = null;
-    H.pos = null;
-  }
+  if (!S.motion) hide();
 }
 function init4() {
   homeEl = $("#hoca-home");
-  if (!homeEl && !SCENES.some(function(sc) {
-    return sc.still;
-  })) return;
-  hoca = createHoca();
   hooks.afterMeasure.unshift(function() {
     if (homeEl) {
       var r = homeEl.getBoundingClientRect();
@@ -1036,21 +1102,37 @@ function init4() {
 }
 function dismiss() {
   state.dismissed = true;
+  refresh();
   poke();
 }
 
 // src/js/widgets.js
+function thLabel(th) {
+  if (th.hasAttribute("data-th")) return th.getAttribute("data-th");
+  var c = th.cloneNode(true);
+  $$("button,[popover]", c).forEach(function(x) {
+    x.remove();
+  });
+  return (c.textContent.trim() || th.textContent.trim()).replace(/\s+/g, " ");
+}
 function tables() {
   $$(".tbl").forEach(function(w) {
     if (!w.hasAttribute("tabindex")) w.setAttribute("tabindex", "0");
   });
   $$(".tbl table").forEach(function(t) {
-    var ths = $$("thead th", t).map(function(th) {
-      return th.textContent.trim();
+    var row = $("thead tr", t), ths = [];
+    if (row) Array.prototype.forEach.call(row.cells, function(th) {
+      var l = thLabel(th);
+      for (var k = 0; k < th.colSpan; k++) ths.push(l);
     });
     $$("tbody tr", t).forEach(function(tr) {
-      $$("td", tr).forEach(function(td, i) {
-        if (ths[i]) td.setAttribute("data-th", ths[i]);
+      var col = 0;
+      Array.prototype.forEach.call(tr.cells, function(c) {
+        var l = ths.slice(col, col + c.colSpan).filter(function(x, k, a) {
+          return x && a.indexOf(x) === k;
+        }).join(" / ");
+        if (c.tagName === "TD" && l) c.setAttribute("data-th", l);
+        col += c.colSpan;
       });
     });
   });
@@ -1059,15 +1141,21 @@ function copy() {
   $$(".code").forEach(function(fig) {
     var btn = $(".code-copy", fig), code = $("code", fig);
     if (!btn || !code) return;
-    var label = $("span", btn);
-    label.setAttribute("aria-live", "polite");
+    var label = $("span", btn), idle = label && label.textContent, status = document.createElement("span"), timer;
+    status.className = "visually-hidden";
+    status.setAttribute("role", "status");
+    btn.after(status);
     btn.addEventListener("click", function() {
       var text = code.textContent.replace(/\n+$/, "");
       function done(ok) {
-        label.textContent = ok ? strings.copied : strings.copyFail;
+        var msg = ok ? strings.copied : strings.copyFail;
+        if (label) label.textContent = msg;
+        status.textContent = msg;
         btn.setAttribute("data-state", ok ? "done" : "fail");
-        setTimeout(function() {
-          label.textContent = strings.copy;
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+          if (label) label.textContent = idle;
+          status.textContent = "";
           btn.removeAttribute("data-state");
         }, 1600);
       }
@@ -1083,6 +1171,7 @@ function copy() {
           ta.select();
           ok = document.execCommand("copy");
           ta.remove();
+          btn.focus();
         } catch (e) {
         }
         done(ok);
@@ -1096,28 +1185,46 @@ function copy() {
 }
 function runbooks() {
   $$(".runbook").forEach(function(rb) {
-    var boxes = $$('input[type="checkbox"]', rb), count = $(".rb-count", rb), fill2 = $(".rb-bar i", rb), reset = $(".rb-reset", rb), key = rb.getAttribute("data-store");
+    var boxes = $$('input[type="checkbox"]', rb).filter(function(b) {
+      return b.closest(".runbook") === rb;
+    }), count = $(".rb-count", rb), fill2 = $(".rb-bar i", rb), reset = $(".rb-reset", rb), key = rb.getAttribute("data-store");
+    var ids = boxes.map(function(b) {
+      return b.id || b.value !== "on" && b.value || (b.closest("label") || b.parentNode).textContent.trim().replace(/\s+/g, " ");
+    });
+    ids = ids.map(function(k, i) {
+      var n = ids.slice(0, i).filter(function(x) {
+        return x === k;
+      }).length;
+      return n ? k + "#" + (n + 1) : k;
+    });
     function save() {
       if (key) try {
-        localStorage.setItem(key, JSON.stringify(boxes.map(function(b) {
-          return b.checked;
-        })));
+        var o = {};
+        boxes.forEach(function(b, i) {
+          if (b.checked) o[ids[i]] = true;
+        });
+        localStorage.setItem(key, JSON.stringify(o));
       } catch (e) {
       }
     }
     function render() {
       var n = boxes.filter(function(b) {
         return b.checked;
-      }).length;
-      if (count) count.textContent = n + " / " + boxes.length;
-      if (fill2) fill2.style.width = 100 * n / boxes.length + "%";
-      rb.classList.toggle("complete", n === boxes.length);
-      rb.dispatchEvent(new CustomEvent("hendese:runbook", { bubbles: true, detail: { done: n, total: boxes.length } }));
+      }).length, total2 = boxes.length, txt = n + " / " + total2;
+      if (count && count.textContent !== txt) count.textContent = txt;
+      if (fill2) fill2.style.width = (total2 ? 100 * n / total2 : 0) + "%";
+      rb.classList.toggle("complete", total2 > 0 && n === total2);
+      rb.dispatchEvent(new CustomEvent("hendese:runbook", { bubbles: true, detail: { done: n, total: total2 } }));
     }
     if (key) try {
       var s = JSON.parse(localStorage.getItem(key));
-      if (Array.isArray(s)) boxes.forEach(function(b, i) {
-        b.checked = !!s[i];
+      if (Array.isArray(s)) {
+        boxes.forEach(function(b, i) {
+          b.checked = !!s[i];
+        });
+        save();
+      } else if (s && typeof s === "object") boxes.forEach(function(b, i) {
+        b.checked = !!s[ids[i]];
       });
     } catch (e) {
     }
@@ -1148,17 +1255,29 @@ function explorers() {
     var pre = btns.filter(function(b) {
       return b.getAttribute("aria-pressed") === "true";
     })[0] || btns[0], selected = pre && pre.getAttribute("data-key");
+    var status = null;
+    if (panel.hasAttribute("aria-live")) {
+      panel.removeAttribute("aria-live");
+      status = document.createElement("span");
+      status.className = "visually-hidden";
+      status.setAttribute("role", "status");
+      panel.after(status);
+    }
     function show(key) {
       $$("[data-for]", panel).forEach(function(d) {
         d.classList.toggle("show", d.getAttribute("data-for") === key);
       });
     }
-    function select(key) {
+    function select(key, quiet) {
       selected = key;
       btns.forEach(function(b) {
         b.setAttribute("aria-pressed", String(b.getAttribute("data-key") === key));
       });
       show(key);
+      if (status && !quiet) {
+        var d = $('[data-for="' + CSS.escape(key) + '"]', panel);
+        status.textContent = d ? d.textContent.trim().replace(/\s+/g, " ") : "";
+      }
     }
     btns.forEach(function(b) {
       var k = b.getAttribute("data-key");
@@ -1179,7 +1298,7 @@ function explorers() {
         show(selected);
       });
     });
-    if (selected) select(selected);
+    if (selected) select(selected, true);
   });
 }
 function tabs() {
@@ -1191,6 +1310,7 @@ function tabs() {
       if (!t.hasAttribute("type")) t.type = "button";
     });
     function select(t, focus, quiet) {
+      var changed = t.getAttribute("aria-selected") !== "true";
       list.forEach(function(x) {
         var on = x === t, p = document.getElementById(x.getAttribute("aria-controls"));
         x.setAttribute("aria-selected", String(on));
@@ -1198,13 +1318,14 @@ function tabs() {
         if (p) p.hidden = !on;
       });
       if (focus) t.focus();
-      if (!quiet) root.dispatchEvent(new CustomEvent("hendese:tab", { bubbles: true, detail: { id: t.id } }));
+      if (!quiet && changed) root.dispatchEvent(new CustomEvent("hendese:tab", { bubbles: true, detail: { id: t.id } }));
     }
     list.forEach(function(t, i) {
       t.addEventListener("click", function() {
         select(t);
       });
       t.addEventListener("keydown", function(e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
         var k = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: list.length - 1 }[e.key];
         if (k == null) return;
         e.preventDefault();
@@ -1235,18 +1356,18 @@ function dialogs() {
 }
 function fields() {
   $$(".field-error[id]").forEach(function(e) {
-    var c = $('[aria-describedby~="' + e.id + '"]', e.closest(".field"));
+    var c = $('[aria-describedby~="' + CSS.escape(e.id) + '"]', e.closest(".field"));
     if (!c) return;
-    var base2 = c.getAttribute("aria-describedby").split(/\s+/).filter(function(x) {
-      return x !== e.id;
-    });
     function sync() {
       var bad = c.getAttribute("aria-invalid") === "true";
       try {
         bad = bad || c.matches(":user-invalid");
       } catch (x) {
       }
-      var ids = bad ? base2.concat(e.id) : base2;
+      var ids = (c.getAttribute("aria-describedby") || "").split(/\s+/).filter(function(x) {
+        return x && x !== e.id;
+      });
+      if (bad) ids.push(e.id);
       if (ids.length) c.setAttribute("aria-describedby", ids.join(" "));
       else c.removeAttribute("aria-describedby");
     }
@@ -1261,19 +1382,16 @@ function fields() {
   });
 }
 function init5() {
-  tables();
-  copy();
-  runbooks();
-  explorers();
-  tabs();
-  dialogs();
-  fields();
+  [tables, copy, runbooks, explorers, tabs, dialogs, fields].forEach(function(f) {
+    guard(f);
+  });
 }
 
 // src/js/lang.js
 var WORD = /[A-Za-z][A-Za-z0-9_.-]*/g;
 function wrapEnglish(EN, root) {
   if (!EN) return;
+  EN = new RegExp(EN.source, EN.flags.replace(/[gy]/g, ""));
   var w = document.createTreeWalker(root || document.body, NodeFilter.SHOW_TEXT), hits = [], n;
   while (n = w.nextNode()) if (EN.test(n.nodeValue)) hits.push(n);
   hits.forEach(function(n2) {
@@ -1296,22 +1414,21 @@ function wrapEnglish(EN, root) {
 }
 
 // src/js/index.js
-var version = true ? "0.3.0" : "dev";
+var version = true ? "0.4.0" : "dev";
 var O = null;
-var started = false;
 function init6(opts) {
   if (O) return;
   O = opts || {};
   document.documentElement.classList.add("js");
   Object.assign(strings, O.strings);
-  init(O.themeKey || "hendese-theme");
+  init(O.themeKey);
   init2(O);
   init3();
   init5();
 }
 function start() {
-  if (started) return;
-  started = true;
+  if (S.started) return;
+  S.started = true;
   init6();
   wrapEnglish(O.englishStems);
   init4();
@@ -1367,6 +1484,7 @@ var hoca2 = {
   },
   set dismissed(v) {
     state.dismissed = !!v;
+    refresh();
     poke();
   },
   dismiss

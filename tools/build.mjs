@@ -1,5 +1,5 @@
 // Builds src/ into dist/; the only dependency is esbuild.
-//   dist/hendese.css         all layers; fonts are copied to dist/fonts/
+//   dist/hendese.css         all layers; fonts and their OFL licences are copied to dist/fonts/
 //   dist/hendese.inline.css  same, with fonts embedded as base64 (for single-file HTML pages)
 //   dist/hendese.js          IIFE, global `Hendese`
 //   dist/hendese.esm.js      ES module (for bundlers)
@@ -7,9 +7,10 @@
 //   dist/icons.svg           icon sprite
 import { build } from 'esbuild';
 import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url)));
-const root = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const root = fileURLToPath(new URL('..', import.meta.url));
 const banner = `/* Hendese ${pkg.version} */`;
 const out = p => `${root}dist/${p}`;
 fs.rmSync(out(''), { recursive: true, force: true });
@@ -28,8 +29,9 @@ const js = (outfile, format) => build({
 await js(out('hendese.js'), 'iife');
 await js(out('hendese.esm.js'), 'esm');
 
-fs.writeFileSync(out('head.js'), `${banner}\n(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');\n`);
+fs.writeFileSync(out('head.js'), `${banner}\n(function(d){try{var t=localStorage.getItem(d.getAttribute('data-theme-key')||'hendese-theme');if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-theme',t)}catch(e){}d.classList.add('js')})(document.documentElement);\n`);
 fs.copyFileSync(`${root}src/icons.svg`, out('icons.svg'));
+for (const f of fs.readdirSync(`${root}src/fonts`).filter(f => f.endsWith('.txt'))) fs.copyFileSync(`${root}src/fonts/${f}`, out(`fonts/${f}`));
 
 for (const f of fs.readdirSync(out('')).filter(f => !fs.statSync(out(f)).isDirectory()))
   console.log(f.padEnd(22), (fs.statSync(out(f)).size / 1024).toFixed(1).padStart(7), 'KB');

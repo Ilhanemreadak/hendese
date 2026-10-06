@@ -6,8 +6,9 @@
 //   <script data-page> … </script>                              → placed between Hendese.init() and start() (scene registrations)
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
+const root = fileURLToPath(new URL('..', import.meta.url));
 const SRC = path.join(root, 'demos/_src'), OUT = path.join(root, 'demos');
 const GROUPS = ['Temel', 'Bileşenler', 'Blueprint', 'Hareket', 'Hoca'];
 const problems = [];   // structural errors are collected: pages are still generated, then the process exits with an error code
@@ -34,7 +35,7 @@ const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
   const raw = fs.readFileSync(path.join(SRC, f), 'utf8').replace(/\r\n/g, '\n');
   const m = raw.match(/^<!-- meta (\{[\s\S]*?\}) -->/);
   if (!m) throw new Error(`${f}: meta yorumu yok`);
-  const meta = JSON.parse(m[1]);
+  let meta; try { meta = JSON.parse(m[1]); } catch (e) { throw new Error(`${f}: invalid meta JSON: ${e.message}`); }
   if (!GROUPS.includes(meta.group)) throw new Error(`${f}: bilinmeyen grup ${meta.group}`);
   for (const k of ['title', 'group', 'order', 'tagline', 'intro', 'summary']) if (meta[k] == null || meta[k] === '') problems.push(`${f}: meta.${k} eksik`);
   // STANDART.md §8: required chapters for the group
@@ -42,15 +43,17 @@ const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
   for (const need of REQUIRED[meta.group] || []) if (!titles.some(t => t.startsWith(need))) problems.push(`${f}: "${need}…" bölümü yok (STANDART.md §8)`);
   return { slug: f.slice(0, -5), ...meta, body: raw.slice(m[0].length) };
 }).sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || a.order - b.order);
-const dupe = pages.find((p, i) => pages.some((q, j) => j < i && q.group === p.group && q.order === p.order));
-if (dupe) problems.push(`${dupe.slug}: ${dupe.group} grubunda order ${dupe.order} iki kez`);
+pages.forEach((p, i) => { if (pages.some((q, j) => j < i && q.group === p.group && q.order === p.order)) problems.push(`${p.slug}: ${p.group} grubunda order ${p.order} iki kez`); });
+// pages whose source was deleted must not linger in demos/ (they would ship)
+const keep = new Set(pages.map(p => p.slug + '.html').concat('index.html'));
+for (const f of fs.readdirSync(OUT)) if (f.endsWith('.html') && !keep.has(f)) fs.rmSync(path.join(OUT, f));
 
 const head = title => `<!doctype html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title}</title>
+<title>${esc(title)}</title>
 <script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
 <link rel="stylesheet" href="../dist/hendese.css">
 <link rel="stylesheet" href="../docs/assets/docs.css">

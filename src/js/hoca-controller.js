@@ -3,7 +3,7 @@
    - Handoff: a short walk (650 ms) between two nearby scene points; to/from home, over long distances (>260 px) or during fragment
      navigation it fades out in place and fades in at the new spot (320 ms), so it never crosses unrelated content.
    - Reduced motion (desktop): a still copy in each scene's `still` pose, no movement. */
-import { $, S, SCENES, hooks, clamp01, lerp, ease, poke } from './core.js';
+import { $, S, SCENES, hooks, clamp01, lerp, ease, poke, MQ_WIDE } from './core.js';
 import { createHoca } from './hoca.js';
 import { readAw } from './scenes.js';
 import { current, isQuiet } from './nav.js';
@@ -12,10 +12,17 @@ var hoca = null, homeEl, homePt = { x: 0, y: 0 }, H = { owner: null, from: null,
 var WALK_MAX = 260;
 export const state = { dismissed: false };   /* shared flag read by scenes: the user dismissed Hoca, so scenes should return a null claim */
 
+var HIDDEN = { visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 };
+function hide() { if (hoca) hoca.render(HIDDEN); H.owner = null; H.from = null; H.fade = null; H.pos = null; }
+/* the sprite is painted on first use (painting every pose is not free); scenes registered later can still claim it */
+function ensure() { return hoca || (hoca = createHoca()); }
+
 function tick(t) {
   if (!S.motion) return false;
   var sc = null, want = 'home';
   if (Date.now() >= S.lockUntil) for (var i = 0; i < SCENES.length; i++) if (SCENES[i].hoca) { sc = SCENES[i].hoca; want = SCENES[i]; break; }
+  if (!sc && !homeEl) { if (H.owner) hide(); return false; }   /* no claim and no home position: nowhere to stand */
+  ensure();
   var tg = sc ? sc : { x: homePt.x, y: homePt.y, pose: 'idle', face: 1, bubble: null, tag: null, alpha: isQuiet(current()) ? .45 : 1 };
   if (want !== H.owner) {
     if (H.owner && H.pos && !(sc && sc.hidden)) {
@@ -35,20 +42,18 @@ function tick(t) {
 
 /* re-places the still copies (reduced motion on desktop); call it when a fig scene's state changes */
 export function refresh() {
-  if (!hoca) return;
-  var wantStatic = !S.motion && matchMedia('(min-width:1100px)').matches;
-  hoca.clearPlaced();
-  if (wantStatic) SCENES.forEach(function (sc) { if (sc.still && sc.dr) readAw(sc); var o = typeof sc.still === 'function' ? sc.still() : sc.still; if (o) hoca.place(sc.dr, { left: (o.x / sc.aw * 100) + '%', top: (o.y / sc.ah * 100) + '%', pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null }); });
-  if (!S.motion) { hoca.render({ visible: false, x: 0, y: 0, pose: 'idle', face: 1, bubble: null, tag: null, squash: 0, alpha: 0 }); H.owner = null; H.from = null; H.fade = null; H.pos = null; }
+  var wantStatic = !S.motion && MQ_WIDE.matches;
+  if (!hoca && !(wantStatic && SCENES.some(function (sc) { return sc.still && sc.dr; }))) return;
+  ensure().clearPlaced();
+  if (wantStatic) SCENES.forEach(function (sc) { if (!sc.still || !sc.dr) return; readAw(sc); var o = typeof sc.still === 'function' ? sc.still() : sc.still; if (o) hoca.place(sc.dr, { left: (o.x / sc.aw * 100) + '%', top: (o.y / sc.ah * 100) + '%', pose: o.pose, face: o.face || 1, bubble: o.bubble || null, bubbleUp: !!o.bubbleUp, tag: o.tag || null }); });
+  if (!S.motion) hide();
 }
 
-/* created only if there is a home position or a scene with `still` (painting every pose is not free) */
 export function init() {
   homeEl = $('#hoca-home');
-  if (!homeEl && !SCENES.some(function (sc) { return sc.still; })) return;
-  hoca = createHoca();
   hooks.afterMeasure.unshift(function () { if (homeEl) { var r = homeEl.getBoundingClientRect(); homePt = { x: r.left + r.width / 2, y: r.bottom - 22 }; } });
   hooks.frame.push(tick);
   hooks.motion.push(refresh);
 }
-export function dismiss() { state.dismissed = true; poke(); }
+/* still copies are rebuilt too, so a dismissal also applies under reduced motion */
+export function dismiss() { state.dismissed = true; refresh(); poke(); }

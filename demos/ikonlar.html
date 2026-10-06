@@ -295,7 +295,7 @@
 <ol class="steps">
   <li><h3>Sembolü ekle</h3><p><code>id</code> <code>i-</code> ile başlar; <code>viewBox</code> 24×24, dolgu yok, çizgi <code>currentColor</code>. Sabit renk yazmayın: ikon temaya ve bileşene uymaz.</p></li>
   <li><h3>Derle</h3><p><code>npm run build</code> sprite'ı <code>dist/icons.svg</code>'ye kopyalar. Parça sayfaları (<code>node tools/demos.mjs</code>) sprite'ı doğrudan <code>src/icons.svg</code>'den okur.</p></li>
-  <li><h3>Sayfalara taşı</h3><p>Sprite her sayfada satır içidir. Yeni bir sayfada <code>&lt;!-- @@ICONS --&gt;</code> işareti bırakıp <code>node tools/icons-inline.mjs sayfa.html</code> çalıştırın; işaret bir kez değiştirilir ve kaybolur, mevcut sayfalarda sprite'ı elle güncelleyin.</p></li>
+  <li><h3>Sayfalara taşı</h3><p>Sprite her sayfada satır içidir. Yeni sayfa <code>docs/_sablon.html</code> kopyalanarak başlar (sprite içindedir); <code>src/icons.svg</code> değişince mevcut sayfalardaki sprite elle güncellenir.</p></li>
 </ol>
 <div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Sözleşme</span><div class="co-body"><p>İkon <code>id</code>'leri belgelenmiş sözleşmenin parçasıdır. Yeni ikon eklemek küçük sürüm; bir ikonu yeniden adlandırmak ya da kaldırmak <b>majör</b> sürüm gerektirir.</p></div></div>
 </article>

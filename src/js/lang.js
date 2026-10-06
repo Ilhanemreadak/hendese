@@ -5,6 +5,7 @@
 var WORD = /[A-Za-z][A-Za-z0-9_.-]*/g;
 export function wrapEnglish(EN, root) {
   if (!EN) return;
+  EN = new RegExp(EN.source, EN.flags.replace(/[gy]/g, ''));   /* a global/sticky regex would make test() stateful and skip matches */
   var w = document.createTreeWalker(root || document.body, NodeFilter.SHOW_TEXT), hits = [], n;
   while ((n = w.nextNode())) if (EN.test(n.nodeValue)) hits.push(n);
   hits.forEach(function (n) {

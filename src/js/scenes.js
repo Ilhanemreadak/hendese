@@ -3,21 +3,21 @@
    hoca/hud are this frame's claims: the first claimant gets Hoca, the most visible one gets the HUD.
    Do NOT READ layout inside render() (write only classes / CSS variables / transforms); measuring belongs in measure().
    The CSS default = the finished state; when live mode turns off, setLive(false) clears everything written and reset(api) is called. */
-import { $, $$, S, SCENES, clamp01, seg, lerp, ease, absTop, poke } from './core.js';
+import { $, $$, S, SCENES, hooks, clamp01, seg, lerp, ease, absTop, poke, measure, guard } from './core.js';
 
-/* cached class toggle; everything is reverted when live mode turns off */
+/* cached class toggle; when live mode turns off every touched class returns to its authored state */
 function flagger() {
   var flags = new Map();
   return {
-    cls: function (node, c, on) { var m = flags.get(node); if (!m) flags.set(node, m = {}); if (m[c] !== on) { m[c] = on; node.classList.toggle(c, on); } },
-    clear: function () { flags.forEach(function (m, node) { for (var c in m) node.classList.remove(c); }); flags.clear(); }
+    cls: function (node, c, on) { var m = flags.get(node); if (!m) flags.set(node, m = {}); if (!m[c]) m[c] = { had: node.classList.contains(c) }; if (m[c].on !== on) { m[c].on = on; node.classList.toggle(c, on); } },
+    clear: function () { flags.forEach(function (m, node) { for (var c in m) node.classList.toggle(c, m[c].had); }); flags.clear(); }
   };
 }
-/* cached CSS variable writer (--k) */
+/* cached CSS variable writer (--k); clear() restores the authored inline style */
 function setter(host) {
-  var vars = {};
+  var vars = {}, authored = host.getAttribute('style');
   return { set: function (k, v) { v = Math.round(v * 1000) / 1000; if (vars[k] !== v) { vars[k] = v; host.style.setProperty('--' + k, v); } },
-    clear: function () { host.removeAttribute('style'); vars = {}; } };
+    clear: function () { if (authored == null) host.removeAttribute('style'); else host.setAttribute('style', authored); vars = {}; } };
 }
 /* converts a Hoca claim from drawing units to viewport px */
 function claim(h, x0, y0, nat, s) {
@@ -33,14 +33,27 @@ function commonApi(s, el, dr, f) {
     live: function () { return s.live; }, poke: poke };
 }
 
+/* a scene registered after Hendese.start() (lazy content) joins the current mode immediately; existing scenes are not reset */
+function add(s) {
+  SCENES.push(s);
+  if (S.started) { guard(s.setLive, s, [S.motion]); hooks.motion.forEach(function (f) { guard(f, null, [S.motion]); }); measure(); }
+  return s;
+}
+/* a missing required child skips the scene with a warning instead of breaking start() */
+function need(cfg, parts) {
+  for (var k in parts) if (!parts[k]) { console.warn('Hendese: ' + cfg.el + ' has no ' + k + '; scene skipped'); return false; }
+  return true;
+}
+
 /* Low-level registration for custom scenes that implement their own tick/measure/setLive (e.g. an intro scene with a moving camera). */
-export function scene(raw) { SCENES.push(raw); return raw; }
+export function scene(raw) { return add(raw); }
 
 /* ---------- pin: long track (--track) + sticky stage; p = 0..1 track progress (smoothed) ----------
    render(p, api) -> {hud?: {stage, service, tag, env, pct, fill}, tb?: 0..1 (HUD title block state), hoca?: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}} */
 export function pinScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var stage = $('.route-stage', el), dr = $('.drawing', el), slot = $('.hud-slot', el);
+  if (!need(cfg, { '.route-stage': stage, '.drawing': dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), v = setter(stage);
   var top = 0, L = 1, p = 0, first = true, nat = null, SH = 1, SX = 0, slotR = null;
   var api = commonApi(s, el, dr, f); api.stage = stage; api.set = v.set;
@@ -59,7 +72,7 @@ export function pinScene(cfg) {
     s.hud = out.hud && slotR ? { x: SX + slotR.x, y: stY + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + stY / (SH * .12)) * clamp01(1 - stY / (SH * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return p !== target;
   };
-  SCENES.push(s); return s;
+  return add(s);
 }
 
 /* ---------- sticky: sticky figure + scrolling text beats ([data-beat]) ----------
@@ -68,6 +81,7 @@ export function pinScene(cfg) {
 export function stickyScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var fig = $('.sticky-fig', el), dr = $('.drawing', fig), slot = $('.hud-slot', fig), beats = $$('[data-beat]', el);
+  if (!need(cfg, { '.sticky-fig': fig, '.drawing': dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), v = setter(fig);
   var top = 0, bot = 1, tops = [], FH = 1, nat = null, FX = 0, slotR = null, cur = -1;
   var api = commonApi(s, el, dr, f); api.fig = fig; api.beats = beats; api.set = v.set;
@@ -87,7 +101,7 @@ export function stickyScene(cfg) {
     s.hud = out.hud && slotR ? { x: FX + slotR.x, y: fy + slotR.y, w: slotR.w, tb: clamp01(out.tb || 0), alpha: clamp01(1 + fy / (FH * .12)) * clamp01(1 - fy / (S.vh * .4)), f: Object.assign({ chap: cfg.chap }, out.hud) } : null;
     return false;
   };
-  SCENES.push(s); return s;
+  return add(s);
 }
 
 /* ---------- fig: interactive in-flow drawing (no scroll progress) ----------
@@ -97,13 +111,14 @@ export function stickyScene(cfg) {
 export function figScene(cfg) {
   var el = $(cfg.el); if (!el) return null;
   var dr = $('.drawing', el);
+  if (!need(cfg, { '.drawing': dr })) return null;
   var s = base(cfg, el, dr), f = flagger(), nat = null;
   var api = commonApi(s, el, dr, f);
   s.setLive = function (on) { s.live = on; el.classList.toggle('is-live', on);
     if (!on) { f.clear(); s.hoca = null; if (cfg.reset) cfg.reset(api); } };
   s.measure = function () { if (!s.live) return; readAw(s); var r = dr.getBoundingClientRect(); nat = { x: r.left, y: r.top + (window.scrollY || 0), w: r.width, h: r.height }; if (cfg.measure) cfg.measure(api); };
   s.tick = function (y, dt, t) {
-    if (!s.live || !nat) return false;
+    if (!s.live || !nat || !nat.h) return false;   /* a collapsed drawing (closed details, hidden tab) has nothing to show */
     var fy = nat.y - y, vis = clamp01(Math.min(S.vh - fy, fy + nat.h, nat.h, S.vh) / Math.min(nat.h, S.vh));
     if (vis <= 0) { s.hoca = null; return false; }
     var out = cfg.render(api, t, vis) || {}, h = out.hoca;
@@ -111,5 +126,5 @@ export function figScene(cfg) {
     return !!out.busy;
   };
   s.poke = poke;
-  SCENES.push(s); return s;
+  return add(s);
 }

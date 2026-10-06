@@ -15,7 +15,7 @@ li::marker{color:var(--ink-3)}
 b,strong{font-weight:600;color:var(--ink)}
 code{font-family:var(--font-mono);font-size:.86em;background:var(--surface-3);color:var(--ink);padding:1px 6px;border-radius:var(--r-xs);word-break:break-word}
 h1,h2,h3,h4{font-weight:600;line-height:1.2;margin:0;letter-spacing:-.01em}
-.skip{position:absolute;left:12px;top:-60px;z-index:var(--z-skip);background:var(--accent);color:var(--accent-ink);padding:8px 12px;border-radius:var(--r-sm);text-decoration:none;font-weight:600}
+.skip,.skip:hover{position:absolute;left:12px;top:-60px;z-index:var(--z-skip);background:var(--accent);color:var(--accent-ink);padding:8px 12px;border-radius:var(--r-sm);text-decoration:none;font-weight:600}
 .skip:focus{top:12px}
 .sprite{position:absolute;width:0;height:0;overflow:hidden}
 

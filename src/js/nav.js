@@ -2,7 +2,7 @@
    and re-anchoring to the target after late layout shifts (reanchor).
    HTML: [data-section][data-title] sections · #rail .nav-link[href="#id"] · #rail-pos · #topbar-cur · #progress-bar
          In a [data-hoca="quiet"] section Hoca stays home and the rail dims. Page-top id = opts.topId (default "top"). */
-import { $, $$, S, absTop, hooks, poke } from './core.js';
+import { $, $$, S, absTop, hooks, poke, MQ_WIDE } from './core.js';
 import { strings } from './strings.js';
 import { pickSection } from './math.js';
 
@@ -10,8 +10,15 @@ var sections = [], secTops = [], links = {}, rail, railPos, topCur, bar, active 
 export function current() { return active; }
 export function isQuiet(id) { var el = id && document.getElementById(id); return !!(el && el.getAttribute('data-hoca') === 'quiet'); }
 
-/* while a fragment navigation smooth-scrolls, the target stays active and the hash is not rewritten (writing it interrupts the scroll) */
-export function lockTo(id) { if (!id || !document.getElementById(id)) return; S.lockId = id; S.lockUntil = Date.now() + 1600; }
+/* location.hash is percent-encoded; ids are compared decoded (non-ASCII ids) */
+function hashId() { var h = location.hash.slice(1); try { return decodeURIComponent(h); } catch (e) { return h; } }
+
+/* while a fragment navigation smooth-scrolls, the target stays active and the hash is not rewritten (writing it interrupts the scroll).
+   A target inside a section (figure, footnote) locks its enclosing section. */
+export function lockTo(id) {
+  var el = id && document.getElementById(id); if (el && id !== TOP) el = el.closest('[data-section]');
+  if (!el || !el.id) return; S.lockId = el.id; S.lockUntil = Date.now() + 1600;
+}
 function pad(n) { return (n < 10 ? '0' : '') + n; }
 
 
@@ -26,21 +33,22 @@ function setActive(id) {
   if (a && nav) { var rel = a.offsetTop - nav.offsetTop;
     if (rel < nav.scrollTop + 8) nav.scrollTop = Math.max(0, rel - 8); else if (rel + a.offsetHeight > nav.scrollTop + nav.clientHeight - 8) nav.scrollTop = rel + a.offsetHeight - nav.clientHeight + 8; }
 }
-function syncHash(id) { var want = id === TOP ? '' : '#' + id; if (location.hash !== want) { try { history.replaceState(null, '', want || location.pathname + location.search); } catch (e) {} } }
+function syncHash(id) { var want = id === TOP ? '' : id; if (hashId() !== want) { try { history.replaceState(history.state, '', want ? '#' + want : location.pathname + location.search); } catch (e) {} } }
 
+function clamp(v) { return Math.max(0, Math.min(100, v)); }   /* overscroll (rubber-band) yields negative y */
 function update(y) {
   if (!sections.length) return;
   var max = S.docH - S.vh, cur = pickSection(secTops, sections.map(function (s) { return s.id; }), y + S.vh * 0.34, max > 0 && y + S.vh >= S.docH - 4, TOP);
-  var locked = Date.now() < S.lockUntil && S.lockId;
+  var now = Date.now(), locked = (now < S.lockUntil || now < S.anchorUntil) && S.lockId;   /* landing holds the deep-link target until the user scrolls */
   setActive(locked ? S.lockId : cur);
   if (!locked) syncHash(cur);
-  if (bar) bar.style.width = (max > 0 ? Math.min(100, 100 * y / max) : 0) + '%';
+  if (bar) bar.style.width = (max > 0 ? clamp(100 * y / max) : 0) + '%';
 }
 
 /* while late layout (fonts, scene setup) settles, the hash target is held in place until the user scrolls */
 export function reanchor() {
   if (!location.hash || Date.now() > S.anchorUntil) return;
-  var el = document.getElementById(location.hash.slice(1));
+  var el = document.getElementById(hashId());
   if (el && Math.abs(el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0)) > 3) { lockTo(el.id); el.scrollIntoView({ behavior: 'instant', block: 'start' }); }
 }
 
@@ -75,14 +83,16 @@ export function init(opts) {
   hooks.afterMeasure.push(function () { if (S.anchorUntil) reanchor(); });
   hooks.motion.push(function () { active = null; });
   window.addEventListener('scrollend', function () { S.lockUntil = 0; if (S.anchorUntil) reanchor(); poke(); });
-  window.addEventListener('hashchange', function () { lockTo(location.hash.slice(1)); poke(); });
+  window.addEventListener('hashchange', function () { lockTo(hashId()); poke(); });
+  /* the drawer exists only below 1100px: leaving that range releases its focus trap */
+  MQ_WIDE.addEventListener('change', function (e) { if (e.matches && openBtn && navOpen()) closeNav(false); });
 }
 
 /* on load with a hash: smooth scrolling is off for 4 s and the target is anchored; released on the first user input */
 export function landing() {
   if (!location.hash) return;
   var html = document.documentElement;
-  S.anchorUntil = Date.now() + 4000; html.style.scrollBehavior = 'auto'; setTimeout(function () { html.style.scrollBehavior = ''; }, 4000);
+  S.anchorUntil = Date.now() + 4000; lockTo(hashId()); html.style.scrollBehavior = 'auto'; setTimeout(function () { html.style.scrollBehavior = ''; }, 4000);
   addEventListener('load', reanchor);
   ['wheel', 'keydown', 'pointerdown', 'touchstart'].forEach(function (e) { addEventListener(e, function () { S.anchorUntil = 0; }, { once: true, passive: true }); });
 }

@@ -15,16 +15,16 @@ Bileşen CSS'inde (`base`, `layout`, `components`, `blueprint`, `motion`) ham de
 | Ne | Token | Ölçek dışı (serbest) |
 |---|---|---|
 | Yazı boyutu | `--fs-xs` 11 · `--fs-sm` 12.5 · `--fs-md` 14 · `--fs-base` 16 · `--fs-lg` 17.5 · `--fs-xl` 22 · `--fs-2xl` 30 · `--fs-h2` · `--fs-display` | Çizim içi boyut: `max(Npx, calc(M * var(--u)))` |
-| Boşluk (padding, margin, gap, inset) | `--sp-1` 4 · `--sp-2` 6 · `--sp-3` 8 · `--sp-4` 10 · `--sp-5` 12 · `--sp-6` 14 · `--sp-7` 16 · `--sp-8` 20 · `--sp-9` 28 · `--sp-10` 32 · `--sp-11` 48 | 0–3px optik düzeltme; çizim birimi `calc(N * var(--u))` |
+| Boşluk (padding, margin, gap, inset; yalnız `components` ve `blueprint`, eksi değerler dahil) | `--sp-1` 4 · `--sp-2` 6 · `--sp-3` 8 · `--sp-4` 10 · `--sp-5` 12 · `--sp-6` 14 · `--sp-7` 16 · `--sp-8` 20 · `--sp-9` 28 · `--sp-10` 32 · `--sp-11` 48 | 0–3px optik düzeltme; çizim birimi `calc(N * var(--u))` |
 | Köşe | `--r-xs` 4 · `--r-sm` 6 · `--r-md` 10 · `--r-lg` 14 · `--r-pill` | `0` (çizilen nesneler köşelidir) |
 | Süre ve eğri | `--dur-1` 120ms · `--dur-2` 250ms · `--dur-3` 320ms · `--dur-4` 650ms · `--dur-5` 2s; `--ease-out`, `--ease-in-out`, `--ease-snap` | — |
 | Katman | `--z-topbar` · `--z-scrim` · `--z-rail` · `--z-hud` · `--z-hoca` · `--z-progress` · `--z-skip` | 0–2 yerel istifleme |
-| Renk | `tokens.css` içindeki adlar | Yok. Hex, `rgb()` ve `hsl()` yalnız `tokens.css` içinde yazılır. |
+| Renk | `tokens.css` içindeki adlar | Yok. Hex, renk fonksiyonları (`rgb()`, `hsl()`, `oklch()`, `color()`…) ve adlı renkler yalnız `tokens.css` içinde yazılır; sistem renkleri (`Highlight`, `GrayText`) serbesttir. |
 
 Kurallar:
 
 - **Silinen adlar (0.3):** `--ease`, `--t-fast`, `--t-med`; yerine `--ease-out`, `--dur-1`, `--dur-3`.
-- **Yapısal istisnalar:** satırın sonuna `/* std:ok <gerekçe> */` yazılır. Örnek: kod sütununu kaydıran 54px. Toplam istisna sayısının üst sınırı 15'tir.
+- **Yapısal istisnalar:** satırın sonuna `/* std:ok <gerekçe> */` yazılır. Örnek: kod sütununu kaydıran 54px. İşaret yalnız kendi satırındaki ihlalleri kapsar; ihlal olmayan satırdaki işaret de hata sayılır. Toplam istisna sayısının üst sınırı 15'tir.
 - **Özelleştirme:** tema `@layer` içindedir. Kullanan proje kendi katmansız CSS'inde token'ları ezer; seçici gücü gerekmez.
 
 ## 2. Durum

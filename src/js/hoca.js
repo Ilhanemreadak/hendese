@@ -135,6 +135,7 @@ export function createHoca() {
   function render(s) {
     if (s.visible !== L.vis) { L.vis = s.visible; el.hidden = !s.visible; }
     if (!s.visible) return;
+    if (!srcs[s.pose]) s.pose = 'idle';   /* unknown pose (typo in a scene claim): fall back, as place() does */
     setPose(s.pose);
     var a = anchors[s.pose], tx = Math.round(s.x - a.x), ty = Math.round(s.y - a.y);
     if (tx !== L.tx || ty !== L.ty) { L.tx = tx; L.ty = ty; el.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0)'; }

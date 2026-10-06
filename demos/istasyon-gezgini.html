@@ -98,7 +98,7 @@
     <button class="station" type="button" data-key="origin" aria-pressed="false" aria-controls="ig-cdn" style="--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)"><span class="st-name">Origin</span><span class="st-sub">web-api</span></button>
   </div>
   <div class="st-detail" id="ig-cdn" aria-live="polite">
-    <div data-for="istemci" class="show"><b>İstemci.</b> İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.</div>
+    <div data-for="istemci"><b>İstemci.</b> İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.</div>
     <div data-for="edge"><b>Edge.</b> Yanıt önbellekte ve taze ise kaynağa hiç gitmeden döner. İsabet oranı %94.</div>
     <div data-for="origin"><b>Origin.</b> Yalnızca ıskalamada çağrılır; yanıtı <code>Cache-Control</code> başlığıyla birlikte geri gönderir.</div>
   </div>
@@ -117,7 +117,7 @@
     &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>origin</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Origin&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-cdn</span>" aria-live="<span class='s'>polite</span>"&gt;
-    &lt;<span class='k'>div</span> data-for="<span class='s'>istemci</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;İstemci.&lt;/<span class='k'>b</span>&gt; İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>istemci</span>"&gt;&lt;<span class='k'>b</span>&gt;İstemci.&lt;/<span class='k'>b</span>&gt; İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>edge</span>"&gt;&lt;<span class='k'>b</span>&gt;Edge.&lt;/<span class='k'>b</span>&gt; Yanıt önbellekte ve taze ise kaynağa hiç gitmeden döner. İsabet oranı %94.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>origin</span>"&gt;&lt;<span class='k'>b</span>&gt;Origin.&lt;/<span class='k'>b</span>&gt; Yalnızca ıskalamada çağrılır; yanıtı &lt;<span class='k'>code</span>&gt;Cache-Control&lt;/<span class='k'>code</span>&gt; başlığıyla birlikte geri gönderir.&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
@@ -126,7 +126,7 @@
 <div class="prose"><ul>
   <li>Kapsayıcı: <code>data-explorer="ig-cdn"</code>. Değer, panelin <code>id</code>'sidir; bu yüzden sayfada tekil olmalıdır.</li>
   <li>Düğmeler: <code>[data-key][aria-pressed]</code>. İkisi birden yoksa düğme gezgine katılmaz. Başlangıçta <code>aria-pressed="true"</code> olan seçilidir; yoksa ilk düğme.</li>
-  <li>Panel: <code>[data-for="anahtar"]</code> blokları. JavaScript çalışmazsa <code>.show</code> sınıflı blok görünür kalır; ona ilk seçili durağın metnini yazın.</li>
+  <li>Panel: <code>[data-for="anahtar"]</code> blokları. JavaScript çalışmazsa ve baskıda bütün bloklar alt alta görünür (bitmiş hal); <code>.show</code> sınıfını JS yazar.</li>
   <li><code>aria-controls</code> düğmeyi panele, <code>aria-live="polite"</code> paneli ekran okuyucuya bağlar.</li>
 </ul></div>
 </article>
@@ -153,7 +153,7 @@
   <div class="st-detail" id="ig-durum" aria-live="polite">
     <div data-for="ad"><b>.st-name</b> tek başına. Kare işaretin rengi <code>--svc</code> verilmezse çizim rengidir.</div>
     <div data-for="alt"><b>.st-sub</b> ikinci satırdır, düz yazıyla. Kare <code>--svc: var(--sec)</code> ile mor.</div>
-    <div data-for="uc" class="show"><b>.st-meta</b> üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: <code>aria-pressed="true"</code>.</div>
+    <div data-for="uc"><b>.st-meta</b> üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: <code>aria-pressed="true"</code>.</div>
     <div data-for="renk"><b>Renk</b> yalnızca karede kalır; çerçeve her durakta aynıdır. Hazır <code>.svc-*</code> sınıfları da aynı değişkeni atar.</div>
   </div>
 </div>
@@ -175,7 +175,7 @@
   &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-durum</span>" aria-live="<span class='s'>polite</span>"&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>ad</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-name&lt;/<span class='k'>b</span>&gt; tek başına. Kare işaretin rengi &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; verilmezse çizim rengidir.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>alt</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-sub&lt;/<span class='k'>b</span>&gt; ikinci satırdır, düz yazıyla. Kare &lt;<span class='k'>code</span>&gt;--svc: var(--sec)&lt;/<span class='k'>code</span>&gt; ile mor.&lt;/<span class='k'>div</span>&gt;
-    &lt;<span class='k'>div</span> data-for="<span class='s'>uc</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-meta&lt;/<span class='k'>b</span>&gt; üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: &lt;<span class='k'>code</span>&gt;aria-pressed="<span class='s'>true</span>"&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>uc</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-meta&lt;/<span class='k'>b</span>&gt; üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: &lt;<span class='k'>code</span>&gt;aria-pressed="<span class='s'>true</span>"&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>renk</span>"&gt;&lt;<span class='k'>b</span>&gt;Renk&lt;/<span class='k'>b</span>&gt; yalnızca karede kalır; çerçeve her durakta aynıdır. Hazır &lt;<span class='k'>code</span>&gt;.svc-*&lt;/<span class='k'>code</span>&gt; sınıfları da aynı değişkeni atar.&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
@@ -195,7 +195,7 @@
     <button class="station svc-k8s" type="button" data-key="kume" aria-pressed="false" aria-controls="ig-svc" style="--x:695;--y:30;--w:200;--h:90"><span class="st-name">Küme</span><span class="st-sub">Kubernetes · web-api</span><span class="st-meta">.svc-k8s</span></button>
   </div>
   <div class="st-detail" id="ig-svc" aria-live="polite">
-    <div data-for="kaynak" class="show"><b>.svc-gitlab</b> kareyi kaynak deposunun rengine boyar. Sınıf yalnızca <code>--svc</code> değişkenini atar; çerçeve ve yazı değişmez.</div>
+    <div data-for="kaynak"><b>.svc-gitlab</b> kareyi kaynak deposunun rengine boyar. Sınıf yalnızca <code>--svc</code> değişkenini atar; çerçeve ve yazı değişmez.</div>
     <div data-for="derleme"><b>.svc-aws</b> bulut hizmetleri için: derleme, kayıt, kuyruk.</div>
     <div data-for="esitleme"><b>.svc-argo</b> depodaki istenen durumu kümeye taşıyan eşitleyici için.</div>
     <div data-for="kume"><b>.svc-k8s</b> kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.</div>
@@ -213,7 +213,7 @@
     &lt;<span class='k'>button</span> class="<span class='s'>station svc-k8s</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kume</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Küme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Kubernetes · web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-k8s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-svc</span>" aria-live="<span class='s'>polite</span>"&gt;
-    &lt;<span class='k'>div</span> data-for="<span class='s'>kaynak</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-gitlab&lt;/<span class='k'>b</span>&gt; kareyi kaynak deposunun rengine boyar. Sınıf yalnızca &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; değişkenini atar; çerçeve ve yazı değişmez.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kaynak</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-gitlab&lt;/<span class='k'>b</span>&gt; kareyi kaynak deposunun rengine boyar. Sınıf yalnızca &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; değişkenini atar; çerçeve ve yazı değişmez.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>derleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-aws&lt;/<span class='k'>b</span>&gt; bulut hizmetleri için: derleme, kayıt, kuyruk.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>esitleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-argo&lt;/<span class='k'>b</span>&gt; depodaki istenen durumu kümeye taşıyan eşitleyici için.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>kume</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-k8s&lt;/<span class='k'>b</span>&gt; kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.&lt;/<span class='k'>div</span>&gt;
@@ -263,7 +263,7 @@
   <div class="f-foot">
     <p class="oneliner"><span class="co-label">Bir cümleyle</span>Gece alınan görüntü şifrelenir, ikinci bölgeye kopyalanır, 35 gün saklanır ve her ay gerçekten geri yüklenerek denenir.</p>
     <div class="st-detail" id="ig-yedek" aria-live="polite">
-      <div data-for="anlik" class="show"><b>Görüntü.</b> Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.</div>
+      <div data-for="anlik"><b>Görüntü.</b> Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.</div>
       <div data-for="sifre"><b>Şifreleme.</b> Görüntü kasadaki anahtarla şifrelenir. Anahtar döndürüldüğünde eski görüntüler eski sürümle okunmaya devam eder.</div>
       <div data-for="kopya"><b>Kopya.</b> Şifreli görüntü ikinci bölgeye gönderilir; bölge kaybında geri yükleme buradan yapılır.</div>
       <div data-for="saklama"><b>Saklama.</b> Görüntüler 35 gün tutulur. Silme kilidi açıkken süresi dolmamış görüntü elle de silinemez.</div>
@@ -308,7 +308,7 @@
   &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
     &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bir cümleyle&lt;/<span class='k'>span</span>&gt;Gece alınan görüntü şifrelenir, ikinci bölgeye kopyalanır, 35 gün saklanır ve her ay gerçekten geri yüklenerek denenir.&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-yedek</span>" aria-live="<span class='s'>polite</span>"&gt;
-      &lt;<span class='k'>div</span> data-for="<span class='s'>anlik</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;Görüntü.&lt;/<span class='k'>b</span>&gt; Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>anlik</span>"&gt;&lt;<span class='k'>b</span>&gt;Görüntü.&lt;/<span class='k'>b</span>&gt; Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>sifre</span>"&gt;&lt;<span class='k'>b</span>&gt;Şifreleme.&lt;/<span class='k'>b</span>&gt; Görüntü kasadaki anahtarla şifrelenir. Anahtar döndürüldüğünde eski görüntüler eski sürümle okunmaya devam eder.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>kopya</span>"&gt;&lt;<span class='k'>b</span>&gt;Kopya.&lt;/<span class='k'>b</span>&gt; Şifreli görüntü ikinci bölgeye gönderilir; bölge kaybında geri yükleme buradan yapılır.&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-for="<span class='s'>saklama</span>"&gt;&lt;<span class='k'>b</span>&gt;Saklama.&lt;/<span class='k'>b</span>&gt; Görüntüler 35 gün tutulur. Silme kilidi açıkken süresi dolmamış görüntü elle de silinemez.&lt;/<span class='k'>div</span>&gt;
@@ -338,7 +338,7 @@
   </div>
   <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:var(--sp-5)">
     <div data-for="metrik"><b>Metrik.</b> web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.</div>
-    <div data-for="kural" class="show"><b>Kural.</b> Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.</div>
+    <div data-for="kural"><b>Kural.</b> Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.</div>
     <div data-for="yonlendirici"><b>Yönlendirici.</b> Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.</div>
     <div data-for="nobetci"><b>Nöbetçi.</b> Beş dakika içinde onaylamazsa alarm ikincil nöbetçiye yükselir.</div>
     <div data-for="kayit"><b>Olay kaydı.</b> Açılış, onay ve kapanış zamanları kendiliğinden yazılır; sonradan inceleme buradan başlar.</div>
@@ -363,7 +363,7 @@
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-alarm</span>" aria-live="<span class='s'>polite</span>" style="<span class='s'>margin-top:var(--sp-5)</span>"&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>metrik</span>"&gt;&lt;<span class='k'>b</span>&gt;Metrik.&lt;/<span class='k'>b</span>&gt; web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.&lt;/<span class='k'>div</span>&gt;
-    &lt;<span class='k'>div</span> data-for="<span class='s'>kural</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;Kural.&lt;/<span class='k'>b</span>&gt; Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kural</span>"&gt;&lt;<span class='k'>b</span>&gt;Kural.&lt;/<span class='k'>b</span>&gt; Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>yonlendirici</span>"&gt;&lt;<span class='k'>b</span>&gt;Yönlendirici.&lt;/<span class='k'>b</span>&gt; Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>nobetci</span>"&gt;&lt;<span class='k'>b</span>&gt;Nöbetçi.&lt;/<span class='k'>b</span>&gt; Beş dakika içinde onaylamazsa alarm ikincil nöbetçiye yükselir.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>kayit</span>"&gt;&lt;<span class='k'>b</span>&gt;Olay kaydı.&lt;/<span class='k'>b</span>&gt; Açılış, onay ve kapanış zamanları kendiliğinden yazılır; sonradan inceleme buradan başlar.&lt;/<span class='k'>div</span>&gt;
@@ -405,7 +405,7 @@ document.addEventListener('hendese:explore', function (e) {
     <button class="station" type="button" data-key="kopya" aria-pressed="false" aria-controls="ig-yap" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Kopya</span><span class="st-sub">orders-db-2</span></button>
   </div>
   <div class="st-detail" id="ig-yap" aria-live="polite">
-    <div data-for="birincil" class="show"><b>Birincil.</b> Bütün yazmalar buraya gelir.</div>
+    <div data-for="birincil"><b>Birincil.</b> Bütün yazmalar buraya gelir.</div>
     <div data-for="kopya"><b>Kopya.</b> Okumaları karşılar; gecikmesi 0,4 s.</div>
   </div>
 </div>
@@ -419,7 +419,7 @@ document.addEventListener('hendese:explore', function (e) {
     &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kopya</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yap</span>" style="<span class='s'>--x:240;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kopya&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-yap</span>" aria-live="<span class='s'>polite</span>"&gt;
-    &lt;<span class='k'>div</span> data-for="<span class='s'>birincil</span>" class="<span class='s'>show</span>"&gt;&lt;<span class='k'>b</span>&gt;Birincil.&lt;/<span class='k'>b</span>&gt; Bütün yazmalar buraya gelir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>birincil</span>"&gt;&lt;<span class='k'>b</span>&gt;Birincil.&lt;/<span class='k'>b</span>&gt; Bütün yazmalar buraya gelir.&lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> data-for="<span class='s'>kopya</span>"&gt;&lt;<span class='k'>b</span>&gt;Kopya.&lt;/<span class='k'>b</span>&gt; Okumaları karşılar; gecikmesi 0,4 s.&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>

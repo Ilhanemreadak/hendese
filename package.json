@@ -1,20 +1,22 @@
 {
   "name": "hendese",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Blueprint (teknik çizim) tasarım dili: token'lar, bileşenler, scroll sahne motoru ve piksel maskot Hoca.",
   "private": true,
   "type": "module",
   "style": "dist/hendese.css",
-  "main": "dist/hendese.js",
-  "module": "src/js/index.js",
+  "main": "dist/hendese.esm.js",
+  "module": "dist/hendese.esm.js",
+  "unpkg": "dist/hendese.js",
+  "jsdelivr": "dist/hendese.js",
   "exports": {
     ".": {
       "style": "./dist/hendese.css",
-      "import": "./src/js/index.js",
-      "default": "./dist/hendese.js"
+      "default": "./dist/hendese.esm.js"
     },
     "./css": "./dist/hendese.css",
     "./css/inline": "./dist/hendese.inline.css",
+    "./package.json": "./package.json",
     "./src/*": "./src/*",
     "./dist/*": "./dist/*"
   },
@@ -31,6 +33,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "engines": {
+    "node": ">=21"
+  },
   "scripts": {
     "build": "node tools/build.mjs && node tools/demos.mjs",
     "test:unit": "node --test tests/unit/*.test.mjs",
