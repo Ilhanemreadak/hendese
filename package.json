@@ -1,6 +1,6 @@
 {
   "name": "hendese",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A blueprint-style design language for long-form technical pages: design tokens, layered CSS components, a scroll-scene engine and a pixel mascot.",
   "keywords": [
     "design-system",

@@ -1,7 +1,7 @@
 // Cuts a release: check CHANGELOG → build → verify the tree is unchanged → tests → npm pack → zip → git tag.
 // Usage: `npm version <patch|minor|major> --no-git-tag-version`, a dated CHANGELOG heading, `npm run build`, commit everything
 // (the version is baked into dist/), then `npm run release`.
-// No remote repository or registry yet; output goes to releases/.
+// Output goes to releases/; push the tag and attach both files to a GitHub Release.
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,7 +25,7 @@ run('npx playwright test');
 
 fs.mkdirSync('releases', { recursive: true });
 run('npm pack --pack-destination releases');
-const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'STANDARD.md', 'CHANGELOG.md'].flatMap(function walk(p) {
+const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'README.tr.md', 'STANDARD.md', 'CHANGELOG.md', 'LICENSE'].flatMap(function walk(p) {
   return fs.statSync(p).isDirectory() ? fs.readdirSync(p).sort().flatMap(f => walk(path.join(p, f))) : [p];
 });
 zip(`releases/hendese-${v}.zip`, files);

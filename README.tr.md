@@ -46,8 +46,8 @@ Hendese dokümantasyon, eğitim ve araç sayfalarını bir mühendisin paftasın
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ilhanemreadak/hendese@v0.4.0/dist/hendese.css">
-<script src="https://cdn.jsdelivr.net/gh/Ilhanemreadak/hendese@v0.4.0/dist/hendese.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ilhanemreadak/hendese@v0.5.0/dist/hendese.css">
+<script src="https://cdn.jsdelivr.net/gh/Ilhanemreadak/hendese@v0.5.0/dist/hendese.js"></script>
 ```
 
 ### Kaynaktan

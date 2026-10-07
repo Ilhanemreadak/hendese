@@ -1,4 +1,4 @@
-/* Hendese 0.4.0 */
+/* Hendese 0.5.0 */
 
 // src/js/math.js
 function clamp01(v) {
@@ -1411,7 +1411,7 @@ function wrapEnglish(EN, root) {
 }
 
 // src/js/index.js
-var version = true ? "0.4.0" : "dev";
+var version = true ? "0.5.0" : "dev";
 var O = null;
 function init6(opts) {
   if (O) return;
