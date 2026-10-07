@@ -26,8 +26,9 @@ const LOCALES = {
   },
   tr: {
     lang: 'tr', src: 'demos/_src/tr', ext: '.tr', other: 'en', otherExt: '', otherName: 'English',
-    // where text is uppercased, the English name gets a dotted İ under Turkish rules (BLUEPRİNT); lang=en fixes it
-    groups: { 'Basics': 'Temel', 'Components': 'Bileşenler', 'Blueprint': '<span lang="en">Blueprint</span>', 'Motion': 'Hareket' },
+    groups: { 'Basics': 'Temel', 'Components': 'Bileşenler', 'Motion': 'Hareket' },
+    // where text is uppercased, an English name gets a dotted İ under Turkish rules (BLUEPRİNT); lang=en fixes it
+    english: ['Blueprint'],
     required: { 'Components': ['Durumlar', 'Yap / yapma'], 'Blueprint': ['Yap / yapma'], 'Motion': ['Hareket kapalıyken', 'API'], 'Hoca': ['Hareket kapalıyken', 'API'] },
     skip: 'İçeriğe geç', open: 'Bölümleri aç', close: 'Bölümleri kapat', theme: 'Temayı değiştir', sections: 'Bölümler', contents: 'İçindekiler',
     tagline: 'Parçalar · tek tek', docs: 'Belgeler', start: 'Başlangıç', gallery: 'Parça galerisi', intro: 'Giriş', thisPage: 'Bu sayfa',
@@ -126,7 +127,8 @@ const hero = (L, label, title, tagline, intro, facts) => `<section class="hero" 
 const keep = new Set();
 for (const L of Object.values(LOCALES)) {
   const SRC = path.join(root, L.src);
-  const gName = g => L.groups[g] || g;
+  const gText = g => L.groups[g] || g;   // plain text, for attributes
+  const gName = g => L.english?.includes(g) ? `<span lang="en">${g}</span>` : gText(g);
   const href = slug => `${slug}${L.ext}.html`;
   const pages = fs.readdirSync(SRC).filter(f => f.endsWith('.html')).map(f => {
     const raw = fs.readFileSync(path.join(SRC, f), 'utf8').replace(/\r\n/g, '\n');
@@ -184,7 +186,7 @@ ${inner.trim()}
     const list = pages.filter(p => p.group === g);
     if (!list.length) return '';
     const num = String(gi + 1).padStart(2, '0');
-    return `<article class="chapter" id="g${gi + 1}" data-section data-title="${gName(g).replace(/<[^>]+>/g, '')}">
+    return `<article class="chapter" id="g${gi + 1}" data-section data-title="${gText(g)}">
   <header class="ch-head"><p class="ch-num">${num}</p><h2>${gName(g)}</h2></header>
   <ul class="parts">
 ${list.map(p => `    <li><a href="${href(p.slug)}"><b>${p.title}</b><span>${p.summary}</span></a></li>`).join('\n')}

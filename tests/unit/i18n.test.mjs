@@ -5,12 +5,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const PHRASING = new Set(['a', 'abbr', 'b', 'br', 'code', 'em', 'i', 'kbd', 'small', 'span', 'strong', 'wbr']);
-const skeleton = f => [...fs.readFileSync(f, 'utf8')
-  .replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/g, '<$1>')
-  .matchAll(/<([a-z][\w-]*)((?:\s+[^\s=>]+(?:="[^"]*")?)*)\s*\/?>/g)]
+// one pass: a comment is skipped, a script or style counts as one element (its body is not markup), any other tag is read
+const TOKEN = /<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1>|<([a-z][\w-]*)((?:\s+[^\s=>]+(?:="[^"]*")?)*)\s*\/?>/g;
+const skeleton = f => [...fs.readFileSync(f, 'utf8').matchAll(TOKEN)]
   .map(m => {
-    const a = Object.fromEntries([...m[2].matchAll(/([^\s=]+)(?:="([^"]*)")?/g)].map(x => [x[1], x[2] ?? '']));
-    return PHRASING.has(m[1]) && !a.id && !a.class ? null : [m[1], a.id ? '#' + a.id : '', a.class ? '.' + a.class : ''].join('');
+    if (m[1]) return m[1];
+    if (!m[2]) return null;
+    const a = Object.fromEntries([...m[3].matchAll(/([^\s=]+)(?:="([^"]*)")?/g)].map(x => [x[1], x[2] ?? '']));
+    return PHRASING.has(m[2]) && !a.id && !a.class ? null : [m[2], a.id ? '#' + a.id : '', a.class ? '.' + a.class : ''].join('');
   }).filter(Boolean);
 
 const pairs = [
