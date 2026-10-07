@@ -34,6 +34,7 @@
   <a class="brand" href="#top">Hendese</a>
   <span class="spacer"></span>
   <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="icons.tr.html" hreflang="tr" lang="tr" title="Türkçe">TR</a>
   <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
 </header>
 <div class="shell"><aside class="rail" id="rail" aria-label="Sections">
@@ -42,7 +43,7 @@
     <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
   </div>
   <nav class="rail-nav" aria-label="Contents">
-    <div class="nav-group">Belgeler</div>
+    <div class="nav-group">Docs</div>
     <a class="nav-page" href="../docs/index.html">Getting started</a>
     <a class="nav-page" href="index.html">Part gallery</a>
     <div class="nav-group">Basics</div>
@@ -51,7 +52,7 @@
     <a class="nav-page" href="scale-and-motion.html">Scale and motion</a>
     <a class="nav-page" href="icons.html" aria-current="page">Icons</a>
     <a class="nav-page" href="page-shell.html">Page shell</a>
-    <div class="nav-group">Bu sayfa</div>
+    <div class="nav-group">This page</div>
     <a class="nav-link" href="#p1"><span class="num">01</span><span>Sprite</span></a>
     <a class="nav-link" href="#p2"><span class="num">02</span><span>Sizes</span></a>
     <a class="nav-link" href="#p3"><span class="num">03</span><span>Inside components</span></a>
@@ -62,6 +63,7 @@
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
     <span class="pos" id="rail-pos">Intro</span>
+    <a class="icon-btn" href="icons.tr.html" hreflang="tr" lang="tr" title="Türkçe">TR</a>
     <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
   </div>
 </aside>
@@ -295,7 +297,7 @@
 <ol class="steps">
   <li><h3>Add the symbol</h3><p>The <code>id</code> starts with <code>i-</code>; <code>viewBox</code> 24×24, no fill, stroke <code>currentColor</code>. Don't hard-code a color: the icon would ignore the theme and the component.</p></li>
   <li><h3>Build</h3><p><code>npm run build</code> copies the sprite to <code>dist/icons.svg</code>. Part pages (<code>node tools/demos.mjs</code>) read the sprite straight from <code>src/icons.svg</code>.</p></li>
-  <li><h3>Carry it to the pages</h3><p>The sprite is inline on every page. A new page starts as a copy of <code>docs/_sablon.html</code> (the sprite is inside); when <code>src/icons.svg</code> changes, the sprite on existing pages is updated by hand.</p></li>
+  <li><h3>Carry it to the pages</h3><p>The sprite is inline on every page. A new page starts as a copy of <code>docs/_template.html</code> (the sprite is inside); when <code>src/icons.svg</code> changes, the sprite on existing pages is updated by hand.</p></li>
 </ol>
 <div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Contract</span><div class="co-body"><p>Icon <code>id</code>s are part of the documented contract. Adding an icon is a minor release; renaming or removing one needs a <b>major</b> release.</p></div></div>
 </article>

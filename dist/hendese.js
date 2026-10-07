@@ -452,11 +452,11 @@ var Hendese = (() => {
   function createHoca() {
     var S2 = 2, W = 44, H2 = 36;
     var PAL = {
-      b: "#d97757",
-      B: "#c2654b",
+      b: "#2f9e8f",
+      B: "#25867a",
       e: "#1f1a1c",
       g: "#2b2226",
-      G: "#7a3a28",
+      G: "#174f48",
       t: "#fbfbf8",
       o: "#fc6d26",
       l: "#9aa0aa",
@@ -1464,7 +1464,7 @@ var Hendese = (() => {
     if (O) return;
     O = opts || {};
     document.documentElement.classList.add("js");
-    Object.assign(strings, /^tr/i.test(document.documentElement.lang) ? locales.tr : null, O.strings);
+    Object.assign(strings, /^tr\b/i.test(document.documentElement.lang) ? locales.tr : null, O.strings);
     init(O.themeKey);
     init2(O);
     init3();
@@ -1497,6 +1497,7 @@ var Hendese = (() => {
     reanchor();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function() {
       measure();
+      refresh();
       reanchor();
     });
   }

@@ -17,9 +17,9 @@
   </p>
 
   <p>
-    <a href="docs/index.html">Dokümantasyon</a> ·
-    <a href="demos/index.html">Parça galerisi</a> ·
-    <a href="starter/index.html">Başlangıç sayfası</a> ·
+    <a href="docs/index.tr.html">Dokümantasyon</a> ·
+    <a href="demos/index.tr.html">Parça galerisi</a> ·
+    <a href="starter/index.tr.html">Başlangıç sayfası</a> ·
     <a href="CHANGELOG.md">Değişiklik günlüğü</a>
   </p>
 </div>
@@ -28,7 +28,7 @@
 
 Hendese dokümantasyon, eğitim ve araç sayfalarını bir mühendisin paftasını çizdiği gibi çizer: kalemle kılavuz, mürekkeple şekil, ölçü çizgileri ve antet. Pakette tasarım token'ları, katmanlı CSS bileşenleri, çizim primitifleri, küçük bir kaydırma sahnesi motoru ve şekiller arasında yürüyüp önemli yeri gösteren piksel maskot **Hoca** var.
 
-> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon İngilizcedir; `<html lang="tr">` olan sayfalar arayüz metinlerini otomatik olarak Türkçe alır.
+> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon ve parça sayfaları İngilizce ve Türkçedir; her sayfanın tema düğmesinin yanındaki TR / EN düğmesi diğer dile geçer. `<html lang="tr">` olan sayfalar arayüz metinlerini otomatik olarak Türkçe alır.
 
 ## Neden Hendese
 
@@ -143,8 +143,8 @@ Hedef WCAG 2.2 AA. Her CI çalışmasında bütün doküman ve parça sayfaları
 
 ## Dokümantasyon
 
-- [`docs/`](docs/index.html): token'lar, bileşenler, blueprint tarifleri, hareket motoru ve Hoca. Dosyaları tarayıcıda açmanız yeter, sunucu gerekmez.
-- [`demos/`](demos/index.html): her parça için ayrı sayfa; varyantlar, durumlar ve yap / yapma çiftleri.
+- [`docs/`](docs/index.tr.html): token'lar, bileşenler, blueprint tarifleri, hareket motoru ve Hoca. Dosyaları tarayıcıda açmanız yeter, sunucu gerekmez.
+- [`demos/`](demos/index.tr.html): her parça için ayrı sayfa; varyantlar, durumlar ve yap / yapma çiftleri.
 - [`STANDARD.md`](STANDARD.md): her parçanın uyduğu kurallar. Test paketi bunları denetler.
 
 ## Geliştirme

@@ -143,7 +143,7 @@ Hendese targets WCAG 2.2 AA. Every docs and demo page is checked with axe in lig
 
 ## Documentation
 
-- [`docs/`](docs/index.html): tokens, components, blueprint recipes, motion engine and Hoca. Open the files in a browser; no server is needed.
+- [`docs/`](docs/index.html): tokens, components, blueprint recipes, motion engine and Hoca. Open the files in a browser; no server is needed. Every page also exists in Turkish (`*.tr.html`); the TR / EN button next to the theme button switches language.
 - [`demos/`](demos/index.html): one page per part, with variants, states and do / don't pairs.
 - [`STANDARD.md`](STANDARD.md): the rules every part follows. It is enforced by the test suite.
 

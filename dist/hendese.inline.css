@@ -916,6 +916,7 @@
     color: var(--ink-3);
   }
   .rail-foot .pos {
+    margin-right: auto;
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
@@ -938,6 +939,11 @@
   .icon-btn svg {
     width: 16px;
     height: 16px;
+  }
+  a.icon-btn {
+    font: 600 var(--fs-xs)/1 var(--font-mono);
+    letter-spacing: .04em;
+    text-decoration: none;
   }
   .icon-btn .sun {
     display: none;

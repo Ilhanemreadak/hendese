@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saha defteri · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="survey-log.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="buttons.tr.html">Düğmeler</a>
+    <a class="nav-page" href="badges.tr.html">Rozetler</a>
+    <a class="nav-page" href="callout.tr.html">Callout</a>
+    <a class="nav-page" href="code-block.tr.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-gutter.tr.html">Diff şeridi</a>
+    <a class="nav-page" href="table.tr.html">Tablo</a>
+    <a class="nav-page" href="definition-list.tr.html">Tanım listesi</a>
+    <a class="nav-page" href="steps.tr.html">Adımlar</a>
+    <a class="nav-page" href="runbook.tr.html">Kontrol listesi</a>
+    <a class="nav-page" href="choice-groups.tr.html">Seçim grupları</a>
+    <a class="nav-page" href="readout.tr.html">Gösterge</a>
+    <a class="nav-page" href="register.tr.html">Değişken kaydı</a>
+    <a class="nav-page" href="stamp.tr.html">Damga</a>
+    <a class="nav-page" href="survey-log.tr.html" aria-current="page">Saha defteri</a>
+    <a class="nav-page" href="title-block.tr.html">Antet</a>
+    <a class="nav-page" href="form-fields.tr.html">Form alanları</a>
+    <a class="nav-page" href="checkboxes.tr.html">Onay, radyo ve kaydırıcı</a>
+    <a class="nav-page" href="tabs.tr.html">Sekmeler</a>
+    <a class="nav-page" href="dialog.tr.html">Diyalog</a>
+    <a class="nav-page" href="dimension-note.tr.html">Ölçü notu</a>
+    <a class="nav-page" href="empty-state.tr.html">Boş durum</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Olay sonrası zaman çizelgesi</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Değişiklik günlüğü ve ölçüm kaydı</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Koyu sahne</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="survey-log.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Saha defteri<em>Numaralı notlar, künyeli girdiler.</em></h1>
+    <p class="intro"><code>.survey-log</code> sıralı bir not defteridir: her girdinin solunda numarası ve künyesi, sağında etiketli paragrafları durur. Olay sonrası zaman çizelgesi, değişiklik günlüğü ya da ölçüm kaydı gibi “ne zaman, nerede, ne gördük, ne yaptık” sorularını sırayla cevaplayan metinler için.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code></dd><dt>Durum</dt><dd><code>li.s-ok</code> · <code>li.s-warn</code> · <code>li.s-bad</code> numarayı boyar</dd><dt>Yapı</dt><dd><code>&lt;ol&gt;</code> içinde <code>&lt;li&gt;</code>; künye <code>&lt;dl&gt;</code></dd><dt>Dar sütun</dt><dd>Kap 720px'ten darsa künye metnin üstüne iner</dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Solda 200px künye sütunu, sağda okunabilir genişlikte metin. Üstte kalın bir çizgi defteri açar, her girdinin altında ince bir çizgi onu kapatır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · tek girdi</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">K-07</span>
+      <dl><dt>Tarih</dt><dd>2026-10-05</dd><dt>Ortam</dt><dd>staging</dd><dt>Yazan</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Önbellek yeniden başlatıldıktan sonra ilk 10 dakikada veritabanı okuma yükü üç katına çıktı.</p>
+      <span class="sl-label">Karar</span>
+      <p>Yeniden başlatmadan önce en sık 1.000 anahtar ısıtılacak; betik <code>cache-warm</code> işine eklendi.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;K-07&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Tarih&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;2026-10-05&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Ortam&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;staging&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Yazan&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;platform&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Önbellek yeniden başlatıldıktan sonra ilk 10 dakikada veritabanı okuma yükü üç katına çıktı.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Karar&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Yeniden başlatmadan önce en sık 1.000 anahtar ısıtılacak; betik &lt;<span class='k'>code</span>&gt;cache-warm&lt;/<span class='k'>code</span>&gt; işine eklendi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<dl class="kv">
+  <dt><code>.sl-no</code></dt><dd>Girdi numarası. Liste sırası zaten <code>&lt;ol&gt;</code>'dan gelir; numara okurun başka yerden atıf yapabilmesi içindir (“bkz. K-07”).</dd>
+  <dt><code>.sl-meta dl</code></dt><dd>Künye: tarih, ortam, kaynak gibi kısa alanlar. Uzun değer satır içinde kırılır.</dd>
+  <dt><code>.sl-label</code></dt><dd>Paragrafın türü. Her girdide aynı etiket sırasını kullanmak defteri taranabilir kılar.</dd>
+</dl>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Olay sonrası zaman çizelgesi">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Olay sonrası zaman çizelgesi</h2><p class="lead">Saat sırasıyla ne görüldüğü ve ne yapıldığı. Künyede saat ve kaynak, metinde gözlem ile eylem ayrı etiketlerde.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · ödeme kuyruğu tıkanması</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-01</span>
+      <dl><dt>Saat</dt><dd>09:41</dd><dt>Kaynak</dt><dd>alarm</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p><code>billing-worker</code> kuyruk derinliği 5 dakikada 120'den 4.800'e çıktı; işçilerin hepsi ayakta.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-02</span>
+      <dl><dt>Saat</dt><dd>09:48</dd><dt>Kaynak</dt><dd>günlük</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Her işte ödeme sağlayıcısına yapılan çağrı 30 saniyede zaman aşımına düşüyor.</p>
+      <span class="sl-label">Eylem</span>
+      <p>Sağlayıcının durum sayfası kontrol edildi; bilinen bir kesinti yok.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-03</span>
+      <dl><dt>Saat</dt><dd>10:02</dd><dt>Kaynak</dt><dd>ağ</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>NAT ağ geçidinde bağlantı sayısı sınıra dayanmış; yeni dış bağlantılar reddediliyor.</p>
+      <span class="sl-label">Eylem</span>
+      <p>İkinci ağ geçidi açıldı, işçi alt ağının yönlendirmesi ikiye bölündü.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-04</span>
+      <dl><dt>Saat</dt><dd>10:31</dd><dt>Kaynak</dt><dd>gösterge</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Sonuç</span>
+      <p>Kuyruk 29 dakikada boşaldı. Kayıp iş yok; 212 ödeme gecikmeli işlendi.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;T-01&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;09:41&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Kaynak&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;alarm&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; kuyruk derinliği 5 dakikada 120'den 4.800'e çıktı; işçilerin hepsi ayakta.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;T-02&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;09:48&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Kaynak&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;günlük&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Her işte ödeme sağlayıcısına yapılan çağrı 30 saniyede zaman aşımına düşüyor.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Sağlayıcının durum sayfası kontrol edildi; bilinen bir kesinti yok.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;T-03&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;10:02&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Kaynak&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;ağ&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;NAT ağ geçidinde bağlantı sayısı sınıra dayanmış; yeni dış bağlantılar reddediliyor.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;İkinci ağ geçidi açıldı, işçi alt ağının yönlendirmesi ikiye bölündü.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;T-04&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;10:31&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Kaynak&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;gösterge&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Sonuç&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Kuyruk 29 dakikada boşaldı. Kayıp iş yok; 212 ödeme gecikmeli işlendi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Değişiklik günlüğü ve ölçüm kaydı">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Değişiklik günlüğü ve ölçüm kaydı</h2><p class="lead">Aynı defter iki farklı türde kayıt tutar. Değişiklikte etki ve geri dönüş, ölçümde değer ve yorum etiketlenir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · altyapı değişiklik günlüğü</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-41</span>
+      <dl><dt>Tarih</dt><dd>2026-09-29</dd><dt>Sürüm</dt><dd>infra v318</dd><dt>Yazan</dt><dd>ağ ekibi</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Değişiklik</span>
+      <p>İç DNS bölgesinin varsayılan TTL değeri 300'den 60 saniyeye indi.</p>
+      <span class="sl-label">Etki</span>
+      <p>Çözümleyici sorgu sayısı yaklaşık beş katına çıkar; maliyet farkı aylık 3 $ altında.</p>
+      <span class="sl-label">Geri dönüş</span>
+      <p><code>ttl = 300</code> ile aynı değişiklik yeniden uygulanır.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-42</span>
+      <dl><dt>Tarih</dt><dd>2026-10-01</dd><dt>Sürüm</dt><dd>infra v319</dd><dt>Yazan</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Değişiklik</span>
+      <p>Derleme işçileri spot makinelere taşındı.</p>
+      <span class="sl-label">Etki</span>
+      <p>Derleme maliyeti %58 düştü; geri alınan makinede iş baştan başlar.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;C-41&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Tarih&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;2026-09-29&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sürüm&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;infra v318&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Yazan&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;ağ ekibi&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Değişiklik&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;İç DNS bölgesinin varsayılan TTL değeri 300'den 60 saniyeye indi.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Etki&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Çözümleyici sorgu sayısı yaklaşık beş katına çıkar; maliyet farkı aylık 3 $ altında.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Geri dönüş&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;ttl = 300&lt;/<span class='k'>code</span>&gt; ile aynı değişiklik yeniden uygulanır.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;C-42&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Tarih&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;2026-10-01&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sürüm&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;infra v319&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Yazan&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;platform&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Değişiklik&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Derleme işçileri spot makinelere taşındı.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Etki&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Derleme maliyeti %58 düştü; geri alınan makinede iş baştan başlar.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · gecikme ölçümleri</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-01</span>
+      <dl><dt>Ortam</dt><dd>prod</dd><dt>Araç</dt><dd>k6 · 200 VU</dd><dt>Süre</dt><dd>10 dk</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Ölçüm</span>
+      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · hata <span class="pill s-ok">%0,02</span></p>
+      <span class="sl-label">Yorum</span>
+      <p>p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-02</span>
+      <dl><dt>Ortam</dt><dd>prod</dd><dt>Araç</dt><dd>k6 · 400 VU</dd><dt>Süre</dt><dd>10 dk</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Ölçüm</span>
+      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1.240 ms</b> · hata <span class="pill s-warn">%0,9</span></p>
+      <span class="sl-label">Yorum</span>
+      <p>Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;M-01&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Ortam&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;prod&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Araç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;k6 · 200 VU&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Süre&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;10 dk&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Ölçüm&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;GET /v1/invoices&lt;/<span class='k'>code</span>&gt; · p50 &lt;<span class='k'>b</span>&gt;41 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;182 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;390 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;%0,02&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Yorum&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;p99, önbellek kaçırılan isteklerden geliyor; hedef 400 ms içinde.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;M-02&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Ortam&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;prod&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Araç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;k6 · 400 VU&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Süre&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;10 dk&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Ölçüm&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;p50 &lt;<span class='k'>b</span>&gt;58 ms&lt;/<span class='k'>b</span>&gt;, p95 &lt;<span class='k'>b</span>&gt;410 ms&lt;/<span class='k'>b</span>&gt;, p99 &lt;<span class='k'>b</span>&gt;1.240 ms&lt;/<span class='k'>b</span>&gt; · hata &lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;%0,9&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Yorum&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Bağlantı havuzu 50'de doyuyor; havuz 100'e çıkarılıp ölçüm tekrarlanacak (bkz. M-03).&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durumlar</h2><p class="lead">Girdiye .s-* verilirse numara o renge boyanır; çizgiler ve metin değişmez. Durumu künyede bir alanla da yazın: renk yalnız taramayı hızlandırır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · geri alma denemeleri</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li class="s-bad">
+    <div class="sl-meta">
+      <span class="sl-no">R-01</span>
+      <dl><dt>Saat</dt><dd>14:05</dd><dt>Sonuç</dt><dd>başarısız</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p><code>web-api</code> 1.8.2'ye geri alındı; yeni kopyalar imajı çekemedi.</p>
+    </div>
+  </li>
+  <li class="s-warn">
+    <div class="sl-meta">
+      <span class="sl-no">R-02</span>
+      <dl><dt>Saat</dt><dd>14:19</dd><dt>Sonuç</dt><dd>kısmi</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>İmaj kaydı izni düzeltildi; 3 kopyanın 2'si ayağa kalktı.</p>
+    </div>
+  </li>
+  <li class="s-ok">
+    <div class="sl-meta">
+      <span class="sl-no">R-03</span>
+      <dl><dt>Saat</dt><dd>14:31</dd><dt>Sonuç</dt><dd>başarılı</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Eylem</span>
+      <p>Son kopya yeni düğüme taşındı; 5xx oranı %0,1'e indi.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">R-04</span>
+      <dl><dt>Saat</dt><dd>15:00</dd><dt>Sonuç</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">yok</span></dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Not</span>
+      <p>Sınıfsız girdi çizim renginde kalır: gözlem ya da not, sonucu olmayan kayıt.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-bad</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-01&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:05&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;başarısız&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;web-api&lt;/<span class='k'>code</span>&gt; 1.8.2'ye geri alındı; yeni kopyalar imajı çekemedi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-warn</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-02&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:19&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;kısmi&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;İmaj kaydı izni düzeltildi; 3 kopyanın 2'si ayağa kalktı.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> class="<span class='s'>s-ok</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-03&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:31&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;başarılı&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Son kopya yeni düğüme taşındı; 5xx oranı %0,1'e indi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;R-04&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;15:00&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Sonuç&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>span</span> aria-hidden="<span class='s'>true</span>"&gt;—&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Not&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Sınıfsız girdi çizim renginde kalır: gözlem ya da not, sonucu olmayan kayıt.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Kabul edilen sınıflar <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code> ve <code>.s-neutral</code>'dır; yalnız <code>.sl-no</code> rengi değişir. Boş değeri boş bırakmayın: görünen <b>—</b>, ekran okuyucu için <code>.visually-hidden</code> bir kelime. Boş <code>dd</code> atlanır ve alan kayıp sanılır.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Koyu sahne">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Koyu sahne</h2><p class="lead">Defter koyu panelde de aynı kalır; çizgiler ve künye renkleri kapsayıcının temasına göre çözülür.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · nöbet defteri, koyu panel</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px 22px">
+  <p class="chip">Nöbet defteri · gece</p>
+  <ol class="survey-log">
+    <li>
+      <div class="sl-meta">
+        <span class="sl-no">G-01</span>
+        <dl><dt>Saat</dt><dd>02:14</dd><dt>Alarm</dt><dd>disk-usage</dd></dl>
+      </div>
+      <div class="sl-body">
+        <span class="sl-label">Gözlem</span>
+        <p><code>logs-db</code> diskinde doluluk %91; büyüme saatte %1.</p>
+        <span class="sl-label">Eylem</span>
+        <p>30 günden eski bölümler arşive taşındı, doluluk %64'e indi. Sabah ekibine devredildi.</p>
+      </div>
+    </li>
+  </ol>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:18px 22px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Nöbet defteri · gece&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+    &lt;<span class='k'>li</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+        &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;G-01&lt;/<span class='k'>span</span>&gt;
+        &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;02:14&lt;/<span class='k'>dd</span>&gt;&lt;<span class='k'>dt</span>&gt;Alarm&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;disk-usage&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+        &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+        &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;logs-db&lt;/<span class='k'>code</span>&gt; diskinde doluluk %91; büyüme saatte %1.&lt;/<span class='k'>p</span>&gt;
+        &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+        &lt;<span class='k'>p</span>&gt;30 günden eski bölümler arşive taşındı, doluluk %64'e indi. Sabah ekibine devredildi.&lt;/<span class='k'>p</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>li</span>&gt;
+  &lt;/<span class='k'>ol</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Gözlem ile yorumu ayırın: ne görüldüğü bir etikette, ne düşünüldüğü ya da yapıldığı başka bir etikette.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · ayrı etiketler</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Saat</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>5xx oranı %4.</p>
+      <span class="sl-label">Eylem</span>
+      <p>Son sürüm geri alındı.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;N-12&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:05&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Gözlem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;5xx oranı %4.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-label</span>"&gt;Eylem&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Son sürüm geri alındı.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · her şey tek paragrafta</span>
+  <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Saat</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <p>Hatalar arttı galiba sürümden, geri aldık sonra düzeldi gibi.</p>
+    </div>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>survey-log</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-meta</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>sl-no</span>"&gt;N-12&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>dl</span>&gt;&lt;<span class='k'>dt</span>&gt;Saat&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;14:05&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>dl</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>sl-body</span>"&gt;
+      &lt;<span class='k'>p</span>&gt;Hatalar arttı galiba sürümden, geri aldık sonra düzeldi gibi.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>&lt;ol&gt;</code> ekran okuyucuya girdi sayısını ve sırasını verir; künyedeki <code>&lt;dl&gt;</code> alan adlarını değerleriyle eşler. <code>.sl-label</code> yalnızca görsel bir başlıktır, başlık düzeninde yer almaz; etiket metnini kısa ve kendi başına anlamlı tutun.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="stamp.tr.html" rel="prev"><small>Önceki · Bileşenler</small>Damga</a><a href="title-block.tr.html" rel="next"><small>Sonraki · Bileşenler</small>Antet</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

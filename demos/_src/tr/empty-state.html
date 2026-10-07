@@ -1,0 +1,155 @@
+<!-- meta {"title":"Boş durum","group":"Components","order":210,"tagline":"Henüz veri yok; neden ve sıradaki adım.","intro":"<code>.empty</code> bir listenin, tablonun ya da şeklin yerinde durur ve orada neden bir şey olmadığını söyler. Kesikli çerçevelidir: dilde kesikli çizgi “henüz gerçek değil” demektir. Başlık bir <code>.chip</code>, gövde bir cümle; isteğe bağlı tek bir düğme.","summary":"<code>.empty</code>; tablo yerinde, pafta ve koyu sahne içinde; boş, yükleniyor ve hata durumlarının ayrımı.","facts":{"Sınıflar":"<code>.empty</code> · içinde <code>.chip</code>, <code>&lt;p&gt;</code>, <code>.btn</code>","Durum":"Yükleniyor: bölgeye <code>aria-busy=\"true\"</code> ve metin · Hata: <code>.co-trouble</code>","JS":"Gerekmez"}} -->
+
+<chapter title="Anatomi" lead="Üç parça, alt alta ve sola yaslı: ne olmadığını adlandıran chip, nedenini ve sıradakini söyleyen cümle, isteğe bağlı tek eylem.">
+<demo label="Örnek · tam hal">
+<div class="empty">
+  <p class="chip">Alarm yok</p>
+  <p>report-cron için henüz alarm tanımlanmadı. Başarısız çalışmalar şu an kimseye bildirilmiyor.</p>
+  <button class="btn" type="button"><svg><use href="#i-warn"/></svg>Alarm ekle</button>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.empty</code></dt><dd>Kap. Kesikli çerçeve, iç boşluk ve sola yaslı ızgara; içindeki paragrafların payını sıfırlar.</dd>
+  <dt><code>.chip</code></dt><dd>Ne olmadığının adı: “Dağıtım yok”, “Sonuç yok”. İsim tamlaması, cümle değil.</dd>
+  <dt><code>&lt;p&gt;</code></dt><dd>Neden boş ve okur ne yapabilir. Bir iki cümle.</dd>
+  <dt><code>.btn</code></dt><dd>İsteğe bağlı. Boşluğu dolduracak tek eylem; okurun yetkisi yoksa çizilmez.</dd>
+</dl>
+<demo label="Örnek · düğmesiz, yalnız bilgi">
+<div class="empty">
+  <p class="chip">Değişiklik yok</p>
+  <p>Son dağıtımdan bu yana <code>main</code> dalına birleştirme olmadı.</p>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Tablonun yerinde" lead="Satırı olmayan bir tablo çizilmez: boş başlık satırı okura bir şey söylemez. Araç satırı (başlık, süzgeç) yerinde kalır, tablonun yerine .empty gelir.">
+<demo label="Örnek · süzgeç sonuç vermedi">
+<div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
+  <p class="chip" style="margin-right:auto">Dağıtımlar · prod · son 7 gün</p>
+  <div class="pillrow">
+    <button class="toggle-btn is-accent" type="button" aria-pressed="true">Yalnız başarısız</button>
+    <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Süzgeci kaldır</button>
+  </div>
+</div>
+<div class="empty">
+  <p class="chip">Sonuç yok</p>
+  <p>Son 7 günde prod'da başarısız dağıtım olmadı. Tüm dağıtımları görmek için süzgeci kaldırın.</p>
+</div>
+</demo>
+<div class="prose"><p>Süzgeçten gelen boşluk ile verinin hiç olmaması ayrı cümlelerdir. İlkinde okur süzgeci değiştirir; ikincisinde ilk kaydı oluşturur. Süzgeç sonucunda düğme süzgeci kaldırır, yeni kayıt açmaz.</p></div>
+</chapter>
+
+<chapter title="Pafta ve koyu sahne içinde" lead="Bir şeklin verisi henüz yoksa pafta yine çizilir; çizimin yerinde .empty durur. Şekil adı ve yazısı kalır, okur neyin geleceğini bilir.">
+<demo label="Örnek · pafta, henüz ölçüm yok">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Şekil 3</p>
+  <p class="fig-cap">auth-gateway gecikme dağılımı</p>
+  <div class="empty">
+    <p class="chip">Ölçüm yok</p>
+    <p>Servis 4 dakika önce açıldı; ilk dağılım 15 dakikalık örnekten sonra çizilir.</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 3.</b> İsteklerin gecikmesi, 10 ms'lik dilimlerle; eu-west-1.</figcaption>
+</figure>
+</demo>
+<demo label="Örnek · koyu panel" view="scene-dark">
+<p class="chip">Açık olaylar · eu-central-1</p>
+<div class="empty">
+  <p class="chip">Açık olay yok</p>
+  <p>Son olay 12 gün önce kapatıldı. Nöbet devrinde aktarılacak bir şey yok.</p>
+  <button class="btn" type="button"><svg><use href="#i-check"/></svg>Devri onayla</button>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Durumlar: boş, yükleniyor, hata" lead="Üçü aynı yerde durur ama aynı şeyi söylemez. Boş: istek başarılı, sonuç yok. Yükleniyor: henüz cevap yok. Hata: cevap gelmedi ya da bozuk. Hatayı boş durum gibi göstermek okuru yanıltır.">
+<demo label="Örnek · üç durum yan yana">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-6);align-items:start">
+  <div>
+    <p class="chip">Boş</p>
+    <div class="empty">
+      <p class="chip">Görev yok</p>
+      <p>Bu kümede zamanlanmış görev yok.</p>
+    </div>
+  </div>
+  <div>
+    <p class="chip">Yükleniyor</p>
+    <div aria-busy="true" style="margin:var(--sp-6) 0">
+      <p>Görevler yükleniyor…</p>
+    </div>
+  </div>
+  <div>
+    <p class="chip">Hata</p>
+    <div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Görevler alınamadı</span><div class="co-body"><p>Küme API'si 503 döndü. Birkaç dakika sonra yeniden deneyin.</p></div></div>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Ne söyler</th></tr></thead>
+  <tbody>
+    <tr><td>Boş</td><td><code>.empty</code></td><td>Neden yok ve okur ne yapabilir.</td></tr>
+    <tr><td>Yükleniyor</td><td>Bölgeye <code>aria-busy="true"</code> ve düz metin</td><td>Neyin beklendiği: “Görevler yükleniyor…”. Uzun sürerse neyi beklediğini (“3 bölgeden 2'si geldi”).</td></tr>
+    <tr><td>Hata</td><td><code>.co.co-trouble</code></td><td>Ne alınamadı, neden (biliniyorsa) ve ne yapılabilir.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">İskelet ve dönen simge yok</span><div class="co-body"><p>Paket bilerek iskelet satır ya da dönen simge içermez. İskelet, gelmemiş veriyi gerçekmiş gibi çizer; dilde düz çizgi gerçek demektir. Dönen simge ise hareket ister ve neyin beklendiğini söylemez. Bitmiş hal metindir: hareket kapalıyken, baskıda ve ekran okuyucuda aynı şeyi söyler.</p></div></div>
+<demo label="Örnek · yenile: yükleniyor, sonra boş">
+<div id="bd-live">
+  <div class="pillrow">
+    <button class="btn" type="button" id="bd-refresh"><svg><use href="#i-reset"/></svg>Yenile</button>
+    <button class="btn" type="button" id="bd-error">Hata ile dene</button>
+  </div>
+  <div id="bd-region" aria-live="polite">
+    <div class="empty">
+      <p class="chip">Sürüm yok</p>
+      <p>web-api için bu hafta yayımlanmış sürüm yok.</p>
+    </div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Bölge beklerken <code>aria-busy="true"</code> taşır; ekran okuyucu ara değişiklikleri okumaz, cevap gelince bölgeyi bir kez okur. Cevap gelince öznitelik kaldırılır.</p></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Boş durum neden boş olduğunu ve okurun sıradaki adımını söyler. “Veri yok” tek başına bir şey söylemez; hata da boşluk değildir.">
+<div class="dodont">
+<demo label="Yap · neden ve sıradaki adım">
+<div class="empty">
+  <p class="chip">Gizli değer yok</p>
+  <p>staging ortamında gizli değer tanımlanmadı; servisler varsayılan yapılandırmayla çalışıyor.</p>
+  <button class="btn" type="button">Gizli değer ekle</button>
+</div>
+</demo>
+<demo label="Yapma · bağlamsız, hata boşluk gibi">
+<div class="empty">
+  <p class="chip">Veri yok</p>
+  <p>Gösterilecek bir şey yok.</p>
+  <button class="btn" type="button">Tamam</button>
+</div>
+</demo>
+</div>
+<div class="prose"><ul>
+  <li><b>Chip ne olmadığını adlandırır</b> (“Gizli değer yok”); “Veri yok” her yerde aynıdır ve bir şey söylemez.</li>
+  <li><b>Tek eylem.</b> Boşluğu dolduran eylem; “Tamam” gibi bir şey yapmayan düğme konmaz.</li>
+  <li><b>İstek başarısızsa boş durum değil, hata.</b> “Kayıt yok” görüp kayıtların gerçekten olmadığına inanan okur yanlış karar verir.</li>
+  <li><b>İskelet ve dönen simge yerine metin.</b> Yükleniyor durumu ne beklendiğini yazar.</li>
+</ul></div>
+</chapter>
+
+<script data-page>
+/* yenile → aria-busy metni → boş ya da hata */
+(function () {
+  var bolge = document.getElementById('bd-region');
+  var html = {
+    yuk: '<p>web-api sürümleri yükleniyor…</p>',
+    bos: '<div class="empty"><p class="chip">Sürüm yok</p><p>web-api için bu hafta yayımlanmış sürüm yok.</p></div>',
+    hata: '<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Sürümler alınamadı</span><div class="co-body"><p>Kayıt deposu 8 saniyede yanıt vermedi. Yenile ile yeniden deneyin.</p></div></div>'
+  };
+  function run(son) {
+    bolge.setAttribute('aria-busy', 'true');
+    bolge.innerHTML = html.yuk;
+    setTimeout(function () { bolge.innerHTML = html[son]; bolge.removeAttribute('aria-busy'); }, 1200);
+  }
+  document.getElementById('bd-refresh').addEventListener('click', function () { run('bos'); });
+  document.getElementById('bd-error').addEventListener('click', function () { run('hata'); });
+})();
+</script>

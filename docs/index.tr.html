@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hendese · Başlangıç</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Sayfalar</div>
+    <a class="nav-page" href="index.tr.html" aria-current="page">Başlangıç</a>
+    <a class="nav-page" href="tokens.tr.html">Token'lar</a>
+    <a class="nav-page" href="components.tr.html">Bileşenler</a>
+    <a class="nav-page" href="blueprint.tr.html">Blueprint ve tarifler</a>
+    <a class="nav-page" href="motion.tr.html">Hareket motoru</a>
+    <a class="nav-page" href="hoca.tr.html">Hoca</a>
+    <a class="nav-page" href="../demos/index.tr.html">Parçalar (tek tek)</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#g1"><span class="num">01</span><span>Felsefe</span></a>
+    <a class="nav-link" href="#g2"><span class="num">02</span><span>Kurulum</span></a>
+    <a class="nav-link" href="#g3"><span class="num">03</span><span>İlk sayfa</span></a>
+    <a class="nav-link" href="#g4"><span class="num">04</span><span>Paket yapısı</span></a>
+    <a class="nav-link" href="#g5"><span class="num">05</span><span>Erişilebilirlik</span></a>
+    <a class="nav-link" href="#g6"><span class="num">06</span><span>Sürümleme</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Tasarım dili</p>
+    <h1>Hendese<em>Ölçerek anlatan sayfalar için bir teknik çizim dili.</em></h1>
+    <p class="intro">Osmanlıca'da <i>hendese</i>: geometri, ölçme bilgisi; "mühendis" kelimesinin kökü. Bu paket teknik doküman, eğitim ve araç sayfalarını bir mühendis paftası gibi çizer: kalemle kılavuz, mürekkeple çizim, ölçü çizgileri ve antet.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Paket</dt><dd>hendese</dd></div>
+    <div><dt>Sürüm</dt><dd id="g-ver">0.1.0</dd></div>
+    <div><dt>Tema</dt><dd>açık · koyu · sistem</dd></div>
+    <div><dt>Çalışma zamanı</dt><dd>bağımlılık yok, dış istek yok</dd></div>
+  </dl>
+</section>
+
+<article class="chapter" id="g1" data-section data-title="Felsefe">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Felsefe</h2><p class="lead">Dört kural; paketin her parçası bunlardan birine dayanır.</p></header>
+  <ol class="steps">
+    <li><h3>Son hal her zaman doğrudur</h3><p>HTML ve CSS bitmiş çizimi tarif eder. Animasyon yalnızca oraya giden yoldur: hareket kapalıysa, ekran darsa, sayfa basılıyorsa ya da JS yoksa okuyucu yine eksiksiz çizimi görür.</p></li>
+    <li><h3>Tek çizgi ailesi</h3><p>Kılavuz (kalem), çizim (mürekkep), vurgu ve ölçü. Düz çizgi gerçeği, kesikli çizgi örneği ya da sınırı anlatır. Gölge, gradyan ve parıltı yok.</p></li>
+    <li><h3>Anlam metindedir</h3><p>Çizimler <code>aria-hidden</code>'dır; söyledikleri metinde, beat listesinde ya da şekil yazısında da bulunur.</p></li>
+    <li><h3>Az ama yerinde</h3><p>Token'lar tek kaynak, CSS katmanlı (<code>@layer</code>), JS tek döngü ve boşta uyur. Build zorunlu değildir.</p></li>
+  </ol>
+</article>
+
+<article class="chapter" id="g2" data-section data-title="Kurulum">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Kurulum</h2><p class="lead">Üç yol; üçü de aynı <code>dist/</code> dosyalarını kullanır.</p></header>
+  <h3>1. Klasörü kopyala</h3>
+  <p class="prose"><code>dist/</code> klasörünü projenize koyun (fontlar <code>dist/fonts/</code> altında gelir).</p>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">index.html</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;head&gt;
+  &lt;!-- dist/head.js içeriği: tema flaşını önler, html'e .js ekler --&gt;
+  &lt;script&gt;(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&amp;&amp;t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');&lt;/script&gt;
+  &lt;link rel="stylesheet" href="hendese/dist/hendese.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  …
+  &lt;script src="hendese/dist/hendese.js"&gt;&lt;/script&gt;
+  &lt;script&gt;Hendese.init(); /* sahneler */ Hendese.start();&lt;/script&gt;
+&lt;/body&gt;</code></pre></figure>
+  <h3>2. npm bağımlılığı (yerel klasör ya da git)</h3>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">sh</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>npm i ../hendese                     <span class="c"># ya da releases/hendese-x.y.z.tgz</span>
+<span class="c"># bundler ile:</span>
+<span class="k">import</span> <span class="s">'hendese/css'</span>;
+<span class="k">import</span> * <span class="k">as</span> Hendese <span class="k">from</span> <span class="s">'hendese'</span>;   <span class="c">// ES modül (dist/hendese.esm.js)</span></code></pre></figure>
+  <h3>3. Tek dosyalık sayfa</h3>
+  <p class="prose">Çevrimdışı tek bir HTML dağıtacaksanız <code>dist/hendese.inline.css</code> (fontlar gömülü) ve <code>dist/hendese.js</code> içeriğini sayfaya <code>&lt;style&gt;</code> ve <code>&lt;script&gt;</code> olarak yapıştırın; ikon sprite'ını (<code>dist/icons.svg</code>) <code>&lt;body&gt;</code>'nin başına koyun.</p>
+  <aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Tarayıcı desteği</span><div class="co-body">Son iki yılın güncel tarayıcıları: <code>light-dark()</code>, <code>:has()</code>, kap sorguları ve <code>@layer</code> gerekir. <code>[data-reveal]</code> scroll animasyonu desteklenmeyen tarayıcıda zarifçe kapanır.</div></aside>
+</article>
+
+<article class="chapter" id="g3" data-section data-title="İlk sayfa">
+  <header class="ch-head"><p class="ch-num">03</p><h2>İlk sayfa</h2><p class="lead">Hazır iskelet <code>starter/index.html</code>: ray, hero, iki bölüm ve bir pin sahnesi. Kopyalayıp içini doldurun.</p></header>
+  <div class="tbl"><table>
+    <thead><tr><th>Parça</th><th>İşaretleme</th><th>Ne sağlar</th></tr></thead>
+    <tbody>
+      <tr><td>Bölüm</td><td><code>&lt;article class="chapter" id="b1" data-section data-title="…"&gt;</code></td><td>Bölüm takibi, ray sayacı, üst çubuk başlığı, hash eşitleme</td></tr>
+      <tr><td>Ray bağlantısı</td><td><code>&lt;a class="nav-link" href="#b1"&gt;</code></td><td>Etkin bölüm vurgusu, otomatik kaydırma</td></tr>
+      <tr><td>Sessiz bölüm</td><td><code>data-hoca="quiet"</code></td><td>Hoca evinde soluk bekler</td></tr>
+      <tr><td>Tema düğmesi</td><td><code>&lt;button data-theme-toggle&gt;</code></td><td>Açık/koyu, seçim saklanır</td></tr>
+      <tr><td>Hoca evi</td><td><code>&lt;div class="hoca-home" id="hoca-home"&gt;</code></td><td>Boşta Hoca'nın durduğu yer</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="chapter" id="g4" data-section data-title="Paket yapısı">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Paket yapısı</h2><p class="lead">Kaynak <code>src/</code>, derlenmiş çıktı <code>dist/</code>; dokümanlar ve başlangıç sayfası aynı paketle gelir.</p></header>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">hendese/</span><span class="code-lang">ağaç</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>src/css/   tokens · base · layout · components · blueprint · motion · hoca · print · fonts · index
+src/js/    core · math · nav · theme · hud · scenes · hoca · hoca-controller · widgets · strings · lang · index
+src/fonts/ IBM Plex Sans/Mono, Pixelify Sans (latin + latin-ext, OFL)
+dist/      hendese.css · hendese.inline.css · hendese.js (IIFE) · hendese.esm.js · head.js · icons.svg · fonts/
+docs/      bu site (aynı zamanda görsel test fikstürleri)
+starter/   kopyala-başla sayfası
+tools/     build.mjs · release.mjs
+tests/     unit (node:test) · e2e (Playwright + axe)</code></pre></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Katman</th><th>İçerik</th></tr></thead>
+    <tbody>
+      <tr><td><code>hendese.tokens</code></td><td>Renk, font, ölçü, hareket ve metin token'ları</td></tr>
+      <tr><td><code>hendese.base</code></td><td>Sıfırlama, temel tipografi, odak halkası, reduced-motion</td></tr>
+      <tr><td><code>hendese.layout</code></td><td>Ray, üst çubuk, cetveller, tuval, bölüm başlığı, hero</td></tr>
+      <tr><td><code>hendese.components</code></td><td>Kod, callout, tablo, adımlar, kontrol listesi, seçim grupları, kayıt, damga, saha defteri</td></tr>
+      <tr><td><code>hendese.blueprint</code></td><td>Pafta, çizim birimleri, etiketler, çizgi aileleri, antet, istasyon gezgini</td></tr>
+      <tr><td><code>hendese.motion</code></td><td>Pin/sticky sahneleri, HUD, intro, taslak, <code>[data-reveal]</code></td></tr>
+      <tr><td><code>hendese.hoca</code>, <code>hendese.print</code></td><td>Maskot katmanı; baskı kuralları</td></tr>
+    </tbody>
+  </table></div>
+  <p class="prose">Katmansız kendi CSS'iniz her katmanı ezer; seçici gücüyle yarışmanız gerekmez.</p>
+</article>
+
+<article class="chapter" id="g5" data-section data-title="Erişilebilirlik">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Erişilebilirlik sözleşmesi</h2><p class="lead">Paket bunları sağlar; sayfa yazarı da kendi payını üstlenir.</p></header>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Konu</th><th>Paket</th><th>Sayfa yazarı</th></tr></thead>
+    <tbody>
+      <tr><td>Hareket</td><td><code>prefers-reduced-motion</code>'da tüm geçişler kapanır, sahneler son halde durur</td><td>Kendi geçişlerini <code>html.motion</code> altına koyar</td></tr>
+      <tr><td>Çizimler</td><td>SVG'ler ve Hoca <code>aria-hidden</code></td><td>Çizimin anlamını metne, beat'e ya da şekil yazısına yazar</td></tr>
+      <tr><td>Klavye</td><td>Atlama bağlantısı, odak halkası, çekmecede odak tuzağı ve Esc, yerel radio grupları</td><td>Etkileşimi yerel öğelerle kurar (button, input)</td></tr>
+      <tr><td>Durum duyurusu</td><td><code>.readout</code> ve üst çubukta <code>aria-live</code></td><td>Seçim sonuçlarını <code>.readout</code>'a yazar</td></tr>
+      <tr><td>Dil</td><td>Arayüz metinleri varsayılan olarak İngilizce, Türkçe sayfalarda Türkçe; orada <code>englishStems</code> büyük harfli İngilizce kelimelere <code>lang="en"</code> verir</td><td>Sayfa dilini (<code>lang</code>) doğru verir</td></tr>
+      <tr><td>Kod</td><td><code>pre tabindex="0"</code> kaydırılabilir, kopyala düğmesi; diff işaretleri kopyaya girmez</td><td>Kod bloklarını <code>figure.code</code> ile yazar</td></tr>
+      <tr><td>Kontrast</td><td><code>prefers-contrast:more</code>'da kalem çizgileri mürekkebe döner; zorunlu renkte seçim ve ilerleme <code>Highlight</code> ile çizilir</td><td>Anlamı yalnız zemin rengine bağlamaz</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Standart</span><div class="co-body">Pakete eklenen her parçanın uyduğu kurallar (token, durum, etkileşim durumları, kap sorgusu, bitmiş hal, erişilebilirlik, dil) depodaki <code>STANDARD.md</code> dosyasındadır. Kuralların çoğunu testler denetler: <code>tests/unit/standard.test.mjs</code> bileşen CSS'inde ham değer (renk, yazı boyutu, boşluk, köşe, süre, katman) yazılmasını engeller ve her sınıfın bir sayfada gösterildiğini doğrular; e2e testleri her sayfayı açık ve koyu temada axe ile tarar. Hepsi <code>npm test</code> ile çalışır.</div></aside>
+</article>
+
+<article class="chapter" id="g6" data-section data-title="Sürümleme">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Sürümleme</h2><p class="lead">SemVer. Belgelenmiş sözleşmenin parçası olan her şey (sınıf, token, data özniteliği, id, olay, storage anahtarı, export) değişirse majör sürüm.</p></header>
+  <div class="tbl"><table>
+    <thead><tr><th>Değişiklik</th><th>Sürüm</th></tr></thead>
+    <tbody>
+      <tr><td>Görsel düzeltme, hata giderme</td><td><span class="pill pill-neutral">yama</span></td></tr>
+      <tr><td>Yeni token, bileşen, tarif, API üyesi</td><td><span class="pill pill-ok">minor</span></td></tr>
+      <tr><td>Ad değişikliği, kaldırma, son halin değişmesi</td><td><span class="pill s-accent" style="--c-soft:var(--accent-soft)">majör</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="prose">Sürüm <code>npm run release</code> ile çıkar: derle → test → CHANGELOG kontrolü → <code>npm pack</code> → zip → git etiketi. Sürüm notları <code>CHANGELOG.md</code>'de.</p>
+</article>
+
+</div>
+</main>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>Hendese.init();Hendese.start();document.getElementById('g-ver').textContent=Hendese.version;</script>
+</body>
+</html>

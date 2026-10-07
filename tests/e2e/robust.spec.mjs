@@ -43,6 +43,13 @@ test('card labels count colspan and skip header buttons', async ({ page }) => {
   expect(await page.$$eval('.tbl td', t => t.map(x => x.dataset.th))).toEqual(['Ad', 'Açık / Koyu', 'Not']);
 });
 
+test('a lang="tr" page gets the Turkish UI strings; an English page keeps English', async ({ page }) => {
+  await page.goto(url(ROBUST));
+  expect(await page.evaluate(() => Hendese.strings.intro)).toBe('Giriş');
+  await page.goto(url('docs/index'));
+  expect(await page.evaluate(() => Hendese.strings.intro)).toBe('Intro');
+});
+
 test('navigating to a target inside a section marks the section', async ({ page }) => {
   await page.goto(url(ROBUST));
   await page.evaluate(() => { Hendese.lockTo('inner'); Hendese.poke(); });

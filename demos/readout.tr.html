@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gösterge · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="readout.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="buttons.tr.html">Düğmeler</a>
+    <a class="nav-page" href="badges.tr.html">Rozetler</a>
+    <a class="nav-page" href="callout.tr.html">Callout</a>
+    <a class="nav-page" href="code-block.tr.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-gutter.tr.html">Diff şeridi</a>
+    <a class="nav-page" href="table.tr.html">Tablo</a>
+    <a class="nav-page" href="definition-list.tr.html">Tanım listesi</a>
+    <a class="nav-page" href="steps.tr.html">Adımlar</a>
+    <a class="nav-page" href="runbook.tr.html">Kontrol listesi</a>
+    <a class="nav-page" href="choice-groups.tr.html">Seçim grupları</a>
+    <a class="nav-page" href="readout.tr.html" aria-current="page">Gösterge</a>
+    <a class="nav-page" href="register.tr.html">Değişken kaydı</a>
+    <a class="nav-page" href="stamp.tr.html">Damga</a>
+    <a class="nav-page" href="survey-log.tr.html">Saha defteri</a>
+    <a class="nav-page" href="title-block.tr.html">Antet</a>
+    <a class="nav-page" href="form-fields.tr.html">Form alanları</a>
+    <a class="nav-page" href="checkboxes.tr.html">Onay, radyo ve kaydırıcı</a>
+    <a class="nav-page" href="tabs.tr.html">Sekmeler</a>
+    <a class="nav-page" href="dialog.tr.html">Diyalog</a>
+    <a class="nav-page" href="dimension-note.tr.html">Ölçü notu</a>
+    <a class="nav-page" href="empty-state.tr.html">Boş durum</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Canlı account</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="readout.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Gösterge<em>Hesabın sonucu, tek satırda.</em></h1>
+    <p class="intro"><code>.readout</code> bir seçimin, bir girdinin ya da bir hesabın sonucunu sol çizgili kısa bir satırda yazar. Kalın kısım sonucun kendisidir; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> ve <code>.s-sec</code> çizgiyi ve kalın metni duruma göre boyar.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.readout</code> · <code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code></dd><dt>Eski adlar</dt><dd><code>.readout.ok</code> · <code>.readout.bad</code> (1.0'a kadar çalışır)</dd><dt>Erişilebilirlik</dt><dd><code>aria-live="polite"</code></dd><dt>JS</dt><dd>Paket hesap yapmaz; metni sayfa betiği yazar</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Durumlar</h2><p class="lead">Nötr, başarılı, uyarı, hata ve güvenlik. Renk tek başına anlam taşımaz: sonucun kendisi kalın metinde de söylenir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · beş durum</span>
+  <div class="demo-view">
+<div class="readout"><p><b>3 kopya</b> çalışıyor; son dağıtım 14 dakika önce.</p></div>
+<div class="readout s-ok"><p><b>Göç tamam.</b> 1,2 milyon satır 4 dakika 10 saniyede taşındı.</p></div>
+<div class="readout s-warn"><p><b>Sınıra yakın.</b> Disk doluluğu %82; uyarı eşiği %80, alarm %90.</p></div>
+<div class="readout s-bad"><p><b>Bütçe aşıldı.</b> Ekim harcaması 4.820 $; sınır 4.500 $.</p></div>
+<div class="readout s-sec"><p><b>Anahtar 3 gün içinde dolacak.</b> <code>deploy-bot</code> erişim anahtarını yenileyin.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;3 kopya&lt;/<span class='k'>b</span>&gt; çalışıyor; son dağıtım 14 dakika önce.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-ok</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Göç tamam.&lt;/<span class='k'>b</span>&gt; 1,2 milyon satır 4 dakika 10 saniyede taşındı.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-warn</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Sınıra yakın.&lt;/<span class='k'>b</span>&gt; Disk doluluğu %82; uyarı eşiği %80, alarm %90.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Bütçe aşıldı.&lt;/<span class='k'>b</span>&gt; Ekim harcaması 4.820 $; sınır 4.500 $.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-sec</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Anahtar 3 gün içinde dolacak.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>code</span>&gt;deploy-bot&lt;/<span class='k'>code</span>&gt; erişim anahtarını yenileyin.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Gösterge bir paragraf kabıdır; içinde birden çok <code>&lt;p&gt;</code> olabilir ama iki satırı geçen açıklama bir uyarı kutusuna (<code>.co</code>) daha uygundur. Sol çizgi nötr durumda çizim rengindedir. <code>.s-warn</code> yeni: eskiden “sınıra yakın” için ayrı bir durum yoktu. Eski <code>.ok</code> ve <code>.bad</code> adları 1.0'a kadar aynı rengi verir.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Canlı account">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Canlı account</h2><p class="lead">Girdi değiştikçe metin yeniden yazılır. Üç örnek: depolama maliyeti, etiket kalıbı testi ve kopya kapasitesi.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · nesne deposu maliyet tahmini</span>
+  <div class="demo-view">
+<div id="gs-cost">
+  <fieldset class="choice is-seg">
+    <legend>Aylık veri</legend>
+    <label><input type="radio" name="gs-gb" value="500"><span>500 GB</span></label>
+    <label><input type="radio" name="gs-gb" value="2000" checked><span>2 TB</span></label>
+    <label><input type="radio" name="gs-gb" value="10000"><span>10 TB</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Saklama sınıfı</legend>
+    <label><input type="radio" name="gs-tier" value="standart" checked><span>standart <small>0,023 $/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="seyrek"><span>seyrek erişim <small>0,0125 $/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="arşiv"><span>arşiv <small>0,004 $/GB</small></span></label>
+  </fieldset>
+  <div class="readout" id="gs-cost-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-cost</span>"&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Aylık veri&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>500</span>"&gt;&lt;<span class='k'>span</span>&gt;500 GB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>2000</span>" checked&gt;&lt;<span class='k'>span</span>&gt;2 TB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>10000</span>"&gt;&lt;<span class='k'>span</span>&gt;10 TB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Saklama sınıfı&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>standart</span>" checked&gt;&lt;<span class='k'>span</span>&gt;standart &lt;<span class='k'>small</span>&gt;0,023 $/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>seyrek</span>"&gt;&lt;<span class='k'>span</span>&gt;seyrek erişim &lt;<span class='k'>small</span>&gt;0,0125 $/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>arşiv</span>"&gt;&lt;<span class='k'>span</span>&gt;arşiv &lt;<span class='k'>small</span>&gt;0,004 $/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-cost-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Hesaplanıyor…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · etiket kalıbı testi</span>
+  <div class="demo-view">
+<div id="gs-regex" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px">
+  <label class="chip" for="gs-pattern">Kalıp</label>
+  <label class="chip" for="gs-tag">Etiket</label>
+  <input id="gs-pattern" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <input id="gs-tag" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+</div>
+<div class="readout" id="gs-regex-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-regex</span>" style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-pattern</span>"&gt;Kalıp&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-tag</span>"&gt;Etiket&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-pattern</span>" class="<span class='s'>mono</span>" value="<span class='s'>^prod-[0-9a-f]{8}$</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-tag</span>" class="<span class='s'>mono</span>" value="<span class='s'>prod-3f9c2a1b</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-regex-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Hesaplanıyor…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · kapasite, tepe yüke karşı</span>
+  <div class="demo-view">
+<div id="gs-capacity" style="max-width:640px">
+  <label class="chip" for="gs-replica">Kopya sayısı: <output id="gs-replica-n" for="gs-replica">4</output></label>
+  <input id="gs-replica" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
+  <p class="figcap">Kopya başına 450 istek/sn · ölçülen tepe 1.800 istek/sn · hedef pay %25</p>
+</div>
+<div class="readout" id="gs-capacity-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-capacity</span>" style="<span class='s'>max-width:640px</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-replica</span>"&gt;Kopya sayısı: &lt;<span class='k'>output</span> id="<span class='s'>gs-replica-n</span>" for="<span class='s'>gs-replica</span>"&gt;4&lt;/<span class='k'>output</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-replica</span>" type="<span class='s'>range</span>" min="<span class='s'>1</span>" max="<span class='s'>12</span>" value="<span class='s'>4</span>" style="<span class='s'>display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;Kopya başına 450 istek/sn · ölçülen tepe 1.800 istek/sn · hedef pay %25&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-capacity-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Hesaplanıyor…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Hesabı paket yapmaz; sayfa betiği değeri okur, metni ve sınıfı yazar. Kapasite örneğinin betiği:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-replica'), out = document.getElementById('gs-capacity-out');
+function show() {
+  var cap = r.value * 450, need = 1800 * 1.25;
+  out.classList.toggle('s-ok', cap &gt;= need);
+  out.classList.toggle('s-warn', cap &gt;= 1800 &amp;&amp; cap &lt; need);   /* tepeyi karşılıyor, payı yok */
+  out.classList.toggle('s-bad', cap &lt; 1800);
+  out.innerHTML = '&lt;p&gt;&lt;b&gt;' + cap + ' istek/sn&lt;/b&gt; kapasite; gereken ' + need + '.&lt;/p&gt;';
+}
+r.addEventListener('input', show);
+show();</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Bağlam içinde</h2><p class="lead">Gösterge bir kartın altında, koyu bir panelde ya da dar bir sütunda aynı şekilde durur; yalnızca metni kısalır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · kart altı, önbellek isabeti</span>
+  <div class="demo-view">
+<div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:460px">
+  <p class="chip"><span lang="en">cache-redis</span> · eu-west-1</p>
+  <p style="margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)">Son 1 saatte 2,4 milyon okuma, 2,21 milyon isabet.</p>
+  <div class="readout s-ok"><p><b>%92,1 isabet</b> · hedef %90'ın üstünde.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:460px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;cache-redis&lt;/<span class='k'>span</span>&gt; · eu-west-1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;Son 1 saatte 2,4 milyon okuma, 2,21 milyon isabet.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout s-ok</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;%92,1 isabet&lt;/<span class='k'>b</span>&gt; · hedef %90'ın üstünde.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · koyu panel, DNS yayılımı</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:16px 18px">
+  <p class="chip"><span lang="en">api.example.com</span> · A kaydı</p>
+  <div class="readout"><p><b>6 / 8</b> çözümleyici yeni adresi döndürüyor; kalan ikisinde TTL 212 saniye.</p></div>
+  <div class="readout s-bad"><p><b>ns-2 yanıt vermiyor.</b> Son başarılı sorgu 09:41.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:16px 18px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;api.example.com&lt;/<span class='k'>span</span>&gt; · A kaydı&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;6 / 8&lt;/<span class='k'>b</span>&gt; çözümleyici yeni adresi döndürüyor; kalan ikisinde TTL 212 saniye.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;ns-2 yanıt vermiyor.&lt;/<span class='k'>b</span>&gt; Son başarılı sorgu 09:41.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · dar sütun</span>
+  <div class="demo-view">
+<div style="max-width:260px">
+  <div class="readout"><p><b>12 işçi</b> · kuyrukta 340 iş, tahmini boşalma 6 dk.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:260px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;12 işçi&lt;/<span class='k'>b</span>&gt; · kuyrukta 340 iş, tahmini boşalma 6 dk.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Yap / yapma</h2><p class="lead">Önce sonuç, sonra gerekçe. Durumu yalnızca renk söylüyorsa gösterge eksiktir.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · sonuç kalın, gerekçe kısa</span>
+  <div class="demo-view">
+<div class="readout s-bad"><p><b>Kalıp eşleşmiyor.</b> Etiket sekiz değil yedi onaltılık hane içeriyor.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Kalıp eşleşmiyor.&lt;/<span class='k'>b</span>&gt; Etiket sekiz değil yedi onaltılık hane içeriyor.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · yalnızca color</span>
+  <div class="demo-view">
+<div class="readout s-bad"><p>Test sonucu yukarıda belirtilen kurallara göre değerlendirilmiştir.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;Test sonucu yukarıda belirtilen kurallara göre değerlendirilmiştir.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Canlı güncellenen göstergeye <code>aria-live="polite"</code> verin; ekran okuyucu yazmayı bitirince değişikliği okur. Durağan bir göstergede gerekmez. Her tuşta yeniden yazılan bir göstergede metni kısa tutun: okuyucu her seferinde tümünü duyar.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="choice-groups.tr.html" rel="prev"><small>Önceki · Bileşenler</small>Seçim grupları</a><a href="register.tr.html" rel="next"><small>Sonraki · Bileşenler</small>Değişken kaydı</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* depolama maliyeti */
+(function () {
+  var box = document.getElementById('gs-cost'), out = document.getElementById('gs-cost-out');
+  var fiyat = { standart: 0.023, seyrek: 0.0125, 'arşiv': 0.004 };
+  function show() {
+    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-tier"]:checked').value;
+    var tl = gb * fiyat[s], over = tl > 150;
+    out.classList.toggle('s-bad', over);
+    out.innerHTML = '<p><b>' + tl.toFixed(2).replace('.', ',') + ' $ / ay</b> · ' + gb.toLocaleString('tr-TR') + ' GB, ' + s + ' sınıf.' + (over ? ' Ekip bütçesi 150 $; arşiv sınıfını düşünün.' : '') + '</p>';
+  }
+  box.addEventListener('change', show); show();
+})();
+/* düzenli ifade testi */
+(function () {
+  var k = document.getElementById('gs-pattern'), e = document.getElementById('gs-tag'), out = document.getElementById('gs-regex-out');
+  function show() {
+    var re;
+    try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Kalıp geçersiz.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
+    var ok = re.test(e.value);
+    out.className = 'readout ' + (ok ? 's-ok' : 's-bad');
+    out.innerHTML = ok ? '<p><b>Eşleşiyor.</b> Bu etiket dağıtımı tetikler.</p>' : '<p><b>Eşleşmiyor.</b> İmaj kayda düşer ama kümeye inmez.</p>';
+  }
+  k.addEventListener('input', show); e.addEventListener('input', show); show();
+})();
+/* kapasite */
+(function () {
+  var r = document.getElementById('gs-replica'), n = document.getElementById('gs-replica-n'), out = document.getElementById('gs-capacity-out');
+  function show() {
+    var cap = r.value * 450, need = 1800 * 1.25, ok = cap >= need, tight = !ok && cap >= 1800;
+    n.textContent = r.value;
+    out.classList.toggle('s-ok', ok);
+    out.classList.toggle('s-warn', tight);
+    out.classList.toggle('s-bad', !ok && !tight);
+    out.innerHTML = '<p><b>' + cap.toLocaleString('tr-TR') + ' istek/sn</b> kapasite; gereken ' + need.toLocaleString('tr-TR') + '. ' +
+      (ok ? 'Tepe yükte %' + Math.round(100 * 1800 / cap) + ' doluluk.' : tight ? 'Tepe karşılanıyor ama %25 pay yok; ' + Math.ceil(need / 450) + ' kopya önerilir.' : 'En az ' + Math.ceil(need / 450) + ' kopya gerekir.') + '</p>';
+  }
+  r.addEventListener('input', show); show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

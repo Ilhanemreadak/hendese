@@ -34,6 +34,7 @@ Node 21 or newer is required.
 - **Finished state:** with reduced motion, below 1100 px, in print and without JavaScript, the page must read completely.
 - **Accessibility is part of done:** keyboard use works, focus stays visible, and axe reports no serious or critical issues in light and dark themes.
 - **Comments and strings:** code comments are written in English. User-facing default strings live in `src/js/strings.js`.
+- **Two languages:** every docs, demo and starter page exists in English and Turkish (`docs/<page>.tr.html`, `demos/_src/tr/<name>.html`, `starter/index.tr.html`). Change both; `tests/unit/i18n.test.mjs` fails when their markup differs. If you cannot write one of the languages, say so in the PR and a maintainer will translate it.
 - **Build output:** `dist/` and `demos/*.html` are committed. Run `npm run build` and commit them with your change; CI fails if they are stale.
 - **Changelog:** add an entry under `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) for user-visible changes.
 

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yeni sayfa</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Sayfa adı</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="#top">Sayfa adı<small>Alt başlık</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Bölümler</div>
+    <a class="nav-link" href="#b1"><span class="num">01</span><span>Büyük resim</span></a>
+    <a class="nav-link" href="#b2"><span class="num">02</span><span>Ayrıntılar</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Proje · Belge</p>
+    <h1>Sayfa başlığı<em>Bir cümlelik alt başlık.</em></h1>
+    <p class="intro">Bu sayfa Hendese ile kurulmuş boş bir iskelettir. Bölümleri, rayı ve örnek sahneyi kendi içeriğinizle değiştirin.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Proje adı</dd></div>
+    <div><dt>Sürüm</dt><dd>1.0</dd></div>
+    <div><dt>Tarih</dt><dd>gg.aa.yyyy</dd></div>
+  </dl>
+</section>
+
+<article class="chapter" id="b1" data-section data-title="Büyük resim">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Büyük resim</h2><p class="lead">Bölümün ana fikri tek cümlede.</p></header>
+  <div class="pin" id="b1-pin" style="--track:220vh">
+    <div class="route-stage">
+      <div class="frame">
+        <div class="frame-bg" aria-hidden="true"></div>
+        <div class="f-head"><p class="chip">01 · Şekil 1</p><p class="fig-cap">Kısa şekil başlığı</p></div>
+        <div class="f-side"><ol class="beats"><li class="on"><b>Adım</b>Şeklin anlattığı şey metin olarak da burada.</li></ol></div>
+        <div class="f-map">
+          <div class="drawing" data-aw="640" data-ah="360" style="--aw:640;--ah:360">
+            <svg viewBox="0 0 640 360" aria-hidden="true">
+              <rect class="ln-pencil" x="40" y="60" width="560" height="200"/>
+              <rect class="ink" pathLength="1" x="40" y="60" width="560" height="200" style="stroke:var(--draw);stroke-width:2;stroke-dasharray:1"/>
+              <path class="dim" d="M40 290v14M600 290v14M40 297h560"/>
+              <text class="dim-t" x="320" y="320" text-anchor="middle">560 birim</text>
+            </svg>
+            <p class="dl callout" style="--x:60;--y:80;--w:200"><b>Kutu</b>kalem → mürekkep</p>
+          </div>
+        </div>
+        <div class="f-foot"><p class="figcap"><b>Şekil 1.</b> Hareket kapalıyken çerçeve tamamlanmış görünür.</p></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="chapter" id="b2" data-section data-title="Ayrıntılar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Ayrıntılar</h2><p class="lead">Callout, kod ve tablo örnekleri.</p></header>
+  <aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body">Bileşen kataloğu için <code>docs/components.html</code>'e bakın.</div></aside>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">ornek.sh</span><span class="code-lang">sh</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>echo <span class="s">"merhaba"</span></code></pre></figure>
+</article>
+
+</div>
+</main>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* Sample pin scene: the box starts as a pencil sketch, scrolling lets the ink complete the frame, and Hoca speaks at the end. */
+var ink = Hendese.$('#b1-pin .ink');
+Hendese.pinScene({
+  el: '#b1-pin', chap: '01 · Büyük resim',
+  still: { x: 520, y: 252, pose: 'happy', face: -1, bubble: 'Son hal her zaman doğru.' },
+  reset: function () { ink.style.strokeDashoffset = ''; },
+  render: function (p, api) {
+    var d = api.seg(p, .1, .8);
+    ink.style.strokeDashoffset = (1 - d).toFixed(4);
+    return { hoca: { x: api.lerp(80, 520, d), y: 252, pose: d < 1 ? (Math.floor(api.lerp(80, 520, d) / 16) % 2 ? 'walkA' : 'walkB') : 'happy', face: d < 1 ? 1 : -1, bubble: d >= 1 ? 'Son hal her zaman doğru.' : null } };
+  }
+});
+Hendese.start();
+</script>
+</body>
+</html>

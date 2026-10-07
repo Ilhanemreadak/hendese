@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parça galerisi · Hendese</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group">Temel</div>
+    <a class="nav-page" href="colors.tr.html">Renkler</a>
+    <a class="nav-page" href="typography.tr.html">Tipografi</a>
+    <a class="nav-page" href="scale-and-motion.tr.html">Ölçü ve hareket</a>
+    <a class="nav-page" href="icons.tr.html">İkonlar</a>
+    <a class="nav-page" href="page-shell.tr.html">Sayfa iskeleti</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="buttons.tr.html">Düğmeler</a>
+    <a class="nav-page" href="badges.tr.html">Rozetler</a>
+    <a class="nav-page" href="callout.tr.html">Callout</a>
+    <a class="nav-page" href="code-block.tr.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-gutter.tr.html">Diff şeridi</a>
+    <a class="nav-page" href="table.tr.html">Tablo</a>
+    <a class="nav-page" href="definition-list.tr.html">Tanım listesi</a>
+    <a class="nav-page" href="steps.tr.html">Adımlar</a>
+    <a class="nav-page" href="runbook.tr.html">Kontrol listesi</a>
+    <a class="nav-page" href="choice-groups.tr.html">Seçim grupları</a>
+    <a class="nav-page" href="readout.tr.html">Gösterge</a>
+    <a class="nav-page" href="register.tr.html">Değişken kaydı</a>
+    <a class="nav-page" href="stamp.tr.html">Damga</a>
+    <a class="nav-page" href="survey-log.tr.html">Saha defteri</a>
+    <a class="nav-page" href="title-block.tr.html">Antet</a>
+    <a class="nav-page" href="form-fields.tr.html">Form alanları</a>
+    <a class="nav-page" href="checkboxes.tr.html">Onay, radyo ve kaydırıcı</a>
+    <a class="nav-page" href="tabs.tr.html">Sekmeler</a>
+    <a class="nav-page" href="dialog.tr.html">Diyalog</a>
+    <a class="nav-page" href="dimension-note.tr.html">Ölçü notu</a>
+    <a class="nav-page" href="empty-state.tr.html">Boş durum</a>
+    <div class="nav-group"><span lang="en">Blueprint</span></div>
+    <a class="nav-page" href="sheet.tr.html">Pafta</a>
+    <a class="nav-page" href="drawing-units.tr.html">Çizim birimleri</a>
+    <a class="nav-page" href="line-families.tr.html">Çizgi aileleri</a>
+    <a class="nav-page" href="station-explorer.tr.html">İstasyon gezgini</a>
+    <a class="nav-page" href="isometric-box.tr.html">İzometrik kutu</a>
+    <a class="nav-page" href="measuring-tools.tr.html">Ölçü aletleri</a>
+    <a class="nav-page" href="track-and-switch.tr.html">Hat ve makas</a>
+    <a class="nav-page" href="fault-panel.tr.html">Arıza panosu</a>
+    <a class="nav-page" href="dark-scene.tr.html">Koyu sahne</a>
+    <div class="nav-group">Hareket</div>
+    <a class="nav-page" href="pin-scene.tr.html">Pin sahnesi</a>
+    <a class="nav-page" href="sticky-narrative.tr.html">Sticky anlatım</a>
+    <a class="nav-page" href="fig-scene.tr.html">Fig sahnesi</a>
+    <a class="nav-page" href="hud.tr.html">HUD</a>
+    <a class="nav-page" href="sketch-and-reveal.tr.html">Taslak ve belirme</a>
+    <a class="nav-page" href="narrow-variant.tr.html">Dar varyant</a>
+    <div class="nav-group">Hoca</div>
+    <a class="nav-page" href="hoca-poses.tr.html">Hoca · pozlar</a>
+    <a class="nav-page" href="hoca-behavior.tr.html">Hoca · davranış</a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="index.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Parçalar</p>
+    <h1>Parça galerisi<em>Her parça kendi sayfasında.</em></h1>
+    <p class="intro">43 parça; her sayfada varyantlar, durumlar, gerçek bir kullanım bağlamı ve yapılmaması gerekenler. Örneklerin altındaki işaretleme kopyalanıp kullanılabilir.</p>
+  </div>
+</section>
+
+<article class="chapter" id="g1" data-section data-title="Temel">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Temel</h2></header>
+  <ul class="parts">
+    <li><a href="colors.tr.html"><b>Renkler</b><span>Yüzey, mürekkep, vurgu, durum, servis ve kod token'ları; <code>light-dark()</code>, tek renkle tema, ezme, yüksek kontrast ve zorunlu renk.</span></a></li>
+    <li><a href="typography.tr.html"><b>Tipografi</b><span>Üç aile, <code>--fs-*</code> yazı ölçeği, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.</span></a></li>
+    <li><a href="scale-and-motion.tr.html"><b>Ölçü ve hareket</b><span><code>--sp-*</code> boşluk cetveli, <code>--r-*</code>, kabuk ölçüleri, <code>--z-*</code>, tek hareket takımı (<code>--dur-1..5</code>, üç eğri) ve kalkan takma adlar; reduced-motion davranışı.</span></a></li>
+    <li><a href="icons.tr.html"><b>İkonlar</b><span>Sprite, boyutlar, bileşen içi kullanım, yeni ikon ekleme ve <code>aria</code> kuralları.</span></a></li>
+    <li><a href="page-shell.tr.html"><b>Sayfa iskeleti</b><span>Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code>, <code>col</code> kabı ve tam iskelet.</span></a></li>
+  </ul>
+</article>
+
+<article class="chapter" id="g2" data-section data-title="Bileşenler">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Bileşenler</h2></header>
+  <ul class="parts">
+    <li><a href="buttons.tr.html"><b>Düğmeler</b><span><code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; durumlar ve araç çubukları.</span></a></li>
+    <li><a href="badges.tr.html"><b>Rozetler</b><span><code>.pill</code>, <code>.state</code>, <code>.chip</code>; <code>.s-*</code> durum ve servis renkleri, tablo hücresi, başlık ve liste içinde.</span></a></li>
+    <li><a href="callout.tr.html"><b>Callout</b><span>Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.</span></a></li>
+    <li><a href="code-block.tr.html"><b>Kod bloğu</b><span><code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.</span></a></li>
+    <li><a href="diff-gutter.tr.html"><b>Diff şeridi</b><span><code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; ayar değişikliği, bağımlılık yükseltmesi, veritabanı göçü.</span></a></li>
+    <li><a href="table.tr.html"><b>Tablo</b><span><code>.tbl</code>, <code>.tbl.wide</code>; hücrede kod, rozet ve sayı, dar ekran etiketleri.</span></a></li>
+    <li><a href="definition-list.tr.html"><b>Tanım listesi</b><span><code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.</span></a></li>
+    <li><a href="steps.tr.html"><b>Adımlar</b><span><code>ol.steps</code> ve <code>.check</code>; işe başlama, olay müdahalesi ve sürüm prosedürü.</span></a></li>
+    <li><a href="runbook.tr.html"><b>Kontrol listesi</b><span><code>.runbook[data-store]</code>, <code>hendese:runbook</code> olayı; sürüm, olay ve işe başlama listeleri.</span></a></li>
+    <li><a href="choice-groups.tr.html"><b>Seçim grupları</b><span><code>.choice</code> çipleri, <code>.choice.is-seg</code> segmentleri; klavye ve canlı bir yapılandırıcı.</span></a></li>
+    <li><a href="readout.tr.html"><b>Gösterge</b><span><code>.readout</code> ve <code>.s-*</code> durumları; maliyet, düzenli ifade ve kapasite hesapları.</span></a></li>
+    <li><a href="register.tr.html"><b>Değişken kaydı</b><span><code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; adım adım ilerleyen ortam değişkenleri.</span></a></li>
+    <li><a href="stamp.tr.html"><b>Damga</b><span><code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; onay, sahiplik ve sürüm damgaları.</span></a></li>
+    <li><a href="survey-log.tr.html"><b>Saha defteri</b><span><code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.</span></a></li>
+    <li><a href="title-block.tr.html"><b>Antet</b><span><code>dl.titleblock</code>, <code>.tb-head</code>; tek başına, bir şekle bağlı ve sayfa başında.</span></a></li>
+    <li><a href="form-fields.tr.html"><b>Form alanları</b><span><code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-unit</code>, <code>.field-row</code>; zorunlu, geçersiz ve devre dışı alanlar.</span></a></li>
+    <li><a href="checkboxes.tr.html"><b>Onay, radyo ve kaydırıcı</b><span><code>.field-check</code> onay kutusu ve radyo, kaydırıcı + <code>&lt;output&gt;</code>; çiplerle farkı.</span></a></li>
+    <li><a href="tabs.tr.html"><b>Sekmeler</b><span><code>.tabs[data-tabs]</code>, <code>role="tab|tabpanel"</code>, klavye, <code>hendese:tab</code> olayı; yapılandırma biçimleri ve ortam ayarları.</span></a></li>
+    <li><a href="dialog.tr.html"><b>Diyalog</b><span><code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; dönen değer, adı yazarak silme onayı, antetli ve kayıtlı diyalog.</span></a></li>
+    <li><a href="dimension-note.tr.html"><b>Ölçü notu</b><span><code>popovertarget</code> + <code>.dim-tip[popover]</code>; metin içinde, alan başlığında, tablo başlığında; konum ve kapanma.</span></a></li>
+    <li><a href="empty-state.tr.html"><b>Boş durum</b><span><code>.empty</code>; tablo yerinde, pafta ve koyu sahne içinde; boş, yükleniyor ve hata durumlarının ayrımı.</span></a></li>
+  </ul>
+</article>
+
+<article class="chapter" id="g3" data-section data-title="Blueprint">
+  <header class="ch-head"><p class="ch-num">03</p><h2><span lang="en">Blueprint</span></h2></header>
+  <ul class="parts">
+    <li><a href="sheet.tr.html"><b>Pafta</b><span><code>.frame</code>, <code>.fig-sheet</code>, <code>.sheet</code>; başlık, yan sütun, harita ve alt alan.</span></a></li>
+    <li><a href="drawing-units.tr.html"><b>Çizim birimleri</b><span><code>.drawing</code>, <code>--aw</code>/<code>--ah</code>/<code>--u</code>, <code>.dl</code>, <code>.dim</code>, <code>.callout</code>, <code>.state</code>, <code>.oneliner</code>.</span></a></li>
+    <li><a href="line-families.tr.html"><b>Çizgi aileleri</b><span><code>.ln-*</code> çizgi sınıfları, <code>.pencil</code>, <code>.fill-*</code> dolguları; lejant ve anlamlı kullanım.</span></a></li>
+    <li><a href="station-explorer.tr.html"><b>İstasyon gezgini</b><span><code>[data-explorer]</code>, <code>.station</code>, <code>.st-detail</code> paneli ve <code>hendese:explore</code> olayı.</span></a></li>
+    <li><a href="isometric-box.tr.html"><b>İzometrik kutu</b><span>Ön yüz + iki paralelkenar; sunucu rafı, depolama katmanları, kuyruk ve düğüm havuzu.</span></a></li>
+    <li><a href="measuring-tools.tr.html"><b>Ölçü aletleri</b><span>Regex kumpası, kadran ve doğrusal ölçer; istenen ile gerçek arasındaki fark.</span></a></li>
+    <li><a href="track-and-switch.tr.html"><b>Hat ve makas</b><span>Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.</span></a></li>
+    <li><a href="fault-panel.tr.html"><b>Arıza panosu</b><span>Faz şeridi, bölge parantezleri, numaralı lambalar; istek yolu, servis sağlık matrisi, gece işi.</span></a></li>
+    <li><a href="dark-scene.tr.html"><b>Koyu sahne</b><span><code>.scene-dark</code> ve <code>.scene-light</code>: kapsayıcı içinde token dönüşümü ve otomatik zemin; çizimler, pafta ve bileşenler.</span></a></li>
+  </ul>
+</article>
+
+<article class="chapter" id="g4" data-section data-title="Hareket">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Hareket</h2></header>
+  <ul class="parts">
+    <li><a href="pin-scene.tr.html"><b>Pin sahnesi</b><span><code>.pin</code> + <code>Hendese.pinScene()</code>: yapışkan pafta, kaydırmaya bağlı çizim, HUD ve Hoca talebi.</span></a></li>
+    <li><a href="sticky-narrative.tr.html"><b>Sticky anlatım</b><span><code>.sticky</code> + <code>Hendese.stickyScene()</code>: yapışkan şekil, <code>[data-beat]</code> adımları, <code>.on</code> / <code>.past</code>.</span></a></li>
+    <li><a href="fig-scene.tr.html"><b>Fig sahnesi</b><span><code>.fig-sheet</code> + <code>Hendese.figScene()</code>: etkileşimli çizim, sonuç satırı, zamanlı vuruş, <code>still</code> fonksiyonu.</span></a></li>
+    <li><a href="hud.tr.html"><b>HUD</b><span><code>#hud</code> + <code>.hud-slot</code>: sahnelerin paylaştığı sabit gösterge, serbest alanlar, ilerleme çubuğu.</span></a></li>
+    <li><a href="sketch-and-reveal.tr.html"><b>Taslak ve belirme</b><span><code>.sketch-pending</code> → <code>.sketch</code> kalem taslağı ve saf CSS <code>[data-reveal]</code> / <code>[data-reveal="draw"]</code>.</span></a></li>
+    <li><a href="narrow-variant.tr.html"><b>Dar varyant</b><span>Paketteki dar varyant: <code>fig</code> kabı, <code>--naw</code> / <code>--nah</code>, <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>; <code>api.aw</code> ile koordinat seçimi.</span></a></li>
+  </ul>
+</article>
+
+<article class="chapter" id="g5" data-section data-title="Hoca">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Hoca</h2></header>
+  <ul class="parts">
+    <li><a href="hoca-poses.tr.html"><b>Hoca · pozlar</b><span>Karakter ölçüleri, 21 pozun galerisi, <code>place()</code> oyun alanı ve balon kuralları.</span></a></li>
+    <li><a href="hoca-behavior.tr.html"><b>Hoca · davranış</b><span>Kontrolcü: ev, sahne talebi, yürüme / sönme devri, <code>data-hoca="quiet"</code>, durgun kopyalar, <code>Hendese.hoca.dismiss()</code>.</span></a></li>
+  </ul>
+</article>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

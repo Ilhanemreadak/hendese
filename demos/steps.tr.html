@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adımlar · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="steps.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group">Bileşenler</div>
+    <a class="nav-page" href="buttons.tr.html">Düğmeler</a>
+    <a class="nav-page" href="badges.tr.html">Rozetler</a>
+    <a class="nav-page" href="callout.tr.html">Callout</a>
+    <a class="nav-page" href="code-block.tr.html">Kod bloğu</a>
+    <a class="nav-page" href="diff-gutter.tr.html">Diff şeridi</a>
+    <a class="nav-page" href="table.tr.html">Tablo</a>
+    <a class="nav-page" href="definition-list.tr.html">Tanım listesi</a>
+    <a class="nav-page" href="steps.tr.html" aria-current="page">Adımlar</a>
+    <a class="nav-page" href="runbook.tr.html">Kontrol listesi</a>
+    <a class="nav-page" href="choice-groups.tr.html">Seçim grupları</a>
+    <a class="nav-page" href="readout.tr.html">Gösterge</a>
+    <a class="nav-page" href="register.tr.html">Değişken kaydı</a>
+    <a class="nav-page" href="stamp.tr.html">Damga</a>
+    <a class="nav-page" href="survey-log.tr.html">Saha defteri</a>
+    <a class="nav-page" href="title-block.tr.html">Antet</a>
+    <a class="nav-page" href="form-fields.tr.html">Form alanları</a>
+    <a class="nav-page" href="checkboxes.tr.html">Onay, radyo ve kaydırıcı</a>
+    <a class="nav-page" href="tabs.tr.html">Sekmeler</a>
+    <a class="nav-page" href="dialog.tr.html">Diyalog</a>
+    <a class="nav-page" href="dimension-note.tr.html">Ölçü notu</a>
+    <a class="nav-page" href="empty-state.tr.html">Boş durum</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Varyantlar</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="steps.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Adımlar<em>Sıralı iş için numaralı kartlar.</em></h1>
+    <p class="intro"><code>ol.steps</code> her maddeyi numaralı bir karta çevirir. Numara CSS sayacıyla iki haneli basılır. Her adım bir başlık, kısa bir açıklama ve isteğe bağlı bir kontrol satırı taşır: okur adımı bitirdiğini neye bakarak anlayacağını bilir.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.steps</code> · <code>.check</code> · <code>.s-warn</code> · <code>.s-bad</code></dd><dt>Durum</dt><dd><code>aria-current="step"</code> · <code>data-state="done|blocked"</code> · <code>start</code></dd><dt>Yapı</dt><dd><code>ol.steps &gt; li &gt; h3 + p + p.check</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Bir adım üç satırdır: ne yapılacak, nasıl yapılacak, bittiği nasıl anlaşılacak. Yalnızca başlık zorunludur.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · tek adım</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Okuma kopyasını yükseltin</h3>
+    <p>Önce <code>orders-replica</code> örneğini yeni sürüme alın; birincil örnek bu sırada yazmaya devam eder.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: kopyanın gecikmesi 5 saniyenin altına indi.</span></p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Okuma kopyasını yükseltin&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Önce &lt;<span class='k'>code</span>&gt;orders-replica&lt;/<span class='k'>code</span>&gt; örneğini yeni sürüme alın; birincil örnek bu sırada yazmaya devam eder.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: kopyanın gecikmesi 5 saniyenin altına indi.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Parça</th><th>Görev</th></tr></thead>
+  <tbody>
+    <tr><td><code>li::before</code></td><td>Numara rozeti; <code>01</code>, <code>02</code>… liste sayacı <code>list-item</code>'dan, yani <code>start</code>'ı izler</td></tr>
+    <tr><td><code>h3</code></td><td>Emir kipinde, tek eylem</td></tr>
+    <tr><td><code>p</code></td><td>Nasıl yapılacağı; 72 karakterde durur</td></tr>
+    <tr><td><code>p.check</code></td><td>Bitiş ölçütü; yeşil, onay ikonlu</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Varyantlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Varyantlar</h2><p class="lead">Adım yalnızca bir başlık kadar kısa ya da kod ve not taşıyacak kadar uzun olabilir. Numaralamayı ortadan sürdürmek için start özniteliği yeter.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · yalnız başlıklar</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li><h3>Dalı açın</h3></li>
+  <li><h3>Değişikliği yapın</h3></li>
+  <li><h3>Birleştirme isteği gönderin</h3></li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Dalı açın&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Değişikliği yapın&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Birleştirme isteği gönderin&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · kod ve not taşıyan adım</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Göçü kuru çalıştırın</h3>
+    <p>Göç aracı değişiklikleri uygulamadan önce SQL'i yazdırır.</p>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">migrate</span> -path ./migrations -database <span class="s">"$DATABASE_URL"</span> up --dry-run</code></pre></figure>
+    <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Kilit</span><div class="co-body"><p>Çıktıda <code>ACCESS EXCLUSIVE</code> görüyorsanız göçü bakım penceresine bırakın.</p></div></div>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: çıktıda yalnızca beklenen iki ifade var.</span></p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Göçü kuru çalıştırın&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Göç aracı değişiklikleri uygulamadan önce SQL'i yazdırır.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kopyala&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;migrate&lt;/<span class='k'>span</span>&gt; -path ./migrations -database &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"$DATABASE_URL"&lt;/<span class='k'>span</span>&gt; up --dry-run&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>co co-warn</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Kilit&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Çıktıda &lt;<span class='k'>code</span>&gt;ACCESS EXCLUSIVE&lt;/<span class='k'>code</span>&gt; görüyorsanız göçü bakım penceresine bırakın.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: çıktıda yalnızca beklenen iki ifade var.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · numaralamayı sürdürmek</span>
+  <div class="demo-view">
+<ol class="steps" start="4">
+  <li>
+    <h3>Trafiği yeni hedefe verin</h3>
+    <p>Yük dengeleyicide ağırlığı <code>100 / 0</code> yapın.</p>
+  </li>
+  <li>
+    <h3>Eski hedefi kapatın</h3>
+    <p>Bir saat hata görülmezse eski hedef grubunu silin.</p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>" start="<span class='s'>4</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Trafiği yeni hedefe verin&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Yük dengeleyicide ağırlığı &lt;<span class='k'>code</span>&gt;100 / 0&lt;/<span class='k'>code</span>&gt; yapın.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Eski hedefi kapatın&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Bir saat hata görülmezse eski hedef grubunu silin.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Görünen numara tarayıcının liste sayacından (<code>list-item</code>) gelir; <code>start="4"</code> hem ekran okuyucuya hem rozete yeter. Eski sürümlerde gereken <code>counter-reset:s 3</code> satırını silin.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Bir adım şimdiki, tamamlanmış ya da engelli olabilir. Durum ARIA ile (aria-current) ya da data-state ile verilir ve her zaman metinle de söylenir; renk yalnız pekiştirir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · tamamlandı, şimdiki, engelli</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li data-state="done">
+    <h3>Yedeği alın <span class="visually-hidden">(tamamlandı)</span></h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: yedek kovada, boyutu 4,2 GB.</span></p>
+  </li>
+  <li aria-current="step">
+    <h3>Göçü çalıştırın <span class="state s-accent">şimdi</span></h3>
+    <p><code>migrate up</code> ile <code>0043</code> numaralı göçü uygulayın.</p>
+    <p class="check s-warn"><svg><use href="#i-warn"/></svg><span>Kontrol: tablo kilidi 30 saniyeyi geçerse durdurun.</span></p>
+  </li>
+  <li data-state="blocked">
+    <h3>Okuma kopyasını yükseltin <span class="state s-bad">engelli</span></h3>
+    <p>Kopya gecikmesi 5 dakikanın üstünde; göç bitmeden başlamayın.</p>
+    <p class="check s-bad"><svg><use href="#i-x"/></svg><span>Durdurma ölçütü: gecikme artmaya devam ediyorsa geri alın.</span></p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>done</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Yedeği alın &lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;(tamamlandı)&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: yedek kovada, boyutu 4,2 GB.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> aria-current="<span class='s'>step</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Göçü çalıştırın &lt;<span class='k'>span</span> class="<span class='s'>state s-accent</span>"&gt;şimdi&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;migrate up&lt;/<span class='k'>code</span>&gt; ile &lt;<span class='k'>code</span>&gt;0043&lt;/<span class='k'>code</span>&gt; numaralı göçü uygulayın.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check s-warn</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: tablo kilidi 30 saniyeyi geçerse durdurun.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>blocked</span>"&gt;
+    &lt;<span class='k'>h3</span>&gt;Okuma kopyasını yükseltin &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;engelli&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Kopya gecikmesi 5 dakikanın üstünde; göç bitmeden başlamayın.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check s-bad</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Durdurma ölçütü: gecikme artmaya devam ediyorsa geri alın.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <tbody>
+    <tr><td>Şimdiki</td><td><code>aria-current="step"</code></td><td>2px çizim kenarı; ekran okuyucu “şimdiki adım” der</td></tr>
+    <tr><td>Tamamlandı</td><td><code>data-state="done"</code> + metin</td><td>Numara rozeti yeşil</td></tr>
+    <tr><td>Engelli</td><td><code>data-state="blocked"</code> + metin</td><td>Kesikli kenar, rozet kırmızı</td></tr>
+    <tr><td>Kontrol satırı</td><td><code>.check.s-warn</code> · <code>.check.s-bad</code></td><td>Uyarı ya da durdurma ölçütü; ikonu kendiniz seçin</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>data-state</code> ekran okuyucuya ulaşmaz. Durumu ya görünür yazın (<code>.state</code> etiketi) ya da <code>.visually-hidden</code> bir metinle başlığa ekleyin; yukarıdaki ilk adım ikinci yolu kullanır. Durumu bir betik değiştiriyorsa özniteliği ve metni birlikte güncelleyin.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · numaralama sürer, durum da sürer</span>
+  <div class="demo-view">
+<ol class="steps" start="7">
+  <li data-state="done"><h3>Trafiği yeni hedefe verin <span class="state s-ok">bitti</span></h3></li>
+  <li aria-current="step"><h3>Bir saat hata oranını izleyin <span class="visually-hidden">(şimdiki adım)</span></h3></li>
+  <li><h3>Eski hedefi kapatın</h3></li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>" start="<span class='s'>7</span>"&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>done</span>"&gt;&lt;<span class='k'>h3</span>&gt;Trafiği yeni hedefe verin &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;bitti&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> aria-current="<span class='s'>step</span>"&gt;&lt;<span class='k'>h3</span>&gt;Bir saat hata oranını izleyin &lt;<span class='k'>span</span> class="<span class='s'>visually-hidden</span>"&gt;(şimdiki adım)&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Eski hedefi kapatın&lt;/<span class='k'>h3</span>&gt;&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Üç tipik iş: yeni bir geliştiricinin erişim alması, bir olaya müdahale ve bir sürümün yayına alınması.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · işe başlama</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Kimlik sağlayıcıda hesabınızı etkinleştirin</h3>
+    <p>Davet e-postasındaki bağlantıyla parolanızı ve iki adımlı doğrulamayı kurun.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: tek oturum açma panelinde uygulama listesini görüyorsunuz.</span></p>
+  </li>
+  <li>
+    <h3>Geliştirici rolünü isteyin</h3>
+    <p>Erişim isteği formunda <code>dev-readonly</code> rolünü seçin; yöneticiniz onaylar.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: <span class="mono">aws sts get-caller-identity</span> rolünüzü yazıyor.</span></p>
+  </li>
+  <li>
+    <h3>Depoyu klonlayıp testleri çalıştırın</h3>
+    <p><code>make bootstrap &amp;&amp; make test</code> yerel ortamı kurar ve birim testlerini koşar.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: bütün testler geçti.</span></p>
+  </li>
+</ol>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · olay müdahalesi</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Olayı ilan edin <span class="state s-warn">ilk 5 dakika</span></h3>
+    <p>Olay kanalını açın, önem derecesini yazın, bir koordinatör atayın.</p>
+  </li>
+  <li>
+    <h3>Etkiyi sınırlayın</h3>
+    <p>Hata son dağıtımla başladıysa önce geri alın, nedeni sonra arayın.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: 5xx oranı alarm eşiğinin altına indi.</span></p>
+  </li>
+  <li>
+    <h3>Durumu duyurun</h3>
+    <p>Her 30 dakikada bir, değişiklik olmasa da kısa bir güncelleme yazın.</p>
+  </li>
+  <li>
+    <h3>Olay sonrası incelemeyi planlayın <span class="state">5 iş günü içinde</span></h3>
+    <p>Suçlu değil neden aranır; çıkan işler sahipleriyle birlikte kayda geçer.</p>
+  </li>
+</ol>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · sürüm prosedürü</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Sürüm etiketini atın</h3>
+    <p><code>git tag v1.9.0 &amp;&amp; git push origin v1.9.0</code>; derleme etiketi görüp imajı üretir.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: imaj kaydında <span class="mono">web-api:1.9.0</span> var.</span></p>
+  </li>
+  <li>
+    <h3>Staging'de duman testini çalıştırın</h3>
+    <p>Eşitleme staging'i güncelledikten sonra uçtan uca test paketini başlatın.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: 42 senaryonun 42'si geçti.</span></p>
+  </li>
+  <li>
+    <h3>Prod'a kademeli açın</h3>
+    <p>Trafiğin %10'u, 15 dakika sonra %50'si, 15 dakika sonra tamamı.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: her basamakta p95 gecikme 800 ms'nin altında.</span></p>
+  </li>
+</ol>
+  </div>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">İyi adım tek eylemdir ve bittiği görülebilir. Bir adımda üç iş varsa üç adım yazın.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · tek eylem, ölçülebilir bitiş</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Önbelleği ısıtın</h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: isabet oranı %80'in üstünde.</span></p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Önbelleği ısıtın&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Kontrol: isabet oranı %80'in üstünde.&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · birçok iş tek adımda</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li>
+    <h3>Hazırlık</h3>
+    <p>Önbelleği ısıtın, ayrıca alarmları susturun ve gerekirse yedek alıp ekibe haber verin.</p>
+  </li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;
+    &lt;<span class='k'>h3</span>&gt;Hazırlık&lt;/<span class='k'>h3</span>&gt;
+    &lt;<span class='k'>p</span>&gt;Önbelleği ısıtın, ayrıca alarmları susturun ve gerekirse yedek alıp ekibe haber verin.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>ol</code> sıralı liste olarak duyurulur; ekran okuyucu “3 öğeden 2.” der, görünen numara rozeti ise süstür. Onay ikonu da süstür; kontrol satırına <b>Kontrol:</b> gibi bir kelimeyle başlayın. Adımları işaretlemek gerekiyorsa kontrol listesini (<code>.runbook</code>) kullanın.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="definition-list.tr.html" rel="prev"><small>Önceki · Bileşenler</small>Tanım listesi</a><a href="runbook.tr.html" rel="next"><small>Sonraki · Bileşenler</small>Kontrol listesi</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

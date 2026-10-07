@@ -93,12 +93,13 @@ Classes written by JavaScript (`.on`, `.past`, `.now`, `.show`, `.complete`, `.i
 
 ## 7. Language
 
+- **Every page ships in English and Turkish.** Docs pages have a `<page>.tr.html` sibling, part pages a `demos/_src/tr/<name>.html` source and the starter `index.tr.html`. Both versions share the same markup (elements, ids, classes); only the text differs (`tests/unit/i18n.test.mjs`). A TR / EN link (`a.icon-btn` with `hreflang`) sits next to every theme button.
 - **User-facing text is English by default.** A page with `<html lang="tr">` gets Turkish UI strings automatically (`Hendese.locales`, `:root:lang(tr)`). Override them with `Hendese.init({ strings })` and the `--str-*` tokens.
 - **Turkish pages and uppercase labels:** under `lang="tr"`, CSS uppercases "i" to "İ". English words in uppercase labels go inside `lang="en"`, otherwise "web-api" prints as "WEB-APİ". `Hendese.init({ englishStems })` does this automatically.
 - **Text printed by CSS** (`--str-*`) is a token and is overridden per language.
 - **Banned names:** `tests/unit/hygiene.test.mjs` keeps a list of names that must never ship in the package.
 
-## 8. Part pages (`demos/_src/<name>.html`)
+## 8. Part pages (`demos/_src/<name>.html`, Turkish: `demos/_src/tr/<name>.html`)
 
 **Meta fields** (all required): `title`, `group`, `order`, `tagline`, `intro`, `summary`. Optional: `facts`. No two pages in a group share an `order`.
 
@@ -106,9 +107,9 @@ Classes written by JavaScript (`.on`, `.past`, `.now`, `.show`, `.complete`, `.i
 
 | Group | Required chapters |
 |---|---|
-| Components | "States…" and "Do / don't" |
+| Components | "States…" and "Do / don't" (Turkish: "Durumlar…", "Yap / yapma") |
 | Blueprint | "Do / don't" |
-| Motion, Hoca | "With motion off…" and "API" |
+| Motion, Hoca | "With motion off…" and "API" (Turkish: "Hareket kapalıyken…", "API") |
 | Basics | free |
 
 **Content**
@@ -121,6 +122,6 @@ Classes written by JavaScript (`.on`, `.past`, `.now`, `.show`, `.complete`, `.i
 2. CSS goes into the right layer, `components` or `blueprint`. It uses tokens only, sets `--c/--c-soft` defaults and accepts `.s-*`.
 3. Cover the states (§3), focus, the light and dark themes, `.scene-dark` and `.scene-light`.
 4. Cover container queries (§4), the finished state (§5) and print.
-5. Write a part page (§8). Add a short section to a docs page if needed.
+5. Write a part page (§8) in both languages. Add a short section to a docs page if needed.
 6. Add a CHANGELOG entry. A breaking change goes under "Changed (breaking)".
 7. Run `npm test` before submitting: build, unit tests (standard and banned names) and e2e.

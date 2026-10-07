@@ -34,10 +34,12 @@
 .hoca-plate{position:absolute;left:16px;bottom:6px;font-family:var(--font-pixel);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
 .rail.hoca-quiet .hoca-home{opacity:.45}
 .rail-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--ink-3)}
-.rail-foot .pos{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.rail-foot .pos{margin-right:auto;font-family:var(--font-mono);font-variant-numeric:tabular-nums}
 .icon-btn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer;transition:background var(--dur-1),color var(--dur-1)}
 .icon-btn:hover{background:var(--surface-2);color:var(--ink)}
 .icon-btn svg{width:16px;height:16px}
+/* a text link in icon-button form, e.g. the language switch (TR / EN) */
+a.icon-btn{font:600 var(--fs-xs)/1 var(--font-mono);letter-spacing:.04em;text-decoration:none}
 .icon-btn .sun{display:none}
 html[data-theme="dark"] .icon-btn .moon{display:none}
 html[data-theme="dark"] .icon-btn .sun{display:block}

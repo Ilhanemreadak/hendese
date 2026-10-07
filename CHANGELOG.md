@@ -12,6 +12,8 @@ English-first documentation and the open-source release setup.
 - **The standard is now `STANDARD.md`.**
 
 ### Added
+- **Turkish docs:** every docs page, part page and the starter also ship in Turkish (`*.tr.html`). A TR / EN button next to the theme button switches to the same page in the other language; `tests/unit/i18n.test.mjs` keeps the two versions' markup identical.
+- `a.icon-btn`: a text link in icon-button form (used by the language switch).
 - `Hendese.locales` with `en` and `tr` string sets.
 - The docs pages, part pages, `STANDARD.md` and this changelog are now in English. `README.tr.md` stays as the Turkish overview.
 - MIT licence (`LICENSE`) and package metadata (`license`, `author`, `repository`, `homepage`, `bugs`, `keywords`).
@@ -27,7 +29,12 @@ English-first documentation and the open-source release setup.
 - The pre-release review now lives in `docs/audits/`, with the status of every finding.
 - The README hero image and its source (`.github/assets/hero.html`, `tools/readme-hero.mjs`).
 
+### Changed
+- **Hoca is turquoise** (Iznik tile) instead of orange: body `#2f9e8f`, shade `#25867a`, glasses `#174f48`. Poses, sizes and the API are unchanged.
+- The docs page template is now `docs/_template.html`.
+
 ### Fixed
+- Under reduced motion, Hoca's still copies are placed again once web fonts load, so a speech bubble no longer opens on the wrong side when the pixel font arrives late.
 - The choice-group example in `docs/components.html` writes its readout as text instead of HTML (CodeQL `js/xss-through-dom`).
 
 ## [0.4.0] - 2026-10-06
