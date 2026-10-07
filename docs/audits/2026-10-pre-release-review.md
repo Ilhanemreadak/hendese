@@ -84,7 +84,7 @@ Release 0.4.0 resolved every finding that did not depend on a publication decisi
 | ID | Severity | Finding | Status |
 |---|---|---|---|
 | REL-01 | Blocker | No code licence; the package was marked private. | Resolved: MIT `LICENSE` and package metadata. `private` stays on until npm publication. |
-| REL-02 | Blocker | Mascot artwork provenance is undocumented. | Accepted for 0.x: the artwork stays. A provenance note and an originality review are due before 1.0. |
+| REL-02 | Blocker | Mascot artwork provenance is undocumented. | Partly addressed in 0.5.0: the palette changed (orange → turquoise); the silhouette is unchanged. Accepted for 0.x; a provenance note and an originality review are due before 1.0. |
 | REL-03 | Blocker | Release `.zip` files were uncompressed tar archives (GNU `tar -a` ignores `.zip`). | Resolved in 0.4.0: zip written in Node, checked for the `PK` signature. |
 | REL-04 | Blocker | Visual baselines existed for Windows only, so CI could not pass. | Resolved: Linux baselines produced in the official Playwright image; CI runs in the same image. |
 | REL-05 | Medium | The release script did not re-check the tree after building, so a tag could differ from the packed files. | Resolved in 0.4.0. |
@@ -190,7 +190,7 @@ These items were not defects at review time. They become part of the public cont
 
 | Item | Severity | Plan |
 |---|---|---|
-| REL-02 · mascot provenance | Blocker (accepted for 0.x) | Provenance note and originality review before 1.0. |
+| REL-02 · mascot provenance | Blocker (accepted for 0.x; palette changed in 0.5.0) | Provenance note and originality review before 1.0. |
 | ENG-05 remainder | Low | A deep link stays locked for up to 4 s if the user scrolls only by dragging the scrollbar in browsers that fire no pointer event for it. |
 | ENG-15 · follow OS theme changes | Low | Decide the contract first. |
 | WID-04 remainder | Low | Card labels read only the first header row and ignore `rowspan`. |

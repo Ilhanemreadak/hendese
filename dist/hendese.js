@@ -1,4 +1,4 @@
-/* Hendese 0.4.0 */
+/* Hendese 0.5.0 */
 var Hendese = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -1458,7 +1458,7 @@ var Hendese = (() => {
   }
 
   // src/js/index.js
-  var version = true ? "0.4.0" : "dev";
+  var version = true ? "0.5.0" : "dev";
   var O = null;
   function init6(opts) {
     if (O) return;

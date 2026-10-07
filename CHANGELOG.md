@@ -2,9 +2,9 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org).
 
-## [Unreleased]
+## [0.5.0] - 2026-10-07
 
-English-first documentation and the open-source release setup.
+The first release prepared for open source: the docs in English and Turkish, a recolored Hoca, an MIT licence and the GitHub project setup.
 
 ### Changed (breaking)
 - **UI strings default to English.** A page with `<html lang="tr">` gets the Turkish set automatically (`Hendese.locales.tr`; CSS `:root:lang(tr)`). The CSS string tokens default to `"SELECTED"`, `"Station"`, `"Error:"` and `" · required"`.
@@ -30,6 +30,7 @@ English-first documentation and the open-source release setup.
 - The README hero image and its source (`.github/assets/hero.html`, `tools/readme-hero.mjs`).
 
 ### Changed
+- Release archives include `LICENSE` and `README.tr.md`.
 - **Hoca is turquoise** (Iznik tile) instead of orange: body `#2f9e8f`, shade `#25867a`, glasses `#174f48`. Poses, sizes and the API are unchanged.
 - The docs page template is now `docs/_template.html`.
 
