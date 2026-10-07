@@ -2,7 +2,7 @@
    Flow: Hendese.init(opts)  →  register scenes (pinScene / stickyScene / figScene / scene)  →  Hendese.start()
    opts: { strings?, themeKey?: 'hendese-theme', topId?: 'top', englishStems?: RegExp } */
 import { $, $$, S, SCENES, clamp01, seg, lerp, ease, absTop, wake, poke, measure, evalMotion, MQ_RM, MQ_WIDE } from './core.js';
-import { strings } from './strings.js';
+import { strings, locales } from './strings.js';
 import * as theme from './theme.js';
 import * as nav from './nav.js';
 import * as hud from './hud.js';
@@ -18,7 +18,7 @@ var O = null;
 export function init(opts) {
   if (O) return; O = opts || {};
   document.documentElement.classList.add('js');
-  Object.assign(strings, O.strings);
+  Object.assign(strings, /^tr/i.test(document.documentElement.lang) ? locales.tr : null, O.strings);
   theme.init(O.themeKey);
   nav.init(O);
   hud.init();
@@ -41,7 +41,7 @@ export function start() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measure(); nav.reanchor(); });
 }
 
-export { $, $$, clamp01, seg, lerp, ease, absTop, wake, poke, measure, pinScene, stickyScene, figScene, scene, createHoca, strings };
+export { $, $$, clamp01, seg, lerp, ease, absTop, wake, poke, measure, pinScene, stickyScene, figScene, scene, createHoca, strings, locales };
 export const refresh = hocaCtl.refresh;
 export const lockTo = nav.lockTo;
 /* live values are exposed only through getters (a copy would go stale) */

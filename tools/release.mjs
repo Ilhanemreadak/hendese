@@ -25,7 +25,7 @@ run('npx playwright test');
 
 fs.mkdirSync('releases', { recursive: true });
 run('npm pack --pack-destination releases');
-const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'STANDART.md', 'CHANGELOG.md'].flatMap(function walk(p) {
+const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'STANDARD.md', 'CHANGELOG.md'].flatMap(function walk(p) {
   return fs.statSync(p).isDirectory() ? fs.readdirSync(p).sort().flatMap(f => walk(path.join(p, f))) : [p];
 });
 zip(`releases/hendese-${v}.zip`, files);

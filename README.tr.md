@@ -145,7 +145,7 @@ Hedef WCAG 2.2 AA. Her CI çalışmasında bütün doküman ve parça sayfaları
 
 - [`docs/`](docs/index.html): token'lar, bileşenler, blueprint tarifleri, hareket motoru ve Hoca. Dosyaları tarayıcıda açmanız yeter, sunucu gerekmez.
 - [`demos/`](demos/index.html): her parça için ayrı sayfa; varyantlar, durumlar ve yap / yapma çiftleri.
-- [`STANDART.md`](STANDART.md): her parçanın uyduğu kurallar. Test paketi bunları denetler.
+- [`STANDARD.md`](STANDARD.md): her parçanın uyduğu kurallar. Test paketi bunları denetler.
 
 ## Geliştirme
 

@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        New parts and contract changes are discussed here before any pull request. Classes, tokens, data attributes, ids, events, storage keys and exports are public contract; see [STANDART.md](https://github.com/Ilhanemreadak/hendese/blob/main/STANDART.md).
+        New parts and contract changes are discussed here before any pull request. Classes, tokens, data attributes, ids, events, storage keys and exports are public contract; see [STANDARD.md](https://github.com/Ilhanemreadak/hendese/blob/main/STANDARD.md).
   - type: textarea
     id: problem
     attributes:

@@ -194,7 +194,7 @@
   .grp{margin-left:calc(-1 * var(--sp-7));padding-left:var(--sp-6)}
 }
 
-/* ---------- Interaction states (STANDART.md § 3) ----------
+/* ---------- Interaction states (STANDARD.md § 3) ----------
    Disabled: :disabled / [aria-disabled="true"] → dashed border (in this language dashed = not real yet), faded ink.
    Current: [aria-current] → 2px drawing-color border · done / blocked: [data-state="done|blocked"] (also say it in text). */
 :is(.btn,.icon-btn,.toggle-btn):is(:disabled,[aria-disabled="true"]){border-style:dashed;border-color:var(--line-2);color:var(--ink-3);background:transparent;cursor:not-allowed}

@@ -177,7 +177,7 @@
 .lamps li::marker{font:600 var(--fs-sm) var(--font-mono);color:var(--draw)}
 .lamps>li[data-state="on"]{color:var(--ink)}
 
-/* ---------- Status standard (STANDART.md § 2) ----------
+/* ---------- Status standard (STANDARD.md § 2) ----------
    Every status-bearing component reads --c / --c-soft and sets its own default; .s-* applies to all of them.
    These are the last rules of the blueprint layer, so they override component defaults; later layers (motion, hoca, print) must not set --c.
    Deprecated aliases (removed in 1.0): .pill-ok .pill-neutral .state.ok/.warn/.bad .readout.ok/.bad .p-auto/.p-manual/.p-inline */

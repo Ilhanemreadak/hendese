@@ -1,4 +1,4 @@
-// Guards the standard (STANDART.md): component CSS uses tokens only, and every class is shown on some page.
+// Guards the standard (STANDARD.md): component CSS uses tokens only, and every class is shown on some page.
 // Exception: /* std:ok <reason> */ excuses the violations on its own line (one structural exception); unused markers fail,
 // and the total count is capped so exceptions cannot quietly multiply.
 import test from 'node:test';
@@ -8,7 +8,7 @@ import fs from 'node:fs';
 const DIR = 'src/css/';
 const EXEMPT = ['tokens.css', 'fonts.css', 'print.css', 'hoca.css', 'index.css'];   // token source, fonts, print, pixel art (3px grid)
 const FILES = fs.readdirSync(DIR).filter(f => f.endsWith('.css') && !EXEMPT.includes(f));
-const SPACING_FILES = ['components.css', 'blueprint.css'];   // shell geometry (layout, motion) is exempt from the spacing scale: STANDART.md §1
+const SPACING_FILES = ['components.css', 'blueprint.css'];   // shell geometry (layout, motion) is exempt from the spacing scale: STANDARD.md §1
 const MAX_MARKERS = 15;
 
 // values are checked without strings and custom-property names, so "content" text and token names never match
