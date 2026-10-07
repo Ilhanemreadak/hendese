@@ -720,7 +720,11 @@ document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
   function show() {
     var o = val('ortam'), s = val('strateji'), risk = o === 'prod' && s === 'tek seferde';
     out.classList.toggle('s-bad', risk);
-    out.innerHTML = '<p><b>' + o + '</b> ortamına <b>' + s + '</b> dağıtım.' + (risk ? ' Üretimde tüm kopyalar aynı anda değişir; geri dönüş penceresi yok.' : '') + '</p>';
+    /* values are written as text, never parsed as HTML */
+    function bold(t) { var e = document.createElement('b'); e.textContent = t; return e; }
+    var p = document.createElement('p');
+    p.append(bold(o), ' ortamına ', bold(s), ' dağıtım.' + (risk ? ' Üretimde tüm kopyalar aynı anda değişir; geri dönüş penceresi yok.' : ''));
+    out.replaceChildren(p);
   }
   ['ortam-sec', 'strateji-sec'].forEach(function (id) { document.getElementById(id).addEventListener('change', show); });
   show();
