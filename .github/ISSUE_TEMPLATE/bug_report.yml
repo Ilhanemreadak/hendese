@@ -1,0 +1,73 @@
+name: Bug report
+description: Something renders or behaves incorrectly.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. Please search [existing issues](https://github.com/Ilhanemreadak/hendese/issues) first.
+        Security problems must not be reported here: follow [SECURITY.md](https://github.com/Ilhanemreadak/hendese/blob/main/SECURITY.md) instead.
+  - type: input
+    id: version
+    attributes:
+      label: Hendese version
+      description: From `Hendese.version`, the `dist/` banner or the release you downloaded.
+      placeholder: "0.4.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Tokens and theming
+        - Components (CSS)
+        - Blueprint drawings
+        - Motion engine (scenes, HUD, navigation)
+        - Hoca (mascot)
+        - Widgets (tabs, dialog, runbook, explorer, copy)
+        - Docs or demo pages
+        - Build or tooling
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: A minimal HTML page or a link to one is the fastest way to a fix.
+      placeholder: |
+        1. Open …
+        2. Scroll to …
+        3. See …
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: "Firefox 131 on Windows 11"
+    validations:
+      required: true
+  - type: checkboxes
+    id: modes
+    attributes:
+      label: Does it also happen in these modes?
+      description: Tick the ones you checked and where the problem still appears.
+      options:
+        - label: Reduced motion (prefers-reduced-motion)
+        - label: Narrow screen (below 1100 px)
+        - label: Dark theme
+        - label: Print preview
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or console output
+      render: text

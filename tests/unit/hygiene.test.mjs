@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const BANNED = new RegExp(['mat', 'l[iı]|cla', 'ude'].join(''), 'i');   // split into fragments so the words never appear in this file either
-const ROOTS = ['src', 'docs', 'demos', 'starter', 'dist', 'tools', 'tests', 'README.md', 'README.tr.md', 'CONTRIBUTING.md', 'SECURITY.md', 'STANDART.md', 'CHANGELOG.md', 'package.json', '.github'];
+const ROOTS = ['src', 'docs', 'demos', 'starter', 'dist', 'tools', 'tests', 'README.md', 'README.tr.md', 'CONTRIBUTING.md', 'SECURITY.md', 'CODE_OF_CONDUCT.md', 'ACCESSIBILITY.md', 'STANDART.md', 'CHANGELOG.md', 'package.json', '.github'];
 function* walk(p) {
   if (!fs.existsSync(p)) return;
   if (fs.statSync(p).isDirectory()) { for (const f of fs.readdirSync(p)) yield* walk(path.join(p, f)); return; }

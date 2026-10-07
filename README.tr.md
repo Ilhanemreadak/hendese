@@ -139,7 +139,7 @@ Chrome, Edge, Firefox ve Safari'nin güncel sürümleri (2024 ve sonrası motorl
 
 ## Erişilebilirlik
 
-Hedef WCAG 2.2 AA. Her CI çalışmasında bütün doküman ve parça sayfaları açık ve koyu temada axe ile denetlenir; davranış testleri çekmece, sekmeler, diyalog ve form alanlarının klavyeyle kullanımını kapsar. Hareket azaltma, baskı ve JavaScript'siz modda her zaman son hal görünür. Bilinen eksikler ve durumları [yayın öncesi incelemede](docs/audits/2026-10-pre-release-review.md) listelenir.
+Hedef WCAG 2.2 AA. Her CI çalışmasında bütün doküman ve parça sayfaları açık ve koyu temada axe ile denetlenir; davranış testleri çekmece, sekmeler, diyalog ve form alanlarının klavyeyle kullanımını kapsar. Hareket azaltma, baskı ve JavaScript'siz modda her zaman son hal görünür. Nasıl test edildiği ve bir engelin nasıl bildirileceği [ACCESSIBILITY.md](ACCESSIBILITY.md) dosyasında; bilinen eksikler [yayın öncesi incelemede](docs/audits/2026-10-pre-release-review.md) listelenir.
 
 ## Dokümantasyon
 

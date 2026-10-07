@@ -12,6 +12,8 @@ Açık kaynak yayınına hazırlık.
 - GitHub Actions CI: resmi Playwright imajında build, `dist/` güncellik denetimi, birim ve e2e testleri.
 - Linux görsel temel görüntüleri (`*-linux.png`).
 - Yayın öncesi inceleme raporu `docs/audits/` altına taşındı ve her bulgunun durumu güncellendi.
+- Topluluk ve yönetişim dosyaları: `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1), `ACCESSIBILITY.md`, issue formları (hata, erişilebilirlik, özellik, dokümantasyon), PR şablonu, `CODEOWNERS`, Dependabot.
+- CI denetimleri: PR başlığı (Conventional Commits), bağımlılık incelemesi, CodeQL; bütün action'lar commit SHA'sına sabitlendi.
 - README kahraman görseli ve kaynağı (`.github/assets/hero.html`, `tools/readme-hero.mjs`).
 
 ## [0.4.0] - 2026-10-06

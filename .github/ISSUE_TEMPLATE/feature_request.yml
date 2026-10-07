@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a new part, token, option or behaviour.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New parts and contract changes are discussed here before any pull request. Classes, tokens, data attributes, ids, events, storage keys and exports are public contract; see [STANDART.md](https://github.com/Ilhanemreadak/hendese/blob/main/STANDART.md).
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to show or build, and why is it hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Markup, class names or API you have in mind. A sketch is welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: finished-state
+    attributes:
+      label: Finished-state check
+      options:
+        - label: The proposal still reads completely with reduced motion, below 1100 px, in print and without JavaScript.
+          required: true

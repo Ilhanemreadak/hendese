@@ -1,0 +1,42 @@
+name: Accessibility issue
+description: A barrier for keyboard, screen reader, zoom, contrast or motion-sensitive users.
+title: "[A11y]: "
+labels: ["accessibility", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hendese targets WCAG 2.2 AA. Known gaps are listed in the [pre-release review](https://github.com/Ilhanemreadak/hendese/blob/main/docs/audits/2026-10-pre-release-review.md).
+  - type: input
+    id: where
+    attributes:
+      label: Page or component
+      placeholder: "demos/sekmeler.html, tabs"
+    validations:
+      required: true
+  - type: textarea
+    id: barrier
+    attributes:
+      label: What is the barrier?
+      description: What you tried to do, what happened, and what should happen.
+    validations:
+      required: true
+  - type: input
+    id: criterion
+    attributes:
+      label: WCAG success criterion (if known)
+      placeholder: "2.4.7 Focus Visible"
+  - type: input
+    id: setup
+    attributes:
+      label: Assistive technology, browser and OS
+      placeholder: "NVDA 2024.4, Firefox 131, Windows 11"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Hendese version
+      placeholder: "0.4.0"
+    validations:
+      required: true

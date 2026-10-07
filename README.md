@@ -139,7 +139,7 @@ Current versions of Chrome, Edge, Firefox and Safari (2024 engines and newer). H
 
 ## Accessibility
 
-Hendese targets WCAG 2.2 AA. Every docs and demo page is checked with axe in light and dark themes on each CI run, and behaviour tests cover keyboard use of the drawer, tabs, dialog and form fields. Reduced motion, print and no-JavaScript modes always show the finished state. Known gaps and their status are listed in the [pre-release review](docs/audits/2026-10-pre-release-review.md).
+Hendese targets WCAG 2.2 AA. Every docs and demo page is checked with axe in light and dark themes on each CI run, and behaviour tests cover keyboard use of the drawer, tabs, dialog and form fields. Reduced motion, print and no-JavaScript modes always show the finished state. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for how it is tested and how to report a barrier; known gaps are listed in the [pre-release review](docs/audits/2026-10-pre-release-review.md).
 
 ## Documentation
 
