@@ -2,10 +2,10 @@
    API: render({visible,x,y,pose,face,squash,bubble,bubbleUp,tag,alpha}) in viewport px; place(container,{left,top,pose,face,bubble,bubbleUp,tag});
    clearPlaced(); size; anchors (anchor point = bottom center of the feet; the seat point for sit). */
 export function createHoca() {
-  // Hoca = an orange pixel block mascot (flat block body, two eye slits, side nubs, four legs), drawn at 2x cell
+  // Hoca = a turquoise (Iznik tile) pixel block mascot (flat block body, two eye slits, side nubs, four legs), drawn at 2x cell
   // resolution. Teacher personality comes only from glasses, props and poses. Grid 44x36 cells, drawn at x2.
   var S = 2, W = 44, H = 36;
-  var PAL = { b: '#d97757', B: '#c2654b', e: '#1f1a1c', g: '#2b2226', G: '#7a3a28', t: '#fbfbf8', o: '#fc6d26', l: '#9aa0aa',
+  var PAL = { b: '#2f9e8f', B: '#25867a', e: '#1f1a1c', g: '#2b2226', G: '#174f48', t: '#fbfbf8', o: '#fc6d26', l: '#9aa0aa',
     r: '#9a6a3a', R: '#f1d08a', d: '#8fcfff', y: '#f5c542', n: '#a8744a', N: '#7a5033', p: '#6b4fd6', k: '#2a66d0',
     s: '#3b3f47', m: '#7ee29a' };
   function R(g, x, y, w, h, c) { for (var j = y; j < y + h; j++) for (var i = x; i < x + w; i++) if (i >= 0 && i < W && j >= 0 && j < H) g[j][i] = c; }
@@ -26,7 +26,7 @@ export function createHoca() {
       else if (E === 'happy') { R(g, x, 19, 2, 1, 'e'); R(g, x - 1, 20, 1, 1, 'e'); R(g, x + 2, 20, 1, 1, 'e'); }
       else if (E === 'worried') R(g, x, 19, 2, 3, 'e');
     });
-    if (o.glasses !== false) { /* small teacher glasses: rounded thin frames (dark terracotta) so the black eye slits stay the strongest feature */
+    if (o.glasses !== false) { /* small teacher glasses: rounded thin frames (dark teal) so the black eye slits stay the strongest feature */
       [12, 26].forEach(function (x) { R(g, x + 1, 17, 4, 1, 'G'); R(g, x + 1, 22, 4, 1, 'G'); R(g, x, 18, 1, 4, 'G'); R(g, x + 5, 18, 1, 4, 'G'); });
       R(g, 18, 19, 8, 1, 'G');
     }

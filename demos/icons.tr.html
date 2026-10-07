@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İkonlar · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="icons.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group">Temel</div>
+    <a class="nav-page" href="colors.tr.html">Renkler</a>
+    <a class="nav-page" href="typography.tr.html">Tipografi</a>
+    <a class="nav-page" href="scale-and-motion.tr.html">Ölçü ve hareket</a>
+    <a class="nav-page" href="icons.tr.html" aria-current="page">İkonlar</a>
+    <a class="nav-page" href="page-shell.tr.html">Sayfa iskeleti</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Sprite</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Boyutlar</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bileşen içinde</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yeni ikon eklemek</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Erişilebilirlik</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="icons.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Temel</p>
+    <h1>İkonlar<em>On üç çizgi ikon, tek sprite.</em></h1>
+    <p class="intro">İkonlar sayfanın başına bir kez yapıştırılan SVG sprite'tan <code>&lt;use href="#i-…"&gt;</code> ile çağrılır. Hepsi 24 birimlik ızgarada, 2 birim kalınlıkta, yuvarlak uçlu çizgidir ve rengini <code>currentColor</code>'dan alır.</p>
+<dl class="kv"><dt>Dosya</dt><dd><code>src/icons.svg</code> → <code>dist/icons.svg</code></dd><dt>Kullanım</dt><dd><code>&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;</code></dd><dt>Boyut</dt><dd><code>1em</code>: metinle aynı; bileşen içinde 12 · 14 · 16px</dd><dt>Metin içi</dt><dd><code>.ic</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<style>
+/* sayfaya özel (.ik-): katalog hücreleri. İkon boyutu yalnız font-size'dan gelir. */
+.ik-cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:var(--sp-4)}
+.ik-cat>div{display:grid;justify-items:center;gap:var(--sp-4);padding:var(--sp-7) var(--sp-3) var(--sp-4);border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)}
+.ik-cat svg{font-size:var(--fs-xl);color:var(--ink)}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Sprite">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Sprite</h2><p class="lead">On üç ikon, on üç sembol. Sprite görünmezdir; her kullanım yalnızca bir use öğesidir, bu yüzden aynı ikonu yüz kez kullanmak sayfayı büyütmez.</p></header>
+<div class="demo">
+  <span class="demo-label">Katalog · --fs-xl</span>
+  <div class="demo-view">
+<div class="ik-cat">
+  <div><svg aria-hidden="true"><use href="#i-shield"/></svg><code>#i-shield</code></div>
+  <div><svg aria-hidden="true"><use href="#i-info"/></svg><code>#i-info</code></div>
+  <div><svg aria-hidden="true"><use href="#i-bulb"/></svg><code>#i-bulb</code></div>
+  <div><svg aria-hidden="true"><use href="#i-warn"/></svg><code>#i-warn</code></div>
+  <div><svg aria-hidden="true"><use href="#i-check"/></svg><code>#i-check</code></div>
+  <div><svg aria-hidden="true"><use href="#i-wrench"/></svg><code>#i-wrench</code></div>
+  <div><svg aria-hidden="true"><use href="#i-copy"/></svg><code>#i-copy</code></div>
+  <div><svg aria-hidden="true"><use href="#i-menu"/></svg><code>#i-menu</code></div>
+  <div><svg aria-hidden="true"><use href="#i-x"/></svg><code>#i-x</code></div>
+  <div><svg aria-hidden="true"><use href="#i-sun"/></svg><code>#i-sun</code></div>
+  <div><svg aria-hidden="true"><use href="#i-moon"/></svg><code>#i-moon</code></div>
+  <div><svg aria-hidden="true"><use href="#i-tick"/></svg><code>#i-tick</code></div>
+  <div><svg aria-hidden="true"><use href="#i-reset"/></svg><code>#i-reset</code></div>
+</div>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · cümlenin içinde ikon</span>
+  <div class="demo-view">
+<p style="margin:0">Ayarlar <svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg> menüsünden önbelleği <svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg> sıfırlayın.</p>
+<p class="lead" style="margin:var(--sp-3) 0 0"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> Büyük metinde ikon da büyür.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;Ayarlar &lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; menüsünden önbelleği &lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; sıfırlayın.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>lead</span>" style="<span class='s'>margin:var(--sp-3) 0 0</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; Büyük metinde ikon da büyür.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Kaynakta <code>viewBox</code> taşımayan ve doğrudan bir <code>&lt;use&gt;</code> içeren her <code>&lt;svg&gt;</code> boyutunu metinden alır: <code>1em × 1em</code>. Boyutu değiştirmek için ikona değil, kapsayıcının <code>font-size</code>'ına dokunun. Kural <code>:where()</code> içindedir, yani özgüllüğü sıfırdır; bileşenlerin kendi boyutları (<code>.btn svg</code> 14px gibi) ve sizin sınıflarınız her zaman kazanır.</p>
+<p><code>base.css</code> her <code>svg</code>'yi blok yapar. Cümlenin içindeki ikon için <code>.ic</code> ekleyin: satır içi blok olur, taban çizgisine oturur ve flex içinde küçülmez. 0.1'deki <code>style="width:16px;height:16px"</code> geçici çözümüne artık gerek yok.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:where(svg:not([viewBox]):has(&gt;use)){width:1em;height:1em}
+.ic{display:inline-block;vertical-align:-.125em;flex:none}</code></pre></figure>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Boyutlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Boyutlar</h2><p class="lead">Çizgi kalınlığı 24 birimlik ızgarada 2 birimdir; 12px'te bir piksele iner. 12px'in altına inmeyin, 24px'in üstünde ikon değil çizim kullanın.</p></header>
+<div class="demo">
+  <span class="demo-label">Ölçek · satırın yazı boyutu</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0">
+  <p class="chip">--fs-sm · 12.5px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-sm)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
+</div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-md · 14px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-md)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
+</div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-base · 16px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-base)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
+</div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-lg · 17.5px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-lg)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
+</div>
+<div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0;border-top:1px solid var(--line)">
+  <p class="chip">--fs-xl · 22px</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-xl)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
+</div>
+  </div>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Boyut</th><th>Nerede</th><th>Kaynak</th></tr></thead>
+  <tbody>
+    <tr><td>12px</td><td>Callout ikonu, kod bloğundaki kopyala düğmesi, kontrol kutusundaki tik</td><td><code>.co-ic svg</code> · <code>.code-copy svg</code> · <code>.rb-item .box svg</code></td></tr>
+    <tr><td>14px</td><td>Metinli düğme, başarı satırı</td><td><code>.btn svg</code> · <code>.check svg</code></td></tr>
+    <tr><td>16px</td><td>Yalnız ikonlu düğme, kontrol listesi bitiş satırı</td><td><code>.icon-btn svg</code> · <code>.rb-done svg</code></td></tr>
+    <tr><td><code>1em</code></td><td>Bileşen dışındaki her ikon</td><td>Kapsayıcının <code>font-size</code>'ı; cümle içinde <code>.ic</code></td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Bileşen içinde">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Bileşen içinde</h2><p class="lead">Bileşen ikonun boyutunu ve rengini belirler; siz yalnızca hangi ikonu istediğinizi yazarsınız. Renk metinle aynıdır, çünkü ikon currentColor ile çizilir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · düğmeler</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Bağlantıyı kopyala</button>
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>İşi yeniden kuyruğa al</button>
+  <button class="icon-btn" type="button" aria-label="Ayarları aç"><svg aria-hidden="true"><use href="#i-wrench"/></svg></button>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Bağlantıyı kopyala&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;İşi yeniden kuyruğa al&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Ayarları aç</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" data-theme-toggle aria-label="<span class='s'>Temayı değiştir</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>sun</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-sun</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>svg</span> class="<span class='s'>moon</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-moon</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Son düğme gerçek bir tema düğmesidir: <code>[data-theme-toggle]</code> taşıdığı için <code>Hendese.init()</code> onu kendiliğinden bağlar. İçindeki iki ikondan hangisinin görüneceğini <code>.icon-btn .sun</code> / <code>.moon</code> kuralları <code>html[data-theme]</code>'e göre seçer.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · callout ve başarı satırı</span>
+  <div class="demo-view">
+<div class="co co-trouble"><span class="co-ic"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><span class="co-label">Sorun giderme</span><div class="co-body"><p><code>billing-worker</code> kuyruğu boşaltmıyorsa önce işçi günlüğünde <code>visibility timeout</code> uyarısı arayın.</p></div></div>
+<p class="check"><svg aria-hidden="true"><use href="#i-tick"/></svg>Kuyruk derinliği 5 dakikadır eşiğin altında.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>co co-trouble</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Sorun giderme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; kuyruğu boşaltmıyorsa önce işçi günlüğünde &lt;<span class='k'>code</span>&gt;visibility timeout&lt;/<span class='k'>code</span>&gt; uyarısı arayın.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>check</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Kuyruk derinliği 5 dakikadır eşiğin altında.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Callout</th><th>İkon</th></tr></thead>
+  <tbody>
+    <tr><td><code>.co-info</code> · <code>.co-important</code></td><td><code>#i-info</code></td></tr>
+    <tr><td><code>.co-tip</code></td><td><code>#i-bulb</code></td></tr>
+    <tr><td><code>.co-warn</code></td><td><code>#i-warn</code></td></tr>
+    <tr><td><code>.co-sec</code></td><td><code>#i-shield</code></td></tr>
+    <tr><td><code>.co-success</code></td><td><code>#i-check</code></td></tr>
+    <tr><td><code>.co-trouble</code></td><td><code>#i-wrench</code></td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">İkon ya bir eylemi kısaltır ya da bir durumu işaretler. İkinci durumda ikon anlam taşır ve ekran okuyucuya adıyla duyurulmalıdır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · günlük görüntüleyici araç çubuğu</span>
+  <div class="demo-view">
+<div style="display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
+  <span class="mono" style="margin-right:auto;color:var(--ink-2)">web-api · prod · son 15 dk</span>
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>Yenile</button>
+  <button class="icon-btn" type="button" aria-label="Günlüğü kopyala"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+  <button class="icon-btn" type="button" aria-label="Görüntüleyiciyi kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>mono</span>" style="<span class='s'>margin-right:auto;color:var(--ink-2)</span>"&gt;web-api · prod · son 15 dk&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Yenile&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Günlüğü kopyala</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Görüntüleyiciyi kapat</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · erişim istekleri</span>
+  <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Kişi</th><th>Kaynak</th><th>Durum</th></tr></thead>
+  <tbody>
+    <tr><td>a.yilmaz</td><td><code>orders-db</code> · salt okunur</td><td><span style="color:var(--ok)"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Onaylandı</span></td></tr>
+    <tr><td>d.kaya</td><td><code>eu-west-1</code> · yönetici</td><td><span style="color:var(--sec)"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> İkinci onay bekliyor</span></td></tr>
+    <tr><td>m.demir</td><td><code>billing-worker</code> · dağıtım</td><td><span style="color:var(--warn)"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> 3 gün içinde sona eriyor</span></td></tr>
+    <tr><td>s.aydin</td><td><code>prod</code> · gizli bilgi kasası</td><td><span style="color:var(--bad)"><svg class="ic" role="img" aria-label="Reddedildi"><use href="#i-x"/></svg> gerekçe: rol yok</span></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Kişi&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Kaynak&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Durum&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;a.yilmaz&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;orders-db&lt;/<span class='k'>code</span>&gt; · salt okunur&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--ok)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; Onaylandı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;d.kaya&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt; · yönetici&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--sec)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; İkinci onay bekliyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;m.demir&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; · dağıtım&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; 3 gün içinde sona eriyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;s.aydin&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;prod&lt;/<span class='k'>code</span>&gt; · gizli bilgi kasası&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> style="<span class='s'>color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> class="<span class='s'>ic</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>Reddedildi</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-x</span>"/&gt;&lt;/<span class='k'>svg</span>&gt; gerekçe: rol yok&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>İlk üç satırda durum metinle yazıldığı için ikon süstür ve <code>aria-hidden</code> taşır. Son satırda metin yalnızca gerekçeyi söyler; durumu ikon taşır, bu yüzden ikon <code>role="img"</code> ve <code>aria-label</code> alır.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · koyu sahne</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:var(--sp-6) var(--sp-7)">
+  <p class="chip" style="margin-bottom:var(--sp-3)">Alarm · orders-db</p>
+  <p style="margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)"><svg aria-hidden="true"><use href="#i-warn"/></svg>Bağlantı havuzu %94 dolu</p>
+  <div class="pillrow">
+    <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Sorguyu kopyala</button>
+    <button class="icon-btn" type="button" aria-label="Alarm hakkında bilgi"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:var(--sp-6) var(--sp-7)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:var(--sp-3)</span>"&gt;Alarm · orders-db&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Bağlantı havuzu %94 dolu&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Sorguyu kopyala&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>icon-btn</span>" type="<span class='s'>button</span>" aria-label="<span class='s'>Alarm hakkında bilgi</span>"&gt;&lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-info</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yeni ikon eklemek">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yeni ikon eklemek</h2><p class="lead">Yeni ikon src/icons.svg içine bir symbol olarak girer. Aynı ızgara, aynı kalınlık ve aynı uç biçimi; yoksa sprite'taki diğer on üç ikonun yanında hemen göze batar.</p></header>
+<div class="demo">
+  <span class="demo-label">Önizleme · eklemeden önce</span>
+  <div class="demo-view">
+<div style="display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xl)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="1em" height="1em"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+  <svg aria-hidden="true"><use href="#i-shield"/></svg>
+  <svg aria-hidden="true"><use href="#i-wrench"/></svg>
+  <span class="figcap" style="margin:0">Yeni çizimi mevcut ikonların yanında, aynı boyutta deneyin.</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xl)</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 24 24</span>" fill="<span class='s'>none</span>" stroke="<span class='s'>currentColor</span>" stroke-width="<span class='s'>2</span>" stroke-linecap="<span class='s'>round</span>" stroke-linejoin="<span class='s'>round</span>" aria-hidden="<span class='s'>true</span>" width="<span class='s'>1em</span>" height="<span class='s'>1em</span>"&gt;&lt;<span class='k'>ellipse</span> cx="<span class='s'>12</span>" cy="<span class='s'>6</span>" rx="<span class='s'>7</span>" ry="<span class='s'>3</span>"/&gt;&lt;<span class='k'>path</span> d="<span class='s'>M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-shield</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-wrench</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>figcap</span>" style="<span class='s'>margin:0</span>"&gt;Yeni çizimi mevcut ikonların yanında, aynı boyutta deneyin.&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">src/icons.svg</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- &lt;defs&gt; içine, son sembolün altına; sıra alfabetik değil anlamsaldır --&gt;</span>
+&lt;<span class="k">symbol</span> id="<span class="s">i-database</span>" viewBox="<span class="s">0 0 24 24</span>" fill="<span class="s">none</span>" stroke="<span class="s">currentColor</span>"
+        stroke-width="<span class="s">2</span>" stroke-linecap="<span class="s">round</span>" stroke-linejoin="<span class="s">round</span>"&gt;
+  &lt;<span class="k">ellipse</span> cx="<span class="s">12</span>" cy="<span class="s">6</span>" rx="<span class="s">7</span>" ry="<span class="s">3</span>"/&gt;
+  &lt;<span class="k">path</span> d="<span class="s">M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3</span>"/&gt;
+&lt;/<span class="k">symbol</span>&gt;</code></pre></figure>
+<ol class="steps">
+  <li><h3>Sembolü ekle</h3><p><code>id</code> <code>i-</code> ile başlar; <code>viewBox</code> 24×24, dolgu yok, çizgi <code>currentColor</code>. Sabit renk yazmayın: ikon temaya ve bileşene uymaz.</p></li>
+  <li><h3>Derle</h3><p><code>npm run build</code> sprite'ı <code>dist/icons.svg</code>'ye kopyalar. Parça sayfaları (<code>node tools/demos.mjs</code>) sprite'ı doğrudan <code>src/icons.svg</code>'den okur.</p></li>
+  <li><h3>Sayfalara taşı</h3><p>Sprite her sayfada satır içidir. Yeni sayfa <code>docs/_template.html</code> kopyalanarak başlar (sprite içindedir); <code>src/icons.svg</code> değişince mevcut sayfalardaki sprite elle güncellenir.</p></li>
+</ol>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Sözleşme</span><div class="co-body"><p>İkon <code>id</code>'leri belgelenmiş sözleşmenin parçasıdır. Yeni ikon eklemek küçük sürüm; bir ikonu yeniden adlandırmak ya da kaldırmak <b>majör</b> sürüm gerektirir.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Erişilebilirlik">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Erişilebilirlik</h2><p class="lead">Sprite kendisi aria-hidden taşır. Kullanımda üç durum var: süs, eylem ve anlam.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Örnek</th></tr></thead>
+  <tbody>
+    <tr><td>Yanında metin var (süs)</td><td><code>&lt;svg aria-hidden="true"&gt;</code></td><td>Metinli <code>.btn</code>, callout, <code>.check</code></td></tr>
+    <tr><td>Düğmenin tek içeriği</td><td>Ad düğmeye: <code>&lt;button aria-label="…"&gt;</code></td><td><code>.icon-btn</code></td></tr>
+    <tr><td>Tek başına anlam taşıyor</td><td><code>&lt;svg role="img" aria-label="…"&gt;</code></td><td>Tablo hücresinde durum ikonu</td></tr>
+  </tbody>
+</table></div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · ikonun adı var</span>
+  <div class="demo-view">
+<p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
+  <svg role="img" aria-label="Uyarı" style="color:var(--warn)"><use href="#i-warn"/></svg>
+  <span class="mono">eu-west-1</span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>svg</span> role="<span class='s'>img</span>" aria-label="<span class='s'>Uyarı</span>" style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · anlam yalnızca çizimde</span>
+  <div class="demo-view">
+<p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
+  <svg aria-hidden="true" style="color:var(--warn)"><use href="#i-warn"/></svg>
+  <span class="mono">eu-west-1</span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;align-items:center;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>svg</span> aria-hidden="<span class='s'>true</span>" style="<span class='s'>color:var(--warn)</span>"&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>mono</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="prose"><p>Sağdaki satırı ekran okuyucu yalnızca "eu-west-1" diye okur; bölgede bir sorun olduğunu duyan olmaz. <code>.icon-btn</code>'de <code>aria-label</code> fiille başlar ve ne olacağını söyler: "Kapat" değil "Görüntüleyiciyi kapat".</p></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="scale-and-motion.tr.html" rel="prev"><small>Önceki · Temel</small>Ölçü ve hareket</a><a href="page-shell.tr.html" rel="next"><small>Sonraki · Temel</small>Sayfa iskeleti</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

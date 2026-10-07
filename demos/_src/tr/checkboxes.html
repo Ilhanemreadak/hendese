@@ -1,0 +1,232 @@
+<!-- meta {"title":"Onay, radyo ve kaydırıcı","group":"Components","order":170,"tagline":"Yerel denetim, çizim rengi.","intro":"Onay kutusu, radyo düğmesi ve kaydırıcı tarayıcının kendi öğeleridir; paket yalnız rengini (<code>accent-color</code>) ve etiketle hizasını verir. Gruplar <code>&lt;fieldset class=\"field\"&gt;</code> ve <code>&lt;legend&gt;</code> ile adlandırılır; kaydırıcının değeri yanındaki <code>&lt;output&gt;</code> öğesinde, sabit genişlikli rakamlarla yazılır.","summary":"<code>.field-check</code> onay kutusu ve radyo, kaydırıcı + <code>&lt;output&gt;</code>; çiplerle farkı.","facts":{"Sınıflar":"<code>.field-check</code> · <code>fieldset.field</code> · <code>output</code>","Girdi":"<code>type=\"checkbox\"</code> · <code>type=\"radio\"</code> · <code>type=\"range\"</code>","Durum":"<code>:checked</code> · <code>disabled</code> · <code>required</code> · <code>:user-invalid</code>","JS":"Onay ve radyo için gerekmez; kaydırıcının değerini yazmak için tek dinleyici"}} -->
+
+<chapter title="Onay kutusu ve radyo" lead="Tek başına bir ayar onay kutusudur; birbirini dışlayan seçenekler radyodur. Etiket kutunun sağında, kutuyla ilk satırın ortasında hizalı durur; tıklama alanı etiketin tamamıdır.">
+<demo label="Örnek · tek ayar ve radyo grubu">
+<div style="max-width:480px">
+  <div class="field">
+    <label class="field-check"><input type="checkbox" name="ir-back" checked aria-describedby="ir-back-h">Sağlık denetimi başarısız olursa önceki sürüme dön</label>
+    <p class="field-help" id="ir-back-h">Üç ardışık başarısız denetimden sonra devreye girer.</p>
+  </div>
+  <fieldset class="field">
+    <legend>Dağıtım stratejisi</legend>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="rolling" checked>Sırayla değiştir: kopyalar birer birer yenilenir</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="blue-green">Mavi/yeşil: yeni küme hazır olunca trafik bir kerede geçer</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="kanarya">Kanarya: trafiğin küçük bir payı önce yeni sürüme gider</label>
+  </fieldset>
+</div>
+</demo>
+<div class="prose"><p><code>.field-check</code> bir <code>&lt;label&gt;</code>'dır ve denetimi içinde taşır; <code>for</code> gerekmez. Etiket büyük harfe çevrilmez, çünkü cümle olarak okunur. Grup adı <code>legend</code> ile verilir ve diğer alan etiketleri gibi mono büyük harfle basılır.</p></div>
+<demo label="Örnek · çoklu seçim">
+<fieldset class="field" style="max-width:480px">
+  <legend>Günlük alanları</legend>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="istek" checked>İstek kimliği</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="kullanici" checked>Kullanıcı kimliği (karma)</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="govde">İstek gövdesi</label>
+  <p class="field-help">Gövde kişisel veri taşıyabilir; yalnız <code>staging</code> ortamında açın.</p>
+</fieldset>
+</demo>
+</chapter>
+
+<chapter title="Kaydırıcı" lead="Bir aralıkta yaklaşık bir değer seçilirken kaydırıcı, kesin bir sayı yazılırken sayı alanı kullanılır. Değer her zaman görünür: yanındaki output öğesi ve altındaki sonuç satırı.">
+<demo label="Örnek · kopya sayısı ve sonucu">
+<div style="max-width:480px">
+  <div class="field">
+    <label for="ir-replica">Kopya sayısı</label>
+    <div style="display:flex;align-items:center;gap:var(--sp-5)">
+      <input type="range" id="ir-replica" name="replica" min="1" max="12" value="4" aria-describedby="ir-replica-h">
+      <output id="ir-replica-o" for="ir-replica">4</output>
+    </div>
+    <p class="field-help" id="ir-replica-h">1–12 arası; her kopya 2 vCPU, 4 GiB.</p>
+  </div>
+  <div class="readout" id="ir-replica-out"><p><b>4 kopya</b> · tahmini <b>248 $ / ay</b>. Bir düğüm düşerse 3 kopya hizmette kalır.</p></div>
+</div>
+</demo>
+<div class="prose"><p>Paket yalnız rengi ve genişliği verir; değeri yazmak sayfanın işidir. <code>&lt;output for&gt;</code> kaydırıcıyla bağı kurar. Ekran okuyucu kaydırıcıda yalnız sayıyı okur; birimi de söylemesi için aynı dinleyicide <code>aria-valuetext</code> yazın:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>range.addEventListener('input', () =&gt; {
+  output.value = range.value;
+  range.setAttribute('aria-valuetext', range.value + ' kopya');
+});</code></pre></figure>
+</chapter>
+
+<chapter title="Durumlar" lead="Seçili, seçili değil, devre dışı ve zorunlu. Renk tarayıcının kendi çiziminde accent-color ile gelir; devre dışı denetimi tarayıcı soldurur, etiket de soluk mürekkebe geçer.">
+<demo label="Örnek · seçili, boş, devre dışı">
+<div class="field-row">
+  <fieldset class="field">
+    <legend>Onay kutusu</legend>
+    <label class="field-check"><input type="checkbox" checked>Seçili</label>
+    <label class="field-check"><input type="checkbox">Seçili değil</label>
+    <label class="field-check"><input type="checkbox" checked disabled>Devre dışı, seçili</label>
+    <label class="field-check"><input type="checkbox" disabled>Devre dışı, boş</label>
+  </fieldset>
+  <fieldset class="field">
+    <legend>Radyo</legend>
+    <label class="field-check"><input type="radio" name="ir-d-radio" checked>Seçili</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio">Seçili değil</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" checked disabled>Devre dışı, seçili</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" disabled>Devre dışı, boş</label>
+  </fieldset>
+  <div class="field">
+    <label for="ir-d-interval">Kaydırıcı, devre dışı</label>
+    <div style="display:flex;align-items:center;gap:var(--sp-5)">
+      <input type="range" id="ir-d-interval" min="0" max="100" value="30" disabled>
+      <output for="ir-d-interval">30</output>
+    </div>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · zorunlu onay: işaretleyin, sonra kaldırın">
+<fieldset class="field" style="max-width:480px">
+  <legend>Üretim onayı</legend>
+  <label class="field-check"><input type="checkbox" name="ir-confirm" required aria-describedby="ir-confirm-e">Değişiklik penceresinin açık olduğunu doğruladım</label>
+  <p class="field-error" id="ir-confirm-e">üretime dağıtmadan önce bu onay gerekli.</p>
+</fieldset>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>Tetikleyen</th><th>Görünüm</th></tr></thead>
+  <tbody>
+    <tr><td>Seçili</td><td><code>:checked</code></td><td>Tarayıcının işareti, <code>--draw</code> renginde.</td></tr>
+    <tr><td>Devre dışı</td><td><code>disabled</code></td><td>Denetim tarayıcıca soldurulur; etiket <code>--ink-3</code>, imleç <code>not-allowed</code>.</td></tr>
+    <tr><td>Zorunlu</td><td>Gruptaki herhangi bir denetimde <code>required</code></td><td>Legend'in sonuna <code>--str-required</code> metni; yalnız görsel, ekran okuyucu yerel <code>required</code>'ı duyurur.</td></tr>
+    <tr><td>Geçersiz</td><td><code>:user-invalid</code> · <code>aria-invalid="true"</code></td><td><code>.field-error</code> görünür. Onay kutusunda kullanıcı işaretleyip kaldırdıktan ya da form gönderilmeye çalışıldıktan sonra.</td></tr>
+    <tr><td>Odak</td><td><code>:focus-visible</code></td><td>Kutunun çevresinde vurgu halkası.</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Radyo grubunda bir seçeneği devre dışı bırakmak yerine çoğu zaman seçeneği çıkarıp nedenini gruba yakın bir satırda yazmak daha açıktır. Devre dışı seçenek görünmeye devam etmeliyse, neden kapalı olduğunu etiketin kendisinde söyleyin.</p></div>
+</chapter>
+
+<chapter title="Çip mi, onay kutusu mu" lead=".choice ve .field-check aynı yerel öğeleri kullanır; fark okunuştadır. Çip kısa bir değer seçer, onay kutusu bir cümleyi onaylar.">
+<div class="field-row">
+<demo label="Örnek · kısa değerler, çip">
+<fieldset class="choice">
+  <legend>Ortam</legend>
+  <label><input type="radio" name="ir-c-env" value="dev"><span>dev</span></label>
+  <label><input type="radio" name="ir-c-env" value="staging" checked><span>staging</span></label>
+  <label><input type="radio" name="ir-c-env" value="prod"><span>prod</span></label>
+</fieldset>
+</demo>
+<demo label="Örnek · cümleler, onay kutusu">
+<fieldset class="field">
+  <legend>Bildirim</legend>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify" checked>Dağıtım bitince sohbet kanalına yaz</label>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify">Geri alma olursa nöbetçiyi çağır</label>
+</fieldset>
+</demo>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Ölçüt</th><th><code>.choice</code> (çip, segment)</th><th><code>.field-check</code></th></tr></thead>
+  <tbody>
+    <tr><td>Seçenek metni</td><td>Bir ad ya da değer: <code>eu-west-1</code>, <code>p95</code></td><td>Bir cümle ya da uzun bir ad</td></tr>
+    <tr><td>Seçenek sayısı</td><td>2–6; hepsi bir bakışta görünür</td><td>Sınırsız; alt alta dizilir</td></tr>
+    <tr><td>Seçenek başına açıklama</td><td><code>small</code> ile kısa bir ek</td><td>Etiket cümlesi ya da grubun altında <code>.field-help</code></td></tr>
+    <tr><td>Yer</td><td>Yapılandırıcı, filtre, grafik başlığı</td><td>Gönderilen form, ayar listesi, onay</td></tr>
+    <tr><td>Devre dışı</td><td>Kesikli çerçeve</td><td>Soluk denetim ve etiket</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Koyu panelde dağıtım ayarları. Strateji kanarya değilse trafik payı kaydırıcısı devre dışı kalır; sonuç satırı her değişiklikte yeniden yazılır.">
+<demo label="Örnek · dağıtım ayarları, koyu sahne">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
+  <form id="ir-deploy" style="max-width:560px">
+    <fieldset class="field">
+      <legend>Strateji</legend>
+      <label class="field-check"><input type="radio" name="ir-s" value="rolling">Sırayla değiştir</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="blue-green">Mavi/yeşil</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="kanarya" checked>Kanarya</label>
+    </fieldset>
+    <div class="field">
+      <label for="ir-pay">Kanarya trafik payı</label>
+      <div style="display:flex;align-items:center;gap:var(--sp-5)">
+        <input type="range" id="ir-pay" name="pay" min="5" max="50" step="5" value="10" aria-describedby="ir-pay-h">
+        <output id="ir-pay-o" for="ir-pay">%10</output>
+      </div>
+      <p class="field-help" id="ir-pay-h">Kalan trafik eski sürümde kalır; 15 dakika sorunsuz geçerse pay ikiye katlanır.</p>
+    </div>
+    <fieldset class="field">
+      <legend>Seçenekler</legend>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="geri" checked>Hata oranı %2'yi aşarsa otomatik geri al</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="goc">Dağıtımdan önce veritabanı göçünü çalıştır</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="dondur" disabled>Değişiklik dondurmasını yok say (yalnız nöbetçi)</label>
+    </fieldset>
+    <div class="readout" id="ir-deploy-out" aria-live="polite"><p><b>Kanarya</b> · yeni sürüme trafiğin <b>%10</b> kadarı gider; hata oranı %2'yi aşarsa geri alınır.</p></div>
+  </form>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Birbirine bağlı seçenekler bir fieldset içinde, adı legend'de durur. Kaydırıcının değeri görünür olmalıdır.">
+<div class="dodont">
+<demo label="Yap · adlı grup">
+<fieldset class="field">
+  <legend>Yedekleme sıklığı</legend>
+  <label class="field-check"><input type="radio" name="ir-do-often" checked>Saatlik</label>
+  <label class="field-check"><input type="radio" name="ir-do-often">Günlük</label>
+</fieldset>
+</demo>
+<demo label="Yapma · başlık gibi duran paragraf">
+<div class="field">
+  <p class="field-help">Yedekleme sıklığı</p>
+  <label class="field-check"><input type="radio" name="ir-dont-often" checked>Saatlik</label>
+  <label class="field-check"><input type="radio" name="ir-dont-often">Günlük</label>
+</div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Yap · değer yanında">
+<div class="field">
+  <label for="ir-do-ttl">Önbellek süresi</label>
+  <div style="display:flex;align-items:center;gap:var(--sp-5)">
+    <input type="range" id="ir-do-ttl" min="0" max="60" step="5" value="15">
+    <output id="ir-do-ttl-o" for="ir-do-ttl">15 dk</output>
+  </div>
+</div>
+</demo>
+<demo label="Yapma · değeri saklı kaydırıcı">
+<div class="field">
+  <label for="ir-dont-ttl">Önbellek süresi</label>
+  <input type="range" id="ir-dont-ttl" min="0" max="60" step="5" value="15">
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu radyoya girerken önce <code>legend</code> metnini okur; paragrafla verilen başlık bu bağı kurmaz. Radyo grubunda Tab tek duraktır, oklar seçimi değiştirir. Kaydırıcıda oklar bir adım, <code>Page Up</code>/<code>Page Down</code> büyük adım, <code>Home</code>/<code>End</code> uçlar içindir. <code>&lt;output&gt;</code> ekran okuyucuda canlı bölge gibi davranabilir; değeri zaten kaydırıcı okuduğu için sonuç satırının dışında ikinci bir <code>aria-live</code> eklemeyin.</p></div></div>
+</chapter>
+
+<script data-page>
+/* kopya sayısı → aylık maliyet ve dayanıklılık */
+(function () {
+  var r = document.getElementById('ir-replica'), o = document.getElementById('ir-replica-o'), out = document.getElementById('ir-replica-out');
+  function show() {
+    var n = +r.value;
+    o.value = n;
+    r.setAttribute('aria-valuetext', n + ' kopya');
+    out.classList.toggle('s-bad', n === 1);
+    out.innerHTML = '<p><b>' + n + ' kopya</b> · tahmini <b>' + Math.round(n * 0.085 * 730) + ' $ / ay</b>. ' +
+      (n === 1 ? 'Tek kopya her dağıtımda ve düğüm kaybında kesinti demektir.' : 'Bir düğüm düşerse ' + (n - 1) + ' kopya hizmette kalır.') + '</p>';
+  }
+  r.addEventListener('input', show); show();
+})();
+/* dağıtım ayarları */
+(function () {
+  var f = document.getElementById('ir-deploy'), pay = document.getElementById('ir-pay'), o = document.getElementById('ir-pay-o'), out = document.getElementById('ir-deploy-out');
+  var ad = { rolling: 'Sırayla değiştir', 'blue-green': 'Mavi/yeşil', kanarya: 'Kanarya' };
+  function show() {
+    var s = f.querySelector('input[name="ir-s"]:checked').value, p = pay.value;
+    var ek = Array.prototype.map.call(f.querySelectorAll('input[name="ir-extra"]:checked'), function (i) { return i.value; });
+    pay.disabled = s !== 'kanarya';
+    o.value = '%' + p;
+    pay.setAttribute('aria-valuetext', 'yüzde ' + p);
+    var geri = ek.indexOf('geri') > -1;
+    out.classList.toggle('s-warn', !geri);
+    out.innerHTML = '<p><b>' + ad[s] + '</b> · ' +
+      (s === 'kanarya' ? 'yeni sürüme trafiğin <b>%' + p + '</b> kadarı gider' : s === 'rolling' ? 'kopyalar birer birer yenilenir' : 'trafik yeni kümeye bir kerede geçer') +
+      (ek.indexOf('goc') > -1 ? '; önce veritabanı göçü çalışır' : '') +
+      (geri ? '; hata oranı %2\'yi aşarsa geri alınır.' : '. Otomatik geri alma kapalı: sorun elle fark edilmeli.') + '</p>';
+  }
+  f.addEventListener('input', show); f.addEventListener('change', show); show();
+})();
+/* yap örneği: önbellek süresi */
+(function () {
+  var r = document.getElementById('ir-do-ttl'), o = document.getElementById('ir-do-ttl-o');
+  r.addEventListener('input', function () { o.value = r.value + ' dk'; r.setAttribute('aria-valuetext', r.value + ' dakika'); });
+})();
+</script>

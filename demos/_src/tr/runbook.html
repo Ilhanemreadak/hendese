@@ -1,0 +1,260 @@
+<!-- meta {"title":"Kontrol listesi","group":"Components","order":90,"tagline":"İşaretle, say, hatırla.","intro":"<code>.runbook</code> elle yürütülen bir işin maddelerini sıralar: sayaç, ilerleme çubuğu, sıfırlama ve tamamlandı satırı paketle gelir. Kutular gerçek <code>&lt;input type=\"checkbox\"&gt;</code> öğesidir; seçimler istenirse tarayıcıda saklanır.","summary":"<code>.runbook[data-store]</code>, <code>hendese:runbook</code> olayı; sürüm, olay ve işe başlama listeleri.","facts":{"Sınıflar":"<code>.runbook</code> · <code>.rb-head</code> · <code>.rb-count</code> · <code>.rb-bar</code> · <code>.rb-reset</code> · <code>.rb-list</code> · <code>.rb-item</code> · <code>.rb-done</code>","Saklama":"<code>data-store</code> → <code>localStorage</code> anahtarı","Olay":"<code>hendese:runbook</code> · <code>detail.done</code>, <code>detail.total</code>","JS":"<code>Hendese.init()</code> listeleri kendiliğinden bağlar"}} -->
+
+<chapter title="Anatomi" lead="Üstte sayaç, çubuk ve sıfırlama; ortada maddeler; altta yalnızca her şey işaretlenince açılan tamamlandı satırı. Örnekteki seçimler bu tarayıcıda saklanır.">
+<demo label="Örnek · sürüm öncesi kontrol">
+<div class="runbook" data-store="hendese-demo-kl-version">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>main</code> dalında son hattın tüm işleri yeşil</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Veritabanı göçü <code>0042_add_invoice_index</code> staging'de çalıştırıldı</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İmaj etiketi <code>prod-7c1e94d0</code> kayıt deposunda görünüyor</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Sürüm notu kanala gönderildi, nöbetçi haberdar</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Geri dönüş komutu hazır: önceki etiket <code>prod-2b80f3aa</code></span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Sürüm çıkabilir.</div>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.runbook</code></dt><dd>Kap. <code>data-store</code> verilirse seçimler bu anahtarla <code>localStorage</code>'a yazılır.</dd>
+  <dt><code>.rb-count</code></dt><dd>Paket <code>n / toplam</code> metnini her değişiklikte yeniden yazar; ilk değer yalnızca JS yokken görünür.</dd>
+  <dt><code>.rb-bar &gt; i</code></dt><dd>İlerleme çubuğu; genişliği yüzde olarak paket verir. Süs olduğu için <code>aria-hidden</code>.</dd>
+  <dt><code>.rb-reset</code></dt><dd>İsteğe bağlı. Tüm kutuları boşaltır, kaydı günceller, odağı ilk kutuya taşır.</dd>
+  <dt><code>.rb-item</code></dt><dd><code>&lt;label&gt;</code> içinde gizli kutu, çizilen <code>.box</code> ve metin <code>.txt</code>. Tüm satır tıklanabilir.</dd>
+  <dt><code>.rb-done</code></dt><dd>Gizlidir; tüm maddeler işaretlenince <code>.runbook.complete</code> ile açılır.</dd>
+</dl>
+</chapter>
+
+<chapter title="Durumlar" lead="Boş, yarım ve tamam. Durum işaretli kutulardan hesaplanır; tamam sınıfını sayfa değil paket ekler.">
+<demo label="Örnek · üç durum yan yana">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start">
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Alarm sahibi atandı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eşik değeri yazıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Bildirim kanalı seçildi</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Alarm hazır.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">2 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">DNS kaydı düşürüldü</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL 60 saniyeye indi</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Yeni hedef sağlıklı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL eski değerine döndü</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Geçiş bitti.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">3 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Önbellek boşaltıldı</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İsabet oranı izlendi</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Isınma tamamlandı</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Önbellek sıcak.</div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Bu üç listede <code>data-store</code> yok: saklanmazlar ve başlangıç durumu HTML'deki <code>checked</code> özniteliğinden gelir. Sıfırlama düğmesi de isteğe bağlıdır; yalnızca bir kez yürütülen kısa listelerde çıkarılabilir.</p></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Saklanan listede başlangıç</span><div class="co-body"><p><code>data-store</code> verilen listede açılışta kayıt okunur. Kayıt yoksa HTML'deki <code>checked</code> işaretleri başlangıç halidir; ilk değişiklikten sonra kayıt esas alınır.</p></div></div>
+</chapter>
+
+<chapter title="Olay ve dinleyici" lead="Liste her değişiklikte kendi üzerinde kabarcıklı hendese:runbook olayı yayar. Aşağıdaki gösterge bu olayı dinler ve sıradaki adımı yazar.">
+<demo label="Örnek · olay müdahalesi, canlı gösterge">
+<div class="runbook" data-store="hendese-demo-kl-incident">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Olay kanalını aç, rolleri ata</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>billing-worker</code> kuyruk derinliğini ve hata oranını kaydet</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Son sürümü geri al ya da işçiyi durdur</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kuyruğun boşaldığını 15 dakika izle</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Durum sayfasını güncelle, olayı kapat</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Müdahale tamam.</div>
+</div>
+<div class="readout" id="kl-incident-out" aria-live="polite"><p>Henüz müdahale yok.</p></div>
+</demo>
+<div class="prose"><p>İlk olay açılışta, <code>Hendese.init()</code> sırasında yayılır; sayfa betiği dinleyiciyi bundan sonra bağladığı için ilk durumu kendisi okumalıdır. Göstergenin sınıfı da durumla değişir: hiç madde yokken <code>.bad</code>, hepsi işaretliyken <code>.ok</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+var out = document.getElementById('kl-incident-out');
+function show(done, total) {
+  var next = rb.querySelector('input:not(:checked) ~ .txt');
+  out.classList.toggle('bad', done === 0);
+  out.classList.toggle('ok', done === total);
+  out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;Olay kapatılabilir.&lt;/b&gt; …&lt;/p&gt;'
+    : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; · Sıradaki: ' + next.innerHTML + '&lt;/p&gt;';
+}
+rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);</code></pre></figure>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Birden çok liste tek bir dinleyiciyle toplanabilir, koyu bir panele ya da dar bir yan sütuna yerleşebilir.">
+<demo label="Örnek · işe başlama, iki liste tek gösterge">
+<div id="kl-member">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start">
+    <div>
+      <p class="chip">Hesaplar</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-account" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kurum içi kimlik açıldı</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kod deposu grubuna eklendi</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Salt okunur bulut rolü verildi</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Hesaplar hazır.</div>
+      </div>
+    </div>
+    <div>
+      <p class="chip">Araçlar</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-tools" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">VPN istemcisi kuruldu</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>kubectl</code> bağlamı <code>staging</code></span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İlk değişiklik incelemeye açıldı</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Araçlar hazır.</div>
+      </div>
+    </div>
+  </div>
+  <div class="readout" id="kl-member-out" aria-live="polite"><p>İlk gün: <b>0 / 6</b> madde.</p></div>
+</div>
+</demo>
+<div class="prose"><p>Olay kabarcıklandığı için dinleyici ortak kapsayıcıya bir kez bağlanır; toplam, kapsayıcıdaki tüm kutulardan yeniden sayılır.</p></div>
+<demo label="Örnek · nöbet devri, koyu panel">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <p class="chip">Nöbet devri · eu-west-1</p>
+  <div class="runbook" data-store="hendese-demo-kl-oncall" style="margin-bottom:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Açık alarmlar devralana tek tek anlatıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Sessize alınan alarmların bitiş saati yazıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Süren bakım pencereleri paylaşıldı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Çağrı yönlendirmesi yeni nöbetçiye geçti</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Devir tamam.</div>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · dar yan sütun">
+<div style="max-width:320px">
+  <div class="runbook" data-store="hendese-demo-kl-narrow" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eski sertifikanın bitiş tarihi not edildi</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Yeni sertifika yük dengeleyiciye bağlandı ve <code>openssl s_client</code> ile doğrulandı</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Eski sertifika silindi</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Yenileme bitti.</div>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Her madde tek bir eylemdir ve yapıldığı doğrulanabilir. Belirsiz ya da birleşik madde, işaretlendiğinde bile ne olduğunu söylemez.">
+<div class="dodont">
+<demo label="Yap · tek eylem, doğrulanabilir">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 3</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>/healthz</code> 200 dönüyor</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Hata oranı %0,5'in altında</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Kuyruk derinliği 100'ün altında</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Servis sağlıklı.</div>
+</div>
+</demo>
+<demo label="Yapma · belirsiz ve birleşik madde">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 2</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Her şey kontrol edildi</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Testleri çalıştır, göçü yap, sürümü çıkar ve haber ver</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Tamam.</div>
+</div>
+</demo>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Anahtar adı</span><div class="co-body"><p><code>data-store</code> değeri olduğu gibi kullanılır. Aynı anahtarı iki listeye vermek birinin kaydını ötekine yazar; <code>uygulama-sayfa-liste</code> gibi sayfa başına benzersiz bir ad seçin.</p></div></div>
+</chapter>
+
+<chapter title="Erişilebilirlik ve API" lead="Kutular yerel onay kutusudur; klavye, ekran okuyucu ve form davranışı tarayıcıdan gelir.">
+<div class="tbl"><table>
+  <thead><tr><th>Öğe</th><th>Değer</th><th>Not</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-store</code></td><td>metin</td><td><code>localStorage</code> anahtarı; yoksa liste saklanmaz.</td></tr>
+    <tr><td><code>hendese:runbook</code></td><td><code>{done, total}</code></td><td>Açılışta bir kez ve her değişiklikte; kabarcıklı.</td></tr>
+    <tr><td><code>.complete</code></td><td>sınıf</td><td>Tüm kutular işaretliyken listeye eklenir; <code>.rb-done</code> görünür.</td></tr>
+    <tr><td><code>.rb-reset</code></td><td>düğme</td><td>Kutuları boşaltır, kaydeder, odağı ilk kutuya verir.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Tab kutudan kutuya geçer, Boşluk işaretler; odak halkası çizilen <code>.box</code> üzerinde görünür. <code>.rb-count</code> öğesindeki <code>aria-live="polite"</code> sayacın değişimini okutur. Üstü çizili metin yalnızca görseldir; durum kutunun kendisinden okunur.</p></div></div>
+</chapter>
+
+<script data-page>
+/* olay müdahalesi → gösterge */
+(function () {
+  var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+  var out = document.getElementById('kl-incident-out');
+  function show(done, total) {
+    var next = rb.querySelector('input:not(:checked) ~ .txt');
+    out.classList.toggle('bad', done === 0);
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === 0 ? '<p><b>Müdahale başlamadı.</b> İlk adım: ' + next.innerHTML + '</p>'
+      : done === total ? '<p><b>Olay kapatılabilir.</b> ' + total + ' adımın tamamı işaretli; zaman çizelgesini saha defterine geçirin.</p>'
+      : '<p><b>' + done + ' / ' + total + '</b> · Sıradaki: ' + next.innerHTML + '</p>';
+  }
+  rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+  show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);
+})();
+/* iki liste, tek dinleyici (kabarcıklanma) */
+(function () {
+  var box = document.getElementById('kl-member'), out = document.getElementById('kl-member-out');
+  function show() {
+    var done = box.querySelectorAll('.runbook input:checked').length, total = box.querySelectorAll('.runbook input').length;
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === total ? '<p><b>İlk gün tamam.</b> Hesaplar ve araçlar hazır.</p>' : '<p>İlk gün: <b>' + done + ' / ' + total + '</b> madde.</p>';
+  }
+  box.addEventListener('hendese:runbook', show);
+  show();
+})();
+</script>

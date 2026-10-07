@@ -1,10 +1,11 @@
-// Guards every docs page: no console errors, no external requests, no horizontal overflow, no serious/critical axe findings, visual baseline.
+// Guards every docs page (English and Turkish): no console errors, no external requests, no horizontal overflow, no serious/critical axe findings, visual baseline.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { pathToFileURL } from 'node:url';
 import path from 'node:path';
 
-const PAGES = ['docs/index', 'docs/tokens', 'docs/components', 'docs/blueprint', 'docs/motion', 'docs/hoca', 'starter/index'];
+const EN = ['docs/index', 'docs/tokens', 'docs/components', 'docs/blueprint', 'docs/motion', 'docs/hoca', 'starter/index'];
+const PAGES = [...EN, ...EN.map(p => p + '.tr')];   // Turkish pages get every check except the visual baseline (same markup, other text)
 const url = p => pathToFileURL(path.resolve(p + '.html')).href;
 
 async function open(page, p) {
@@ -21,7 +22,7 @@ async function open(page, p) {
 for (const p of PAGES) {
   test.describe(p, () => {
     for (const [w, theme] of [[1440, 'light'], [1440, 'dark'], [1000, 'light']]) {
-      test(`temiz · ${w} · ${theme}`, async ({ page }) => {
+      test(`clean · ${w} · ${theme}`, async ({ page }) => {
         await page.setViewportSize({ width: w, height: 900 });
         await page.emulateMedia({ colorScheme: theme });
         const { errors, external } = await open(page, p);
@@ -38,7 +39,7 @@ for (const p of PAGES) {
       const bad = r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id}: ${v.nodes.length} nodes · ${v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')}`);
       expect(bad).toEqual([]);
     });
-    test('visual (reduced motion, light + dark)', async ({ page }) => {
+    if (EN.includes(p)) test('visual (reduced motion, light + dark)', async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       for (const theme of ['light', 'dark']) {
         await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });

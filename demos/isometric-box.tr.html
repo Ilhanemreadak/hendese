@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İzometrik kutu · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="isometric-box.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group"><span lang="en">Blueprint</span></div>
+    <a class="nav-page" href="sheet.tr.html">Pafta</a>
+    <a class="nav-page" href="drawing-units.tr.html">Çizim birimleri</a>
+    <a class="nav-page" href="line-families.tr.html">Çizgi aileleri</a>
+    <a class="nav-page" href="station-explorer.tr.html">İstasyon gezgini</a>
+    <a class="nav-page" href="isometric-box.tr.html" aria-current="page">İzometrik kutu</a>
+    <a class="nav-page" href="measuring-tools.tr.html">Ölçü aletleri</a>
+    <a class="nav-page" href="track-and-switch.tr.html">Hat ve makas</a>
+    <a class="nav-page" href="fault-panel.tr.html">Arıza panosu</a>
+    <a class="nav-page" href="dark-scene.tr.html">Koyu sahne</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Yığınlar</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Koyu sahnede</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="isometric-box.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
+    <h1>İzometrik kutu<em>Kapalı bir birimi üç yüzüyle çiz.</em></h1>
+    <p class="intro">İzometrik kutu bir sunucuyu, bir depolama katmanını ya da bir kuyruktaki mesajı gölgesiz bir derinlikle gösterir: ön yüz kâğıt, üst ve yan yüz zeminden bir ton koyu (<code>.fill-shade</code>). Tarif yalnızca paketin çizgi ve dolgu sınıflarını kullanır; yeni bir sınıf gerekmez.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.ln-draw</code> · <code>.ln-strong</code> · <code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.fill-paper</code> · <code>.fill-shade</code></dd><dt>Yüz tonu</dt><dd><code>--scene-shade</code> = <code>--scene-bg</code> + %8 çizim rengi</dd><dt>Kaydırma</dt><dd>büyük <code>dx +36, dy −22</code> · küçük <code>dx +20, dy −12</code></dd><dt>JS</dt><dd>Gerekmez</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Ön yüz W × H bir dikdörtgendir. Üst ve sağ yüz, aynı kenarların dx, dy kadar kaydırılmış paralelkenarlarıdır. Işık hep aynı yönden gelir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · yüzler ve ölçüler</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:340">
+  <svg viewBox="0 0 900 340" aria-hidden="true">
+    <path class="ln-draw fill-shade" d="M180 110L216 88H536L500 110Z"/>
+    <path class="ln-draw fill-shade" d="M500 110L536 88V258L500 280Z"/>
+    <rect class="ln-draw fill-paper" x="180" y="110" width="320" height="170"/>
+    <path class="ln-pencil" d="M188 118h8M188 118v8M492 272h-8M492 272v-8"/>
+    <path class="dim" d="M180 288V316M500 288V316M180 308H500M180 308l8-3v6zM500 308l-8-3v6z"/>
+    <text class="dim-t" x="340" y="330" text-anchor="middle">W = 320</text>
+    <path class="dim" d="M172 110H140M172 280H140M150 110V280M150 110l-3 8h6zM150 280l-3-8h6z"/>
+    <text class="dim-t" x="138" y="195" text-anchor="middle" transform="rotate(-90 138 195)">H = 170</text>
+    <circle class="fill-draw" cx="358" cy="99" r="3"/>
+    <circle class="fill-draw" cx="518" cy="184" r="3"/>
+    <circle class="fill-draw" cx="536" cy="88" r="3"/>
+    <path class="ln-pencil" d="M358 99V40H600M518 184H600M536 88L560 112H600"/>
+  </svg>
+  <p class="dl" style="--x:198;--y:126;--w:290"><span class="stamp-k">Ön yüz</span>.fill-paper · W × H</p>
+  <p class="dl" style="--x:604;--y:28;--w:280"><span class="stamp-k">Üst yüz</span>.fill-shade · --scene-shade</p>
+  <p class="dl" style="--x:604;--y:100;--w:280"><span class="stamp-k">Kaydırma</span>dx = +36 · dy = −22</p>
+  <p class="dl" style="--x:604;--y:172;--w:280"><span class="stamp-k">Yan yüz</span>.fill-shade</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:340</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 340</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M180 110L216 88H536L500 110Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M500 110L536 88V258L500 280Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>180</span>" y="<span class='s'>110</span>" width="<span class='s'>320</span>" height="<span class='s'>170</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M188 118h8M188 118v8M492 272h-8M492 272v-8</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M180 288V316M500 288V316M180 308H500M180 308l8-3v6zM500 308l-8-3v6z</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>340</span>" y="<span class='s'>330</span>" text-anchor="<span class='s'>middle</span>"&gt;W = 320&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M172 110H140M172 280H140M150 110V280M150 110l-3 8h6zM150 280l-3-8h6z</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>138</span>" y="<span class='s'>195</span>" text-anchor="<span class='s'>middle</span>" transform="<span class='s'>rotate(-90 138 195)</span>"&gt;H = 170&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>358</span>" cy="<span class='s'>99</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>518</span>" cy="<span class='s'>184</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>536</span>" cy="<span class='s'>88</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M358 99V40H600M518 184H600M536 88L560 112H600</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:198;--y:126;--w:290</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Ön yüz&lt;/<span class='k'>span</span>&gt;.fill-paper · W × H&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:604;--y:28;--w:280</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Üst yüz&lt;/<span class='k'>span</span>&gt;.fill-shade · --scene-shade&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:604;--y:100;--w:280</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kaydırma&lt;/<span class='k'>span</span>&gt;dx = +36 · dy = −22&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:604;--y:172;--w:280</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Yan yüz&lt;/<span class='k'>span</span>&gt;.fill-shade&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Çizim sırası önemlidir: önce üst ve yan yüz, en son ön yüz. Böylece ön yüzün kâğıt dolgusu kenar birleşimlerini temiz kapatır. Köşe çentikleri (<code>.ln-pencil</code>) isteğe bağlıdır; büyük kutularda yüzün çerçevesini belirtir.</p><p>Üst ve yan yüz <code>.fill-shade</code> ile boyanır: <code>--scene-shade</code> tokenı sahne zemininden bir ton koyudur. Bu yüzden kutu hem düz sayfada hem de zemini zaten <code>--scene-bg</code> olan bir paftada (<code>.fig-sheet</code>, <code>.frame</code>) üç yüzüyle okunur.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">tarif</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- ön yüz sol üst köşesi (x, y), boyut W × H, kaydırma dx, dy (dy negatif) --&gt;
+&lt;path class="ln-draw fill-shade" d="M x y  L x+dx y+dy  H x+W+dx  L x+W y  Z"/&gt;          &lt;!-- üst --&gt;
+&lt;path class="ln-draw fill-shade" d="M x+W y  L x+W+dx y+dy  V y+H+dy  L x+W y+H  Z"/&gt;  &lt;!-- sağ --&gt;
+&lt;rect class="ln-draw fill-paper" x="x" y="y" width="W" height="H"/&gt;                &lt;!-- ön --&gt;</code></pre></figure>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Yığınlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Yığınlar</h2><p class="lead">Kutular üst üste konunca alttakinin üst yüzü üsttekinin altında kalır. Aşağıdan yukarıya çizin; her yeni kutu altındakinin çizgilerini kapatır.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · sunucu rafı</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:290">
+  <svg viewBox="0 0 900 290" aria-hidden="true">
+    <path class="ln-draw fill-shade" d="M60 220L80 208H380L360 220Z"/>
+    <path class="ln-draw fill-shade" d="M360 220L380 208V260L360 272Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="220" width="300" height="52"/>
+    <path class="ln-draw fill-shade" d="M60 168L80 156H380L360 168Z"/>
+    <path class="ln-draw fill-shade" d="M360 168L380 156V208L360 220Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="168" width="300" height="52"/>
+    <path class="ln-draw fill-shade" d="M60 116L80 104H380L360 116Z"/>
+    <path class="ln-draw fill-shade" d="M360 116L380 104V156L360 168Z"/>
+    <rect class="ln-draw fill-paper" x="60" y="116" width="300" height="52"/>
+    <path class="ln-ghost" d="M60 64L80 52H380L360 64ZM360 64L380 52V104L360 116Z"/>
+    <rect class="ln-ghost" x="60" y="64" width="300" height="52"/>
+    <circle class="fill-draw" cx="340" cy="142" r="3"/>
+    <circle class="fill-draw" cx="340" cy="194" r="3"/>
+    <circle class="fill-draw" cx="340" cy="246" r="3"/>
+    <path class="ln-pencil" d="M384 80H466"/>
+  </svg>
+  <p class="dl" style="--x:74;--y:80;--w:250">web-4 · boş yuva</p>
+  <p class="dl" style="--x:74;--y:132;--w:250">web-3 · 4 vCPU <span class="state s-ok">Hazır</span></p>
+  <p class="dl" style="--x:74;--y:184;--w:250">web-2 · 4 vCPU <span class="state s-ok">Hazır</span></p>
+  <p class="dl" style="--x:74;--y:236;--w:250">web-1 · 4 vCPU <span class="state s-warn">Yoğun</span></p>
+  <p class="dl callout" style="--x:466;--y:66;--w:300"><b>Boş yuva</b>web-4 bir sonraki kapasite artışında eklenir; şimdilik hayalet.</p>
+  <p class="dl" style="--x:466;--y:236;--w:380">raf eu-west-1a · toplam 12 vCPU · 48 GB</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:290</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 290</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M60 220L80 208H380L360 220Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M360 220L380 208V260L360 272Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>60</span>" y="<span class='s'>220</span>" width="<span class='s'>300</span>" height="<span class='s'>52</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M60 168L80 156H380L360 168Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M360 168L380 156V208L360 220Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>60</span>" y="<span class='s'>168</span>" width="<span class='s'>300</span>" height="<span class='s'>52</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M60 116L80 104H380L360 116Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M360 116L380 104V156L360 168Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>60</span>" y="<span class='s'>116</span>" width="<span class='s'>300</span>" height="<span class='s'>52</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M60 64L80 52H380L360 64ZM360 64L380 52V104L360 116Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>60</span>" y="<span class='s'>64</span>" width="<span class='s'>300</span>" height="<span class='s'>52</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>340</span>" cy="<span class='s'>142</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>340</span>" cy="<span class='s'>194</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>340</span>" cy="<span class='s'>246</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M384 80H466</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:74;--y:80;--w:250</span>"&gt;web-4 · boş yuva&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:74;--y:132;--w:250</span>"&gt;web-3 · 4 vCPU &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:74;--y:184;--w:250</span>"&gt;web-2 · 4 vCPU &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Hazır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:74;--y:236;--w:250</span>"&gt;web-1 · 4 vCPU &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Yoğun&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:466;--y:66;--w:300</span>"&gt;&lt;<span class='k'>b</span>&gt;Boş yuva&lt;/<span class='k'>b</span>&gt;web-4 bir sonraki kapasite artışında eklenir; şimdilik hayalet.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:466;--y:236;--w:380</span>"&gt;raf eu-west-1a · toplam 12 vCPU · 48 GB&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · depolama katmanları</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:290">
+  <svg viewBox="0 0 900 290" aria-hidden="true">
+    <path class="ln-draw fill-shade" d="M40 220L68 203H488L460 220Z"/>
+    <path class="ln-draw fill-shade" d="M460 220L488 203V253L460 270Z"/>
+    <rect class="ln-draw fill-paper" x="40" y="220" width="420" height="50"/>
+    <path class="ln-draw fill-shade" d="M114 161L142 144H442L414 161Z"/>
+    <path class="ln-draw fill-shade" d="M414 161L442 144V194L414 211Z"/>
+    <rect class="ln-draw fill-paper" x="114" y="161" width="300" height="50"/>
+    <path class="ln-draw fill-shade" d="M188 102L216 85H376L348 102Z"/>
+    <path class="ln-draw fill-shade" d="M348 102L376 85V135L348 152Z"/>
+    <rect class="ln-strong fill-paper" x="188" y="102" width="160" height="50"/>
+    <path class="ln-pencil" d="M376 118H560M442 178H560M488 238H560"/>
+    <path class="dim" d="M540 30H570M540 270H570M550 30V270M550 30l-3 8h6zM550 270l-3-8h6z"/>
+  </svg>
+  <p class="dl" style="--x:202;--y:118;--w:140">Sıcak · 2 TB</p>
+  <p class="dl" style="--x:128;--y:177;--w:270">Ilık · 18 TB · disk</p>
+  <p class="dl" style="--x:54;--y:236;--w:390">Soğuk · 120 TB · arşiv</p>
+  <p class="dl" style="--x:580;--y:22;--w:300"><span class="stamp-k">Erişim süresi</span>yukarı çıktıkça kısalır</p>
+  <p class="dl" style="--x:580;--y:110;--w:300">&lt; 10 ms · SSD</p>
+  <p class="dl" style="--x:580;--y:170;--w:300">≈ 50 ms · disk</p>
+  <p class="dl" style="--x:580;--y:230;--w:300">saatler · geri çağırma gerekir</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:290</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 290</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M40 220L68 203H488L460 220Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M460 220L488 203V253L460 270Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>220</span>" width="<span class='s'>420</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M114 161L142 144H442L414 161Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M414 161L442 144V194L414 211Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>114</span>" y="<span class='s'>161</span>" width="<span class='s'>300</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M188 102L216 85H376L348 102Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M348 102L376 85V135L348 152Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>188</span>" y="<span class='s'>102</span>" width="<span class='s'>160</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M376 118H560M442 178H560M488 238H560</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M540 30H570M540 270H570M550 30V270M550 30l-3 8h6zM550 270l-3-8h6z</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:202;--y:118;--w:140</span>"&gt;Sıcak · 2 TB&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:128;--y:177;--w:270</span>"&gt;Ilık · 18 TB · disk&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:54;--y:236;--w:390</span>"&gt;Soğuk · 120 TB · arşiv&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:580;--y:22;--w:300</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Erişim süresi&lt;/<span class='k'>span</span>&gt;yukarı çıktıkça kısalır&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:580;--y:110;--w:300</span>"&gt;&amp;lt; 10 ms · SSD&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:580;--y:170;--w:300</span>"&gt;≈ 50 ms · disk&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:580;--y:230;--w:300</span>"&gt;saatler · geri çağırma gerekir&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Üst katmanı alttakinin üst yüzüne oturtmak için ön yüzünü kaydırmanın yarısı kadar geri ve yukarı alın (burada <code>+14, −8.5</code>, sonra kenarlardan içeri). Tam kenara oturan kutu, katmanlar yerine tek bir blok gibi okunur.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Durumlar</h2><p class="lead">Kutunun durumu çizgi sınıfıyla verilir; dolgu aynı kalır. Kelimeyi kutunun içine ya da altına yazın.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · beş durum</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:200">
+  <svg viewBox="0 0 900 200" aria-hidden="true">
+    <path class="ln-draw fill-shade" d="M20 50L40 38H160L140 50ZM140 50L160 38V118L140 130Z"/>
+    <rect class="ln-draw fill-paper" x="20" y="50" width="120" height="80"/>
+    <path class="ln-strong fill-shade" d="M200 50L220 38H340L320 50ZM320 50L340 38V118L320 130Z"/>
+    <rect class="ln-strong fill-paper" x="200" y="50" width="120" height="80"/>
+    <path class="ln-draw ln-dash fill-shade" d="M380 50L400 38H520L500 50ZM500 50L520 38V118L500 130Z"/>
+    <rect class="ln-draw ln-dash fill-paper" x="380" y="50" width="120" height="80"/>
+    <path class="ln-ghost" d="M560 50L580 38H700L680 50ZM680 50L700 38V118L680 130Z"/>
+    <rect class="ln-ghost" x="560" y="50" width="120" height="80"/>
+    <path class="ln-draw ln-bad fill-shade" d="M740 50L760 38H880L860 50ZM860 50L880 38V118L860 130Z"/>
+    <rect class="ln-draw ln-bad fill-paper" x="740" y="50" width="120" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:62;--w:100">cache-1</p>
+  <p class="dl" style="--x:212;--y:62;--w:100">cache-2</p>
+  <p class="dl" style="--x:392;--y:62;--w:100">cache-3</p>
+  <p class="dl" style="--x:572;--y:62;--w:100">cache-0</p>
+  <p class="dl" style="--x:752;--y:62;--w:100">cache-4<br><span class="state s-bad">Düştü</span></p>
+  <p class="dl" style="--x:20;--y:146;--w:150"><code>.ln-draw</code><br>çalışıyor</p>
+  <p class="dl" style="--x:200;--y:146;--w:150"><code>.ln-strong</code><br>seçili</p>
+  <p class="dl" style="--x:380;--y:146;--w:150"><code>.ln-dash</code><br>planlı</p>
+  <p class="dl" style="--x:560;--y:146;--w:150"><code>.ln-ghost</code><br>kaldırıldı</p>
+  <p class="dl" style="--x:740;--y:146;--w:150"><code>.ln-bad</code><br>arızalı</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:200</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 200</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M20 50L40 38H160L140 50ZM140 50L160 38V118L140 130Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>50</span>" width="<span class='s'>120</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong fill-shade</span>" d="<span class='s'>M200 50L220 38H340L320 50ZM320 50L340 38V118L320 130Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>200</span>" y="<span class='s'>50</span>" width="<span class='s'>120</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash fill-shade</span>" d="<span class='s'>M380 50L400 38H520L500 50ZM500 50L520 38V118L500 130Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" x="<span class='s'>380</span>" y="<span class='s'>50</span>" width="<span class='s'>120</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M560 50L580 38H700L680 50ZM680 50L700 38V118L680 130Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>560</span>" y="<span class='s'>50</span>" width="<span class='s'>120</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad fill-shade</span>" d="<span class='s'>M740 50L760 38H880L860 50ZM860 50L880 38V118L860 130Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-bad fill-paper</span>" x="<span class='s'>740</span>" y="<span class='s'>50</span>" width="<span class='s'>120</span>" height="<span class='s'>80</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:62;--w:100</span>"&gt;cache-1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:212;--y:62;--w:100</span>"&gt;cache-2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:392;--y:62;--w:100</span>"&gt;cache-3&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:572;--y:62;--w:100</span>"&gt;cache-0&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:752;--y:62;--w:100</span>"&gt;cache-4&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Düştü&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:146;--w:150</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-draw&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;çalışıyor&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:200;--y:146;--w:150</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-strong&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;seçili&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:380;--y:146;--w:150</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-dash&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;planlı&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:560;--y:146;--w:150</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-ghost&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;kaldırıldı&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:740;--y:146;--w:150</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-bad&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;arızalı&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Üst ve yan yüz tek bir <code>&lt;path&gt;</code> içinde yazılabilir (iki alt yol, <code>Z</code> ile kapanır); durum sınıfını iki öğeye vermek yeter. Hayalet kutu dolgusuzdur: arkasında ne varsa görünür, çünkü o parça henüz ya da artık orada değildir.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Bağlam içinde</h2><p class="lead">Kutular bir sistemin parçalarını aynı ölçekte yan yana koyar. İki tipik kompozisyon: kuyruk ve işçiler, düğüm havuzundaki podlar.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · kuyruk + işçiler</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Şekil 1</p>
+  <p class="fig-cap">jobs-eu kuyruğu üç işçiye dağıtıyor</p>
+  <div class="drawing" style="--aw:900;--ah:240">
+    <svg viewBox="0 0 900 240" aria-hidden="true">
+      <path class="ln-draw fill-shade" d="M20 110L34 101H144L130 110ZM130 110L144 101V155L130 164Z"/>
+      <rect class="ln-draw fill-paper" x="20" y="110" width="110" height="54"/>
+      <path class="ln-draw" d="M144 137H194M194 137l-8-4M194 137l-8 4"/>
+      <path class="ln-pencil" d="M180 164H580"/>
+      <path class="ln-draw fill-shade" d="M200 120L214 111H258L244 120ZM244 120L258 111V155L244 164Z"/>
+      <rect class="ln-draw fill-paper" x="200" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-shade" d="M260 120L274 111H318L304 120ZM304 120L318 111V155L304 164Z"/>
+      <rect class="ln-draw fill-paper" x="260" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-shade" d="M320 120L334 111H378L364 120ZM364 120L378 111V155L364 164Z"/>
+      <rect class="ln-draw fill-paper" x="320" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-shade" d="M380 120L394 111H438L424 120ZM424 120L438 111V155L424 164Z"/>
+      <rect class="ln-draw fill-paper" x="380" y="120" width="44" height="44"/>
+      <path class="ln-draw fill-shade" d="M440 120L454 111H498L484 120ZM484 120L498 111V155L484 164Z"/>
+      <rect class="ln-draw fill-paper" x="440" y="120" width="44" height="44"/>
+      <path class="ln-strong fill-shade" d="M500 120L514 111H558L544 120ZM544 120L558 111V155L544 164Z"/>
+      <rect class="ln-strong fill-paper" x="500" y="120" width="44" height="44"/>
+      <path class="ln-draw" d="M560 140H630M630 62V140M630 62H694M694 62l-8-4M694 62l-8 4M630 132H694M694 132l-8-4M694 132l-8 4"/>
+      <path class="ln-ghost" d="M630 140V202H694"/>
+      <path class="ln-draw fill-shade" d="M700 40L714 31H884L870 40ZM870 40L884 31V75L870 84Z"/>
+      <rect class="ln-draw fill-paper" x="700" y="40" width="170" height="44"/>
+      <path class="ln-draw fill-shade" d="M700 110L714 101H884L870 110ZM870 110L884 101V145L870 154Z"/>
+      <rect class="ln-draw fill-paper" x="700" y="110" width="170" height="44"/>
+      <path class="ln-ghost" d="M700 180L714 171H884L870 180ZM870 180L884 171V215L870 224Z"/>
+      <rect class="ln-ghost" x="700" y="180" width="170" height="44"/>
+    </svg>
+    <p class="dl" style="--x:30;--y:128;--w:96">web-api</p>
+    <p class="dl" style="--x:200;--y:50;--w:360"><span class="stamp-k">Kuyruk</span>jobs-eu · ilk giren ilk çıkar</p>
+    <p class="dl" style="--x:200;--y:176;--w:280">6 gösterilen · toplam 1.240</p>
+    <p class="dl" style="--x:490;--y:176;--w:70;text-align:center">sıradaki</p>
+    <p class="dl" style="--x:712;--y:52;--w:150">işçi-1 <span class="state s-ok">Çalışıyor</span></p>
+    <p class="dl" style="--x:712;--y:122;--w:150">işçi-2 <span class="state s-ok">Çalışıyor</span></p>
+    <p class="dl" style="--x:712;--y:192;--w:150">işçi-3 · planlı</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 1.</b> Her küp bir mesajdır; kalın küp sıradaki mesaj. Derinlik 1.000'i geçerse üçüncü işçi açılır (hayalet).</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;04 · Şekil 1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;jobs-eu kuyruğu üç işçiye dağıtıyor&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:240</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 240</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M20 110L34 101H144L130 110ZM130 110L144 101V155L130 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>110</span>" width="<span class='s'>110</span>" height="<span class='s'>54</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M144 137H194M194 137l-8-4M194 137l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M180 164H580</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M200 120L214 111H258L244 120ZM244 120L258 111V155L244 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>200</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M260 120L274 111H318L304 120ZM304 120L318 111V155L304 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>260</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M320 120L334 111H378L364 120ZM364 120L378 111V155L364 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>320</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M380 120L394 111H438L424 120ZM424 120L438 111V155L424 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>380</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M440 120L454 111H498L484 120ZM484 120L498 111V155L484 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>440</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong fill-shade</span>" d="<span class='s'>M500 120L514 111H558L544 120ZM544 120L558 111V155L544 164Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>500</span>" y="<span class='s'>120</span>" width="<span class='s'>44</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M560 140H630M630 62V140M630 62H694M694 62l-8-4M694 62l-8 4M630 132H694M694 132l-8-4M694 132l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M630 140V202H694</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M700 40L714 31H884L870 40ZM870 40L884 31V75L870 84Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>40</span>" width="<span class='s'>170</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M700 110L714 101H884L870 110ZM870 110L884 101V145L870 154Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>110</span>" width="<span class='s'>170</span>" height="<span class='s'>44</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M700 180L714 171H884L870 180ZM870 180L884 171V215L870 224Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>700</span>" y="<span class='s'>180</span>" width="<span class='s'>170</span>" height="<span class='s'>44</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:30;--y:128;--w:96</span>"&gt;web-api&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:200;--y:50;--w:360</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Kuyruk&lt;/<span class='k'>span</span>&gt;jobs-eu · ilk giren ilk çıkar&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:200;--y:176;--w:280</span>"&gt;6 gösterilen · toplam 1.240&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:490;--y:176;--w:70;text-align:center</span>"&gt;sıradaki&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:712;--y:52;--w:150</span>"&gt;işçi-1 &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Çalışıyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:712;--y:122;--w:150</span>"&gt;işçi-2 &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Çalışıyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:712;--y:192;--w:150</span>"&gt;işçi-3 · planlı&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 1.&lt;/<span class='k'>b</span>&gt; Her küp bir mesajdır; kalın küp sıradaki mesaj. Derinlik 1.000'i geçerse üçüncü işçi açılır (hayalet).&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · düğüm havuzu ve podlar</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Şekil 2</p>
+  <p class="fig-cap">node-c boşaltılıyor</p>
+  <div class="drawing" style="--aw:900;--ah:210">
+    <svg viewBox="0 0 900 210" aria-hidden="true">
+      <path class="ln-draw fill-shade" d="M40 120L76 98H296L260 120ZM260 120L296 98V168L260 190Z"/>
+      <rect class="ln-draw fill-paper" x="40" y="120" width="220" height="70"/>
+      <path class="ln-draw fill-shade" d="M330 120L366 98H586L550 120ZM550 120L586 98V168L550 190Z"/>
+      <rect class="ln-draw fill-paper" x="330" y="120" width="220" height="70"/>
+      <path class="ln-draw ln-warn fill-shade" d="M620 120L656 98H876L840 120ZM840 120L876 98V168L840 190Z"/>
+      <rect class="ln-draw ln-warn fill-paper" x="620" y="120" width="220" height="70"/>
+      <path class="ln-draw fill-shade" d="M74 75L86 68H126L114 75ZM114 75L126 68V102L114 109Z"/>
+      <rect class="ln-draw fill-paper" x="74" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-shade" d="M134 75L146 68H186L174 75ZM174 75L186 68V102L174 109Z"/>
+      <rect class="ln-draw fill-paper" x="134" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-shade" d="M194 75L206 68H246L234 75ZM234 75L246 68V102L234 109Z"/>
+      <rect class="ln-draw fill-paper" x="194" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-shade" d="M364 75L376 68H416L404 75ZM404 75L416 68V102L404 109Z"/>
+      <rect class="ln-draw fill-paper" x="364" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-shade" d="M424 75L436 68H476L464 75ZM464 75L476 68V102L464 109Z"/>
+      <rect class="ln-draw fill-paper" x="424" y="75" width="40" height="34"/>
+      <path class="ln-ghost" d="M484 75L496 68H536L524 75ZM524 75L536 68V102L524 109Z"/>
+      <rect class="ln-ghost" x="484" y="75" width="40" height="34"/>
+      <path class="ln-draw fill-shade" d="M654 75L666 68H706L694 75ZM694 75L706 68V102L694 109Z"/>
+      <rect class="ln-draw fill-paper" x="654" y="75" width="40" height="34"/>
+      <path class="ln-draw ln-dash" d="M680 66V40H510V58"/>
+      <path class="ln-draw" d="M510 62l-4 -8M510 62l4 -8"/>
+    </svg>
+    <p class="dl" style="--x:54;--y:134;--w:200"><span class="stamp-k">node-a</span>3 pod</p>
+    <p class="dl" style="--x:344;--y:134;--w:200"><span class="stamp-k">node-b</span>2 pod + 1 bekleyen</p>
+    <p class="dl" style="--x:634;--y:134;--w:200"><span class="stamp-k">node-c</span><span class="state s-warn">Boşaltılıyor</span></p>
+    <p class="dl" style="--x:520;--y:8;--w:200;text-align:center">yeniden planlanır</p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> Podlar düğümün üst yüzüne oturan küçük kutulardır. node-c'deki pod, node-b'deki boş yere (hayalet) taşınacak; kesikli ok henüz olmamış bir hareketi gösterir.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;04 · Şekil 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;node-c boşaltılıyor&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:210</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 210</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M40 120L76 98H296L260 120ZM260 120L296 98V168L260 190Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>120</span>" width="<span class='s'>220</span>" height="<span class='s'>70</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M330 120L366 98H586L550 120ZM550 120L586 98V168L550 190Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>120</span>" width="<span class='s'>220</span>" height="<span class='s'>70</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-warn fill-shade</span>" d="<span class='s'>M620 120L656 98H876L840 120ZM840 120L876 98V168L840 190Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-warn fill-paper</span>" x="<span class='s'>620</span>" y="<span class='s'>120</span>" width="<span class='s'>220</span>" height="<span class='s'>70</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M74 75L86 68H126L114 75ZM114 75L126 68V102L114 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>74</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M134 75L146 68H186L174 75ZM174 75L186 68V102L174 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>134</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M194 75L206 68H246L234 75ZM234 75L246 68V102L234 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>194</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M364 75L376 68H416L404 75ZM404 75L416 68V102L404 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>364</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M424 75L436 68H476L464 75ZM464 75L476 68V102L464 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>424</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M484 75L496 68H536L524 75ZM524 75L536 68V102L524 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>484</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M654 75L666 68H706L694 75ZM694 75L706 68V102L694 109Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>654</span>" y="<span class='s'>75</span>" width="<span class='s'>40</span>" height="<span class='s'>34</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M680 66V40H510V58</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M510 62l-4 -8M510 62l4 -8</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:54;--y:134;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;node-a&lt;/<span class='k'>span</span>&gt;3 pod&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:344;--y:134;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;node-b&lt;/<span class='k'>span</span>&gt;2 pod + 1 bekleyen&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:634;--y:134;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;node-c&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Boşaltılıyor&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:520;--y:8;--w:200;text-align:center</span>"&gt;yeniden planlanır&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 2.&lt;/<span class='k'>b</span>&gt; Podlar düğümün üst yüzüne oturan küçük kutulardır. node-c'deki pod, node-b'deki boş yere (hayalet) taşınacak; kesikli ok henüz olmamış bir hareketi gösterir.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Koyu sahnede">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Koyu sahnede</h2><p class="lead">Aynı tarif .scene-dark altında değişmeden çalışır: kâğıt ve yüz tonu koyu tonlara, çizim rengi açık maviye döner.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · birincil ve okuma replicası</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">05 · Şekil 3</p>
+  <p class="fig-cap">Bölgeler arası kopya</p>
+  <div class="drawing" style="--aw:900;--ah:190">
+    <svg viewBox="0 0 900 190" aria-hidden="true">
+      <path class="ln-draw fill-shade" d="M60 70L96 48H336L300 70ZM300 70L336 48V138L300 160Z"/>
+      <rect class="ln-strong fill-paper" x="60" y="70" width="240" height="90"/>
+      <path class="ln-draw fill-shade" d="M560 70L596 48H836L800 70ZM800 70L836 48V138L800 160Z"/>
+      <rect class="ln-draw fill-paper" x="560" y="70" width="240" height="90"/>
+      <path class="ln-draw ln-dash" d="M336 115H554"/>
+      <path class="ln-draw" d="M554 115l-8-4M554 115l-8 4"/>
+      <text class="dim-t" x="445" y="106" text-anchor="middle">eşzamansız · 0,8 s</text>
+    </svg>
+    <p class="dl" style="--x:76;--y:84;--w:210"><span class="stamp-k">eu-west-1</span>orders-db · birincil<br><span class="state s-ok">Yazılır</span></p>
+    <p class="dl" style="--x:576;--y:84;--w:210"><span class="stamp-k">eu-central-1</span>orders-db · kopya<br><span class="state s-warn">Salt okunur</span></p>
+  </div>
+  <figcaption class="figcap"><b>Şekil 3.</b> Kesikli ok eşzamansız kopyalamadır: kopya birincilin biraz gerisinden gelir.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Şekil 3&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Bölgeler arası kopya&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:190</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 190</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M60 70L96 48H336L300 70ZM300 70L336 48V138L300 160Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>60</span>" y="<span class='s'>70</span>" width="<span class='s'>240</span>" height="<span class='s'>90</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M560 70L596 48H836L800 70ZM800 70L836 48V138L800 160Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>560</span>" y="<span class='s'>70</span>" width="<span class='s'>240</span>" height="<span class='s'>90</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M336 115H554</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M554 115l-8-4M554 115l-8 4</span>"/&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>445</span>" y="<span class='s'>106</span>" text-anchor="<span class='s'>middle</span>"&gt;eşzamansız · 0,8 s&lt;/<span class='k'>text</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:76;--y:84;--w:210</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;orders-db · birincil&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Yazılır&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:576;--y:84;--w:210</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;orders-db · kopya&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Salt okunur&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 3.&lt;/<span class='k'>b</span>&gt; Kesikli ok eşzamansız kopyalamadır: kopya birincilin biraz gerisinden gelir.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Yap / yapma</h2><p class="lead">Bütün kutular aynı kaydırmayı kullanır; ön yüz her zaman kâğıttır. Işık iki yönden gelirse çizim düzlemi kırılır.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · tek kaydırma, ön yüz kâğıt</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:180">
+  <svg viewBox="0 0 440 180" aria-hidden="true">
+    <path class="ln-draw fill-shade" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
+    <rect class="ln-draw fill-paper" x="20" y="60" width="150" height="80"/>
+    <path class="ln-draw fill-shade" d="M240 60L260 48H410L390 60ZM390 60L410 48V128L390 140Z"/>
+    <rect class="ln-draw fill-paper" x="240" y="60" width="150" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:72;--w:130">api</p>
+  <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">dx +20, dy −12 · iki kutuda aynı</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:180</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 180</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>60</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M240 60L260 48H410L390 60ZM390 60L410 48V128L390 140Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>240</span>" y="<span class='s'>60</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:72;--w:130</span>"&gt;api&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:252;--y:72;--w:130</span>"&gt;worker&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:152;--w:400</span>"&gt;dx +20, dy −12 · iki kutuda aynı&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · ters yüzler, karışık yön</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:180">
+  <svg viewBox="0 0 440 180" aria-hidden="true">
+    <path class="ln-draw fill-paper" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
+    <rect class="ln-draw fill-shade" x="20" y="60" width="150" height="80"/>
+    <path class="ln-draw fill-shade" d="M240 60L220 48H370L390 60ZM240 60L220 48V128L240 140Z"/>
+    <rect class="ln-draw fill-paper" x="240" y="60" width="150" height="80"/>
+  </svg>
+  <p class="dl" style="--x:32;--y:72;--w:130">api</p>
+  <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">ön yüz sahne, ikinci kutu sola bakıyor</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:180</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 180</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-paper</span>" d="<span class='s'>M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-shade</span>" x="<span class='s'>20</span>" y="<span class='s'>60</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M240 60L220 48H370L390 60ZM240 60L220 48V128L240 140Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>240</span>" y="<span class='s'>60</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:72;--w:130</span>"&gt;api&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:252;--y:72;--w:130</span>"&gt;worker&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:152;--w:400</span>"&gt;ön yüz sahne, ikinci kutu sola bakıyor&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · paftada .fill-shade</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <div class="drawing" style="--aw:440;--ah:160">
+    <svg viewBox="0 0 440 160" aria-hidden="true">
+      <path class="ln-draw fill-shade" d="M20 50L40 38H190L170 50ZM170 50L190 38V118L170 130Z"/>
+      <rect class="ln-draw fill-paper" x="20" y="50" width="150" height="80"/>
+      <path class="ln-draw fill-shade" d="M240 50L260 38H410L390 50ZM390 50L410 38V118L390 130Z"/>
+      <rect class="ln-draw fill-paper" x="240" y="50" width="150" height="80"/>
+    </svg>
+    <p class="dl" style="--x:32;--y:62;--w:130">api</p>
+    <p class="dl" style="--x:252;--y:62;--w:130">worker</p>
+    <p class="dl" style="--x:20;--y:138;--w:400">yüzler paftanın zemininden ayrılır</p>
+  </div>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:160</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 160</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M20 50L40 38H190L170 50ZM170 50L190 38V118L170 130Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>50</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M240 50L260 38H410L390 50ZM390 50L410 38V118L390 130Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>240</span>" y="<span class='s'>50</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:62;--w:130</span>"&gt;api&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:252;--y:62;--w:130</span>"&gt;worker&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:138;--w:400</span>"&gt;yüzler paftanın zemininden ayrılır&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · paftada .fill-scene</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <div class="drawing" style="--aw:440;--ah:160">
+    <svg viewBox="0 0 440 160" aria-hidden="true">
+      <path class="ln-draw fill-scene" d="M20 50L40 38H190L170 50ZM170 50L190 38V118L170 130Z"/>
+      <rect class="ln-draw fill-paper" x="20" y="50" width="150" height="80"/>
+      <path class="ln-draw fill-scene" d="M240 50L260 38H410L390 50ZM390 50L410 38V118L390 130Z"/>
+      <rect class="ln-draw fill-paper" x="240" y="50" width="150" height="80"/>
+    </svg>
+    <p class="dl" style="--x:32;--y:62;--w:130">api</p>
+    <p class="dl" style="--x:252;--y:62;--w:130">worker</p>
+    <p class="dl" style="--x:20;--y:138;--w:400">yüzler zeminle aynı renk: kutu düz görünür</p>
+  </div>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:160</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 160</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-scene</span>" d="<span class='s'>M20 50L40 38H190L170 50ZM170 50L190 38V118L170 130Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>50</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-scene</span>" d="<span class='s'>M240 50L260 38H410L390 50ZM390 50L410 38V118L390 130Z</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>240</span>" y="<span class='s'>50</span>" width="<span class='s'>150</span>" height="<span class='s'>80</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:32;--y:62;--w:130</span>"&gt;api&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:252;--y:62;--w:130</span>"&gt;worker&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:138;--w:400</span>"&gt;yüzler zeminle aynı renk: kutu düz görünür&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Gölge yok</span><div class="co-body"><p>Derinliği yalnızca yüzler verir; <code>filter: drop-shadow</code>, gradyan ya da yarı saydam koyu bir dolgu eklemeyin. Kutunun anlamı içindeki etiket ve <code>.state</code> kelimesindedir, SVG <code>aria-hidden="true"</code> kalır.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="station-explorer.tr.html" rel="prev"><small>Önceki · <span lang="en">Blueprint</span></small>İstasyon gezgini</a><a href="measuring-tools.tr.html" rel="next"><small>Sonraki · <span lang="en">Blueprint</span></small>Ölçü aletleri</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

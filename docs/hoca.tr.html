@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoca · Hendese</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="assets/docs.css">
+<style>
+.h-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0 22px}
+.h-cell{position:relative;height:150px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--scene-bg)}
+.h-cell span{position:absolute;left:8px;top:6px;font:500 11px/1.4 var(--font-mono);color:var(--ink-3)}
+.h-cell::after{content:"";position:absolute;left:12px;right:12px;bottom:22px;border-top:1px dashed var(--pencil)}
+.h-stage{position:relative;height:220px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--scene-bg);margin:12px 0}
+.h-stage::after{content:"";position:absolute;left:16px;right:16px;bottom:30px;border-top:1px dashed var(--pencil)}
+.h-row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end}
+.h-row label.h-txt{display:grid;gap:4px;font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.h-row input[type=text]{font:14px/1.4 var(--font-pixel);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink);width:260px}
+.h-row select{font:13px/1.4 var(--font-mono);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="hoca.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Sayfalar</div>
+    <a class="nav-page" href="index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="tokens.tr.html">Token'lar</a>
+    <a class="nav-page" href="components.tr.html">Bileşenler</a>
+    <a class="nav-page" href="blueprint.tr.html">Blueprint ve tarifler</a>
+    <a class="nav-page" href="motion.tr.html">Hareket motoru</a>
+    <a class="nav-page" href="hoca.tr.html" aria-current="page">Hoca</a>
+    <a class="nav-page" href="../demos/index.tr.html">Parçalar (tek tek)</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#h1"><span class="num">01</span><span>Karakter</span></a>
+    <a class="nav-link" href="#h2"><span class="num">02</span><span>Pozlar</span></a>
+    <a class="nav-link" href="#h3"><span class="num">03</span><span>Oyun alanı</span></a>
+    <a class="nav-link" href="#h4"><span class="num">04</span><span>Davranış kuralları</span></a>
+    <a class="nav-link" href="#h5"><span class="num">05</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="hoca.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Maskot</p>
+    <h1>Hoca<em>Anlatıyı taşıyan değil, yanında yürüyen öğretmen.</em></h1>
+    <p class="intro">Turkuaz, piksel bir blok karakter. Canvas ile boyanır, görsel dosyası yoktur. Sahneler onu çağırır; boştayken raydaki evinde bekler.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Sprite</dt><dd>44 × 36 hücre · ×2</dd></div>
+    <div><dt>Boyut</dt><dd>88 × 72 px</dd></div>
+    <div><dt>Poz</dt><dd>21</dd></div>
+    <div><dt>Görünür</dt><dd>≥ 1100px, ekran</dd></div>
+  </dl>
+</section>
+
+<article class="chapter" id="h1" data-section data-title="Karakter">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Karakter</h2><p class="lead">Düz bir blok gövde, iki göz yarığı, yan çıkıntılar ve dört bacak. Öğretmen kişiliği yalnızca gözlükten, eşyalardan ve pozlardan gelir.</p></header>
+  <div class="prose">
+    <ul>
+      <li><b>Konuşma balonu</b> tek kısa cümledir ve metinde zaten geçen bir bilgiyi tekrar eder; yeni bilgi taşımaz.</li>
+      <li>Bir sahnede <b>bir kez</b>, anahtar anda konuşur.</li>
+      <li>Önemli bir etiketin üstünde durmaz; sahne onun için boş yer bırakır.</li>
+      <li>Ekran okuyucudan gizlidir (<code>aria-hidden</code>); yalnızca görsel bir eşlikçidir.</li>
+    </ul>
+  </div>
+</article>
+
+<article class="chapter" id="h2" data-section data-title="Pozlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Pozlar</h2><p class="lead">21 poz. Kesikli çizgi zemin; bağlantı noktası ayakların alt ortasıdır (<code>sit</code> için oturma noktası).</p></header>
+  <div class="h-grid" id="h-grid"></div>
+  <p class="figcap">Pozlar yalnızca 1100px ve üstünde, ekranda görünür (baskıda ve dar ekranda gizli).</p>
+</article>
+
+<article class="chapter" id="h3" data-section data-title="Oyun alanı">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Oyun alanı</h2><p class="lead">Poz, yön, balon ve etiketi değiştirip <code>place()</code> çağrısının ne çizdiğini görün.</p></header>
+  <div class="h-row">
+    <label class="h-txt">Poz<select id="h-pose"></select></label>
+    <fieldset class="choice is-seg"><legend>Yön</legend>
+      <label><input type="radio" name="h-face" value="1" checked><span>sağa</span></label>
+      <label><input type="radio" name="h-face" value="-1"><span>sola</span></label>
+    </fieldset>
+    <fieldset class="choice is-seg"><legend>Balon</legend>
+      <label><input type="radio" name="h-up" value="0" checked><span>yan</span></label>
+      <label><input type="radio" name="h-up" value="1"><span>üst</span></label>
+    </fieldset>
+    <label class="h-txt">Balon metni<input type="text" id="h-bub" value="Etiket tek sözleşme."></label>
+    <label class="h-txt">Etiket<input type="text" id="h-tag" value=""></label>
+  </div>
+  <div class="h-stage" id="h-stage"></div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">çağrı</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code id="h-call"></code></pre></figure>
+</article>
+
+<article class="chapter" id="h4" data-section data-title="Davranış kuralları">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Davranış kuralları</h2><p class="lead">Kontrolcü her karede kimin Hoca'ya sahip olduğuna karar verir; sahneler yalnızca talep eder.</p></header>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Durum</th><th>Ne olur</th></tr></thead>
+    <tbody>
+      <tr><td>Hiçbir sahne talep etmiyor</td><td>Raydaki <code>#hoca-home</code> evinde <code>idle</code> durur. Etkin bölüm <code>data-hoca="quiet"</code> ise soluk (%45).</td></tr>
+      <tr><td>Birden çok sahne talep ediyor</td><td>Kayıt sırasındaki ilk sahne kazanır.</td></tr>
+      <tr><td>Yakın iki nokta arası (≤ 260px)</td><td>650 ms yürür (<code>walkA/walkB</code>), yürürken balon ve etiket gizli.</td></tr>
+      <tr><td>Eve/evden, uzak mesafe, parça gezinmesi</td><td>320 ms: eski yerde söner, yenide belirir; ilgisiz içeriğin üstünden geçmez.</td></tr>
+      <tr><td>Reduced motion (masaüstü)</td><td>Her sahnede <code>still</code> pozunda durgun kopya; <code>Hendese.refresh()</code> yeniden yerleştirir.</td></tr>
+      <tr><td>&lt; 1100px, baskı</td><td>Gizli.</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Yürüme</span><div class="co-body">Sahne içinde yürütürken pozu konuma bağlayın: <code>Math.floor(x / 16) % 2 ? 'walkA' : 'walkB'</code>, yalnızca <code>x</code> değişirken; <code>face</code> hareket yönüdür. Kutu taşırken <code>crateWalkA/B</code>.</div></aside>
+</article>
+
+<article class="chapter" id="h5" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">05</p><h2>API</h2></header>
+  <div class="tbl wide api"><table>
+    <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+    <tbody>
+      <tr><td><code>Hendese.createHoca()</code></td><td>Yeni bir sprite örneği; tüm pozları boyar ve sabit bir katman ekler. Motor kendi örneğini zaten oluşturur; bunu yalnızca bağımsız kullanım (örn. bu sayfadaki galeri) için çağırın.</td></tr>
+      <tr><td><code>render(s)</code></td><td>Sabit katmanda çizer. <code>s</code>: <code>{visible, x, y (viewport px), pose, face, squash (0..1), bubble, bubbleUp, tag, alpha}</code>.</td></tr>
+      <tr><td><code>place(kap, o)</code></td><td>Bir kabın içine durgun kopya koyar (kap <code>position:relative</code>). <code>o</code>: <code>{left, top (CSS uzunluk), pose, face, bubble, bubbleUp, tag}</code>.</td></tr>
+      <tr><td><code>clearPlaced()</code></td><td>Tüm durgun kopyaları kaldırır.</td></tr>
+      <tr><td><code>size</code>, <code>anchors</code></td><td><code>{w:88, h:72, scale:2}</code>; pozların bağlantı noktaları (px).</td></tr>
+      <tr><td>Sahne talebi</td><td>Sahnenin <code>render</code>'ı <code>hoca: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}</code> döndürür; koordinatlar çizim biriminde.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="prose">Balon solda durur; solda yer yoksa (<code>x &lt; balon genişliği + 20</code>) sağa geçer. Pixelify Sans dışı karakter içeren metin (örn. ≠) mono fonta düşer.</p>
+</article>
+
+</div>
+</main>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+Hendese.start();
+(function(){
+  var $=Hendese.$,$$=Hendese.$$;
+  var POSES=['idle','carry','walkA','walkB','stepA','stepB','pointUp','pointDown','glasses','terminal','stamp','worried','happy','sit','shrug','clipboard','keycard','crate','crateWalkA','crateWalkB','helm'];
+  var g=Hendese.createHoca(),grid=$('#h-grid'),stage=$('#h-stage'),sel=$('#h-pose');
+  POSES.forEach(function(p){var c=document.createElement('div');c.className='h-cell';c.innerHTML='<span>'+p+'</span>';grid.appendChild(c);
+    var o=document.createElement('option');o.value=o.textContent=p;sel.appendChild(o)});
+  function gallery(){$$('.h-cell',grid).forEach(function(c,i){g.place(c,{left:'50%',top:'calc(100% - 22px)',pose:POSES[i],face:1})})}
+  /* oyun alanı: ayrı bir örnek, böylece galeriyi silmeden yenilenir */
+  var pg=Hendese.createHoca();sel.value='pointUp';
+  function play(){
+    var face=+$('[name=h-face]:checked').value,up=$('[name=h-up]:checked').value==='1',bub=$('#h-bub').value.trim()||null,tag=$('#h-tag').value.trim()||null;
+    pg.clearPlaced();pg.place(stage,{left:'60%',top:'calc(100% - 30px)',pose:sel.value,face:face,bubble:bub,bubbleUp:up,tag:tag});
+    $('#h-call').textContent="hoca.place(kap, { left: '60%', top: 'calc(100% - 30px)', pose: '"+sel.value+"', face: "+face+", bubble: "+(bub?JSON.stringify(bub):'null')+", bubbleUp: "+up+", tag: "+(tag?JSON.stringify(tag):'null')+" });";
+  }
+  [sel,$('#h-bub'),$('#h-tag')].concat($$('[name=h-face],[name=h-up]')).forEach(function(el){el.addEventListener('input',play);el.addEventListener('change',play)});
+  gallery();play();
+})();
+</script>
+</body>
+</html>

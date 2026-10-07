@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bileşenler · Hendese</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="assets/docs.css">
+<style>
+/* yalnızca JS ile çalışan denetimler: JS yoksa gizlenir */
+html:not(.js) .choice{display:none}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="components.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="shell">
+<aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Sayfalar</div>
+    <a class="nav-page" href="index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="tokens.tr.html">Token'lar</a>
+    <a class="nav-page" href="components.tr.html" aria-current="page">Bileşenler</a>
+    <a class="nav-page" href="blueprint.tr.html">Blueprint ve tarifler</a>
+    <a class="nav-page" href="motion.tr.html">Hareket motoru</a>
+    <a class="nav-page" href="hoca.tr.html">Hoca</a>
+    <a class="nav-page" href="../demos/index.tr.html">Parçalar (tek tek)</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#c1"><span class="num">01</span><span>Düğmeler ve rozetler</span></a>
+    <a class="nav-link" href="#c2"><span class="num">02</span><span>Callout'lar</span></a>
+    <a class="nav-link" href="#c3"><span class="num">03</span><span>Kod blokları</span></a>
+    <a class="nav-link" href="#c4"><span class="num">04</span><span>Tablolar</span></a>
+    <a class="nav-link" href="#c5"><span class="num">05</span><span>Tanım listesi ve şekil yazısı</span></a>
+    <a class="nav-link" href="#c6"><span class="num">06</span><span>Adımlar</span></a>
+    <a class="nav-link" href="#c7"><span class="num">07</span><span>Kontrol listesi</span></a>
+    <a class="nav-link" href="#c8"><span class="num">08</span><span>Seçim grupları</span></a>
+    <a class="nav-link" href="#c9"><span class="num">09</span><span>Kayıt, damga ve saha defteri</span></a>
+    <a class="nav-link" href="#c10"><span class="num">10</span><span>Antet</span></a>
+    <a class="nav-link" href="#c11"><span class="num">11</span><span>Form ve kaplar</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="components.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+
+<main id="content">
+<div class="canvas">
+
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Bileşenler</p>
+    <h1>Bileşenler<em>Okuma akışındaki yapı taşları.</em></h1>
+    <p class="intro">Düğmeden antete kadar her bileşen yalnızca token okur ve sade HTML ister. Her örnekte canlı görünüm ve kopyalanabilir işaretleme birlikte durur.</p>
+  </div>
+</section>
+
+<article class="chapter" id="c1" data-section data-title="Düğmeler ve rozetler">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Düğmeler ve rozetler</h2><p class="lead">Dört düğme ve üç küçük etiket. Düğmeler gerçek <code>&lt;button&gt;</code> öğesidir; rozetler yalnızca bilgi taşır, tıklanmaz.</p></header>
+  <div class="prose"><p><code>.btn</code> metinli eylem, <code>.icon-btn</code> yalnızca ikonlu eylem içindir; ikonlu düğmede <code>aria-label</code> zorunludur. <code>.toggle-btn</code> aç/kapa durumunu <code>aria-pressed</code> ile taşır: basılıyken kırmızı (engelleyici bir anahtar), <code>.is-accent</code> ile vurgu renginde. Devre dışı düğme kesikli kenarla çizilir: <code>disabled</code> odaktan çıkarır, <code>aria-disabled="true"</code> odakta tutar (tıklamayı betik yok sayar).</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · düğmeler</span>
+    <div class="demo-view">
+<div class="pillrow">
+  <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Kopyala</button>
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  <button class="icon-btn" type="button" aria-label="Menüyü aç"><svg><use href="#i-menu"/></svg></button>
+  <button class="btn" type="button" disabled>Yayınla</button>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pillrow"&gt;
+  &lt;button class="btn" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;Kopyala&lt;/button&gt;
+  &lt;button class="btn" type="button"&gt;&lt;svg&gt;&lt;use href="#i-reset"/&gt;&lt;/svg&gt;Sıfırla&lt;/button&gt;
+  &lt;button class="icon-btn" type="button" aria-label="Menüyü aç"&gt;&lt;svg&gt;&lt;use href="#i-menu"/&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class="btn" type="button" disabled&gt;Yayınla&lt;/button&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="demo">
+    <span class="demo-label">Örnek · aç/kapa düğmesi (tıklayın)</span>
+    <div class="demo-view">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Önbelleği atla</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Ayrıntılı günlük</button>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pillrow"&gt;
+  &lt;button class="toggle-btn" type="button" aria-pressed="false"&gt;Önbelleği atla&lt;/button&gt;
+  &lt;button class="toggle-btn is-accent" type="button" aria-pressed="true"&gt;Ayrıntılı günlük&lt;/button&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.pill</code> rengini <code>--c</code>, zeminini <code>--c-soft</code> değişkeninden alır; ikisini de <code>.s-*</code> sınıfları verir: <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code>, <code>.s-neutral</code>, <code>.s-accent</code> ve servis renkleri (<code>.s-gitlab</code>, <code>.s-aws</code>, <code>.s-k8s</code>, <code>.s-argo</code>; zemin kendiliğinden %10). Sınıfsız rozet nötrdür ve kabının rengini almaz. Eski adlar (<code>.pill-ok</code>, <code>.pill-neutral</code>, <code>.state.ok</code>…) 1.0'a kadar çalışır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · rozetler</span>
+    <div class="demo-view">
+<div class="pillrow">
+  <span class="pill s-ok">çalışıyor</span>
+  <span class="pill s-warn">yavaş</span>
+  <span class="pill s-neutral">taslak</span>
+  <span class="pill s-gitlab">kaynak</span>
+  <span class="pill s-aws">imaj kaydı</span>
+  <span class="pill s-argo">eşitleme</span>
+  <span class="pill s-sec">gizli</span>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pillrow"&gt;
+  &lt;span class="pill s-ok"&gt;çalışıyor&lt;/span&gt;
+  &lt;span class="pill s-warn"&gt;yavaş&lt;/span&gt;
+  &lt;span class="pill s-neutral"&gt;taslak&lt;/span&gt;
+  &lt;span class="pill s-gitlab"&gt;kaynak&lt;/span&gt;
+  &lt;span class="pill s-aws"&gt;imaj kaydı&lt;/span&gt;
+  &lt;span class="pill s-argo"&gt;eşitleme&lt;/span&gt;
+  &lt;span class="pill s-sec"&gt;gizli&lt;/span&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.state</code> çizimlerdeki durum etiketidir (SUCCEEDED, PENDING…); boyutunu çizim birimi <code>--u</code>'dan hesaplar; çizim dışında birim 1px'tir. Rengi aynı <code>.s-*</code> sınıflarından alır. <code>.chip</code> küçük, büyük harfli mono etikettir: şekil başlığı, sütun adı, sayaç.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · durum etiketi ve çip</span>
+    <div class="demo-view">
+<p class="pillrow">
+  <span class="state s-ok">başarılı</span>
+  <span class="state s-warn">bekliyor</span>
+  <span class="state s-bad">reddedildi</span>
+</p>
+<p class="chip">Şekil 1 · dağıtım izi</p>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;p class="pillrow"&gt;
+  &lt;span class="state s-ok"&gt;başarılı&lt;/span&gt;
+  &lt;span class="state s-warn"&gt;bekliyor&lt;/span&gt;
+  &lt;span class="state s-bad"&gt;reddedildi&lt;/span&gt;
+&lt;/p&gt;
+&lt;p class="chip"&gt;Şekil 1 · dağıtım izi&lt;/p&gt;</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="c2" data-section data-title="Callout'lar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Callout'lar</h2><p class="lead">Metnin akışını bölmeden yan not düşmek için. Yedi tür vardır; her birinin rengi ve ikonu sabittir, etiketi serbesttir.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · yedi tür</span>
+    <div class="demo-view">
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Bilgi</span><div class="co-body"><p>Etiket, servis adı ile ortamın birleşimidir: <code>web-api:prod-3f9c2a1b</code>.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Önemli</span><div class="co-body"><p>Etiket kalıbı değişirse eşitleme aracı yeni imajı görmez.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">İpucu</span><div class="co-body"><p>Önce yerelde <code>docker build .</code> çalıştırın; hata orada daha hızlı görünür.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Dikkat</span><div class="co-body"><p>Kopya sayısını sıfıra çekmek servisi <b>durdurur</b>; yalnızca bakım penceresinde yapın.</p></div></div>
+<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Güvenlik</span><div class="co-body"><p>Parolalar depoya yazılmaz; gizli bilgi kasasından çalışma anında okunur.</p></div></div>
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Tamamlandı</span><div class="co-body"><p>Yeni pod'lar hazır; eski kopyalar kapatıldı.</p></div></div>
+<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Sorun giderme</span><div class="co-body"><p>İmaj çekilemiyorsa önce bölgeyi (<code>eu-west-1</code>), sonra etiketi kontrol edin.</p></div></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="co co-info"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-info"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Bilgi&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Etiket, servis adı ile ortamın birleşimidir: &lt;code&gt;web-api:prod-3f9c2a1b&lt;/code&gt;.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-important"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-info"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Önemli&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Etiket kalıbı değişirse eşitleme aracı yeni imajı görmez.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-tip"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-bulb"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;İpucu&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Önce yerelde &lt;code&gt;docker build .&lt;/code&gt; çalıştırın; hata orada daha hızlı görünür.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-warn"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-warn"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Dikkat&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Kopya sayısını sıfıra çekmek servisi &lt;b&gt;durdurur&lt;/b&gt;; yalnızca bakım penceresinde yapın.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-sec"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-shield"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Güvenlik&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Parolalar depoya yazılmaz; gizli bilgi kasasından çalışma anında okunur.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-success"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Tamamlandı&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;Yeni pod'lar hazır; eski kopyalar kapatıldı.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="co co-trouble"&gt;&lt;span class="co-ic"&gt;&lt;svg&gt;&lt;use href="#i-wrench"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="co-label"&gt;Sorun giderme&lt;/span&gt;&lt;div class="co-body"&gt;&lt;p&gt;İmaj çekilemiyorsa önce bölgeyi (&lt;code&gt;eu-west-1&lt;/code&gt;), sonra etiketi kontrol edin.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Sınıf</th><th>İkon</th><th>Renk</th><th>Ne zaman</th></tr></thead>
+    <tbody>
+      <tr><td><code>.co-info</code></td><td><code>#i-info</code></td><td><code>--ink-2</code></td><td>Arka plan bilgisi</td></tr>
+      <tr><td><code>.co-important</code></td><td><code>#i-info</code></td><td><code>--accent</code></td><td>Atlanmaması gereken nokta</td></tr>
+      <tr><td><code>.co-tip</code></td><td><code>#i-bulb</code></td><td><code>--ok</code></td><td>Kısayol, öneri</td></tr>
+      <tr><td><code>.co-warn</code></td><td><code>#i-warn</code></td><td><code>--warn</code></td><td>Geri alınması zor adım, tuzak</td></tr>
+      <tr><td><code>.co-sec</code></td><td><code>#i-shield</code></td><td><code>--sec</code></td><td>Yetki, gizli bilgi</td></tr>
+      <tr><td><code>.co-success</code></td><td><code>#i-check</code></td><td><code>--ok</code></td><td>Bitiş ölçütü</td></tr>
+      <tr><td><code>.co-trouble</code></td><td><code>#i-wrench</code></td><td><code>--bad</code></td><td>Hata ve çözüm yolu</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="chapter" id="c3" data-section data-title="Kod blokları">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Kod blokları</h2><p class="lead">Kod blokları iki temada da koyu kalır. Başlık satırı dosya adını, dili ve kopyalama düğmesini taşır; kopyalama yalnızca <code>&lt;code&gt;</code> metnini alır.</p></header>
+  <div class="prose"><p>Renklendirme elle yapılır: <code>.k</code> anahtar, <code>.s</code> metin değeri, <code>.c</code> yorum, <code>.v</code> değişken. Kopyala düğmesi <code>Hendese.init()</code> ile kendiliğinden çalışır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · kod bloğu</span>
+    <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">servis.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="c"># örnek servis tanımı</span>
+<span class="k">name</span>: <span class="s">ornek-servis</span>
+<span class="k">region</span>: <span class="s">eu-west-1</span>
+<span class="k">image</span>: web-api:<span class="v">${TAG}</span></code></pre></figure>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="code"&gt;
+  &lt;figcaption class="code-head"&gt;
+    &lt;span class="code-file"&gt;servis.yaml&lt;/span&gt;
+    &lt;span class="code-lang"&gt;YAML&lt;/span&gt;
+    &lt;button class="code-copy" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;&lt;span&gt;Kopyala&lt;/span&gt;&lt;/button&gt;
+  &lt;/figcaption&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;&lt;span class="c"&gt;# örnek servis tanımı&lt;/span&gt;
+&lt;span class="k"&gt;name&lt;/span&gt;: &lt;span class="s"&gt;ornek-servis&lt;/span&gt;
+&lt;span class="k"&gt;region&lt;/span&gt;: &lt;span class="s"&gt;eu-west-1&lt;/span&gt;
+&lt;span class="k"&gt;image&lt;/span&gt;: web-api:&lt;span class="v"&gt;${TAG}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</code></pre></figure>
+  </div>
+
+  <h3>Açıklamalı blok</h3>
+  <div class="prose"><p><code>pre.annotated</code> sol tarafta etiket sütunu açar; her <code>.grp</code> satır grubu kendi renginde (<code>.g1</code>–<code>.g5</code>) bir çizgi ve <code>data-label</code> etiketi alır. Dar ekranda etiketler gizlenir, renkli çizgi kalır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · açıklamalı blok</span>
+    <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">derleme.yml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre class="annotated" tabindex="0"><code><span class="k">phases</span>:
+<span class="grp g1" data-label="giriş">  <span class="k">pre_build</span>:
+    - ./giris.sh
+</span><span class="grp g2" data-label="build">  <span class="k">build</span>:
+    - docker build -t web-api .
+</span><span class="grp g3" data-label="gönderim">  <span class="k">post_build</span>:
+    - docker push web-api:<span class="v">$TAG</span>
+</span></code></pre></figure>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="code"&gt;
+  &lt;figcaption class="code-head"&gt;
+    &lt;span class="code-file"&gt;derleme.yml&lt;/span&gt;
+    &lt;span class="code-lang"&gt;YAML&lt;/span&gt;
+    &lt;button class="code-copy" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;&lt;span&gt;Kopyala&lt;/span&gt;&lt;/button&gt;
+  &lt;/figcaption&gt;
+&lt;pre class="annotated" tabindex="0"&gt;&lt;code&gt;&lt;span class="k"&gt;phases&lt;/span&gt;:
+&lt;span class="grp g1" data-label="giriş"&gt;  &lt;span class="k"&gt;pre_build&lt;/span&gt;:
+    - ./giris.sh
+&lt;/span&gt;&lt;span class="grp g2" data-label="build"&gt;  &lt;span class="k"&gt;build&lt;/span&gt;:
+    - docker build -t web-api .
+&lt;/span&gt;&lt;span class="grp g3" data-label="gönderim"&gt;  &lt;span class="k"&gt;post_build&lt;/span&gt;:
+    - docker push web-api:&lt;span class="v"&gt;$TAG&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</code></pre></figure>
+  </div>
+
+  <h3>Diff kenar şeridi</h3>
+  <div class="prose"><p>Değişen satırlar kod dışında, <code>.diff-gut</code> içindeki <code>&lt;i style="--l:N" data-m="Δ1"&gt;</code> işaretleriyle gösterilir; kopyalanan metin temiz kalır. Metinde aynı işareti <code>.diff-key</code> ile anarsınız.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · diff kenar şeridi</span>
+    <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">deployment.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i><i style="--l:5" data-m="Δ2"></i></div>
+<pre tabindex="0"><code><span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">web-api</span>
+  <span class="k">namespace</span>: <span class="s">ornek-servis</span>
+<span class="k">spec</span>:
+  <span class="k">replicas</span>: <span class="v">3</span>
+  <span class="k">image</span>: web-api:prod-3f9c2a1b</code></pre></div></figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Servis artık kendi ad alanında çalışıyor; <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>kopya sayısı üçe çıktı.</p>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="code"&gt;
+  &lt;figcaption class="code-head"&gt;
+    &lt;span class="code-file"&gt;deployment.yaml&lt;/span&gt;
+    &lt;span class="code-lang"&gt;YAML&lt;/span&gt;
+    &lt;button class="code-copy" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;&lt;span&gt;Kopyala&lt;/span&gt;&lt;/button&gt;
+  &lt;/figcaption&gt;
+&lt;div class="diff-src"&gt;
+  &lt;div class="diff-gut" aria-hidden="true"&gt;&lt;i style="--l:3" data-m="Δ1"&gt;&lt;/i&gt;&lt;i style="--l:5" data-m="Δ2"&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;&lt;span class="k"&gt;metadata&lt;/span&gt;:
+  &lt;span class="k"&gt;name&lt;/span&gt;: &lt;span class="s"&gt;web-api&lt;/span&gt;
+  &lt;span class="k"&gt;namespace&lt;/span&gt;: &lt;span class="s"&gt;ornek-servis&lt;/span&gt;
+&lt;span class="k"&gt;spec&lt;/span&gt;:
+  &lt;span class="k"&gt;replicas&lt;/span&gt;: &lt;span class="v"&gt;3&lt;/span&gt;
+  &lt;span class="k"&gt;image&lt;/span&gt;: web-api:prod-3f9c2a1b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;i class="diff-key" data-m="Δ1" aria-hidden="true"&gt;&lt;/i&gt;Servis artık kendi ad alanında çalışıyor; &lt;i class="diff-key" data-m="Δ2" aria-hidden="true"&gt;&lt;/i&gt;kopya sayısı üçe çıktı.&lt;/p&gt;</code></pre></figure>
+  </div>
+
+  <h3>Yürütme imleci</h3>
+  <div class="prose"><p>Her satırı <code>.ln</code> ile sarın; o an çalışan satır <code>.ln.cur</code> alır. Metin rengi değişmez, yalnızca satır zemini ve sol çizgi vurgulanır. Sahnelerde imleci JS taşır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · yürütme imleci</span>
+    <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">yayinla.sh</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="ln">docker build -t web-api .
+</span><span class="ln cur">docker tag web-api web-api:prod-3f9c2a1b
+</span><span class="ln">docker push web-api:prod-3f9c2a1b
+</span></code></pre></figure>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="code"&gt;
+  &lt;figcaption class="code-head"&gt;
+    &lt;span class="code-file"&gt;yayinla.sh&lt;/span&gt;
+    &lt;span class="code-lang"&gt;BASH&lt;/span&gt;
+    &lt;button class="code-copy" type="button"&gt;&lt;svg&gt;&lt;use href="#i-copy"/&gt;&lt;/svg&gt;&lt;span&gt;Kopyala&lt;/span&gt;&lt;/button&gt;
+  &lt;/figcaption&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;&lt;span class="ln"&gt;docker build -t web-api .
+&lt;/span&gt;&lt;span class="ln cur"&gt;docker tag web-api web-api:prod-3f9c2a1b
+&lt;/span&gt;&lt;span class="ln"&gt;docker push web-api:prod-3f9c2a1b
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="c4" data-section data-title="Tablolar">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Tablolar</h2><p class="lead">Tablo, kaydırılabilir bir <code>.tbl</code> kabının içinde durur. İlk sütun mürekkep rengindedir; satır içi <code>code</code> satır kırmaz.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.tbl</span></span>
+    <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Servis</th><th>Ortam</th><th>Etiket</th><th>Durum</th></tr></thead>
+  <tbody>
+    <tr><td>web-api</td><td>prod</td><td><code>prod-3f9c2a1b</code></td><td><span class="pill s-ok">çalışıyor</span></td></tr>
+    <tr><td>ornek-servis</td><td>test</td><td><code>test-81d07e4c</code></td><td><span class="pill s-neutral">bekliyor</span></td></tr>
+  </tbody>
+</table></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="tbl"&gt;&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Servis&lt;/th&gt;&lt;th&gt;Ortam&lt;/th&gt;&lt;th&gt;Etiket&lt;/th&gt;&lt;th&gt;Durum&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;web-api&lt;/td&gt;&lt;td&gt;prod&lt;/td&gt;&lt;td&gt;&lt;code&gt;prod-3f9c2a1b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill s-ok"&gt;çalışıyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;ornek-servis&lt;/td&gt;&lt;td&gt;test&lt;/td&gt;&lt;td&gt;&lt;code&gt;test-81d07e4c&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="pill s-neutral"&gt;bekliyor&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.tbl table</code> en az 620px genişliktedir; <code>.tbl.wide</code> bunu 820px'e çıkarır. Kap daha darsa tablo yatay kayar. Sayı sütununa <code>th.num</code> / <code>td.num</code> verin: sağa yaslı, eşit genişlikli rakam.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.tbl.wide</span></span>
+    <div class="demo-view">
+<div class="tbl wide"><table>
+  <thead><tr><th>Aşama</th><th>Girdi</th><th>Çıktı</th><th>Süre</th><th>Not</th></tr></thead>
+  <tbody>
+    <tr><td>Derleme</td><td>kaynak deposu</td><td><code>web-api:prod-3f9c2a1b</code></td><td>3 dk</td><td>Önbellek açık <small>(katman)</small></td></tr>
+    <tr><td>Kayıt</td><td>imaj</td><td>imaj kaydı, <code>eu-west-1</code></td><td>40 sn</td><td>Etiket değişmez</td></tr>
+    <tr><td>Eşitleme</td><td>yeni etiket</td><td>küme güncellemesi</td><td>1 dk</td><td>Kademeli</td></tr>
+  </tbody>
+</table></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="tbl wide"&gt;&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Aşama&lt;/th&gt;&lt;th&gt;Girdi&lt;/th&gt;&lt;th&gt;Çıktı&lt;/th&gt;&lt;th&gt;Süre&lt;/th&gt;&lt;th&gt;Not&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Derleme&lt;/td&gt;&lt;td&gt;kaynak deposu&lt;/td&gt;&lt;td&gt;&lt;code&gt;web-api:prod-3f9c2a1b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;3 dk&lt;/td&gt;&lt;td&gt;Önbellek açık &lt;small&gt;(katman)&lt;/small&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Kayıt&lt;/td&gt;&lt;td&gt;imaj&lt;/td&gt;&lt;td&gt;imaj kaydı, &lt;code&gt;eu-west-1&lt;/code&gt;&lt;/td&gt;&lt;td&gt;40 sn&lt;/td&gt;&lt;td&gt;Etiket değişmez&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Eşitleme&lt;/td&gt;&lt;td&gt;yeni etiket&lt;/td&gt;&lt;td&gt;küme güncellemesi&lt;/td&gt;&lt;td&gt;1 dk&lt;/td&gt;&lt;td&gt;Kademeli&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Dar ekran</span><div class="co-body"><p>İçerik sütunu 720px'ten darsa satırlar karta dönüşür (kap sorgusu): başlık satırı gizlenir, her hücrenin solunda kendi sütun adı yazılır. Bu adları <code>Hendese.init()</code> her <code>td</code>'ye <code>data-th</code> olarak yazar; JS olmadan tablo yatay kaydırmaya devam eder.</p></div></div>
+</article>
+
+<article class="chapter" id="c5" data-section data-title="Tanım listesi ve şekil yazısı">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Tanım listesi ve şekil yazısı</h2><p class="lead">Ad–değer çiftleri için <code>dl.kv</code>, şekil ve tabloların altına <code>.figcap</code>, uzun okuma metni için <code>.prose</code>.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">dl.kv</span></span>
+    <div class="demo-view">
+<dl class="kv">
+  <dt>Servis</dt><dd>web-api</dd>
+  <dt>Bölge</dt><dd><code>eu-west-1</code></dd>
+  <dt>Etiket kalıbı</dt><dd><span class="mono">prod-[0-9a-f]{8}</span></dd>
+</dl>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;dl class="kv"&gt;
+  &lt;dt&gt;Servis&lt;/dt&gt;&lt;dd&gt;web-api&lt;/dd&gt;
+  &lt;dt&gt;Bölge&lt;/dt&gt;&lt;dd&gt;&lt;code&gt;eu-west-1&lt;/code&gt;&lt;/dd&gt;
+  &lt;dt&gt;Etiket kalıbı&lt;/dt&gt;&lt;dd&gt;&lt;span class="mono"&gt;prod-[0-9a-f]{8}&lt;/span&gt;&lt;/dd&gt;
+&lt;/dl&gt;</code></pre></figure>
+  </div>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.prose</span> ve <span lang="en">.figcap</span></span>
+    <div class="demo-view">
+<div class="prose">
+  <p>Her derleme yeni bir etiket üretir. Eşitleme aracı yalnızca <b>kalıba uyan</b> etiketleri izler; kalıbın dışındaki imajlar kayıtta durur ama kümeye inmez.</p>
+</div>
+<p class="figcap"><b>Şekil 4.</b> Etiket kalıbı derleme ile eşitleme arasındaki tek sözleşmedir.</p>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="prose"&gt;
+  &lt;p&gt;Her derleme yeni bir etiket üretir. Eşitleme aracı yalnızca &lt;b&gt;kalıba uyan&lt;/b&gt; etiketleri izler; kalıbın dışındaki imajlar kayıtta durur ama kümeye inmez.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="figcap"&gt;&lt;b&gt;Şekil 4.&lt;/b&gt; Etiket kalıbı derleme ile eşitleme arasındaki tek sözleşmedir.&lt;/p&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.prose</code> satır uzunluğunu 72 karakterde tutar ve paragrafları <code>--ink-2</code> ile yazar. <code>.mono</code> satır içi mono yazı içindir; <code>code</code>'dan farklı olarak zemin çizmez. <code>dl.kv</code> içerik sütunu 640px'ten darsa tek sütuna iner.</p></div>
+</article>
+
+<article class="chapter" id="c6" data-section data-title="Adımlar">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Adımlar</h2><p class="lead">Sıralı iş için numaralı kartlar. Numara liste sayacıyla basılır (<code>start</code> çalışır); her adım bir başlık, kısa açıklama ve isteğe bağlı bir kontrol satırı taşır.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">ol.steps</span></span>
+    <div class="demo-view">
+<ol class="steps">
+  <li data-state="done">
+    <h3>İmaj deposunu oluşturun <span class="visually-hidden">(tamamlandı)</span></h3>
+    <p>Depo adı servis adıyla aynı olsun: <code>web-api</code>.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: depo listede görünüyor.</span></p>
+  </li>
+  <li aria-current="step">
+    <h3>Derlemeyi bağlayın</h3>
+    <p>Kaynak deposundaki her itme yeni bir etiket üretir.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Kontrol: ilk derleme yeşil bitti.</span></p>
+  </li>
+</ol>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;ol class="steps"&gt;
+  &lt;li data-state="done"&gt;
+    &lt;h3&gt;İmaj deposunu oluşturun &lt;span class="visually-hidden"&gt;(tamamlandı)&lt;/span&gt;&lt;/h3&gt;
+    &lt;p&gt;Depo adı servis adıyla aynı olsun: &lt;code&gt;web-api&lt;/code&gt;.&lt;/p&gt;
+    &lt;p class="check"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;&lt;span&gt;Kontrol: depo listede görünüyor.&lt;/span&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li aria-current="step"&gt;
+    &lt;h3&gt;Derlemeyi bağlayın&lt;/h3&gt;
+    &lt;p&gt;Kaynak deposundaki her itme yeni bir etiket üretir.&lt;/p&gt;
+    &lt;p class="check"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;&lt;span&gt;Kontrol: ilk derleme yeşil bitti.&lt;/span&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p>Şimdiki adım <code>aria-current="step"</code> ile 2px çizim kenarı alır. <code>data-state="done"</code> numarayı yeşile, <code>data-state="blocked"</code> kırmızıya ve kenarı kesikliye çevirir; durum ekran okuyucuya ulaşmadığı için görünür ya da <code>.visually-hidden</code> bir metinle de söylenir. Kontrol satırı <code>.check.s-warn</code> ve <code>.check.s-bad</code> alabilir.</p></div>
+</article>
+
+<article class="chapter" id="c7" data-section data-title="Kontrol listesi">
+  <header class="ch-head"><p class="ch-num">07</p><h2>Kontrol listesi</h2><p class="lead">İşaretlenebilir maddeler, sayaç, ilerleme çubuğu ve sıfırlama düğmesi. Seçimler tarayıcıda saklanır; sayfa yenilense de kalır.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.runbook</span></span>
+    <div class="demo-view">
+<div class="runbook" data-store="hendese-demo-runbook">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 3</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Yerelde <code>docker build .</code> geçiyor</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">İmaj deposu <code>eu-west-1</code> bölgesinde açıldı</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Etiket kalıbı <code>prod-*</code> ile eşleşiyor</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Tüm maddeler tamam.</div>
+</div>
+<div class="readout" id="rb-out" aria-live="polite"><p>Henüz işaretli madde yok.</p></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="runbook" data-store="hendese-demo-runbook"&gt;
+  &lt;div class="rb-head"&gt;
+    &lt;span class="rb-count" aria-live="polite"&gt;0 / 3&lt;/span&gt;
+    &lt;div class="rb-bar" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;button class="btn rb-reset" type="button"&gt;&lt;svg&gt;&lt;use href="#i-reset"/&gt;&lt;/svg&gt;Sıfırla&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="rb-list"&gt;
+    &lt;label class="rb-item"&gt;&lt;input type="checkbox"&gt;&lt;span class="box" aria-hidden="true"&gt;&lt;svg&gt;&lt;use href="#i-tick"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="txt"&gt;Yerelde &lt;code&gt;docker build .&lt;/code&gt; geçiyor&lt;/span&gt;&lt;/label&gt;
+    &lt;label class="rb-item"&gt;&lt;input type="checkbox"&gt;&lt;span class="box" aria-hidden="true"&gt;&lt;svg&gt;&lt;use href="#i-tick"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="txt"&gt;İmaj deposu &lt;code&gt;eu-west-1&lt;/code&gt; bölgesinde açıldı&lt;/span&gt;&lt;/label&gt;
+    &lt;label class="rb-item"&gt;&lt;input type="checkbox"&gt;&lt;span class="box" aria-hidden="true"&gt;&lt;svg&gt;&lt;use href="#i-tick"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="txt"&gt;Etiket kalıbı &lt;code&gt;prod-*&lt;/code&gt; ile eşleşiyor&lt;/span&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="rb-done"&gt;&lt;svg&gt;&lt;use href="#i-check"/&gt;&lt;/svg&gt;Tüm maddeler tamam.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="readout" id="rb-out" aria-live="polite"&gt;&lt;p&gt;Henüz işaretli madde yok.&lt;/p&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose">
+    <p><code>data-store</code> değeri <code>localStorage</code> anahtarı olarak olduğu gibi kullanılır; sayfa başına benzersiz verin. Her değişiklikte ve açılışta bir kez, liste kendi üzerinde kabarcıklı <code>hendese:runbook</code> olayı yayar; <code>detail</code> içinde <code>done</code> ve <code>total</code> gelir. Açılıştaki ilk olay <code>Hendese.init()</code> sırasında yayıldığı için, dinleyiciyi sonradan bağlıyorsanız ilk durumu kendiniz okuyun:</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-runbook"]');
+var out = document.getElementById('rb-out');
+function show(done, total) {
+  out.classList.toggle('s-ok', done === total);
+  out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;Hazır.&lt;/b&gt; Tüm maddeler işaretli.&lt;/p&gt;'
+    : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; madde işaretli.&lt;/p&gt;';
+}
+rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);</code></pre></figure>
+</article>
+
+<article class="chapter" id="c8" data-section data-title="Seçim grupları">
+  <header class="ch-head"><p class="ch-num">08</p><h2>Seçim grupları</h2><p class="lead">Yerel radyo düğmeleri üzerine kurulu çip ve segment görünümleri. Klavye davranışı tarayıcıdan gelir: Tab gruba girer, ok tuşları seçer.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.choice</span> ve <span lang="en">.choice.is-seg</span></span>
+    <div class="demo-view">
+<fieldset class="choice" id="env-select">
+  <legend>Ortam</legend>
+  <label><input type="radio" name="env" value="dev"><span>dev</span></label>
+  <label><input type="radio" name="env" value="test" checked><span>test</span></label>
+  <label><input type="radio" name="env" value="prod"><span>prod <small>eu-west-1</small></span></label>
+</fieldset>
+<fieldset class="choice is-seg" id="strategy-select">
+  <legend>Dağıtım</legend>
+  <label><input type="radio" name="strategy" value="kademeli" checked><span>kademeli</span></label>
+  <label><input type="radio" name="strategy" value="mavi-yeşil"><span>mavi-yeşil</span></label>
+  <label><input type="radio" name="strategy" value="tek seferde"><span>tek seferde</span></label>
+</fieldset>
+<div class="readout" id="choice-out" aria-live="polite"><p><b>test</b> ortamına <b>kademeli</b> dağıtım.</p></div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;fieldset class="choice" id="env-select"&gt;
+  &lt;legend&gt;Ortam&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="dev"&gt;&lt;span&gt;dev&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="test" checked&gt;&lt;span&gt;test&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="prod"&gt;&lt;span&gt;prod &lt;small&gt;eu-west-1&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;
+&lt;/fieldset&gt;
+&lt;fieldset class="choice is-seg" id="strategy-select"&gt;
+  &lt;legend&gt;Dağıtım&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="kademeli" checked&gt;&lt;span&gt;kademeli&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="mavi-yeşil"&gt;&lt;span&gt;mavi-yeşil&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="tek seferde"&gt;&lt;span&gt;tek seferde&lt;/span&gt;&lt;/label&gt;
+&lt;/fieldset&gt;
+&lt;div class="readout" id="choice-out" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;test&lt;/b&gt; ortamına &lt;b&gt;kademeli&lt;/b&gt; dağıtım.&lt;/p&gt;&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose">
+    <p><code>.readout</code> seçimin sonucunu yazar; <code>aria-live="polite"</code> ekran okuyucuya değişikliği bildirir. <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> ve <code>.s-sec</code> sol çizgiyi ve kalın metni duruma göre boyar (eski <code>.ok</code> / <code>.bad</code> 1.0'a kadar çalışır); örnekte <b>prod</b> ile <b>tek seferde</b> birlikte seçilince <code>.s-bad</code> olur.</p>
+    <p>Sonucu JS ile hesaplanan denetimler JS yoksa anlamsızdır. Bu sayfa onları şöyle gizler; <code>js</code> sınıfını <code>&lt;head&gt;</code>'deki tema satırı ekler:</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
+</article>
+
+<article class="chapter" id="c9" data-section data-title="Kayıt, damga ve saha defteri">
+  <header class="ch-head"><p class="ch-num">09</p><h2>Kayıt, damga ve saha defteri</h2><p class="lead">Teknik çizim diline ait üç küçük blok: değişken kaydı, çift çerçeveli ad plakası ve numaralı not defteri.</p></header>
+  <div class="prose"><p><code>.register</code> bir adımın o anki değişkenlerini gösterir; değişen satır <code>.now</code> ile vurgulanır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.register</span></span>
+    <div class="demo-view">
+<div class="register" style="max-width:340px">
+  <p class="register-h"><b>Değişkenler</b><span>adım 2 / 4</span></p>
+  <dl>
+    <div><dt>SERVICE</dt><dd>web-api</dd></div>
+    <div class="now"><dt>TAG</dt><dd>prod-3f9c2a1b</dd></div>
+    <div><dt>REGION</dt><dd>eu-west-1</dd></div>
+  </dl>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="register" style="max-width:340px"&gt;
+  &lt;p class="register-h"&gt;&lt;b&gt;Değişkenler&lt;/b&gt;&lt;span&gt;adım 2 / 4&lt;/span&gt;&lt;/p&gt;
+  &lt;dl&gt;
+    &lt;div&gt;&lt;dt&gt;SERVICE&lt;/dt&gt;&lt;dd&gt;web-api&lt;/dd&gt;&lt;/div&gt;
+    &lt;div class="now"&gt;&lt;dt&gt;TAG&lt;/dt&gt;&lt;dd&gt;prod-3f9c2a1b&lt;/dd&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;dt&gt;REGION&lt;/dt&gt;&lt;dd&gt;eu-west-1&lt;/dd&gt;&lt;/div&gt;
+  &lt;/dl&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.stamp</code> bir şeklin ya da bölümün konusunu adlandırır: üstte küçük etiket (<code>.stamp-k</code>), altta ad (<code>.stamp-name</code>).</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.stamp</span></span>
+    <div class="demo-view">
+<div class="stamp" style="max-width:280px">
+  <span class="stamp-k">Servis</span>
+  <span class="stamp-name">web-api</span>
+</div>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="stamp" style="max-width:280px"&gt;
+  &lt;span class="stamp-k"&gt;Servis&lt;/span&gt;
+  &lt;span class="stamp-name"&gt;web-api&lt;/span&gt;
+&lt;/div&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p><code>.survey-log</code> numaralı not girdileridir: solda numara ve künye (<code>.sl-meta</code>), sağda etiketli paragraflar (<code>.sl-body</code>). İçerik sütunu 720px'ten darsa künye metnin üstüne iner. Girdiye <code>.s-ok</code>, <code>.s-warn</code> ya da <code>.s-bad</code> verilirse numara o renge boyanır.</p></div>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">.survey-log</span></span>
+    <div class="demo-view">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-01</span>
+      <dl><dt>Tarih</dt><dd>2026-10-02</dd><dt>Ortam</dt><dd>prod</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Yeni etiket kayda düştü ama kümeye inmedi.</p>
+      <span class="sl-label">Karar</span>
+      <p>Etiket kalıbı <code>prod-*</code> olarak düzeltildi.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-02</span>
+      <dl><dt>Tarih</dt><dd>2026-10-03</dd><dt>Ortam</dt><dd>test</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Gözlem</span>
+      <p>Derleme süresi önbellekle 3 dakikaya indi.</p>
+    </div>
+  </li>
+</ol>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;ol class="survey-log"&gt;
+  &lt;li&gt;
+    &lt;div class="sl-meta"&gt;
+      &lt;span class="sl-no"&gt;N-01&lt;/span&gt;
+      &lt;dl&gt;&lt;dt&gt;Tarih&lt;/dt&gt;&lt;dd&gt;2026-10-02&lt;/dd&gt;&lt;dt&gt;Ortam&lt;/dt&gt;&lt;dd&gt;prod&lt;/dd&gt;&lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;div class="sl-body"&gt;
+      &lt;span class="sl-label"&gt;Gözlem&lt;/span&gt;
+      &lt;p&gt;Yeni etiket kayda düştü ama kümeye inmedi.&lt;/p&gt;
+      &lt;span class="sl-label"&gt;Karar&lt;/span&gt;
+      &lt;p&gt;Etiket kalıbı &lt;code&gt;prod-*&lt;/code&gt; olarak düzeltildi.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;div class="sl-meta"&gt;
+      &lt;span class="sl-no"&gt;N-02&lt;/span&gt;
+      &lt;dl&gt;&lt;dt&gt;Tarih&lt;/dt&gt;&lt;dd&gt;2026-10-03&lt;/dd&gt;&lt;dt&gt;Ortam&lt;/dt&gt;&lt;dd&gt;test&lt;/dd&gt;&lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;div class="sl-body"&gt;
+      &lt;span class="sl-label"&gt;Gözlem&lt;/span&gt;
+      &lt;p&gt;Derleme süresi önbellekle 3 dakikaya indi.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre></figure>
+  </div>
+</article>
+
+<article class="chapter" id="c10" data-section data-title="Antet">
+  <header class="ch-head"><p class="ch-num">10</p><h2>Antet</h2><p class="lead">Teknik çizimin köşesindeki künye tablosu. Bir şeklin ya da sayfanın neyi, hangi ortamda, hangi ölçekte gösterdiğini tek bakışta söyler.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · <span lang="en">dl.titleblock</span></span>
+    <div class="demo-view">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>Dağıtım hattı</dd></div>
+  <div><dt>Servis</dt><dd>web-api</dd></div>
+  <div><dt>Bölge</dt><dd>eu-west-1</dd></div>
+  <div><dt>Etiket</dt><dd>prod-3f9c2a1b</dd></div>
+  <div><dt>Ölçek</dt><dd>1 : 1</dd></div>
+  <div><dt>Çizen</dt><dd>platform ekibi</dd></div>
+</dl>
+    </div>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;dl class="titleblock"&gt;
+  &lt;div class="tb-head"&gt;&lt;dt&gt;Pafta&lt;/dt&gt;&lt;dd&gt;Dağıtım hattı&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Servis&lt;/dt&gt;&lt;dd&gt;web-api&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Bölge&lt;/dt&gt;&lt;dd&gt;eu-west-1&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Etiket&lt;/dt&gt;&lt;dd&gt;prod-3f9c2a1b&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Ölçek&lt;/dt&gt;&lt;dd&gt;1 : 1&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Çizen&lt;/dt&gt;&lt;dd&gt;platform ekibi&lt;/dd&gt;&lt;/div&gt;
+&lt;/dl&gt;</code></pre></figure>
+  </div>
+  <div class="prose"><p>Antet 380px genişliktedir ve kabından taşmaz; içerik sütunu 720px'ten darsa tam genişliğe yayılır. <code>.tb-head</code> satırının değeri kalın yazılır. Hero'nun sağ sütunu (<code>.hero</code> ikinci sütunu) antet için ayrılmıştır.</p></div>
+</article>
+
+<article class="chapter" id="c11" data-section data-title="Form ve kaplar">
+  <header class="ch-head"><p class="ch-num">11</p><h2>Form alanları, sekmeler, diyalog</h2><p class="lead">0.3 ile gelen parçalar: hepsi önce yerel öğedir (input, select, fieldset, dialog, popover), paket yalnız görünüşü ve eksik davranışı ekler. Ayrıntı, durumlar ve yap/yapma örnekleri parça sayfalarındadır.</p></header>
+  <div class="demo">
+    <span class="demo-label">Örnek · alan, sekme, ölçü notu, boş durum</span>
+    <div class="demo-view">
+<div class="field-row">
+  <div class="field"><label for="c11-name">Servis adı</label><input id="c11-name" class="mono" value="web-api" aria-describedby="c11-name-h"><p class="field-help" id="c11-name-h">Küçük harf, tire ile.</p></div>
+  <div class="field"><label for="c11-region">Bölge</label><select id="c11-region"><option>eu-west-1</option><option>eu-central-1</option></select></div>
+  <div class="field"><label for="c11-duration">Zaman aşımı</label><div class="field-unit"><input id="c11-duration" class="mono" inputmode="numeric" value="30" aria-describedby="c11-duration-u"><span id="c11-duration-u">sn</span></div></div>
+</div>
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Biçim">
+    <button role="tab" type="button" id="c11-t1" aria-controls="c11-p1" aria-selected="true">YAML</button>
+    <button role="tab" type="button" id="c11-t2" aria-controls="c11-p2">JSON</button>
+  </div>
+  <div role="tabpanel" id="c11-p1" aria-labelledby="c11-t1" tabindex="0"><h3 class="tab-h">YAML</h3><p>replicas: 3</p></div>
+  <div role="tabpanel" id="c11-p2" aria-labelledby="c11-t2" tabindex="0"><h3 class="tab-h">JSON</h3><p>{ "replicas": 3 }</p></div>
+</div>
+<p>Kopya sayısı <b>3</b> <button class="btn" type="button" popovertarget="c11-n" aria-label="Neden 3?"><svg><use href="#i-info"/></svg></button><span popover id="c11-n" class="dim-tip">üç bölgeye birer kopya</span></p>
+<div class="empty"><p class="chip">Kayıt yok</p><p>Bu ortamda henüz dağıtım yapılmadı.</p></div>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Parça</th><th>Sınıf / öğe</th><th>Sayfa</th></tr></thead>
+    <tbody>
+      <tr><td>Form alanı</td><td><code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-row</code>, <code>.field-unit</code></td><td><a href="../demos/form-fields.tr.html">Form alanları</a></td></tr>
+      <tr><td>Onay, radyo, kaydırıcı</td><td><code>.field-check</code>, <code>input[type=range]</code> + <code>output</code></td><td><a href="../demos/checkboxes.tr.html">Onay, radyo ve kaydırıcı</a></td></tr>
+      <tr><td>Sekmeler</td><td><code>.tabs[data-tabs]</code>, <code>role="tab|tabpanel"</code>, panel başlığı <code>.tab-h</code>, olay <code>hendese:tab</code></td><td><a href="../demos/tabs.tr.html">Sekmeler</a></td></tr>
+      <tr><td>Diyalog</td><td><code>dialog.dialog</code>, <code>command</code>/<code>commandfor</code></td><td><a href="../demos/dialog.tr.html">Diyalog</a></td></tr>
+      <tr><td>Ölçü notu</td><td><code>popovertarget</code> + <code>.dim-tip[popover]</code></td><td><a href="../demos/dimension-note.tr.html">Ölçü notu</a></td></tr>
+      <tr><td>Boş durum</td><td><code>.empty</code></td><td><a href="../demos/empty-state.tr.html">Boş durum</a></td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+</div>
+</main>
+</div>
+
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* aç/kapa örnekleri */
+document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+});
+/* kontrol listesi olayı → readout */
+(function () {
+  var rb = document.querySelector('[data-store="hendese-demo-runbook"]');
+  var out = document.getElementById('rb-out');
+  function show(done, total) {
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === total ? '<p><b>Hazır.</b> Tüm maddeler işaretli.</p>'
+      : '<p><b>' + done + ' / ' + total + '</b> madde işaretli.</p>';
+  }
+  rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+  show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);
+})();
+/* seçim grupları → readout */
+(function () {
+  var out = document.getElementById('choice-out');
+  function val(name) { return document.querySelector('input[name="' + name + '"]:checked').value; }
+  function show() {
+    var o = val('env'), s = val('strategy'), risk = o === 'prod' && s === 'tek seferde';
+    out.classList.toggle('s-bad', risk);
+    /* values are written as text, never parsed as HTML */
+    function bold(t) { var e = document.createElement('b'); e.textContent = t; return e; }
+    var p = document.createElement('p');
+    p.append(bold(o), ' ortamına ', bold(s), ' dağıtım.' + (risk ? ' Üretimde tüm kopyalar aynı anda değişir; geri dönüş penceresi yok.' : ''));
+    out.replaceChildren(p);
+  }
+  ['env-select', 'strategy-select'].forEach(function (id) { document.getElementById(id).addEventListener('change', show); });
+  show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

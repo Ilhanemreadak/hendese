@@ -1,0 +1,172 @@
+<!-- meta {"title":"Antet","group":"Components","order":150,"tagline":"Paftanın künyesi.","intro":"<code>.titleblock</code> teknik çizimin köşesindeki künye tablosudur: bir şeklin ya da sayfanın neyi, hangi ortamda, hangi ölçekte ve ne zaman gösterdiğini tek bakışta söyler. İşaretleme bir <code>&lt;dl&gt;</code>; ilk satır <code>.tb-head</code> ile paftanın adını taşır.","summary":"<code>dl.titleblock</code>, <code>.tb-head</code>; tek başına, bir şekle bağlı ve sayfa başında.","facts":{"Sınıflar":"<code>.titleblock</code> · <code>.tb-head</code>","Yapı":"<code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code>","Genişlik":"380px, kabından taşmaz; içerik sütunu 720px'ten darsa tam genişlik","Durum":"Kendi durum rengi yok; <code>.state.s-*</code> ile bir satırda yazılır","JS":"Gerekmez"}} -->
+
+<chapter title="Anatomi" lead="Her satır bir alan: solda 132px etiket, sağda değer. Satırları kalem rengi ince çizgiler ayırır; ilk satırın değeri kalındır.">
+<demo label="Örnek · ağ paftası">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>Giriş trafiği</dd></div>
+  <div><dt>Servis</dt><dd>web-api</dd></div>
+  <div><dt>Bölge</dt><dd>eu-west-1 · 3 bölge</dd></div>
+  <div><dt>Ölçek</dt><dd>şematik, ölçeksiz</dd></div>
+  <div><dt>Tarih</dt><dd>6 Ekim 2026</dd></div>
+  <div><dt>Çizen</dt><dd>ağ ekibi</dd></div>
+</dl>
+</demo>
+<dl class="kv">
+  <dt><code>dl.titleblock</code></dt><dd>Kap: çizim renginde dış çerçeve, kâğıt zemin, mono yazı.</dd>
+  <dt><code>div.tb-head</code></dt><dd>Başlık satırı; değeri kalın yazılır. Paftanın adı burada durur, bir kez kullanılır.</dd>
+  <dt><code>div &gt; dt + dd</code></dt><dd>Bir alan. Etiket büyük harf ve soluk, değer mürekkep renginde; uzun değer satır içinde kırılır.</dd>
+</dl>
+</chapter>
+
+<chapter title="Farklı paftalar" lead="Alanlar paftaya göre değişir; değişmeyen şey düzendir. Üç örnek: veritabanı göçü, maliyet raporu ve erişim yetkisi.">
+<demo label="Örnek · üç künye">
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Göç 0042</dd></div>
+    <div><dt>Veritabanı</dt><dd>billing · PostgreSQL 16</dd></div>
+    <div><dt>Şema</dt><dd>41 → 42</dd></div>
+    <div><dt>Kilit</dt><dd>danışma kilidi 42</dd></div>
+    <div><dt>Geri dönüş</dt><dd>0042_down.sql</dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Rapor</dt><dd>Eylül maliyeti</dd></div>
+    <div><dt>Hesap</dt><dd>prod · staging</dd></div>
+    <div><dt>Dönem</dt><dd>1 – 30 Eylül 2026</dd></div>
+    <div><dt>Toplam</dt><dd>4.320 $</dd></div>
+    <div><dt>Değişim</dt><dd>önceki aya göre −%7</dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Yetki</dt><dd>billing-readonly</dd></div>
+    <div><dt>Kapsam</dt><dd>prod · billing şeması</dd></div>
+    <div><dt>Süre</dt><dd>7 gün</dd></div>
+    <div><dt>Onaylayan</dt><dd>veri ekibi</dd></div>
+  </dl>
+</div>
+</demo>
+<div class="prose"><p>Dört ile altı satır idealdir. Alan adları kısa ve isimdir (“Bölge”, “Şema”); değerler cümle değil, ölçülebilir bir şeydir.</p></div>
+</chapter>
+
+<chapter title="Şekle bağlı" lead="Antet bir figür paftasının sağ alt köşesine oturur ve şeklin kapsamını verir; şekil yazısı solda kalır.">
+<demo label="Örnek · figür paftası ve antet">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Şekil 4</p>
+  <p class="fig-cap">Dışarıdan web-api'ye</p>
+  <div class="drawing" style="--aw:900;--ah:170">
+    <svg viewBox="0 0 900 170" aria-hidden="true">
+      <rect class="ln-draw ln-dash fill-scene" x="10" y="45" width="210" height="80"/>
+      <rect class="ln-draw fill-paper" x="345" y="45" width="210" height="80"/>
+      <rect class="ln-draw fill-paper" x="680" y="45" width="210" height="80"/>
+      <path class="ln-draw" d="M220 85H345M555 85H680"/>
+      <path class="ln-draw" d="M345 85l-9-4v8zM680 85l-9-4v8z"/>
+      <path class="dim" d="M220 145V157M345 145V157M220 151H345"/>
+      <text class="dim-t" x="282" y="143" text-anchor="middle">TLS 443</text>
+    </svg>
+    <p class="dl" style="--x:26;--y:62;--w:180">İnternet<br>istemciler</p>
+    <p class="dl" style="--x:361;--y:62;--w:180">Yük dengeleyici<br>public alt ağ</p>
+    <p class="dl" style="--x:696;--y:62;--w:180">web-api<br>3 kopya · private</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between;margin-top:14px">
+    <figcaption class="figcap" style="flex:1 1 260px;margin:0"><b>Şekil 4.</b> İstemci yalnızca yük dengeleyiciye ulaşır; web-api kopyaları özel alt ağdadır ve dışarıdan doğrudan yol yoktur.</figcaption>
+    <dl class="titleblock">
+      <div class="tb-head"><dt>Pafta</dt><dd>Giriş yolu</dd></div>
+      <div><dt>Ortam</dt><dd>prod</dd></div>
+      <div><dt>Bölge</dt><dd>eu-west-1</dd></div>
+      <div><dt>Ölçek</dt><dd>1 birim = 1 px (aw 900)</dd></div>
+    </dl>
+  </div>
+</figure>
+</demo>
+<demo label="Örnek · koyu pafta">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Şekil 5</p>
+  <p class="fig-cap">Kuyruk ve işçiler</p>
+  <div class="drawing" style="--aw:900;--ah:130">
+    <svg viewBox="0 0 900 130" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="10" y="25" width="240" height="80"/>
+      <rect class="ln-draw fill-paper" x="420" y="10" width="200" height="48"/>
+      <rect class="ln-draw fill-paper" x="420" y="72" width="200" height="48"/>
+      <path class="ln-draw" d="M250 65H340V34H420M340 65V96H420"/>
+    </svg>
+    <p class="dl" style="--x:26;--y:44;--w:210">invoice-queue<br>FIFO · 14 gün</p>
+    <p class="dl" style="--x:436;--y:20;--w:180">billing-worker-a</p>
+    <p class="dl" style="--x:436;--y:82;--w:180">billing-worker-b</p>
+  </div>
+  <div style="display:flex;justify-content:flex-end;margin-top:14px">
+    <dl class="titleblock">
+      <div class="tb-head"><dt>Pafta</dt><dd>İşleme hattı</dd></div>
+      <div><dt>Ortam</dt><dd>staging</dd></div>
+      <div><dt>Kapsam</dt><dd>1 kuyruk · 2 işçi</dd></div>
+    </dl>
+  </div>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Sayfa başında" lead="Bir belgenin başında antet, başlığın yanında durur ve sayfanın tamamının künyesi olur; paket kahraman alanında sağ sütunu buna ayırır.">
+<demo label="Örnek · runbook belgesi başlığı">
+<header style="display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between">
+  <div style="flex:1 1 300px">
+    <p class="chip">Runbook · RB-019</p>
+    <h3 style="margin:8px 0 8px;font-size:var(--fs-2xl);letter-spacing:-.02em">Önbellek kümesini yenileme</h3>
+    <p style="margin:0;color:var(--ink-2);max-width:48ch">Düğümleri tek tek değiştirerek kesintisiz sürüm yükseltme. Tahmini süre 40 dakika.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Belge</dt><dd>RB-019</dd></div>
+    <div><dt>Servis</dt><dd>cache-redis</dd></div>
+    <div><dt>Sahip</dt><dd>platform</dd></div>
+    <div><dt>Son gözden geçirme</dt><dd>2026-09-12</dd></div>
+  </dl>
+</header>
+</demo>
+</chapter>
+
+<chapter title="Durumlar" lead="Antetin kendi durum rengi ya da kesikli taslak hali yoktur. Paftanın durumu bir satırda, .state etiketiyle yazılır; boş ve uzun değerler için birer kural yeter.">
+<demo label="Örnek · taslak ve onaylı pafta">
+<div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-warn">taslak</span></dd></div>
+    <div><dt>Revizyon</dt><dd>B · gözden geçiriliyor</dd></div>
+    <div><dt>Onaylayan</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span></dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Pafta</dt><dd>Önbellek katmanı</dd></div>
+    <div><dt>Durum</dt><dd><span class="state s-ok">onaylı</span></dd></div>
+    <div><dt>Revizyon</dt><dd>C · 2026-10-06</dd></div>
+    <div><dt>Onaylayan</dt><dd>platform ekibi</dd></div>
+  </dl>
+</div>
+</demo>
+<demo label="Örnek · geçersiz kalmış pafta, uzun değer">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>Eski giriş yolu</dd></div>
+  <div><dt>Durum</dt><dd><span class="state s-bad">geçersiz</span> yerine RB-024</dd></div>
+  <div><dt>İmaj</dt><dd>web-api@sha256:4c1e9a0b7d2f6e8a</dd></div>
+  <div><dt>Bölge</dt><dd>eu-west-1 · eu-central-1 · us-east-1</dd></div>
+</dl>
+</demo>
+<div class="prose"><p>Durumu antetin rengiyle değil satırdaki kelimeyle söyleyin; <code>.state</code> çizim dışında 1px birimle basılır. Boş alan satırını silmeyin: “—” görünür, ekran okuyucu <code>.visually-hidden</code> metni duyar ve okur alanın unutulmadığını bilir. Dilin kuralına göre taslak pafta kesikli çerçeveyle çizilmeliydi; antet bunu henüz desteklemiyor. Satır içi stille taklit etmeyin.</p></div>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Antet bir künyedir, açıklama alanı değil. Kısa alanlar, ölçülebilir değerler ve tek bir başlık satırı.">
+<div class="dodont">
+<demo label="Yap · kısa alan, ölçülebilir değer">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>DNS geçişi</dd></div>
+  <div><dt>Bölge</dt><dd>example.com</dd></div>
+  <div><dt>TTL</dt><dd>300 → 60 s</dd></div>
+  <div><dt>Tarih</dt><dd>2026-10-08</dd></div>
+</dl>
+</demo>
+<demo label="Yapma · cümle ve iki başlık">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Pafta</dt><dd>DNS geçişi</dd></div>
+  <div class="tb-head"><dt>Ek başlık</dt><dd>Önemli</dd></div>
+  <div><dt>Açıklama</dt><dd>Bu çizimde DNS kayıtlarının nasıl değiştirileceği ve dikkat edilmesi gerekenler anlatılmaktadır.</dd></div>
+</dl>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>&lt;dl&gt;</code> içindeki <code>&lt;div&gt;</code> sarmalayıcıları HTML'de geçerlidir; ekran okuyucu her alanı adı ve değeriyle okur. Antet şeklin <code>aria-hidden</code> çiziminin dışında kalmalıdır: şeklin metin karşılığının bir parçasıdır.</p></div></div>
+</chapter>

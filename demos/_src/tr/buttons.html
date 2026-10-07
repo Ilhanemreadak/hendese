@@ -1,0 +1,113 @@
+<!-- meta {"title":"Düğmeler","group":"Components","order":10,"tagline":"Metinli, ikonlu, aç/kapa.","intro":"Üç düğme türü var ve üçü de gerçek <code>&lt;button&gt;</code> öğesi. Vurgulu bir \"birincil\" düğme yok: blueprint dilinde eylem, rengiyle değil yeriyle ve etiketiyle öne çıkar.","summary":"<code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; durumlar ve araç çubukları.","facts":{"Sınıflar":"<code>.btn</code> · <code>.icon-btn</code> · <code>.toggle-btn</code> · <code>.is-accent</code> · <code>.pillrow</code>","Durum":"<code>aria-pressed</code> (aç/kapa) · <code>disabled</code> · <code>aria-disabled=\"true\"</code>","JS":"Gerekmez; aç/kapa için tek satır sayfa betiği"}} -->
+
+<chapter title="Varyantlar" lead="Metinli düğme, ikon + metin ve yalnız ikon. Hepsi 32–34px yüksekliğinde; yan yana durduklarında taban çizgileri hizalanır.">
+<demo label="Örnek · üç tür">
+<div class="pillrow">
+  <button class="btn" type="button">Yeniden dene</button>
+  <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Kopyala</button>
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Sıfırla</button>
+  <button class="icon-btn" type="button" aria-label="Menüyü aç"><svg><use href="#i-menu"/></svg></button>
+  <button class="icon-btn" type="button" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+<div class="prose"><p>İkonlu düğmede görünen metin yoksa <code>aria-label</code> zorunludur. İkon <code>&lt;svg&gt;&lt;use href="#i-…"/&gt;&lt;/svg&gt;</code> ile sprite'tan gelir; boyutu düğme belirler (14px / 16px).</p></div>
+</chapter>
+
+<chapter title="Aç/kapa" lead="Bir ayarı açıp kapatan düğme durumunu aria-pressed ile taşır. Varsayılan renk kırmızıdır: basılı hali bir şeyi engelliyor ya da atlatıyor demektir. Zararsız bir seçenek için .is-accent.">
+<demo label="Örnek · tıklayın">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Testleri atla</button>
+  <button class="toggle-btn" type="button" aria-pressed="true">Önbelleği yok say</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false">Ayrıntılı günlük</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Satır numaraları</button>
+</div>
+</demo>
+<div class="prose"><p>Paket <code>.toggle-btn</code> için davranış eklemez; durum sizin uygulamanızındır. En kısa hali:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>document.querySelectorAll('.toggle-btn').forEach(b =&gt;
+  b.addEventListener('click', () =&gt; b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))));</code></pre></figure>
+</chapter>
+
+<chapter title="Durumlar" lead="Devre dışı düğme kesikli kenar ve soluk mürekkeple çizilir: dilde kesikli çizgi “henüz gerçek değil” demektir. İki yolu var; farkı klavyede ortaya çıkar.">
+<demo label="Örnek · etkin, <span lang='en'>disabled</span>, <span lang='en'>aria-disabled</span>">
+<div class="pillrow">
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="btn" type="button" disabled><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="btn" type="button" aria-disabled="true" aria-describedby="dg-reason"><svg><use href="#i-reset"/></svg>Yeniden dene</button>
+  <button class="icon-btn" type="button" aria-label="Kapat" disabled><svg><use href="#i-x"/></svg></button>
+</div>
+<p class="figcap" id="dg-reason">Sıradaki iş bitmeden yeniden deneme açılmaz.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Yol</th><th>Odak</th><th>Tıklama</th><th>Ne zaman</th></tr></thead>
+  <tbody>
+    <tr><td><code>disabled</code></td><td>Tab atlar</td><td>Tarayıcı engeller</td><td>Düğme o an anlamsızsa ve nedenini söylemek gerekmiyorsa</td></tr>
+    <tr><td><code>aria-disabled="true"</code></td><td>Odaklanır; ekran okuyucu “devre dışı” der</td><td>Tıklama gelir, betik yok sayar</td><td>Neden kapalı olduğu söylenmeliyse; gerekçeyi <code>aria-describedby</code> ile bağlayın</td></tr>
+  </tbody>
+</table></div>
+<demo label="Örnek · aç/kapa: basılı değil, basılı, devre dışı">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Testleri atla</button>
+  <button class="toggle-btn" type="button" aria-pressed="true">Önbelleği yok say</button>
+  <button class="toggle-btn" type="button" aria-pressed="true" disabled>Kilitli: prod</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false" disabled>Ayrıntılı günlük</button>
+</div>
+</demo>
+<div class="prose"><p>Devre dışı basılı düğme kenar rengini korur ama kesikli çizilir; zemin ve yazı söner. Hangi konumda kilitli kaldığını etiketle de söyleyin (“Kilitli: prod”). <code>aria-disabled</code> kullanan sayfa tıklamayı kendisi durdurur:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>btn.addEventListener('click', e =&gt; {
+  if (btn.getAttribute('aria-disabled') === 'true') return e.preventDefault();
+  /* … */
+});</code></pre></figure>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Düğmeler tek başına değil, bir satırın sonunda ya da bir kartın altında yaşar. Aşağıda üç tipik yerleşim.">
+<demo label="Örnek · bölüm başı eylem satırı">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+  <p class="chip" style="margin-right:auto">Şekil 3 · yayın izi</p>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Ölçüleri göster</button>
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Baştan oynat</button>
+</div>
+</demo>
+<demo label="Örnek · kart altı">
+<div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:440px">
+  <p style="margin:0 0 4px"><b>Önbellek temizlensin mi?</b></p>
+  <p style="margin:0 0 14px;color:var(--ink-2);font-size:var(--fs-md)">Bir sonraki derleme bağımlılıkları baştan indirir; yaklaşık 4 dakika sürer.</p>
+  <div class="pillrow" style="justify-content:flex-end">
+    <button class="btn" type="button">Vazgeç</button>
+    <button class="btn" type="button"><svg><use href="#i-check"/></svg>Temizle</button>
+  </div>
+</div>
+</demo>
+<demo label="Örnek · koyu sahne içinde">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:16px">
+  <div class="pillrow">
+    <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Kopyala</button>
+    <button class="toggle-btn" type="button" aria-pressed="true">Testleri atla</button>
+    <button class="icon-btn" type="button" aria-label="Bilgi"><svg><use href="#i-info"/></svg></button>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Düğme bir eylemdir; bağlantı bir yerdir. Etiket fiille başlar ve ne olacağını söyler.">
+<div class="dodont">
+<demo label="Yap · fiil + nesne">
+<div class="pillrow">
+  <button class="btn" type="button">Günlüğü indir</button>
+  <button class="icon-btn" type="button" aria-label="Paneli kapat"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+<demo label="Yapma · belirsiz etiket, adsız ikon">
+<div class="pillrow">
+  <button class="btn" type="button">Tamam</button>
+  <button class="icon-btn" type="button" aria-label="düğme"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Klavye odağı tüm düğmelerde 2px vurgu halkasıdır (<code>:focus-visible</code>). Tab ile gezip deneyin. Sayfa değiştiren bir öğe <code>&lt;a&gt;</code> olmalı; <code>.btn</code> sınıfı bağlantıya da uygulanabilir.</p></div></div>
+</chapter>
+
+<script data-page>
+document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+});
+</script>

@@ -147,7 +147,7 @@
 <ol class="steps">
   <li><h3>Add the symbol</h3><p>The <code>id</code> starts with <code>i-</code>; <code>viewBox</code> 24×24, no fill, stroke <code>currentColor</code>. Don't hard-code a color: the icon would ignore the theme and the component.</p></li>
   <li><h3>Build</h3><p><code>npm run build</code> copies the sprite to <code>dist/icons.svg</code>. Part pages (<code>node tools/demos.mjs</code>) read the sprite straight from <code>src/icons.svg</code>.</p></li>
-  <li><h3>Carry it to the pages</h3><p>The sprite is inline on every page. A new page starts as a copy of <code>docs/_sablon.html</code> (the sprite is inside); when <code>src/icons.svg</code> changes, the sprite on existing pages is updated by hand.</p></li>
+  <li><h3>Carry it to the pages</h3><p>The sprite is inline on every page. A new page starts as a copy of <code>docs/_template.html</code> (the sprite is inside); when <code>src/icons.svg</code> changes, the sprite on existing pages is updated by hand.</p></li>
 </ol>
 <div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Contract</span><div class="co-body"><p>Icon <code>id</code>s are part of the documented contract. Adding an icon is a minor release; renaming or removing one needs a <b>major</b> release.</p></div></div>
 </chapter>

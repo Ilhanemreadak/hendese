@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İstasyon gezgini · Hendese parçaları</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">İçeriğe geç</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <a class="icon-btn" href="station-explorer.html" hreflang="en" lang="en" title="English">EN</a>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+  <div class="rail-head">
+    <a class="brand" href="index.tr.html">Hendese<small>Parçalar · tek tek</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="İçindekiler">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.tr.html">Başlangıç</a>
+    <a class="nav-page" href="index.tr.html">Parça galerisi</a>
+    <div class="nav-group"><span lang="en">Blueprint</span></div>
+    <a class="nav-page" href="sheet.tr.html">Pafta</a>
+    <a class="nav-page" href="drawing-units.tr.html">Çizim birimleri</a>
+    <a class="nav-page" href="line-families.tr.html">Çizgi aileleri</a>
+    <a class="nav-page" href="station-explorer.tr.html" aria-current="page">İstasyon gezgini</a>
+    <a class="nav-page" href="isometric-box.tr.html">İzometrik kutu</a>
+    <a class="nav-page" href="measuring-tools.tr.html">Ölçü aletleri</a>
+    <a class="nav-page" href="track-and-switch.tr.html">Hat ve makas</a>
+    <a class="nav-page" href="fault-panel.tr.html">Arıza panosu</a>
+    <a class="nav-page" href="dark-scene.tr.html">Koyu sahne</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomi</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Durumlar</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Bağlam içinde</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Olay: hendese:explore</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Yap / yapma</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Giriş</span>
+    <a class="icon-btn" href="station-explorer.html" hreflang="en" lang="en" title="English">EN</a>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Giriş">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
+    <h1>İstasyon gezgini<em>Çizimdeki her durak tıklanabilir bir düğme.</em></h1>
+    <p class="intro">Gezgin, bir çizimin duraklarını gerçek <code>&lt;button&gt;</code> öğelerine çevirir. Üzerine gelmek ya da odaklanmak önizler, tıklamak seçer; seçilen durağın açıklaması paftanın altındaki panelde görünür. Bir sayfada istediğiniz kadar gezgin olabilir.</p>
+<dl class="kv"><dt>Sınıflar</dt><dd><code>.station</code> · <code>.svc-*</code> · <code>.st-name</code> · <code>.st-sub</code> · <code>.st-meta</code> · <code>.st-detail</code> · <code>.sl</code> · <code>.deck-cap</code></dd><dt>Öznitelikler</dt><dd><code>data-explorer</code> · <code>data-key</code> · <code>aria-pressed</code> · <code>data-for</code></dd><dt>Olay</dt><dd><code>hendese:explore</code> → <code>detail.key</code></dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomi">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomi</h2><p class="lead">Üç parça: data-explorer taşıyan bir kapsayıcı, içinde data-key ve aria-pressed taşıyan düğmeler, kimliği data-explorer değerine eşit bir panel.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · en küçük gezgin · CDN yolu</span>
+  <div class="demo-view">
+<div data-explorer="ig-cdn">
+  <div class="drawing" style="--aw:800;--ah:150">
+    <svg viewBox="0 0 800 150" aria-hidden="true">
+      <path class="ln-strong" d="M220 80H294M294 80l-9-5M294 80l-9 5"/>
+      <path class="ln-draw ln-dash" d="M500 80H574"/>
+      <path class="ln-draw" d="M574 80l-8-4M574 80l-8 4"/>
+    </svg>
+    <p class="sl" style="--x:510;--y:52">ıskalama</p>
+    <button class="station" type="button" data-key="client" aria-pressed="true" aria-controls="ig-cdn" style="--x:20;--y:40;--w:200;--h:80;--svc:var(--sec)"><span class="st-name">İstemci</span><span class="st-sub">tarayıcı</span></button>
+    <button class="station" type="button" data-key="edge" aria-pressed="false" aria-controls="ig-cdn" style="--x:300;--y:40;--w:200;--h:80"><span class="st-name">Edge</span><span class="st-sub">edge-fra</span></button>
+    <button class="station" type="button" data-key="origin" aria-pressed="false" aria-controls="ig-cdn" style="--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)"><span class="st-name">Origin</span><span class="st-sub">web-api</span></button>
+  </div>
+  <div class="st-detail" id="ig-cdn" aria-live="polite">
+    <div data-for="client"><b>İstemci.</b> İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.</div>
+    <div data-for="edge"><b>Edge.</b> Yanıt önbellekte ve taze ise kaynağa hiç gitmeden döner. İsabet oranı %94.</div>
+    <div data-for="origin"><b>Origin.</b> Yalnızca ıskalamada çağrılır; yanıtı <code>Cache-Control</code> başlığıyla birlikte geri gönderir.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-cdn</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:800;--ah:150</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 800 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M220 80H294M294 80l-9-5M294 80l-9 5</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M500 80H574</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M574 80l-8-4M574 80l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:510;--y:52</span>"&gt;ıskalama&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>client</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:20;--y:40;--w:200;--h:80;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;İstemci&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;tarayıcı&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>edge</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:300;--y:40;--w:200;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Edge&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;edge-fra&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>origin</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Origin&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-cdn</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>client</span>"&gt;&lt;<span class='k'>b</span>&gt;İstemci.&lt;/<span class='k'>b</span>&gt; İsteği en yakın uç noktaya gönderir; adres DNS'ten gelir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>edge</span>"&gt;&lt;<span class='k'>b</span>&gt;Edge.&lt;/<span class='k'>b</span>&gt; Yanıt önbellekte ve taze ise kaynağa hiç gitmeden döner. İsabet oranı %94.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>origin</span>"&gt;&lt;<span class='k'>b</span>&gt;Origin.&lt;/<span class='k'>b</span>&gt; Yalnızca ıskalamada çağrılır; yanıtı &lt;<span class='k'>code</span>&gt;Cache-Control&lt;/<span class='k'>code</span>&gt; başlığıyla birlikte geri gönderir.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><ul>
+  <li>Kapsayıcı: <code>data-explorer="ig-cdn"</code>. Değer, panelin <code>id</code>'sidir; bu yüzden sayfada tekil olmalıdır.</li>
+  <li>Düğmeler: <code>[data-key][aria-pressed]</code>. İkisi birden yoksa düğme gezgine katılmaz. Başlangıçta <code>aria-pressed="true"</code> olan seçilidir; yoksa ilk düğme.</li>
+  <li>Panel: <code>[data-for="anahtar"]</code> blokları. JavaScript çalışmazsa ve baskıda bütün bloklar alt alta görünür (bitmiş hal); <code>.show</code> sınıfını JS yazar.</li>
+  <li><code>aria-controls</code> düğmeyi panele, <code>aria-live="polite"</code> paneli ekran okuyucuya bağlar.</li>
+</ul></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Durumlar">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Durumlar</h2><p class="lead">Durak bir, iki ya da üç satır taşır. Üzerine gelmek ince bir iç çizgi, seçili olmak kalın iç çizgi ve SEÇİLİ rozeti, klavye odağı vurgu halkası verir.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · satır sayısı, seçim ve color</span>
+  <div class="demo-view">
+<div data-explorer="ig-status">
+  <div class="drawing" style="--aw:900;--ah:180">
+    <svg viewBox="0 0 900 180" aria-hidden="true">
+      <path class="ln-pencil" d="M0 138H900"/>
+    </svg>
+    <button class="station" type="button" data-key="ad" aria-pressed="false" aria-controls="ig-status" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">web-api</span></button>
+    <button class="station" type="button" data-key="alt" aria-pressed="false" aria-controls="ig-status" style="--x:245;--y:30;--w:200;--h:90;--svc:var(--sec)"><span class="st-name">orders-db</span><span class="st-sub">birincil</span></button>
+    <button class="station" type="button" data-key="edge" aria-pressed="true" aria-controls="ig-status" style="--x:470;--y:30;--w:200;--h:90;--svc:var(--warn)"><span class="st-name">jobs-eu</span><span class="st-sub">kuyruk</span><span class="st-meta">derinlik 1.240</span></button>
+    <button class="station" type="button" data-key="color" aria-pressed="false" aria-controls="ig-status" style="--x:695;--y:30;--w:200;--h:90;--svc:var(--bad)"><span class="st-name">auth</span><span class="st-sub">kimlik</span><span class="st-meta">hata %3,2</span></button>
+    <p class="sl" style="--x:20;--y:142">yalnız ad</p>
+    <p class="sl" style="--x:245;--y:142">ad + alt satır</p>
+    <p class="sl" style="--x:470;--y:142">seçili · üç satır</p>
+    <p class="sl" style="--x:695;--y:142">--svc: var(--bad)</p>
+  </div>
+  <div class="st-detail" id="ig-status" aria-live="polite">
+    <div data-for="ad"><b>.st-name</b> tek başına. Kare işaretin rengi <code>--svc</code> verilmezse çizim rengidir.</div>
+    <div data-for="alt"><b>.st-sub</b> ikinci satırdır, düz yazıyla. Kare <code>--svc: var(--sec)</code> ile mor.</div>
+    <div data-for="edge"><b>.st-meta</b> üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: <code>aria-pressed="true"</code>.</div>
+    <div data-for="color"><b>Renk</b> yalnızca karede kalır; çerçeve her durakta aynıdır. Hazır <code>.svc-*</code> sınıfları da aynı değişkeni atar.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-status</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:180</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 180</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M0 138H900</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>ad</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-status</span>" style="<span class='s'>--x:20;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>alt</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-status</span>" style="<span class='s'>--x:245;--y:30;--w:200;--h:90;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;orders-db&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;birincil&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>edge</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-status</span>" style="<span class='s'>--x:470;--y:30;--w:200;--h:90;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;jobs-eu&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;kuyruk&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;derinlik 1.240&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>color</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-status</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90;--svc:var(--bad)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;auth&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;kimlik&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;hata %3,2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:20;--y:142</span>"&gt;yalnız ad&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:245;--y:142</span>"&gt;ad + alt satır&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:470;--y:142</span>"&gt;seçili · üç satır&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:695;--y:142</span>"&gt;--svc: var(--bad)&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-status</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>ad</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-name&lt;/<span class='k'>b</span>&gt; tek başına. Kare işaretin rengi &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; verilmezse çizim rengidir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>alt</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-sub&lt;/<span class='k'>b</span>&gt; ikinci satırdır, düz yazıyla. Kare &lt;<span class='k'>code</span>&gt;--svc: var(--sec)&lt;/<span class='k'>code</span>&gt; ile mor.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>edge</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-meta&lt;/<span class='k'>b</span>&gt; üçüncü satırdır, mono ve soluk. Bu durak başlangıçta seçili: &lt;<span class='k'>code</span>&gt;aria-pressed="<span class='s'>true</span>"&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>color</span>"&gt;&lt;<span class='k'>b</span>&gt;Renk&lt;/<span class='k'>b</span>&gt; yalnızca karede kalır; çerçeve her durakta aynıdır. Hazır &lt;<span class='k'>code</span>&gt;.svc-*&lt;/<span class='k'>code</span>&gt; sınıfları da aynı değişkeni atar.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Satırlar <code>text-overflow: ellipsis</code> ile kesilir; uzun bir ad durağı büyütmez. Yazı boyları <code>--u</code> ile ölçeklenir ve 10.5px'in altına inmez. Rozet metni <code>--str-selected</code> token'ından gelir; başka bir dil için onu ezin.</p></div>
+<div class="demo">
+  <span class="demo-label">Örnek · servis işaretleri · .svc-*</span>
+  <div class="demo-view">
+<div data-explorer="ig-svc">
+  <div class="drawing" style="--aw:900;--ah:150">
+    <svg viewBox="0 0 900 150" aria-hidden="true">
+      <path class="ln-draw" d="M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4"/>
+    </svg>
+    <button class="station svc-gitlab" type="button" data-key="source" aria-pressed="true" aria-controls="ig-svc" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">Kaynak</span><span class="st-sub">GitLab deposu</span><span class="st-meta">.svc-gitlab</span></button>
+    <button class="station svc-aws" type="button" data-key="build" aria-pressed="false" aria-controls="ig-svc" style="--x:245;--y:30;--w:200;--h:90"><span class="st-name">Derleme</span><span class="st-sub">AWS · eu-west-1</span><span class="st-meta">.svc-aws</span></button>
+    <button class="station svc-argo" type="button" data-key="sync" aria-pressed="false" aria-controls="ig-svc" style="--x:470;--y:30;--w:200;--h:90"><span class="st-name">Eşitleme</span><span class="st-sub">Argo CD</span><span class="st-meta">.svc-argo</span></button>
+    <button class="station svc-k8s" type="button" data-key="cluster" aria-pressed="false" aria-controls="ig-svc" style="--x:695;--y:30;--w:200;--h:90"><span class="st-name">Küme</span><span class="st-sub">Kubernetes · web-api</span><span class="st-meta">.svc-k8s</span></button>
+  </div>
+  <div class="st-detail" id="ig-svc" aria-live="polite">
+    <div data-for="source"><b>.svc-gitlab</b> kareyi kaynak deposunun rengine boyar. Sınıf yalnızca <code>--svc</code> değişkenini atar; çerçeve ve yazı değişmez.</div>
+    <div data-for="build"><b>.svc-aws</b> bulut hizmetleri için: derleme, kayıt, kuyruk.</div>
+    <div data-for="sync"><b>.svc-argo</b> depodaki istenen durumu kümeye taşıyan eşitleyici için.</div>
+    <div data-for="cluster"><b>.svc-k8s</b> kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-svc</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:150</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-gitlab</span>" type="<span class='s'>button</span>" data-key="<span class='s'>source</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:20;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kaynak&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;GitLab deposu&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-gitlab&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-aws</span>" type="<span class='s'>button</span>" data-key="<span class='s'>build</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:245;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Derleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;AWS · eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-aws&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-argo</span>" type="<span class='s'>button</span>" data-key="<span class='s'>sync</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:470;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Eşitleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Argo CD&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-argo&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-k8s</span>" type="<span class='s'>button</span>" data-key="<span class='s'>cluster</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Küme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Kubernetes · web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-k8s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-svc</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>source</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-gitlab&lt;/<span class='k'>b</span>&gt; kareyi kaynak deposunun rengine boyar. Sınıf yalnızca &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; değişkenini atar; çerçeve ve yazı değişmez.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>build</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-aws&lt;/<span class='k'>b</span>&gt; bulut hizmetleri için: derleme, kayıt, kuyruk.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>sync</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-argo&lt;/<span class='k'>b</span>&gt; depodaki istenen durumu kümeye taşıyan eşitleyici için.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>cluster</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-k8s&lt;/<span class='k'>b</span>&gt; kümede çalışan iş yükleri için. Rengi servis anlatır; durumu yine bir kelime söyler.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Servis rengi için satır içi <code>--svc</code> yazmak yerine hazır sınıfı kullanın: <code>.svc-gitlab</code>, <code>.svc-aws</code>, <code>.svc-argo</code>, <code>.svc-k8s</code>. Renk yalnızca küçük karede kalır; servis adı her zaman alt satırda da yazılıdır.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Bağlam içinde">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Bağlam içinde</h2><p class="lead">Gezgin çoğunlukla bir paftanın içinde yaşar: çizim f-map alanında, panel f-foot alanında, bir cümlelik özetin hemen altında.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · gezgin 1 · yedekleme zinciri</span>
+  <div class="demo-view">
+<div class="frame" data-explorer="ig-backup">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Şekil 1</p>
+    <p class="fig-cap">Bir yedeğin beş durağı</p>
+  </header>
+  <div class="f-side">
+    <div class="prose">
+      <p>Bir durağa tıklayın ya da Tab ile odaklanın; alttaki panel o durağı anlatır.</p>
+      <p>Üst sıra veriyi yakalar ve korur, alt sıra onu süre dolana kadar tutar ve düzenli olarak dener. Hayalet kutu henüz kurulmamış bir aşamadır ve tıklanmaz.</p>
+    </div>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:350">
+      <svg viewBox="0 0 600 350" aria-hidden="true">
+        <path class="ln-pencil ln-dash" d="M0 190H600"/>
+        <path class="ln-draw" d="M180 90H214M214 90l-8-4M214 90l-8 4M380 90H414M414 90l-8-4M414 90l-8 4"/>
+        <path class="ln-draw" d="M500 130V244M500 244l-4-8M500 244l4-8"/>
+        <path class="ln-draw" d="M420 290H386M386 290l8-4M386 290l8 4"/>
+        <path class="ln-ghost" d="M220 290H186"/>
+        <rect class="ln-ghost" x="20" y="250" width="160" height="80"/>
+      </svg>
+      <p class="sl deck-cap" style="--x:20;--y:12"><b>ALIM</b>Yakala ve koru</p>
+      <p class="sl deck-cap" style="--x:20;--y:208"><b>SAKLAMA</b>Tut ve dene</p>
+      <p class="sl" style="--x:32;--y:282">arşiv · planlı</p>
+      <button class="station" type="button" data-key="snapshot" aria-pressed="true" aria-controls="ig-backup" style="--x:20;--y:50;--w:160;--h:80"><span class="st-name">Görüntü</span><span class="st-sub">orders-db · anlık</span><span class="st-meta">her gece 02:00</span></button>
+      <button class="station" type="button" data-key="secret" aria-pressed="false" aria-controls="ig-backup" style="--x:220;--y:50;--w:160;--h:80;--svc:var(--sec)"><span class="st-name">Şifreleme</span><span class="st-sub">kasa anahtarı</span><span class="st-meta">AES-256</span></button>
+      <button class="station" type="button" data-key="replica" aria-pressed="false" aria-controls="ig-backup" style="--x:420;--y:50;--w:160;--h:80;--svc:var(--warn)"><span class="st-name">Kopya</span><span class="st-sub">eu-central-1</span><span class="st-meta">≈ 12 dk</span></button>
+      <button class="station" type="button" data-key="retention" aria-pressed="false" aria-controls="ig-backup" style="--x:420;--y:250;--w:160;--h:80"><span class="st-name">Saklama</span><span class="st-sub">35 gün</span><span class="st-meta">silme kilidi açık</span></button>
+      <button class="station" type="button" data-key="test" aria-pressed="false" aria-controls="ig-backup" style="--x:220;--y:250;--w:160;--h:80;--svc:var(--ok)"><span class="st-name">Deneme</span><span class="st-sub">aylık geri yükleme</span><span class="st-meta">son: 2 Ekim</span></button>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Gece alınan görüntü şifrelenir, ikinci bölgeye kopyalanır, 35 gün saklanır ve her ay gerçekten geri yüklenerek denenir.</p>
+    <div class="st-detail" id="ig-backup" aria-live="polite">
+      <div data-for="snapshot"><b>Görüntü.</b> Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.</div>
+      <div data-for="secret"><b>Şifreleme.</b> Görüntü kasadaki anahtarla şifrelenir. Anahtar döndürüldüğünde eski görüntüler eski sürümle okunmaya devam eder.</div>
+      <div data-for="replica"><b>Kopya.</b> Şifreli görüntü ikinci bölgeye gönderilir; bölge kaybında geri yükleme buradan yapılır.</div>
+      <div data-for="retention"><b>Saklama.</b> Görüntüler 35 gün tutulur. Silme kilidi açıkken süresi dolmamış görüntü elle de silinemez.</div>
+      <div data-for="test"><b>Deneme.</b> Her ay rastgele bir görüntü geçici bir kopyaya açılır ve sağlama sorguları çalıştırılır. Denenmemiş yedek yedek sayılmaz.</div>
+    </div>
+    <p class="figcap"><b>Şekil 1.</b> Beş durak saat yönünde. Kesikli çizgi alım ile saklama arasındaki sınırdır; hayalet kutu planlanmış ama kurulmamış arşivdir.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame</span>" data-explorer="<span class='s'>ig-backup</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Şekil 1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Bir yedeğin beş durağı&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>header</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>prose</span>"&gt;
+      &lt;<span class='k'>p</span>&gt;Bir durağa tıklayın ya da Tab ile odaklanın; alttaki panel o durağı anlatır.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span>&gt;Üst sıra veriyi yakalar ve korur, alt sıra onu süre dolana kadar tutar ve düzenli olarak dener. Hayalet kutu henüz kurulmamış bir aşamadır ve tıklanmaz.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:350</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 350</span>" aria-hidden="<span class='s'>true</span>"&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil ln-dash</span>" d="<span class='s'>M0 190H600</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M180 90H214M214 90l-8-4M214 90l-8 4M380 90H414M414 90l-8-4M414 90l-8 4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M500 130V244M500 244l-4-8M500 244l4-8</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M420 290H386M386 290l8-4M386 290l8 4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M220 290H186</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>20</span>" y="<span class='s'>250</span>" width="<span class='s'>160</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:12</span>"&gt;&lt;<span class='k'>b</span>&gt;ALIM&lt;/<span class='k'>b</span>&gt;Yakala ve koru&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:208</span>"&gt;&lt;<span class='k'>b</span>&gt;SAKLAMA&lt;/<span class='k'>b</span>&gt;Tut ve dene&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:32;--y:282</span>"&gt;arşiv · planlı&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>snapshot</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-backup</span>" style="<span class='s'>--x:20;--y:50;--w:160;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Görüntü&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db · anlık&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;her gece 02:00&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>secret</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-backup</span>" style="<span class='s'>--x:220;--y:50;--w:160;--h:80;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Şifreleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;kasa anahtarı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;AES-256&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>replica</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-backup</span>" style="<span class='s'>--x:420;--y:50;--w:160;--h:80;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kopya&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;≈ 12 dk&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>retention</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-backup</span>" style="<span class='s'>--x:420;--y:250;--w:160;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Saklama&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;35 gün&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;silme kilidi açık&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>test</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-backup</span>" style="<span class='s'>--x:220;--y:250;--w:160;--h:80;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Deneme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;aylık geri yükleme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;son: 2 Ekim&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Bir cümleyle&lt;/<span class='k'>span</span>&gt;Gece alınan görüntü şifrelenir, ikinci bölgeye kopyalanır, 35 gün saklanır ve her ay gerçekten geri yüklenerek denenir.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-backup</span>" aria-live="<span class='s'>polite</span>"&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>snapshot</span>"&gt;&lt;<span class='k'>b</span>&gt;Görüntü.&lt;/<span class='k'>b</span>&gt; Veritabanının disk düzeyinde tutarlı bir kopyası. Yazmaları durdurmaz; birkaç saniyelik bir G/Ç duraksaması olabilir.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>secret</span>"&gt;&lt;<span class='k'>b</span>&gt;Şifreleme.&lt;/<span class='k'>b</span>&gt; Görüntü kasadaki anahtarla şifrelenir. Anahtar döndürüldüğünde eski görüntüler eski sürümle okunmaya devam eder.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>replica</span>"&gt;&lt;<span class='k'>b</span>&gt;Kopya.&lt;/<span class='k'>b</span>&gt; Şifreli görüntü ikinci bölgeye gönderilir; bölge kaybında geri yükleme buradan yapılır.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>retention</span>"&gt;&lt;<span class='k'>b</span>&gt;Saklama.&lt;/<span class='k'>b</span>&gt; Görüntüler 35 gün tutulur. Silme kilidi açıkken süresi dolmamış görüntü elle de silinemez.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>test</span>"&gt;&lt;<span class='k'>b</span>&gt;Deneme.&lt;/<span class='k'>b</span>&gt; Her ay rastgele bir görüntü geçici bir kopyaya açılır ve sağlama sorguları çalıştırılır. Denenmemiş yedek yedek sayılmaz.&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 1.&lt;/<span class='k'>b</span>&gt; Beş durak saat yönünde. Kesikli çizgi alım ile saklama arasındaki sınırdır; hayalet kutu planlanmış ama kurulmamış arşivdir.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Örnek · gezgin 2 · alarm akışı, koyu pafta</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark" data-explorer="ig-alarm">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Şekil 2</p>
+  <p class="fig-cap">Bir alarmın yolu</p>
+  <div class="drawing" style="--aw:900;--ah:160">
+    <svg viewBox="0 0 900 160" aria-hidden="true">
+      <path class="ln-draw" d="M170 95H194M194 95l-7-4M194 95l-7 4M350 95H374M374 95l-7-4M374 95l-7 4M530 95H554M554 95l-7-4M554 95l-7 4M710 95H734M734 95l-7-4M734 95l-7 4"/>
+    </svg>
+    <p class="sl deck-cap" style="--x:20;--y:10"><b>ALARM</b>Metrikten olay kaydına</p>
+    <button class="station" type="button" data-key="metric" aria-pressed="false" aria-controls="ig-alarm" style="--x:20;--y:50;--w:150;--h:90"><span class="st-name">Metrik</span><span class="st-sub">5xx oranı</span><span class="st-meta">%4,1</span></button>
+    <button class="station" type="button" data-key="rule" aria-pressed="true" aria-controls="ig-alarm" style="--x:200;--y:50;--w:150;--h:90;--svc:var(--bad)"><span class="st-name">Kural</span><span class="st-sub">eşik %2</span><span class="st-meta">1 dk pencere</span></button>
+    <button class="station" type="button" data-key="router" aria-pressed="false" aria-controls="ig-alarm" style="--x:380;--y:50;--w:150;--h:90"><span class="st-name">Yönlendirici</span><span class="st-sub">ekip: ödeme</span><span class="st-meta">önem: P2</span></button>
+    <button class="station" type="button" data-key="oncall" aria-pressed="false" aria-controls="ig-alarm" style="--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)"><span class="st-name">Nöbetçi</span><span class="st-sub">birincil</span><span class="st-meta">onay ≤ 5 dk</span></button>
+    <button class="station" type="button" data-key="log" aria-pressed="false" aria-controls="ig-alarm" style="--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)"><span class="st-name">Olay kaydı</span><span class="st-sub">zaman çizelgesi</span><span class="st-meta">otomatik</span></button>
+  </div>
+  <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:var(--sp-5)">
+    <div data-for="metric"><b>Metrik.</b> web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.</div>
+    <div data-for="rule"><b>Kural.</b> Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.</div>
+    <div data-for="router"><b>Yönlendirici.</b> Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.</div>
+    <div data-for="oncall"><b>Nöbetçi.</b> Beş dakika içinde onaylamazsa alarm ikincil nöbetçiye yükselir.</div>
+    <div data-for="log"><b>Olay kaydı.</b> Açılış, onay ve kapanış zamanları kendiliğinden yazılır; sonradan inceleme buradan başlar.</div>
+  </div>
+  <figcaption class="figcap"><b>Şekil 2.</b> Beş durak soldan sağa. Kırmızı kare tetiklenen kuralı, turuncu kare onay bekleyen nöbetçiyi gösterir.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>" data-explorer="<span class='s'>ig-alarm</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Şekil 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Bir alarmın yolu&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:160</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 160</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M170 95H194M194 95l-7-4M194 95l-7 4M350 95H374M374 95l-7-4M374 95l-7 4M530 95H554M554 95l-7-4M554 95l-7 4M710 95H734M734 95l-7-4M734 95l-7 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:10</span>"&gt;&lt;<span class='k'>b</span>&gt;ALARM&lt;/<span class='k'>b</span>&gt;Metrikten olay kaydına&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>metric</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:20;--y:50;--w:150;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Metrik&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;5xx oranı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;%4,1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>rule</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:200;--y:50;--w:150;--h:90;--svc:var(--bad)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kural&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;eşik %2&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;1 dk pencere&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>router</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:380;--y:50;--w:150;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Yönlendirici&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;ekip: ödeme&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;önem: P2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>oncall</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Nöbetçi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;birincil&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;onay ≤ 5 dk&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>log</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Olay kaydı&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;zaman çizelgesi&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;otomatik&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-alarm</span>" aria-live="<span class='s'>polite</span>" style="<span class='s'>margin-top:var(--sp-5)</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>metric</span>"&gt;&lt;<span class='k'>b</span>&gt;Metrik.&lt;/<span class='k'>b</span>&gt; web-api'nin dakikalık 5xx oranı. Tek başına bir şey tetiklemez; yalnızca ölçülür.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>rule</span>"&gt;&lt;<span class='k'>b</span>&gt;Kural.&lt;/<span class='k'>b</span>&gt; Oran bir dakika boyunca %2'nin üstünde kalırsa alarm açılır. Tek bir sıçrama yetmez.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>router</span>"&gt;&lt;<span class='k'>b</span>&gt;Yönlendirici.&lt;/<span class='k'>b</span>&gt; Etiketlere bakar ve alarmı ödeme ekibinin P2 kanalına gönderir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>oncall</span>"&gt;&lt;<span class='k'>b</span>&gt;Nöbetçi.&lt;/<span class='k'>b</span>&gt; Beş dakika içinde onaylamazsa alarm ikincil nöbetçiye yükselir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>log</span>"&gt;&lt;<span class='k'>b</span>&gt;Olay kaydı.&lt;/<span class='k'>b</span>&gt; Açılış, onay ve kapanış zamanları kendiliğinden yazılır; sonradan inceleme buradan başlar.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Şekil 2.&lt;/<span class='k'>b</span>&gt; Beş durak soldan sağa. Kırmızı kare tetiklenen kuralı, turuncu kare onay bekleyen nöbetçiyi gösterir.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Olay: hendese:explore">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Olay: hendese:explore</h2><p class="lead">Tıklama ile seçim yapıldığında kapsayıcı kabarcıklanan bir hendese:explore olayı yayar. Önizleme olay yaymaz; başlangıç seçimi de yaymaz.</p></header>
+<div class="demo">
+  <span class="demo-label">Örnek · iki gezginin son seçimi</span>
+  <div class="demo-view">
+<div class="readout" id="ig-out" aria-live="polite"><p>Henüz seçim yok. Yukarıdaki iki gezginden birinde bir durağa tıklayın.</p></div>
+  </div>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>// olay belgeye kadar kabarcıklanır: tek dinleyici bütün gezginleri duyar
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');           // hangi gezgin
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});</code></pre></figure>
+<div class="prose"><p><code>e.target</code> kapsayıcının kendisidir; <code>detail.key</code> seçilen düğmenin <code>data-key</code> değeri. Olayı adres çubuğuna yazmak, bir ölçümü göndermek ya da başka bir çizimi güncellemek için kullanabilirsiniz. Seçimi koddan değiştirmek için ilgili düğmeye <code>click()</code> çağırın.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Yap / yapma">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Yap / yapma</h2><p class="lead">Durak bir düğmedir; paneli olmayan ya da klavyeyle seçilemeyen bir durak gezgin değil, yalnızca bir resimdir.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Yap · düğme + bağlı panel</span>
+  <div class="demo-view">
+<div data-explorer="ig-do">
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+    </svg>
+    <button class="station" type="button" data-key="primary" aria-pressed="true" aria-controls="ig-do" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Birincil</span><span class="st-sub">orders-db-1</span></button>
+    <button class="station" type="button" data-key="replica" aria-pressed="false" aria-controls="ig-do" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Kopya</span><span class="st-sub">orders-db-2</span></button>
+  </div>
+  <div class="st-detail" id="ig-do" aria-live="polite">
+    <div data-for="primary"><b>Birincil.</b> Bütün yazmalar buraya gelir.</div>
+    <div data-for="replica"><b>Kopya.</b> Okumaları karşılar; gecikmesi 0,4 s.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-do</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M200 55H234M234 55l-8-4M234 55l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>primary</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-do</span>" style="<span class='s'>--x:10;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Birincil&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>replica</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-do</span>" style="<span class='s'>--x:240;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kopya&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-do</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>primary</span>"&gt;&lt;<span class='k'>b</span>&gt;Birincil.&lt;/<span class='k'>b</span>&gt; Bütün yazmalar buraya gelir.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>replica</span>"&gt;&lt;<span class='k'>b</span>&gt;Kopya.&lt;/<span class='k'>b</span>&gt; Okumaları karşılar; gecikmesi 0,4 s.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Yapma · div ile durak, panel yok</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:110">
+  <svg viewBox="0 0 440 110" aria-hidden="true">
+    <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+  </svg>
+  <div class="station" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Birincil</span><span class="st-sub">orders-db-1</span></div>
+  <div class="station" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Kopya</span><span class="st-sub">orders-db-2</span></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M200 55H234M234 55l-8-4M234 55l-8 4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>station</span>" style="<span class='s'>--x:10;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Birincil&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>station</span>" style="<span class='s'>--x:240;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Kopya&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Duraklar Tab sırasıyla gezilir; odak önizlemeyi açar, Enter ya da Boşluk seçer. Ekran okuyucu düğmeyi “basılı / basılı değil” olarak okur ve panel değiştiğinde <code>aria-live</code> sayesinde yeni metni duyurur. Dar ekranda (720px altı) SVG gizlenir ve duraklar alt alta dizilir; okları anlatan cümle bu yüzden panelde ya da özette de bulunmalıdır.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Parçalar arası"><a href="line-families.tr.html" rel="prev"><small>Önceki · <span lang="en">Blueprint</span></small>Çizgi aileleri</a><a href="isometric-box.tr.html" rel="next"><small>Sonraki · <span lang="en">Blueprint</span></small>İzometrik kutu</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});
+Hendese.start();
+</script>
+</body>
+</html>

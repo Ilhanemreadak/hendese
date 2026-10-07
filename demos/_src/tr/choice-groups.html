@@ -1,0 +1,170 @@
+<!-- meta {"title":"Seçim grupları","group":"Components","order":100,"tagline":"Yerel radyolar, iki görünüm.","intro":"<code>.choice</code> bir <code>&lt;fieldset&gt;</code> içindeki yerel radyo düğmelerini çip ya da segment olarak çizer. Davranış tarayıcınındır: klavye, form gönderimi ve ekran okuyucu desteği kendiliğinden gelir. Seçimin sonucu genellikle bir <code>.readout</code> satırına yazılır.","summary":"<code>.choice</code> çipleri, <code>.choice.is-seg</code> segmentleri; klavye ve canlı bir yapılandırıcı.","facts":{"Sınıflar":"<code>.choice</code> · <code>.choice.is-seg</code> · <code>legend</code> · <code>small</code>","Girdi":"<code>&lt;input type=\"radio\"&gt;</code>; çoklu seçim için <code>type=\"checkbox\"</code>","JS":"Gerekmez; sonucu yazmak için <code>change</code> dinleyicisi"}} -->
+
+<chapter title="Varyantlar" lead="Çip görünümünde seçili öğe kalın çerçeve alır; segment görünümünde dolgu. İkincil bilgi için etiketin içine small eklenir.">
+<demo label="Örnek · çip ve segment">
+<fieldset class="choice">
+  <legend>Bölge</legend>
+  <label><input type="radio" name="sg-region" value="eu-west-1" checked><span>eu-west-1 <small>18 ms</small></span></label>
+  <label><input type="radio" name="sg-region" value="eu-central-1"><span>eu-central-1 <small>24 ms</small></span></label>
+  <label><input type="radio" name="sg-region" value="us-east-1"><span>us-east-1 <small>96 ms</small></span></label>
+</fieldset>
+<fieldset class="choice is-seg">
+  <legend>Günlük seviyesi</legend>
+  <label><input type="radio" name="sg-level" value="debug"><span>debug</span></label>
+  <label><input type="radio" name="sg-level" value="info" checked><span>info</span></label>
+  <label><input type="radio" name="sg-level" value="warn"><span>warn</span></label>
+  <label><input type="radio" name="sg-level" value="error"><span>error</span></label>
+</fieldset>
+</demo>
+<div class="prose"><p>Çip, seçeneklerin kendisi bir ad ya da değer olduğunda (bölge, ortam, servis) iyi okunur. Segment, bir ölçeğin üzerinde konum seçildiğinde (seviye, aralık, boyut) daha doğaldır. İkisi de aynı işaretlemedir; fark yalnızca <code>.is-seg</code> sınıfıdır.</p></div>
+</chapter>
+
+<chapter title="Durumlar ve çoklu seçim" lead="Seçili, üzerine gelinmiş ve klavye odaklı. Aynı görünüm onay kutularıyla da çalışır; o zaman grup birden çok değer taşır.">
+<demo label="Örnek · onay kutulu çip grubu">
+<fieldset class="choice" id="sg-channel">
+  <legend>Alarm bildirimi</legend>
+  <label><input type="checkbox" name="sg-channel" value="e-posta" checked><span>e-posta</span></label>
+  <label><input type="checkbox" name="sg-channel" value="sohbet" checked><span>sohbet kanalı</span></label>
+  <label><input type="checkbox" name="sg-channel" value="çağrı"><span>çağrı <small>yalnız kritik</small></span></label>
+  <label><input type="checkbox" name="sg-channel" value="webhook"><span>webhook</span></label>
+</fieldset>
+<div class="readout" id="sg-channel-out" aria-live="polite"><p><b>2 kanal</b>: e-posta, sohbet kanalı.</p></div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Durum</th><th>Tetikleyen</th><th>Görünüm</th></tr></thead>
+  <tbody>
+    <tr><td>Seçili</td><td><code>input:checked</code></td><td>Çipte çift kalın çizim çerçevesi ve kalın metin; segmentte vurgu dolgusu.</td></tr>
+    <tr><td>Üzerinde</td><td><code>label:hover</code></td><td>Çerçeve çizim rengine döner.</td></tr>
+    <tr><td>Odak</td><td><code>input:focus-visible</code></td><td>Etiket kutusunun çevresinde 2px vurgu halkası.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Devre dışı yok</span><div class="co-body"><p>Paket <code>disabled</code> için ayrı bir görünüm tanımlamaz; devre dışı bir seçenek ötekilerle aynı görünür. Kullanılamayan seçeneği listeden çıkarın ve nedenini gruba yakın bir satırda yazın.</p></div></div>
+</chapter>
+
+<chapter title="Klavye" lead="Hiçbir betik klavye davranışı eklemez; aşağıdakilerin hepsi yerel radyo ve onay kutusundan gelir.">
+<div class="tbl"><table>
+  <thead><tr><th>Tuş</th><th>Radyo grubu</th><th>Onay kutusu grubu</th></tr></thead>
+  <tbody>
+    <tr><td><code>Tab</code></td><td>Gruba tek durakla girer, seçili seçeneğe odaklanır; bir sonraki Tab gruptan çıkar.</td><td>Her kutu ayrı bir duraktır.</td></tr>
+    <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>Odağı taşır ve aynı anda seçer; <code>change</code> olayı her adımda tetiklenir.</td><td>Etkisi yok.</td></tr>
+    <tr><td><code>Boşluk</code></td><td>Odaktaki seçeneği seçer.</td><td>Odaktaki kutuyu açar ya da kapatır.</td></tr>
+  </tbody>
+</table></div>
+<demo label="Örnek · Tab ile girin, oklarla gezin" nocode>
+<fieldset class="choice is-seg" id="sg-interval">
+  <legend>Grafik aralığı</legend>
+  <label><input type="radio" name="sg-interval" value="1 saat" checked><span>1 sa</span></label>
+  <label><input type="radio" name="sg-interval" value="6 saat"><span>6 sa</span></label>
+  <label><input type="radio" name="sg-interval" value="24 saat"><span>24 sa</span></label>
+  <label><input type="radio" name="sg-interval" value="7 gün"><span>7 g</span></label>
+</fieldset>
+<div class="readout" id="sg-interval-out" aria-live="polite"><p>Son <b>1 saat</b> · 60 nokta, 1 dakikalık çözünürlük.</p></div>
+</demo>
+<div class="prose"><p>Ok tuşları seçimi hemen değiştirdiği için, her <code>change</code> olayında ağır bir iş (ağ isteği, büyük yeniden çizim) başlatılıyorsa kısa bir gecikmeyle birleştirin; okuyucu dört aralığı geçerken dört istek beklemez.</p></div>
+</chapter>
+
+<chapter title="Bağlam içinde" lead="Birkaç grup bir yapılandırıcıyı oluşturur; sonuç satırı her değişiklikte yeniden hesaplanır ve riskli bileşimi kırmızıyla söyler.">
+<demo label="Örnek · kuyruk işçisi yapılandırıcısı">
+<div id="sg-worker">
+  <fieldset class="choice">
+    <legend>Ortam</legend>
+    <label><input type="radio" name="sg-env" value="dev"><span>dev</span></label>
+    <label><input type="radio" name="sg-env" value="staging" checked><span>staging</span></label>
+    <label><input type="radio" name="sg-env" value="prod"><span>prod</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Makine</legend>
+    <label><input type="radio" name="sg-machine" value="small" checked><span>small <small>2 vCPU</small></span></label>
+    <label><input type="radio" name="sg-machine" value="medium"><span>medium <small>4 vCPU</small></span></label>
+    <label><input type="radio" name="sg-machine" value="large"><span>large <small>8 vCPU</small></span></label>
+  </fieldset>
+  <fieldset class="choice is-seg">
+    <legend>Kopya</legend>
+    <label><input type="radio" name="sg-replica" value="1" checked><span>1</span></label>
+    <label><input type="radio" name="sg-replica" value="2"><span>2</span></label>
+    <label><input type="radio" name="sg-replica" value="3"><span>3</span></label>
+    <label><input type="radio" name="sg-replica" value="6"><span>6</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Seçenekler</legend>
+    <label><input type="checkbox" name="sg-extra" value="spot"><span>spot makine <small>−%60</small></span></label>
+    <label><input type="checkbox" name="sg-extra" value="otomatik"><span>otomatik ölçekleme</span></label>
+  </fieldset>
+  <div class="readout" id="sg-worker-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+</div>
+</demo>
+<demo label="Örnek · koyu panel başlığında segment">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:16px 18px">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px">
+    <p class="chip" style="margin-bottom:14px"><span lang="en">web-api</span> · p95 gecikme</p>
+    <fieldset class="choice is-seg" style="margin:0">
+      <legend>Yüzdelik</legend>
+      <label><input type="radio" name="sg-percent" value="p50"><span>p50</span></label>
+      <label><input type="radio" name="sg-percent" value="p95" checked><span>p95</span></label>
+      <label><input type="radio" name="sg-percent" value="p99"><span>p99</span></label>
+    </fieldset>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Yap / yapma" lead="Az ve kısa seçenek segmente, uzun ve çok seçenek çiplere ya da bir listeye gider. Grubun adı her zaman legend ile verilir.">
+<div class="dodont">
+<demo label="Yap · adlı grup, kısa seçenek">
+<fieldset class="choice is-seg">
+  <legend>Önbellek süresi</legend>
+  <label><input type="radio" name="sg-ttl-do" value="1 dk"><span>1 dk</span></label>
+  <label><input type="radio" name="sg-ttl-do" value="5 dk" checked><span>5 dk</span></label>
+  <label><input type="radio" name="sg-ttl-do" value="1 sa"><span>1 sa</span></label>
+</fieldset>
+</demo>
+<demo label="Yapma · adsız grup, uzun seçenekler">
+<fieldset class="choice is-seg">
+  <legend>Seç</legend>
+  <label><input type="radio" name="sg-ttl-dont" value="a"><span>önbelleği hiç kullanma</span></label>
+  <label><input type="radio" name="sg-ttl-dont" value="b" checked><span>yalnızca okuma isteklerinde kullan</span></label>
+  <label><input type="radio" name="sg-ttl-dont" value="c"><span>her şeyi önbellekten ver ve arkada yenile</span></label>
+</fieldset>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu grubu <code>legend</code> metniyle duyurur; legend görünür olmalı ve ne seçildiğini söylemelidir (“Seç” değil “Önbellek süresi”). Her grubun <code>name</code> değeri sayfada benzersizdir. Sonuç satırına <code>aria-live="polite"</code> verin ki ok tuşuyla yapılan değişiklik de okunsun.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">JS yokken</span><div class="co-body"><p>Grup yalnızca bir betiğe sonuç yazdırıyorsa JS kapalıyken anlamsızdır; sayfa CSS'inde gizleyin:</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
+</chapter>
+
+<script data-page>
+function sgVal(name) { var i = document.querySelector('input[name="' + name + '"]:checked'); return i ? i.value : ''; }
+function sgAll(name) { return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+/* bildirim kanalları (onay kutuları) */
+(function () {
+  var out = document.getElementById('sg-channel-out');
+  function show() {
+    var v = sgAll('sg-channel');
+    out.classList.toggle('bad', !v.length);
+    out.innerHTML = v.length ? '<p><b>' + v.length + ' kanal</b>: ' + v.join(', ') + '.</p>' : '<p><b>Kanal yok.</b> Alarm tetiklense de kimseye ulaşmaz.</p>';
+  }
+  document.getElementById('sg-channel').addEventListener('change', show); show();
+})();
+/* grafik aralığı */
+(function () {
+  var out = document.getElementById('sg-interval-out');
+  var info = { '1 saat': '60 nokta, 1 dakikalık çözünürlük', '6 saat': '72 nokta, 5 dakikalık çözünürlük', '24 saat': '96 nokta, 15 dakikalık çözünürlük', '7 gün': '168 nokta, 1 saatlik çözünürlük' };
+  document.getElementById('sg-interval').addEventListener('change', function () { var v = sgVal('sg-interval'); out.innerHTML = '<p>Son <b>' + v + '</b> · ' + info[v] + '.</p>'; });
+})();
+/* kuyruk işçisi yapılandırıcısı: aylık tahmini maliyet */
+(function () {
+  var out = document.getElementById('sg-worker-out'), saat = { small: 0.085, medium: 0.17, large: 0.34 };
+  function show() {
+    var env = sgVal('sg-env'), m = sgVal('sg-machine'), n = +sgVal('sg-replica'), ek = sgAll('sg-extra');
+    var spot = ek.indexOf('spot') > -1, auto = ek.indexOf('otomatik') > -1;
+    var aylik = saat[m] * 730 * n * (spot ? 0.4 : 1);
+    var risk = env === 'prod' && (n === 1 || spot);
+    out.classList.toggle('bad', risk);
+    out.classList.toggle('ok', !risk && env === 'prod');
+    out.innerHTML = '<p><b>' + env + '</b> · ' + n + ' × ' + m + (spot ? ' (spot)' : '') + (auto ? ', otomatik ölçekleme açık' : '') +
+      ' · tahmini <b>' + aylik.toFixed(0) + ' $ / ay</b>.' +
+      (risk ? ' Üretimde ' + (n === 1 ? 'tek kopya bir yeniden başlatmada kuyruğu durdurur.' : 'spot makine her an geri alınabilir; işler yarıda kalır.') : env === 'prod' ? ' Üretim için uygun.' : '') + '</p>';
+  }
+  document.getElementById('sg-worker').addEventListener('change', show); show();
+})();
+</script>
