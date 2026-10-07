@@ -1,7 +1,29 @@
 {
   "name": "hendese",
   "version": "0.4.0",
-  "description": "Blueprint (teknik çizim) tasarım dili: token'lar, bileşenler, scroll sahne motoru ve piksel maskot Hoca.",
+  "description": "A blueprint-style design language for long-form technical pages: design tokens, layered CSS components, a scroll-scene engine and a pixel mascot.",
+  "keywords": [
+    "design-system",
+    "css",
+    "design-tokens",
+    "cascade-layers",
+    "blueprint",
+    "technical-drawing",
+    "scroll-animation",
+    "scrollytelling",
+    "documentation",
+    "accessibility"
+  ],
+  "homepage": "https://github.com/Ilhanemreadak/hendese#readme",
+  "bugs": {
+    "url": "https://github.com/Ilhanemreadak/hendese/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ilhanemreadak/hendese.git"
+  },
+  "license": "MIT",
+  "author": "İlhan Emre Adak",
   "private": true,
   "type": "module",
   "style": "dist/hendese.css",
@@ -26,9 +48,11 @@
     "docs/",
     "demos/",
     "starter/",
-    "README.md",
     "STANDART.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "README.md",
+    "README.tr.md",
+    "LICENSE"
   ],
   "sideEffects": [
     "*.css"
