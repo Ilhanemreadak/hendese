@@ -1,0 +1,30 @@
+# Weekly update PRs for the dev toolchain and the workflow actions, grouped to keep the noise low.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 3   # let fresh releases settle before proposing them
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "build(deps)"
+    groups:
+      dev-dependencies:
+        dependency-type: development
+    ignore:
+      # updated by hand together with the CI container image and the Linux visual baselines
+      - dependency-name: "@playwright/test"
+    labels: ["dependencies"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci(deps)"
+    groups:
+      actions:
+        patterns: ["*"]
+    labels: ["dependencies", "ci"]

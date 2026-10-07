@@ -1,6 +1,7 @@
 # Build, unit tests and the Playwright suite (cleanliness, axe, behaviour, visual) on every push and pull request.
 # The job runs inside the official Playwright image, so the Linux visual baselines
 # (tests/e2e/*-snapshots/*-linux.png) match what `docker run mcr.microsoft.com/playwright:v1.63.0-noble` produces locally.
+# Keep the image tag equal to the @playwright/test version in package.json.
 name: CI
 
 on:
@@ -12,13 +13,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
+    name: test
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.63.0-noble
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - run: npm ci
       - run: npm run build
@@ -27,7 +35,7 @@ jobs:
       - run: npm run test:unit
       - run: npx playwright test
       - if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: playwright-results
           path: test-results/
