@@ -1,37 +1,37 @@
-<!-- meta {"title":"Renkler","group":"Temel","order":10,"tagline":"İki tema, tek satırda.","intro":"Her renk <code>tokens.css</code> içinde <code>light-dark(açık, koyu)</code> ile bir kez tanımlanır. Bileşenler renk yazmaz, yalnızca token okur; temayı uyarlamak birkaç değişkeni ezmekten ibarettir.","summary":"Yüzey, mürekkep, vurgu, durum, servis ve kod token'ları; <code>light-dark()</code>, tek renkle tema, ezme, yüksek kontrast ve zorunlu renk.","facts":{"Token'lar":"<code>--bg</code> · <code>--surface*</code> · <code>--paper</code> · <code>--scene-bg</code> <code>--scene-shade</code> · <code>--ink*</code> · <code>--accent*</code> · <code>--draw</code> · <code>--pencil*</code> · <code>--ok</code> <code>--warn</code> <code>--bad</code> <code>--sec</code> (+ <code>-soft</code>) · <code>--code-*</code>","Tema":"<code>html[data-theme=\"light|dark\"]</code> · <code>.scene-dark</code> · <code>.scene-light</code>","JS":"Gerekmez; tema düğmesi <code>[data-theme-toggle]</code> kendiliğinden çalışır"}} -->
+<!-- meta {"title":"Colors","group":"Basics","order":10,"tagline":"Two themes, one line.","intro":"Every color is defined once in <code>tokens.css</code> with <code>light-dark(light, dark)</code>. Components never write colors; they only read tokens, so adapting the theme comes down to overriding a few variables.","summary":"Surface, ink, accent, status, service and code tokens; <code>light-dark()</code>, theming with a single color, overrides, high contrast and forced colors.","facts":{"Tokens":"<code>--bg</code> · <code>--surface*</code> · <code>--paper</code> · <code>--scene-bg</code> <code>--scene-shade</code> · <code>--ink*</code> · <code>--accent*</code> · <code>--draw</code> · <code>--pencil*</code> · <code>--ok</code> <code>--warn</code> <code>--bad</code> <code>--sec</code> (+ <code>-soft</code>) · <code>--code-*</code>","Theme":"<code>html[data-theme=\"light|dark\"]</code> · <code>.scene-dark</code> · <code>.scene-light</code>","JS":"Not needed; the <code>[data-theme-toggle]</code> theme button works on its own"}} -->
 
-<chapter title="Yüzeyler ve mürekkep" lead="Zemin, kart, kağıt ve sahne; üstlerinde üç mürekkep tonu. Koyu temada yüzeyler katman katman açılır, çizgiler saydam olduğu için her zeminde aynı ağırlıkta kalır.">
-<demo label="Palet · yüzeyler ve metin" nocode>
+<chapter title="Surfaces and ink" lead="Background, card, paper and scene; three ink tones on top of them. In the dark theme the surfaces lighten layer by layer, and because lines are transparent they keep the same weight on every background.">
+<demo label="Palette · surfaces and text" nocode>
 <div class="swatches">
-  <div style="--c:var(--bg)"><i></i><span>--bg<small>sayfa zemini, ray</small></span></div>
-  <div style="--c:var(--surface)"><i></i><span>--surface<small>kart, tablo</small></span></div>
-  <div style="--c:var(--surface-2)"><i></i><span>--surface-2<small>üzerine gelme</small></span></div>
-  <div style="--c:var(--surface-3)"><i></i><span>--surface-3<small>satır içi kod, iz</small></span></div>
-  <div style="--c:var(--paper)"><i></i><span>--paper<small>antet, çip, kayıt</small></span></div>
-  <div style="--c:var(--scene-bg)"><i></i><span>--scene-bg<small>pafta zemini</small></span></div>
-  <div style="--c:var(--scene-shade)"><i></i><span>--scene-shade<small>izometrik yan yüz</small></span></div>
-  <div style="--c:var(--line)"><i></i><span>--line<small>ince ayraç</small></span></div>
-  <div style="--c:var(--line-2)"><i></i><span>--line-2<small>belirgin kenar</small></span></div>
-  <div style="--c:var(--ink)"><i></i><span>--ink<small>başlık, gövde</small></span></div>
-  <div style="--c:var(--ink-2)"><i></i><span>--ink-2<small>açıklama, lead</small></span></div>
-  <div style="--c:var(--ink-3)"><i></i><span>--ink-3<small>etiket, şekil yazısı</small></span></div>
+  <div style="--c:var(--bg)"><i></i><span>--bg<small>page background, rail</small></span></div>
+  <div style="--c:var(--surface)"><i></i><span>--surface<small>card, table</small></span></div>
+  <div style="--c:var(--surface-2)"><i></i><span>--surface-2<small>hover</small></span></div>
+  <div style="--c:var(--surface-3)"><i></i><span>--surface-3<small>inline code, track</small></span></div>
+  <div style="--c:var(--paper)"><i></i><span>--paper<small>title block, chip, register</small></span></div>
+  <div style="--c:var(--scene-bg)"><i></i><span>--scene-bg<small>sheet background</small></span></div>
+  <div style="--c:var(--scene-shade)"><i></i><span>--scene-shade<small>isometric side face</small></span></div>
+  <div style="--c:var(--line)"><i></i><span>--line<small>thin divider</small></span></div>
+  <div style="--c:var(--line-2)"><i></i><span>--line-2<small>visible border</small></span></div>
+  <div style="--c:var(--ink)"><i></i><span>--ink<small>headings, body</small></span></div>
+  <div style="--c:var(--ink-2)"><i></i><span>--ink-2<small>description, lead</small></span></div>
+  <div style="--c:var(--ink-3)"><i></i><span>--ink-3<small>labels, captions</small></span></div>
 </div>
 </demo>
-<demo label="Örnek · katmanlar bir arada">
+<demo label="Example · layers together">
 <div style="background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:18px">
   <div style="background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);padding:var(--sp-7) var(--sp-8);max-width:540px">
-    <p class="chip">Göç 0042 · <span lang="en">billing-db</span></p>
-    <p style="margin:var(--sp-2) 0 var(--sp-1);color:var(--ink)"><b>orders tablosuna <code>region</code> sütunu ekle</b></p>
-    <p style="margin:0 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)">Sütun boş değerle eklenir; geri doldurma ayrı bir işte, 5 000 satırlık gruplar halinde yapılır.</p>
-    <div style="background:var(--paper);border:1px dashed var(--pencil);padding:var(--sp-3) var(--sp-5);font:500 var(--fs-sm)/1.5 var(--font-mono);color:var(--ink-3)">eu-west-1 · tahmini kilit süresi: yok · geri alma: DROP COLUMN</div>
+    <p class="chip">Migration 0042 · <span lang="en">billing-db</span></p>
+    <p style="margin:var(--sp-2) 0 var(--sp-1);color:var(--ink)"><b>Add a <code>region</code> column to the orders table</b></p>
+    <p style="margin:0 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)">The column is added with null values; the backfill runs in a separate job, in batches of 5,000 rows.</p>
+    <div style="background:var(--paper);border:1px dashed var(--pencil);padding:var(--sp-3) var(--sp-5);font:500 var(--fs-sm)/1.5 var(--font-mono);color:var(--ink-3)">eu-west-1 · estimated lock time: none · rollback: DROP COLUMN</div>
   </div>
 </div>
 </demo>
-<demo label="Örnek · pafta zemini, kağıt ve yan yüz">
+<demo label="Example · sheet background, paper and side face">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-5)">
   <div class="scene-light" style="padding:var(--sp-6);border-radius:var(--r-md)">
     <p class="chip"><span lang="en">.scene-light</span></p>
-    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="İzometrik sunucu kutusu: üst yüz kağıt, yan yüz bir ton koyu">
+    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="Isometric server box: the top face is paper, the side face one tone darker">
       <path class="ln-draw fill-paper" d="M40 50L130 20L220 50L130 80Z"/>
       <path class="ln-draw fill-shade" d="M40 50V110L130 140V80Z"/>
       <path class="ln-draw fill-paper" d="M130 80V140L220 110V50Z"/>
@@ -40,7 +40,7 @@
   </div>
   <div class="scene-dark" style="padding:var(--sp-6);border-radius:var(--r-md)">
     <p class="chip">.scene-dark</p>
-    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="Aynı kutu koyu paftada: kağıt yüz zeminden ayrışır">
+    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="The same box on a dark sheet: the paper face stands out from the background">
       <path class="ln-draw fill-paper" d="M40 50L130 20L220 50L130 80Z"/>
       <path class="ln-draw fill-shade" d="M40 50V110L130 140V80Z"/>
       <path class="ln-draw fill-paper" d="M130 80V140L220 110V50Z"/>
@@ -48,192 +48,192 @@
     </svg>
   </div>
 </div>
-<p class="figcap"><b>Şekil 1.</b> Üst ve sağ yüz <code>--paper</code>, sol yüz <code>--scene-shade</code>. Koyu <code>--paper</code> 0.2'de <code>#1a2331</code>'e açıldı; eski <code>#141b25</code> pafta zemininden (<code>#121a27</code>) ayırt edilemiyordu.</p>
+<p class="figcap"><b>Figure 1.</b> The top and right faces are <code>--paper</code>, the left face <code>--scene-shade</code>. In 0.2 the dark <code>--paper</code> was lightened to <code>#1a2331</code>; the old <code>#141b25</code> could not be told apart from the sheet background (<code>#121a27</code>).</p>
 </demo>
-<div class="prose"><p>Kural basit: <code>--ink</code> okunması gereken her şey, <code>--ink-2</code> onu açıklayan cümle, <code>--ink-3</code> yalnızca etiket ve künye. Bir paragrafı <code>--ink-3</code> ile yazmak onu "önemsiz" değil, "okunmaz" yapar.</p>
-<p><code>--scene-shade</code> renk değil bir karışımdır: <code>--draw</code>'un %8'i pafta zeminine katılır (<code>.fill-shade</code>). <code>.scene-dark</code> ve <code>.scene-light</code> kendi <code>.frame-bg</code>'si olmayan kaba sahne zeminini kendiliğinden verir.</p></div>
+<div class="prose"><p>The rule is simple: <code>--ink</code> for everything that must be read, <code>--ink-2</code> for the sentence that explains it, <code>--ink-3</code> only for labels and metadata. Setting a paragraph in <code>--ink-3</code> does not make it "minor"; it makes it "unreadable".</p>
+<p><code>--scene-shade</code> is a mix, not a color: 8% of <code>--draw</code> blended into the sheet background (<code>.fill-shade</code>). <code>.scene-dark</code> and <code>.scene-light</code> give the scene background automatically to a container that has no <code>.frame-bg</code> of its own.</p></div>
 </chapter>
 
-<chapter title="Vurgu, çizim ve kalem" lead="Vurgu etkileşimi işaretler: bağlantı, odak ve seçim. Çizim ve kalem paftadaki çizgilerdir; mürekkep gerçeği, kesikli kalem planlananı gösterir.">
-<demo label="Örnek · DNS geçiş taslağı">
-<svg viewBox="0 0 640 200" width="640" height="200" fill="none" role="img" aria-label="Çözümleyici bugün eu-west-1'e yönlendiriyor; eu-central-1 yolu planlanmış">
+<chapter title="Accent, drawing and pencil" lead="The accent marks interaction: links, focus and selection. Drawing and pencil are the lines on a sheet; ink shows what is real, the dashed pencil shows what is planned.">
+<demo label="Example · DNS cutover draft">
+<svg viewBox="0 0 640 200" width="640" height="200" fill="none" role="img" aria-label="The resolver routes to eu-west-1 today; a path to eu-central-1 is planned">
   <path class="pencil-2" d="M0 40H640M0 80H640M0 120H640M0 160H640"/>
   <rect class="ln-draw fill-paper" x="20" y="70" width="150" height="60"/>
-  <text class="dim-t" x="38" y="105">api.ornek.dev</text>
+  <text class="dim-t" x="38" y="105">api.example.dev</text>
   <path class="ln-draw" d="M170 92H250V48H300"/>
   <path class="ln-ghost" d="M170 108H250V152H300"/>
   <rect class="ln-draw fill-paper" x="300" y="20" width="210" height="56"/>
-  <text class="dim-t" x="318" y="53">eu-west-1 · ağırlık 100</text>
+  <text class="dim-t" x="318" y="53">eu-west-1 · weight 100</text>
   <rect class="ln-ghost" x="300" y="124" width="210" height="56"/>
-  <text class="dim-t" x="318" y="157">eu-central-1 · ağırlık 0</text>
+  <text class="dim-t" x="318" y="157">eu-central-1 · weight 0</text>
   <path class="dim" d="M540 20V180M534 20H546M534 180H546"/>
-  <text class="dim-t" x="554" y="104">TTL 300 sn</text>
+  <text class="dim-t" x="554" y="104">TTL 300 s</text>
 </svg>
-<p class="figcap"><b>Şekil 2.</b> Düz mürekkep bugünkü yolu, kesikli kalem planlanan ikinci bölgeyi gösterir. Çizimin söylediği bu yazıda da var.</p>
+<p class="figcap"><b>Figure 2.</b> Solid ink shows today's path; the dashed pencil shows the planned second region. What the drawing says is in this caption too.</p>
 </demo>
-<demo label="Örnek · vurgu yalnızca etkileşimde">
-<p style="margin:0 0 var(--sp-2)">Ağırlığı değiştirmeden önce <a href="#p5">tema mekanizması</a> bölümüne bakın.</p>
+<demo label="Example · accent only on interaction">
+<p style="margin:0 0 var(--sp-2)">Before changing the weight, see the <a href="#p5">theme mechanism</a> section.</p>
 <fieldset class="choice">
-  <legend>Hedef bölge</legend>
+  <legend>Target region</legend>
   <label><input type="radio" name="rk-region" checked><span>eu-west-1</span></label>
   <label><input type="radio" name="rk-region"><span>eu-central-1</span></label>
 </fieldset>
 <div class="pillrow">
-  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Sağlık denetimi</button>
-  <button class="toggle-btn is-accent" type="button" aria-pressed="false">Kademeli geçiş</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Health check</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false">Gradual cutover</button>
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Token</th><th>Açık</th><th>Koyu</th><th>Nerede</th></tr></thead>
+  <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Where</th></tr></thead>
   <tbody>
-    <tr><td><code>--accent</code></td><td><code>#2352c9</code></td><td><code>#8aaeff</code></td><td>Odak halkası, okuma çubuğu, bölüm numarası, atlama bağlantısı</td></tr>
-    <tr><td><code>--accent-2</code></td><td><code>#1d45ad</code></td><td><code>#a5c0ff</code></td><td>Bağlantı metni</td></tr>
-    <tr><td><code>--accent-soft</code></td><td colspan="2"><code>--accent</code>'in %9 / %12'si</td><td>Seçili segment, adım numarası zemini</td></tr>
-    <tr><td><code>--draw</code></td><td colspan="2"><code>var(--accent)</code>: <code>#2352c9</code> / <code>#8aaeff</code></td><td>Mürekkep çizgisi, seçim çerçevesi, antet</td></tr>
-    <tr><td><code>--pencil</code> / <code>--pencil-2</code></td><td colspan="2"><code>--draw</code>'un %28 / %13'ü</td><td>Kalem çizgisi / kılavuz ızgarası</td></tr>
+    <tr><td><code>--accent</code></td><td><code>#2352c9</code></td><td><code>#8aaeff</code></td><td>Focus ring, reading bar, section number, skip link</td></tr>
+    <tr><td><code>--accent-2</code></td><td><code>#1d45ad</code></td><td><code>#a5c0ff</code></td><td>Link text</td></tr>
+    <tr><td><code>--accent-soft</code></td><td colspan="2">9% / 12% of <code>--accent</code></td><td>Selected segment, step number background</td></tr>
+    <tr><td><code>--draw</code></td><td colspan="2"><code>var(--accent)</code>: <code>#2352c9</code> / <code>#8aaeff</code></td><td>Ink line, selection frame, title block</td></tr>
+    <tr><td><code>--pencil</code> / <code>--pencil-2</code></td><td colspan="2">28% / 13% of <code>--draw</code></td><td>Pencil line / guide grid</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Durum renkleri" lead="Dört durum rengi ve her birinin yumuşak zemini. Renk anlamı tek başına taşımaz; yanında her zaman bir sözcük ya da ikon durur.">
-<demo label="Örnek · alarm listesi">
+<chapter title="Status colors" lead="Four status colors, each with a soft background. Color never carries meaning alone; a word or an icon always sits next to it.">
+<demo label="Example · alarm list">
 <div class="tbl"><table>
-  <thead><tr><th>Alarm</th><th>Durum</th><th>Eşik</th><th>Son tetiklenme</th></tr></thead>
+  <thead><tr><th>Alarm</th><th>Status</th><th>Threshold</th><th>Last triggered</th></tr></thead>
   <tbody>
-    <tr><td>web-api · p95 gecikme</td><td><span class="state s-ok">normal</span></td><td><code>&lt; 400 ms</code></td><td>3 gün önce</td></tr>
-    <tr><td>billing-worker · kuyruk derinliği</td><td><span class="state s-warn">uyarı</span></td><td><code>&gt; 2 000</code></td><td>12 dk önce</td></tr>
-    <tr><td>orders-db · bağlantı havuzu</td><td><span class="state s-bad">alarm</span></td><td><code>&gt; %90</code></td><td>şimdi</td></tr>
+    <tr><td>web-api · p95 latency</td><td><span class="state s-ok">normal</span></td><td><code>&lt; 400 ms</code></td><td>3 days ago</td></tr>
+    <tr><td>billing-worker · queue depth</td><td><span class="state s-warn">warning</span></td><td><code>&gt; 2,000</code></td><td>12 min ago</td></tr>
+    <tr><td>orders-db · connection pool</td><td><span class="state s-bad">alarm</span></td><td><code>&gt; 90%</code></td><td>now</td></tr>
   </tbody>
 </table></div>
 </demo>
-<demo label="Örnek · ana renk + yumuşak zemin">
+<demo label="Example · main color + soft background">
 <div class="pillrow" style="margin-bottom:var(--sp-6)">
-  <span class="pill s-ok">yeşil · 14 hedef</span>
-  <span class="pill s-warn">bekliyor · 2</span>
-  <span class="pill s-bad">başarısız · 1</span>
-  <span class="pill s-sec">yetki gerekli</span>
-  <span class="pill s-neutral">atlandı · 3</span>
+  <span class="pill s-ok">green · 14 targets</span>
+  <span class="pill s-warn">pending · 2</span>
+  <span class="pill s-bad">failed · 1</span>
+  <span class="pill s-sec">permission required</span>
+  <span class="pill s-neutral">skipped · 3</span>
 </div>
-<div class="readout s-ok"><p><b>Göç tamamlandı.</b> 1,2 milyon satır geri dolduruldu; kilit beklemesi olmadı.</p></div>
-<div class="readout s-bad"><p><b>Geri alındı.</b> <code>orders-db</code> replikası 40 sn geride kaldığı için göç durduruldu.</p></div>
+<div class="readout s-ok"><p><b>Migration complete.</b> 1.2 million rows backfilled; no lock waits.</p></div>
+<div class="readout s-bad"><p><b>Rolled back.</b> The migration stopped because the <code>orders-db</code> replica fell 40 s behind.</p></div>
 </demo>
-<div class="prose"><p><code>--ok-soft</code>, <code>--warn-soft</code>, <code>--bad-soft</code> ve <code>--sec-soft</code> ana rengin %9–13 opaklığıdır. Yalnızca <b>aynı renkteki metnin altına</b> zemin olarak girerler; tek başına renk bilgisi taşımazlar.</p>
-<p>Bileşen durum rengini <code>--c</code> ve <code>--c-soft</code>'tan okur; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code>, <code>.s-neutral</code> ve <code>.s-accent</code> bu ikisini birlikte verir. <code>.pill-ok</code>, <code>.state.ok</code>, <code>.readout.ok</code> gibi eski adlar 1.0'a kadar çalışır.</p></div>
-<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Mor neden ayrı</span><div class="co-body"><p><code>--sec</code> hata ya da uyarı değildir: yetki, gizli bilgi ve erişim notları içindir. Bir erişim reddini kırmızıyla değil morla göstermek, okuyucuya "sistem bozuk" değil "izin eksik" der.</p></div></div>
+<div class="prose"><p><code>--ok-soft</code>, <code>--warn-soft</code>, <code>--bad-soft</code> and <code>--sec-soft</code> are the main color at 9–13% opacity. They go only <b>under text of the same color</b>, as a background; on their own they carry no color information.</p>
+<p>A component reads its status color from <code>--c</code> and <code>--c-soft</code>; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code>, <code>.s-neutral</code> and <code>.s-accent</code> set both. Old names like <code>.pill-ok</code>, <code>.state.ok</code> and <code>.readout.ok</code> work until 1.0.</p></div>
+<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Why purple is separate</span><div class="co-body"><p><code>--sec</code> is not an error or a warning: it is for permissions, secrets and access notes. Showing an access denial in purple rather than red tells the reader "permission missing", not "system broken".</p></div></div>
 </chapter>
 
-<chapter title="Servis ve kod renkleri" lead="Bulut ve CI şemaları için isteğe bağlı dört servis rengi; kod blokları ise iki temada da koyu kalan ayrı bir palet kullanır.">
-<demo label="Örnek · aylık maliyet raporu">
+<chapter title="Service and code colors" lead="Four optional service colors for cloud and CI diagrams; code blocks use a separate palette that stays dark in both themes.">
+<demo label="Example · monthly cost report">
 <div class="tbl"><table>
-  <thead><tr><th>Kalem</th><th>Kaynak</th><th>Ekim</th><th>Değişim</th></tr></thead>
+  <thead><tr><th>Item</th><th>Source</th><th>October</th><th>Change</th></tr></thead>
   <tbody>
-    <tr><td>Hesaplama · eu-west-1</td><td><span class="pill s-aws">bulut</span></td><td>4 820 $</td><td><span class="minus">+%6</span></td></tr>
-    <tr><td>CI koşucuları</td><td><span class="pill s-gitlab">ci</span></td><td>610 $</td><td><span class="plus">−%18</span></td></tr>
-    <tr><td>Küme düğümleri · prod</td><td><span class="pill s-k8s">küme</span></td><td>2 140 $</td><td>±%0</td></tr>
-    <tr><td>GitOps eşitleme</td><td><span class="pill s-argo">eşitleme</span></td><td>35 $</td><td>±%0</td></tr>
+    <tr><td>Compute · eu-west-1</td><td><span class="pill s-aws">cloud</span></td><td>$4,820</td><td><span class="minus">+6%</span></td></tr>
+    <tr><td>CI runners</td><td><span class="pill s-gitlab">ci</span></td><td>$610</td><td><span class="plus">−18%</span></td></tr>
+    <tr><td>Cluster nodes · prod</td><td><span class="pill s-k8s">cluster</span></td><td>$2,140</td><td>±0%</td></tr>
+    <tr><td>GitOps sync</td><td><span class="pill s-argo">sync</span></td><td>$35</td><td>±0%</td></tr>
   </tbody>
 </table></div>
 </demo>
-<div class="prose"><p>Servis renkleri <code>.s-aws</code>, <code>.s-gitlab</code>, <code>.s-k8s</code>, <code>.s-argo</code> sınıflarıyla <code>--c</code> değişkenine bağlanır; istasyonlarda aynı iş <code>.svc-*</code> ile yapılır. Diyagramınızda servis ayrımı yoksa bu dördünü görmezden gelin.</p>
-<p>Kod blokları <code>light-dark()</code> kullanmaz; <code>--code-bg</code> ve sözdizimi renkleri sabittir. Vurgu elle yapılır: <code>.k</code> anahtar, <code>.s</code> metin, <code>.c</code> yorum, <code>.v</code> değişken. Kod zemini üstündeki kopyala düğmesi de bu paletten okur: metni <code>--code-ink-2</code>, zemini <code>--code-fill</code>, kenarı ve üzerine gelme hali <code>--code-fill-2</code>.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">alarm.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c"># kuyruk derinliği 10 dakika boyunca eşiğin üstündeyse</span>
+<div class="prose"><p>Service colors are bound to the <code>--c</code> variable through the <code>.s-aws</code>, <code>.s-gitlab</code>, <code>.s-k8s</code> and <code>.s-argo</code> classes; on stations, <code>.svc-*</code> does the same job. If your diagram makes no distinction between services, ignore these four.</p>
+<p>Code blocks do not use <code>light-dark()</code>; <code>--code-bg</code> and the syntax colors are fixed. Highlighting is done by hand: <code>.k</code> key, <code>.s</code> string, <code>.c</code> comment, <code>.v</code> variable. The copy button on the code background reads from this palette too: its text is <code>--code-ink-2</code>, its background <code>--code-fill</code>, its border and hover state <code>--code-fill-2</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">alarm.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c"># if the queue depth stays above the threshold for 10 minutes</span>
 <span class="k">alarm</span>: <span class="s">billing-worker-queue-depth</span>
 <span class="k">threshold</span>: <span class="v">2000</span>
 <span class="k">period</span>: <span class="s">10m</span>
 <span class="k">notify</span>: <span class="v">${ONCALL_CHANNEL}</span></code></pre></figure>
 <div class="tbl"><table>
-  <thead><tr><th>Token</th><th>Değer</th><th>Nerede</th></tr></thead>
+  <thead><tr><th>Token</th><th>Value</th><th>Where</th></tr></thead>
   <tbody>
-    <tr><td><code>--code-bg</code> · <code>--code-line</code></td><td><code>#0a0d13</code> · beyaz %7</td><td>Zemin · başlık ayracı, dil etiketi kenarı</td></tr>
-    <tr><td><code>--code-ink</code> · <code>--code-ink-2</code> · <code>--code-muted</code></td><td><code>#dfe6f1</code> · <code>#c9d2e0</code> · <code>#8a96ad</code></td><td>Kod metni · kopyala düğmesi · başlık metni</td></tr>
-    <tr><td><code>--code-fill</code> · <code>--code-fill-2</code></td><td>beyaz %6 · %12</td><td>Düğme zemini · düğme kenarı ve üzerine gelme</td></tr>
-    <tr><td><code>--code-k</code> <code>--code-s</code> <code>--code-c</code> <code>--code-v</code></td><td><code>#8ec5ff</code> <code>#ffd28a</code> <code>#7f8ca3</code> <code>#b8f2a6</code></td><td>Anahtar, metin, yorum, değişken</td></tr>
+    <tr><td><code>--code-bg</code> · <code>--code-line</code></td><td><code>#0a0d13</code> · white 7%</td><td>Background · header divider, language tag border</td></tr>
+    <tr><td><code>--code-ink</code> · <code>--code-ink-2</code> · <code>--code-muted</code></td><td><code>#dfe6f1</code> · <code>#c9d2e0</code> · <code>#8a96ad</code></td><td>Code text · copy button · header text</td></tr>
+    <tr><td><code>--code-fill</code> · <code>--code-fill-2</code></td><td>white 6% · 12%</td><td>Button background · button border and hover</td></tr>
+    <tr><td><code>--code-k</code> <code>--code-s</code> <code>--code-c</code> <code>--code-v</code></td><td><code>#8ec5ff</code> <code>#ffd28a</code> <code>#7f8ca3</code> <code>#b8f2a6</code></td><td>Key, string, comment, variable</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Tema mekanizması" lead="Token'lar light-dark() ile çözülür; hangi tarafın seçileceğine öğenin color-scheme değeri karar verir. Tema zorlamak da vurgu rengini değiştirmek de bu yüzden tek satırdır.">
-<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css (özet)</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:root{
-  color-scheme:light dark;                       <span class="c">/* varsayılan: sistem teması */</span>
+<chapter title="Theme mechanism" lead="Tokens are resolved with light-dark(); the element's color-scheme decides which side is picked. That is why forcing a theme and changing the accent color each take one line.">
+<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css (excerpt)</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>:root{
+  color-scheme:light dark;                       <span class="c">/* default: system theme */</span>
   --surface: light-dark(#ffffff, #161b22);
   --ink:     light-dark(#15171c, #e6e9ee);
 }
-html[data-theme="light"]{color-scheme:light}    <span class="c">/* elle seçim */</span>
+html[data-theme="light"]{color-scheme:light}    <span class="c">/* manual choice */</span>
 html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
-<div class="prose"><p><code>light-dark()</code> öğenin kendi <code>color-scheme</code> değerine bakar. Bu yüzden bir kapsayıcıya <code>color-scheme:dark</code> vermek (<code>.scene-dark</code> tam olarak budur) altındaki her token'ı koyu çözer. Kapsayıcı zeminini ve <code>color</code> değerini kendisi yeniden okumalıdır; kalıtımla gelen renk üst öğede çözülmüş gelir.</p></div>
-<demo label="Örnek · aynı kart, üç şema">
+<div class="prose"><p><code>light-dark()</code> looks at the element's own <code>color-scheme</code>. So giving a container <code>color-scheme:dark</code> (which is exactly what <code>.scene-dark</code> is) resolves every token below it as dark. The container must read its own background and <code>color</code> again; an inherited color arrives already resolved on the parent.</p></div>
+<demo label="Example · same card, three schemes">
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5)">
   <div style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
-    <p class="chip">Sayfayı izler</p>
-    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">staging · 3 hedef</p>
-    <span class="pill s-ok">eşitlendi</span>
+    <p class="chip">Follows the page</p>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">staging · 3 targets</p>
+    <span class="pill s-ok">synced</span>
   </div>
   <div class="scene-dark" style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
     <p class="chip">.scene-dark</p>
-    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">prod · 12 hedef</p>
-    <span class="pill s-ok">eşitlendi</span>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">prod · 12 targets</p>
+    <span class="pill s-ok">synced</span>
   </div>
   <div class="scene-light" style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
     <p class="chip"><span lang="en">.scene-light</span></p>
-    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">önizleme · 1 hedef</p>
-    <span class="pill s-ok">eşitlendi</span>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">preview · 1 target</p>
+    <span class="pill s-ok">synced</span>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Sayfanın tamamını zorlamak için <code>&lt;html data-theme="dark"&gt;</code> yeterlidir. Tema düğmeleri (<code>[data-theme-toggle]</code>) bu özniteliği değiştirir, seçimi <code>localStorage</code>'da <code>hendese-theme</code> anahtarıyla saklar ve <code>hendese:theme</code> olayını yayar. Açılışta tema flaşı olmaması için <code>dist/head.js</code> satırı <code>&lt;head&gt;</code> içine satır içi konur.</p></div>
+<div class="prose"><p>To force the whole page, <code>&lt;html data-theme="dark"&gt;</code> is enough. Theme buttons (<code>[data-theme-toggle]</code>) change this attribute, store the choice in <code>localStorage</code> under the <code>hendese-theme</code> key and dispatch the <code>hendese:theme</code> event. To avoid a theme flash on load, the <code>dist/head.js</code> line is inlined in the <code>&lt;head&gt;</code>.</p></div>
 
-<h3>Token ezmek</h3>
-<div class="prose"><p>Tema bütünüyle <code>@layer hendese.*</code> içindedir. Katmansız yazdığınız her kural, seçici gücüne bakılmaksızın kazanır; <code>!important</code> ya da uzun seçici gerekmez. İki temayı yine tek satırda verin.</p>
-<p>Tema tek renkle değişir. <code>--draw</code>, <code>--accent-soft</code>, <code>--pencil</code>, <code>--pencil-2</code> ve <code>--scene-shade</code> <code>--accent</code>'ten <code>color-mix()</code> ile türetilir; <code>:root</code>'ta <code>--accent</code>'i ezmek hepsini taşır. <code>--accent-2</code> bağlantı metnidir ve kontrast için ayrıca verilir.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">uygulama.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">/* hendese.css'ten sonra bağlanır, @layer dışında */</span>
+<h3>Overriding tokens</h3>
+<div class="prose"><p>The whole theme lives inside <code>@layer hendese.*</code>. Any rule you write unlayered wins regardless of specificity; no <code>!important</code> or long selectors needed. Still give both themes in one line.</p>
+<p>The theme changes with a single color. <code>--draw</code>, <code>--accent-soft</code>, <code>--pencil</code>, <code>--pencil-2</code> and <code>--scene-shade</code> are derived from <code>--accent</code> with <code>color-mix()</code>; overriding <code>--accent</code> on <code>:root</code> carries all of them. <code>--accent-2</code> is the link text and is set separately for contrast.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">app.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">/* linked after hendese.css, outside @layer */</span>
 :root{
-  --accent:   light-dark(#0b7a5a, #5fd3a8);   <span class="c">/* çizim, kalem, seçim zemini buradan türer */</span>
-  --accent-2: light-dark(#09654a, #7fe0bb);   <span class="c">/* bağlantı metni: AA kontrastı */</span>
+  --accent:   light-dark(#0b7a5a, #5fd3a8);   <span class="c">/* drawing, pencil and selection background derive from this */</span>
+  --accent-2: light-dark(#09654a, #7fe0bb);   <span class="c">/* link text: AA contrast */</span>
 }</code></pre></figure>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Alt öğede ezmek</span><div class="co-body"><p>Türevler <code>:root</code>'ta bir kez çözülür ve öyle miras alınır. Bir kutuda yalnız <code>--accent</code>'i ezerseniz bölüm numarası ve odak halkası değişir, çizgiler eski renkte kalır. Yerel bir ezmede türevleri de birlikte yazın; aşağıdaki kutu bunu yapar.</p></div></div>
-<demo label="Örnek · ezilmiş vurgu, yalnızca bu kutuda">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Overriding on a descendant</span><div class="co-body"><p>The derived tokens are resolved once on <code>:root</code> and inherited as is. If you override only <code>--accent</code> on one box, the section number and focus ring change but the lines keep the old color. In a local override, write the derived tokens too; the box below does that.</p></div></div>
+<demo label="Example · overridden accent, in this box only">
 <div style="--accent:light-dark(#0b7a5a,#5fd3a8);--accent-2:light-dark(#09654a,#7fe0bb);--draw:var(--accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);--pencil:color-mix(in srgb,var(--draw) 28%,transparent);--pencil-2:color-mix(in srgb,var(--draw) 13%,transparent)">
-  <p class="ch-num">03 · Önbellek</p>
-  <svg viewBox="0 0 300 56" width="300" height="56" fill="none" role="img" aria-label="Önbellek önünde kalem ızgarası ve mürekkep kutusu, ezilen renkte">
+  <p class="ch-num">03 · Cache</p>
+  <svg viewBox="0 0 300 56" width="300" height="56" fill="none" role="img" aria-label="A pencil grid and an ink box in front of the cache, in the overridden color">
     <path class="pencil-2" d="M0 14H300M0 28H300M0 42H300"/>
     <rect class="ln-pencil" x="4" y="8" width="110" height="40"/>
     <rect class="ln-draw fill-paper" x="160" y="8" width="136" height="40"/>
   </svg>
-  <p style="margin:var(--sp-3) 0 var(--sp-4)">Anahtar şeması için <a href="#p4">servis ve kod renkleri</a> bölümüne bakın.</p>
+  <p style="margin:var(--sp-3) 0 var(--sp-4)">For the key scheme, see the <a href="#p4">service and code colors</a> section.</p>
   <fieldset class="choice is-seg">
-    <legend>Süre</legend>
-    <label><input type="radio" name="rk-ttl"><span>60 sn</span></label>
-    <label><input type="radio" name="rk-ttl" checked><span>5 dk</span></label>
-    <label><input type="radio" name="rk-ttl"><span>1 sa</span></label>
+    <legend>TTL</legend>
+    <label><input type="radio" name="rk-ttl"><span>60 s</span></label>
+    <label><input type="radio" name="rk-ttl" checked><span>5 min</span></label>
+    <label><input type="radio" name="rk-ttl"><span>1 h</span></label>
   </fieldset>
-  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Isıtmayı bekle</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Wait for warm-up</button>
 </div>
 </demo>
-<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Katman sırası</span><div class="co-body"><p>Ezmelerinizi kendi <code>@layer</code>'ınıza koyarsanız katman sırası devreye girer: Hendese katmanlarından önce bildirilen bir katman kaybeder. En güvenlisi katmansız yazmaktır.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Layer order</span><div class="co-body"><p>If you put your overrides in your own <code>@layer</code>, layer order comes into play: a layer declared before the Hendese layers loses. The safest choice is to write them unlayered.</p></div></div>
 </chapter>
 
-<chapter title="Kontrast" lead="Metin ve durum token'ları iki temada da WCAG AA eşiğini (4.5:1) geçecek şekilde ayarlandı. Bilinen iki istisna var; ikisi de aynı zeminde.">
+<chapter title="Contrast" lead="Text and status tokens are tuned to pass the WCAG AA threshold (4.5:1) in both themes. There are two known exceptions, both on the same background.">
 <div class="tbl"><table>
-  <thead><tr><th>Token</th><th>Açık</th><th>Koyu</th><th>Not</th></tr></thead>
+  <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Note</th></tr></thead>
   <tbody>
-    <tr><td><code>--ink-3</code></td><td><code>#60656e</code></td><td><code>#8a93a3</code></td><td>Etiket tonu; iki temada da AA için koyulaştırıldı / açıldı</td></tr>
-    <tr><td><code>--ok</code></td><td><code>#127a4c</code></td><td><code>#38c98a</code></td><td><code>--surface-3</code> üzerinde 4.48</td></tr>
-    <tr><td><code>--warn</code></td><td><code>#93610f</code></td><td><code>#f2b53c</code></td><td><code>--surface-3</code> üzerinde 4.43</td></tr>
-    <tr><td><code>--bad</code></td><td><code>#c23434</code></td><td><code>#f06a6a</code></td><td>Tüm yüzeylerde AA</td></tr>
-    <tr><td><code>--aws</code> · <code>--gitlab</code> · <code>--argo</code></td><td><code>#9c5600</code> · <code>#b54418</code> · <code>#ad4829</code></td><td><code>#ffa02e</code> · <code>#fc6d26</code> · <code>#f0805a</code></td><td>Açık temada metin olarak kullanılabilsin diye koyulaştırıldı</td></tr>
-    <tr><td><code>--paper</code></td><td><code>#fbfbf8</code></td><td><code>#1a2331</code></td><td>Koyu değer 0.2'de açıldı; durum ve mürekkep metni üzerinde AA korunur</td></tr>
+    <tr><td><code>--ink-3</code></td><td><code>#60656e</code></td><td><code>#8a93a3</code></td><td>Label tone; darkened / lightened for AA in both themes</td></tr>
+    <tr><td><code>--ok</code></td><td><code>#127a4c</code></td><td><code>#38c98a</code></td><td>4.48 on <code>--surface-3</code></td></tr>
+    <tr><td><code>--warn</code></td><td><code>#93610f</code></td><td><code>#f2b53c</code></td><td>4.43 on <code>--surface-3</code></td></tr>
+    <tr><td><code>--bad</code></td><td><code>#c23434</code></td><td><code>#f06a6a</code></td><td>AA on all surfaces</td></tr>
+    <tr><td><code>--aws</code> · <code>--gitlab</code> · <code>--argo</code></td><td><code>#9c5600</code> · <code>#b54418</code> · <code>#ad4829</code></td><td><code>#ffa02e</code> · <code>#fc6d26</code> · <code>#f0805a</code></td><td>Darkened so they can be used as text in the light theme</td></tr>
+    <tr><td><code>--paper</code></td><td><code>#fbfbf8</code></td><td><code>#1a2331</code></td><td>The dark value was lightened in 0.2; AA holds for status and ink text on it</td></tr>
   </tbody>
 </table></div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">İstisna</span><div class="co-body"><p><code>--ok</code> ve <code>--warn</code> renkli metni en koyu yüzeyin (<code>--surface-3</code>) üzerine koymayın; satır içi <code>code</code> zemini de budur. Durum metni <code>--surface</code>, <code>--paper</code> ya da kendi <code>-soft</code> zemininde durmalı.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Exception</span><div class="co-body"><p>Do not put <code>--ok</code> or <code>--warn</code> colored text on the darkest surface (<code>--surface-3</code>); that is also the inline <code>code</code> background. Status text belongs on <code>--surface</code>, <code>--paper</code> or its own <code>-soft</code> background.</p></div></div>
 <div class="dodont">
-<demo label="Yap · renk + sözcük">
+<demo label="Do · color + word">
 <p style="margin:0">
-  <span class="state s-ok">geçti</span>
-  <span class="state s-warn">yavaş</span>
-  <span class="state s-bad">düştü</span>
+  <span class="state s-ok">passed</span>
+  <span class="state s-warn">slow</span>
+  <span class="state s-bad">down</span>
 </p>
 </demo>
-<demo label="Yapma · yalnızca renk">
+<demo label="Don't · color only">
 <p style="margin:0;display:flex;gap:var(--sp-3)">
   <span style="width:14px;height:14px;background:var(--ok)"></span>
   <span style="width:14px;height:14px;background:var(--warn)"></span>
@@ -241,39 +241,39 @@ html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
 </p>
 </demo>
 </div>
-<div class="prose"><p>Renk körlüğü olan bir okuyucu için sağdaki üç kare aynıdır; ekran okuyucu için hiç yoktur. Durum her zaman bir sözcükle (<code>.state</code>, <code>.pill</code>) ya da etiketli bir ikonla birlikte verilir.</p></div>
+<div class="prose"><p>For a color-blind reader the three squares on the right look the same; for a screen reader they do not exist. Status is always given with a word (<code>.state</code>, <code>.pill</code>) or a labeled icon.</p></div>
 
-<h3>Yüksek kontrast isteği</h3>
-<div class="prose"><p>İşletim sisteminde "kontrastı artır" açıksa (<code>prefers-contrast: more</code>) dört token yeniden tanımlanır: kalem çizgileri mürekkebe döner, belirgin kenar ve ikincil metin bir kademe koyulaşır. Bileşenler token okuduğu için başka kural gerekmez. Aşağıda sağdaki kutu aynı dört değeri yerel olarak verir; ayar kapalıyken de farkı görürsünüz.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>@media (prefers-contrast:more){
+<h3>High contrast preference</h3>
+<div class="prose"><p>If "increase contrast" is on in the operating system (<code>prefers-contrast: more</code>), four tokens are redefined: pencil lines turn into ink, and the visible border and secondary text darken one step. Components read tokens, so no other rule is needed. The box on the right below sets the same four values locally, so you see the difference even with the setting off.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>@media (prefers-contrast:more){
   :root{--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:var(--pencil);--ink-3:var(--ink-2)}
 }</code></pre></figure>
-<demo label="Örnek · varsayılan ve yüksek kontrast" nocode>
+<demo label="Example · default and high contrast" nocode>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-5)">
   <div style="padding:var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
-    <p class="chip">Varsayılan</p>
-    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="Kalem ızgarası, kesikli plan ve mürekkep kutusu, varsayılan tonlarda">
+    <p class="chip">Default</p>
+    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="A pencil grid, a dashed plan and an ink box, in the default tones">
       <path class="pencil-2" d="M0 20H260M0 40H260M0 60H260"/>
       <rect class="ln-ghost" x="6" y="12" width="100" height="44"/>
       <rect class="ln-draw fill-paper" x="150" y="12" width="104" height="44"/>
     </svg>
-    <p class="figcap">eu-central-1 · planlanan</p>
+    <p class="figcap">eu-central-1 · planned</p>
   </div>
   <div style="--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:var(--pencil);--ink-3:var(--ink-2);padding:var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
-    <p class="chip">Yüksek kontrast</p>
-    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="Aynı çizim yüksek kontrast tonlarında: kalem çizgileri mürekkep renginde">
+    <p class="chip">High contrast</p>
+    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="The same drawing in high contrast tones: pencil lines in the ink color">
       <path class="pencil-2" d="M0 20H260M0 40H260M0 60H260"/>
       <rect class="ln-ghost" x="6" y="12" width="100" height="44"/>
       <rect class="ln-draw fill-paper" x="150" y="12" width="104" height="44"/>
     </svg>
-    <p class="figcap">eu-central-1 · planlanan</p>
+    <p class="figcap">eu-central-1 · planned</p>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Kalem mürekkebe döndüğünde düz ile kesikli ayrımı renkle değil yalnızca çizgi deseniyle kalır. Bu yüzden "planlanan" her zaman kesikli çizilir; soluk renk tek başına yeterli değildir.</p></div>
+<div class="prose"><p>Once pencil turns into ink, the difference between solid and dashed survives only in the line pattern, not in color. That is why "planned" is always drawn dashed; a faded color alone is not enough.</p></div>
 
-<h3>Zorunlu renk</h3>
-<div class="prose"><p>Windows'un yüksek kontrast modunda (<code>forced-colors: active</code>) tarayıcı zeminleri ve renkleri sistem paletine çevirir; yalnızca zeminle verilen anlam kaybolur. Paket seçili ve şimdiki durumları (<code>.choice</code> seçimi, basılı <code>.toggle-btn</code>, seçili istasyon, <code>.steps</code> içindeki <code>aria-current</code>) <code>Highlight</code> renginde bir çerçeveyle, ilerleme çubuklarını ve işaretli kontrol kutusunu <code>Highlight</code> zeminle çizer; devre dışı öğeler <code>GrayText</code> alır. Kendi bileşeninizde de anlamı kenar, desen ya da metinle verin.</p></div>
+<h3>Forced colors</h3>
+<div class="prose"><p>In Windows high contrast mode (<code>forced-colors: active</code>) the browser maps backgrounds and colors to the system palette; meaning conveyed only by a background is lost. The package draws selected and current states (the <code>.choice</code> selection, a pressed <code>.toggle-btn</code>, the selected station, <code>aria-current</code> in <code>.steps</code>) with a frame in the <code>Highlight</code> color, and progress bars and a checked checkbox with a <code>Highlight</code> background; disabled elements get <code>GrayText</code>. In your own components, convey meaning with a border, a pattern or text too.</p></div>
 </chapter>
 
 <script data-page>

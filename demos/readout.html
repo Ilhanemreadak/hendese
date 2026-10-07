@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Readout · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html" aria-current="page">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>States</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Live calculation</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>In context</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Readout<em>The result of a calculation, in one line.</em></h1>
+    <p class="intro"><code>.readout</code> writes the result of a choice, an input or a calculation in a short line with a left rule. The bold part is the result itself; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> and <code>.s-sec</code> color the rule and the bold text by status.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.readout</code> · <code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code></dd><dt>Old names</dt><dd><code>.readout.ok</code> · <code>.readout.bad</code> (work until 1.0)</dd><dt>Accessibility</dt><dd><code>aria-live="polite"</code></dd><dt>JS</dt><dd>The package does no calculation; the page script writes the text</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">01</p><h2>States</h2><p class="lead">Neutral, success, warning, error and security. Color alone carries no meaning: the result itself is also stated in the bold text.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · five statuses</span>
+  <div class="demo-view">
+<div class="readout"><p><b>3 replicas</b> running; last deployment 14 minutes ago.</p></div>
+<div class="readout s-ok"><p><b>Migration done.</b> 1.2 million rows moved in 4 minutes 10 seconds.</p></div>
+<div class="readout s-warn"><p><b>Close to the limit.</b> Disk usage 82%; warning threshold 80%, alarm 90%.</p></div>
+<div class="readout s-bad"><p><b>Budget exceeded.</b> October spend $4,820; limit $4,500.</p></div>
+<div class="readout s-sec"><p><b>Key expires in 3 days.</b> Rotate the <code>deploy-bot</code> access key.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;3 replicas&lt;/<span class='k'>b</span>&gt; running; last deployment 14 minutes ago.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-ok</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Migration done.&lt;/<span class='k'>b</span>&gt; 1.2 million rows moved in 4 minutes 10 seconds.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-warn</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Close to the limit.&lt;/<span class='k'>b</span>&gt; Disk usage 82%; warning threshold 80%, alarm 90%.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Budget exceeded.&lt;/<span class='k'>b</span>&gt; October spend $4,820; limit $4,500.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-sec</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Key expires in 3 days.&lt;/<span class='k'>b</span>&gt; Rotate the &lt;<span class='k'>code</span>&gt;deploy-bot&lt;/<span class='k'>code</span>&gt; access key.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>A readout is a paragraph container; it can hold several <code>&lt;p&gt;</code> elements, but an explanation longer than two lines fits better in a callout (<code>.co</code>). In the neutral status the left rule uses the drawing color. <code>.s-warn</code> is new: there used to be no separate status for “close to the limit”. The old <code>.ok</code> and <code>.bad</code> names give the same color until 1.0.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Live calculation">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Live calculation</h2><p class="lead">The text is rewritten as the input changes. Three examples: storage cost, a tag pattern test and replica capacity.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · object storage cost estimate</span>
+  <div class="demo-view">
+<div id="gs-maliyet">
+  <fieldset class="choice is-seg">
+    <legend>Monthly data</legend>
+    <label><input type="radio" name="gs-gb" value="500"><span>500 GB</span></label>
+    <label><input type="radio" name="gs-gb" value="2000" checked><span>2 TB</span></label>
+    <label><input type="radio" name="gs-gb" value="10000"><span>10 TB</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Storage class</legend>
+    <label><input type="radio" name="gs-sinif" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
+    <label><input type="radio" name="gs-sinif" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
+    <label><input type="radio" name="gs-sinif" value="archive"><span>archive <small>$0.004/GB</small></span></label>
+  </fieldset>
+  <div class="readout" id="gs-maliyet-out" aria-live="polite"><p>Calculating…</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-maliyet</span>"&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Monthly data&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>500</span>"&gt;&lt;<span class='k'>span</span>&gt;500 GB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>2000</span>" checked&gt;&lt;<span class='k'>span</span>&gt;2 TB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>10000</span>"&gt;&lt;<span class='k'>span</span>&gt;10 TB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Storage class&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>standard</span>" checked&gt;&lt;<span class='k'>span</span>&gt;standard &lt;<span class='k'>small</span>&gt;$0.023/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>infrequent</span>"&gt;&lt;<span class='k'>span</span>&gt;infrequent access &lt;<span class='k'>small</span>&gt;$0.0125/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>archive</span>"&gt;&lt;<span class='k'>span</span>&gt;archive &lt;<span class='k'>small</span>&gt;$0.004/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-maliyet-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · tag pattern test</span>
+  <div class="demo-view">
+<div id="gs-regex" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px">
+  <label class="chip" for="gs-kalip">Pattern</label>
+  <label class="chip" for="gs-etiket">Tag</label>
+  <input id="gs-kalip" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <input id="gs-etiket" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+</div>
+<div class="readout" id="gs-regex-out" aria-live="polite"><p>Calculating…</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-regex</span>" style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-kalip</span>"&gt;Pattern&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-etiket</span>"&gt;Tag&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-kalip</span>" class="<span class='s'>mono</span>" value="<span class='s'>^prod-[0-9a-f]{8}$</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-etiket</span>" class="<span class='s'>mono</span>" value="<span class='s'>prod-3f9c2a1b</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-regex-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · capacity against peak load</span>
+  <div class="demo-view">
+<div id="gs-kapasite" style="max-width:640px">
+  <label class="chip" for="gs-kopya">Replicas: <output id="gs-kopya-n" for="gs-kopya">4</output></label>
+  <input id="gs-kopya" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
+  <p class="figcap">450 req/s per replica · measured peak 1,800 req/s · target headroom 25%</p>
+</div>
+<div class="readout" id="gs-kapasite-out" aria-live="polite"><p>Calculating…</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-kapasite</span>" style="<span class='s'>max-width:640px</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-kopya</span>"&gt;Replicas: &lt;<span class='k'>output</span> id="<span class='s'>gs-kopya-n</span>" for="<span class='s'>gs-kopya</span>"&gt;4&lt;/<span class='k'>output</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-kopya</span>" type="<span class='s'>range</span>" min="<span class='s'>1</span>" max="<span class='s'>12</span>" value="<span class='s'>4</span>" style="<span class='s'>display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;450 req/s per replica · measured peak 1,800 req/s · target headroom 25%&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-kapasite-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The package does not do the calculation; the page script reads the value and writes the text and the class. The script for the capacity example:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-kopya'), out = document.getElementById('gs-kapasite-out');
+function show() {
+  var cap = r.value * 450, need = 1800 * 1.25;
+  out.classList.toggle('s-ok', cap &gt;= need);
+  out.classList.toggle('s-warn', cap &gt;= 1800 &amp;&amp; cap &lt; need);   /* meets the peak, no headroom */
+  out.classList.toggle('s-bad', cap &lt; 1800);
+  out.innerHTML = '&lt;p&gt;&lt;b&gt;' + cap + ' req/s&lt;/b&gt; capacity; needed ' + need + '.&lt;/p&gt;';
+}
+r.addEventListener('input', show);
+show();</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">03</p><h2>In context</h2><p class="lead">A readout looks the same under a card, on a dark panel or in a narrow column; only its text gets shorter.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · under a card, cache hit rate</span>
+  <div class="demo-view">
+<div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:460px">
+  <p class="chip"><span lang="en">cache-redis</span> · eu-west-1</p>
+  <p style="margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)">2.4 million reads in the last hour, 2.21 million hits.</p>
+  <div class="readout s-ok"><p><b>92.1% hit rate</b> · above the 90% target.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:460px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;cache-redis&lt;/<span class='k'>span</span>&gt; · eu-west-1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;2.4 million reads in the last hour, 2.21 million hits.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout s-ok</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;92.1% hit rate&lt;/<span class='k'>b</span>&gt; · above the 90% target.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · dark panel, DNS propagation</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:16px 18px">
+  <p class="chip"><span lang="en">api.example.com</span> · A record</p>
+  <div class="readout"><p><b>6 / 8</b> resolvers return the new address; on the other two the TTL is 212 seconds.</p></div>
+  <div class="readout s-bad"><p><b>ns-2 is not responding.</b> Last successful query 09:41.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:16px 18px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;api.example.com&lt;/<span class='k'>span</span>&gt; · A record&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;6 / 8&lt;/<span class='k'>b</span>&gt; resolvers return the new address; on the other two the TTL is 212 seconds.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;ns-2 is not responding.&lt;/<span class='k'>b</span>&gt; Last successful query 09:41.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · narrow column</span>
+  <div class="demo-view">
+<div style="max-width:260px">
+  <div class="readout"><p><b>12 workers</b> · 340 jobs queued, estimated drain 6 min.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:260px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;12 workers&lt;/<span class='k'>b</span>&gt; · 340 jobs queued, estimated drain 6 min.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Do / don't</h2><p class="lead">Result first, then the reason. If only the color states the status, the readout is incomplete.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · bold result, short reason</span>
+  <div class="demo-view">
+<div class="readout s-bad"><p><b>Pattern does not match.</b> The tag has seven hex digits, not eight.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Pattern does not match.&lt;/<span class='k'>b</span>&gt; The tag has seven hex digits, not eight.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · color only</span>
+  <div class="demo-view">
+<div class="readout s-bad"><p>The test result has been evaluated according to the rules stated above.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;The test result has been evaluated according to the rules stated above.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Give a live-updating readout <code>aria-live="polite"</code>; the screen reader reads the change once typing stops. A static readout does not need it. In a readout rewritten on every keystroke, keep the text short: the reader hears all of it every time.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="choice-groups.html" rel="prev"><small>Previous · Components</small>Choice groups</a><a href="register.html" rel="next"><small>Next · Components</small>Variable register</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* storage cost */
+(function () {
+  var box = document.getElementById('gs-maliyet'), out = document.getElementById('gs-maliyet-out');
+  var fiyat = { standard: 0.023, infrequent: 0.0125, archive: 0.004 };
+  function show() {
+    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-sinif"]:checked').value;
+    var tl = gb * fiyat[s], over = tl > 150;
+    out.classList.toggle('s-bad', over);
+    out.innerHTML = '<p><b>$' + tl.toFixed(2) + ' / month</b> · ' + gb.toLocaleString('en-US') + ' GB, ' + s + ' class.' + (over ? ' The team budget is $150; consider the archive class.' : '') + '</p>';
+  }
+  box.addEventListener('change', show); show();
+})();
+/* regular expression test */
+(function () {
+  var k = document.getElementById('gs-kalip'), e = document.getElementById('gs-etiket'), out = document.getElementById('gs-regex-out');
+  function show() {
+    var re;
+    try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Invalid pattern.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
+    var ok = re.test(e.value);
+    out.className = 'readout ' + (ok ? 's-ok' : 's-bad');
+    out.innerHTML = ok ? '<p><b>Matches.</b> This tag triggers a deployment.</p>' : '<p><b>Does not match.</b> The image lands in the registry but never reaches the cluster.</p>';
+  }
+  k.addEventListener('input', show); e.addEventListener('input', show); show();
+})();
+/* capacity */
+(function () {
+  var r = document.getElementById('gs-kopya'), n = document.getElementById('gs-kopya-n'), out = document.getElementById('gs-kapasite-out');
+  function show() {
+    var cap = r.value * 450, need = 1800 * 1.25, ok = cap >= need, tight = !ok && cap >= 1800;
+    n.textContent = r.value;
+    out.classList.toggle('s-ok', ok);
+    out.classList.toggle('s-warn', tight);
+    out.classList.toggle('s-bad', !ok && !tight);
+    out.innerHTML = '<p><b>' + cap.toLocaleString('en-US') + ' req/s</b> capacity; needed ' + need.toLocaleString('en-US') + '. ' +
+      (ok ? Math.round(100 * 1800 / cap) + '% utilization at peak load.' : tight ? 'Meets the peak but has no 25% headroom; ' + Math.ceil(need / 450) + ' replicas recommended.' : 'At least ' + Math.ceil(need / 450) + ' replicas needed.') + '</p>';
+  }
+  r.addEventListener('input', show); show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

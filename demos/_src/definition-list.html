@@ -1,141 +1,141 @@
-<!-- meta {"title":"Tanım listesi","group":"Bileşenler","order":70,"tagline":"Ad–değer çiftleri, şekil yazısı ve okuma metni.","intro":"Üç metin parçası: kısa ad–değer çiftleri için <code>dl.kv</code>, bir şeklin ya da tablonun altına <code>.figcap</code>, uzun okuma için <code>.prose</code>. Satır içi kod, mono yazı ve bağlantılar bunların içinde yaşar.","summary":"<code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.","facts":{"Sınıflar":"<code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code>","Ölçüler":"<code>.kv</code> ad sütunu 200px; içerik sütunu 640px'ten darsa tek sütun · <code>.prose</code> 72ch · <code>.figcap</code> 80ch","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Definition list","group":"Components","order":70,"tagline":"Name–value pairs, captions and reading text.","intro":"Three text parts: <code>dl.kv</code> for short name–value pairs, <code>.figcap</code> under a figure or table, <code>.prose</code> for long reading. Inline code, mono text and links live inside them.","summary":"<code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; service card, alarm details, reading text.","facts":{"Classes":"<code>.kv</code> · <code>.figcap</code> · <code>.prose</code> · <code>.mono</code>","Sizes":"<code>.kv</code> name column 200px; single column when the content column is narrower than 640px · <code>.prose</code> 72ch · <code>.figcap</code> 80ch","JS":"Not required"}} -->
 
 
-<chapter title="Tanım listesi" lead="dl.kv iki sütunlu bir ızgaradır: solda kalın ad, sağda değer. Değer kısa olmalı; bir kelime, bir sayı, bir tanımlayıcı.">
-<demo label="Örnek · servis kartı">
+<chapter title="Definition list" lead="dl.kv is a two-column grid: bold name on the left, value on the right. The value should be short: a word, a number, an identifier.">
+<demo label="Example · service card">
 <dl class="kv">
-  <dt>Servis</dt><dd>web-api</dd>
-  <dt>Sahibi</dt><dd>platform ekibi</dd>
-  <dt>Bölge</dt><dd><code>eu-west-1</code></dd>
-  <dt>Kopya</dt><dd>3 (en az 2, en çok 8)</dd>
-  <dt>Durum</dt><dd><span class="pill s-ok">sağlıklı</span></dd>
-  <dt><code>HEALTHCHECK</code></dt><dd><span class="mono">GET /healthz</span> · 10 sn aralık</dd>
+  <dt>Service</dt><dd>web-api</dd>
+  <dt>Owner</dt><dd>platform team</dd>
+  <dt>Region</dt><dd><code>eu-west-1</code></dd>
+  <dt>Replicas</dt><dd>3 (min 2, max 8)</dd>
+  <dt>Status</dt><dd><span class="pill s-ok">healthy</span></dd>
+  <dt><code>HEALTHCHECK</code></dt><dd><span class="mono">GET /healthz</span> · 10 s interval</dd>
 </dl>
 </demo>
-<div class="prose"><p>Ad sütunu 200px sabittir; değer sütunu kalan yeri alır ve 80 karakterde durur. İçerik sütunu (<code>main</code>) 640px'ten darsa ad ve değer alt alta iner; bu bir kap sorgusudur, pencereye değil sütuna bakar. <code>dl</code> içinde yalnızca <code>dt</code> ve <code>dd</code> çiftleri olmalı; her ada tek değer verin.</p></div>
+<div class="prose"><p>The name column is fixed at 200px; the value column takes the remaining space and stops at 80 characters. When the content column (<code>main</code>) is narrower than 640px, name and value stack; this is a container query, so it looks at the column, not the window. A <code>dl</code> should hold only <code>dt</code> and <code>dd</code> pairs; give each name one value.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Aynı yapı bir DNS kaydını, bir alarmı ya da bir önbellek ayarını anlatır. Okur adları dikey tarar, aradığını bulur.">
-<demo label="Örnek · DNS kaydı">
+<chapter title="In context" lead="The same structure describes a DNS record, an alarm or a cache setting. The reader scans the names vertically and finds what they need.">
+<demo label="Example · DNS record">
 <dl class="kv">
-  <dt>Ad</dt><dd><code>api.ornek.com</code></dd>
-  <dt>Tür</dt><dd><span class="mono">CNAME</span></dd>
-  <dt>Hedef</dt><dd><code>web-api-lb-1182.eu-west-1.elb.amazonaws.com</code></dd>
-  <dt>TTL</dt><dd>300 sn</dd>
+  <dt>Name</dt><dd><code>api.example.com</code></dd>
+  <dt>Type</dt><dd><span class="mono">CNAME</span></dd>
+  <dt>Target</dt><dd><code>web-api-lb-1182.eu-west-1.elb.amazonaws.com</code></dd>
+  <dt>TTL</dt><dd>300 s</dd>
 </dl>
 </demo>
-<demo label="Örnek · alarm ayrıntısı">
-<p class="chip" style="margin-bottom:6px">Alarm · 5xx oranı</p>
+<demo label="Example · alarm details">
+<p class="chip" style="margin-bottom:6px">Alarm · 5xx rate</p>
 <dl class="kv">
-  <dt>Durum</dt><dd><span class="state s-bad">tetiklendi</span></dd>
-  <dt>Eşik</dt><dd>%2 · 5 dakika</dd>
-  <dt>Son değer</dt><dd>%3.7</dd>
-  <dt>Bildirim</dt><dd>nöbetçi-platform, <a href="#p2">olay kanalı</a></dd>
+  <dt>Status</dt><dd><span class="state s-bad">firing</span></dd>
+  <dt>Threshold</dt><dd>2% · 5 minutes</dd>
+  <dt>Last value</dt><dd>3.7%</dd>
+  <dt>Notify</dt><dd>oncall-platform, <a href="#p2">incident channel</a></dd>
 </dl>
 </demo>
-<demo label="Örnek · koyu sahne içinde">
+<demo label="Example · inside a dark scene">
 <div class="scene-dark" style="border-radius:var(--r-sm);padding:14px 18px">
   <dl class="kv" style="margin:0">
-    <dt>Önbellek</dt><dd><code>cache-eu</code></dd>
-    <dt>Politika</dt><dd><span class="mono">allkeys-lfu</span></dd>
-    <dt>İsabet oranı</dt><dd>%94</dd>
+    <dt>Cache</dt><dd><code>cache-eu</code></dd>
+    <dt>Policy</dt><dd><span class="mono">allkeys-lfu</span></dd>
+    <dt>Hit rate</dt><dd>94%</dd>
   </dl>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Durumlar" lead="Tanım listesinin kendi durum rengi yoktur; durum değerin içindeki rozetle söylenir. Uzun, boş ve henüz bilinmeyen değerler için birer kural yeter.">
-<demo label="Örnek · dağıtım kaydı">
+<chapter title="States" lead="A definition list has no status color of its own; the status is told by a badge inside the value. One rule each covers long, empty and not-yet-known values.">
+<demo label="Example · deployment record">
 <dl class="kv">
-  <dt>Durum</dt><dd><span class="pill s-warn">yeniden deneniyor</span> 3 denemenin 2'si</dd>
-  <dt>Güvenlik taraması</dt><dd><span class="state s-sec">imza bekliyor</span></dd>
-  <dt>İmaj</dt><dd><code>123456789012.dkr.ecr.eu-west-1.amazonaws.com/web-api@sha256:4c1e9a0b7d2f</code></dd>
-  <dt>Bitiş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">henüz yok</span> (iş sürüyor)</dd>
-  <dt>Geri dönüş</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">tanımlı değil</span></dd>
+  <dt>Status</dt><dd><span class="pill s-warn">retrying</span> attempt 2 of 3</dd>
+  <dt>Security scan</dt><dd><span class="state s-sec">awaiting signature</span></dd>
+  <dt>Image</dt><dd><code>123456789012.dkr.ecr.eu-west-1.amazonaws.com/web-api@sha256:4c1e9a0b7d2f</code></dd>
+  <dt>Finished</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">not yet</span> (job running)</dd>
+  <dt>Rollback</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">not defined</span></dd>
 </dl>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Değer</th><th>Kural</th></tr></thead>
+  <thead><tr><th>Value</th><th>Rule</th></tr></thead>
   <tbody>
-    <tr><td>Durum</td><td><code>.pill.s-*</code> ya da <code>.state.s-*</code> ve bir kelime; <code>dd</code>'yi boyamayın</td></tr>
-    <tr><td>Uzun tanımlayıcı</td><td><code>&lt;code&gt;</code> içinde yazın: herhangi bir yerden kırılır, sütun taşmaz</td></tr>
-    <tr><td>Boş ya da bilinmiyor</td><td>Görünen “—”, ekran okuyucu için <code>.visually-hidden</code> bir kelime; <code>dd</code>'yi boş bırakmayın</td></tr>
+    <tr><td>Status</td><td><code>.pill.s-*</code> or <code>.state.s-*</code> and one word; don't color the <code>dd</code></td></tr>
+    <tr><td>Long identifier</td><td>Write it inside <code>&lt;code&gt;</code>: it breaks anywhere, so the column doesn't overflow</td></tr>
+    <tr><td>Empty or unknown</td><td>A visible “—” plus a <code>.visually-hidden</code> word for screen readers; never leave the <code>dd</code> empty</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Şekil yazısı" lead="figcap bir şeklin, tablonun ya da kod bloğunun hemen altında durur. Kalın ilk kelime numarayı, kalanı tek cümlelik açıklamayı taşır.">
-<demo label="Örnek · tablo altında">
+<chapter title="Caption" lead="figcap sits right under a figure, table or code block. The bold first word carries the number; the rest is a one-sentence description.">
+<demo label="Example · under a table">
 <div class="tbl"><table>
-  <thead><tr><th>Sürüm</th><th>Tarih</th><th>Değişiklik</th></tr></thead>
+  <thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead>
   <tbody>
-    <tr><td>1.9.0</td><td>6 Ekim</td><td>Alarm kurallarına sessiz saat</td></tr>
-    <tr><td>1.8.2</td><td>29 Eylül</td><td>Bağlantı havuzu düzeltmesi</td></tr>
+    <tr><td>1.9.0</td><td>Oct 6</td><td>Quiet hours for alarm rules</td></tr>
+    <tr><td>1.8.2</td><td>Sep 29</td><td>Connection pool fix</td></tr>
   </tbody>
 </table></div>
-<p class="figcap"><b>Tablo 3.</b> Son iki sürüm; tam liste sürüm notlarında.</p>
+<p class="figcap"><b>Table 3.</b> The last two releases; the full list is in the release notes.</p>
 </demo>
-<demo label="Örnek · kod bloğu altında">
+<demo label="Example · under a code block">
 <figure class="code" style="margin-bottom:0">
   <figcaption class="code-head">
     <span class="code-file">terminal</span>
     <span class="code-lang">BASH</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
-<pre tabindex="0"><code><span class="k">dig</span> +short api.ornek.com</code></pre>
+<pre tabindex="0"><code><span class="k">dig</span> +short api.example.com</code></pre>
 </figure>
-<p class="figcap"><b>Şekil 5.</b> Kısa sorgu yalnızca yanıtı yazar; TTL ve yetkili sunucu için <span class="mono">+noall +answer</span> kullanın.</p>
+<p class="figcap"><b>Fig. 5.</b> The short query prints only the answer; use <span class="mono">+noall +answer</span> for the TTL and the authoritative server.</p>
 </demo>
 </chapter>
 
-<chapter title="Okuma metni" lead="prose satırı 72 karakterde tutar ve gövdeyi ikincil mürekkeple yazar. İçinde başlık, liste, satır içi kod, mono yazı ve bağlantı olabilir.">
-<demo label="Örnek · sürüm notu">
+<chapter title="Reading text" lead="prose keeps lines at 72 characters and sets the body in secondary ink. It can hold headings, lists, inline code, mono text and links.">
+<demo label="Example · release note">
 <div class="prose">
-  <h3>1.9.0 sürüm notu</h3>
-  <p>Bu sürüm alarm kurallarına <b>sessiz saat</b> penceresi ekliyor. Pencere içinde tetiklenen alarmlar kaydedilir ama nöbetçiye bildirilmez; ayrıntı için <a href="#p1">tanım listesi</a> bölümüne bakın.</p>
-  <h4>Değişenler</h4>
+  <h3>Release note 1.9.0</h3>
+  <p>This release adds a <b>quiet hours</b> window to alarm rules. Alarms that fire inside the window are recorded but not sent to the on-call engineer; see the <a href="#p1">definition list</a> section for details.</p>
+  <h4>What changed</h4>
   <ul>
-    <li><code>quiet_hours</code> alanı her kurala eklenebilir.</li>
-    <li>Varsayılan zaman dilimi <span class="mono">Europe/Istanbul</span>.</li>
-    <li>Eski <code>mute_until</code> alanı bir sonraki büyük sürümde kalkacak.</li>
+    <li>Any rule can take a <code>quiet_hours</code> field.</li>
+    <li>The default time zone is <span class="mono">Europe/Istanbul</span>.</li>
+    <li>The old <code>mute_until</code> field goes away in the next major release.</li>
   </ul>
-  <h4>Yükseltme</h4>
+  <h4>Upgrading</h4>
   <ol>
-    <li>Kural dosyalarını <code>alarm lint</code> ile denetleyin.</li>
-    <li>Önce staging'e, bir gün sonra prod'a dağıtın.</li>
+    <li>Check the rule files with <code>alarm lint</code>.</li>
+    <li>Deploy to staging first, then to prod a day later.</li>
   </ol>
 </div>
 </demo>
-<div class="prose"><p><code>code</code> zemin çizer ve okurun yazacağı ya da kopyalayacağı değer içindir. <code>.mono</code> zemin çizmez; saat dilimi, kayıt türü gibi teknik ama kopyalanmayan adlar içindir.</p></div>
+<div class="prose"><p><code>code</code> draws a background and is for values the reader will type or copy. <code>.mono</code> draws no background; it is for technical names that aren't copied, such as a time zone or a record type.</p></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Tanım listesi bir sözlüktür, bir hikâye değil. Değer uzadıkça okur sütunu taramayı bırakır.">
+<chapter title="Do / don't" lead="A definition list is a dictionary, not a story. As values grow longer, the reader stops scanning the column.">
 <div class="dodont">
-<demo label="Yap · kısa değer, ayrıntı metinde">
+<demo label="Do · short value, details in the text">
 <dl class="kv">
-  <dt>Saklama</dt><dd>14 gün</dd>
-  <dt>Şifreleme</dt><dd>KMS, müşteri anahtarı</dd>
+  <dt>Retention</dt><dd>14 days</dd>
+  <dt>Encryption</dt><dd>KMS, customer key</dd>
 </dl>
 </demo>
-<demo label="Yapma · değerde paragraf">
+<demo label="Don't · a paragraph in the value">
 <dl class="kv">
-  <dt>Saklama</dt><dd>Yedekler denetim gereği on dört gün saklanır, ardından otomatik olarak silinir; daha uzun süre gerekirse platform ekibine yazın.</dd>
+  <dt>Retention</dt><dd>Backups are kept for fourteen days for audit purposes and then deleted automatically; if you need them longer, write to the platform team.</dd>
 </dl>
 </demo>
 </div>
 <div class="dodont">
-<demo label="Yap · sıra varsa adımlar">
+<demo label="Do · steps when there is an order">
 <ol class="steps">
-  <li><h3>Yedeği alın</h3></li>
-  <li><h3>Göçü çalıştırın</h3></li>
+  <li><h3>Take the backup</h3></li>
+  <li><h3>Run the migration</h3></li>
 </ol>
 </demo>
-<demo label="Yapma · sırayı tanım listesine yazmak">
+<demo label="Don't · write an order into a definition list">
 <dl class="kv">
-  <dt>Birinci</dt><dd>Yedeği alın</dd>
-  <dt>İkinci</dt><dd>Göçü çalıştırın</dd>
+  <dt>First</dt><dd>Take the backup</dd>
+  <dt>Second</dt><dd>Run the migration</dd>
 </dl>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu <code>dl</code>'yi tanım listesi olarak duyurur ve öğe sayısını söyler. <code>dt</code>/<code>dd</code> dışındaki çocuklar bu yapıyı bozar. Bağlantılar metin içinde altı çizili kalır; yalnızca renkle ayırmayın.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A screen reader announces a <code>dl</code> as a definition list and says how many items it has. Children other than <code>dt</code>/<code>dd</code> break that structure. Links stay underlined inside text; don't set them apart by color alone.</p></div></div>
 </chapter>

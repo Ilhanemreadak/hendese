@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track and switch · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html">Drawing units</a>
+    <a class="nav-page" href="line-families.html">Line families</a>
+    <a class="nav-page" href="station-explorer.html">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html" aria-current="page">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Switch types</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>In context</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Blueprint</p>
+    <h1>Track and switch<em>Which way traffic goes, and which way is closed.</em></h1>
+    <p class="intro">Routing drawings use the language of railways: the track is a heavy line, the switch is where the path splits, the unused branch is a ghost, and the filter arm is red. Traffic decisions like canary, blue/green and regional failover read at a glance in this language.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.ln-strong</code> (track) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.tag</code> · <code>.state</code> · <code>.deck-cap</code></dd><dt>Inline style</dt><dd>Filter arm: <code>stroke:var(--bad)</code>, 5 units</dd><dt>JS</dt><dd>Not needed</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">The track is the path that carries traffic and is drawn heavy. At the switch the path splits; the branch not in use stays a ghost. The filter arm cuts across a track and is red.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · one switch and one filter</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:250">
+  <svg viewBox="0 0 900 250" aria-hidden="true">
+    <path class="ln-strong" d="M40 110H340L380 70H700"/>
+    <path class="ln-ghost" d="M340 110L380 150H700"/>
+    <circle class="fill-draw" cx="340" cy="110" r="4"/>
+    <path class="ln-strong" d="M40 210H250"/>
+    <path class="ln-ghost" d="M250 210H330"/>
+    <path class="ln-draw" d="M250 160V236"/>
+    <circle class="ln-draw fill-paper" cx="250" cy="160" r="5"/>
+    <path style="stroke:var(--bad);stroke-width:5;stroke-linecap:round" d="M250 186V234"/>
+  </svg>
+  <p class="dl" style="--x:40;--y:84;--w:260">requests · lb-public</p>
+  <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">switch</p>
+  <p class="dl" style="--x:420;--y:44;--w:200">track · .ln-strong</p>
+  <p class="dl" style="--x:420;--y:158;--w:240">unused branch · .ln-ghost</p>
+  <p class="dl" style="--x:40;--y:184;--w:200">crawler bots</p>
+  <p class="dl" style="--x:266;--y:164;--w:200">filter arm · WAF</p>
+  <p class="dl tag" style="--x:700;--y:58">web-api v2</p>
+  <p class="dl tag is-ghost" style="--x:700;--y:138">web-api v1 · idle</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:250</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 250</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 110H340L380 70H700</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M340 110L380 150H700</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>340</span>" cy="<span class='s'>110</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 210H250</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M250 210H330</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M250 160V236</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>250</span>" cy="<span class='s'>160</span>" r="<span class='s'>5</span>"/&gt;
+    &lt;<span class='k'>path</span> style="<span class='s'>stroke:var(--bad);stroke-width:5;stroke-linecap:round</span>" d="<span class='s'>M250 186V234</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:84;--w:260</span>"&gt;requests · lb-public&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:118;--w:80;text-align:center</span>"&gt;switch&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:420;--y:44;--w:200</span>"&gt;track · .ln-strong&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:420;--y:158;--w:240</span>"&gt;unused branch · .ln-ghost&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:184;--w:200</span>"&gt;crawler bots&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:266;--y:164;--w:200</span>"&gt;filter arm · WAF&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl tag</span>" style="<span class='s'>--x:700;--y:58</span>"&gt;web-api v2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl tag is-ghost</span>" style="<span class='s'>--x:700;--y:138</span>"&gt;web-api v1 · idle&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The switch point is marked with <code>circle.fill-draw</code>. The filter arm is a post (<code>.ln-draw</code>), a pivot (<code>circle.ln-draw.fill-paper</code>) and a heavy red bar across the track; the path beyond the arm is a ghost, because nothing reaches it. Destination labels are <code>.tag</code> line labels and sit at the end of the track; an idle one gets a dashed frame with <code>.tag.is-ghost</code>.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Switch types">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Switch types</h2><p class="lead">The same switch draws three different decisions: splitting traffic by weight, cutting over from one side to the other at once, or closing off the unhealthy side.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · canary · weighted split</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:190">
+  <svg viewBox="0 0 900 190" aria-hidden="true">
+    <path class="ln-strong" d="M40 90H680"/>
+    <path class="ln-draw" d="M320 90L370 150H680"/>
+    <circle class="fill-draw" cx="320" cy="90" r="4"/>
+    <text class="dim-t" x="520" y="80" text-anchor="middle">95%</text>
+    <text class="dim-t" x="520" y="140" text-anchor="middle">5%</text>
+  </svg>
+  <p class="dl" style="--x:40;--y:64;--w:260">requests</p>
+  <p class="dl tag" style="--x:690;--y:78">4.2.0 · stable</p>
+  <p class="dl tag" style="--x:690;--y:138">4.3.0 · canary</p>
+  <p class="dl" style="--x:690;--y:164;--w:200"><span class="state s-warn">Under watch</span></p>
+  <p class="dl" style="--x:380;--y:160;--w:300">errors 0.3% · threshold 1% · 30 min</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:190</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 190</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 90H680</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M320 90L370 150H680</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>320</span>" cy="<span class='s'>90</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>520</span>" y="<span class='s'>80</span>" text-anchor="<span class='s'>middle</span>"&gt;95%&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>520</span>" y="<span class='s'>140</span>" text-anchor="<span class='s'>middle</span>"&gt;5%&lt;/<span class='k'>text</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:64;--w:260</span>"&gt;requests&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl tag</span>" style="<span class='s'>--x:690;--y:78</span>"&gt;4.2.0 · stable&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl tag</span>" style="<span class='s'>--x:690;--y:138</span>"&gt;4.3.0 · canary&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:690;--y:164;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Under watch&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:380;--y:160;--w:300</span>"&gt;errors 0.3% · threshold 1% · 30 min&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>In a canary both paths are real, so both are drawn solid. The one carrying most of the traffic is heavy and the one carrying a little is thin; the ratio is written above the line.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · blue/green · before and after</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:210">
+  <svg viewBox="0 0 900 210" aria-hidden="true">
+    <path class="ln-pencil ln-dash" d="M450 0V210"/>
+    <path class="ln-strong" d="M20 120H150L190 80H330"/>
+    <path class="ln-draw" d="M150 120L190 160H330"/>
+    <circle class="fill-draw" cx="150" cy="120" r="4"/>
+    <path class="ln-strong" d="M490 120H620L660 160H800"/>
+    <path class="ln-ghost" d="M620 120L660 80H800"/>
+    <circle class="fill-draw" cx="620" cy="120" r="4"/>
+  </svg>
+  <p class="sl deck-cap" style="--x:20;--y:14"><b>BEFORE</b>traffic on blue</p>
+  <p class="sl deck-cap" style="--x:490;--y:14"><b>AFTER</b>traffic on green</p>
+  <p class="dl" style="--x:340;--y:70;--w:100">blue</p>
+  <p class="dl" style="--x:340;--y:150;--w:110">green · idle</p>
+  <p class="dl" style="--x:810;--y:70;--w:90">blue</p>
+  <p class="dl" style="--x:810;--y:150;--w:90">green</p>
+  <p class="dl" style="--x:20;--y:182;--w:420">green deployed and passed its tests</p>
+  <p class="dl" style="--x:490;--y:182;--w:410">blue is kept for an hour for rollback</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:210</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 210</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil ln-dash</span>" d="<span class='s'>M450 0V210</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M20 120H150L190 80H330</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M150 120L190 160H330</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>120</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M490 120H620L660 160H800</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M620 120L660 80H800</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>620</span>" cy="<span class='s'>120</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:14</span>"&gt;&lt;<span class='k'>b</span>&gt;BEFORE&lt;/<span class='k'>b</span>&gt;traffic on blue&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:490;--y:14</span>"&gt;&lt;<span class='k'>b</span>&gt;AFTER&lt;/<span class='k'>b</span>&gt;traffic on green&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:70;--w:100</span>"&gt;blue&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:150;--w:110</span>"&gt;green · idle&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:810;--y:70;--w:90</span>"&gt;blue&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:810;--y:150;--w:90</span>"&gt;green&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:182;--w:420</span>"&gt;green deployed and passed its tests&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:490;--y:182;--w:410</span>"&gt;blue is kept for an hour for rollback&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>In blue/green the switch flips in one move. In the “after” drawing the blue branch is a ghost: it is the previous position and stays as the rollback path. There is no in-between state, so the drawing is two separate panels, divided by a dashed guide line.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">03</p><h2>In context</h2><p class="lead">A switch shows what changed during an outage or a maintenance window. Two compositions: failing over to a backup region, and a nightly maintenance window.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · failing over to a backup region</span>
+  <div class="demo-view">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Figure 1</p>
+    <p class="fig-cap">Primary region unhealthy, traffic on the backup</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Check</b>DNS sends a health request to both regions every 10 seconds.</li>
+      <li><b>2 · Decide</b>If the primary fails to respond three times in a row, the switch flips to the backup.</li>
+      <li><b>3 · Propagate</b>Clients pick up the new address when the TTL expires; 60 seconds at most.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:250">
+      <svg viewBox="0 0 600 250" aria-hidden="true">
+        <path class="ln-strong" d="M20 130H200"/>
+        <circle class="fill-draw" cx="200" cy="130" r="4"/>
+        <path class="ln-block" d="M200 130L240 60H380"/>
+        <path class="ln-draw ln-bad" d="M386 44V76M394 48l14 24M408 48l-14 24"/>
+        <rect class="ln-draw ln-bad fill-paper" x="420" y="36" width="160" height="50"/>
+        <path class="ln-strong" d="M200 130L240 200H414M414 200l-9-5M414 200l-9 5"/>
+        <rect class="ln-strong fill-paper" x="420" y="175" width="160" height="50"/>
+        <text class="dim-t" x="110" y="158" text-anchor="middle">TTL 60 s</text>
+      </svg>
+      <p class="dl" style="--x:20;--y:102;--w:180">api.example.net</p>
+      <p class="dl" style="--x:240;--y:14;--w:200">health · 3/3 failed</p>
+      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state s-bad">Unhealthy</span></p>
+      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state s-ok">Active</span></p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>The primary region failed its health check; DNS flipped the switch to the backup region and the path was blocked.</p>
+    <p class="figcap"><b>Figure 1.</b> The red dashed line and the stop mark are the path that was tried and closed; the heavy track is the path carrying traffic now.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Figure 1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Primary region unhealthy, traffic on the backup&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>header</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;
+    &lt;<span class='k'>ol</span> class="<span class='s'>beats</span>"&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;1 · Check&lt;/<span class='k'>b</span>&gt;DNS sends a health request to both regions every 10 seconds.&lt;/<span class='k'>li</span>&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;2 · Decide&lt;/<span class='k'>b</span>&gt;If the primary fails to respond three times in a row, the switch flips to the backup.&lt;/<span class='k'>li</span>&gt;
+      &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;3 · Propagate&lt;/<span class='k'>b</span>&gt;Clients pick up the new address when the TTL expires; 60 seconds at most.&lt;/<span class='k'>li</span>&gt;
+    &lt;/<span class='k'>ol</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:250</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 250</span>" aria-hidden="<span class='s'>true</span>"&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M20 130H200</span>"/&gt;
+        &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>200</span>" cy="<span class='s'>130</span>" r="<span class='s'>4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M200 130L240 60H380</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M386 44V76M394 48l14 24M408 48l-14 24</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-bad fill-paper</span>" x="<span class='s'>420</span>" y="<span class='s'>36</span>" width="<span class='s'>160</span>" height="<span class='s'>50</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M200 130L240 200H414M414 200l-9-5M414 200l-9 5</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>420</span>" y="<span class='s'>175</span>" width="<span class='s'>160</span>" height="<span class='s'>50</span>"/&gt;
+        &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>110</span>" y="<span class='s'>158</span>" text-anchor="<span class='s'>middle</span>"&gt;TTL 60 s&lt;/<span class='k'>text</span>&gt;
+      &lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:102;--w:180</span>"&gt;api.example.net&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:14;--w:200</span>"&gt;health · 3/3 failed&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:432;--y:44;--w:140</span>"&gt;eu-west-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Unhealthy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:432;--y:183;--w:140</span>"&gt;eu-central-1&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Active&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;In one sentence&lt;/<span class='k'>span</span>&gt;The primary region failed its health check; DNS flipped the switch to the backup region and the path was blocked.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 1.&lt;/<span class='k'>b</span>&gt; The red dashed line and the stop mark are the path that was tried and closed; the heavy track is the path carrying traffic now.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · nightly maintenance window, dark sheet</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 2</p>
+  <p class="fig-cap">Writes go to a queue during maintenance</p>
+  <div class="drawing" style="--aw:900;--ah:240">
+    <svg viewBox="0 0 900 240" aria-hidden="true">
+      <path class="ln-strong" d="M40 130H220"/>
+      <circle class="fill-draw" cx="220" cy="130" r="4"/>
+      <path class="ln-strong" d="M220 130L260 60H654M654 60l-9-5M654 60l-9 5"/>
+      <path class="ln-block" d="M220 130H600"/>
+      <path class="ln-draw ln-bad" d="M606 114V146M614 118l14 24M628 118l-14 24"/>
+      <path class="ln-draw" d="M220 130L260 200H654M654 200l-8-4M654 200l-8 4"/>
+      <rect class="ln-draw fill-paper" x="660" y="36" width="220" height="48"/>
+      <rect class="ln-draw ln-warn fill-paper" x="660" y="106" width="220" height="48"/>
+      <rect class="ln-draw fill-paper" x="660" y="176" width="220" height="48"/>
+    </svg>
+    <p class="dl" style="--x:40;--y:104;--w:170">requests</p>
+    <p class="dl" style="--x:300;--y:34;--w:300">GET · read</p>
+    <p class="dl" style="--x:300;--y:104;--w:300">POST · direct write</p>
+    <p class="dl" style="--x:300;--y:174;--w:300">POST · to queue</p>
+    <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · replica</p>
+    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state s-warn">In maintenance</span></p>
+    <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · write queue</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 2.</b> Reads continue from the replica. Direct writes to the primary are closed; writes wait in the queue and are processed in order when maintenance ends.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Figure 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Writes go to a queue during maintenance&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:240</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 240</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M40 130H220</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>220</span>" cy="<span class='s'>130</span>" r="<span class='s'>4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M220 130L260 60H654M654 60l-9-5M654 60l-9 5</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M220 130H600</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M606 114V146M614 118l14 24M628 118l-14 24</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 130L260 200H654M654 200l-8-4M654 200l-8 4</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>36</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-warn fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>106</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>660</span>" y="<span class='s'>176</span>" width="<span class='s'>220</span>" height="<span class='s'>48</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:104;--w:170</span>"&gt;requests&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:34;--w:300</span>"&gt;GET · read&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:104;--w:300</span>"&gt;POST · direct write&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:174;--w:300</span>"&gt;POST · to queue&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:50;--w:200</span>"&gt;orders-db-2 · replica&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:120;--w:200</span>"&gt;orders-db-1 &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;In maintenance&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:672;--y:190;--w:200</span>"&gt;jobs-eu · write queue&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 2.&lt;/<span class='k'>b</span>&gt; Reads continue from the replica. Direct writes to the primary are closed; writes wait in the queue and are processed in order when maintenance ends.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Do / don't</h2><p class="lead">At a switch only one branch carries real traffic at a time; the other is a ghost. Two heavy branches leave the reader guessing which path is open.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · one real branch</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-ghost" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2 · active</p>
+  <p class="dl" style="--x:310;--y:118;--w:120">v1 · previous</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M10 75H150L190 40H430</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M150 75L190 110H430</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>75</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:14;--w:100</span>"&gt;v2 · active&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:118;--w:120</span>"&gt;v1 · previous&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · two heavy branches</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-strong" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2</p>
+  <p class="dl" style="--x:330;--y:118;--w:100">v1</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M10 75H150L190 40H430</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M150 75L190 110H430</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>150</span>" cy="<span class='s'>75</span>" r="<span class='s'>4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:14;--w:100</span>"&gt;v2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:330;--y:118;--w:100</span>"&gt;v1&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The difference between a heavy line and a ghost line is visual. Which path is open and which is closed must also be stated in the destination label (<code>.state</code>) and in the caption. A blocked path is drawn not only in red but also with a dashed pattern and a stop mark.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="measuring-tools.html" rel="prev"><small>Previous · Blueprint</small>Measuring tools</a><a href="fault-panel.html" rel="next"><small>Next · Blueprint</small>Fault panel</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

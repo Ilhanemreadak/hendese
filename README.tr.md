@@ -28,7 +28,7 @@
 
 Hendese dokümantasyon, eğitim ve araç sayfalarını bir mühendisin paftasını çizdiği gibi çizer: kalemle kılavuz, mürekkeple şekil, ölçü çizgileri ve antet. Pakette tasarım token'ları, katmanlı CSS bileşenleri, çizim primitifleri, küçük bir kaydırma sahnesi motoru ve şekiller arasında yürüyüp önemli yeri gösteren piksel maskot **Hoca** var.
 
-> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon sayfaları ve varsayılan arayüz metinleri şimdilik Türkçe; İngilizce çevirisi planlanıyor.
+> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon İngilizcedir; `<html lang="tr">` olan sayfalar arayüz metinlerini otomatik olarak Türkçe alır.
 
 ## Neden Hendese
 
@@ -115,7 +115,7 @@ Açık ve koyu tema sistem tercihini izler; `[data-theme-toggle]` düğmeleri te
 
 | Seçenek | Varsayılan | Açıklama |
 |---|---|---|
-| `strings` | Türkçe | Arayüz metinleri: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. |
+| `strings` | İngilizce; `lang="tr"` sayfalarda Türkçe | Arayüz metinleri: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. Hazır setler: `Hendese.locales.en`, `Hendese.locales.tr`. |
 | `themeKey` | `'hendese-theme'` | Tema seçiminin saklama anahtarı. `head.js` de aynı anahtarı okusun diye `<html data-theme-key="…">` olarak da verilebilir. |
 | `topId` | `'top'` | Sayfa başı bölümünün id'si. |
 | `englishStems` | yok | `RegExp`; büyük harfli etiketlerdeki İngilizce kelimeleri `lang="en"` içine alır (Türkçedeki noktalı büyük İ sorununu önler). |

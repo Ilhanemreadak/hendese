@@ -1,7 +1,7 @@
-<!-- meta {"title":"Ölçü aletleri","group":"Blueprint","order":60,"tagline":"Bir değeri kurala karşı ölç, farkı göster.","intro":"İki alet var. Kumpas bir metni düzenli ifadeye karşı karakter karakter ölçer: nerede geçtiğini, nerede kaldığını, neyin eksik olduğunu. Kadran ve doğrusal ölçer istenen değer ile gerçek değeri aynı ölçek üstünde gösterir; aradaki fark işaretlenir ve yazıyla da söylenir.","summary":"Regex kumpası, kadran ve doğrusal ölçer; istenen ile gerçek arasındaki fark.","facts":{"Sınıflar":"<code>.cells</code> · <code>.needle</code> · <code>.fill-soft</code> · <code>.drawing</code> · <code>.dl</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.fill-*</code> · <code>.state</code>","Satır içi stil":"Fark yayının kalınlığı","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Measuring tools","group":"Blueprint","order":60,"tagline":"Measure a value against a rule, show the gap.","intro":"There are two tools. The caliper measures a string against a regular expression character by character: where it passes, where it fails, what is missing. The dial and the linear gauge show the desired value and the actual value on the same scale; the gap between them is marked and also stated in words.","summary":"A regex caliper, a dial and a linear gauge; the gap between desired and actual.","facts":{"Classes":"<code>.cells</code> · <code>.needle</code> · <code>.fill-soft</code> · <code>.drawing</code> · <code>.dl</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.fill-*</code> · <code>.state</code>","Inline style":"Gap arc stroke width","JS":"Not needed"}} -->
 
-<chapter title="Kumpas" lead="Sabit çene ^ metnin başında, kayan çene $ son hücrenin sağ kenarında durur. Her karakter bir hücredir; altındaki çizgi o hücreyi ölçen kalıp parçasıdır.">
-<demo label="Örnek · sürüm etiketi kalıba uymuyor">
+<chapter title="Caliper" lead="The fixed jaw ^ sits at the start of the string, the sliding jaw $ at the right edge of the last cell. Each character is a cell; the line under it is the pattern part that measures that cell.">
+<demo label="Example · a version tag that does not match the pattern">
 <div class="drawing" style="--aw:900;--ah:220">
   <svg viewBox="0 0 900 220" aria-hidden="true">
     <path class="ln-draw" d="M20 206H880"/>
@@ -19,21 +19,21 @@
   <p class="dl" style="--x:120;--y:156;--w:40">^v</p>
   <p class="dl" style="--x:150;--y:156;--w:150">\d+\.\d+\.\d+</p>
   <p class="dl" style="--x:304;--y:156;--w:30">$</p>
-  <div class="dl" style="--x:520;--y:64;--w:360"><span class="state s-bad">Uymaz</span> 8. karakter <b>-</b> beklenmiyor: kalıp sürüm numarasıyla bitmeli, ön sürüm eki kabul edilmez.</div>
-  <p class="dl" style="--x:520;--y:140;--w:370;display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2) var(--sp-4)"><span class="cells"><i class="s-ok">a</i></span>geçti <span class="cells"><i class="s-bad">x</i></span>kaldı <span class="cells"><i data-state="miss"></i></span>eksik <span class="cells"><i data-state="ghost">b</i></span>bakılmadı</p>
+  <div class="dl" style="--x:520;--y:64;--w:360"><span class="state s-bad">No match</span> Character 8, <b>-</b>, is not expected: the pattern must end with the version number, and a pre-release suffix is not accepted.</div>
+  <p class="dl" style="--x:520;--y:140;--w:370;display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2) var(--sp-4)"><span class="cells"><i class="s-ok">a</i></span>passed <span class="cells"><i class="s-bad">x</i></span>failed <span class="cells"><i data-state="miss"></i></span>missing <span class="cells"><i data-state="ghost">b</i></span>not checked</p>
 </div>
 </demo>
-<div class="prose"><p>Ölçülen metin <code>v2.13.0-rc1</code>, kalıp <code>^v\d+\.\d+\.\d+$</code>. Hücreler <code>.cells</code> paket sınıfıdır: her karakter bir <code>&lt;i&gt;</code>, genişliği 26 birim, yazısı <code>--u</code> ile çizimle birlikte ölçeklenir. Çeneler ve cetvel SVG'de, kalıp parçaları ve hüküm HTML etiketindedir. Dört hücre durumu:</p>
+<div class="prose"><p>The measured string is <code>v2.13.0-rc1</code>, the pattern <code>^v\d+\.\d+\.\d+$</code>. The cells are the package class <code>.cells</code>: each character is an <code>&lt;i&gt;</code>, 26 units wide, and its text scales with the drawing through <code>--u</code>. The jaws and the ruler are in the SVG; the pattern parts and the verdict are in HTML labels. The four cell states:</p>
 <ul>
-  <li><b>geçti</b> · <code>.s-ok</code>: ince çerçeve, yeşil alt çizgi;</li>
-  <li><b>kaldı</b> · <code>.s-bad</code>: kalın kırmızı çerçeve, açık kırmızı dolgu; <code>data-mark</code> altına ▲ koyar;</li>
-  <li><b>eksik</b> · <code>data-state="miss"</code>: aynı, ama kesikli ve boş: kalıp bir karakter bekliyor, metin bitmiş;</li>
-  <li><b>bakılmadı</b> · <code>data-state="ghost"</code>: kesikli ve soluk: ölçüm daha önce durdu.</li>
+  <li><b>passed</b> · <code>.s-ok</code>: a thin border, a green underline;</li>
+  <li><b>failed</b> · <code>.s-bad</code>: a heavy red border, a light red fill; <code>data-mark</code> puts a ▲ below;</li>
+  <li><b>missing</b> · <code>data-state="miss"</code>: the same, but dashed and empty: the pattern expects a character, and the string has ended;</li>
+  <li><b>not checked</b> · <code>data-state="ghost"</code>: dashed and faint: the measurement stopped earlier.</li>
 </ul></div>
 </chapter>
 
-<chapter title="Kumpas sonuçları" lead="Aynı alet iki hükümle: her şey geçtiğinde yalnız yeşil çizgiler kalır; metin kısa kaldığında kayan çene boş bir hücrenin ötesinde durur.">
-<demo label="Örnek · dal adı · uyar">
+<chapter title="Caliper results" lead="The same tool with two verdicts: when everything passes, only green lines remain; when the string is too short, the sliding jaw stops beyond an empty cell.">
+<demo label="Example · branch name · match">
 <div class="drawing" style="--aw:900;--ah:190">
   <svg viewBox="0 0 900 190" aria-hidden="true">
     <path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/>
@@ -49,10 +49,10 @@
   <p class="dl" style="--x:330;--y:156;--w:100">\d{4}</p>
   <p class="dl" style="--x:436;--y:156;--w:20">-</p>
   <p class="dl" style="--x:460;--y:156;--w:60">\d{2}$</p>
-  <div class="dl" style="--x:580;--y:70;--w:300"><span class="state s-ok">Uyar</span> 15 karakterin tamamı kalıba uyuyor; dal korumalı yayın dalı sayılır.</div>
+  <div class="dl" style="--x:580;--y:70;--w:300"><span class="state s-ok">Match</span> All 15 characters match the pattern; the branch counts as a protected release branch.</div>
 </div>
 </demo>
-<demo label="Örnek · gizli anahtar adı · eksik">
+<demo label="Example · secret key name · missing">
 <div class="drawing" style="--aw:900;--ah:190">
   <svg viewBox="0 0 900 190" aria-hidden="true">
     <path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/>
@@ -67,13 +67,13 @@
   <p class="dl cells" style="--x:120;--y:80;--w:260"><i class="s-ok">d</i><i class="s-ok">b</i><i class="s-ok">-</i><i class="s-ok">p</i><i class="s-ok">a</i><i class="s-ok">s</i><i class="s-ok">s</i><i class="s-ok">-</i><i class="s-ok">v</i><i data-state="miss" data-mark></i></p>
   <p class="dl" style="--x:120;--y:156;--w:230">^db-pass-v</p>
   <p class="dl" style="--x:356;--y:156;--w:60">\d+$</p>
-  <div class="dl" style="--x:480;--y:70;--w:400"><span class="state s-bad">Uymaz</span> Sürüm numarası eksik: kalıp sonda en az bir rakam bekliyor, metin <b>v</b> ile bitiyor.</div>
+  <div class="dl" style="--x:480;--y:70;--w:400"><span class="state s-bad">No match</span> The version number is missing: the pattern expects at least one digit at the end, and the string ends with <b>v</b>.</div>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Kadran" lead="İnce ok uçlu ibre istenen durumu, kalın ibre gerçek durumu gösterir. Aradaki fark turuncu bir yayla işaretlenir; sayı ve kelime kadranın üstünde yazılıdır.">
-<demo label="Örnek · istenen 6 kopya, çalışan 3">
+<chapter title="Dial" lead="The thin needle with an arrowhead shows the desired state, the heavy needle the actual state. The gap between them is marked with an orange arc; the number and the word are written above the dial.">
+<demo label="Example · 6 replicas desired, 3 running">
 <div class="drawing" style="--aw:640;--ah:370">
   <svg viewBox="0 0 640 370" aria-hidden="true">
     <path class="ln-draw" d="M122.7 218.2A210 210 0 0 1 517.3 218.2"/>
@@ -100,20 +100,20 @@
     <g class="needle"><path d="M440 312H470"/></g>
     <g class="needle is-actual"><path d="M440 342H470"/></g>
   </svg>
-  <p class="dl" style="--x:0;--y:0;--w:640;text-align:center"><span class="state s-warn">Fark · 3 kopya</span></p>
-  <p class="dl" style="--x:480;--y:302;--w:160">istenen · 6</p>
-  <p class="dl" style="--x:480;--y:332;--w:160">gerçek · 3</p>
-  <p class="dl" style="--x:20;--y:310;--w:300">web-api · ölçek: kopya sayısı</p>
+  <p class="dl" style="--x:0;--y:0;--w:640;text-align:center"><span class="state s-warn">Gap · 3 replicas</span></p>
+  <p class="dl" style="--x:480;--y:302;--w:160">desired · 6</p>
+  <p class="dl" style="--x:480;--y:332;--w:160">actual · 3</p>
+  <p class="dl" style="--x:20;--y:310;--w:300">web-api · scale: replica count</p>
 </div>
 </demo>
-<div class="prose"><p>Ölçek 0–14 kopya, her kopya 10°; 0 değeri −70°'dir. İbreler dik çizilir, açı tek bir <code>rotate</code> ile verilir. İstenen değer <code>.needle</code> (ince, ok uçlu <code>.tip</code>), gerçek değer <code>.needle.is-actual</code> (kalın mürekkep) ile çizilir. <code>.needle</code> sınıfı döndürmeyi view-box koordinatına bağlar; kadran merkezi <code>--ox</code> / <code>--oy</code> ile verilir (ibreye ya da ortak bir üst öğeye). Değer değişince yalnızca açı değişir; fark yayı da aynı açılar arasında, biraz daha büyük bir yarıçapta çizilir.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">açı</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- açı = −70 + 10 × değer (derece); merkez --ox, --oy (view-box koordinatı) --&gt;
-&lt;g class="needle is-actual" style="--ox:320px;--oy:290px;transform:rotate(-40deg)"&gt;…&lt;/g&gt;  &lt;!-- gerçek: 3 --&gt;
-&lt;g class="needle" style="--ox:320px;--oy:290px;transform:rotate(-10deg)"&gt;…&lt;/g&gt;  &lt;!-- istenen: 6 --&gt;</code></pre></figure>
+<div class="prose"><p>The scale is 0–14 replicas, 10° per replica; the value 0 sits at −70°. The needles are drawn vertical and the angle is set with a single <code>rotate</code>. The desired value is drawn with <code>.needle</code> (thin, with a <code>.tip</code> arrowhead), the actual value with <code>.needle.is-actual</code> (heavy ink). The <code>.needle</code> class ties rotation to view-box coordinates; the dial center is given with <code>--ox</code> / <code>--oy</code> (on the needle or on a shared parent). When the value changes, only the angle changes; the gap arc is drawn between the same angles at a slightly larger radius.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">angle</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!-- angle = −70 + 10 × value (degrees); center --ox, --oy (view-box coordinates) --&gt;
+&lt;g class="needle is-actual" style="--ox:320px;--oy:290px;transform:rotate(-40deg)"&gt;…&lt;/g&gt;  &lt;!-- actual: 3 --&gt;
+&lt;g class="needle" style="--ox:320px;--oy:290px;transform:rotate(-10deg)"&gt;…&lt;/g&gt;  &lt;!-- desired: 6 --&gt;</code></pre></figure>
 </chapter>
 
-<chapter title="Doğrusal ölçer" lead="Kadranın düz hali: değer aralığı yataysa ya da yer darsa. Kabul bölgesi açık renkle taranır, eşik ince okla, gerçek değer kalın çubukla çizilir.">
-<demo label="Örnek · kopya gecikmesi">
+<chapter title="Linear gauge" lead="The dial laid flat: for when the value range is horizontal or space is tight. The acceptance zone is shaded in a light color, the threshold drawn with a thin arrow, the actual value with a heavy bar.">
+<demo label="Example · replica lag">
 <div class="drawing" style="--aw:900;--ah:150">
   <svg viewBox="0 0 900 150" aria-hidden="true">
     <rect class="fill-soft s-ok" x="60" y="86" width="160" height="14"/>
@@ -129,27 +129,27 @@
     <g class="needle"><path d="M220 112V58"/><path class="tip" d="M220 46l-6 12h12z"/></g>
     <g class="needle is-actual"><path d="M556 114V60"/></g>
   </svg>
-  <p class="dl" style="--x:120;--y:18;--w:200;text-align:center">istenen · en çok 2 s</p>
-  <p class="dl" style="--x:456;--y:28;--w:200;text-align:center">gerçek · 6,2 s</p>
-  <p class="dl" style="--x:660;--y:28;--w:220"><span class="state s-warn">Gecikmeli</span></p>
+  <p class="dl" style="--x:120;--y:18;--w:200;text-align:center">desired · at most 2 s</p>
+  <p class="dl" style="--x:456;--y:28;--w:200;text-align:center">actual · 6.2 s</p>
+  <p class="dl" style="--x:660;--y:28;--w:220"><span class="state s-warn">Lagging</span></p>
 </div>
 </demo>
-<div class="prose"><p>orders-db-3 kopyası birincilin 6,2 saniye gerisinde; kabul bölgesi 0–2 saniye. Turuncu çizgi farkın kendisidir (4,2 s). Ölçek doğrusaldır: 80 birim = 1 saniye. Kabul bölgesi <code>class="fill-soft s-ok"</code> ile boyanır; ibreler kadrandaki gibi <code>.needle</code> (istenen) ve <code>.needle.is-actual</code> (gerçek) sınıflarıdır.</p></div>
+<div class="prose"><p>The orders-db-3 replica is 6.2 seconds behind the primary; the acceptance zone is 0–2 seconds. The orange line is the gap itself (4.2 s). The scale is linear: 80 units = 1 second. The acceptance zone is painted with <code>class="fill-soft s-ok"</code>; the needles are the same <code>.needle</code> (desired) and <code>.needle.is-actual</code> (actual) classes as on the dial.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Ölçer bir kararın gerekçesini gösterir: neden yenilendi, neden durduruldu. Paftada yan sütun kararı adım adım anlatır.">
-<demo label="Örnek · sertifika yenileme kapısı">
+<chapter title="In context" lead="A gauge shows the reason for a decision: why something was renewed, why it was stopped. On the sheet, the side column tells the decision step by step.">
+<demo label="Example · a certificate renewal gate">
 <div class="frame">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
-    <p class="chip">05 · Şekil 1</p>
-    <p class="fig-cap">api.ornek.net sertifikası eşiğin altında</p>
+    <p class="chip">05 · Figure 1</p>
+    <p class="fig-cap">The api.example.net certificate is below the threshold</p>
   </header>
   <div class="f-side">
     <ol class="beats">
-      <li><b>1 · Ölç</b>Her gece sertifikanın bitiş tarihi okunur ve kalan gün hesaplanır.</li>
-      <li><b>2 · Karşılaştır</b>Kalan gün eşikle karşılaştırılır; eşik 30 gün.</li>
-      <li><b>3 · Yenile</b>Eşiğin altındaysa yenileme işi tetiklenir; iş başarısızsa alarm açılır.</li>
+      <li><b>1 · Measure</b>Every night the certificate's expiry date is read and the days remaining are computed.</li>
+      <li><b>2 · Compare</b>The days remaining are compared with the threshold; the threshold is 30 days.</li>
+      <li><b>3 · Renew</b>If below the threshold, the renewal job is triggered; if the job fails, an alert opens.</li>
     </ol>
   </div>
   <div class="f-map">
@@ -162,27 +162,27 @@
         <text class="dim-t" x="40" y="130" text-anchor="middle">0</text>
         <text class="dim-t" x="196" y="130" text-anchor="middle">30</text>
         <text class="dim-t" x="352" y="130" text-anchor="middle">60</text>
-        <text class="dim-t" x="508" y="130" text-anchor="middle">90 gün</text>
+        <text class="dim-t" x="508" y="130" text-anchor="middle">90 days</text>
         <path class="ln-bad" style="stroke-width:6" d="M102 76H196"/>
         <g class="needle"><path d="M196 112V58"/><path class="tip" d="M196 46l-6 12h12z"/></g>
         <g class="needle is-actual"><path d="M102 114V60"/></g>
       </svg>
-      <p class="dl" style="--x:10;--y:18;--w:130">kalan · 12 gün</p>
-      <p class="dl" style="--x:180;--y:18;--w:160">eşik · en az 30</p>
-      <p class="dl" style="--x:360;--y:40;--w:220"><span class="state s-bad">Yenile</span></p>
+      <p class="dl" style="--x:10;--y:18;--w:130">remaining · 12 days</p>
+      <p class="dl" style="--x:180;--y:18;--w:160">threshold · at least 30</p>
+      <p class="dl" style="--x:360;--y:40;--w:220"><span class="state s-bad">Renew</span></p>
     </div>
   </div>
   <div class="f-foot">
-    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Kalan 12 gün, 30 günlük eşiğin altında; yenileme işi bu gece tetiklendi.</p>
-    <p class="figcap"><b>Şekil 1.</b> Yeşil bant kabul bölgesidir (30–90 gün). Kırmızı çizgi eşiğe kalan farktır: 18 gün.</p>
+    <p class="oneliner"><span class="co-label">In one sentence</span>12 days remain, below the 30-day threshold; the renewal job was triggered tonight.</p>
+    <p class="figcap"><b>Figure 1.</b> The green band is the acceptance zone (30–90 days). The red line is the distance to the threshold: 18 days.</p>
   </div>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Ölçer bir sayıyı gösterir ama sayının yerini tutmaz. İstenen ve gerçek değer, birimleriyle birlikte yazılı olmalıdır.">
+<chapter title="Do / don't" lead="A gauge shows a number but does not replace it. The desired and actual values must be written out, with their units.">
 <div class="dodont">
-<demo label="Yap · değer, birim ve hüküm">
+<demo label="Do · value, unit and verdict">
 <div class="drawing" style="--aw:440;--ah:120">
   <svg viewBox="0 0 440 120" aria-hidden="true">
     <rect class="fill-soft s-ok" x="20" y="66" width="100" height="10"/>
@@ -191,12 +191,12 @@
     <g class="needle"><path d="M120 84V46"/></g>
     <g class="needle is-actual"><path d="M300 86V48"/></g>
   </svg>
-  <p class="dl" style="--x:20;--y:6;--w:200">p95 eşik · 200 ms</p>
-  <p class="dl" style="--x:236;--y:6;--w:200">gerçek · 380 ms</p>
-  <p class="dl" style="--x:20;--y:92;--w:400"><span class="state s-warn">Yavaş</span> fark 180 ms</p>
+  <p class="dl" style="--x:20;--y:6;--w:200">p95 threshold · 200 ms</p>
+  <p class="dl" style="--x:236;--y:6;--w:200">actual · 380 ms</p>
+  <p class="dl" style="--x:20;--y:92;--w:400"><span class="state s-warn">Slow</span> gap 180 ms</p>
 </div>
 </demo>
-<demo label="Yapma · yalnız işaretler">
+<demo label="Don't · marks alone">
 <div class="drawing" style="--aw:440;--ah:120">
   <svg viewBox="0 0 440 120" aria-hidden="true">
     <path class="ln-draw" d="M20 76H420M20 76v8M120 76v8M220 76v8M320 76v8M420 76v8"/>
@@ -206,5 +206,5 @@
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Kumpasın hücreleri HTML'dir ama ekran okuyucu onları harf harf okur; kadranın sayıları SVG içindedir ve hiç ulaşmaz. Hüküm (<code>.state</code> + cümle) her zaman HTML'de yazılmalıdır: hangi karakter, hangi değer, ne kadar fark. Renk tek başına yetmez; kaldı ve eksik hücreler çerçeve kalınlığı ve desenle de ayrılır.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The caliper's cells are HTML, but a screen reader reads them letter by letter; the dial's numbers are inside the SVG and never reach it. The verdict (<code>.state</code> + a sentence) must always be written in HTML: which character, which value, how big the gap. Color alone is not enough; failed and missing cells are also told apart by border weight and pattern.</p></div></div>
 </chapter>

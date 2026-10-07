@@ -18,9 +18,9 @@ for (const p of PAGES) test(`demos/${p}`, async ({ page }) => {
     await page.goto(pathToFileURL(path.resolve('demos', p + '.html')).href);
     await page.evaluate(() => document.fonts.ready);
     await expect.poll(() => page.evaluate(() => Hendese.state.idle)).toBe(true);
-    expect(errors, 'konsol hatası').toEqual([]);
-    expect(external, 'dış istek').toEqual([]);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'yatay taşma').toBeLessThanOrEqual(0);
+    expect(errors, 'console errors').toEqual([]);
+    expect(external, 'external requests').toEqual([]);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'horizontal overflow').toBeLessThanOrEqual(0);
     const r = await new AxeBuilder({ page }).analyze();   // axe logs CORS errors to the console for its own style requests; errors were checked before this
     errors.length = 0;
     expect(r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${theme} ${v.id}: ${v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')}`)).toEqual([]);

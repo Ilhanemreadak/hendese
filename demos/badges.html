@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Badges · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html" aria-current="page">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>States</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>State label</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Badges<em>State and ownership in one word.</em></h1>
+    <p class="intro">Three small labels: the round, colored <code>.pill</code>, the square, uppercase <code>.state</code>, and the backgroundless mono <code>.chip</code>. None of them is clickable; they sit next to a row, a heading or a figure and say what it is or what state it is in.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.pill</code> · <code>.state</code> · <code>.chip</code></dd><dt>Status</dt><dd><code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code> · <code>.s-neutral</code> · <code>.s-accent</code> · <code>.s-gitlab</code> · <code>.s-aws</code> · <code>.s-k8s</code> · <code>.s-argo</code></dd><dt>Variables</dt><dd><code>--c</code> (line + text), <code>--c-soft</code> (background), <code>--u</code> (<code>.state</code> scale, default 1px)</dd><dt>JS</dt><dd>Not needed</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">The three labels do different jobs. A pill carries the type or result of something, a state the current status in a drawing or a record, and a chip the name of a figure or section.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · three labels side by side</span>
+  <div class="demo-view">
+<div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+  <span class="pill s-ok">live</span>
+  <span class="state s-ok">succeeded</span>
+  <p class="chip">Figure 2 · release flow</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:18px;flex-wrap:wrap</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;live&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;succeeded&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Figure 2 · release flow&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Class</th><th>Form</th><th>Color source</th><th>Typical place</th></tr></thead>
+  <tbody>
+    <tr><td><code>.pill</code></td><td>Round, 11px mono, lowercase</td><td><code>--c</code> + <code>--c-soft</code></td><td>Table cell, start of a list item, next to a heading</td></tr>
+    <tr><td><code>.state</code></td><td>Square, bold, uppercase</td><td><code>--c</code> (<code>.s-*</code>), no background</td><td>Drawing label, job log, step title</td></tr>
+    <tr><td><code>.chip</code></td><td>No border, uppercase, letter-spaced</td><td><code>--ink-3</code></td><td>Figure title, column name, counter</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">02</p><h2>States</h2><p class="lead">Color comes from the .s-* classes and sets two variables together: --c paints the line and text, --c-soft the background. The same class means the same thing on .pill and .state.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · status colors, pill and state</span>
+  <div class="demo-view">
+<div style="display:grid;gap:var(--sp-5)">
+  <div class="pillrow">
+    <span class="pill s-ok">passed</span>
+    <span class="pill s-warn">slow</span>
+    <span class="pill s-bad">down</span>
+    <span class="pill s-sec">secret</span>
+    <span class="pill s-neutral">on hold</span>
+    <span class="pill s-accent">new</span>
+    <span class="pill">no class</span>
+  </div>
+  <p class="pillrow" style="margin:0">
+    <span class="state s-ok">done</span>
+    <span class="state s-warn">retrying</span>
+    <span class="state s-bad">timed out</span>
+    <span class="state s-sec">awaiting signature</span>
+    <span class="state s-neutral">queued</span>
+    <span class="state s-accent">selected</span>
+  </p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:var(--sp-5)</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;passed&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;slow&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-bad</span>"&gt;down&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>"&gt;secret&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;on hold&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-accent</span>"&gt;new&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill</span>"&gt;no class&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;done&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;retrying&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;timed out&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-sec</span>"&gt;awaiting signature&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-neutral</span>"&gt;queued&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-accent</span>"&gt;selected&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · service colors, background included</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill s-gitlab">source repo</span>
+  <span class="pill s-aws">eu-west-1</span>
+  <span class="pill s-k8s">cluster</span>
+  <span class="pill s-argo">sync</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-gitlab</span>"&gt;source repo&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-k8s</span>"&gt;cluster&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-argo</span>"&gt;sync&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Service classes now set the background themselves: 10% of the <code>--c</code> color. Older <code>style="--c-soft:color-mix(…)"</code> lines can be deleted. A <code>.pill</code> with no class is neutral, and so is <code>.state</code>. Color reinforces meaning, it does not carry it: each badge's word states the status on its own.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · --c does not leak into a nested component</span>
+  <div class="demo-view">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Disk almost full</span><div class="co-body"><p><code>logs-db</code> is 91% full · owner <span class="pill">platform</span> · last backup <span class="pill s-ok">succeeded</span></p></div></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>co co-warn</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-warn</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Disk almost full&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>code</span>&gt;logs-db&lt;/<span class='k'>code</span>&gt; is 91% full · owner &lt;<span class='k'>span</span> class="<span class='s'>pill</span>"&gt;platform&lt;/<span class='k'>span</span>&gt; · last backup &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;succeeded&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The warning box sets <code>--c</code> to yellow; the unclassed badge inside it still stays neutral, because every component defines its own defaults for <code>--c</code> and <code>--c-soft</code>. Badges used to inherit the container's color.</p></div>
+<h3>Deprecated names</h3>
+<div class="prose"><p>The old classes keep working until 1.0 and give the same color. In new markup, write the one in the right-hand column.</p></div>
+<div class="tbl"><table>
+  <thead><tr><th>Old</th><th>Look</th><th>New</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td><code>.pill-ok</code></td><td><span class="pill pill-ok">healthy</span></td><td><code>.s-ok</code></td><td><span class="pill s-ok">healthy</span></td></tr>
+    <tr><td><code>.pill-neutral</code></td><td><span class="pill pill-neutral">archived</span></td><td><code>.s-neutral</code></td><td><span class="pill s-neutral">archived</span></td></tr>
+    <tr><td><code>.state.ok</code> · <code>.warn</code> · <code>.bad</code></td><td><span class="state ok">done</span> <span class="state warn">waiting</span> <span class="state bad">error</span></td><td><code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code></td><td><span class="state s-ok">done</span> <span class="state s-warn">waiting</span> <span class="state s-bad">error</span></td></tr>
+    <tr><td><code>.p-auto</code></td><td><span class="pill p-auto">automatic</span></td><td><code>.s-ok</code></td><td><span class="pill s-ok">automatic</span></td></tr>
+    <tr><td><code>.p-manual</code></td><td><span class="pill p-manual">manual</span></td><td><code>.s-warn</code></td><td><span class="pill s-warn">manual</span></td></tr>
+    <tr><td><code>.p-inline</code></td><td><span class="pill p-inline">inline</span></td><td><code>.s-bad</code></td><td><span class="pill s-bad">inline</span></td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="State label">
+  <header class="ch-head"><p class="ch-num">03</p><h2>State label</h2><p class="lead">state comes from the drawing language: square, uppercase, no background; its line and text in the --c color. Without a class it is neutral.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · four states</span>
+  <div class="demo-view">
+<p class="pillrow">
+  <span class="state">queued</span>
+  <span class="state s-ok">done</span>
+  <span class="state s-warn">retrying</span>
+  <span class="state s-bad">timed out</span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state</span>"&gt;queued&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;done&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;retrying&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;timed out&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Its size is computed from the drawing unit <code>--u</code>: <code>max(9.5px, 11 × --u)</code>. Inside a drawing, <code>--u</code> comes from the drawing's width; outside a drawing it defaults to 1px, so you need not set it. For a larger label, enlarge the unit; the smallest size stops at 9.5px.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · scaling with the unit</span>
+  <div class="demo-view">
+<div style="display:grid;gap:10px">
+  <p class="pillrow" style="--u:.8px;margin:0"><span class="state s-ok">0.8px</span><span class="state s-bad">floor 9.5px</span></p>
+  <p class="pillrow" style="--u:1px;margin:0"><span class="state s-ok">1px</span><span class="state s-bad">default</span></p>
+  <p class="pillrow" style="--u:1.3px;margin:0"><span class="state s-ok">1.3px</span><span class="state s-bad">dashboard heading</span></p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;gap:10px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:.8px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;0.8px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;floor 9.5px&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:1px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;1px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;default&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>pillrow</span>" style="<span class='s'>--u:1.3px;margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;1.3px&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;dashboard heading&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">Labels gain meaning next to data, not on their own. A table cell, a heading and a list are the three most common places.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a queue workers table</span>
+  <div class="demo-view">
+<p class="chip" style="margin-bottom:8px">Table 1 · invoice worker queues</p>
+<div class="tbl"><table>
+  <thead><tr><th>Queue</th><th>Region</th><th>Pending</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>create-invoice</td><td><span class="pill s-aws">eu-west-1</span></td><td>12</td><td><span class="pill s-ok">flowing</span></td></tr>
+    <tr><td>send-email</td><td><span class="pill s-aws">eu-west-1</span></td><td>4,810</td><td><span class="pill s-warn">backing up</span></td></tr>
+    <tr><td>process-refund</td><td><span class="pill s-aws">eu-central-1</span></td><td>0</td><td><span class="pill s-neutral">stopped</span></td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:8px</span>"&gt;Table 1 · invoice worker queues&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Queue&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Region&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Pending&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Status&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;create-invoice&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;12&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;flowing&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;send-email&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;4,810&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;backing up&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;process-refund&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;0&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;stopped&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · next to a heading</span>
+  <div class="demo-view">
+<h3 style="margin:0 0 6px">Cache layer <span class="pill s-accent">experimental</span></h3>
+<p style="margin:0 0 18px;color:var(--ink-2)">70% of read requests are now answered without reaching the database.</p>
+<h3 style="margin:0 0 6px">Nightly backup <span class="state s-bad">failed</span></h3>
+<p style="margin:0;color:var(--ink-2)">The 03:00 backup hit the disk quota; it was retaken by hand at 09:00.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>h3</span> style="<span class='s'>margin:0 0 6px</span>"&gt;Cache layer &lt;<span class='k'>span</span> class="<span class='s'>pill s-accent</span>"&gt;experimental&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+&lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 18px;color:var(--ink-2)</span>"&gt;70% of read requests are now answered without reaching the database.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>h3</span> style="<span class='s'>margin:0 0 6px</span>"&gt;Nightly backup &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;failed&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>h3</span>&gt;
+&lt;<span class='k'>p</span> style="<span class='s'>margin:0;color:var(--ink-2)</span>"&gt;The 03:00 backup hit the disk quota; it was retaken by hand at 09:00.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · a release notes list</span>
+  <div class="demo-view">
+<ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+  <li><span class="pill s-ok">added</span> Quiet hours window for alert rules.</li>
+  <li><span class="pill s-sec">security</span> Session cookies are now sent over HTTPS only.</li>
+  <li><span class="pill s-bad">removed</span> The old <code>/v1/metrics</code> endpoint.</li>
+  <li><span class="pill s-neutral">internal</span> Dependency updates, no behavior change.</li>
+</ul>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ul</span> style="<span class='s'>list-style:none;padding:0;margin:0;display:grid;gap:8px</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;added&lt;/<span class='k'>span</span>&gt; Quiet hours window for alert rules.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>"&gt;security&lt;/<span class='k'>span</span>&gt; Session cookies are now sent over HTTPS only.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-bad</span>"&gt;removed&lt;/<span class='k'>span</span>&gt; The old &lt;<span class='k'>code</span>&gt;/v1/metrics&lt;/<span class='k'>code</span>&gt; endpoint.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;internal&lt;/<span class='k'>span</span>&gt; Dependency updates, no behavior change.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ul</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · inside a dark scene</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:16px">
+  <p class="chip" style="margin-bottom:10px">Figure 4 · deployment to the test environment</p>
+  <div class="pillrow" style="align-items:center">
+    <span class="pill s-gitlab">source</span>
+    <span class="pill s-k8s">staging</span>
+    <span class="state s-ok">synced</span>
+    <span class="state s-warn">2 pods pending</span>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-sm);padding:16px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:10px</span>"&gt;Figure 4 · deployment to the test environment&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-gitlab</span>"&gt;source&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-k8s</span>"&gt;staging&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;synced&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;2 pods pending&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">A badge is a word; not a sentence, and never a button. Color reinforces meaning but does not carry it alone.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · the word states the meaning</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill s-ok">passed</span>
+  <span class="pill s-bad">failed</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;passed&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-bad</span>"&gt;failed&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · meaning only in color</span>
+  <div class="demo-view">
+<div class="pillrow">
+  <span class="pill s-ok">test</span>
+  <span class="pill s-bad">test</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;test&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-bad</span>"&gt;test&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · one word, details alongside</span>
+  <div class="demo-view">
+<p style="margin:0"><span class="pill s-neutral">on hold</span> The owner is on leave; it will be taken over on October 14.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;on hold&lt;/<span class='k'>span</span>&gt; The owner is on leave; it will be taken over on October 14.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · squeezing a sentence into a badge</span>
+  <div class="demo-view">
+<p style="margin:0"><span class="pill s-neutral">owner on leave, takeover on october 14</span></p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;owner on leave, takeover on october 14&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Badges are plain text; screen readers read the word, not the color. So the status word must make sense on its own. Do not add click behavior to a badge; if you need a filter or a selection, use <code>.toggle-btn</code> or <code>.choice</code>. If the status changes live, give the container <code>aria-live="polite"</code>.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="buttons.html" rel="prev"><small>Previous · Components</small>Buttons</a><a href="callout.html" rel="next"><small>Next · Components</small>Callout</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

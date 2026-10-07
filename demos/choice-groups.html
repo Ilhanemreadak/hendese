@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choice groups · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html" aria-current="page">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Variants</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>States and multiple choice</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Keyboard</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Choice groups<em>Native radios, two looks.</em></h1>
+    <p class="intro"><code>.choice</code> draws the native radio buttons inside a <code>&lt;fieldset&gt;</code> as chips or segments. The behavior belongs to the browser: keyboard, form submission and screen reader support come for free. The result of a choice is usually written to a <code>.readout</code> line.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.choice</code> · <code>.choice.is-seg</code> · <code>legend</code> · <code>small</code></dd><dt>Input</dt><dd><code>&lt;input type="radio"&gt;</code>; <code>type="checkbox"</code> for multiple choice</dd><dt>JS</dt><dd>Not required; a <code>change</code> listener to write the result</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Variants">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Variants</h2><p class="lead">In the chip look, the selected item gets a heavy frame; in the segment look, a fill. Add small inside the label for secondary information.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · chip and segment</span>
+  <div class="demo-view">
+<fieldset class="choice">
+  <legend>Region</legend>
+  <label><input type="radio" name="sg-bolge" value="eu-west-1" checked><span>eu-west-1 <small>18 ms</small></span></label>
+  <label><input type="radio" name="sg-bolge" value="eu-central-1"><span>eu-central-1 <small>24 ms</small></span></label>
+  <label><input type="radio" name="sg-bolge" value="us-east-1"><span>us-east-1 <small>96 ms</small></span></label>
+</fieldset>
+<fieldset class="choice is-seg">
+  <legend>Log level</legend>
+  <label><input type="radio" name="sg-seviye" value="debug"><span>debug</span></label>
+  <label><input type="radio" name="sg-seviye" value="info" checked><span>info</span></label>
+  <label><input type="radio" name="sg-seviye" value="warn"><span>warn</span></label>
+  <label><input type="radio" name="sg-seviye" value="error"><span>error</span></label>
+</fieldset>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Region&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-bolge</span>" value="<span class='s'>eu-west-1</span>" checked&gt;&lt;<span class='k'>span</span>&gt;eu-west-1 &lt;<span class='k'>small</span>&gt;18 ms&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-bolge</span>" value="<span class='s'>eu-central-1</span>"&gt;&lt;<span class='k'>span</span>&gt;eu-central-1 &lt;<span class='k'>small</span>&gt;24 ms&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-bolge</span>" value="<span class='s'>us-east-1</span>"&gt;&lt;<span class='k'>span</span>&gt;us-east-1 &lt;<span class='k'>small</span>&gt;96 ms&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;
+&lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Log level&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-seviye</span>" value="<span class='s'>debug</span>"&gt;&lt;<span class='k'>span</span>&gt;debug&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-seviye</span>" value="<span class='s'>info</span>" checked&gt;&lt;<span class='k'>span</span>&gt;info&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-seviye</span>" value="<span class='s'>warn</span>"&gt;&lt;<span class='k'>span</span>&gt;warn&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-seviye</span>" value="<span class='s'>error</span>"&gt;&lt;<span class='k'>span</span>&gt;error&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Chips read well when the options are themselves names or values (region, environment, service). Segments feel more natural when you pick a position on a scale (level, range, size). Both use the same markup; the only difference is the <code>.is-seg</code> class.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="States and multiple choice">
+  <header class="ch-head"><p class="ch-num">02</p><h2>States and multiple choice</h2><p class="lead">Selected, hovered and keyboard-focused. The same look works with checkboxes; then the group carries more than one value.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · chip group with checkboxes</span>
+  <div class="demo-view">
+<fieldset class="choice" id="sg-kanal">
+  <legend>Alarm notification</legend>
+  <label><input type="checkbox" name="sg-kanal" value="email" checked><span>email</span></label>
+  <label><input type="checkbox" name="sg-kanal" value="chat" checked><span>chat channel</span></label>
+  <label><input type="checkbox" name="sg-kanal" value="pager"><span>pager <small>critical only</small></span></label>
+  <label><input type="checkbox" name="sg-kanal" value="webhook"><span>webhook</span></label>
+</fieldset>
+<div class="readout" id="sg-kanal-out" aria-live="polite"><p><b>2 channels</b>: email, chat.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>" id="<span class='s'>sg-kanal</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Alarm notification&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-kanal</span>" value="<span class='s'>email</span>" checked&gt;&lt;<span class='k'>span</span>&gt;email&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-kanal</span>" value="<span class='s'>chat</span>" checked&gt;&lt;<span class='k'>span</span>&gt;chat channel&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-kanal</span>" value="<span class='s'>pager</span>"&gt;&lt;<span class='k'>span</span>&gt;pager &lt;<span class='k'>small</span>&gt;critical only&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-kanal</span>" value="<span class='s'>webhook</span>"&gt;&lt;<span class='k'>span</span>&gt;webhook&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>sg-kanal-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;2 channels&lt;/<span class='k'>b</span>&gt;: email, chat.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Trigger</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td>Selected</td><td><code>input:checked</code></td><td>On a chip, a double heavy drawing frame and bold text; on a segment, an accent fill.</td></tr>
+    <tr><td>Hover</td><td><code>label:hover</code></td><td>The frame turns to the drawing color.</td></tr>
+    <tr><td>Focus</td><td><code>input:focus-visible</code></td><td>A 2px accent ring around the label box.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">No disabled look</span><div class="co-body"><p>The package defines no separate look for <code>disabled</code>; a disabled option looks the same as the others. Remove an unavailable option from the list and give the reason on a line near the group.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Keyboard">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Keyboard</h2><p class="lead">No script adds keyboard behavior; everything below comes from the native radio and checkbox.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Key</th><th>Radio group</th><th>Checkbox group</th></tr></thead>
+  <tbody>
+    <tr><td><code>Tab</code></td><td>Enters the group in a single stop and focuses the selected option; the next Tab leaves the group.</td><td>Each box is its own stop.</td></tr>
+    <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>Moves focus and selects at the same time; the <code>change</code> event fires on every step.</td><td>No effect.</td></tr>
+    <tr><td><code>Space</code></td><td>Selects the focused option.</td><td>Toggles the focused box.</td></tr>
+  </tbody>
+</table></div>
+<div class="demo">
+  <span class="demo-label">Example · Tab in, move with the arrows</span>
+  <div class="demo-view">
+<fieldset class="choice is-seg" id="sg-aralik">
+  <legend>Chart range</legend>
+  <label><input type="radio" name="sg-aralik" value="1 hour" checked><span>1 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="6 hours"><span>6 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="24 hours"><span>24 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="7 days"><span>7 d</span></label>
+</fieldset>
+<div class="readout" id="sg-aralik-out" aria-live="polite"><p>Last <b>1 hour</b> · 60 points, 1-minute resolution.</p></div>
+  </div>
+</div>
+<div class="prose"><p>Arrow keys change the selection right away, so if each <code>change</code> event starts heavy work (a network request, a big redraw), debounce it with a short delay; a reader passing through four ranges shouldn't wait for four requests.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">A few groups make up a configurator; the result line is recalculated on every change and calls out a risky combination in red.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · queue worker configurator</span>
+  <div class="demo-view">
+<div id="sg-isci">
+  <fieldset class="choice">
+    <legend>Environment</legend>
+    <label><input type="radio" name="sg-ortam" value="dev"><span>dev</span></label>
+    <label><input type="radio" name="sg-ortam" value="staging" checked><span>staging</span></label>
+    <label><input type="radio" name="sg-ortam" value="prod"><span>prod</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Machine</legend>
+    <label><input type="radio" name="sg-makine" value="small" checked><span>small <small>2 vCPU</small></span></label>
+    <label><input type="radio" name="sg-makine" value="medium"><span>medium <small>4 vCPU</small></span></label>
+    <label><input type="radio" name="sg-makine" value="large"><span>large <small>8 vCPU</small></span></label>
+  </fieldset>
+  <fieldset class="choice is-seg">
+    <legend>Replicas</legend>
+    <label><input type="radio" name="sg-kopya" value="1" checked><span>1</span></label>
+    <label><input type="radio" name="sg-kopya" value="2"><span>2</span></label>
+    <label><input type="radio" name="sg-kopya" value="3"><span>3</span></label>
+    <label><input type="radio" name="sg-kopya" value="6"><span>6</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Options</legend>
+    <label><input type="checkbox" name="sg-ek" value="spot"><span>spot machine <small>−60%</small></span></label>
+    <label><input type="checkbox" name="sg-ek" value="auto"><span>autoscaling</span></label>
+  </fieldset>
+  <div class="readout" id="sg-isci-out" aria-live="polite"><p>Calculating…</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>sg-isci</span>"&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Environment&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ortam</span>" value="<span class='s'>dev</span>"&gt;&lt;<span class='k'>span</span>&gt;dev&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ortam</span>" value="<span class='s'>staging</span>" checked&gt;&lt;<span class='k'>span</span>&gt;staging&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ortam</span>" value="<span class='s'>prod</span>"&gt;&lt;<span class='k'>span</span>&gt;prod&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Machine&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-makine</span>" value="<span class='s'>small</span>" checked&gt;&lt;<span class='k'>span</span>&gt;small &lt;<span class='k'>small</span>&gt;2 vCPU&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-makine</span>" value="<span class='s'>medium</span>"&gt;&lt;<span class='k'>span</span>&gt;medium &lt;<span class='k'>small</span>&gt;4 vCPU&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-makine</span>" value="<span class='s'>large</span>"&gt;&lt;<span class='k'>span</span>&gt;large &lt;<span class='k'>small</span>&gt;8 vCPU&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Replicas&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-kopya</span>" value="<span class='s'>1</span>" checked&gt;&lt;<span class='k'>span</span>&gt;1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-kopya</span>" value="<span class='s'>2</span>"&gt;&lt;<span class='k'>span</span>&gt;2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-kopya</span>" value="<span class='s'>3</span>"&gt;&lt;<span class='k'>span</span>&gt;3&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-kopya</span>" value="<span class='s'>6</span>"&gt;&lt;<span class='k'>span</span>&gt;6&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;Options&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-ek</span>" value="<span class='s'>spot</span>"&gt;&lt;<span class='k'>span</span>&gt;spot machine &lt;<span class='k'>small</span>&gt;−60%&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" name="<span class='s'>sg-ek</span>" value="<span class='s'>auto</span>"&gt;&lt;<span class='k'>span</span>&gt;autoscaling&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>sg-isci-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · segment in a dark panel header</span>
+  <div class="demo-view">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:16px 18px">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px">
+    <p class="chip" style="margin-bottom:14px"><span lang="en">web-api</span> · p95 latency</p>
+    <fieldset class="choice is-seg" style="margin:0">
+      <legend>Percentile</legend>
+      <label><input type="radio" name="sg-yuzde" value="p50"><span>p50</span></label>
+      <label><input type="radio" name="sg-yuzde" value="p95" checked><span>p95</span></label>
+      <label><input type="radio" name="sg-yuzde" value="p99"><span>p99</span></label>
+    </fieldset>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:16px 18px</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>" style="<span class='s'>margin-bottom:14px</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt; · p95 latency&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>" style="<span class='s'>margin:0</span>"&gt;
+      &lt;<span class='k'>legend</span>&gt;Percentile&lt;/<span class='k'>legend</span>&gt;
+      &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-yuzde</span>" value="<span class='s'>p50</span>"&gt;&lt;<span class='k'>span</span>&gt;p50&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-yuzde</span>" value="<span class='s'>p95</span>" checked&gt;&lt;<span class='k'>span</span>&gt;p95&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-yuzde</span>" value="<span class='s'>p99</span>"&gt;&lt;<span class='k'>span</span>&gt;p99&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">A few short options go in a segment; many or long options go in chips or a list. Always name the group with a legend.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · named group, short options</span>
+  <div class="demo-view">
+<fieldset class="choice is-seg">
+  <legend>Cache TTL</legend>
+  <label><input type="radio" name="sg-ttl-yap" value="1 min"><span>1 min</span></label>
+  <label><input type="radio" name="sg-ttl-yap" value="5 min" checked><span>5 min</span></label>
+  <label><input type="radio" name="sg-ttl-yap" value="1 h"><span>1 h</span></label>
+</fieldset>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Cache TTL&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yap</span>" value="<span class='s'>1 min</span>"&gt;&lt;<span class='k'>span</span>&gt;1 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yap</span>" value="<span class='s'>5 min</span>" checked&gt;&lt;<span class='k'>span</span>&gt;5 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yap</span>" value="<span class='s'>1 h</span>"&gt;&lt;<span class='k'>span</span>&gt;1 h&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · unnamed group, long options</span>
+  <div class="demo-view">
+<fieldset class="choice is-seg">
+  <legend>Choose</legend>
+  <label><input type="radio" name="sg-ttl-yapma" value="a"><span>never use the cache</span></label>
+  <label><input type="radio" name="sg-ttl-yapma" value="b" checked><span>use it only for read requests</span></label>
+  <label><input type="radio" name="sg-ttl-yapma" value="c"><span>serve everything from cache and refresh in the background</span></label>
+</fieldset>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Choose&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yapma</span>" value="<span class='s'>a</span>"&gt;&lt;<span class='k'>span</span>&gt;never use the cache&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yapma</span>" value="<span class='s'>b</span>" checked&gt;&lt;<span class='k'>span</span>&gt;use it only for read requests&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>sg-ttl-yapma</span>" value="<span class='s'>c</span>"&gt;&lt;<span class='k'>span</span>&gt;serve everything from cache and refresh in the background&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A screen reader announces the group by its <code>legend</code> text; the legend should be visible and say what is being chosen (“Cache TTL”, not “Choose”). Each group's <code>name</code> is unique on the page. Give the result line <code>aria-live="polite"</code> so changes made with the arrow keys are read too.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Without JS</span><div class="co-body"><p>If the group only makes a script write a result, it means nothing with JS off; hide it in the page CSS:</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="runbook.html" rel="prev"><small>Previous · Components</small>Runbook</a><a href="readout.html" rel="next"><small>Next · Components</small>Readout</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+function sgVal(name) { var i = document.querySelector('input[name="' + name + '"]:checked'); return i ? i.value : ''; }
+function sgAll(name) { return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+/* notification channels (checkboxes) */
+(function () {
+  var out = document.getElementById('sg-kanal-out');
+  function show() {
+    var v = sgAll('sg-kanal');
+    out.classList.toggle('bad', !v.length);
+    out.innerHTML = v.length ? '<p><b>' + v.length + (v.length === 1 ? ' channel' : ' channels') + '</b>: ' + v.join(', ') + '.</p>' : '<p><b>No channels.</b> Even if the alarm fires, it reaches no one.</p>';
+  }
+  document.getElementById('sg-kanal').addEventListener('change', show); show();
+})();
+/* chart range */
+(function () {
+  var out = document.getElementById('sg-aralik-out');
+  var info = { '1 hour': '60 points, 1-minute resolution', '6 hours': '72 points, 5-minute resolution', '24 hours': '96 points, 15-minute resolution', '7 days': '168 points, 1-hour resolution' };
+  document.getElementById('sg-aralik').addEventListener('change', function () { var v = sgVal('sg-aralik'); out.innerHTML = '<p>Last <b>' + v + '</b> · ' + info[v] + '.</p>'; });
+})();
+/* queue worker configurator: estimated monthly cost */
+(function () {
+  var out = document.getElementById('sg-isci-out'), saat = { small: 0.085, medium: 0.17, large: 0.34 };
+  function show() {
+    var env = sgVal('sg-ortam'), m = sgVal('sg-makine'), n = +sgVal('sg-kopya'), ek = sgAll('sg-ek');
+    var spot = ek.indexOf('spot') > -1, auto = ek.indexOf('auto') > -1;
+    var aylik = saat[m] * 730 * n * (spot ? 0.4 : 1);
+    var risk = env === 'prod' && (n === 1 || spot);
+    out.classList.toggle('bad', risk);
+    out.classList.toggle('ok', !risk && env === 'prod');
+    out.innerHTML = '<p><b>' + env + '</b> · ' + n + ' × ' + m + (spot ? ' (spot)' : '') + (auto ? ', autoscaling on' : '') +
+      ' · estimated <b>$' + aylik.toFixed(0) + ' / month</b>.' +
+      (risk ? ' In production, ' + (n === 1 ? 'a single replica stops the queue on any restart.' : 'a spot machine can be reclaimed at any moment; jobs are cut off halfway.') : env === 'prod' ? ' Fit for production.' : '') + '</p>';
+  }
+  document.getElementById('sg-isci').addEventListener('change', show); show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

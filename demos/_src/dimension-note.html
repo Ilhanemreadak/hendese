@@ -1,111 +1,111 @@
-<!-- meta {"title":"Ölçü notu","group":"Bileşenler","order":200,"tagline":"Bir değerin yanına tıklayınca açılan kısa açıklama.","intro":"<code>.dim-tip</code> bir sayının, bir alanın ya da bir sütunun neden öyle olduğunu söyleyen kısa nottur; çizimdeki ölçü yazısı gibi. Yerel <code>popover</code> öğesidir: düğmeye tıklayınca açılır, dışarı tıklayınca ya da Esc ile kapanır. Tarayıcı destekliyorsa düğmenin hemen üstüne yerleşir.","summary":"<code>popovertarget</code> + <code>.dim-tip[popover]</code>; metin içinde, alan başlığında, tablo başlığında; konum ve kapanma.","facts":{"Sınıflar":"<code>.dim-tip</code>","Yapı":"<code>&lt;button popovertarget=\"…\"&gt;</code> ve hemen ardından <code>&lt;div|span popover id=\"…\" class=\"dim-tip\"&gt;</code>","Konum":"Anchor positioning varsa düğmenin üstünde, yer yoksa altında; yoksa ekranın ortasında","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Dimension note","group":"Components","order":200,"tagline":"A short explanation that opens when you click next to a value.","intro":"<code>.dim-tip</code> is a short note that says why a number, a field or a column is what it is, like the dimension text on a drawing. It is a native <code>popover</code> element: it opens when you click the button and closes when you click outside or press Esc. If the browser supports it, it sits right above the button.","summary":"<code>popovertarget</code> + <code>.dim-tip[popover]</code>; in running text, in a field heading, in a table header; position and dismissal.","facts":{"Classes":"<code>.dim-tip</code>","Structure":"<code>&lt;button popovertarget=\"…\"&gt;</code> followed directly by <code>&lt;div|span popover id=\"…\" class=\"dim-tip\"&gt;</code>","Position":"With anchor positioning, above the button, or below it if there is no room; without it, in the middle of the screen","JS":"Not needed"}} -->
 
-<chapter title="Anatomi" lead="İki öğe: açan düğme ve not. Düğme popovertarget ile notun id'sini gösterir; not, düğmenin hemen ardından gelir. Fareyle üstüne gelmek bir şey açmaz; not yalnız tıklama, dokunma ya da Enter ile açılır.">
-<demo label="Örnek · tıklayın">
-<p>search-indexer en fazla <b>512 MiB</b> bellek kullanır <button class="icon-btn" type="button" popovertarget="on-bellek" aria-label="Neden 512 MiB?"><svg><use href="#i-info"/></svg></button><span popover id="on-bellek" class="dim-tip">Dizin parçası 380 MiB; kalan pay toplu yazma tamponu.</span></p>
+<chapter title="Anatomy" lead="Two elements: the button that opens it and the note. The button points at the note's id with popovertarget; the note comes right after the button. Hovering opens nothing; the note opens only on click, tap or Enter.">
+<demo label="Example · click it">
+<p>search-indexer uses at most <b>512 MiB</b> of memory <button class="icon-btn" type="button" popovertarget="on-bellek" aria-label="Why 512 MiB?"><svg><use href="#i-info"/></svg></button><span popover id="on-bellek" class="dim-tip">The index shard is 380 MiB; the rest is the batch write buffer.</span></p>
 </demo>
 <dl class="kv">
-  <dt><code>button[popovertarget]</code></dt><dd>Açan düğme. Yalnız ikonluysa <code>aria-label</code> bir soru olarak yazılır (“Neden 512 MiB?”). Tarayıcı düğmeye <code>aria-expanded</code> durumunu kendisi verir.</dd>
-  <dt><code>.dim-tip[popover]</code></dt><dd>Not. Paragraf içindeyse <code>&lt;span&gt;</code>, değilse <code>&lt;div&gt;</code>. Kısa bir cümle ya da bir hesap; mono, küçük punto. Kenarları ölçü çizgisi gibi çizim renginde, üst kenar kalem renginde.</dd>
-  <dt>Sıra</dt><dd>Not DOM'da düğmenin hemen ardından gelir: ekran okuyucu ve sekme sırası notu düğmenin yanında bulur. Notları sayfanın sonunda toplamayın.</dd>
+  <dt><code>button[popovertarget]</code></dt><dd>The button that opens it. If it has only an icon, write its <code>aria-label</code> as a question (“Why 512 MiB?”). The browser sets the button's <code>aria-expanded</code> state itself.</dd>
+  <dt><code>.dim-tip[popover]</code></dt><dd>The note. A <code>&lt;span&gt;</code> inside a paragraph, a <code>&lt;div&gt;</code> elsewhere. One short sentence or one calculation; mono, small size. Its edges use the drawing color like a dimension line; the top edge uses the pencil color.</dd>
+  <dt>Order</dt><dd>In the DOM the note comes right after the button, so screen readers and tab order find the note next to its button. Do not collect notes at the end of the page.</dd>
 </dl>
 </chapter>
 
-<chapter title="Metin içinde" lead="Okuma metninde bir değerin hemen ardından. Cümle not açılmadan da tam ve doğrudur; not yalnız “neden” sorusunu cevaplar.">
-<demo label="Örnek · sürüm notu paragrafı">
+<chapter title="In running text" lead="Right after a value in body text. The sentence is complete and correct without opening the note; the note only answers “why”.">
+<demo label="Example · release note paragraph">
 <div class="prose">
-  <p>Bu sürümle <code>billing-worker</code> kuyruktan bir seferde <b>25</b> ileti çeker <button class="icon-btn" type="button" popovertarget="on-toplu" aria-label="Neden 25 ileti?"><svg><use href="#i-info"/></svg></button><span popover id="on-toplu" class="dim-tip">Kuyruk tek istekte en çok 25 ileti verir; daha büyük toplu çekme iki istek demektir.</span> ve görünmezlik süresi <b>90 saniyeye</b> çıktı <button class="icon-btn" type="button" popovertarget="on-sure" aria-label="Neden 90 saniye?"><svg><use href="#i-info"/></svg></button><span popover id="on-sure" class="dim-tip">En yavaş fatura 60 sn sürüyor; 1,5 kat pay bırakıldı.</span>. Eski işçiler yeni ayarı bir sonraki yeniden başlatmada alır.</p>
+  <p>With this release <code>billing-worker</code> pulls <b>25</b> messages from the queue at a time <button class="icon-btn" type="button" popovertarget="on-toplu" aria-label="Why 25 messages?"><svg><use href="#i-info"/></svg></button><span popover id="on-toplu" class="dim-tip">The queue returns at most 25 messages per request; a larger batch means two requests.</span> and the visibility timeout went up to <b>90 seconds</b> <button class="icon-btn" type="button" popovertarget="on-sure" aria-label="Why 90 seconds?"><svg><use href="#i-info"/></svg></button><span popover id="on-sure" class="dim-tip">The slowest invoice takes 60 s; a 1.5× margin was added.</span>. Old workers pick up the new setting on their next restart.</p>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Alan başlığının yanında" lead="Bir form grubunun başlığında, seçeneklerin ne demek olduğunu açıklayan not. Düğme legend'ın içinde, not hemen ardında durur.">
-<demo label="Örnek · dağıtım stratejisi">
+<chapter title="Next to a field heading" lead="A note in the heading of a form group that explains what the options mean. The button sits inside the legend; the note comes right after it.">
+<demo label="Example · deployment strategy">
 <fieldset class="field">
-  <legend>Dağıtım stratejisi <button class="icon-btn" type="button" popovertarget="on-strateji" aria-label="Stratejiler arasındaki fark ne?"><svg><use href="#i-info"/></svg></button></legend>
-  <div popover id="on-strateji" class="dim-tip">Sırayla: kopyalar tek tek yenilenir, eski ve yeni sürüm birkaç dakika birlikte çalışır. Mavi / yeşil: yeni sürüm yanında kurulur, trafik tek seferde geçer.</div>
-  <label class="field-check"><input type="radio" name="on-strateji-r" checked>Sırayla yenile</label>
-  <label class="field-check"><input type="radio" name="on-strateji-r">Mavi / yeşil</label>
+  <legend>Deployment strategy <button class="icon-btn" type="button" popovertarget="on-strateji" aria-label="What is the difference between the strategies?"><svg><use href="#i-info"/></svg></button></legend>
+  <div popover id="on-strateji" class="dim-tip">Rolling: replicas are replaced one by one, and the old and new versions run side by side for a few minutes. Blue / green: the new version is set up alongside, and traffic switches over at once.</div>
+  <label class="field-check"><input type="radio" name="on-strateji-r" checked>Rolling update</label>
+  <label class="field-check"><input type="radio" name="on-strateji-r">Blue / green</label>
 </fieldset>
 </demo>
-<div class="prose"><p>Tek bir metin alanında düğme <code>&lt;label&gt;</code>'ın içine konmaz: etiketin içinde ikinci bir denetim geçersizdir ve etiketin tıklaması karışır. Notu grup başlığında (<code>legend</code>) ya da alanın yardım satırında verin. Alanın ne istediği (birim, biçim) nota değil, <code>.field-help</code> satırına yazılır.</p></div>
+<div class="prose"><p>For a single text field, do not put the button inside the <code>&lt;label&gt;</code>: a second control inside a label is invalid and muddles the label's click. Put the note in the group heading (<code>legend</code>) or in the field's help line. What the field expects (unit, format) goes in the <code>.field-help</code> line, not in a note.</p></div>
 </chapter>
 
-<chapter title="Tablo başlığının yanında" lead="Bir sütunun nasıl hesaplandığı başlıkta, sütunun adının yanında açıklanır. Not başlık hücresinin içinde, düğmenin ardındadır.">
-<demo label="Örnek · maliyet tablosu">
+<chapter title="Next to a table header" lead="How a column is calculated is explained in its header, next to the column name. The note sits inside the header cell, after the button.">
+<demo label="Example · cost table">
 <div class="tbl"><table>
   <thead><tr>
-    <th>Servis</th>
-    <th>Bölge</th>
-    <th class="num">Aylık <button class="icon-btn" type="button" popovertarget="on-aylik" aria-label="Aylık maliyet nasıl hesaplanır?"><svg><use href="#i-info"/></svg></button><span popover id="on-aylik" class="dim-tip">Son 30 günün harcaması; vergi ve destek ücreti hariç.</span></th>
-    <th class="num">Değişim</th>
+    <th>Service</th>
+    <th>Region</th>
+    <th class="num">Monthly <button class="icon-btn" type="button" popovertarget="on-aylik" aria-label="How is the monthly cost calculated?"><svg><use href="#i-info"/></svg></button><span popover id="on-aylik" class="dim-tip">Spend over the last 30 days; excludes tax and support fees.</span></th>
+    <th class="num">Change</th>
   </tr></thead>
   <tbody>
-    <tr><td>web-api</td><td>eu-west-1</td><td class="num">1 240 $</td><td class="num">+4 %</td></tr>
-    <tr><td>search-indexer</td><td>eu-west-1</td><td class="num">860 $</td><td class="num">−12 %</td></tr>
-    <tr><td>report-cron</td><td>eu-central-1</td><td class="num">95 $</td><td class="num">0 %</td></tr>
+    <tr><td>web-api</td><td>eu-west-1</td><td class="num">$1,240</td><td class="num">+4 %</td></tr>
+    <tr><td>search-indexer</td><td>eu-west-1</td><td class="num">$860</td><td class="num">−12 %</td></tr>
+    <tr><td>report-cron</td><td>eu-central-1</td><td class="num">$95</td><td class="num">0 %</td></tr>
   </tbody>
 </table></div>
 </demo>
 </chapter>
 
-<chapter title="Konum" lead="Tarayıcı CSS anchor positioning'i destekliyorsa not, açan düğmeye bağlanır ve hemen üstünde açılır; üstte yer yoksa alta çevrilir. Desteklemiyorsa popover'ın varsayılanı geçerlidir: ekranın ortasında.">
+<chapter title="Position" lead="If the browser supports CSS anchor positioning, the note is tied to its button and opens right above it; if there is no room above, it flips below. If not, the popover default applies: the middle of the screen.">
 <div class="tbl"><table>
-  <thead><tr><th>Tarayıcı</th><th>Not nerede</th><th>Neden</th></tr></thead>
+  <thead><tr><th>Browser</th><th>Where the note goes</th><th>Why</th></tr></thead>
   <tbody>
-    <tr><td>Anchor positioning var</td><td>Düğmenin üstünde; yer yoksa altında</td><td><code>position-area: block-start</code> · <code>position-try-fallbacks: flip-block</code>; <code>popovertarget</code> düğmeyi örtük çapa yapar</td></tr>
-    <tr><td>Yok</td><td>Ekranın ortasında</td><td>Tarayıcının popover varsayılanı (<code>inset: 0; margin: auto</code>); not yine okunur ve aynı yollarla kapanır</td></tr>
+    <tr><td>Has anchor positioning</td><td>Above the button; below it if there is no room</td><td><code>position-area: block-start</code> · <code>position-try-fallbacks: flip-block</code>; <code>popovertarget</code> makes the button an implicit anchor</td></tr>
+    <tr><td>Does not</td><td>In the middle of the screen</td><td>The browser's popover default (<code>inset: 0; margin: auto</code>); the note is still readable and closes the same ways</td></tr>
   </tbody>
 </table></div>
-<demo label="Örnek · sayfanın üstüne yakın bir düğmeyle deneyin">
+<demo label="Example · try it with a button near the top of the page">
 <div class="pillrow">
-  <span>Uç nokta zaman aşımı <b>30 sn</b></span>
-  <button class="icon-btn" type="button" popovertarget="on-zaman" aria-label="Neden 30 saniye?"><svg><use href="#i-info"/></svg></button>
-  <div popover id="on-zaman" class="dim-tip">Yük dengeleyicinin boşta kalma süresi 60 sn; uygulama ondan önce yanıt vermeli.</div>
+  <span>Endpoint timeout <b>30 s</b></span>
+  <button class="icon-btn" type="button" popovertarget="on-zaman" aria-label="Why 30 seconds?"><svg><use href="#i-info"/></svg></button>
+  <div popover id="on-zaman" class="dim-tip">The load balancer's idle timeout is 60 s; the app must respond before that.</div>
 </div>
 </demo>
-<figure class="code"><figcaption class="code-head"><span class="code-file">components.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="k">@supports</span> (position-area: block-start) {
+<figure class="code"><figcaption class="code-head"><span class="code-file">components.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">@supports</span> (position-area: block-start) {
   <span class="k">.dim-tip</span> { inset: <span class="v">auto</span>; position-area: <span class="v">block-start</span>; position-try-fallbacks: <span class="v">flip-block</span>; }
 }</code></pre></figure>
 </chapter>
 
-<chapter title="Durumlar" lead="Not kapalı ya da açıktır. Açmak tek bir eylemdir; kapatmanın üç yolu vardır ve hepsi tarayıcıdan gelir.">
-<demo label="Örnek · ikisini sırayla açın">
+<chapter title="States" lead="The note is closed or open. Opening takes one action; there are three ways to close it, and all of them come from the browser.">
+<demo label="Example · open both in turn">
 <div class="pillrow">
-  <span>Hedef grup <b>3 / 3</b> sağlıklı</span>
-  <button class="icon-btn" type="button" popovertarget="on-saglik" aria-label="Sağlık nasıl ölçülüyor?"><svg><use href="#i-info"/></svg></button>
-  <div popover id="on-saglik" class="dim-tip">/healthz her 10 sn; art arda 2 başarı sağlıklı, 3 hata sağlıksız sayılır.</div>
-  <span>· tepki süresi <b>p95 180 ms</b></span>
-  <button class="icon-btn" type="button" popovertarget="on-p95" aria-label="p95 ne demek?"><svg><use href="#i-info"/></svg></button>
-  <div popover id="on-p95" class="dim-tip">İsteklerin %95'i bu süreden kısa; son 5 dakika.</div>
+  <span>Target group <b>3 / 3</b> healthy</span>
+  <button class="icon-btn" type="button" popovertarget="on-saglik" aria-label="How is health measured?"><svg><use href="#i-info"/></svg></button>
+  <div popover id="on-saglik" class="dim-tip">/healthz every 10 s; 2 successes in a row count as healthy, 3 failures as unhealthy.</div>
+  <span>· response time <b>p95 180 ms</b></span>
+  <button class="icon-btn" type="button" popovertarget="on-p95" aria-label="What does p95 mean?"><svg><use href="#i-info"/></svg></button>
+  <div popover id="on-p95" class="dim-tip">95% of requests are faster than this; last 5 minutes.</div>
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>Nasıl</th><th>Ne olur</th></tr></thead>
+  <thead><tr><th>State</th><th>How</th><th>What happens</th></tr></thead>
   <tbody>
-    <tr><td>Kapalı</td><td>Varsayılan</td><td>Not çizilmez; düğme <code>aria-expanded="false"</code> okunur.</td></tr>
-    <tr><td>Açık</td><td>Düğmeye tıklama, Enter ya da Boşluk; seçici <code>:popover-open</code></td><td>Not üst katmanda; düğme <code>aria-expanded="true"</code>. Odak düğmede kalır.</td></tr>
-    <tr><td>Hafif kapanış</td><td>Dışarı tıklama · Esc · aynı düğmeye yeniden basma</td><td>Not kapanır, odak düğmede kalır. Başka bir not açılırsa açık olan kendiliğinden kapanır; aynı anda tek not açıktır.</td></tr>
-    <tr><td>Odak</td><td><code>:focus-visible</code></td><td>Düğmede vurgu halkası.</td></tr>
+    <tr><td>Closed</td><td>Default</td><td>The note is not drawn; the button reads <code>aria-expanded="false"</code>.</td></tr>
+    <tr><td>Open</td><td>Click, Enter or Space on the button; selector <code>:popover-open</code></td><td>The note is in the top layer; the button reads <code>aria-expanded="true"</code>. Focus stays on the button.</td></tr>
+    <tr><td>Light dismiss</td><td>Click outside · Esc · press the same button again</td><td>The note closes and focus stays on the button. If another note opens, the open one closes by itself; only one note is open at a time.</td></tr>
+    <tr><td>Focus</td><td><code>:focus-visible</code></td><td>A focus ring on the button.</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Notun devre dışı hali yoktur. Söylenecek bir şey yoksa düğme çizilmez.</p></div>
+<div class="prose"><p>The note has no disabled state. If there is nothing to say, do not draw the button.</p></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Not ek bilgidir: okur onu hiç açmasa da doğru karar verebilmelidir. Fareyle üstüne gelince açılan ipucu yazılmaz.">
+<chapter title="Do / don't" lead="The note is extra information: readers must be able to decide correctly without ever opening it. Do not write tooltips that open on hover.">
 <div class="dodont">
-<demo label="Yap · uyarı metinde, ayrıntı notta">
-<p><b>Silinen birim geri gelmez.</b> Son anlık görüntü 6 saat önce alındı <button class="icon-btn" type="button" popovertarget="on-yap" aria-label="Anlık görüntü ne zaman alınır?"><svg><use href="#i-info"/></svg></button><span popover id="on-yap" class="dim-tip">Her gün 03:00 ve 15:00; 7 gün saklanır.</span></p>
+<demo label="Do · the warning in the text, the detail in the note">
+<p><b>A deleted volume cannot be recovered.</b> The last snapshot was taken 6 hours ago <button class="icon-btn" type="button" popovertarget="on-yap" aria-label="When are snapshots taken?"><svg><use href="#i-info"/></svg></button><span popover id="on-yap" class="dim-tip">Every day at 03:00 and 15:00; kept for 7 days.</span></p>
 </demo>
-<demo label="Yapma · asıl bilgi notta, ipucu üzerine gelince">
-<p>Birim silinecek <button class="icon-btn" type="button" popovertarget="on-yapma" aria-label="Bilgi"><svg><use href="#i-info"/></svg></button><span popover id="on-yapma" class="dim-tip">Geri alınamaz; anlık görüntü yok.</span> <button class="btn" type="button" title="Bu işlem tüm verileri siler">Sil</button></p>
+<demo label="Don't · the key information in the note, a tooltip on hover">
+<p>The volume will be deleted <button class="icon-btn" type="button" popovertarget="on-yapma" aria-label="Info"><svg><use href="#i-info"/></svg></button><span popover id="on-yapma" class="dim-tip">Cannot be undone; no snapshot.</span> <button class="btn" type="button" title="This action deletes all data">Delete</button></p>
 </demo>
 </div>
 <div class="prose"><ul>
-  <li><b>Asıl bilgi metindedir.</b> “Geri alınamaz” gibi kararı değiştiren bir şey yalnız notta durursa çoğu okur onu görmez.</li>
-  <li><b>Üzerine gelince açılan ipucu yok.</b> <code>title</code> ve hover ipuçları dokunmatik ekranda, klavyede ve ekran büyüteçte çoğu zaman görünmez. Paketin notu yalnız tıklamayla açılır.</li>
-  <li><b>Düğme etiketi bir sorudur</b> (“Neden 512 MiB?”), “Bilgi” değil; ekran okuyucu kullanıcısı notu açmadan neyi açıklayacağını bilir.</li>
-  <li><b>Not düğmenin hemen ardındadır.</b> Paragraf içinde <code>&lt;span popover&gt;</code>; tüm notları sayfa sonunda toplamak okuma sırasını koparır.</li>
-  <li><b>Not kısadır.</b> Bir iki cümle ya da bir hesap. Daha uzunsa metne ya da bir callout'a taşıyın.</li>
+  <li><b>The key information is in the text.</b> If something that changes the decision, like “cannot be undone”, appears only in a note, most readers never see it.</li>
+  <li><b>No tooltip on hover.</b> <code>title</code> and hover tips are often invisible on touch screens, with a keyboard and under a screen magnifier. The package's note opens only on click.</li>
+  <li><b>The button label is a question</b> (“Why 512 MiB?”), not “Info”; a screen reader user knows what it explains without opening the note.</li>
+  <li><b>The note comes right after its button.</b> Use <code>&lt;span popover&gt;</code> inside a paragraph; collecting all notes at the end of the page breaks the reading order.</li>
+  <li><b>The note is short.</b> One or two sentences or one calculation. If it is longer, move it into the text or a callout.</li>
 </ul></div>
 </chapter>

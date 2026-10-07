@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line families · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html">Drawing units</a>
+    <a class="nav-page" href="line-families.html" aria-current="page">Line families</a>
+    <a class="nav-page" href="station-explorer.html">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Weight family</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Pattern and status</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Fills</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>On a dark scene</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Blueprint</p>
+    <h1>Line families<em>Weight is a hierarchy, pattern is a meaning.</em></h1>
+    <p class="intro">Every line in a Hendese drawing says something. The weight family (guide, drawing, emphasis, dimension) tells what is in front; the pattern family (solid, dashed, ghost, blocked) tells what is real. Status colors add only color on top of these two.</p>
+<dl class="kv"><dt>Weight</dt><dd><code>.ln-pencil</code> · <code>.pencil</code> · <code>.pencil-2</code> · <code>.ln-draw</code> · <code>.ln-strong</code> · <code>.dim</code></dd><dt>Meaning</dt><dd><code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.ln-ok</code> · <code>.ln-warn</code> · <code>.ln-bad</code></dd><dt>Fill</dt><dd><code>.fill-paper</code> · <code>.fill-scene</code> · <code>.fill-draw</code></dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Weight family">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Weight family</h2><p class="lead">Four weights and a dimension line. A drawing's body is drawn with ln-draw; guides step back, and emphasis goes to one thing only.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · legend sheet · weight</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">01 · Legend</p>
+  <p class="fig-cap">Weight family</p>
+  <div class="drawing" style="--aw:900;--ah:250">
+    <svg viewBox="0 0 900 250" aria-hidden="true">
+      <path class="ln-pencil" d="M0 30H900"/>
+      <path class="pencil-2" d="M20 60H220"/>
+      <path class="ln-pencil" d="M20 100H220"/>
+      <path class="ln-draw" d="M20 140H220"/>
+      <path class="ln-strong" d="M20 180H220"/>
+      <path class="dim" d="M20 220H220M20 212V228M220 212V228M20 220l8-3v6zM220 220l-8-3v6z"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Line</span></p>
+    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Class</span></p>
+    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">When</span></p>
+    <p class="dl" style="--x:250;--y:50;--w:220"><code>.pencil-2</code> · 2px</p>
+    <p class="dl" style="--x:480;--y:50;--w:400">Background grid; nearly invisible.</p>
+    <p class="dl" style="--x:250;--y:90;--w:220"><code>.ln-pencil</code> · 1px</p>
+    <p class="dl" style="--x:480;--y:90;--w:400">Guide, baseline, leader, extension.</p>
+    <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-draw</code> · 1.5px</p>
+    <p class="dl" style="--x:480;--y:130;--w:400">Box, track, face: the body of the drawing.</p>
+    <p class="dl" style="--x:250;--y:170;--w:220"><code>.ln-strong</code> · 2.5px</p>
+    <p class="dl" style="--x:480;--y:170;--w:400">A single emphasis: the current moment, the chosen path.</p>
+    <p class="dl" style="--x:250;--y:210;--w:220"><code>.dim</code> · 1px</p>
+    <p class="dl" style="--x:480;--y:210;--w:400">Dimension line and arrowheads; the value is <code>.dim-t</code>.</p>
+  </div>
+  <figcaption class="figcap"><b>Legend 1.</b> With <code>vector-effect: non-scaling-stroke</code>, weights stay the same at every scale.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;01 · Legend&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Weight family&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:250</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 250</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M0 30H900</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M20 60H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M20 100H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M20 140H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M20 180H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M20 220H220M20 212V228M220 212V228M20 220l8-3v6zM220 220l-8-3v6z</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:6;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Line&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:6;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Class&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:6;--w:400</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;When&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:50;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.pencil-2&lt;/<span class='k'>code</span>&gt; · 2px&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:50;--w:400</span>"&gt;Background grid; nearly invisible.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:90;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-pencil&lt;/<span class='k'>code</span>&gt; · 1px&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:90;--w:400</span>"&gt;Guide, baseline, leader, extension.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:130;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-draw&lt;/<span class='k'>code</span>&gt; · 1.5px&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:130;--w:400</span>"&gt;Box, track, face: the body of the drawing.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:170;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-strong&lt;/<span class='k'>code</span>&gt; · 2.5px&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:170;--w:400</span>"&gt;A single emphasis: the current moment, the chosen path.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:210;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.dim&lt;/<span class='k'>code</span>&gt; · 1px&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:210;--w:400</span>"&gt;Dimension line and arrowheads; the value is &lt;<span class='k'>code</span>&gt;.dim-t&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Legend 1.&lt;/<span class='k'>b</span>&gt; With &lt;<span class='k'>code</span>&gt;vector-effect: non-scaling-stroke&lt;/<span class='k'>code</span>&gt;, weights stay the same at every scale.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p><code>.pencil</code> and <code>.pencil-2</code> are aliases from the fixed <code>.sheet</code> grid: <code>.pencil</code> and <code>.ln-pencil</code> draw the same line. Prefer the <code>.ln-</code> prefix in new drawings; <code>.pencil-2</code> is the only option for the grid.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Pattern and status">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Pattern and status</h2><p class="lead">A solid line shows what is real; a dashed line shows a template or a boundary. A ghost is a part that does not exist yet or no longer exists; a blocked path always ends in a stop mark.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · legend sheet · meaning</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Legend</p>
+  <p class="fig-cap">Pattern and status color</p>
+  <div class="drawing" style="--aw:900;--ah:290">
+    <svg viewBox="0 0 900 290" aria-hidden="true">
+      <path class="ln-pencil" d="M0 30H900"/>
+      <path class="ln-draw ln-dash" d="M20 60H220"/>
+      <path class="ln-ghost" d="M20 100H220"/>
+      <path class="ln-block" d="M20 140H196"/>
+      <path class="ln-draw ln-bad" d="M200 128V152M206 130l14 20M220 130l-14 20"/>
+      <path class="ln-draw ln-ok" d="M20 180H220"/>
+      <path class="ln-draw ln-warn" d="M20 220H220"/>
+      <path class="ln-strong ln-bad" d="M20 260H220"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Line</span></p>
+    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Class</span></p>
+    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">Meaning</span></p>
+    <p class="dl" style="--x:250;--y:50;--w:220"><code>.ln-draw .ln-dash</code></p>
+    <p class="dl" style="--x:480;--y:50;--w:400">Example, template or boundary: “something like this could exist”.</p>
+    <p class="dl" style="--x:250;--y:90;--w:220"><code>.ln-ghost</code></p>
+    <p class="dl" style="--x:480;--y:90;--w:400">Not there yet, or no longer there; a previous position.</p>
+    <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-block</code> + mark</p>
+    <p class="dl" style="--x:480;--y:130;--w:400">A path that was tried but refused.</p>
+    <p class="dl" style="--x:250;--y:170;--w:220"><code>.ln-draw .ln-ok</code></p>
+    <p class="dl" style="--x:480;--y:170;--w:400">A healthy path; with a <span class="state s-ok">Ready</span> label next to it.</p>
+    <p class="dl" style="--x:250;--y:210;--w:220"><code>.ln-draw .ln-warn</code></p>
+    <p class="dl" style="--x:480;--y:210;--w:400">Working, but needs attention.</p>
+    <p class="dl" style="--x:250;--y:250;--w:220"><code>.ln-strong .ln-bad</code></p>
+    <p class="dl" style="--x:480;--y:250;--w:400">Color and weight combine: an emphasized fault.</p>
+  </div>
+  <figcaption class="figcap"><b>Legend 2.</b> <code>.ln-ok</code>, <code>.ln-warn</code> and <code>.ln-bad</code> change only the color; the family class next to them sets the weight.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;02 · Legend&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;Pattern and status color&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:290</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 290</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M0 30H900</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M20 60H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M20 100H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M20 140H196</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M200 128V152M206 130l14 20M220 130l-14 20</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-ok</span>" d="<span class='s'>M20 180H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-warn</span>" d="<span class='s'>M20 220H220</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M20 260H220</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:6;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Line&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:6;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Class&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:6;--w:400</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Meaning&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:50;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-draw .ln-dash&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:50;--w:400</span>"&gt;Example, template or boundary: “something like this could exist”.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:90;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-ghost&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:90;--w:400</span>"&gt;Not there yet, or no longer there; a previous position.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:130;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-block&lt;/<span class='k'>code</span>&gt; + mark&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:130;--w:400</span>"&gt;A path that was tried but refused.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:170;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-draw .ln-ok&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:170;--w:400</span>"&gt;A healthy path; with a &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Ready&lt;/<span class='k'>span</span>&gt; label next to it.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:210;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-draw .ln-warn&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:210;--w:400</span>"&gt;Working, but needs attention.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:250;--y:250;--w:220</span>"&gt;&lt;<span class='k'>code</span>&gt;.ln-strong .ln-bad&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:250;--w:400</span>"&gt;Color and weight combine: an emphasized fault.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Legend 2.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>code</span>&gt;.ln-ok&lt;/<span class='k'>code</span>&gt;, &lt;<span class='k'>code</span>&gt;.ln-warn&lt;/<span class='k'>code</span>&gt; and &lt;<span class='k'>code</span>&gt;.ln-bad&lt;/<span class='k'>code</span>&gt; change only the color; the family class next to them sets the weight.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Fills">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Fills</h2><p class="lead">There are three fills: paper for the face in front, scene ground for faces at the back or side, and drawing color for small marks. SVG defaults to no fill.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · paper, scene, drawing</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:200">
+  <svg viewBox="0 0 900 200" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="20" y="40" width="180" height="100"/>
+    <rect class="ln-draw fill-scene" x="240" y="40" width="180" height="100"/>
+    <rect class="ln-pencil" x="460" y="40" width="180" height="100"/>
+    <circle class="fill-draw" cx="490" cy="90" r="4"/>
+    <rect class="fill-draw" x="523" y="83" width="14" height="14"/>
+    <path class="fill-draw" d="M566 82L582 90L566 98Z"/>
+    <path class="ln-draw fill-scene" d="M700 70L736 48H876L840 70Z"/>
+    <path class="ln-draw fill-scene" d="M840 70L876 48V128L840 150Z"/>
+    <rect class="ln-draw fill-paper" x="700" y="70" width="140" height="80"/>
+  </svg>
+  <p class="dl" style="--x:20;--y:156;--w:180"><code>.fill-paper</code><br>face in front</p>
+  <p class="dl" style="--x:240;--y:156;--w:180"><code>.fill-scene</code><br>back and side faces</p>
+  <p class="dl" style="--x:460;--y:156;--w:180"><code>.fill-draw</code><br>dot, square, arrowhead</p>
+  <p class="dl" style="--x:700;--y:156;--w:180">together: isometric box</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:200</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 200</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>40</span>" width="<span class='s'>180</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-scene</span>" x="<span class='s'>240</span>" y="<span class='s'>40</span>" width="<span class='s'>180</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-pencil</span>" x="<span class='s'>460</span>" y="<span class='s'>40</span>" width="<span class='s'>180</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>490</span>" cy="<span class='s'>90</span>" r="<span class='s'>4</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>fill-draw</span>" x="<span class='s'>523</span>" y="<span class='s'>83</span>" width="<span class='s'>14</span>" height="<span class='s'>14</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>fill-draw</span>" d="<span class='s'>M566 82L582 90L566 98Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-scene</span>" d="<span class='s'>M700 70L736 48H876L840 70Z</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-scene</span>" d="<span class='s'>M840 70L876 48V128L840 150Z</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>70</span>" width="<span class='s'>140</span>" height="<span class='s'>80</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:156;--w:180</span>"&gt;&lt;<span class='k'>code</span>&gt;.fill-paper&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;face in front&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:156;--w:180</span>"&gt;&lt;<span class='k'>code</span>&gt;.fill-scene&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;back and side faces&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:460;--y:156;--w:180</span>"&gt;&lt;<span class='k'>code</span>&gt;.fill-draw&lt;/<span class='k'>code</span>&gt;&lt;<span class='k'>br</span>&gt;dot, square, arrowhead&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:156;--w:180</span>"&gt;together: isometric box&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>A shape with no fill class is transparent; the line behind it shows through. With overlapping boxes, giving the front one <code>.fill-paper</code> is the only way to hide the lines behind it. Draw arrowheads either as lines (<code>l-8-4M… l-8 4</code>) or as a <code>.fill-draw</code> triangle; do not mix the two in the same figure.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">In one drawing, each pattern appears once and with one meaning. The two figures below use the whole family inside a real story.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · load balancer targets</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Figure 1</p>
+  <p class="fig-cap">lb-internal routes to four targets</p>
+  <div class="drawing" style="--aw:900;--ah:300">
+    <svg viewBox="0 0 900 300" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="20" y="110" width="170" height="80"/>
+      <path class="ln-strong" d="M190 150H300V45H514M514 45l-9-5M514 45l-9 5"/>
+      <path class="ln-draw" d="M300 150V185"/>
+      <path class="ln-draw ln-warn" d="M300 115H514M514 115l-8-4M514 115l-8 4"/>
+      <path class="ln-block" d="M300 185H480"/>
+      <path class="ln-draw ln-bad" d="M486 169V201M494 175l14 20M508 175l-14 20"/>
+      <path class="ln-ghost" d="M300 185V255H514M514 255l-8-4M514 255l-8 4"/>
+      <rect class="ln-strong fill-paper" x="520" y="20" width="200" height="50"/>
+      <rect class="ln-draw fill-paper" x="520" y="90" width="200" height="50"/>
+      <rect class="ln-draw ln-bad fill-paper" x="520" y="160" width="200" height="50"/>
+      <rect class="ln-ghost" x="520" y="230" width="200" height="50"/>
+      <rect class="ln-draw ln-dash fill-paper" x="770" y="225" width="120" height="60"/>
+      <path class="ln-draw ln-dash" d="M770 255H726"/>
+      <path class="ln-draw" d="M726 255l8-4M726 255l8 4"/>
+      <text class="dim-t" x="400" y="38" text-anchor="middle">weight 70%</text>
+      <text class="dim-t" x="400" y="108" text-anchor="middle">weight 30%</text>
+    </svg>
+    <p class="dl" style="--x:34;--y:122;--w:150"><span class="stamp-k">Load balancer</span>lb-internal</p>
+    <p class="dl" style="--x:534;--y:34;--w:180">app-a <span class="state s-ok">Healthy</span></p>
+    <p class="dl" style="--x:534;--y:104;--w:180">app-b <span class="state s-warn">Slow</span></p>
+    <p class="dl" style="--x:534;--y:174;--w:180">app-c <span class="state s-bad">Down</span></p>
+    <p class="dl" style="--x:534;--y:244;--w:180">app-d · planned</p>
+    <p class="dl" style="--x:782;--y:235;--w:104">template<br>asg-web</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 1.</b> The heavy path carries most of the traffic; the orange path is slow but open. app-c failed its health check, so its path is blocked. app-d will be created from the template (dashed) and does not exist yet (ghost).</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;04 · Figure 1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;lb-internal routes to four targets&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:300</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 300</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>110</span>" width="<span class='s'>170</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M190 150H300V45H514M514 45l-9-5M514 45l-9 5</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M300 150V185</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-warn</span>" d="<span class='s'>M300 115H514M514 115l-8-4M514 115l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M300 185H480</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M486 169V201M494 175l14 20M508 175l-14 20</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M300 185V255H514M514 255l-8-4M514 255l-8 4</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>520</span>" y="<span class='s'>20</span>" width="<span class='s'>200</span>" height="<span class='s'>50</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>520</span>" y="<span class='s'>90</span>" width="<span class='s'>200</span>" height="<span class='s'>50</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-bad fill-paper</span>" x="<span class='s'>520</span>" y="<span class='s'>160</span>" width="<span class='s'>200</span>" height="<span class='s'>50</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>520</span>" y="<span class='s'>230</span>" width="<span class='s'>200</span>" height="<span class='s'>50</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" x="<span class='s'>770</span>" y="<span class='s'>225</span>" width="<span class='s'>120</span>" height="<span class='s'>60</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M770 255H726</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M726 255l8-4M726 255l8 4</span>"/&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>400</span>" y="<span class='s'>38</span>" text-anchor="<span class='s'>middle</span>"&gt;weight 70%&lt;/<span class='k'>text</span>&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>400</span>" y="<span class='s'>108</span>" text-anchor="<span class='s'>middle</span>"&gt;weight 30%&lt;/<span class='k'>text</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:122;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Load balancer&lt;/<span class='k'>span</span>&gt;lb-internal&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:534;--y:34;--w:180</span>"&gt;app-a &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Healthy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:534;--y:104;--w:180</span>"&gt;app-b &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Slow&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:534;--y:174;--w:180</span>"&gt;app-c &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Down&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:534;--y:244;--w:180</span>"&gt;app-d · planned&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:782;--y:235;--w:104</span>"&gt;template&lt;<span class='k'>br</span>&gt;asg-web&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 1.&lt;/<span class='k'>b</span>&gt; The heavy path carries most of the traffic; the orange path is slow but open. app-c failed its health check, so its path is blocked. app-d will be created from the template (dashed) and does not exist yet (ghost).&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · a broken backup chain</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">04 · Figure 2</p>
+  <p class="fig-cap">A restore stops at the last good link</p>
+  <div class="drawing" style="--aw:900;--ah:210">
+    <svg viewBox="0 0 900 210" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="20" y="40" width="130" height="64"/>
+      <rect class="ln-strong fill-paper" x="210" y="40" width="130" height="64"/>
+      <rect class="ln-draw ln-bad fill-paper" x="400" y="40" width="130" height="64"/>
+      <rect class="ln-ghost" x="590" y="40" width="130" height="64"/>
+      <rect class="ln-draw fill-paper" x="760" y="130" width="130" height="64"/>
+      <path class="ln-strong" d="M150 72H204M204 72l-8-4M204 72l-8 4"/>
+      <path class="ln-block" d="M340 72H362"/>
+      <path class="ln-draw ln-bad" d="M366 58V86M372 62l14 20M386 62l-14 20"/>
+      <path class="ln-ghost" d="M530 72H584"/>
+      <path class="ln-strong" d="M275 104V162H754M754 162l-9-5M754 162l-9 5"/>
+      <rect class="fill-draw" x="28" y="48" width="10" height="10"/>
+    </svg>
+    <p class="dl" style="--x:44;--y:48;--w:100"><span class="stamp-k">Full</span>Mon 02:00</p>
+    <p class="dl" style="--x:222;--y:48;--w:112"><span class="stamp-k">Incremental</span>Tue 02:00</p>
+    <p class="dl" style="--x:412;--y:48;--w:112"><span class="stamp-k">Incremental</span><span class="state s-bad">Corrupt</span></p>
+    <p class="dl" style="--x:602;--y:48;--w:112"><span class="stamp-k">Incremental</span>unreachable</p>
+    <p class="dl" style="--x:772;--y:140;--w:112"><span class="stamp-k">Target</span>db-restore</p>
+    <p class="dl" style="--x:300;--y:170;--w:420">restore point · Tue 02:00</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 2.</b> Wednesday's backup is corrupt, so the chain breaks there; Thursday's backup exists but cannot be reached. The heavy path is the chosen restore point.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;04 · Figure 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;A restore stops at the last good link&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:210</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 210</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>40</span>" width="<span class='s'>130</span>" height="<span class='s'>64</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>210</span>" y="<span class='s'>40</span>" width="<span class='s'>130</span>" height="<span class='s'>64</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw ln-bad fill-paper</span>" x="<span class='s'>400</span>" y="<span class='s'>40</span>" width="<span class='s'>130</span>" height="<span class='s'>64</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>590</span>" y="<span class='s'>40</span>" width="<span class='s'>130</span>" height="<span class='s'>64</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>760</span>" y="<span class='s'>130</span>" width="<span class='s'>130</span>" height="<span class='s'>64</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M150 72H204M204 72l-8-4M204 72l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M340 72H362</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M366 58V86M372 62l14 20M386 62l-14 20</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M530 72H584</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M275 104V162H754M754 162l-9-5M754 162l-9 5</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>fill-draw</span>" x="<span class='s'>28</span>" y="<span class='s'>48</span>" width="<span class='s'>10</span>" height="<span class='s'>10</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:44;--y:48;--w:100</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Full&lt;/<span class='k'>span</span>&gt;Mon 02:00&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:222;--y:48;--w:112</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Incremental&lt;/<span class='k'>span</span>&gt;Tue 02:00&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:412;--y:48;--w:112</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Incremental&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Corrupt&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:602;--y:48;--w:112</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Incremental&lt;/<span class='k'>span</span>&gt;unreachable&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:772;--y:140;--w:112</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Target&lt;/<span class='k'>span</span>&gt;db-restore&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:300;--y:170;--w:420</span>"&gt;restore point · Tue 02:00&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 2.&lt;/<span class='k'>b</span>&gt; Wednesday's backup is corrupt, so the chain breaks there; Thursday's backup exists but cannot be reached. The heavy path is the chosen restore point.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="On a dark scene">
+  <header class="ch-head"><p class="ch-num">05</p><h2>On a dark scene</h2><p class="lead">Line and fill classes read tokens; under .scene-dark the same markup resolves to dark colors. There is no separate dark line family.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the same legend, dark sheet</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">05 · Legend</p>
+  <p class="fig-cap">The family on a dark ground</p>
+  <div class="drawing" style="--aw:900;--ah:130">
+    <svg viewBox="0 0 900 130" aria-hidden="true">
+      <path class="ln-pencil" d="M20 30H200"/>
+      <path class="ln-draw" d="M240 30H420"/>
+      <path class="ln-strong" d="M480 30H660"/>
+      <path class="ln-draw ln-dash" d="M700 30H880"/>
+      <path class="ln-ghost" d="M20 90H200"/>
+      <path class="ln-block" d="M240 90H396"/>
+      <path class="ln-draw ln-bad" d="M400 78V102M404 80l14 20M418 80l-14 20"/>
+      <path class="ln-draw ln-ok" d="M480 90H560"/>
+      <path class="ln-draw ln-warn" d="M580 90H660"/>
+      <rect class="ln-draw fill-paper" x="700" y="72" width="80" height="30"/>
+      <rect class="ln-draw fill-scene" x="800" y="72" width="80" height="30"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:42;--w:180">guide</p>
+    <p class="dl" style="--x:240;--y:42;--w:180">drawing</p>
+    <p class="dl" style="--x:480;--y:42;--w:180">emphasis</p>
+    <p class="dl" style="--x:700;--y:42;--w:180">template</p>
+    <p class="dl" style="--x:20;--y:104;--w:180">ghost</p>
+    <p class="dl" style="--x:240;--y:104;--w:180">blocked</p>
+    <p class="dl" style="--x:480;--y:104;--w:180">ok · warn</p>
+    <p class="dl" style="--x:700;--y:104;--w:80">paper</p>
+    <p class="dl" style="--x:800;--y:104;--w:80">scene</p>
+  </div>
+  <figcaption class="figcap"><b>Legend 3.</b> On a dark ground the paper and scene fills are almost the same tone; here the lines separate the faces.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;05 · Legend&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;The family on a dark ground&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:130</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 130</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M20 30H200</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M240 30H420</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M480 30H660</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M700 30H880</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M20 90H200</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M240 90H396</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M400 78V102M404 80l14 20M418 80l-14 20</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-ok</span>" d="<span class='s'>M480 90H560</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-warn</span>" d="<span class='s'>M580 90H660</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>72</span>" width="<span class='s'>80</span>" height="<span class='s'>30</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-scene</span>" x="<span class='s'>800</span>" y="<span class='s'>72</span>" width="<span class='s'>80</span>" height="<span class='s'>30</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:42;--w:180</span>"&gt;guide&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:42;--w:180</span>"&gt;drawing&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:42;--w:180</span>"&gt;emphasis&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:42;--w:180</span>"&gt;template&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:104;--w:180</span>"&gt;ghost&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:104;--w:180</span>"&gt;blocked&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:480;--y:104;--w:180</span>"&gt;ok · warn&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:104;--w:80</span>"&gt;paper&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:800;--y:104;--w:80</span>"&gt;scene&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Legend 3.&lt;/<span class='k'>b</span>&gt; On a dark ground the paper and scene fills are almost the same tone; here the lines separate the faces.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Do / don't</h2><p class="lead">Emphasis is used once; color alone carries no meaning. Every pattern must say the same thing as the text next to it.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · a single emphasis</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="20" width="110" height="50"/>
+    <rect class="ln-strong fill-paper" x="165" y="20" width="110" height="50"/>
+    <rect class="ln-draw fill-paper" x="320" y="20" width="110" height="50"/>
+    <path class="ln-draw" d="M120 45H159M159 45l-8-4M159 45l-8 4"/>
+    <path class="ln-ghost" d="M275 45H314"/>
+  </svg>
+  <p class="dl" style="--x:22;--y:36;--w:96">build</p>
+  <p class="dl" style="--x:177;--y:36;--w:96">test</p>
+  <p class="dl" style="--x:332;--y:36;--w:96">release</p>
+  <p class="dl" style="--x:10;--y:96;--w:420">the current step is heavy, the next one is a ghost</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>165</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>320</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M120 45H159M159 45l-8-4M159 45l-8 4</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M275 45H314</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:22;--y:36;--w:96</span>"&gt;build&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:177;--y:36;--w:96</span>"&gt;test&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:332;--y:36;--w:96</span>"&gt;release&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:96;--w:420</span>"&gt;the current step is heavy, the next one is a ghost&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · everything emphasized</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <rect class="ln-strong ln-ok fill-paper" x="10" y="20" width="110" height="50"/>
+    <rect class="ln-strong ln-warn fill-paper" x="165" y="20" width="110" height="50"/>
+    <rect class="ln-strong ln-bad fill-paper" x="320" y="20" width="110" height="50"/>
+    <path class="ln-strong" d="M120 45H159M275 45H314"/>
+  </svg>
+  <p class="dl" style="--x:22;--y:36;--w:96">build</p>
+  <p class="dl" style="--x:177;--y:36;--w:96">test</p>
+  <p class="dl" style="--x:332;--y:36;--w:96">release</p>
+  <p class="dl" style="--x:10;--y:96;--w:420">which one is now? what do the colors mean?</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:150</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-ok fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-warn fill-paper</span>" x="<span class='s'>165</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-bad fill-paper</span>" x="<span class='s'>320</span>" y="<span class='s'>20</span>" width="<span class='s'>110</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M120 45H159M275 45H314</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:22;--y:36;--w:96</span>"&gt;build&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:177;--y:36;--w:96</span>"&gt;test&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:332;--y:36;--w:96</span>"&gt;release&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:96;--w:420</span>"&gt;which one is now? what do the colors mean?&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · color + word</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:110">
+  <svg viewBox="0 0 440 110" aria-hidden="true">
+    <path class="ln-block" d="M10 55H300"/>
+    <path class="ln-draw ln-bad" d="M306 39V71M314 45l14 20M328 45l-14 20"/>
+  </svg>
+  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → payment API</p>
+  <p class="dl" style="--x:10;--y:70;--w:290"><span class="state s-bad">Denied</span> no permission</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-block</span>" d="<span class='s'>M10 55H300</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M306 39V71M314 45l14 20M328 45l-14 20</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:16;--w:290</span>"&gt;billing-worker → payment API&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:70;--w:290</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Denied&lt;/<span class='k'>span</span>&gt; no permission&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · color alone</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:110">
+  <svg viewBox="0 0 440 110" aria-hidden="true">
+    <path class="ln-draw ln-bad" d="M10 55H330"/>
+  </svg>
+  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → payment API</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-bad</span>" d="<span class='s'>M10 55H330</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:16;--w:290</span>"&gt;billing-worker → payment API&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>With color blindness, red and green lines can look the same. So a blocked path is drawn with both a broken pattern and a stop mark, with a <code>.state</code> word next to it. Because the SVG is <code>aria-hidden="true"</code>, the same information must also be in the figure caption.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="drawing-units.html" rel="prev"><small>Previous · Blueprint</small>Drawing units</a><a href="station-explorer.html" rel="next"><small>Next · Blueprint</small>Station explorer</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

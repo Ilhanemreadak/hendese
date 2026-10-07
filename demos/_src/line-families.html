@@ -1,11 +1,11 @@
-<!-- meta {"title":"Çizgi aileleri","group":"Blueprint","order":30,"tagline":"Kalınlık bir hiyerarşi, desen bir anlam.","intro":"Hendese çizimlerinde her çizgi bir şey söyler. Kalınlık ailesi (kılavuz, çizim, vurgu, ölçü) neyin önde olduğunu; desen ailesi (düz, kesikli, hayalet, engelli) neyin gerçek olduğunu anlatır. Durum renkleri bu ikisinin üstüne yalnızca renk ekler.","summary":"<code>.ln-*</code> çizgi sınıfları, <code>.pencil</code>, <code>.fill-*</code> dolguları; lejant ve anlamlı kullanım.","facts":{"Kalınlık":"<code>.ln-pencil</code> · <code>.pencil</code> · <code>.pencil-2</code> · <code>.ln-draw</code> · <code>.ln-strong</code> · <code>.dim</code>","Anlam":"<code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.ln-ok</code> · <code>.ln-warn</code> · <code>.ln-bad</code>","Dolgu":"<code>.fill-paper</code> · <code>.fill-scene</code> · <code>.fill-draw</code>"}} -->
+<!-- meta {"title":"Line families","group":"Blueprint","order":30,"tagline":"Weight is a hierarchy, pattern is a meaning.","intro":"Every line in a Hendese drawing says something. The weight family (guide, drawing, emphasis, dimension) tells what is in front; the pattern family (solid, dashed, ghost, blocked) tells what is real. Status colors add only color on top of these two.","summary":"<code>.ln-*</code> line classes, <code>.pencil</code>, <code>.fill-*</code> fills; legend and meaningful use.","facts":{"Weight":"<code>.ln-pencil</code> · <code>.pencil</code> · <code>.pencil-2</code> · <code>.ln-draw</code> · <code>.ln-strong</code> · <code>.dim</code>","Meaning":"<code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.ln-ok</code> · <code>.ln-warn</code> · <code>.ln-bad</code>","Fill":"<code>.fill-paper</code> · <code>.fill-scene</code> · <code>.fill-draw</code>"}} -->
 
-<chapter title="Kalınlık ailesi" lead="Dört kalınlık ve bir ölçü çizgisi. Bir çizimde gövde ln-draw ile çizilir; kılavuz geri çekilir, vurgu yalnızca tek bir şeye verilir.">
-<demo label="Örnek · lejant paftası · kalınlık">
+<chapter title="Weight family" lead="Four weights and a dimension line. A drawing's body is drawn with ln-draw; guides step back, and emphasis goes to one thing only.">
+<demo label="Example · legend sheet · weight">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">01 · Lejant</p>
-  <p class="fig-cap">Kalınlık ailesi</p>
+  <p class="chip">01 · Legend</p>
+  <p class="fig-cap">Weight family</p>
   <div class="drawing" style="--aw:900;--ah:250">
     <svg viewBox="0 0 900 250" aria-hidden="true">
       <path class="ln-pencil" d="M0 30H900"/>
@@ -15,32 +15,32 @@
       <path class="ln-strong" d="M20 180H220"/>
       <path class="dim" d="M20 220H220M20 212V228M220 212V228M20 220l8-3v6zM220 220l-8-3v6z"/>
     </svg>
-    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Çizgi</span></p>
-    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Sınıf</span></p>
-    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">Ne zaman</span></p>
+    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Line</span></p>
+    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Class</span></p>
+    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">When</span></p>
     <p class="dl" style="--x:250;--y:50;--w:220"><code>.pencil-2</code> · 2px</p>
-    <p class="dl" style="--x:480;--y:50;--w:400">Arka plan ızgarası; neredeyse görünmez.</p>
+    <p class="dl" style="--x:480;--y:50;--w:400">Background grid; nearly invisible.</p>
     <p class="dl" style="--x:250;--y:90;--w:220"><code>.ln-pencil</code> · 1px</p>
-    <p class="dl" style="--x:480;--y:90;--w:400">Kılavuz, taban çizgisi, leader, uzatma.</p>
+    <p class="dl" style="--x:480;--y:90;--w:400">Guide, baseline, leader, extension.</p>
     <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-draw</code> · 1.5px</p>
-    <p class="dl" style="--x:480;--y:130;--w:400">Kutu, hat, yüz: çizimin gövdesi.</p>
+    <p class="dl" style="--x:480;--y:130;--w:400">Box, track, face: the body of the drawing.</p>
     <p class="dl" style="--x:250;--y:170;--w:220"><code>.ln-strong</code> · 2.5px</p>
-    <p class="dl" style="--x:480;--y:170;--w:400">Tek bir vurgu: şimdiki an, seçili yol.</p>
+    <p class="dl" style="--x:480;--y:170;--w:400">A single emphasis: the current moment, the chosen path.</p>
     <p class="dl" style="--x:250;--y:210;--w:220"><code>.dim</code> · 1px</p>
-    <p class="dl" style="--x:480;--y:210;--w:400">Ölçü çizgisi ve ok uçları, değer <code>.dim-t</code>.</p>
+    <p class="dl" style="--x:480;--y:210;--w:400">Dimension line and arrowheads; the value is <code>.dim-t</code>.</p>
   </div>
-  <figcaption class="figcap"><b>Lejant 1.</b> Kalınlıklar <code>vector-effect: non-scaling-stroke</code> ile her ölçekte aynı kalır.</figcaption>
+  <figcaption class="figcap"><b>Legend 1.</b> With <code>vector-effect: non-scaling-stroke</code>, weights stay the same at every scale.</figcaption>
 </figure>
 </demo>
-<div class="prose"><p><code>.pencil</code> ve <code>.pencil-2</code>, sabit <code>.sheet</code> ızgarasından gelen eş adlardır: <code>.pencil</code> ile <code>.ln-pencil</code> aynı çizgiyi çizer. Yeni çizimlerde <code>.ln-</code> önekini tercih edin; <code>.pencil-2</code> ise ızgara için tek seçenektir.</p></div>
+<div class="prose"><p><code>.pencil</code> and <code>.pencil-2</code> are aliases from the fixed <code>.sheet</code> grid: <code>.pencil</code> and <code>.ln-pencil</code> draw the same line. Prefer the <code>.ln-</code> prefix in new drawings; <code>.pencil-2</code> is the only option for the grid.</p></div>
 </chapter>
 
-<chapter title="Desen ve durum" lead="Düz çizgi gerçeği, kesikli çizgi örneği ya da sınırı gösterir. Hayalet henüz olmayan ya da artık olmayan parçadır; engelli yol daima bir durdurma işaretiyle biter.">
-<demo label="Örnek · lejant paftası · anlam">
+<chapter title="Pattern and status" lead="A solid line shows what is real; a dashed line shows a template or a boundary. A ghost is a part that does not exist yet or no longer exists; a blocked path always ends in a stop mark.">
+<demo label="Example · legend sheet · meaning">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">02 · Lejant</p>
-  <p class="fig-cap">Desen ve durum rengi</p>
+  <p class="chip">02 · Legend</p>
+  <p class="fig-cap">Pattern and status color</p>
   <div class="drawing" style="--aw:900;--ah:290">
     <svg viewBox="0 0 900 290" aria-hidden="true">
       <path class="ln-pencil" d="M0 30H900"/>
@@ -52,29 +52,29 @@
       <path class="ln-draw ln-warn" d="M20 220H220"/>
       <path class="ln-strong ln-bad" d="M20 260H220"/>
     </svg>
-    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Çizgi</span></p>
-    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Sınıf</span></p>
-    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">Anlam</span></p>
+    <p class="dl" style="--x:20;--y:6;--w:200"><span class="stamp-k">Line</span></p>
+    <p class="dl" style="--x:250;--y:6;--w:200"><span class="stamp-k">Class</span></p>
+    <p class="dl" style="--x:480;--y:6;--w:400"><span class="stamp-k">Meaning</span></p>
     <p class="dl" style="--x:250;--y:50;--w:220"><code>.ln-draw .ln-dash</code></p>
-    <p class="dl" style="--x:480;--y:50;--w:400">Örnek, kalıp ya da sınır: “böyle bir şey olabilir”.</p>
+    <p class="dl" style="--x:480;--y:50;--w:400">Example, template or boundary: “something like this could exist”.</p>
     <p class="dl" style="--x:250;--y:90;--w:220"><code>.ln-ghost</code></p>
-    <p class="dl" style="--x:480;--y:90;--w:400">Henüz yok ya da artık yok; önceki konum.</p>
-    <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-block</code> + işaret</p>
-    <p class="dl" style="--x:480;--y:130;--w:400">Denenen ama reddedilen yol.</p>
+    <p class="dl" style="--x:480;--y:90;--w:400">Not there yet, or no longer there; a previous position.</p>
+    <p class="dl" style="--x:250;--y:130;--w:220"><code>.ln-block</code> + mark</p>
+    <p class="dl" style="--x:480;--y:130;--w:400">A path that was tried but refused.</p>
     <p class="dl" style="--x:250;--y:170;--w:220"><code>.ln-draw .ln-ok</code></p>
-    <p class="dl" style="--x:480;--y:170;--w:400">Sağlıklı yol; yanında bir <span class="state s-ok">Hazır</span> etiketiyle.</p>
+    <p class="dl" style="--x:480;--y:170;--w:400">A healthy path; with a <span class="state s-ok">Ready</span> label next to it.</p>
     <p class="dl" style="--x:250;--y:210;--w:220"><code>.ln-draw .ln-warn</code></p>
-    <p class="dl" style="--x:480;--y:210;--w:400">Çalışıyor ama dikkat istiyor.</p>
+    <p class="dl" style="--x:480;--y:210;--w:400">Working, but needs attention.</p>
     <p class="dl" style="--x:250;--y:250;--w:220"><code>.ln-strong .ln-bad</code></p>
-    <p class="dl" style="--x:480;--y:250;--w:400">Renk ve kalınlık birleşir: vurgulu arıza.</p>
+    <p class="dl" style="--x:480;--y:250;--w:400">Color and weight combine: an emphasized fault.</p>
   </div>
-  <figcaption class="figcap"><b>Lejant 2.</b> <code>.ln-ok</code>, <code>.ln-warn</code> ve <code>.ln-bad</code> yalnızca rengi değiştirir; kalınlığı yanındaki aile sınıfı verir.</figcaption>
+  <figcaption class="figcap"><b>Legend 2.</b> <code>.ln-ok</code>, <code>.ln-warn</code> and <code>.ln-bad</code> change only the color; the family class next to them sets the weight.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Dolgular" lead="Üç dolgu var: önde duran yüz kâğıt, arkada ya da yanda kalan yüz sahne zemini, küçük işaretler çizim rengi. SVG varsayılanı dolgusuzdur.">
-<demo label="Örnek · kâğıt, sahne, çizim">
+<chapter title="Fills" lead="There are three fills: paper for the face in front, scene ground for faces at the back or side, and drawing color for small marks. SVG defaults to no fill.">
+<demo label="Example · paper, scene, drawing">
 <div class="drawing" style="--aw:900;--ah:200">
   <svg viewBox="0 0 900 200" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="20" y="40" width="180" height="100"/>
@@ -87,21 +87,21 @@
     <path class="ln-draw fill-scene" d="M840 70L876 48V128L840 150Z"/>
     <rect class="ln-draw fill-paper" x="700" y="70" width="140" height="80"/>
   </svg>
-  <p class="dl" style="--x:20;--y:156;--w:180"><code>.fill-paper</code><br>önde duran yüz</p>
-  <p class="dl" style="--x:240;--y:156;--w:180"><code>.fill-scene</code><br>arka ve yan yüz</p>
-  <p class="dl" style="--x:460;--y:156;--w:180"><code>.fill-draw</code><br>nokta, kare, ok ucu</p>
-  <p class="dl" style="--x:700;--y:156;--w:180">birlikte: izometrik kutu</p>
+  <p class="dl" style="--x:20;--y:156;--w:180"><code>.fill-paper</code><br>face in front</p>
+  <p class="dl" style="--x:240;--y:156;--w:180"><code>.fill-scene</code><br>back and side faces</p>
+  <p class="dl" style="--x:460;--y:156;--w:180"><code>.fill-draw</code><br>dot, square, arrowhead</p>
+  <p class="dl" style="--x:700;--y:156;--w:180">together: isometric box</p>
 </div>
 </demo>
-<div class="prose"><p>Dolgu sınıfı verilmeyen bir şekil saydamdır; arkasındaki çizgi görünür. Üst üste binen kutularda öndekine <code>.fill-paper</code> vermek, arkadaki çizgileri silmenin tek yoludur. Ok uçlarını ya çizgi olarak (<code>l-8-4M… l-8 4</code>) ya da <code>.fill-draw</code> üçgen olarak çizin; ikisini aynı şekilde karıştırmayın.</p></div>
+<div class="prose"><p>A shape with no fill class is transparent; the line behind it shows through. With overlapping boxes, giving the front one <code>.fill-paper</code> is the only way to hide the lines behind it. Draw arrowheads either as lines (<code>l-8-4M… l-8 4</code>) or as a <code>.fill-draw</code> triangle; do not mix the two in the same figure.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Aynı çizimde her desen bir kez ve bir anlamla geçer. Aşağıdaki iki şekil bütün aileyi gerçek bir hikâye içinde kullanır.">
-<demo label="Örnek · yük dengeleyici hedefleri">
+<chapter title="In context" lead="In one drawing, each pattern appears once and with one meaning. The two figures below use the whole family inside a real story.">
+<demo label="Example · load balancer targets">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">04 · Şekil 1</p>
-  <p class="fig-cap">lb-internal dört hedefe bakıyor</p>
+  <p class="chip">04 · Figure 1</p>
+  <p class="fig-cap">lb-internal routes to four targets</p>
   <div class="drawing" style="--aw:900;--ah:300">
     <svg viewBox="0 0 900 300" aria-hidden="true">
       <rect class="ln-draw fill-paper" x="20" y="110" width="170" height="80"/>
@@ -118,24 +118,24 @@
       <rect class="ln-draw ln-dash fill-paper" x="770" y="225" width="120" height="60"/>
       <path class="ln-draw ln-dash" d="M770 255H726"/>
       <path class="ln-draw" d="M726 255l8-4M726 255l8 4"/>
-      <text class="dim-t" x="400" y="38" text-anchor="middle">ağırlık %70</text>
-      <text class="dim-t" x="400" y="108" text-anchor="middle">ağırlık %30</text>
+      <text class="dim-t" x="400" y="38" text-anchor="middle">weight 70%</text>
+      <text class="dim-t" x="400" y="108" text-anchor="middle">weight 30%</text>
     </svg>
-    <p class="dl" style="--x:34;--y:122;--w:150"><span class="stamp-k">Yük dengeleyici</span>lb-internal</p>
-    <p class="dl" style="--x:534;--y:34;--w:180">app-a <span class="state s-ok">Sağlıklı</span></p>
-    <p class="dl" style="--x:534;--y:104;--w:180">app-b <span class="state s-warn">Yavaş</span></p>
-    <p class="dl" style="--x:534;--y:174;--w:180">app-c <span class="state s-bad">Düştü</span></p>
-    <p class="dl" style="--x:534;--y:244;--w:180">app-d · planlı</p>
-    <p class="dl" style="--x:782;--y:235;--w:104">şablon<br>asg-web</p>
+    <p class="dl" style="--x:34;--y:122;--w:150"><span class="stamp-k">Load balancer</span>lb-internal</p>
+    <p class="dl" style="--x:534;--y:34;--w:180">app-a <span class="state s-ok">Healthy</span></p>
+    <p class="dl" style="--x:534;--y:104;--w:180">app-b <span class="state s-warn">Slow</span></p>
+    <p class="dl" style="--x:534;--y:174;--w:180">app-c <span class="state s-bad">Down</span></p>
+    <p class="dl" style="--x:534;--y:244;--w:180">app-d · planned</p>
+    <p class="dl" style="--x:782;--y:235;--w:104">template<br>asg-web</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 1.</b> Kalın yol trafiğin çoğunu taşır; turuncu yol yavaş ama açık. app-c sağlık kontrolünden kaldığı için yol engelli. app-d şablondan (kesikli) üretilecek, henüz yok (hayalet).</figcaption>
+  <figcaption class="figcap"><b>Figure 1.</b> The heavy path carries most of the traffic; the orange path is slow but open. app-c failed its health check, so its path is blocked. app-d will be created from the template (dashed) and does not exist yet (ghost).</figcaption>
 </figure>
 </demo>
-<demo label="Örnek · kırık yedekleme zinciri">
+<demo label="Example · a broken backup chain">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">04 · Şekil 2</p>
-  <p class="fig-cap">Geri yükleme son sağlam halkada durur</p>
+  <p class="chip">04 · Figure 2</p>
+  <p class="fig-cap">A restore stops at the last good link</p>
   <div class="drawing" style="--aw:900;--ah:210">
     <svg viewBox="0 0 900 210" aria-hidden="true">
       <rect class="ln-draw fill-paper" x="20" y="40" width="130" height="64"/>
@@ -150,24 +150,24 @@
       <path class="ln-strong" d="M275 104V162H754M754 162l-9-5M754 162l-9 5"/>
       <rect class="fill-draw" x="28" y="48" width="10" height="10"/>
     </svg>
-    <p class="dl" style="--x:44;--y:48;--w:100"><span class="stamp-k">Tam</span>Pzt 02:00</p>
-    <p class="dl" style="--x:222;--y:48;--w:112"><span class="stamp-k">Artımlı</span>Sal 02:00</p>
-    <p class="dl" style="--x:412;--y:48;--w:112"><span class="stamp-k">Artımlı</span><span class="state s-bad">Bozuk</span></p>
-    <p class="dl" style="--x:602;--y:48;--w:112"><span class="stamp-k">Artımlı</span>erişilemez</p>
-    <p class="dl" style="--x:772;--y:140;--w:112"><span class="stamp-k">Hedef</span>db-restore</p>
-    <p class="dl" style="--x:300;--y:170;--w:420">geri yükleme noktası · Sal 02:00</p>
+    <p class="dl" style="--x:44;--y:48;--w:100"><span class="stamp-k">Full</span>Mon 02:00</p>
+    <p class="dl" style="--x:222;--y:48;--w:112"><span class="stamp-k">Incremental</span>Tue 02:00</p>
+    <p class="dl" style="--x:412;--y:48;--w:112"><span class="stamp-k">Incremental</span><span class="state s-bad">Corrupt</span></p>
+    <p class="dl" style="--x:602;--y:48;--w:112"><span class="stamp-k">Incremental</span>unreachable</p>
+    <p class="dl" style="--x:772;--y:140;--w:112"><span class="stamp-k">Target</span>db-restore</p>
+    <p class="dl" style="--x:300;--y:170;--w:420">restore point · Tue 02:00</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 2.</b> Çarşamba yedeği bozuk olduğu için zincir orada kırılır; perşembe yedeği var ama ona ulaşılamaz. Kalın yol, seçilen geri yükleme noktasıdır.</figcaption>
+  <figcaption class="figcap"><b>Figure 2.</b> Wednesday's backup is corrupt, so the chain breaks there; Thursday's backup exists but cannot be reached. The heavy path is the chosen restore point.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Koyu sahnede" lead="Çizgi ve dolgu sınıfları token okur; .scene-dark altında aynı işaretleme koyu renklerle çözülür. Ayrı bir koyu çizgi ailesi yoktur.">
-<demo label="Örnek · aynı lejant, koyu pafta">
+<chapter title="On a dark scene" lead="Line and fill classes read tokens; under .scene-dark the same markup resolves to dark colors. There is no separate dark line family.">
+<demo label="Example · the same legend, dark sheet">
 <figure class="fig-sheet scene-dark">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">05 · Lejant</p>
-  <p class="fig-cap">Koyu zeminde aile</p>
+  <p class="chip">05 · Legend</p>
+  <p class="fig-cap">The family on a dark ground</p>
   <div class="drawing" style="--aw:900;--ah:130">
     <svg viewBox="0 0 900 130" aria-hidden="true">
       <path class="ln-pencil" d="M20 30H200"/>
@@ -182,24 +182,24 @@
       <rect class="ln-draw fill-paper" x="700" y="72" width="80" height="30"/>
       <rect class="ln-draw fill-scene" x="800" y="72" width="80" height="30"/>
     </svg>
-    <p class="dl" style="--x:20;--y:42;--w:180">kılavuz</p>
-    <p class="dl" style="--x:240;--y:42;--w:180">çizim</p>
-    <p class="dl" style="--x:480;--y:42;--w:180">vurgu</p>
-    <p class="dl" style="--x:700;--y:42;--w:180">örnek</p>
-    <p class="dl" style="--x:20;--y:104;--w:180">hayalet</p>
-    <p class="dl" style="--x:240;--y:104;--w:180">engelli</p>
+    <p class="dl" style="--x:20;--y:42;--w:180">guide</p>
+    <p class="dl" style="--x:240;--y:42;--w:180">drawing</p>
+    <p class="dl" style="--x:480;--y:42;--w:180">emphasis</p>
+    <p class="dl" style="--x:700;--y:42;--w:180">template</p>
+    <p class="dl" style="--x:20;--y:104;--w:180">ghost</p>
+    <p class="dl" style="--x:240;--y:104;--w:180">blocked</p>
     <p class="dl" style="--x:480;--y:104;--w:180">ok · warn</p>
-    <p class="dl" style="--x:700;--y:104;--w:80">kâğıt</p>
-    <p class="dl" style="--x:800;--y:104;--w:80">sahne</p>
+    <p class="dl" style="--x:700;--y:104;--w:80">paper</p>
+    <p class="dl" style="--x:800;--y:104;--w:80">scene</p>
   </div>
-  <figcaption class="figcap"><b>Lejant 3.</b> Koyu zeminde kâğıt ile sahne dolgusu neredeyse aynı tondadır; yüzleri burada çizgi ayırır.</figcaption>
+  <figcaption class="figcap"><b>Legend 3.</b> On a dark ground the paper and scene fills are almost the same tone; here the lines separate the faces.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Vurgu bir kez kullanılır; renk tek başına anlam taşımaz. Her desen, yanındaki metinle aynı şeyi söylemelidir.">
+<chapter title="Do / don't" lead="Emphasis is used once; color alone carries no meaning. Every pattern must say the same thing as the text next to it.">
 <div class="dodont">
-<demo label="Yap · tek vurgu">
+<demo label="Do · a single emphasis">
 <div class="drawing" style="--aw:440;--ah:150">
   <svg viewBox="0 0 440 150" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="20" width="110" height="50"/>
@@ -208,13 +208,13 @@
     <path class="ln-draw" d="M120 45H159M159 45l-8-4M159 45l-8 4"/>
     <path class="ln-ghost" d="M275 45H314"/>
   </svg>
-  <p class="dl" style="--x:22;--y:36;--w:96">derle</p>
+  <p class="dl" style="--x:22;--y:36;--w:96">build</p>
   <p class="dl" style="--x:177;--y:36;--w:96">test</p>
-  <p class="dl" style="--x:332;--y:36;--w:96">yayınla</p>
-  <p class="dl" style="--x:10;--y:96;--w:420">şimdiki adım kalın, sıradaki hayalet</p>
+  <p class="dl" style="--x:332;--y:36;--w:96">release</p>
+  <p class="dl" style="--x:10;--y:96;--w:420">the current step is heavy, the next one is a ghost</p>
 </div>
 </demo>
-<demo label="Yapma · her şey vurgulu">
+<demo label="Don't · everything emphasized">
 <div class="drawing" style="--aw:440;--ah:150">
   <svg viewBox="0 0 440 150" aria-hidden="true">
     <rect class="ln-strong ln-ok fill-paper" x="10" y="20" width="110" height="50"/>
@@ -222,32 +222,32 @@
     <rect class="ln-strong ln-bad fill-paper" x="320" y="20" width="110" height="50"/>
     <path class="ln-strong" d="M120 45H159M275 45H314"/>
   </svg>
-  <p class="dl" style="--x:22;--y:36;--w:96">derle</p>
+  <p class="dl" style="--x:22;--y:36;--w:96">build</p>
   <p class="dl" style="--x:177;--y:36;--w:96">test</p>
-  <p class="dl" style="--x:332;--y:36;--w:96">yayınla</p>
-  <p class="dl" style="--x:10;--y:96;--w:420">hangisi şimdi? renkler ne demek?</p>
+  <p class="dl" style="--x:332;--y:36;--w:96">release</p>
+  <p class="dl" style="--x:10;--y:96;--w:420">which one is now? what do the colors mean?</p>
 </div>
 </demo>
 </div>
 <div class="dodont">
-<demo label="Yap · renk + kelime">
+<demo label="Do · color + word">
 <div class="drawing" style="--aw:440;--ah:110">
   <svg viewBox="0 0 440 110" aria-hidden="true">
     <path class="ln-block" d="M10 55H300"/>
     <path class="ln-draw ln-bad" d="M306 39V71M314 45l14 20M328 45l-14 20"/>
   </svg>
-  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → ödeme API</p>
-  <p class="dl" style="--x:10;--y:70;--w:290"><span class="state s-bad">Reddedildi</span> izin yok</p>
+  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → payment API</p>
+  <p class="dl" style="--x:10;--y:70;--w:290"><span class="state s-bad">Denied</span> no permission</p>
 </div>
 </demo>
-<demo label="Yapma · yalnız renk">
+<demo label="Don't · color alone">
 <div class="drawing" style="--aw:440;--ah:110">
   <svg viewBox="0 0 440 110" aria-hidden="true">
     <path class="ln-draw ln-bad" d="M10 55H330"/>
   </svg>
-  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → ödeme API</p>
+  <p class="dl" style="--x:10;--y:16;--w:290">billing-worker → payment API</p>
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Renk körlüğünde kırmızı ile yeşil çizgi aynı görünebilir. Bu yüzden engellenen yol hem kesik desenle hem durdurma işaretiyle çizilir ve yanında bir <code>.state</code> kelimesi durur. SVG <code>aria-hidden="true"</code> olduğundan aynı bilgi şekil yazısında da bulunmalıdır.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>With color blindness, red and green lines can look the same. So a blocked path is drawn with both a broken pattern and a stop mark, with a <code>.state</code> word next to it. Because the SVG is <code>aria-hidden="true"</code>, the same information must also be in the figure caption.</p></div></div>
 </chapter>

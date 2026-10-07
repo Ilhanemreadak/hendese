@@ -1,7 +1,7 @@
-<!-- meta {"title":"Sayfa iskeleti","group":"Temel","order":50,"tagline":"Ray, tuval, bölüm; hepsi bu sayfanın kendisi.","intro":"Hendese sayfası sabit bir kabuktan oluşur: solda ray, ortada tuval, üstte okuma çubuğu ve arkada cetvel çizgileri. Okuduğunuz sayfa bu kabuğun canlı örneğidir; aşağıdaki küçük modeller yalnızca parçaları ayırmak için.","summary":"Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code>, <code>col</code> kabı ve tam iskelet.","facts":{"Sınıflar":"<code>.shell</code> · <code>.rail</code> · <code>.nav-group</code> <code>.nav-link</code> <code>.nav-page</code> · <code>.rail-foot</code> · <code>.hero</code> · <code>.chapter</code> <code>.ch-head</code>","Öznitelikler":"<code>[data-section][data-title]</code> · <code>data-hoca=\"quiet\"</code>","JS":"<code>Hendese.init()</code> çekmeceyi, bölüm takibini ve okuma çubuğunu bağlar"}} -->
+<!-- meta {"title":"Page shell","group":"Basics","order":50,"tagline":"Rail, canvas, sections; all of it is this very page.","intro":"A Hendese page is built on a fixed shell: the rail on the left, the canvas in the middle, a reading bar on top and ruler lines behind. The page you are reading is a live example of this shell; the small models below only pull the parts apart.","summary":"Top bar, rail, hero, chapter head, rulers, reading bar, skip link, <code>[data-section]</code>, the <code>col</code> container and the full skeleton.","facts":{"Classes":"<code>.shell</code> · <code>.rail</code> · <code>.nav-group</code> <code>.nav-link</code> <code>.nav-page</code> · <code>.rail-foot</code> · <code>.hero</code> · <code>.chapter</code> <code>.ch-head</code>","Attributes":"<code>[data-section][data-title]</code> · <code>data-hoca=\"quiet\"</code>","JS":"<code>Hendese.init()</code> wires up the drawer, section tracking and the reading bar"}} -->
 
-<chapter title="Kabuk haritası" lead="Her parçanın tek bir işi ve çoğunun JS'in aradığı sabit bir id'si var. id'ler belgelenmiş sözleşmenin parçasıdır; değiştirirseniz ilgili davranış sessizce kapanır.">
-<demo label="Model · geniş ekranda kabuk" nocode>
+<chapter title="Shell map" lead="Each part has a single job, and most have a fixed id that the JS looks for. The ids are part of the documented contract; change one and the related behavior silently switches off.">
+<demo label="Model · the shell on a wide screen" nocode>
 <div style="display:grid;grid-template-columns:170px minmax(0,1fr);height:300px;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;font:500 var(--fs-xs)/1.4 var(--font-mono);color:var(--ink-2)">
   <div style="display:grid;grid-template-rows:auto minmax(0,1fr) 54px auto;border-right:1px solid var(--line-2);background:var(--bg)">
     <span style="padding:var(--sp-3) var(--sp-4);border-bottom:1px solid var(--line)">.rail-head · .brand</span>
@@ -17,217 +17,217 @@
       <span style="padding:var(--sp-4);border:1px solid var(--line);background:var(--paper)">section.hero#top · .hero-label · h1 em · .intro · .kv</span>
       <span style="padding:var(--sp-4);border:1px solid var(--line);background:var(--paper)">article.chapter[data-section][data-title]<br>.ch-head · .ch-num · h2 · .lead<br>…</span>
     </div>
-    <span style="position:absolute;bottom:6px;left:10px;color:var(--ink-3)">.rulers (kesikli: --canvas-max kenarları)</span>
+    <span style="position:absolute;bottom:6px;left:10px;color:var(--ink-3)">.rulers (dashed: --canvas-max edges)</span>
   </div>
 </div>
 </demo>
 <div class="tbl wide"><table>
-  <thead><tr><th>Parça</th><th>İşaretleme</th><th>Görev</th></tr></thead>
+  <thead><tr><th>Part</th><th>Markup</th><th>Job</th></tr></thead>
   <tbody>
-    <tr><td>Cetveller</td><td><code>div.rulers</code></td><td>Tuval kenarları ve üst ölçek; yalnızca süs, <code>aria-hidden</code></td></tr>
-    <tr><td>Atlama bağlantısı</td><td><code>a.skip[href="#content"]</code></td><td>Klavyeyle ilk Tab'da görünür, rayı atlar</td></tr>
-    <tr><td>Okuma çubuğu</td><td><code>.progress &gt; i#progress-bar</code></td><td>Kaydırma oranını genişlik olarak yazar</td></tr>
-    <tr><td>Üst çubuk</td><td><code>header.topbar</code> · <code>#nav-open</code> · <code>#topbar-cur</code></td><td>Yalnızca 1100px altında; çekmeceyi açar, etkin bölümü duyurur</td></tr>
-    <tr><td>Ray</td><td><code>aside.rail#rail</code> · <code>#nav-close</code> · <code>#rail-pos</code></td><td>İçindekiler, konum sayacı, tema düğmesi</td></tr>
-    <tr><td>Perde</td><td><code>div.scrim#scrim</code></td><td>Çekmece açıkken tıklanınca kapatır</td></tr>
-    <tr><td>Hoca'nın evi</td><td><code>div.hoca-home#hoca-home</code></td><td>Sahne yokken Hoca'nın durduğu yer</td></tr>
-    <tr><td>İçerik</td><td><code>main#content &gt; .canvas</code></td><td>En çok <code>--canvas-max</code> genişliğinde, ortalı tuval; <code>main</code> aynı zamanda <code>col</code> kabıdır</td></tr>
-    <tr><td>Bölümler</td><td><code>[data-section][data-title]</code></td><td>Bölüm takibinin saydığı her şey; ilki <code>#top</code></td></tr>
+    <tr><td>Rulers</td><td><code>div.rulers</code></td><td>Canvas edges and the top scale; decoration only, <code>aria-hidden</code></td></tr>
+    <tr><td>Skip link</td><td><code>a.skip[href="#content"]</code></td><td>Appears on the first Tab from the keyboard and skips the rail</td></tr>
+    <tr><td>Reading bar</td><td><code>.progress &gt; i#progress-bar</code></td><td>Writes the scroll ratio as a width</td></tr>
+    <tr><td>Top bar</td><td><code>header.topbar</code> · <code>#nav-open</code> · <code>#topbar-cur</code></td><td>Below 1100px only; opens the drawer and announces the active section</td></tr>
+    <tr><td>Rail</td><td><code>aside.rail#rail</code> · <code>#nav-close</code> · <code>#rail-pos</code></td><td>Contents, position counter, theme button</td></tr>
+    <tr><td>Scrim</td><td><code>div.scrim#scrim</code></td><td>Closes the drawer when clicked while it is open</td></tr>
+    <tr><td>Hoca's home</td><td><code>div.hoca-home#hoca-home</code></td><td>Where Hoca stands when there is no scene</td></tr>
+    <tr><td>Content</td><td><code>main#content &gt; .canvas</code></td><td>A centered canvas at most <code>--canvas-max</code> wide; <code>main</code> is also the <code>col</code> container</td></tr>
+    <tr><td>Sections</td><td><code>[data-section][data-title]</code></td><td>Everything section tracking counts; the first is <code>#top</code></td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Ray" lead="Ray iki tür bağlantı taşır: başka sayfaya giden nav-page ve bu sayfadaki bölüme giden nav-link. Gruplar nav-group başlığıyla ayrılır.">
-<demo label="Örnek · el kitabı rayı">
+<chapter title="Rail" lead="The rail carries two kinds of links: nav-page, which goes to another page, and nav-link, which goes to a section on this page. Groups are separated by a nav-group heading.">
+<demo label="Example · a handbook rail">
 <div style="width:248px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg)">
   <div class="rail-head">
-    <a class="brand" href="#top">Platform el kitabı<small>Kuyruklar ve işçiler</small></a>
+    <a class="brand" href="#top">Platform handbook<small>Queues and workers</small></a>
   </div>
-  <nav class="rail-nav" aria-label="Örnek içindekiler">
-    <div class="nav-group">Sayfalar</div>
-    <a class="nav-page" href="#top">Başlangıç</a>
-    <a class="nav-page" href="#top" aria-current="page">Kuyruklar</a>
-    <div class="nav-group">Bu sayfa</div>
-    <a class="nav-link" href="#p1"><span class="num">01</span><span>Mimari</span></a>
-    <a class="nav-link is-active" href="#p2" aria-current="true"><span class="num">02</span><span>Ölçekleme</span></a>
-    <a class="nav-link" href="#p3"><span class="num">03</span><span>Yeniden deneme</span></a>
+  <nav class="rail-nav" aria-label="Sample contents">
+    <div class="nav-group">Pages</div>
+    <a class="nav-page" href="#top">Getting started</a>
+    <a class="nav-page" href="#top" aria-current="page">Queues</a>
+    <div class="nav-group">On this page</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Architecture</span></a>
+    <a class="nav-link is-active" href="#p2" aria-current="true"><span class="num">02</span><span>Scaling</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Retries</span></a>
   </nav>
   <div class="rail-foot">
     <span class="pos">02 / 03</span>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
   </div>
 </div>
 </demo>
 <div class="prose">
-  <p><code>.nav-page[aria-current="page"]</code> bulunduğunuz sayfayı kalın yazar. <code>.nav-link</code> numarası <code>.num</code> içindedir ve sabit genişlikli rakamlarla hizalanır.</p>
-  <p><code>.is-active</code> ve <code>aria-current="true"</code> elle yazılmaz: <code>Hendese.init()</code> <code>#rail</code> içindeki <code>.nav-link[href="#…"]</code> bağlantılarını bulur ve kaydırdıkça etkin olanı işaretler. Bu örnek <code>#rail</code> dışında olduğu için durgun kalır.</p>
-  <p>Canlı modda sayfa başındayken ray <code>.compact</code> olur: etiketler gizlenir, yalnızca numaralar kalır; üzerine gelince ya da odaklanınca geri gelir.</p>
+  <p><code>.nav-page[aria-current="page"]</code> sets the page you are on in bold. The <code>.nav-link</code> number sits inside <code>.num</code> and lines up with tabular figures.</p>
+  <p><code>.is-active</code> and <code>aria-current="true"</code> are not written by hand: <code>Hendese.init()</code> finds the <code>.nav-link[href="#…"]</code> links inside <code>#rail</code> and marks the active one as you scroll. This example is outside <code>#rail</code>, so it stays still.</p>
+  <p>In live mode, at the top of the page the rail turns <code>.compact</code>: the labels hide and only the numbers remain; they come back on hover or focus.</p>
 </div>
 <div class="dodont">
-<demo label="Yap · kısa bölüm adı">
-<nav aria-label="Kısa adlar" style="width:220px;padding-left:var(--sp-3)">
-  <a class="nav-link" href="#p4"><span class="num">04</span><span>Bölüm takibi</span></a>
-  <a class="nav-link" href="#p5"><span class="num">05</span><span>Dar alan</span></a>
+<demo label="Do · short section names">
+<nav aria-label="Short names" style="width:220px;padding-left:var(--sp-3)">
+  <a class="nav-link" href="#p4"><span class="num">04</span><span>Section tracking</span></a>
+  <a class="nav-link" href="#p5"><span class="num">05</span><span>Narrow space</span></a>
 </nav>
 </demo>
-<demo label="Yapma · cümle uzunluğunda ad">
-<nav aria-label="Uzun adlar" style="width:220px;padding-left:var(--sp-3)">
-  <a class="nav-link" href="#p4"><span class="num">04</span><span>Kaydırırken etkin bölümün nasıl bulunduğu ve sayacın güncellenmesi</span></a>
-  <a class="nav-link" href="#p5"><span class="num">05</span><span>Ekran daraldığında</span></a>
+<demo label="Don't · sentence-length names">
+<nav aria-label="Long names" style="width:220px;padding-left:var(--sp-3)">
+  <a class="nav-link" href="#p4"><span class="num">04</span><span>How the active section is found while scrolling and how the counter is updated</span></a>
+  <a class="nav-link" href="#p5"><span class="num">05</span><span>When the screen gets narrower</span></a>
 </nav>
 </demo>
 </div>
 </chapter>
 
-<chapter title="Hero ve bölüm başı" lead="Sayfa bir hero ile açılır ve numaralı bölümlerle ilerler. Bu sayfanın başı canlı hero örneğidir; künye listesi için kv sınıfı kullanılır.">
-<figure class="code"><figcaption class="code-head"><span class="code-file">hero ve ilk bölüm</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;<span class="k">section</span> class="<span class="s">hero</span>" id="<span class="s">top</span>" data-section data-title="<span class="s">Giriş</span>"&gt;
+<chapter title="Hero and chapter head" lead="A page opens with a hero and continues in numbered sections. The top of this page is a live hero example; use the kv class for a fact list.">
+<figure class="code"><figcaption class="code-head"><span class="code-file">hero and first section</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class="k">section</span> class="<span class="s">hero</span>" id="<span class="s">top</span>" data-section data-title="<span class="s">Intro</span>"&gt;
   &lt;<span class="k">div</span> class="<span class="s">hero-copy</span>"&gt;
-    &lt;<span class="k">p</span> class="<span class="s">hero-label</span>"&gt;Platform · El kitabı&lt;/<span class="k">p</span>&gt;
-    &lt;<span class="k">h1</span>&gt;Kuyruklar&lt;<span class="k">em</span>&gt;İş nasıl girer, nasıl çıkar.&lt;/<span class="k">em</span>&gt;&lt;/<span class="k">h1</span>&gt;
-    &lt;<span class="k">p</span> class="<span class="s">intro</span>"&gt;Tek paragraflık giriş; en çok 44 karakter genişlikte.&lt;/<span class="k">p</span>&gt;
+    &lt;<span class="k">p</span> class="<span class="s">hero-label</span>"&gt;Platform · Handbook&lt;/<span class="k">p</span>&gt;
+    &lt;<span class="k">h1</span>&gt;Queues&lt;<span class="k">em</span>&gt;How work gets in, and how it gets out.&lt;/<span class="k">em</span>&gt;&lt;/<span class="k">h1</span>&gt;
+    &lt;<span class="k">p</span> class="<span class="s">intro</span>"&gt;A one-paragraph intro; at most 44 characters wide.&lt;/<span class="k">p</span>&gt;
   &lt;/<span class="k">div</span>&gt;
 &lt;/<span class="k">section</span>&gt;
 
-&lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b1</span>" data-section data-title="<span class="s">Mimari</span>"&gt;
+&lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b1</span>" data-section data-title="<span class="s">Architecture</span>"&gt;
   &lt;<span class="k">header</span> class="<span class="s">ch-head</span>"&gt;
-    &lt;<span class="k">p</span> class="<span class="s">ch-num</span>"&gt;01 &lt;<span class="k">small</span>&gt;4 dk okuma&lt;/<span class="k">small</span>&gt;&lt;/<span class="k">p</span>&gt;
-    &lt;<span class="k">h2</span>&gt;Mimari&lt;/<span class="k">h2</span>&gt;
-    &lt;<span class="k">p</span> class="<span class="s">lead</span>"&gt;Bölümün ana fikri tek cümlede.&lt;/<span class="k">p</span>&gt;
+    &lt;<span class="k">p</span> class="<span class="s">ch-num</span>"&gt;01 &lt;<span class="k">small</span>&gt;4 min read&lt;/<span class="k">small</span>&gt;&lt;/<span class="k">p</span>&gt;
+    &lt;<span class="k">h2</span>&gt;Architecture&lt;/<span class="k">h2</span>&gt;
+    &lt;<span class="k">p</span> class="<span class="s">lead</span>"&gt;The main idea of the section in one sentence.&lt;/<span class="k">p</span>&gt;
   &lt;/<span class="k">header</span>&gt;
   …
 &lt;/<span class="k">article</span>&gt;</code></pre></figure>
-<demo label="Örnek · künye listesi">
+<demo label="Example · fact list">
 <dl class="kv">
-  <dt>Sahip</dt><dd>Platform ekibi · nöbet kanalı <span class="mono">#platform-oncall</span></dd>
-  <dt>Kapsam</dt><dd><code>billing-worker</code>, <code>email-worker</code>, <code>export-worker</code></dd>
-  <dt>Son gözden geçirme</dt><dd>14 Eylül 2026</dd>
+  <dt>Owner</dt><dd>Platform team · on-call channel <span class="mono">#platform-oncall</span></dd>
+  <dt>Scope</dt><dd><code>billing-worker</code>, <code>email-worker</code>, <code>export-worker</code></dd>
+  <dt>Last reviewed</dt><dd>September 14, 2026</dd>
 </dl>
 </demo>
-<div class="prose"><p><code>.hero</code> sağda ikinci bir sütun açar; oraya bir antet (<code>dl.titleblock</code>) konabilir. Bölüm numarası <code>.ch-num</code> mono ve vurgu renginde; içindeki <code>small</code> süre ya da durum gibi ikincil bilgi içindir.</p></div>
+<div class="prose"><p><code>.hero</code> opens a second column on the right; a title block (<code>dl.titleblock</code>) can go there. The <code>.ch-num</code> section number is mono and in the accent color; the <code>small</code> inside it is for secondary information like reading time or status.</p></div>
 </chapter>
 
-<chapter title="Bölüm takibi" lead="Kaydırdıkça etkin bölüm bulunur; rayda işaretlenir, sayaç ve üst çubuk güncellenir, adres çubuğundaki parça eşitlenir. Hepsi data-section ve data-title özniteliklerinden.">
-<div class="readout" id="isk-pos" aria-live="polite"><p>Konum okunmadı.</p></div>
+<chapter title="Section tracking" lead="As you scroll, the active section is found; it is marked in the rail, the counter and top bar update, and the fragment in the address bar follows. All of it comes from the data-section and data-title attributes.">
+<div class="readout" id="isk-pos" aria-live="polite"><p>Position not read yet.</p></div>
 <div class="pillrow" style="margin:var(--sp-5) 0 var(--sp-8)">
-  <button class="btn" type="button" id="isk-read"><svg aria-hidden="true"><use href="#i-info"/></svg>Konumu oku</button>
-  <button class="btn" type="button" id="isk-jump">Kabuk haritasına git</button>
+  <button class="btn" type="button" id="isk-read"><svg aria-hidden="true"><use href="#i-info"/></svg>Read position</button>
+  <button class="btn" type="button" id="isk-jump">Go to the shell map</button>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.state.section;      <span class="c">// etkin bölümün id'si, ör. "p4"</span>
-Hendese.lockTo(<span class="s">'p1'</span>);       <span class="c">// yumuşak kaydırma bitene dek hedefi etkin tut</span>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.state.section;      <span class="c">// id of the active section, e.g. "p4"</span>
+Hendese.lockTo(<span class="s">'p1'</span>);       <span class="c">// keep the target active until smooth scrolling ends</span>
 location.hash = <span class="s">'#p1'</span>;</code></pre></figure>
 <div class="tbl"><table>
-  <thead><tr><th>Ne</th><th>Nereden okur</th><th>Ne yazar</th></tr></thead>
+  <thead><tr><th>What</th><th>Reads from</th><th>Writes</th></tr></thead>
   <tbody>
-    <tr><td>Ray işareti</td><td><code>#rail .nav-link[href="#id"]</code></td><td><code>.is-active</code> + <code>aria-current="true"</code></td></tr>
-    <tr><td>Konum sayacı</td><td><code>#rail-pos</code></td><td><code>04 / 06</code>; sayfa başında "Giriş"</td></tr>
-    <tr><td>Üst çubuk</td><td><code>#topbar-cur</code> (<code>aria-live</code>)</td><td>Numara ve <code>data-title</code></td></tr>
-    <tr><td>Okuma çubuğu</td><td><code>#progress-bar</code></td><td>Kaydırma oranı, genişlik olarak</td></tr>
-    <tr><td>Adres</td><td><code>history.replaceState</code></td><td><code>#id</code>; sayfa başında parça silinir</td></tr>
+    <tr><td>Rail marker</td><td><code>#rail .nav-link[href="#id"]</code></td><td><code>.is-active</code> + <code>aria-current="true"</code></td></tr>
+    <tr><td>Position counter</td><td><code>#rail-pos</code></td><td><code>04 / 06</code>; "Intro" at the top of the page</td></tr>
+    <tr><td>Top bar</td><td><code>#topbar-cur</code> (<code>aria-live</code>)</td><td>Number and <code>data-title</code></td></tr>
+    <tr><td>Reading bar</td><td><code>#progress-bar</code></td><td>Scroll ratio, as a width</td></tr>
+    <tr><td>Address</td><td><code>history.replaceState</code></td><td><code>#id</code>; at the top of the page the fragment is removed</td></tr>
   </tbody>
 </table></div>
-<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Atlama bağlantısı</span><div class="co-body"><p>Sayfayı yeniden yükleyip ilk olarak Tab'a basın: sol üstte "İçeriğe geç" belirir. Bağlantı <code>#content</code>'e gider; <code>main</code> öğesinin id'si bu yüzden sabittir.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Skip link</span><div class="co-body"><p>Reload the page and press Tab first: "Skip to content" appears at the top left. The link goes to <code>#content</code>, which is why the <code>main</code> element's id is fixed.</p></div></div>
 </chapter>
 
-<chapter title="Dar alan" lead="1100px altında ray çekmeceye, sabit ray yerine üst çubuğa dönüşür. Cetveller ve Hoca'nın evi gizlenir; içerik tek sütun olur.">
-<demo label="Örnek · üst çubuk (1100px altında görünür)">
+<chapter title="Narrow space" lead="Below 1100px the rail becomes a drawer, and the fixed rail gives way to the top bar. The rulers and Hoca's home are hidden; the content becomes a single column.">
+<demo label="Example · top bar (visible below 1100px)">
 <header class="topbar" style="display:flex;position:static;border:1px solid var(--line)">
-  <button class="icon-btn" type="button" aria-label="Bölümleri aç" aria-expanded="false"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
-  <a class="brand" href="#top">Platform el kitabı</a>
+  <button class="icon-btn" type="button" aria-label="Open sections" aria-expanded="false"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Platform handbook</a>
   <span class="spacer"></span>
-  <span class="cur">03  Yeniden deneme</span>
-  <button class="icon-btn" type="button" aria-label="Görünümü sıfırla"><svg aria-hidden="true"><use href="#i-reset"/></svg></button>
+  <span class="cur">03  Retries</span>
+  <button class="icon-btn" type="button" aria-label="Reset view"><svg aria-hidden="true"><use href="#i-reset"/></svg></button>
 </header>
 </demo>
-<div class="prose"><p>Örnekte çubuk görünsün diye <code>display:flex;position:static</code> satır içi verildi ve id'ler kaldırıldı. Gerçek çubukta <code>#nav-open</code> <code>aria-controls="rail"</code> ve <code>aria-expanded</code> taşır; çekmece açıkken odak rayın içinde döner, Esc ya da perdeye tıklama kapatır ve odak düğmeye geri gelir.</p></div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Neden 1100px</span><div class="co-body"><p>Eşik CSS'te medya sorgusu, JS'te <code>matchMedia('(min-width:1100px)')</code> olarak iki yerde yazılıdır ve bir ayar değil sözleşmedir. Medya sorguları değişken okuyamadığı için token yoktur.</p></div></div>
+<div class="prose"><p>So that the bar shows in the example, <code>display:flex;position:static</code> is set inline and the ids are removed. In the real bar, <code>#nav-open</code> carries <code>aria-controls="rail"</code> and <code>aria-expanded</code>; while the drawer is open, focus stays inside the rail, Esc or a click on the scrim closes it, and focus returns to the button.</p></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Why 1100px</span><div class="co-body"><p>The threshold is written in two places, as a media query in CSS and as <code>matchMedia('(min-width:1100px)')</code> in JS, and it is a contract, not a setting. Media queries cannot read variables, so there is no token.</p></div></div>
 </chapter>
 
-<chapter title="Sütun genişliği" lead="Bileşenler pencereye değil, içinde durdukları sütuna bakar. main öğesi col adlı bir kaptır; tablo, künye listesi, adımlar ve pafta kendi kırılımlarını bu kabın genişliğinden okur.">
-<div class="prose"><p><code>main</code> <code>container: col / inline-size</code> taşır. Bir bileşen dar bir sütuna (yan panel, iki sütunlu düzenin yarısı, sticky sahnenin metin sütunu) konduğunda pencere geniş olsa da dar düzenine geçer. Kendi dar sütununuzu kap yapmak için aynı adı verin; en yakın <code>col</code> kabı kazanır.</p></div>
-<demo label="Örnek · aynı işaretleme, iki sütun">
+<chapter title="Column width" lead="Components look at the column they sit in, not at the window. The main element is a container named col; tables, fact lists, steps and sheets read their breakpoints from that container's width.">
+<div class="prose"><p><code>main</code> carries <code>container: col / inline-size</code>. When a component is placed in a narrow column (a side panel, half of a two-column layout, the text column of a sticky scene), it switches to its narrow layout even if the window is wide. To make your own narrow column a container, give it the same name; the nearest <code>col</code> container wins.</p></div>
+<demo label="Example · same markup, two columns">
 <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--sp-8);align-items:start">
   <div>
-    <p class="chip">Geniş sütun</p>
+    <p class="chip">Wide column</p>
     <div class="tbl"><table>
-      <thead><tr><th>İşçi</th><th>Kopya</th><th>Kuyruk</th></tr></thead>
+      <thead><tr><th>Worker</th><th>Replicas</th><th>Queue</th></tr></thead>
       <tbody>
-        <tr><td>billing-worker</td><td>4</td><td>120 iş/dk</td></tr>
-        <tr><td>email-worker</td><td>2</td><td>35 iş/dk</td></tr>
+        <tr><td>billing-worker</td><td>4</td><td>120 jobs/min</td></tr>
+        <tr><td>email-worker</td><td>2</td><td>35 jobs/min</td></tr>
       </tbody>
     </table></div>
   </div>
   <div style="container:col / inline-size">
-    <p class="chip">Dar sütun · col kabı</p>
+    <p class="chip">Narrow column · col container</p>
     <div class="tbl"><table>
-      <thead><tr><th>İşçi</th><th>Kopya</th><th>Kuyruk</th></tr></thead>
+      <thead><tr><th>Worker</th><th>Replicas</th><th>Queue</th></tr></thead>
       <tbody>
-        <tr><td>billing-worker</td><td>4</td><td>120 iş/dk</td></tr>
-        <tr><td>email-worker</td><td>2</td><td>35 iş/dk</td></tr>
+        <tr><td>billing-worker</td><td>4</td><td>120 jobs/min</td></tr>
+        <tr><td>email-worker</td><td>2</td><td>35 jobs/min</td></tr>
       </tbody>
     </table></div>
   </div>
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Kap</th><th>Kırılım</th><th>Ne değişir</th></tr></thead>
+  <thead><tr><th>Container</th><th>Breakpoint</th><th>What changes</th></tr></thead>
   <tbody>
-    <tr><td><code>col</code></td><td>≤ 760px</td><td>Pafta (<code>.frame</code>) tek sütuna iner, antet sola yaslanır</td></tr>
-    <tr><td><code>col</code></td><td>≤ 719px</td><td>Tablo satırları karta döner, saha defteri ve adımlar tek sütun olur, antet tam genişlik</td></tr>
-    <tr><td><code>col</code></td><td>≤ 640px</td><td>Künye listesi (<code>.kv</code>) tek sütun</td></tr>
-    <tr><td><code>fig</code></td><td>≤ 575px</td><td>Dar varyantı olan çizim (<code>.is-nar</code>) ikinci çizime geçer</td></tr>
+    <tr><td><code>col</code></td><td>≤ 760px</td><td>The sheet (<code>.frame</code>) drops to one column and the title block aligns left</td></tr>
+    <tr><td><code>col</code></td><td>≤ 719px</td><td>Table rows turn into cards, the survey log and steps become one column, the title block goes full width</td></tr>
+    <tr><td><code>col</code></td><td>≤ 640px</td><td>The fact list (<code>.kv</code>) becomes one column</td></tr>
+    <tr><td><code>fig</code></td><td>≤ 575px</td><td>A drawing with a narrow variant (<code>.is-nar</code>) switches to the second drawing</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Pencere genişliğine bakan istisnalar kabuğun kendisidir: ray, üst çubuk, hero, Hoca ve 1100px canlı hareket eşiği. <code>.sticky-text</code> de bir <code>col</code> kabıdır; sticky sahnenin metin sütunundaki tablo bu yüzden kendiliğinden kart olur.</p></div>
+<div class="prose"><p>The exceptions that look at the window width are the shell itself: the rail, the top bar, the hero, Hoca and the 1100px live motion threshold. <code>.sticky-text</code> is also a <code>col</code> container, which is why a table in a sticky scene's text column turns into cards on its own.</p></div>
 </chapter>
 
-<chapter title="Tam iskelet" lead="Kopyalayıp doldurulacak en küçük tam sayfa. Bu bölüm sessizdir: Hoca rayda evinde kalır ve ray soluklaşır, çünkü uzun bir kod okurken dikkat dağıtılmaz." hoca="quiet">
-<div class="prose"><p>Bir bölümü sessiz yapmak için <code>&lt;article data-hoca="quiet"&gt;</code> yeterli. Bölüm etkinken ray <code>.hoca-quiet</code> alır ve Hoca'nın evi yarı saydam olur; sahneler Hoca'yı istemez.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">index.html</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!doctype html&gt;
-&lt;<span class="k">html</span> lang="<span class="s">tr</span>"&gt;
+<chapter title="Full skeleton" lead="The smallest complete page to copy and fill in. This section is quiet: Hoca stays home in the rail and the rail fades, because you should not be distracted while reading long code." hoca="quiet">
+<div class="prose"><p>To make a section quiet, <code>&lt;article data-hoca="quiet"&gt;</code> is enough. While the section is active, the rail gets <code>.hoca-quiet</code> and Hoca's home turns semi-transparent; scenes do not call for Hoca.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">index.html</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!doctype html&gt;
+&lt;<span class="k">html</span> lang="<span class="s">en</span>"&gt;
 &lt;<span class="k">head</span>&gt;
 &lt;<span class="k">meta</span> charset="<span class="s">utf-8</span>"&gt;
 &lt;<span class="k">meta</span> name="<span class="s">viewport</span>" content="<span class="s">width=device-width, initial-scale=1</span>"&gt;
-&lt;<span class="k">title</span>&gt;Kuyruklar · Platform el kitabı&lt;/<span class="k">title</span>&gt;
-&lt;<span class="k">script</span>&gt;<span class="c">/* dist/head.js içeriği: flaşsız tema */</span>&lt;/<span class="k">script</span>&gt;
+&lt;<span class="k">title</span>&gt;Queues · Platform handbook&lt;/<span class="k">title</span>&gt;
+&lt;<span class="k">script</span>&gt;<span class="c">/* contents of dist/head.js: theme without a flash */</span>&lt;/<span class="k">script</span>&gt;
 &lt;<span class="k">link</span> rel="<span class="s">stylesheet</span>" href="<span class="s">hendese/dist/hendese.css</span>"&gt;
 &lt;/<span class="k">head</span>&gt;
 &lt;<span class="k">body</span>&gt;
-<span class="c">&lt;!-- dist/icons.svg içeriği (ilk yorum satırı hariç) --&gt;</span>
+<span class="c">&lt;!-- contents of dist/icons.svg (except the first comment line) --&gt;</span>
 &lt;<span class="k">div</span> class="<span class="s">rulers</span>" aria-hidden="<span class="s">true</span>"&gt;&lt;/<span class="k">div</span>&gt;
-&lt;<span class="k">a</span> class="<span class="s">skip</span>" href="<span class="s">#content</span>"&gt;İçeriğe geç&lt;/<span class="k">a</span>&gt;
+&lt;<span class="k">a</span> class="<span class="s">skip</span>" href="<span class="s">#content</span>"&gt;Skip to content&lt;/<span class="k">a</span>&gt;
 &lt;<span class="k">div</span> class="<span class="s">progress</span>" aria-hidden="<span class="s">true</span>"&gt;&lt;<span class="k">i</span> id="<span class="s">progress-bar</span>"&gt;&lt;/<span class="k">i</span>&gt;&lt;/<span class="k">div</span>&gt;
 
 &lt;<span class="k">header</span> class="<span class="s">topbar</span>"&gt;
-  &lt;<span class="k">button</span> class="<span class="s">icon-btn</span>" id="<span class="s">nav-open</span>" type="<span class="s">button</span>" aria-label="<span class="s">Bölümleri aç</span>" aria-controls="<span class="s">rail</span>" aria-expanded="<span class="s">false</span>"&gt;&lt;<span class="k">svg</span>&gt;&lt;<span class="k">use</span> href="<span class="s">#i-menu</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
-  &lt;<span class="k">a</span> class="<span class="s">brand</span>" href="<span class="s">#top</span>"&gt;Platform el kitabı&lt;/<span class="k">a</span>&gt;
+  &lt;<span class="k">button</span> class="<span class="s">icon-btn</span>" id="<span class="s">nav-open</span>" type="<span class="s">button</span>" aria-label="<span class="s">Open sections</span>" aria-controls="<span class="s">rail</span>" aria-expanded="<span class="s">false</span>"&gt;&lt;<span class="k">svg</span>&gt;&lt;<span class="k">use</span> href="<span class="s">#i-menu</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
+  &lt;<span class="k">a</span> class="<span class="s">brand</span>" href="<span class="s">#top</span>"&gt;Platform handbook&lt;/<span class="k">a</span>&gt;
   &lt;<span class="k">span</span> class="<span class="s">spacer</span>"&gt;&lt;/<span class="k">span</span>&gt;
   &lt;<span class="k">span</span> class="<span class="s">cur</span>" id="<span class="s">topbar-cur</span>" aria-live="<span class="s">polite</span>"&gt;&lt;/<span class="k">span</span>&gt;
-  &lt;<span class="k">button</span> class="<span class="s">icon-btn</span>" type="<span class="s">button</span>" data-theme-toggle aria-label="<span class="s">Temayı değiştir</span>"&gt;&lt;<span class="k">svg</span> class="<span class="s">sun</span>"&gt;&lt;<span class="k">use</span> href="<span class="s">#i-sun</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;<span class="k">svg</span> class="<span class="s">moon</span>"&gt;&lt;<span class="k">use</span> href="<span class="s">#i-moon</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
+  &lt;<span class="k">button</span> class="<span class="s">icon-btn</span>" type="<span class="s">button</span>" data-theme-toggle aria-label="<span class="s">Toggle theme</span>"&gt;&lt;<span class="k">svg</span> class="<span class="s">sun</span>"&gt;&lt;<span class="k">use</span> href="<span class="s">#i-sun</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;<span class="k">svg</span> class="<span class="s">moon</span>"&gt;&lt;<span class="k">use</span> href="<span class="s">#i-moon</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
 &lt;/<span class="k">header</span>&gt;
 
 &lt;<span class="k">div</span> class="<span class="s">shell</span>"&gt;
-&lt;<span class="k">aside</span> class="<span class="s">rail</span>" id="<span class="s">rail</span>" aria-label="<span class="s">Bölümler</span>"&gt;
+&lt;<span class="k">aside</span> class="<span class="s">rail</span>" id="<span class="s">rail</span>" aria-label="<span class="s">Sections</span>"&gt;
   &lt;<span class="k">div</span> class="<span class="s">rail-head</span>"&gt;
-    &lt;<span class="k">a</span> class="<span class="s">brand</span>" href="<span class="s">#top</span>"&gt;Platform el kitabı&lt;<span class="k">small</span>&gt;Kuyruklar ve işçiler&lt;/<span class="k">small</span>&gt;&lt;/<span class="k">a</span>&gt;
-    &lt;<span class="k">button</span> class="<span class="s">icon-btn rail-close</span>" id="<span class="s">nav-close</span>" type="<span class="s">button</span>" aria-label="<span class="s">Bölümleri kapat</span>"&gt;&lt;<span class="k">svg</span>&gt;&lt;<span class="k">use</span> href="<span class="s">#i-x</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
+    &lt;<span class="k">a</span> class="<span class="s">brand</span>" href="<span class="s">#top</span>"&gt;Platform handbook&lt;<span class="k">small</span>&gt;Queues and workers&lt;/<span class="k">small</span>&gt;&lt;/<span class="k">a</span>&gt;
+    &lt;<span class="k">button</span> class="<span class="s">icon-btn rail-close</span>" id="<span class="s">nav-close</span>" type="<span class="s">button</span>" aria-label="<span class="s">Close sections</span>"&gt;&lt;<span class="k">svg</span>&gt;&lt;<span class="k">use</span> href="<span class="s">#i-x</span>"/&gt;&lt;/<span class="k">svg</span>&gt;&lt;/<span class="k">button</span>&gt;
   &lt;/<span class="k">div</span>&gt;
-  &lt;<span class="k">nav</span> class="<span class="s">rail-nav</span>" aria-label="<span class="s">İçindekiler</span>"&gt;
-    &lt;<span class="k">div</span> class="<span class="s">nav-group</span>"&gt;Bu sayfa&lt;/<span class="k">div</span>&gt;
-    &lt;<span class="k">a</span> class="<span class="s">nav-link</span>" href="<span class="s">#b1</span>"&gt;&lt;<span class="k">span</span> class="<span class="s">num</span>"&gt;01&lt;/<span class="k">span</span>&gt;&lt;<span class="k">span</span>&gt;Mimari&lt;/<span class="k">span</span>&gt;&lt;/<span class="k">a</span>&gt;
-    &lt;<span class="k">a</span> class="<span class="s">nav-link</span>" href="<span class="s">#b2</span>"&gt;&lt;<span class="k">span</span> class="<span class="s">num</span>"&gt;02&lt;/<span class="k">span</span>&gt;&lt;<span class="k">span</span>&gt;Ölçekleme&lt;/<span class="k">span</span>&gt;&lt;/<span class="k">a</span>&gt;
+  &lt;<span class="k">nav</span> class="<span class="s">rail-nav</span>" aria-label="<span class="s">Contents</span>"&gt;
+    &lt;<span class="k">div</span> class="<span class="s">nav-group</span>"&gt;On this page&lt;/<span class="k">div</span>&gt;
+    &lt;<span class="k">a</span> class="<span class="s">nav-link</span>" href="<span class="s">#b1</span>"&gt;&lt;<span class="k">span</span> class="<span class="s">num</span>"&gt;01&lt;/<span class="k">span</span>&gt;&lt;<span class="k">span</span>&gt;Architecture&lt;/<span class="k">span</span>&gt;&lt;/<span class="k">a</span>&gt;
+    &lt;<span class="k">a</span> class="<span class="s">nav-link</span>" href="<span class="s">#b2</span>"&gt;&lt;<span class="k">span</span> class="<span class="s">num</span>"&gt;02&lt;/<span class="k">span</span>&gt;&lt;<span class="k">span</span>&gt;Scaling&lt;/<span class="k">span</span>&gt;&lt;/<span class="k">a</span>&gt;
   &lt;/<span class="k">nav</span>&gt;
   &lt;<span class="k">div</span> class="<span class="s">hoca-home</span>" id="<span class="s">hoca-home</span>" aria-hidden="<span class="s">true</span>"&gt;&lt;<span class="k">span</span> class="<span class="s">hoca-plate</span>"&gt;Hoca&lt;/<span class="k">span</span>&gt;&lt;/<span class="k">div</span>&gt;
   &lt;<span class="k">div</span> class="<span class="s">rail-foot</span>"&gt;
-    &lt;<span class="k">span</span> class="<span class="s">pos</span>" id="<span class="s">rail-pos</span>"&gt;Giriş&lt;/<span class="k">span</span>&gt;
+    &lt;<span class="k">span</span> class="<span class="s">pos</span>" id="<span class="s">rail-pos</span>"&gt;Intro&lt;/<span class="k">span</span>&gt;
   &lt;/<span class="k">div</span>&gt;
 &lt;/<span class="k">aside</span>&gt;
 &lt;<span class="k">div</span> class="<span class="s">scrim</span>" id="<span class="s">scrim</span>" aria-hidden="<span class="s">true</span>"&gt;&lt;/<span class="k">div</span>&gt;
 
 &lt;<span class="k">main</span> id="<span class="s">content</span>"&gt;
 &lt;<span class="k">div</span> class="<span class="s">canvas</span>"&gt;
-  &lt;<span class="k">section</span> class="<span class="s">hero</span>" id="<span class="s">top</span>" data-section data-title="<span class="s">Giriş</span>"&gt;…&lt;/<span class="k">section</span>&gt;
-  &lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b1</span>" data-section data-title="<span class="s">Mimari</span>"&gt;…&lt;/<span class="k">article</span>&gt;
-  &lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b2</span>" data-section data-title="<span class="s">Ölçekleme</span>" data-hoca="<span class="s">quiet</span>"&gt;…&lt;/<span class="k">article</span>&gt;
+  &lt;<span class="k">section</span> class="<span class="s">hero</span>" id="<span class="s">top</span>" data-section data-title="<span class="s">Intro</span>"&gt;…&lt;/<span class="k">section</span>&gt;
+  &lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b1</span>" data-section data-title="<span class="s">Architecture</span>"&gt;…&lt;/<span class="k">article</span>&gt;
+  &lt;<span class="k">article</span> class="<span class="s">chapter</span>" id="<span class="s">b2</span>" data-section data-title="<span class="s">Scaling</span>" data-hoca="<span class="s">quiet</span>"&gt;…&lt;/<span class="k">article</span>&gt;
 &lt;/<span class="k">div</span>&gt;
 &lt;/<span class="k">main</span>&gt;
 &lt;/<span class="k">div</span>&gt;
@@ -239,7 +239,7 @@ location.hash = <span class="s">'#p1'</span>;</code></pre></figure>
 &lt;/<span class="k">script</span>&gt;
 &lt;/<span class="k">body</span>&gt;
 &lt;/<span class="k">html</span>&gt;</code></pre></figure>
-<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Yeterli mi</span><div class="co-body"><p>Bu iskelet JS'siz de okunur: ray sabit bir içindekiler listesi, bölümler düz metin olarak kalır. <code>Hendese.init()</code> yalnızca çekmeceyi, bölüm takibini, okuma çubuğunu ve kopyala düğmelerini ekler.</p></div></div>
+<div class="co co-success"><span class="co-ic"><svg><use href="#i-check"/></svg></span><span class="co-label">Is it enough</span><div class="co-body"><p>This skeleton reads without JS too: the rail stays a static table of contents and the sections stay plain text. <code>Hendese.init()</code> only adds the drawer, section tracking, the reading bar and the copy buttons.</p></div></div>
 </chapter>
 
 <script data-page>
@@ -248,7 +248,7 @@ location.hash = <span class="s">'#p1'</span>;</code></pre></figure>
   document.getElementById('isk-read').addEventListener('click', function () {
     var id = Hendese.state.section, sec = id && document.getElementById(id);
     var pos = document.getElementById('rail-pos');
-    out.innerHTML = '<p><b>' + (sec ? sec.getAttribute('data-title') : 'Giriş') + '</b> · <code>' + (id || 'top') + '</code> · sayaç: ' + (pos ? pos.textContent : '—') + '</p>';
+    out.innerHTML = '<p><b>' + (sec ? sec.getAttribute('data-title') : 'Intro') + '</b> · <code>' + (id || 'top') + '</code> · counter: ' + (pos ? pos.textContent : '—') + '</p>';
   });
   document.getElementById('isk-jump').addEventListener('click', function () {
     Hendese.lockTo('p1'); location.hash = '#p1';

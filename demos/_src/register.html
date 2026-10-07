@@ -1,9 +1,9 @@
-<!-- meta {"title":"Değişken kaydı","group":"Bileşenler","order":120,"tagline":"Bir adımın o anki hali.","intro":"<code>.register</code> bir sürecin belirli bir anındaki değişkenleri ad / değer satırları olarak gösterir; bu adımda değişen satır <code>.now</code> ile vurgulanır. Bir hattın ortam değişkenleri, bir göçün kilit durumu ya da bir DNS sorgusunun alanları için uygundur.","summary":"<code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; adım adım ilerleyen ortam değişkenleri.","facts":{"Sınıflar":"<code>.register</code> · <code>.register-h</code> · <code>dl &gt; div</code> · <code>div.now</code>","Yapı":"<code>&lt;dl&gt;</code> içinde <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> satırları","JS":"Gerekmez; değerleri ve <code>.now</code> sınıfını sayfa betiği değiştirir"}} -->
+<!-- meta {"title":"Variable register","group":"Components","order":120,"tagline":"A step's state at that moment.","intro":"<code>.register</code> shows a process's variables at a given moment as name / value rows; the row that changes in this step is highlighted with <code>.now</code>. It suits a pipeline's environment variables, a migration's lock state or the fields of a DNS query.","summary":"<code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; environment variables advancing step by step.","facts":{"Classes":"<code>.register</code> · <code>.register-h</code> · <code>dl &gt; div</code> · <code>div.now</code>","Structure":"<code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> rows inside a <code>&lt;dl&gt;</code>","JS":"Not needed; the page script changes the values and the <code>.now</code> class"}} -->
 
-<chapter title="Anatomi" lead="Başlık satırında solda kaydın adı, sağda konum bilgisi; altında ad / değer satırları. Ad sütunu en uzun ada göre genişler.">
-<demo label="Örnek · DNS sorgusu">
+<chapter title="Anatomy" lead="The header row has the register's name on the left and position info on the right; name / value rows sit below. The name column widens to fit the longest name.">
+<demo label="Example · a DNS query">
 <div class="register" style="max-width:360px">
-  <p class="register-h"><b>Sorgu</b><span>ns-1 · 09:42:07</span></p>
+  <p class="register-h"><b>Query</b><span>ns-1 · 09:42:07</span></p>
   <dl>
     <div><dt>QNAME</dt><dd>api.example.com.</dd></div>
     <div><dt>QTYPE</dt><dd>A</dd></div>
@@ -14,17 +14,17 @@
 </div>
 </demo>
 <dl class="kv">
-  <dt><code>.register-h</code></dt><dd>Başlık satırı: <code>&lt;b&gt;</code> kaydın adı (büyük harf, çizim rengi), <code>&lt;span&gt;</code> adım ya da zaman.</dd>
-  <dt><code>dl &gt; div</code></dt><dd>Bir satır. İçindeki <code>dt</code> ad, <code>dd</code> değerdir; satırlar ortak bir ızgarayı paylaşır, değerler hizalı başlar.</dd>
-  <dt><code>div.now</code></dt><dd>Bu adımda değişen satır; vurgu dolgusu alır ve adı koyulaşır. Dolgu yumuşak bir geçişle gelir.</dd>
+  <dt><code>.register-h</code></dt><dd>The header row: <code>&lt;b&gt;</code> is the register's name (uppercase, drawing color), <code>&lt;span&gt;</code> the step or time.</dd>
+  <dt><code>dl &gt; div</code></dt><dd>One row. Its <code>dt</code> is the name and <code>dd</code> the value; rows share one grid, so values start aligned.</dd>
+  <dt><code>div.now</code></dt><dd>The row that changes in this step; it gets a highlight fill and its name darkens. The fill comes in with a soft transition.</dd>
 </dl>
 </chapter>
 
-<chapter title="Adım adım" lead="Bir hattın ortam değişkenleri iş ilerledikçe dolar. Düğmeyle bir sonraki adıma geçin; değişen satırlar vurgulanır, gösterge ne olduğunu yazar.">
-<demo label="Örnek · hat değişkenleri, canlı">
+<chapter title="Step by step" lead="A pipeline's environment variables fill in as the job advances. Use the button to move to the next step; changed rows are highlighted, and the readout says what happened.">
+<demo label="Example · pipeline variables, live">
 <div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start">
   <div class="register" id="dk-hat">
-    <p class="register-h"><b>Değişkenler</b><span id="dk-adim">adım 1 / 4</span></p>
+    <p class="register-h"><b>Variables</b><span id="dk-adim">step 1 / 4</span></p>
     <dl>
       <div data-k="sha"><dt>COMMIT_SHA</dt><dd>3f9c2a1b</dd></div>
       <div data-k="tag"><dt>IMAGE_TAG</dt><dd>—</dd></div>
@@ -35,15 +35,15 @@
   </div>
   <div>
     <div class="pillrow">
-      <button class="btn" type="button" id="dk-ileri"><svg><use href="#i-check"/></svg>Sonraki adım</button>
-      <button class="btn" type="button" id="dk-bas"><svg><use href="#i-reset"/></svg>Baştan</button>
+      <button class="btn" type="button" id="dk-ileri"><svg><use href="#i-check"/></svg>Next step</button>
+      <button class="btn" type="button" id="dk-bas"><svg><use href="#i-reset"/></svg>Start over</button>
     </div>
-    <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Kaynak <code>main</code> dalından alındı.</p></div>
+    <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Source checked out from the <code>main</code> branch.</p></div>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Kayıt yalnızca görünümdür; adımları sayfa betiği yürütür. Her adımda önce tüm satırlardan <code>.now</code> kaldırılır, sonra değişen satırlara eklenir:</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>function set(reg, changes) {
+<div class="prose"><p>The register is only a view; the page script runs the steps. On each step, <code>.now</code> is first removed from every row, then added to the rows that changed:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>function set(reg, changes) {
   reg.querySelectorAll('dl &gt; div').forEach(function (row) {
     var k = row.getAttribute('data-k'), hit = k in changes;
     if (hit) row.querySelector('dd').textContent = changes[k];
@@ -53,11 +53,11 @@
 set(document.getElementById('dk-hat'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
 </chapter>
 
-<chapter title="Durumlar" lead="Henüz değeri olmayan satır, uzun değer ve aynı adımda birden çok değişiklik.">
-<demo label="Örnek · boş, uzun, çoklu">
+<chapter title="States" lead="A row with no value yet, a long value, and several changes in the same step.">
+<demo label="Example · empty, long, multiple">
 <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start">
   <div class="register">
-    <p class="register-h"><b>Rol</b><span>billing-worker</span></p>
+    <p class="register-h"><b>Role</b><span>billing-worker</span></p>
     <dl>
       <div><dt>ROLE_ARN</dt><dd>arn:aws:iam::123456789012:role/billing-worker-prod-eu-west-1</dd></div>
       <div><dt>SESSION</dt><dd>—</dd></div>
@@ -65,20 +65,20 @@ set(document.getElementById('dk-hat'), { tag: 'prod-3f9c2a1b', st: 'build' });</
     </dl>
   </div>
   <div class="register">
-    <p class="register-h"><b>Ölçekleme</b><span>10:15 → 10:16</span></p>
+    <p class="register-h"><b>Scaling</b><span>10:15 → 10:16</span></p>
     <dl>
       <div class="now"><dt>REPLICAS</dt><dd>3 → 6</dd></div>
-      <div class="now"><dt>QUEUE_DEPTH</dt><dd>1.240</dd></div>
-      <div><dt>CPU_TARGET</dt><dd>%70</dd></div>
+      <div class="now"><dt>QUEUE_DEPTH</dt><dd>1,240</dd></div>
+      <div><dt>CPU_TARGET</dt><dd>70%</dd></div>
     </dl>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Değer uzunsa herhangi bir yerden kırılır; kayıt kabından taşmaz. Henüz atanmamış değer için boş bırakmak yerine bir tire yazın: satırın varlığı bir sonraki adımda dolacağını söyler.</p></div>
+<div class="prose"><p>A long value breaks anywhere; the register never overflows its container. For a value not yet assigned, write a dash instead of leaving it blank: the row's presence says it will fill in at a later step.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Kayıt bir kod parçasının ya da bir çizimin yanında durur ve okura o noktada nelerin bilindiğini söyler.">
-<demo label="Örnek · göç betiğinin yanında">
+<chapter title="In context" lead="A register sits next to a piece of code or a drawing and tells the reader what is known at that point.">
+<demo label="Example · next to a migration script">
 <div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start">
   <figure class="code" style="margin:0"><figcaption class="code-head"><span class="code-file">0042_add_invoice_index.sql</span><span class="code-lang">SQL</span></figcaption><pre tabindex="0"><code>SELECT pg_advisory_lock(42);
 CREATE INDEX CONCURRENTLY idx_invoice_due
@@ -86,19 +86,19 @@ CREATE INDEX CONCURRENTLY idx_invoice_due
 UPDATE schema_version SET v = 42;
 SELECT pg_advisory_unlock(42);</code></pre></figure>
   <div class="register">
-    <p class="register-h"><b>Göç</b><span>satır 2 / 5</span></p>
+    <p class="register-h"><b>Migration</b><span>line 2 / 5</span></p>
     <dl>
       <div><dt>SCHEMA</dt><dd>41</dd></div>
-      <div class="now"><dt>LOCK</dt><dd>42 · tutuluyor</dd></div>
+      <div class="now"><dt>LOCK</dt><dd>42 · held</dd></div>
       <div><dt>INDEX</dt><dd>—</dd></div>
     </dl>
   </div>
 </div>
 </demo>
-<demo label="Örnek · koyu panel, istek izi">
+<demo label="Example · dark panel, a request trace">
 <div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
   <div class="register" style="max-width:420px">
-    <p class="register-h"><b>İstek</b><span>iz 7a1f · span 3 / 6</span></p>
+    <p class="register-h"><b>Request</b><span>trace 7a1f · span 3 / 6</span></p>
     <dl>
       <div><dt>SERVICE</dt><dd>web-api</dd></div>
       <div><dt>ROUTE</dt><dd>GET /v1/invoices</dd></div>
@@ -110,41 +110,41 @@ SELECT pg_advisory_unlock(42);</code></pre></figure>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Vurgu yalnızca bu adımda değişen satırdadır. Her satır vurgulanırsa hiçbiri vurgulanmamış olur.">
+<chapter title="Do / don't" lead="Only the row that changes in this step is highlighted. If every row is highlighted, none of them is.">
 <div class="dodont">
-<demo label="Yap · tek değişiklik vurgulu">
+<demo label="Do · a single change highlighted">
 <div class="register">
-  <p class="register-h"><b>Önbellek</b><span>adım 3 / 3</span></p>
+  <p class="register-h"><b>Cache</b><span>step 3 / 3</span></p>
   <dl>
     <div><dt>KEY</dt><dd>invoice:8812</dd></div>
-    <div class="now"><dt>TTL</dt><dd>0 · silindi</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · evicted</dd></div>
     <div><dt>HITS</dt><dd>41</dd></div>
   </dl>
 </div>
 </demo>
-<demo label="Yapma · her satır vurgulu">
+<demo label="Don't · every row highlighted">
 <div class="register">
-  <p class="register-h"><b>Önbellek</b><span>adım 3 / 3</span></p>
+  <p class="register-h"><b>Cache</b><span>step 3 / 3</span></p>
   <dl>
     <div class="now"><dt>KEY</dt><dd>invoice:8812</dd></div>
-    <div class="now"><dt>TTL</dt><dd>0 · silindi</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · evicted</dd></div>
     <div class="now"><dt>HITS</dt><dd>41</dd></div>
   </dl>
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>&lt;dl&gt;</code> ad / değer çiftlerini ekran okuyucuya doğru verir; satırları saran <code>&lt;div&gt;</code> HTML'de geçerlidir. <code>.now</code> yalnızca görsel bir vurgudur: neyin değiştiği önemliyse bunu yanındaki bir <code>.readout</code> içinde, <code>aria-live</code> ile metin olarak da söyleyin.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A <code>&lt;dl&gt;</code> gives screen readers name / value pairs correctly; a <code>&lt;div&gt;</code> wrapping each row is valid HTML. <code>.now</code> is only a visual highlight: if what changed matters, also say it as text in a <code>.readout</code> next to it, with <code>aria-live</code>.</p></div></div>
 </chapter>
 
 <script data-page>
-/* hat değişkenleri: adım adım */
+/* pipeline variables: step by step */
 (function () {
   var reg = document.getElementById('dk-hat'), step = document.getElementById('dk-adim'), out = document.getElementById('dk-out');
   var steps = [
-    { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Kaynak <code>main</code> dalından alındı.' },
-    { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · İmaj derlendi, etiket kısa SHA\'dan üretildi.' },
-    { c: { reg: '123456789012.dkr.ecr.eu-west-1', st: 'push' }, now: ['reg', 'st'], t: '<b>push</b> · İmaj kayıt deposuna gönderildi.' },
-    { c: { env: 'prod', st: 'deploy · tamam' }, now: ['env', 'st'], t: '<b>deploy</b> · <code>prod-3f9c2a1b</code> üretimde.' }
+    { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Source checked out from the <code>main</code> branch.' },
+    { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · Image built; the tag comes from the short SHA.' },
+    { c: { reg: '123456789012.dkr.ecr.eu-west-1', st: 'push' }, now: ['reg', 'st'], t: '<b>push</b> · Image pushed to the registry.' },
+    { c: { env: 'prod', st: 'deploy · done' }, now: ['env', 'st'], t: '<b>deploy</b> · <code>prod-3f9c2a1b</code> is in production.' }
   ], i = 0;
   function render() {
     var s = steps[i];
@@ -153,7 +153,7 @@ SELECT pg_advisory_unlock(42);</code></pre></figure>
       if (k in s.c) row.querySelector('dd').textContent = s.c[k];
       row.classList.toggle('now', s.now.indexOf(k) > -1);
     });
-    step.textContent = 'adım ' + (i + 1) + ' / ' + steps.length;
+    step.textContent = 'step ' + (i + 1) + ' / ' + steps.length;
     out.classList.toggle('ok', i === steps.length - 1);
     out.innerHTML = '<p>' + s.t + '</p>';
     document.getElementById('dk-ileri').disabled = i === steps.length - 1;

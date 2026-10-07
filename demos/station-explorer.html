@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Station explorer · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html">Drawing units</a>
+    <a class="nav-page" href="line-families.html">Line families</a>
+    <a class="nav-page" href="station-explorer.html" aria-current="page">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>States</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>In context</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Event: hendese:explore</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Blueprint</p>
+    <h1>Station explorer<em>Every stop in the drawing is a clickable button.</em></h1>
+    <p class="intro">The explorer turns the stops of a drawing into real <code>&lt;button&gt;</code> elements. Hovering or focusing previews, clicking selects; the selected stop's description appears in the panel under the sheet. A page can have as many explorers as you like.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.station</code> · <code>.svc-*</code> · <code>.st-name</code> · <code>.st-sub</code> · <code>.st-meta</code> · <code>.st-detail</code> · <code>.sl</code> · <code>.deck-cap</code></dd><dt>Attributes</dt><dd><code>data-explorer</code> · <code>data-key</code> · <code>aria-pressed</code> · <code>data-for</code></dd><dt>Event</dt><dd><code>hendese:explore</code> → <code>detail.key</code></dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Three parts: a container that carries data-explorer, buttons inside it that carry data-key and aria-pressed, and a panel whose id equals the data-explorer value.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the smallest explorer · CDN path</span>
+  <div class="demo-view">
+<div data-explorer="ig-cdn">
+  <div class="drawing" style="--aw:800;--ah:150">
+    <svg viewBox="0 0 800 150" aria-hidden="true">
+      <path class="ln-strong" d="M220 80H294M294 80l-9-5M294 80l-9 5"/>
+      <path class="ln-draw ln-dash" d="M500 80H574"/>
+      <path class="ln-draw" d="M574 80l-8-4M574 80l-8 4"/>
+    </svg>
+    <p class="sl" style="--x:510;--y:52">miss</p>
+    <button class="station" type="button" data-key="istemci" aria-pressed="true" aria-controls="ig-cdn" style="--x:20;--y:40;--w:200;--h:80;--svc:var(--sec)"><span class="st-name">Client</span><span class="st-sub">browser</span></button>
+    <button class="station" type="button" data-key="edge" aria-pressed="false" aria-controls="ig-cdn" style="--x:300;--y:40;--w:200;--h:80"><span class="st-name">Edge</span><span class="st-sub">edge-fra</span></button>
+    <button class="station" type="button" data-key="origin" aria-pressed="false" aria-controls="ig-cdn" style="--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)"><span class="st-name">Origin</span><span class="st-sub">web-api</span></button>
+  </div>
+  <div class="st-detail" id="ig-cdn" aria-live="polite">
+    <div data-for="istemci"><b>Client.</b> Sends the request to the nearest edge; the address comes from DNS.</div>
+    <div data-for="edge"><b>Edge.</b> If the response is cached and fresh, it returns without going to the origin at all. Hit rate 94%.</div>
+    <div data-for="origin"><b>Origin.</b> Called only on a miss; sends the response back together with a <code>Cache-Control</code> header.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-cdn</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:800;--ah:150</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 800 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong</span>" d="<span class='s'>M220 80H294M294 80l-9-5M294 80l-9 5</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M500 80H574</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M574 80l-8-4M574 80l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:510;--y:52</span>"&gt;miss&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>istemci</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:20;--y:40;--w:200;--h:80;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Client&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;browser&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>edge</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:300;--y:40;--w:200;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Edge&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;edge-fra&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>origin</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-cdn</span>" style="<span class='s'>--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Origin&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-cdn</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>istemci</span>"&gt;&lt;<span class='k'>b</span>&gt;Client.&lt;/<span class='k'>b</span>&gt; Sends the request to the nearest edge; the address comes from DNS.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>edge</span>"&gt;&lt;<span class='k'>b</span>&gt;Edge.&lt;/<span class='k'>b</span>&gt; If the response is cached and fresh, it returns without going to the origin at all. Hit rate 94%.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>origin</span>"&gt;&lt;<span class='k'>b</span>&gt;Origin.&lt;/<span class='k'>b</span>&gt; Called only on a miss; sends the response back together with a &lt;<span class='k'>code</span>&gt;Cache-Control&lt;/<span class='k'>code</span>&gt; header.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><ul>
+  <li>Container: <code>data-explorer="ig-cdn"</code>. The value is the panel's <code>id</code>, so it must be unique on the page.</li>
+  <li>Buttons: <code>[data-key][aria-pressed]</code>. A button without both doesn't join the explorer. The one that starts with <code>aria-pressed="true"</code> is selected; otherwise, the first button.</li>
+  <li>Panel: <code>[data-for="key"]</code> blocks. If JavaScript doesn't run, and in print, all blocks show one under another (the finished state); JS writes the <code>.show</code> class.</li>
+  <li><code>aria-controls</code> links the button to the panel, and <code>aria-live="polite"</code> links the panel to the screen reader.</li>
+</ul></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">02</p><h2>States</h2><p class="lead">A stop carries one, two or three lines. Hover gives a thin inner line, selection a heavy inner line and the SELECTED badge, keyboard focus an accent ring.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · line count, selection and color</span>
+  <div class="demo-view">
+<div data-explorer="ig-durum">
+  <div class="drawing" style="--aw:900;--ah:180">
+    <svg viewBox="0 0 900 180" aria-hidden="true">
+      <path class="ln-pencil" d="M0 138H900"/>
+    </svg>
+    <button class="station" type="button" data-key="ad" aria-pressed="false" aria-controls="ig-durum" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">web-api</span></button>
+    <button class="station" type="button" data-key="alt" aria-pressed="false" aria-controls="ig-durum" style="--x:245;--y:30;--w:200;--h:90;--svc:var(--sec)"><span class="st-name">orders-db</span><span class="st-sub">primary</span></button>
+    <button class="station" type="button" data-key="uc" aria-pressed="true" aria-controls="ig-durum" style="--x:470;--y:30;--w:200;--h:90;--svc:var(--warn)"><span class="st-name">jobs-eu</span><span class="st-sub">queue</span><span class="st-meta">depth 1,240</span></button>
+    <button class="station" type="button" data-key="renk" aria-pressed="false" aria-controls="ig-durum" style="--x:695;--y:30;--w:200;--h:90;--svc:var(--bad)"><span class="st-name">auth</span><span class="st-sub">identity</span><span class="st-meta">errors 3.2%</span></button>
+    <p class="sl" style="--x:20;--y:142">name only</p>
+    <p class="sl" style="--x:245;--y:142">name + subline</p>
+    <p class="sl" style="--x:470;--y:142">selected · three lines</p>
+    <p class="sl" style="--x:695;--y:142">--svc: var(--bad)</p>
+  </div>
+  <div class="st-detail" id="ig-durum" aria-live="polite">
+    <div data-for="ad"><b>.st-name</b> on its own. Without <code>--svc</code>, the square mark takes the drawing color.</div>
+    <div data-for="alt"><b>.st-sub</b> is the second line, in plain text. The square is purple via <code>--svc: var(--sec)</code>.</div>
+    <div data-for="uc"><b>.st-meta</b> is the third line, mono and faded. This stop starts selected: <code>aria-pressed="true"</code>.</div>
+    <div data-for="renk"><b>Color</b> stays in the square only; the frame is the same on every stop. The ready-made <code>.svc-*</code> classes set the same variable.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-durum</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:180</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 180</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M0 138H900</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>ad</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-durum</span>" style="<span class='s'>--x:20;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>alt</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-durum</span>" style="<span class='s'>--x:245;--y:30;--w:200;--h:90;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;orders-db&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;primary&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>uc</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-durum</span>" style="<span class='s'>--x:470;--y:30;--w:200;--h:90;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;jobs-eu&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;queue&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;depth 1,240&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>renk</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-durum</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90;--svc:var(--bad)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;auth&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;identity&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;errors 3.2%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:20;--y:142</span>"&gt;name only&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:245;--y:142</span>"&gt;name + subline&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:470;--y:142</span>"&gt;selected · three lines&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:695;--y:142</span>"&gt;--svc: var(--bad)&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-durum</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>ad</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-name&lt;/<span class='k'>b</span>&gt; on its own. Without &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt;, the square mark takes the drawing color.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>alt</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-sub&lt;/<span class='k'>b</span>&gt; is the second line, in plain text. The square is purple via &lt;<span class='k'>code</span>&gt;--svc: var(--sec)&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>uc</span>"&gt;&lt;<span class='k'>b</span>&gt;.st-meta&lt;/<span class='k'>b</span>&gt; is the third line, mono and faded. This stop starts selected: &lt;<span class='k'>code</span>&gt;aria-pressed="<span class='s'>true</span>"&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>renk</span>"&gt;&lt;<span class='k'>b</span>&gt;Color&lt;/<span class='k'>b</span>&gt; stays in the square only; the frame is the same on every stop. The ready-made &lt;<span class='k'>code</span>&gt;.svc-*&lt;/<span class='k'>code</span>&gt; classes set the same variable.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Lines are cut with <code>text-overflow: ellipsis</code>; a long name doesn't grow the stop. Font sizes scale with <code>--u</code> and never go below 10.5px. The badge text comes from the <code>--str-selected</code> token; override it for another language.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · service marks · .svc-*</span>
+  <div class="demo-view">
+<div data-explorer="ig-svc">
+  <div class="drawing" style="--aw:900;--ah:150">
+    <svg viewBox="0 0 900 150" aria-hidden="true">
+      <path class="ln-draw" d="M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4"/>
+    </svg>
+    <button class="station svc-gitlab" type="button" data-key="kaynak" aria-pressed="true" aria-controls="ig-svc" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">Source</span><span class="st-sub">GitLab repository</span><span class="st-meta">.svc-gitlab</span></button>
+    <button class="station svc-aws" type="button" data-key="derleme" aria-pressed="false" aria-controls="ig-svc" style="--x:245;--y:30;--w:200;--h:90"><span class="st-name">Build</span><span class="st-sub">AWS · eu-west-1</span><span class="st-meta">.svc-aws</span></button>
+    <button class="station svc-argo" type="button" data-key="esitleme" aria-pressed="false" aria-controls="ig-svc" style="--x:470;--y:30;--w:200;--h:90"><span class="st-name">Sync</span><span class="st-sub">Argo CD</span><span class="st-meta">.svc-argo</span></button>
+    <button class="station svc-k8s" type="button" data-key="kume" aria-pressed="false" aria-controls="ig-svc" style="--x:695;--y:30;--w:200;--h:90"><span class="st-name">Cluster</span><span class="st-sub">Kubernetes · web-api</span><span class="st-meta">.svc-k8s</span></button>
+  </div>
+  <div class="st-detail" id="ig-svc" aria-live="polite">
+    <div data-for="kaynak"><b>.svc-gitlab</b> colors the square in the source repository's color. The class only sets the <code>--svc</code> variable; the frame and text don't change.</div>
+    <div data-for="derleme"><b>.svc-aws</b> for cloud services: build, registry, queue.</div>
+    <div data-for="esitleme"><b>.svc-argo</b> for the syncer that carries the desired state in the repository to the cluster.</div>
+    <div data-for="kume"><b>.svc-k8s</b> for workloads running in the cluster. The color tells the service; a word still tells the status.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-svc</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:150</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 150</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-gitlab</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kaynak</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:20;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Source&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;GitLab repository&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-gitlab&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-aws</span>" type="<span class='s'>button</span>" data-key="<span class='s'>derleme</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:245;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Build&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;AWS · eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-aws&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-argo</span>" type="<span class='s'>button</span>" data-key="<span class='s'>esitleme</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:470;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Sync&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Argo CD&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-argo&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-k8s</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kume</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-svc</span>" style="<span class='s'>--x:695;--y:30;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Cluster&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;Kubernetes · web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;.svc-k8s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-svc</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kaynak</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-gitlab&lt;/<span class='k'>b</span>&gt; colors the square in the source repository's color. The class only sets the &lt;<span class='k'>code</span>&gt;--svc&lt;/<span class='k'>code</span>&gt; variable; the frame and text don't change.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>derleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-aws&lt;/<span class='k'>b</span>&gt; for cloud services: build, registry, queue.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>esitleme</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-argo&lt;/<span class='k'>b</span>&gt; for the syncer that carries the desired state in the repository to the cluster.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kume</span>"&gt;&lt;<span class='k'>b</span>&gt;.svc-k8s&lt;/<span class='k'>b</span>&gt; for workloads running in the cluster. The color tells the service; a word still tells the status.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>For service color, use the ready-made class instead of writing an inline <code>--svc</code>: <code>.svc-gitlab</code>, <code>.svc-aws</code>, <code>.svc-argo</code>, <code>.svc-k8s</code>. The color stays in the small square; the service name is always written in the subline too.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">03</p><h2>In context</h2><p class="lead">The explorer usually lives inside a sheet: the drawing in the f-map area, the panel in the f-foot area, right under the one-sentence summary.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · explorer 1 · backup chain</span>
+  <div class="demo-view">
+<div class="frame" data-explorer="ig-yedek">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Fig. 1</p>
+    <p class="fig-cap">The five stops of a backup</p>
+  </header>
+  <div class="f-side">
+    <div class="prose">
+      <p>Click a stop or focus it with Tab; the panel below describes that stop.</p>
+      <p>The top row captures and protects the data; the bottom row keeps it until it expires and tests it regularly. The ghost box is a stage that isn't built yet, and it can't be clicked.</p>
+    </div>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:350">
+      <svg viewBox="0 0 600 350" aria-hidden="true">
+        <path class="ln-pencil ln-dash" d="M0 190H600"/>
+        <path class="ln-draw" d="M180 90H214M214 90l-8-4M214 90l-8 4M380 90H414M414 90l-8-4M414 90l-8 4"/>
+        <path class="ln-draw" d="M500 130V244M500 244l-4-8M500 244l4-8"/>
+        <path class="ln-draw" d="M420 290H386M386 290l8-4M386 290l8 4"/>
+        <path class="ln-ghost" d="M220 290H186"/>
+        <rect class="ln-ghost" x="20" y="250" width="160" height="80"/>
+      </svg>
+      <p class="sl deck-cap" style="--x:20;--y:12"><b>INTAKE</b>Capture and protect</p>
+      <p class="sl deck-cap" style="--x:20;--y:208"><b>RETENTION</b>Keep and test</p>
+      <p class="sl" style="--x:32;--y:282">archive · planned</p>
+      <button class="station" type="button" data-key="anlik" aria-pressed="true" aria-controls="ig-yedek" style="--x:20;--y:50;--w:160;--h:80"><span class="st-name">Snapshot</span><span class="st-sub">orders-db · point-in-time</span><span class="st-meta">nightly 02:00</span></button>
+      <button class="station" type="button" data-key="sifre" aria-pressed="false" aria-controls="ig-yedek" style="--x:220;--y:50;--w:160;--h:80;--svc:var(--sec)"><span class="st-name">Encryption</span><span class="st-sub">vault key</span><span class="st-meta">AES-256</span></button>
+      <button class="station" type="button" data-key="kopya" aria-pressed="false" aria-controls="ig-yedek" style="--x:420;--y:50;--w:160;--h:80;--svc:var(--warn)"><span class="st-name">Copy</span><span class="st-sub">eu-central-1</span><span class="st-meta">≈ 12 min</span></button>
+      <button class="station" type="button" data-key="saklama" aria-pressed="false" aria-controls="ig-yedek" style="--x:420;--y:250;--w:160;--h:80"><span class="st-name">Retention</span><span class="st-sub">35 days</span><span class="st-meta">delete lock on</span></button>
+      <button class="station" type="button" data-key="test" aria-pressed="false" aria-controls="ig-yedek" style="--x:220;--y:250;--w:160;--h:80;--svc:var(--ok)"><span class="st-name">Test</span><span class="st-sub">monthly restore</span><span class="st-meta">last: Oct 2</span></button>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>The nightly snapshot is encrypted, copied to a second region, kept for 35 days and tested every month with a real restore.</p>
+    <div class="st-detail" id="ig-yedek" aria-live="polite">
+      <div data-for="anlik"><b>Snapshot.</b> A disk-level consistent copy of the database. It doesn't stop writes; there may be an I/O pause of a few seconds.</div>
+      <div data-for="sifre"><b>Encryption.</b> The snapshot is encrypted with the key in the vault. When the key rotates, old snapshots keep being read with the old version.</div>
+      <div data-for="kopya"><b>Copy.</b> The encrypted snapshot is sent to the second region; if a region is lost, the restore runs from here.</div>
+      <div data-for="saklama"><b>Retention.</b> Snapshots are kept for 35 days. While the delete lock is on, an unexpired snapshot can't be deleted even by hand.</div>
+      <div data-for="test"><b>Test.</b> Every month a random snapshot is restored to a temporary copy and check queries are run. An untested backup doesn't count as a backup.</div>
+    </div>
+    <p class="figcap"><b>Fig. 1.</b> Five stops, clockwise. The dashed line is the border between intake and retention; the ghost box is a planned but unbuilt archive.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>frame</span>" data-explorer="<span class='s'>ig-yedek</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>header</span> class="<span class='s'>f-head</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Fig. 1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;The five stops of a backup&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>header</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-side</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>prose</span>"&gt;
+      &lt;<span class='k'>p</span>&gt;Click a stop or focus it with Tab; the panel below describes that stop.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span>&gt;The top row captures and protects the data; the bottom row keeps it until it expires and tests it regularly. The ghost box is a stage that isn't built yet, and it can't be clicked.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-map</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:350</span>"&gt;
+      &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 350</span>" aria-hidden="<span class='s'>true</span>"&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil ln-dash</span>" d="<span class='s'>M0 190H600</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M180 90H214M214 90l-8-4M214 90l-8 4M380 90H414M414 90l-8-4M414 90l-8 4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M500 130V244M500 244l-4-8M500 244l4-8</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M420 290H386M386 290l8-4M386 290l8 4</span>"/&gt;
+        &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M220 290H186</span>"/&gt;
+        &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>20</span>" y="<span class='s'>250</span>" width="<span class='s'>160</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;/<span class='k'>svg</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:12</span>"&gt;&lt;<span class='k'>b</span>&gt;INTAKE&lt;/<span class='k'>b</span>&gt;Capture and protect&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:208</span>"&gt;&lt;<span class='k'>b</span>&gt;RETENTION&lt;/<span class='k'>b</span>&gt;Keep and test&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:32;--y:282</span>"&gt;archive · planned&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>anlik</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-yedek</span>" style="<span class='s'>--x:20;--y:50;--w:160;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Snapshot&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db · point-in-time&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;nightly 02:00&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>sifre</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yedek</span>" style="<span class='s'>--x:220;--y:50;--w:160;--h:80;--svc:var(--sec)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Encryption&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;vault key&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;AES-256&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kopya</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yedek</span>" style="<span class='s'>--x:420;--y:50;--w:160;--h:80;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;≈ 12 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>saklama</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yedek</span>" style="<span class='s'>--x:420;--y:250;--w:160;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Retention&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;35 days&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;delete lock on&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>test</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yedek</span>" style="<span class='s'>--x:220;--y:250;--w:160;--h:80;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Test&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;monthly restore&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;last: Oct 2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>f-foot</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;In one sentence&lt;/<span class='k'>span</span>&gt;The nightly snapshot is encrypted, copied to a second region, kept for 35 days and tested every month with a real restore.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-yedek</span>" aria-live="<span class='s'>polite</span>"&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>anlik</span>"&gt;&lt;<span class='k'>b</span>&gt;Snapshot.&lt;/<span class='k'>b</span>&gt; A disk-level consistent copy of the database. It doesn't stop writes; there may be an I/O pause of a few seconds.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>sifre</span>"&gt;&lt;<span class='k'>b</span>&gt;Encryption.&lt;/<span class='k'>b</span>&gt; The snapshot is encrypted with the key in the vault. When the key rotates, old snapshots keep being read with the old version.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>kopya</span>"&gt;&lt;<span class='k'>b</span>&gt;Copy.&lt;/<span class='k'>b</span>&gt; The encrypted snapshot is sent to the second region; if a region is lost, the restore runs from here.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>saklama</span>"&gt;&lt;<span class='k'>b</span>&gt;Retention.&lt;/<span class='k'>b</span>&gt; Snapshots are kept for 35 days. While the delete lock is on, an unexpired snapshot can't be deleted even by hand.&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-for="<span class='s'>test</span>"&gt;&lt;<span class='k'>b</span>&gt;Test.&lt;/<span class='k'>b</span>&gt; Every month a random snapshot is restored to a temporary copy and check queries are run. An untested backup doesn't count as a backup.&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Fig. 1.&lt;/<span class='k'>b</span>&gt; Five stops, clockwise. The dashed line is the border between intake and retention; the ghost box is a planned but unbuilt archive.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · explorer 2 · alarm flow, dark sheet</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark" data-explorer="ig-alarm">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Fig. 2</p>
+  <p class="fig-cap">The path of an alarm</p>
+  <div class="drawing" style="--aw:900;--ah:160">
+    <svg viewBox="0 0 900 160" aria-hidden="true">
+      <path class="ln-draw" d="M170 95H194M194 95l-7-4M194 95l-7 4M350 95H374M374 95l-7-4M374 95l-7 4M530 95H554M554 95l-7-4M554 95l-7 4M710 95H734M734 95l-7-4M734 95l-7 4"/>
+    </svg>
+    <p class="sl deck-cap" style="--x:20;--y:10"><b>ALARM</b>From metric to incident record</p>
+    <button class="station" type="button" data-key="metrik" aria-pressed="false" aria-controls="ig-alarm" style="--x:20;--y:50;--w:150;--h:90"><span class="st-name">Metric</span><span class="st-sub">5xx rate</span><span class="st-meta">4.1%</span></button>
+    <button class="station" type="button" data-key="kural" aria-pressed="true" aria-controls="ig-alarm" style="--x:200;--y:50;--w:150;--h:90;--svc:var(--bad)"><span class="st-name">Rule</span><span class="st-sub">threshold 2%</span><span class="st-meta">1 min window</span></button>
+    <button class="station" type="button" data-key="yonlendirici" aria-pressed="false" aria-controls="ig-alarm" style="--x:380;--y:50;--w:150;--h:90"><span class="st-name">Router</span><span class="st-sub">team: payments</span><span class="st-meta">severity: P2</span></button>
+    <button class="station" type="button" data-key="nobetci" aria-pressed="false" aria-controls="ig-alarm" style="--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)"><span class="st-name">On-call</span><span class="st-sub">primary</span><span class="st-meta">ack ≤ 5 min</span></button>
+    <button class="station" type="button" data-key="kayit" aria-pressed="false" aria-controls="ig-alarm" style="--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)"><span class="st-name">Incident record</span><span class="st-sub">timeline</span><span class="st-meta">automatic</span></button>
+  </div>
+  <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:var(--sp-5)">
+    <div data-for="metrik"><b>Metric.</b> web-api's per-minute 5xx rate. It triggers nothing on its own; it is only measured.</div>
+    <div data-for="kural"><b>Rule.</b> If the rate stays above 2% for one minute, the alarm opens. A single spike isn't enough.</div>
+    <div data-for="yonlendirici"><b>Router.</b> Reads the labels and sends the alarm to the payments team's P2 channel.</div>
+    <div data-for="nobetci"><b>On-call.</b> If not acknowledged within five minutes, the alarm escalates to the secondary on-call.</div>
+    <div data-for="kayit"><b>Incident record.</b> Open, acknowledge and close times are written automatically; the postmortem starts from here.</div>
+  </div>
+  <figcaption class="figcap"><b>Fig. 2.</b> Five stops, left to right. The red square shows the rule that fired; the orange square shows the on-call engineer awaiting acknowledgment.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>" data-explorer="<span class='s'>ig-alarm</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Fig. 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;The path of an alarm&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:160</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 160</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M170 95H194M194 95l-7-4M194 95l-7 4M350 95H374M374 95l-7-4M374 95l-7 4M530 95H554M554 95l-7-4M554 95l-7 4M710 95H734M734 95l-7-4M734 95l-7 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl deck-cap</span>" style="<span class='s'>--x:20;--y:10</span>"&gt;&lt;<span class='k'>b</span>&gt;ALARM&lt;/<span class='k'>b</span>&gt;From metric to incident record&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>metrik</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:20;--y:50;--w:150;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Metric&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;5xx rate&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;4.1%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kural</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:200;--y:50;--w:150;--h:90;--svc:var(--bad)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Rule&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;threshold 2%&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;1 min window&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>yonlendirici</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:380;--y:50;--w:150;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Router&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;team: payments&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;severity: P2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>nobetci</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;On-call&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;primary&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;ack ≤ 5 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kayit</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-alarm</span>" style="<span class='s'>--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Incident record&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;timeline&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;automatic&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-alarm</span>" aria-live="<span class='s'>polite</span>" style="<span class='s'>margin-top:var(--sp-5)</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>metrik</span>"&gt;&lt;<span class='k'>b</span>&gt;Metric.&lt;/<span class='k'>b</span>&gt; web-api's per-minute 5xx rate. It triggers nothing on its own; it is only measured.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kural</span>"&gt;&lt;<span class='k'>b</span>&gt;Rule.&lt;/<span class='k'>b</span>&gt; If the rate stays above 2% for one minute, the alarm opens. A single spike isn't enough.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>yonlendirici</span>"&gt;&lt;<span class='k'>b</span>&gt;Router.&lt;/<span class='k'>b</span>&gt; Reads the labels and sends the alarm to the payments team's P2 channel.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>nobetci</span>"&gt;&lt;<span class='k'>b</span>&gt;On-call.&lt;/<span class='k'>b</span>&gt; If not acknowledged within five minutes, the alarm escalates to the secondary on-call.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kayit</span>"&gt;&lt;<span class='k'>b</span>&gt;Incident record.&lt;/<span class='k'>b</span>&gt; Open, acknowledge and close times are written automatically; the postmortem starts from here.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Fig. 2.&lt;/<span class='k'>b</span>&gt; Five stops, left to right. The red square shows the rule that fired; the orange square shows the on-call engineer awaiting acknowledgment.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Event: hendese:explore">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Event: hendese:explore</h2><p class="lead">When a selection is made by click, the container dispatches a bubbling hendese:explore event. Previews don't dispatch it; neither does the initial selection.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the last selection of the two explorers</span>
+  <div class="demo-view">
+<div class="readout" id="ig-out" aria-live="polite"><p>No selection yet. Click a stop in one of the two explorers above.</p></div>
+  </div>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>// the event bubbles up to the document: one listener hears every explorer
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');           // which explorer
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});</code></pre></figure>
+<div class="prose"><p><code>e.target</code> is the container itself; <code>detail.key</code> is the <code>data-key</code> value of the selected button. Use the event to write to the address bar, send a metric or update another drawing. To change the selection from code, call <code>click()</code> on the matching button.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">A stop is a button; a stop with no panel, or one the keyboard can't select, isn't an explorer, just a picture.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · button + linked panel</span>
+  <div class="demo-view">
+<div data-explorer="ig-yap">
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+    </svg>
+    <button class="station" type="button" data-key="birincil" aria-pressed="true" aria-controls="ig-yap" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Primary</span><span class="st-sub">orders-db-1</span></button>
+    <button class="station" type="button" data-key="kopya" aria-pressed="false" aria-controls="ig-yap" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Replica</span><span class="st-sub">orders-db-2</span></button>
+  </div>
+  <div class="st-detail" id="ig-yap" aria-live="polite">
+    <div data-for="birincil"><b>Primary.</b> All writes come here.</div>
+    <div data-for="kopya"><b>Replica.</b> Serves reads; lag 0.4 s.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>ig-yap</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M200 55H234M234 55l-8-4M234 55l-8 4</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>birincil</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>ig-yap</span>" style="<span class='s'>--x:10;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Primary&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>kopya</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>ig-yap</span>" style="<span class='s'>--x:240;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Replica&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>ig-yap</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>birincil</span>"&gt;&lt;<span class='k'>b</span>&gt;Primary.&lt;/<span class='k'>b</span>&gt; All writes come here.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>kopya</span>"&gt;&lt;<span class='k'>b</span>&gt;Replica.&lt;/<span class='k'>b</span>&gt; Serves reads; lag 0.4 s.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · a div as a stop, no panel</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:110">
+  <svg viewBox="0 0 440 110" aria-hidden="true">
+    <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+  </svg>
+  <div class="station" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Primary</span><span class="st-sub">orders-db-1</span></div>
+  <div class="station" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Replica</span><span class="st-sub">orders-db-2</span></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:110</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 110</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M200 55H234M234 55l-8-4M234 55l-8 4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>station</span>" style="<span class='s'>--x:10;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Primary&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>station</span>" style="<span class='s'>--x:240;--y:15;--w:190;--h:80</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Replica&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;orders-db-2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Stops are visited in Tab order; focus opens the preview, Enter or Space selects. A screen reader reads the button as “pressed / not pressed” and, thanks to <code>aria-live</code>, announces the new text when the panel changes. On narrow screens (below 720px) the SVG is hidden and the stops stack; that is why the sentence that explains the arrows must also be in the panel or the summary.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="line-families.html" rel="prev"><small>Previous · Blueprint</small>Line families</a><a href="isometric-box.html" rel="next"><small>Next · Blueprint</small>Isometric box</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});
+Hendese.start();
+</script>
+</body>
+</html>

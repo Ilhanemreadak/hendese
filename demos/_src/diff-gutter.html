@@ -1,13 +1,13 @@
-<!-- meta {"title":"Diff şeridi","group":"Bileşenler","order":50,"tagline":"Değişen satırı işaretler, kopyayı kirletmez.","intro":"Diff şeridi bir kod bloğunda değişen satırları sol kenarda <code>Δ</code> işaretleriyle gösterir. İşaretler <code>&lt;code&gt;</code> öğesinin dışındadır; okur bloğu kopyaladığında artı, eksi ya da işaret almaz. Metindeki <code>.diff-key</code> aynı işareti anarak açıklamayı satıra bağlar.","summary":"<code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; ayar değişikliği, bağımlılık yükseltmesi, veritabanı göçü.","facts":{"Sınıflar":"<code>.diff-src</code> · <code>.diff-gut</code> · <code>.diff-key</code> · <code>.plus</code> · <code>.minus</code>","Öznitelikler":"<code>style=\"--l:N\"</code> (1'den başlayan satır no) · <code>data-m</code> (işaret metni)","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Diff gutter","group":"Components","order":50,"tagline":"Marks changed lines without polluting the copy.","intro":"The diff gutter marks the changed lines of a code block with <code>Δ</code> markers in the left margin. The markers live outside the <code>&lt;code&gt;</code> element, so when the reader copies the block they get no plus, minus or marker. A <code>.diff-key</code> in the text repeats the same marker and ties the explanation to the line.","summary":"<code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; a config change, a dependency upgrade, a database migration.","facts":{"Classes":"<code>.diff-src</code> · <code>.diff-gut</code> · <code>.diff-key</code> · <code>.plus</code> · <code>.minus</code>","Attributes":"<code>style=\"--l:N\"</code> (line number, starting at 1) · <code>data-m</code> (marker text)","JS":"Not needed"}} -->
 
 
-<chapter title="Anatomi" lead="Üç katman: kod bloğunu saran .diff-src, onun içinde ekran okuyucudan gizli .diff-gut şeridi ve her değişen satır için bir i öğesi. Satır numarası --l ile, işaret metni data-m ile verilir.">
-<demo label="Örnek · tek değişiklik">
+<chapter title="Anatomy" lead="Three layers: .diff-src wrapping the code block, the .diff-gut strip inside it (hidden from screen readers), and one i element per changed line. The line number is set with --l, the marker text with data-m.">
+<demo label="Example · a single change">
 <figure class="code">
   <figcaption class="code-head">
     <span class="code-file">ingress.yaml</span>
     <span class="code-lang">YAML</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:5" data-m="Δ1"></i></div>
@@ -18,27 +18,27 @@
     <span class="k">nginx.ingress.kubernetes.io/proxy-read-timeout</span>: <span class="s">"120"</span></code></pre>
 </div>
 </figure>
-<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Rapor uç noktası uzun sürdüğü için okuma zaman aşımı 60 saniyeden 120 saniyeye çıktı (satır 5).</p>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The read timeout went from 60 to 120 seconds because the report endpoint is slow (line 5).</p>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Öğe</th><th>Nerede</th><th>Görev</th></tr></thead>
+  <thead><tr><th>Element</th><th>Where</th><th>Job</th></tr></thead>
   <tbody>
-    <tr><td><code>.diff-src</code></td><td><code>figure.code</code> içinde, <code>pre</code>'yi sarar</td><td>Sol kenarda 40px şerit açar, kodu içeri iter</td></tr>
-    <tr><td><code>.diff-gut</code></td><td><code>.diff-src</code>'nin ilk çocuğu</td><td>İşaretleri taşır; <code>aria-hidden="true"</code>, seçilemez</td></tr>
-    <tr><td><code>&lt;i style="--l:N"&gt;</code></td><td><code>.diff-gut</code> içinde</td><td>N. satırı yeşil çizgi ve hafif zeminle boyar</td></tr>
-    <tr><td><code>data-m</code></td><td><code>i</code> ve <code>.diff-key</code> üzerinde</td><td>Şeritte ve metinde basılan kısa işaret</td></tr>
-    <tr><td><code>.diff-key</code></td><td>Açıklama metninde</td><td>Aynı işareti çerçeveli olarak tekrar eder</td></tr>
+    <tr><td><code>.diff-src</code></td><td>Inside <code>figure.code</code>, wrapping the <code>pre</code></td><td>Opens a 40px strip on the left and pushes the code in</td></tr>
+    <tr><td><code>.diff-gut</code></td><td>First child of <code>.diff-src</code></td><td>Holds the markers; <code>aria-hidden="true"</code>, not selectable</td></tr>
+    <tr><td><code>&lt;i style="--l:N"&gt;</code></td><td>Inside <code>.diff-gut</code></td><td>Paints line N with a green rule and a light background</td></tr>
+    <tr><td><code>data-m</code></td><td>On <code>i</code> and <code>.diff-key</code></td><td>The short marker printed in the strip and in the text</td></tr>
+    <tr><td><code>.diff-key</code></td><td>In the explanatory text</td><td>Repeats the same marker, framed</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Değişiklik türleri" lead="Aynı yapı her türlü değişikliği anlatır. Bir değişiklik birden çok satıra yayılıyorsa ilk satıra işaret, sonrakilere boş data-m verin; şerit kesintisiz görünür.">
-<demo label="Örnek · bağımlılık yükseltmesi">
+<chapter title="Kinds of change" lead="The same structure describes any change. If a change spans several lines, give the first line the marker and the rest an empty data-m; the strip looks continuous.">
+<demo label="Example · dependency upgrade">
 <figure class="code">
   <figcaption class="code-head">
     <span class="code-file">package.json</span>
     <span class="code-lang">JSON</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i><i style="--l:5" data-m="Δ2"></i></div>
@@ -51,38 +51,38 @@
 }</code></pre>
 </div>
 </figure>
-<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Veritabanı sürücüsü 8.11'den 8.13'e çıktı; bağlantı havuzundaki sızıntı düzeltmesini getiriyor. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>HTTP istemcisinde güvenlik yaması.</p>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The database driver went from 8.11 to 8.13; it brings the fix for the connection pool leak. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>A security patch in the HTTP client.</p>
 </demo>
-<demo label="Örnek · veritabanı göçü, çok satırlı değişiklik">
+<demo label="Example · database migration, multi-line change">
 <figure class="code">
   <figcaption class="code-head">
-    <span class="code-file">0043_fatura_indeksi.sql</span>
+    <span class="code-file">0043_invoice_due_index.sql</span>
     <span class="code-lang">SQL</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i><i style="--l:6" data-m=""></i></div>
 <pre tabindex="0"><code><span class="k">BEGIN</span>;
 <span class="k">ALTER TABLE</span> invoices <span class="k">ADD COLUMN</span> due_on date;
-<span class="c">-- vadesi geçmiş faturaları hızlı bulmak için</span>
+<span class="c">-- to find overdue invoices quickly</span>
 <span class="k">CREATE INDEX CONCURRENTLY</span> invoices_due_open_idx
   <span class="k">ON</span> invoices (due_on)
   <span class="k">WHERE</span> paid_at <span class="k">IS NULL</span>;
 <span class="k">COMMIT</span>;</code></pre>
 </div>
 </figure>
-<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Yeni vade sütunu. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Yalnızca ödenmemiş faturaları kapsayan kısmi indeks (satır 4–6).</p>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>New due date column. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>A partial index covering only unpaid invoices (lines 4–6).</p>
 </demo>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Satır yüksekliği</span><div class="co-body"><p>İşaretin yeri <code>14px + (N − 1) × 1.6em</code> ile hesaplanır; yani <code>pre</code>'nin yazı boyuna (<code>--fs-sm</code>, 12.5px) ve 1.6 satır aralığına bağlıdır. Bloğun yazı boyunu değiştirirseniz işaretler kayar.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Line height</span><div class="co-body"><p>A marker's position is computed as <code>14px + (N − 1) × 1.6em</code>, so it depends on the <code>pre</code> font size (<code>--fs-sm</code>, 12.5px) and the 1.6 line height. If you change the block's font size, the markers drift.</p></div></div>
 </chapter>
 
-<chapter title="Metinde anahtar" lead="diff-key açıklamayı satıra bağlar. Paragraf içinde, değişiklik listesinde ya da bir tanım listesinde aynı şekilde kullanılır.">
-<demo label="Örnek · değişiklik listesi">
+<chapter title="Key in the text" lead="diff-key ties the explanation to the line. It works the same way in a paragraph, a change list or a definition list.">
+<demo label="Example · change list">
 <figure class="code">
   <figcaption class="code-head">
     <span class="code-file">redis.conf</span>
     <span class="code-lang">CONF</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:1" data-m="Δ1"></i><i style="--l:2" data-m="Δ2"></i><i style="--l:4" data-m="Δ3"></i></div>
@@ -93,27 +93,27 @@
 </div>
 </figure>
 <ul style="list-style:none;padding:0">
-  <li><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Bellek sınırı 4 GB'tan 6 GB'a çıktı.</li>
-  <li><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Çıkarma politikası LRU yerine LFU: sık okunan anahtarlar kalır.</li>
-  <li><i class="diff-key" data-m="Δ3" aria-hidden="true"></i>Ölü bağlantılar 60 saniyede fark edilir.</li>
+  <li><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The memory limit went from 4 GB to 6 GB.</li>
+  <li><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Eviction policy is LFU instead of LRU: frequently read keys stay.</li>
+  <li><i class="diff-key" data-m="Δ3" aria-hidden="true"></i>Dead connections are detected within 60 seconds.</li>
 </ul>
-<p class="figcap"><b>Özet.</b> <span class="plus">+3</span> değişen satır, <span class="minus">−0</span> silinen satır.</p>
+<p class="figcap"><b>Summary.</b> <span class="plus">+3</span> changed lines, <span class="minus">−0</span> deleted lines.</p>
 </demo>
-<demo label="Örnek · tanım listesinde">
+<demo label="Example · in a definition list">
 <dl class="kv">
-  <dt><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Bellek</dt><dd>4 GB → 6 GB</dd>
-  <dt><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Politika</dt><dd><code>allkeys-lru</code> → <code>allkeys-lfu</code></dd>
+  <dt><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Memory</dt><dd>4 GB → 6 GB</dd>
+  <dt><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Policy</dt><dd><code>allkeys-lru</code> → <code>allkeys-lfu</code></dd>
 </dl>
 </demo>
 </chapter>
 
-<chapter title="Durumlar" lead="Şeridin tek bir durumu vardır: değişti. Eklenen, silinen ya da riskli satır için ayrı renk yoktur; farkın türü metinde söylenir.">
-<demo label="Örnek · değişen, süren ve değişmeyen satır">
+<chapter title="States" lead="The strip has a single state: changed. There is no separate color for added, deleted or risky lines; the kind of difference is stated in the text.">
+<demo label="Example · changed, continued and unchanged lines">
 <figure class="code">
   <figcaption class="code-head">
     <span class="code-file">hpa.yaml</span>
     <span class="code-lang">YAML</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i></div>
@@ -124,35 +124,35 @@
     <span class="k">scaleDown</span>: { <span class="k">stabilizationWindowSeconds</span>: <span class="v">600</span> }</code></pre>
 </div>
 </figure>
-<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>En az kopya 2'den 3'e çıktı. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Küçülme davranışı eklendi (satır 4–5). Silinen satır: <code>targetCPUUtilizationPercentage: 80</code>; ölçek kararı artık varsayılan CPU hedefiyle veriliyor.</p>
-<p class="figcap"><b>Özet.</b> <span class="plus">+3</span> eklenen ya da değişen satır, <span class="minus">−1</span> silinen satır.</p>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Minimum replicas went from 2 to 3. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Scale-down behavior added (lines 4–5). Deleted line: <code>targetCPUUtilizationPercentage: 80</code>; scaling decisions now use the default CPU target.</p>
+<p class="figcap"><b>Summary.</b> <span class="plus">+3</span> added or changed lines, <span class="minus">−1</span> deleted line.</p>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Görünüş</th></tr></thead>
+  <thead><tr><th>State</th><th>Markup</th><th>Appearance</th></tr></thead>
   <tbody>
-    <tr><td>Değişti</td><td><code>&lt;i style="--l:N" data-m="Δ1"&gt;</code></td><td>Yeşil çizgi, hafif zemin, işaret</td></tr>
-    <tr><td>Değişiklik sürüyor</td><td><code>data-m=""</code></td><td>Çizgi ve zemin, işaretsiz</td></tr>
-    <tr><td>Değişmedi</td><td>işaret yok</td><td>Düz kod</td></tr>
-    <tr><td>Silindi</td><td>şeritte yok; metinde eski değer ve <code>.minus</code> sayısı</td><td>—</td></tr>
+    <tr><td>Changed</td><td><code>&lt;i style="--l:N" data-m="Δ1"&gt;</code></td><td>Green rule, light background, marker</td></tr>
+    <tr><td>Change continues</td><td><code>data-m=""</code></td><td>Rule and background, no marker</td></tr>
+    <tr><td>Unchanged</td><td>no marker</td><td>Plain code</td></tr>
+    <tr><td>Deleted</td><td>not in the strip; the old value and a <code>.minus</code> count in the text</td><td>—</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Silinen satır kodda bulunmadığı için şeritte gösterilemez; paket bunun için bir işaret sunmaz. Eski değeri açıklama metnine yazın. Kırmızı ya da sarı şerit taklidi için satır içi renk vermeyin: okur yeşil dışındaki rengi bir anlam sanır, ekran okuyucu ise hiçbirini duymaz.</p></div>
+<div class="prose"><p>A deleted line is no longer in the code, so the strip cannot show it; the package offers no marker for it. Write the old value in the explanation. Do not add inline colors to fake a red or yellow strip: readers take any color other than green to mean something, and a screen reader hears none of them.</p></div>
 </chapter>
 
-<chapter title="Dar alan" lead="Şerit pre'nin dışında durduğu için uzun satır yatay kaydırıldığında işaretler yerinde kalır; yalnızca kod kayar.">
-<demo label="Örnek · dar kolonda uzun satır">
+<chapter title="Narrow space" lead="The strip sits outside the pre, so when a long line scrolls horizontally the markers stay put; only the code scrolls.">
+<demo label="Example · a long line in a narrow column">
 <div style="max-width:440px">
 <figure class="code">
   <figcaption class="code-head">
     <span class="code-file">main.tf</span>
     <span class="code-lang">HCL</span>
-    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
   </figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i></div>
 <pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_db_instance"</span> <span class="s">"orders"</span> {
   <span class="k">instance_class</span> = <span class="s">"db.r6g.large"</span>
-  <span class="k">backup_retention_period</span> = <span class="v">14</span> <span class="c"># denetim gereği 7 günden 14 güne çıkarıldı, bkz. erişim politikası madde 4.2</span>
+  <span class="k">backup_retention_period</span> = <span class="v">14</span> <span class="c"># raised from 7 to 14 days for the audit, see access policy section 4.2</span>
 }</code></pre>
 </div>
 </figure>
@@ -160,10 +160,10 @@
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Kopyalanan metin çalışan metindir. Değişikliği işaretlemek için kodun içine karakter eklemeyin.">
+<chapter title="Do / don't" lead="Copied text is working text. Do not add characters inside the code to mark a change.">
 <div class="dodont">
-<demo label="Yap · işaret şeritte">
-<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption>
+<demo label="Do · marker in the strip">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
 <div class="diff-src">
   <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i></div>
 <pre tabindex="0"><code><span class="k">image</span>: <span class="s">web-api:1.9.0</span>
@@ -171,11 +171,11 @@
 </div>
 </figure>
 </demo>
-<demo label="Yapma · artı eksi kodun içinde">
-<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>  image: web-api:1.9.0
+<demo label="Don't · plus and minus inside the code">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>  image: web-api:1.9.0
 - replicas: 3
 + replicas: 4</code></pre></figure>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Şerit ve <code>.diff-key</code> ekran okuyucudan gizlidir. Bu yüzden açıklama metni değişikliği kendi başına anlatmalı: hangi değer neydi, ne oldu, gerekirse hangi satır. İşaret yalnızca gözle okuyan için bir kısayoldur.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The strip and <code>.diff-key</code> are hidden from screen readers. So the explanation must describe the change on its own: what the value was, what it became, and the line if needed. The marker is only a shortcut for sighted readers.</p></div></div>
 </chapter>

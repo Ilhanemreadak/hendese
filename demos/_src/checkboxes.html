@@ -1,72 +1,72 @@
-<!-- meta {"title":"Onay, radyo ve kaydırıcı","group":"Bileşenler","order":170,"tagline":"Yerel denetim, çizim rengi.","intro":"Onay kutusu, radyo düğmesi ve kaydırıcı tarayıcının kendi öğeleridir; paket yalnız rengini (<code>accent-color</code>) ve etiketle hizasını verir. Gruplar <code>&lt;fieldset class=\"field\"&gt;</code> ve <code>&lt;legend&gt;</code> ile adlandırılır; kaydırıcının değeri yanındaki <code>&lt;output&gt;</code> öğesinde, sabit genişlikli rakamlarla yazılır.","summary":"<code>.field-check</code> onay kutusu ve radyo, kaydırıcı + <code>&lt;output&gt;</code>; çiplerle farkı.","facts":{"Sınıflar":"<code>.field-check</code> · <code>fieldset.field</code> · <code>output</code>","Girdi":"<code>type=\"checkbox\"</code> · <code>type=\"radio\"</code> · <code>type=\"range\"</code>","Durum":"<code>:checked</code> · <code>disabled</code> · <code>required</code> · <code>:user-invalid</code>","JS":"Onay ve radyo için gerekmez; kaydırıcının değerini yazmak için tek dinleyici"}} -->
+<!-- meta {"title":"Checkbox, radio and range","group":"Components","order":170,"tagline":"Native controls, drawing color.","intro":"Checkboxes, radio buttons and range sliders are the browser's own elements; the package only sets their color (<code>accent-color</code>) and their alignment with the label. Groups are named with <code>&lt;fieldset class=\"field\"&gt;</code> and <code>&lt;legend&gt;</code>; a slider's value is written in the <code>&lt;output&gt;</code> element next to it, in tabular figures.","summary":"<code>.field-check</code> checkboxes and radios, a range slider + <code>&lt;output&gt;</code>; how they differ from chips.","facts":{"Classes":"<code>.field-check</code> · <code>fieldset.field</code> · <code>output</code>","Input":"<code>type=\"checkbox\"</code> · <code>type=\"radio\"</code> · <code>type=\"range\"</code>","State":"<code>:checked</code> · <code>disabled</code> · <code>required</code> · <code>:user-invalid</code>","JS":"Not needed for checkboxes and radios; one listener to write the slider's value"}} -->
 
-<chapter title="Onay kutusu ve radyo" lead="Tek başına bir ayar onay kutusudur; birbirini dışlayan seçenekler radyodur. Etiket kutunun sağında, kutuyla ilk satırın ortasında hizalı durur; tıklama alanı etiketin tamamıdır.">
-<demo label="Örnek · tek ayar ve radyo grubu">
+<chapter title="Checkbox and radio" lead="A standalone setting is a checkbox; mutually exclusive options are radios. The label sits to the right of the box, aligned with the middle of its first line; the whole label is the click target.">
+<demo label="Example · a single setting and a radio group">
 <div style="max-width:480px">
   <div class="field">
-    <label class="field-check"><input type="checkbox" name="ir-geri" checked aria-describedby="ir-geri-h">Sağlık denetimi başarısız olursa önceki sürüme dön</label>
-    <p class="field-help" id="ir-geri-h">Üç ardışık başarısız denetimden sonra devreye girer.</p>
+    <label class="field-check"><input type="checkbox" name="ir-geri" checked aria-describedby="ir-geri-h">Roll back to the previous version if the health check fails</label>
+    <p class="field-help" id="ir-geri-h">Kicks in after three consecutive failed checks.</p>
   </div>
   <fieldset class="field">
-    <legend>Dağıtım stratejisi</legend>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="rolling" checked>Sırayla değiştir: kopyalar birer birer yenilenir</label>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="blue-green">Mavi/yeşil: yeni küme hazır olunca trafik bir kerede geçer</label>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="kanarya">Kanarya: trafiğin küçük bir payı önce yeni sürüme gider</label>
+    <legend>Deployment strategy</legend>
+    <label class="field-check"><input type="radio" name="ir-strateji" value="rolling" checked>Rolling: replicas are replaced one at a time</label>
+    <label class="field-check"><input type="radio" name="ir-strateji" value="blue-green">Blue/green: traffic switches at once when the new set is ready</label>
+    <label class="field-check"><input type="radio" name="ir-strateji" value="canary">Canary: a small share of traffic goes to the new version first</label>
   </fieldset>
 </div>
 </demo>
-<div class="prose"><p><code>.field-check</code> bir <code>&lt;label&gt;</code>'dır ve denetimi içinde taşır; <code>for</code> gerekmez. Etiket büyük harfe çevrilmez, çünkü cümle olarak okunur. Grup adı <code>legend</code> ile verilir ve diğer alan etiketleri gibi mono büyük harfle basılır.</p></div>
-<demo label="Örnek · çoklu seçim">
+<div class="prose"><p><code>.field-check</code> is a <code>&lt;label&gt;</code> that wraps the control; no <code>for</code> is needed. The label is not uppercased, because it reads as a sentence. The group name is given with <code>legend</code> and is set in mono uppercase like other field labels.</p></div>
+<demo label="Example · multiple choice">
 <fieldset class="field" style="max-width:480px">
-  <legend>Günlük alanları</legend>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="istek" checked>İstek kimliği</label>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="kullanici" checked>Kullanıcı kimliği (karma)</label>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="govde">İstek gövdesi</label>
-  <p class="field-help">Gövde kişisel veri taşıyabilir; yalnız <code>staging</code> ortamında açın.</p>
+  <legend>Log fields</legend>
+  <label class="field-check"><input type="checkbox" name="ir-alan" value="request" checked>Request ID</label>
+  <label class="field-check"><input type="checkbox" name="ir-alan" value="user" checked>User ID (hashed)</label>
+  <label class="field-check"><input type="checkbox" name="ir-alan" value="body">Request body</label>
+  <p class="field-help">The body may carry personal data; turn it on only in <code>staging</code>.</p>
 </fieldset>
 </demo>
 </chapter>
 
-<chapter title="Kaydırıcı" lead="Bir aralıkta yaklaşık bir değer seçilirken kaydırıcı, kesin bir sayı yazılırken sayı alanı kullanılır. Değer her zaman görünür: yanındaki output öğesi ve altındaki sonuç satırı.">
-<demo label="Örnek · kopya sayısı ve sonucu">
+<chapter title="Range" lead="Use a slider to pick an approximate value in a range, and a number field to type an exact number. The value is always visible: in the output element next to it and the result line below.">
+<demo label="Example · replica count and its result">
 <div style="max-width:480px">
   <div class="field">
-    <label for="ir-kopya">Kopya sayısı</label>
+    <label for="ir-kopya">Replica count</label>
     <div style="display:flex;align-items:center;gap:var(--sp-5)">
       <input type="range" id="ir-kopya" name="kopya" min="1" max="12" value="4" aria-describedby="ir-kopya-h">
       <output id="ir-kopya-o" for="ir-kopya">4</output>
     </div>
-    <p class="field-help" id="ir-kopya-h">1–12 arası; her kopya 2 vCPU, 4 GiB.</p>
+    <p class="field-help" id="ir-kopya-h">1–12; each replica is 2 vCPU, 4 GiB.</p>
   </div>
-  <div class="readout" id="ir-kopya-out"><p><b>4 kopya</b> · tahmini <b>248 $ / ay</b>. Bir düğüm düşerse 3 kopya hizmette kalır.</p></div>
+  <div class="readout" id="ir-kopya-out"><p><b>4 replicas</b> · estimated <b>$248 / month</b>. If a node goes down, 3 replicas stay in service.</p></div>
 </div>
 </demo>
-<div class="prose"><p>Paket yalnız rengi ve genişliği verir; değeri yazmak sayfanın işidir. <code>&lt;output for&gt;</code> kaydırıcıyla bağı kurar. Ekran okuyucu kaydırıcıda yalnız sayıyı okur; birimi de söylemesi için aynı dinleyicide <code>aria-valuetext</code> yazın:</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>range.addEventListener('input', () =&gt; {
+<div class="prose"><p>The package sets only the color and width; writing the value is the page's job. <code>&lt;output for&gt;</code> links it to the slider. A screen reader reads only the number on a slider; to have it say the unit too, write <code>aria-valuetext</code> in the same listener:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>range.addEventListener('input', () =&gt; {
   output.value = range.value;
-  range.setAttribute('aria-valuetext', range.value + ' kopya');
+  range.setAttribute('aria-valuetext', range.value + ' replicas');
 });</code></pre></figure>
 </chapter>
 
-<chapter title="Durumlar" lead="Seçili, seçili değil, devre dışı ve zorunlu. Renk tarayıcının kendi çiziminde accent-color ile gelir; devre dışı denetimi tarayıcı soldurur, etiket de soluk mürekkebe geçer.">
-<demo label="Örnek · seçili, boş, devre dışı">
+<chapter title="States" lead="Checked, unchecked, disabled and required. Color comes through accent-color in the browser's own rendering; the browser fades a disabled control, and its label switches to faint ink.">
+<demo label="Example · checked, empty, disabled">
 <div class="field-row">
   <fieldset class="field">
-    <legend>Onay kutusu</legend>
-    <label class="field-check"><input type="checkbox" checked>Seçili</label>
-    <label class="field-check"><input type="checkbox">Seçili değil</label>
-    <label class="field-check"><input type="checkbox" checked disabled>Devre dışı, seçili</label>
-    <label class="field-check"><input type="checkbox" disabled>Devre dışı, boş</label>
+    <legend>Checkbox</legend>
+    <label class="field-check"><input type="checkbox" checked>Checked</label>
+    <label class="field-check"><input type="checkbox">Unchecked</label>
+    <label class="field-check"><input type="checkbox" checked disabled>Disabled, checked</label>
+    <label class="field-check"><input type="checkbox" disabled>Disabled, empty</label>
   </fieldset>
   <fieldset class="field">
-    <legend>Radyo</legend>
-    <label class="field-check"><input type="radio" name="ir-d-radyo" checked>Seçili</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo">Seçili değil</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo-2" checked disabled>Devre dışı, seçili</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo-2" disabled>Devre dışı, boş</label>
+    <legend>Radio</legend>
+    <label class="field-check"><input type="radio" name="ir-d-radyo" checked>Checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radyo">Unchecked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radyo-2" checked disabled>Disabled, checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radyo-2" disabled>Disabled, empty</label>
   </fieldset>
   <div class="field">
-    <label for="ir-d-aralik">Kaydırıcı, devre dışı</label>
+    <label for="ir-d-aralik">Range, disabled</label>
     <div style="display:flex;align-items:center;gap:var(--sp-5)">
       <input type="range" id="ir-d-aralik" min="0" max="100" value="30" disabled>
       <output for="ir-d-aralik">30</output>
@@ -74,159 +74,159 @@
   </div>
 </div>
 </demo>
-<demo label="Örnek · zorunlu onay: işaretleyin, sonra kaldırın">
+<demo label="Example · required confirmation: check it, then uncheck it">
 <fieldset class="field" style="max-width:480px">
-  <legend>Üretim onayı</legend>
-  <label class="field-check"><input type="checkbox" name="ir-onay" required aria-describedby="ir-onay-e">Değişiklik penceresinin açık olduğunu doğruladım</label>
-  <p class="field-error" id="ir-onay-e">üretime dağıtmadan önce bu onay gerekli.</p>
+  <legend>Production approval</legend>
+  <label class="field-check"><input type="checkbox" name="ir-onay" required aria-describedby="ir-onay-e">I confirmed that the change window is open</label>
+  <p class="field-error" id="ir-onay-e">this confirmation is required before deploying to production.</p>
 </fieldset>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>Tetikleyen</th><th>Görünüm</th></tr></thead>
+  <thead><tr><th>State</th><th>Triggered by</th><th>Look</th></tr></thead>
   <tbody>
-    <tr><td>Seçili</td><td><code>:checked</code></td><td>Tarayıcının işareti, <code>--draw</code> renginde.</td></tr>
-    <tr><td>Devre dışı</td><td><code>disabled</code></td><td>Denetim tarayıcıca soldurulur; etiket <code>--ink-3</code>, imleç <code>not-allowed</code>.</td></tr>
-    <tr><td>Zorunlu</td><td>Gruptaki herhangi bir denetimde <code>required</code></td><td>Legend'in sonuna <code>--str-required</code> metni; yalnız görsel, ekran okuyucu yerel <code>required</code>'ı duyurur.</td></tr>
-    <tr><td>Geçersiz</td><td><code>:user-invalid</code> · <code>aria-invalid="true"</code></td><td><code>.field-error</code> görünür. Onay kutusunda kullanıcı işaretleyip kaldırdıktan ya da form gönderilmeye çalışıldıktan sonra.</td></tr>
-    <tr><td>Odak</td><td><code>:focus-visible</code></td><td>Kutunun çevresinde vurgu halkası.</td></tr>
+    <tr><td>Checked</td><td><code>:checked</code></td><td>The browser's mark, in <code>--draw</code>.</td></tr>
+    <tr><td>Disabled</td><td><code>disabled</code></td><td>The browser fades the control; the label is <code>--ink-3</code>, the cursor <code>not-allowed</code>.</td></tr>
+    <tr><td>Required</td><td><code>required</code> on any control in the group</td><td>The <code>--str-required</code> text after the legend; visual only, screen readers announce the native <code>required</code>.</td></tr>
+    <tr><td>Invalid</td><td><code>:user-invalid</code> · <code>aria-invalid="true"</code></td><td><code>.field-error</code> shows. For a checkbox, after the user checks and unchecks it, or after a form submit is attempted.</td></tr>
+    <tr><td>Focus</td><td><code>:focus-visible</code></td><td>A focus ring around the box.</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Radyo grubunda bir seçeneği devre dışı bırakmak yerine çoğu zaman seçeneği çıkarıp nedenini gruba yakın bir satırda yazmak daha açıktır. Devre dışı seçenek görünmeye devam etmeliyse, neden kapalı olduğunu etiketin kendisinde söyleyin.</p></div>
+<div class="prose"><p>Instead of disabling an option in a radio group, it is often clearer to remove it and say why on a line near the group. If a disabled option must stay visible, say why it is off in the label itself.</p></div>
 </chapter>
 
-<chapter title="Çip mi, onay kutusu mu" lead=".choice ve .field-check aynı yerel öğeleri kullanır; fark okunuştadır. Çip kısa bir değer seçer, onay kutusu bir cümleyi onaylar.">
+<chapter title="Chip or checkbox" lead=".choice and .field-check use the same native elements; the difference is in how they read. A chip picks a short value, a checkbox confirms a sentence.">
 <div class="field-row">
-<demo label="Örnek · kısa değerler, çip">
+<demo label="Example · short values, chips">
 <fieldset class="choice">
-  <legend>Ortam</legend>
+  <legend>Environment</legend>
   <label><input type="radio" name="ir-c-ortam" value="dev"><span>dev</span></label>
   <label><input type="radio" name="ir-c-ortam" value="staging" checked><span>staging</span></label>
   <label><input type="radio" name="ir-c-ortam" value="prod"><span>prod</span></label>
 </fieldset>
 </demo>
-<demo label="Örnek · cümleler, onay kutusu">
+<demo label="Example · sentences, checkboxes">
 <fieldset class="field">
-  <legend>Bildirim</legend>
-  <label class="field-check"><input type="checkbox" name="ir-c-bildirim" checked>Dağıtım bitince sohbet kanalına yaz</label>
-  <label class="field-check"><input type="checkbox" name="ir-c-bildirim">Geri alma olursa nöbetçiyi çağır</label>
+  <legend>Notifications</legend>
+  <label class="field-check"><input type="checkbox" name="ir-c-bildirim" checked>Post to the chat channel when the deployment finishes</label>
+  <label class="field-check"><input type="checkbox" name="ir-c-bildirim">Page the on-call if a rollback happens</label>
 </fieldset>
 </demo>
 </div>
 <div class="tbl"><table>
-  <thead><tr><th>Ölçüt</th><th><code>.choice</code> (çip, segment)</th><th><code>.field-check</code></th></tr></thead>
+  <thead><tr><th>Criterion</th><th><code>.choice</code> (chip, segment)</th><th><code>.field-check</code></th></tr></thead>
   <tbody>
-    <tr><td>Seçenek metni</td><td>Bir ad ya da değer: <code>eu-west-1</code>, <code>p95</code></td><td>Bir cümle ya da uzun bir ad</td></tr>
-    <tr><td>Seçenek sayısı</td><td>2–6; hepsi bir bakışta görünür</td><td>Sınırsız; alt alta dizilir</td></tr>
-    <tr><td>Seçenek başına açıklama</td><td><code>small</code> ile kısa bir ek</td><td>Etiket cümlesi ya da grubun altında <code>.field-help</code></td></tr>
-    <tr><td>Yer</td><td>Yapılandırıcı, filtre, grafik başlığı</td><td>Gönderilen form, ayar listesi, onay</td></tr>
-    <tr><td>Devre dışı</td><td>Kesikli çerçeve</td><td>Soluk denetim ve etiket</td></tr>
+    <tr><td>Option text</td><td>A name or value: <code>eu-west-1</code>, <code>p95</code></td><td>A sentence or a long name</td></tr>
+    <tr><td>Number of options</td><td>2–6; all visible at a glance</td><td>Unlimited; stacked vertically</td></tr>
+    <tr><td>Per-option description</td><td>A short note with <code>small</code></td><td>The label sentence, or <code>.field-help</code> below the group</td></tr>
+    <tr><td>Where</td><td>Configurator, filter, chart header</td><td>Submitted form, settings list, confirmation</td></tr>
+    <tr><td>Disabled</td><td>Dashed outline</td><td>Faded control and label</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Koyu panelde dağıtım ayarları. Strateji kanarya değilse trafik payı kaydırıcısı devre dışı kalır; sonuç satırı her değişiklikte yeniden yazılır.">
-<demo label="Örnek · dağıtım ayarları, koyu sahne">
+<chapter title="In context" lead="Deployment settings on a dark panel. If the strategy is not canary, the traffic share slider stays disabled; the result line is rewritten on every change.">
+<demo label="Example · deployment settings, dark scene">
 <div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
   <form id="ir-dagitim" style="max-width:560px">
     <fieldset class="field">
-      <legend>Strateji</legend>
-      <label class="field-check"><input type="radio" name="ir-s" value="rolling">Sırayla değiştir</label>
-      <label class="field-check"><input type="radio" name="ir-s" value="blue-green">Mavi/yeşil</label>
-      <label class="field-check"><input type="radio" name="ir-s" value="kanarya" checked>Kanarya</label>
+      <legend>Strategy</legend>
+      <label class="field-check"><input type="radio" name="ir-s" value="rolling">Rolling</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="blue-green">Blue/green</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="canary" checked>Canary</label>
     </fieldset>
     <div class="field">
-      <label for="ir-pay">Kanarya trafik payı</label>
+      <label for="ir-pay">Canary traffic share</label>
       <div style="display:flex;align-items:center;gap:var(--sp-5)">
         <input type="range" id="ir-pay" name="pay" min="5" max="50" step="5" value="10" aria-describedby="ir-pay-h">
-        <output id="ir-pay-o" for="ir-pay">%10</output>
+        <output id="ir-pay-o" for="ir-pay">10%</output>
       </div>
-      <p class="field-help" id="ir-pay-h">Kalan trafik eski sürümde kalır; 15 dakika sorunsuz geçerse pay ikiye katlanır.</p>
+      <p class="field-help" id="ir-pay-h">The remaining traffic stays on the old version; after 15 trouble-free minutes the share doubles.</p>
     </div>
     <fieldset class="field">
-      <legend>Seçenekler</legend>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="geri" checked>Hata oranı %2'yi aşarsa otomatik geri al</label>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="goc">Dağıtımdan önce veritabanı göçünü çalıştır</label>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="dondur" disabled>Değişiklik dondurmasını yok say (yalnız nöbetçi)</label>
+      <legend>Options</legend>
+      <label class="field-check"><input type="checkbox" name="ir-ek" value="rollback" checked>Roll back automatically if the error rate exceeds 2%</label>
+      <label class="field-check"><input type="checkbox" name="ir-ek" value="migrate">Run the database migration before deploying</label>
+      <label class="field-check"><input type="checkbox" name="ir-ek" value="freeze" disabled>Ignore the change freeze (on-call only)</label>
     </fieldset>
-    <div class="readout" id="ir-dagitim-out" aria-live="polite"><p><b>Kanarya</b> · yeni sürüme trafiğin <b>%10</b> kadarı gider; hata oranı %2'yi aşarsa geri alınır.</p></div>
+    <div class="readout" id="ir-dagitim-out" aria-live="polite"><p><b>Canary</b> · <b>10%</b> of traffic goes to the new version; it rolls back if the error rate exceeds 2%.</p></div>
   </form>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Birbirine bağlı seçenekler bir fieldset içinde, adı legend'de durur. Kaydırıcının değeri görünür olmalıdır.">
+<chapter title="Do / don't" lead="Related options sit inside a fieldset, with the name in the legend. A slider's value must be visible.">
 <div class="dodont">
-<demo label="Yap · adlı grup">
+<demo label="Do · a named group">
 <fieldset class="field">
-  <legend>Yedekleme sıklığı</legend>
-  <label class="field-check"><input type="radio" name="ir-yap-sik" checked>Saatlik</label>
-  <label class="field-check"><input type="radio" name="ir-yap-sik">Günlük</label>
+  <legend>Backup frequency</legend>
+  <label class="field-check"><input type="radio" name="ir-yap-sik" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-yap-sik">Daily</label>
 </fieldset>
 </demo>
-<demo label="Yapma · başlık gibi duran paragraf">
+<demo label="Don't · a paragraph posing as a heading">
 <div class="field">
-  <p class="field-help">Yedekleme sıklığı</p>
-  <label class="field-check"><input type="radio" name="ir-yapma-sik" checked>Saatlik</label>
-  <label class="field-check"><input type="radio" name="ir-yapma-sik">Günlük</label>
+  <p class="field-help">Backup frequency</p>
+  <label class="field-check"><input type="radio" name="ir-yapma-sik" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-yapma-sik">Daily</label>
 </div>
 </demo>
 </div>
 <div class="dodont">
-<demo label="Yap · değer yanında">
+<demo label="Do · value alongside">
 <div class="field">
-  <label for="ir-yap-ttl">Önbellek süresi</label>
+  <label for="ir-yap-ttl">Cache duration</label>
   <div style="display:flex;align-items:center;gap:var(--sp-5)">
     <input type="range" id="ir-yap-ttl" min="0" max="60" step="5" value="15">
-    <output id="ir-yap-ttl-o" for="ir-yap-ttl">15 dk</output>
+    <output id="ir-yap-ttl-o" for="ir-yap-ttl">15 min</output>
   </div>
 </div>
 </demo>
-<demo label="Yapma · değeri saklı kaydırıcı">
+<demo label="Don't · a slider with a hidden value">
 <div class="field">
-  <label for="ir-yapma-ttl">Önbellek süresi</label>
+  <label for="ir-yapma-ttl">Cache duration</label>
   <input type="range" id="ir-yapma-ttl" min="0" max="60" step="5" value="15">
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu radyoya girerken önce <code>legend</code> metnini okur; paragrafla verilen başlık bu bağı kurmaz. Radyo grubunda Tab tek duraktır, oklar seçimi değiştirir. Kaydırıcıda oklar bir adım, <code>Page Up</code>/<code>Page Down</code> büyük adım, <code>Home</code>/<code>End</code> uçlar içindir. <code>&lt;output&gt;</code> ekran okuyucuda canlı bölge gibi davranabilir; değeri zaten kaydırıcı okuduğu için sonuç satırının dışında ikinci bir <code>aria-live</code> eklemeyin.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>On entering a radio, a screen reader first reads the <code>legend</code> text; a heading given as a paragraph does not create that link. In a radio group Tab is a single stop, and the arrow keys change the selection. On a slider, arrow keys move one step, <code>Page Up</code>/<code>Page Down</code> a large step, and <code>Home</code>/<code>End</code> go to the ends. <code>&lt;output&gt;</code> may act like a live region in a screen reader; since the slider already reads the value, do not add a second <code>aria-live</code> outside the result line.</p></div></div>
 </chapter>
 
 <script data-page>
-/* kopya sayısı → aylık maliyet ve dayanıklılık */
+/* replica count → monthly cost and resilience */
 (function () {
   var r = document.getElementById('ir-kopya'), o = document.getElementById('ir-kopya-o'), out = document.getElementById('ir-kopya-out');
   function show() {
     var n = +r.value;
     o.value = n;
-    r.setAttribute('aria-valuetext', n + ' kopya');
+    r.setAttribute('aria-valuetext', n + (n === 1 ? ' replica' : ' replicas'));
     out.classList.toggle('s-bad', n === 1);
-    out.innerHTML = '<p><b>' + n + ' kopya</b> · tahmini <b>' + Math.round(n * 0.085 * 730) + ' $ / ay</b>. ' +
-      (n === 1 ? 'Tek kopya her dağıtımda ve düğüm kaybında kesinti demektir.' : 'Bir düğüm düşerse ' + (n - 1) + ' kopya hizmette kalır.') + '</p>';
+    out.innerHTML = '<p><b>' + n + (n === 1 ? ' replica' : ' replicas') + '</b> · estimated <b>$' + Math.round(n * 0.085 * 730) + ' / month</b>. ' +
+      (n === 1 ? 'A single replica means downtime on every deployment and every node loss.' : 'If a node goes down, ' + (n - 1) + (n === 2 ? ' replica stays' : ' replicas stay') + ' in service.') + '</p>';
   }
   r.addEventListener('input', show); show();
 })();
-/* dağıtım ayarları */
+/* deployment settings */
 (function () {
   var f = document.getElementById('ir-dagitim'), pay = document.getElementById('ir-pay'), o = document.getElementById('ir-pay-o'), out = document.getElementById('ir-dagitim-out');
-  var ad = { rolling: 'Sırayla değiştir', 'blue-green': 'Mavi/yeşil', kanarya: 'Kanarya' };
+  var ad = { rolling: 'Rolling', 'blue-green': 'Blue/green', canary: 'Canary' };
   function show() {
     var s = f.querySelector('input[name="ir-s"]:checked').value, p = pay.value;
     var ek = Array.prototype.map.call(f.querySelectorAll('input[name="ir-ek"]:checked'), function (i) { return i.value; });
-    pay.disabled = s !== 'kanarya';
-    o.value = '%' + p;
-    pay.setAttribute('aria-valuetext', 'yüzde ' + p);
-    var geri = ek.indexOf('geri') > -1;
+    pay.disabled = s !== 'canary';
+    o.value = p + '%';
+    pay.setAttribute('aria-valuetext', p + ' percent');
+    var geri = ek.indexOf('rollback') > -1;
     out.classList.toggle('s-warn', !geri);
     out.innerHTML = '<p><b>' + ad[s] + '</b> · ' +
-      (s === 'kanarya' ? 'yeni sürüme trafiğin <b>%' + p + '</b> kadarı gider' : s === 'rolling' ? 'kopyalar birer birer yenilenir' : 'trafik yeni kümeye bir kerede geçer') +
-      (ek.indexOf('goc') > -1 ? '; önce veritabanı göçü çalışır' : '') +
-      (geri ? '; hata oranı %2\'yi aşarsa geri alınır.' : '. Otomatik geri alma kapalı: sorun elle fark edilmeli.') + '</p>';
+      (s === 'canary' ? '<b>' + p + '%</b> of traffic goes to the new version' : s === 'rolling' ? 'replicas are replaced one at a time' : 'traffic switches to the new set at once') +
+      (ek.indexOf('migrate') > -1 ? '; the database migration runs first' : '') +
+      (geri ? '; it rolls back if the error rate exceeds 2%.' : '. Automatic rollback is off: problems must be noticed by hand.') + '</p>';
   }
   f.addEventListener('input', show); f.addEventListener('change', show); show();
 })();
-/* yap örneği: önbellek süresi */
+/* do example: cache duration */
 (function () {
   var r = document.getElementById('ir-yap-ttl'), o = document.getElementById('ir-yap-ttl-o');
-  r.addEventListener('input', function () { o.value = r.value + ' dk'; r.setAttribute('aria-valuetext', r.value + ' dakika'); });
+  r.addEventListener('input', function () { o.value = r.value + ' min'; r.setAttribute('aria-valuetext', r.value + ' minutes'); });
 })();
 </script>

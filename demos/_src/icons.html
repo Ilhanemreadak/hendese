@@ -1,14 +1,14 @@
-<!-- meta {"title":"İkonlar","group":"Temel","order":40,"tagline":"On üç çizgi ikon, tek sprite.","intro":"İkonlar sayfanın başına bir kez yapıştırılan SVG sprite'tan <code>&lt;use href=\"#i-…\"&gt;</code> ile çağrılır. Hepsi 24 birimlik ızgarada, 2 birim kalınlıkta, yuvarlak uçlu çizgidir ve rengini <code>currentColor</code>'dan alır.","summary":"Sprite, boyutlar, bileşen içi kullanım, yeni ikon ekleme ve <code>aria</code> kuralları.","facts":{"Dosya":"<code>src/icons.svg</code> → <code>dist/icons.svg</code>","Kullanım":"<code>&lt;svg&gt;&lt;use href=\"#i-copy\"/&gt;&lt;/svg&gt;</code>","Boyut":"<code>1em</code>: metinle aynı; bileşen içinde 12 · 14 · 16px","Metin içi":"<code>.ic</code>","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Icons","group":"Basics","order":40,"tagline":"Thirteen line icons, one sprite.","intro":"Icons are called with <code>&lt;use href=\"#i-…\"&gt;</code> from an SVG sprite pasted once at the top of the page. All of them are drawn on a 24-unit grid with 2-unit, round-capped lines, and take their color from <code>currentColor</code>.","summary":"The sprite, sizes, use inside components, adding a new icon and <code>aria</code> rules.","facts":{"File":"<code>src/icons.svg</code> → <code>dist/icons.svg</code>","Usage":"<code>&lt;svg&gt;&lt;use href=\"#i-copy\"/&gt;&lt;/svg&gt;</code>","Size":"<code>1em</code>: same as the text; 12 · 14 · 16px inside components","Inline":"<code>.ic</code>","JS":"Not required"}} -->
 
 <style>
-/* sayfaya özel (.ik-): katalog hücreleri. İkon boyutu yalnız font-size'dan gelir. */
+/* page-specific (.ik-): catalog cells. Icon size comes from font-size alone. */
 .ik-cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:var(--sp-4)}
 .ik-cat>div{display:grid;justify-items:center;gap:var(--sp-4);padding:var(--sp-7) var(--sp-3) var(--sp-4);border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper)}
 .ik-cat svg{font-size:var(--fs-xl);color:var(--ink)}
 </style>
 
-<chapter title="Sprite" lead="On üç ikon, on üç sembol. Sprite görünmezdir; her kullanım yalnızca bir use öğesidir, bu yüzden aynı ikonu yüz kez kullanmak sayfayı büyütmez.">
-<demo label="Katalog · --fs-xl" nocode>
+<chapter title="Sprite" lead="Thirteen icons, thirteen symbols. The sprite is invisible; each use is just a use element, so using the same icon a hundred times doesn't grow the page.">
+<demo label="Catalog · --fs-xl" nocode>
 <div class="ik-cat">
   <div><svg aria-hidden="true"><use href="#i-shield"/></svg><code>#i-shield</code></div>
   <div><svg aria-hidden="true"><use href="#i-info"/></svg><code>#i-info</code></div>
@@ -25,18 +25,18 @@
   <div><svg aria-hidden="true"><use href="#i-reset"/></svg><code>#i-reset</code></div>
 </div>
 </demo>
-<demo label="Örnek · cümlenin içinde ikon">
-<p style="margin:0">Ayarlar <svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg> menüsünden önbelleği <svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg> sıfırlayın.</p>
-<p class="lead" style="margin:var(--sp-3) 0 0"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> Büyük metinde ikon da büyür.</p>
+<demo label="Example · icon inside a sentence">
+<p style="margin:0">Reset the cache <svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg> from the Settings <svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg> menu.</p>
+<p class="lead" style="margin:var(--sp-3) 0 0"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> In large text, the icon grows too.</p>
 </demo>
-<div class="prose"><p>Kaynakta <code>viewBox</code> taşımayan ve doğrudan bir <code>&lt;use&gt;</code> içeren her <code>&lt;svg&gt;</code> boyutunu metinden alır: <code>1em × 1em</code>. Boyutu değiştirmek için ikona değil, kapsayıcının <code>font-size</code>'ına dokunun. Kural <code>:where()</code> içindedir, yani özgüllüğü sıfırdır; bileşenlerin kendi boyutları (<code>.btn svg</code> 14px gibi) ve sizin sınıflarınız her zaman kazanır.</p>
-<p><code>base.css</code> her <code>svg</code>'yi blok yapar. Cümlenin içindeki ikon için <code>.ic</code> ekleyin: satır içi blok olur, taban çizgisine oturur ve flex içinde küçülmez. 0.1'deki <code>style="width:16px;height:16px"</code> geçici çözümüne artık gerek yok.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>:where(svg:not([viewBox]):has(&gt;use)){width:1em;height:1em}
+<div class="prose"><p>Every <code>&lt;svg&gt;</code> in the source that has no <code>viewBox</code> and directly contains a <code>&lt;use&gt;</code> takes its size from the text: <code>1em × 1em</code>. To change the size, touch the container's <code>font-size</code>, not the icon. The rule sits inside <code>:where()</code>, so its specificity is zero; component sizes (such as <code>.btn svg</code> at 14px) and your own classes always win.</p>
+<p><code>base.css</code> makes every <code>svg</code> a block. For an icon inside a sentence, add <code>.ic</code>: it becomes inline-block, sits on the baseline and doesn't shrink inside flex. The <code>style="width:16px;height:16px"</code> workaround from 0.1 is no longer needed.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>:where(svg:not([viewBox]):has(&gt;use)){width:1em;height:1em}
 .ic{display:inline-block;vertical-align:-.125em;flex:none}</code></pre></figure>
 </chapter>
 
-<chapter title="Boyutlar" lead="Çizgi kalınlığı 24 birimlik ızgarada 2 birimdir; 12px'te bir piksele iner. 12px'in altına inmeyin, 24px'in üstünde ikon değil çizim kullanın.">
-<demo label="Ölçek · satırın yazı boyutu" nocode>
+<chapter title="Sizes" lead="The line weight is 2 units on a 24-unit grid; at 12px it drops to one pixel. Don't go below 12px, and above 24px use a drawing instead of an icon.">
+<demo label="Scale · the row's font size" nocode>
 <div style="display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:var(--sp-6);padding:var(--sp-4) 0">
   <p class="chip">--fs-sm · 12.5px</p>
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-7);color:var(--ink-2);font-size:var(--fs-sm)"><svg aria-hidden="true"><use href="#i-shield"/></svg><svg aria-hidden="true"><use href="#i-info"/></svg><svg aria-hidden="true"><use href="#i-bulb"/></svg><svg aria-hidden="true"><use href="#i-warn"/></svg><svg aria-hidden="true"><use href="#i-check"/></svg><svg aria-hidden="true"><use href="#i-wrench"/></svg><svg aria-hidden="true"><use href="#i-copy"/></svg><svg aria-hidden="true"><use href="#i-menu"/></svg><svg aria-hidden="true"><use href="#i-x"/></svg><svg aria-hidden="true"><use href="#i-sun"/></svg><svg aria-hidden="true"><use href="#i-moon"/></svg><svg aria-hidden="true"><use href="#i-tick"/></svg><svg aria-hidden="true"><use href="#i-reset"/></svg></div>
@@ -59,32 +59,32 @@
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Boyut</th><th>Nerede</th><th>Kaynak</th></tr></thead>
+  <thead><tr><th>Size</th><th>Where</th><th>Source</th></tr></thead>
   <tbody>
-    <tr><td>12px</td><td>Callout ikonu, kod bloğundaki kopyala düğmesi, kontrol kutusundaki tik</td><td><code>.co-ic svg</code> · <code>.code-copy svg</code> · <code>.rb-item .box svg</code></td></tr>
-    <tr><td>14px</td><td>Metinli düğme, başarı satırı</td><td><code>.btn svg</code> · <code>.check svg</code></td></tr>
-    <tr><td>16px</td><td>Yalnız ikonlu düğme, kontrol listesi bitiş satırı</td><td><code>.icon-btn svg</code> · <code>.rb-done svg</code></td></tr>
-    <tr><td><code>1em</code></td><td>Bileşen dışındaki her ikon</td><td>Kapsayıcının <code>font-size</code>'ı; cümle içinde <code>.ic</code></td></tr>
+    <tr><td>12px</td><td>Callout icon, copy button in a code block, tick in a runbook box</td><td><code>.co-ic svg</code> · <code>.code-copy svg</code> · <code>.rb-item .box svg</code></td></tr>
+    <tr><td>14px</td><td>Text button, success line</td><td><code>.btn svg</code> · <code>.check svg</code></td></tr>
+    <tr><td>16px</td><td>Icon-only button, runbook done line</td><td><code>.icon-btn svg</code> · <code>.rb-done svg</code></td></tr>
+    <tr><td><code>1em</code></td><td>Every icon outside a component</td><td>The container's <code>font-size</code>; <code>.ic</code> inside a sentence</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Bileşen içinde" lead="Bileşen ikonun boyutunu ve rengini belirler; siz yalnızca hangi ikonu istediğinizi yazarsınız. Renk metinle aynıdır, çünkü ikon currentColor ile çizilir.">
-<demo label="Örnek · düğmeler">
+<chapter title="Inside components" lead="The component sets the icon's size and color; you only write which icon you want. The color matches the text, because the icon is drawn with currentColor.">
+<demo label="Example · buttons">
 <div class="pillrow">
-  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Bağlantıyı kopyala</button>
-  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>İşi yeniden kuyruğa al</button>
-  <button class="icon-btn" type="button" aria-label="Ayarları aç"><svg aria-hidden="true"><use href="#i-wrench"/></svg></button>
-  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy link</button>
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>Requeue job</button>
+  <button class="icon-btn" type="button" aria-label="Open settings"><svg aria-hidden="true"><use href="#i-wrench"/></svg></button>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
 </div>
 </demo>
-<div class="prose"><p>Son düğme gerçek bir tema düğmesidir: <code>[data-theme-toggle]</code> taşıdığı için <code>Hendese.init()</code> onu kendiliğinden bağlar. İçindeki iki ikondan hangisinin görüneceğini <code>.icon-btn .sun</code> / <code>.moon</code> kuralları <code>html[data-theme]</code>'e göre seçer.</p></div>
-<demo label="Örnek · callout ve başarı satırı">
-<div class="co co-trouble"><span class="co-ic"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><span class="co-label">Sorun giderme</span><div class="co-body"><p><code>billing-worker</code> kuyruğu boşaltmıyorsa önce işçi günlüğünde <code>visibility timeout</code> uyarısı arayın.</p></div></div>
-<p class="check"><svg aria-hidden="true"><use href="#i-tick"/></svg>Kuyruk derinliği 5 dakikadır eşiğin altında.</p>
+<div class="prose"><p>The last button is a real theme button: because it carries <code>[data-theme-toggle]</code>, <code>Hendese.init()</code> wires it up on its own. The <code>.icon-btn .sun</code> / <code>.moon</code> rules pick which of its two icons shows, based on <code>html[data-theme]</code>.</p></div>
+<demo label="Example · callout and success line">
+<div class="co co-trouble"><span class="co-ic"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><span class="co-label">Troubleshooting</span><div class="co-body"><p>If <code>billing-worker</code> isn't draining the queue, first look for a <code>visibility timeout</code> warning in the worker log.</p></div></div>
+<p class="check"><svg aria-hidden="true"><use href="#i-tick"/></svg>Queue depth has been under the threshold for 5 minutes.</p>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Callout</th><th>İkon</th></tr></thead>
+  <thead><tr><th>Callout</th><th>Icon</th></tr></thead>
   <tbody>
     <tr><td><code>.co-info</code> · <code>.co-important</code></td><td><code>#i-info</code></td></tr>
     <tr><td><code>.co-tip</code></td><td><code>#i-bulb</code></td></tr>
@@ -96,84 +96,84 @@
 </table></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="İkon ya bir eylemi kısaltır ya da bir durumu işaretler. İkinci durumda ikon anlam taşır ve ekran okuyucuya adıyla duyurulmalıdır.">
-<demo label="Örnek · günlük görüntüleyici araç çubuğu">
+<chapter title="In context" lead="An icon either shortens an action or marks a status. In the second case the icon carries meaning and must be announced to screen readers by name.">
+<demo label="Example · log viewer toolbar">
 <div style="display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap;padding:var(--sp-3) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
-  <span class="mono" style="margin-right:auto;color:var(--ink-2)">web-api · prod · son 15 dk</span>
-  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>Yenile</button>
-  <button class="icon-btn" type="button" aria-label="Günlüğü kopyala"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
-  <button class="icon-btn" type="button" aria-label="Görüntüleyiciyi kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+  <span class="mono" style="margin-right:auto;color:var(--ink-2)">web-api · prod · last 15 min</span>
+  <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-reset"/></svg>Refresh</button>
+  <button class="icon-btn" type="button" aria-label="Copy log"><svg aria-hidden="true"><use href="#i-copy"/></svg></button>
+  <button class="icon-btn" type="button" aria-label="Close viewer"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
 </div>
 </demo>
-<demo label="Örnek · erişim istekleri">
+<demo label="Example · access requests">
 <div class="tbl"><table>
-  <thead><tr><th>Kişi</th><th>Kaynak</th><th>Durum</th></tr></thead>
+  <thead><tr><th>Person</th><th>Resource</th><th>Status</th></tr></thead>
   <tbody>
-    <tr><td>a.yilmaz</td><td><code>orders-db</code> · salt okunur</td><td><span style="color:var(--ok)"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Onaylandı</span></td></tr>
-    <tr><td>d.kaya</td><td><code>eu-west-1</code> · yönetici</td><td><span style="color:var(--sec)"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> İkinci onay bekliyor</span></td></tr>
-    <tr><td>m.demir</td><td><code>billing-worker</code> · dağıtım</td><td><span style="color:var(--warn)"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> 3 gün içinde sona eriyor</span></td></tr>
-    <tr><td>s.aydin</td><td><code>prod</code> · gizli bilgi kasası</td><td><span style="color:var(--bad)"><svg class="ic" role="img" aria-label="Reddedildi"><use href="#i-x"/></svg> gerekçe: rol yok</span></td></tr>
+    <tr><td>a.smith</td><td><code>orders-db</code> · read-only</td><td><span style="color:var(--ok)"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Approved</span></td></tr>
+    <tr><td>d.jones</td><td><code>eu-west-1</code> · admin</td><td><span style="color:var(--sec)"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg> Awaiting second approval</span></td></tr>
+    <tr><td>m.brown</td><td><code>billing-worker</code> · deploy</td><td><span style="color:var(--warn)"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg> Expires in 3 days</span></td></tr>
+    <tr><td>s.lee</td><td><code>prod</code> · secrets vault</td><td><span style="color:var(--bad)"><svg class="ic" role="img" aria-label="Denied"><use href="#i-x"/></svg> reason: no role</span></td></tr>
   </tbody>
 </table></div>
 </demo>
-<div class="prose"><p>İlk üç satırda durum metinle yazıldığı için ikon süstür ve <code>aria-hidden</code> taşır. Son satırda metin yalnızca gerekçeyi söyler; durumu ikon taşır, bu yüzden ikon <code>role="img"</code> ve <code>aria-label</code> alır.</p></div>
-<demo label="Örnek · koyu sahne">
+<div class="prose"><p>In the first three rows the status is written as text, so the icon is decoration and carries <code>aria-hidden</code>. In the last row the text gives only the reason; the icon carries the status, so it gets <code>role="img"</code> and <code>aria-label</code>.</p></div>
+<demo label="Example · dark scene">
 <div class="scene-dark" style="border-radius:var(--r-sm);padding:var(--sp-6) var(--sp-7)">
   <p class="chip" style="margin-bottom:var(--sp-3)">Alarm · orders-db</p>
-  <p style="margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)"><svg aria-hidden="true"><use href="#i-warn"/></svg>Bağlantı havuzu %94 dolu</p>
+  <p style="margin:0 0 var(--sp-5);display:flex;align-items:center;gap:var(--sp-3);color:var(--bad)"><svg aria-hidden="true"><use href="#i-warn"/></svg>Connection pool 94% full</p>
   <div class="pillrow">
-    <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Sorguyu kopyala</button>
-    <button class="icon-btn" type="button" aria-label="Alarm hakkında bilgi"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
+    <button class="btn" type="button"><svg aria-hidden="true"><use href="#i-copy"/></svg>Copy query</button>
+    <button class="icon-btn" type="button" aria-label="About this alarm"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
   </div>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Yeni ikon eklemek" lead="Yeni ikon src/icons.svg içine bir symbol olarak girer. Aynı ızgara, aynı kalınlık ve aynı uç biçimi; yoksa sprite'taki diğer on üç ikonun yanında hemen göze batar.">
-<demo label="Önizleme · eklemeden önce">
+<chapter title="Adding a new icon" lead="A new icon goes into src/icons.svg as a symbol. Same grid, same weight, same cap style; otherwise it sticks out next to the other thirteen icons in the sprite.">
+<demo label="Preview · before adding">
 <div style="display:flex;align-items:center;gap:var(--sp-8);font-size:var(--fs-xl)">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="1em" height="1em"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
   <svg aria-hidden="true"><use href="#i-shield"/></svg>
   <svg aria-hidden="true"><use href="#i-wrench"/></svg>
-  <span class="figcap" style="margin:0">Yeni çizimi mevcut ikonların yanında, aynı boyutta deneyin.</span>
+  <span class="figcap" style="margin:0">Try the new drawing next to the existing icons, at the same size.</span>
 </div>
 </demo>
-<figure class="code"><figcaption class="code-head"><span class="code-file">src/icons.svg</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- &lt;defs&gt; içine, son sembolün altına; sıra alfabetik değil anlamsaldır --&gt;</span>
+<figure class="code"><figcaption class="code-head"><span class="code-file">src/icons.svg</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">&lt;!-- inside &lt;defs&gt;, below the last symbol; the order is by meaning, not alphabetical --&gt;</span>
 &lt;<span class="k">symbol</span> id="<span class="s">i-database</span>" viewBox="<span class="s">0 0 24 24</span>" fill="<span class="s">none</span>" stroke="<span class="s">currentColor</span>"
         stroke-width="<span class="s">2</span>" stroke-linecap="<span class="s">round</span>" stroke-linejoin="<span class="s">round</span>"&gt;
   &lt;<span class="k">ellipse</span> cx="<span class="s">12</span>" cy="<span class="s">6</span>" rx="<span class="s">7</span>" ry="<span class="s">3</span>"/&gt;
   &lt;<span class="k">path</span> d="<span class="s">M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3</span>"/&gt;
 &lt;/<span class="k">symbol</span>&gt;</code></pre></figure>
 <ol class="steps">
-  <li><h3>Sembolü ekle</h3><p><code>id</code> <code>i-</code> ile başlar; <code>viewBox</code> 24×24, dolgu yok, çizgi <code>currentColor</code>. Sabit renk yazmayın: ikon temaya ve bileşene uymaz.</p></li>
-  <li><h3>Derle</h3><p><code>npm run build</code> sprite'ı <code>dist/icons.svg</code>'ye kopyalar. Parça sayfaları (<code>node tools/demos.mjs</code>) sprite'ı doğrudan <code>src/icons.svg</code>'den okur.</p></li>
-  <li><h3>Sayfalara taşı</h3><p>Sprite her sayfada satır içidir. Yeni sayfa <code>docs/_sablon.html</code> kopyalanarak başlar (sprite içindedir); <code>src/icons.svg</code> değişince mevcut sayfalardaki sprite elle güncellenir.</p></li>
+  <li><h3>Add the symbol</h3><p>The <code>id</code> starts with <code>i-</code>; <code>viewBox</code> 24×24, no fill, stroke <code>currentColor</code>. Don't hard-code a color: the icon would ignore the theme and the component.</p></li>
+  <li><h3>Build</h3><p><code>npm run build</code> copies the sprite to <code>dist/icons.svg</code>. Part pages (<code>node tools/demos.mjs</code>) read the sprite straight from <code>src/icons.svg</code>.</p></li>
+  <li><h3>Carry it to the pages</h3><p>The sprite is inline on every page. A new page starts as a copy of <code>docs/_sablon.html</code> (the sprite is inside); when <code>src/icons.svg</code> changes, the sprite on existing pages is updated by hand.</p></li>
 </ol>
-<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Sözleşme</span><div class="co-body"><p>İkon <code>id</code>'leri belgelenmiş sözleşmenin parçasıdır. Yeni ikon eklemek küçük sürüm; bir ikonu yeniden adlandırmak ya da kaldırmak <b>majör</b> sürüm gerektirir.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Contract</span><div class="co-body"><p>Icon <code>id</code>s are part of the documented contract. Adding an icon is a minor release; renaming or removing one needs a <b>major</b> release.</p></div></div>
 </chapter>
 
-<chapter title="Erişilebilirlik" lead="Sprite kendisi aria-hidden taşır. Kullanımda üç durum var: süs, eylem ve anlam.">
+<chapter title="Accessibility" lead="The sprite itself carries aria-hidden. In use there are three cases: decoration, action and meaning.">
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Örnek</th></tr></thead>
+  <thead><tr><th>Case</th><th>Markup</th><th>Example</th></tr></thead>
   <tbody>
-    <tr><td>Yanında metin var (süs)</td><td><code>&lt;svg aria-hidden="true"&gt;</code></td><td>Metinli <code>.btn</code>, callout, <code>.check</code></td></tr>
-    <tr><td>Düğmenin tek içeriği</td><td>Ad düğmeye: <code>&lt;button aria-label="…"&gt;</code></td><td><code>.icon-btn</code></td></tr>
-    <tr><td>Tek başına anlam taşıyor</td><td><code>&lt;svg role="img" aria-label="…"&gt;</code></td><td>Tablo hücresinde durum ikonu</td></tr>
+    <tr><td>Text beside it (decoration)</td><td><code>&lt;svg aria-hidden="true"&gt;</code></td><td>Text <code>.btn</code>, callout, <code>.check</code></td></tr>
+    <tr><td>Only content of a button</td><td>The name goes on the button: <code>&lt;button aria-label="…"&gt;</code></td><td><code>.icon-btn</code></td></tr>
+    <tr><td>Carries meaning on its own</td><td><code>&lt;svg role="img" aria-label="…"&gt;</code></td><td>Status icon in a table cell</td></tr>
   </tbody>
 </table></div>
 <div class="dodont">
-<demo label="Yap · ikonun adı var">
+<demo label="Do · the icon has a name">
 <p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
-  <svg role="img" aria-label="Uyarı" style="color:var(--warn)"><use href="#i-warn"/></svg>
+  <svg role="img" aria-label="Warning" style="color:var(--warn)"><use href="#i-warn"/></svg>
   <span class="mono">eu-west-1</span>
 </p>
 </demo>
-<demo label="Yapma · anlam yalnızca çizimde">
+<demo label="Don't · the meaning is only in the drawing">
 <p style="margin:0;display:flex;align-items:center;gap:var(--sp-3)">
   <svg aria-hidden="true" style="color:var(--warn)"><use href="#i-warn"/></svg>
   <span class="mono">eu-west-1</span>
 </p>
 </demo>
 </div>
-<div class="prose"><p>Sağdaki satırı ekran okuyucu yalnızca "eu-west-1" diye okur; bölgede bir sorun olduğunu duyan olmaz. <code>.icon-btn</code>'de <code>aria-label</code> fiille başlar ve ne olacağını söyler: "Kapat" değil "Görüntüleyiciyi kapat".</p></div>
+<div class="prose"><p>A screen reader reads the right-hand line as just "eu-west-1"; nobody hears that the region has a problem. On an <code>.icon-btn</code>, the <code>aria-label</code> starts with a verb and says what will happen: "Close viewer", not "Close".</p></div>
 </chapter>

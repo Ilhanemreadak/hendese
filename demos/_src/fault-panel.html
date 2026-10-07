@@ -1,7 +1,7 @@
-<!-- meta {"title":"Arıza panosu","group":"Blueprint","order":80,"tagline":"Hangi fazda, hangi lamba yanıyor.","intro":"Arıza panosu bir sürecin ya da servis grubunun nerede bozulduğunu tek bakışta gösterir: fazlar bir şeritte, olası arızalar numaralı lambalarda. Her lamba alttaki listenin bir satırıdır; liste çizimin metin karşılığıdır ve her zaman yazılır.","summary":"Faz şeridi, bölge parantezleri, numaralı lambalar; istek yolu, servis sağlık matrisi, gece işi.","facts":{"Sınıflar":"<code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code> · <code>.lamp</code> · <code>.lamps</code> · <code>.fill-soft</code>","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Fault panel","group":"Blueprint","order":80,"tagline":"Which phase, which lamp is lit.","intro":"A fault panel shows at a glance where a process or a group of services broke: the phases in a strip, the possible faults on numbered lamps. Each lamp is a row in the list below; the list is the text equivalent of the drawing and is always written.","summary":"Phase strip, zone brackets, numbered lamps; a request path, a service health matrix, a nightly job.","facts":{"Classes":"<code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code> · <code>.lamp</code> · <code>.lamps</code> · <code>.fill-soft</code>","JS":"Not needed"}} -->
 
-<chapter title="Anatomi" lead="Üstte bölge parantezleri, ortada faz şeridi, şeridin üstünde lambalar, altında süre cetveli. Orta bölge süreyle orantılıdır; yan bölgeler değildir.">
-<demo label="Örnek · bir isteğin yolu, yavaş sorgu">
+<chapter title="Anatomy" lead="Zone brackets on top, the phase strip in the middle, lamps above the strip and a time ruler below it. The middle zone is proportional to time; the side zones are not.">
+<demo label="Example · the path of a request, slow query">
 <div class="drawing" style="--aw:1000;--ah:300">
   <svg viewBox="0 0 1000 300" aria-hidden="true">
     <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
@@ -27,18 +27,18 @@
     <path class="ln-draw" d="M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
     <path class="ln-pencil" d="M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5"/>
   </svg>
-  <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Bağlantı</span></p>
-  <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Uygulama · orantılı</span></p>
-  <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Yanıt</span></p>
+  <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Connection</span></p>
+  <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Application · proportional</span></p>
+  <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Response</span></p>
   <p class="dl" style="--x:0;--y:190;--w:100;text-align:center">DNS</p>
   <p class="dl" style="--x:90;--y:208;--w:80;text-align:center">TLS</p>
   <p class="dl" style="--x:150;--y:190;--w:80;text-align:center">LB</p>
   <p class="dl" style="--x:210;--y:208;--w:120;text-align:center">web-api</p>
-  <p class="dl" style="--x:310;--y:190;--w:80;text-align:center">önbellek</p>
-  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center">veritabanı · 120 ms</p>
-  <p class="dl" style="--x:695;--y:190;--w:100;text-align:center">serileştir</p>
-  <p class="dl" style="--x:797;--y:208;--w:100;text-align:center">sıkıştır</p>
-  <p class="dl" style="--x:897;--y:190;--w:100;text-align:center">istemci</p>
+  <p class="dl" style="--x:310;--y:190;--w:80;text-align:center">cache</p>
+  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center">database · 120 ms</p>
+  <p class="dl" style="--x:695;--y:190;--w:100;text-align:center">serialize</p>
+  <p class="dl" style="--x:797;--y:208;--w:100;text-align:center">compress</p>
+  <p class="dl" style="--x:897;--y:190;--w:100;text-align:center">client</p>
   <p class="dl" style="--x:140;--y:276;--w:60;text-align:center">0</p>
   <p class="dl" style="--x:240;--y:276;--w:60;text-align:center">40</p>
   <p class="dl" style="--x:340;--y:276;--w:60;text-align:center">80</p>
@@ -47,19 +47,19 @@
   <p class="dl" style="--x:630;--y:276;--w:80;text-align:center">200 ms</p>
 </div>
 <ol class="lamps">
-  <li>DNS çözümlenemedi: kayıt yok ya da çözümleyiciye ulaşılamıyor.</li>
-  <li>TLS el sıkışması düştü: sertifika süresi dolmuş ya da zincir eksik.</li>
-  <li>web-api 5xx döndü: uygulama hatası, yığın izi günlükte.</li>
-  <li data-state="on"><b>Yanıyor ·</b> Veritabanı fazı 120 ms sürdü (bütçe 30 ms): <code>orders</code> tablosunda indekssiz sorgu.</li>
-  <li>Bağlantı havuzu doldu: istekler veritabanını beklerken sıraya girdi.</li>
-  <li>İstemci zaman aşımı: yanıt 2 saniyede tamamlanmadı.</li>
+  <li>DNS did not resolve: no record, or the resolver is unreachable.</li>
+  <li>TLS handshake failed: the certificate expired or the chain is incomplete.</li>
+  <li>web-api returned 5xx: application error, stack trace in the log.</li>
+  <li data-state="on"><b>Lit ·</b> The database phase took 120 ms (budget 30 ms): an unindexed query on the <code>orders</code> table.</li>
+  <li>Connection pool exhausted: requests queued while waiting for the database.</li>
+  <li>Client timeout: the response did not complete within 2 seconds.</li>
 </ol>
 </demo>
-<div class="prose"><p>Orta bölge orantılıdır: 10 birim = 4 ms, cetvel 40 ms'de bir işaretli. Yan bölgeler orantısızdır ve <code>.dim</code> parantezleriyle ayrılır; aradaki ok sürecin sonraki bölgeye geçtiğini gösterir. Aynı fazın iki olası arızası varsa ikinci lamba birincinin üstüne dizilir (4 ve 5).</p></div>
+<div class="prose"><p>The middle zone is proportional: 10 units = 4 ms, with a ruler mark every 40 ms. The side zones are not proportional and are set apart with <code>.dim</code> brackets; the arrow between them shows the process moving on to the next zone. If one phase has two possible faults, the second lamp is stacked above the first (4 and 5).</p></div>
 </chapter>
 
-<chapter title="Lamba durumları" lead="Lamba sönük, yanıyor ya da uyarıda olabilir. Bakımdaki lamba kesikli, ölçülemeyen lamba hayalet çizilir. Numara her durumda okunur kalır.">
-<demo label="Örnek · beş durum">
+<chapter title="Lamp states" lead="A lamp can be off, lit or in warning. A lamp under maintenance is dashed; a lamp that cannot be measured is drawn as a ghost. The number stays readable in every state.">
+<demo label="Example · five states">
 <div class="drawing" style="--aw:900;--ah:120">
   <svg viewBox="0 0 900 120" aria-hidden="true">
     <g class="lamp"><circle cx="60" cy="40" r="14"/><text x="60" y="40">1</text></g>
@@ -68,22 +68,22 @@
     <g class="lamp"><circle class="ln-dash" cx="600" cy="40" r="14"/><text x="600" y="40">4</text></g>
     <g class="lamp" data-state="ghost"><circle cx="780" cy="40" r="14"/><text x="780" y="40">5</text></g>
   </svg>
-  <p class="dl" style="--x:0;--y:66;--w:120;text-align:center">sönük<br>sorun yok</p>
-  <p class="dl" style="--x:180;--y:66;--w:120;text-align:center">yanıyor<br>arıza</p>
-  <p class="dl" style="--x:360;--y:66;--w:120;text-align:center">uyarı<br>eşiğe yakın</p>
-  <p class="dl" style="--x:540;--y:66;--w:120;text-align:center">bakımda<br>susturuldu</p>
-  <p class="dl" style="--x:720;--y:66;--w:120;text-align:center">hayalet<br>ölçülemiyor</p>
+  <p class="dl" style="--x:0;--y:66;--w:120;text-align:center">off<br>no problem</p>
+  <p class="dl" style="--x:180;--y:66;--w:120;text-align:center">lit<br>fault</p>
+  <p class="dl" style="--x:360;--y:66;--w:120;text-align:center">warning<br>near threshold</p>
+  <p class="dl" style="--x:540;--y:66;--w:120;text-align:center">maintenance<br>silenced</p>
+  <p class="dl" style="--x:720;--y:66;--w:120;text-align:center">ghost<br>not measurable</p>
 </div>
 </demo>
-<div class="prose"><p>Lamba <code>&lt;g class="lamp"&gt;</code> içinde bir daire ve numaradır; yanan lamba <code>data-state="on"</code> alır; rengi varsayılan olarak arızadır, <code>.s-warn</code> ile uyarıya döner. Ölçülemeyen lamba <code>data-state="ghost"</code> ile kesikli ve soluk çizilir; bakımdaki lamba dairesine <code>.ln-dash</code> alır. Yanan faz <code>class="ln-strong ln-c fill-soft s-bad"</code> ile çizilir: çizgi ve dolgu rengini tek bir <code>.s-*</code> sınıfı verir. Listede aynı satır <code>&lt;li data-state="on"&gt;</code> ile koyulaşır ve “Yanıyor ·” diye başlar. Yanan lambanın bağlı olduğu leader ve faz da kırmızı çizilir; uyarıdaki lamba yalnızca kendisi boyanır. Bir panoda aynı anda birden fazla lamba yanabilir, ama listede yanan satırlar en başta değil, kendi numaralarının yerinde durur: numara sırası çizimdeki konum sırasıdır.</p></div>
+<div class="prose"><p>A lamp is a circle and a number inside <code>&lt;g class="lamp"&gt;</code>; a lit lamp gets <code>data-state="on"</code>. Its color means fault by default and turns to warning with <code>.s-warn</code>. A lamp that cannot be measured is drawn dashed and faded with <code>data-state="ghost"</code>; a lamp under maintenance gets <code>.ln-dash</code> on its circle. A lit phase is drawn with <code>class="ln-strong ln-c fill-soft s-bad"</code>: a single <code>.s-*</code> class sets both the line and the fill color. In the list, the same row is darkened with <code>&lt;li data-state="on"&gt;</code> and starts with “Lit ·”. The leader and phase tied to a lit lamp are drawn in red too; a lamp in warning colors only itself. Several lamps can be lit on one panel at once, but lit rows do not move to the top of the list; they stay at their own number: the number order is the order of positions in the drawing.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Aynı dil bir servis grubunun sağlık matrisine de uyar: satırlar servisler, sütunlar kontroller. Yalnızca yanan lambalar numara alır.">
-<demo label="Örnek · servis sağlık matrisi">
+<chapter title="In context" lead="The same language fits a health matrix for a group of services: rows are services, columns are checks. Only lit lamps get a number.">
+<demo label="Example · service health matrix">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">03 · Şekil 1</p>
-  <p class="fig-cap">prod · beş servis, beş kontrol</p>
+  <p class="chip">03 · Figure 1</p>
+  <p class="fig-cap">prod · five services, five checks</p>
   <div class="drawing" style="--aw:900;--ah:280">
     <svg viewBox="0 0 900 280" aria-hidden="true">
       <path class="ln-pencil" d="M20 44H880M20 92H880M20 137H880M20 182H880M20 227H880M20 272H880"/>
@@ -114,11 +114,11 @@
       <circle class="ln-draw fill-paper" cx="690" cy="250" r="11"/>
       <circle class="ln-draw fill-paper" cx="810" cy="250" r="11"/>
     </svg>
-    <p class="dl" style="--x:270;--y:14;--w:120;text-align:center"><span class="stamp-k">Canlılık</span></p>
-    <p class="dl" style="--x:390;--y:14;--w:120;text-align:center"><span class="stamp-k">Hazırlık</span></p>
+    <p class="dl" style="--x:270;--y:14;--w:120;text-align:center"><span class="stamp-k">Liveness</span></p>
+    <p class="dl" style="--x:390;--y:14;--w:120;text-align:center"><span class="stamp-k">Readiness</span></p>
     <p class="dl" style="--x:510;--y:14;--w:120;text-align:center"><span class="stamp-k">p95</span></p>
-    <p class="dl" style="--x:630;--y:14;--w:120;text-align:center"><span class="stamp-k">Hata</span></p>
-    <p class="dl" style="--x:750;--y:14;--w:120;text-align:center"><span class="stamp-k">Bağımlılık</span></p>
+    <p class="dl" style="--x:630;--y:14;--w:120;text-align:center"><span class="stamp-k">Errors</span></p>
+    <p class="dl" style="--x:750;--y:14;--w:120;text-align:center"><span class="stamp-k">Dependency</span></p>
     <p class="dl" style="--x:24;--y:60;--w:240">web-api</p>
     <p class="dl" style="--x:24;--y:105;--w:240">billing-worker</p>
     <p class="dl" style="--x:24;--y:150;--w:240">auth</p>
@@ -126,18 +126,18 @@
     <p class="dl" style="--x:24;--y:240;--w:240">orders-db</p>
   </div>
   <ol class="lamps">
-    <li><b>Uyarı ·</b> web-api p95 gecikmesi 480 ms; eşik 500 ms.</li>
-    <li data-state="on"><b>Yanıyor ·</b> billing-worker'ın bağımlı olduğu ödeme API'si 502 dönüyor.</li>
-    <li data-state="on"><b>Yanıyor ·</b> search hazır değil: indeks yeniden kuruluyor, trafik almıyor.</li>
+    <li><b>Warning ·</b> web-api p95 latency is 480 ms; threshold 500 ms.</li>
+    <li data-state="on"><b>Lit ·</b> The payment API that billing-worker depends on returns 502.</li>
+    <li data-state="on"><b>Lit ·</b> search is not ready: the index is being rebuilt, and it takes no traffic.</li>
   </ol>
-  <figcaption class="figcap"><b>Şekil 1.</b> Sönük lambalar numarasızdır. search satırındaki kesikli lamba susturulmuş bir kontroldür (bakım penceresi).</figcaption>
+  <figcaption class="figcap"><b>Figure 1.</b> Unlit lamps have no number. The dashed lamp in the search row is a silenced check (maintenance window).</figcaption>
 </figure>
 </demo>
-<demo label="Örnek · gece yedekleme işi, koyu pafta">
+<demo label="Example · nightly backup job, dark sheet">
 <figure class="fig-sheet scene-dark">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">03 · Şekil 2</p>
-  <p class="fig-cap">nightly-backup · 02:00 çalışması</p>
+  <p class="chip">03 · Figure 2</p>
+  <p class="fig-cap">nightly-backup · 02:00 run</p>
   <div class="drawing" style="--aw:1000;--ah:200">
     <svg viewBox="0 0 1000 200" aria-hidden="true">
       <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
@@ -156,31 +156,31 @@
       <g class="lamp" data-state="on"><circle cx="490" cy="80" r="12"/><text x="490" y="80">3</text></g>
       <g class="lamp" data-state="ghost"><circle cx="770" cy="80" r="12"/><text x="770" y="80">4</text></g>
     </svg>
-    <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Hazırlık</span></p>
-    <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Aktarım · 10 birim = 1 dk</span></p>
-    <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Doğrulama</span></p>
-    <p class="dl" style="--x:0;--y:150;--w:100;text-align:center">kuyruk</p>
-    <p class="dl" style="--x:90;--y:168;--w:80;text-align:center">kilit</p>
-    <p class="dl" style="--x:160;--y:150;--w:100;text-align:center">görüntü</p>
-    <p class="dl" style="--x:240;--y:168;--w:80;text-align:center">şifrele</p>
-    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center">bölge kopyası · 36 dk · zaman aşımı</p>
-    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center">sağlama</p>
-    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center">kayıt</p>
+    <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Preparation</span></p>
+    <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Transfer · 10 units = 1 min</span></p>
+    <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Verification</span></p>
+    <p class="dl" style="--x:0;--y:150;--w:100;text-align:center">queue</p>
+    <p class="dl" style="--x:90;--y:168;--w:80;text-align:center">lock</p>
+    <p class="dl" style="--x:160;--y:150;--w:100;text-align:center">snapshot</p>
+    <p class="dl" style="--x:240;--y:168;--w:80;text-align:center">encrypt</p>
+    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center">region copy · 36 min · timeout</p>
+    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center">checksum</p>
+    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center">record</p>
   </div>
   <ol class="lamps">
-    <li>İş kuyruğa alınamadı: önceki çalışma hâlâ kilidi tutuyor.</li>
-    <li>Anlık görüntü alınamadı: disk kotası dolu.</li>
-    <li data-state="on"><b>Yanıyor ·</b> Bölge kopyası 30 dakikalık sınırı aştı; ağ bant genişliği gece yedekleriyle paylaşılıyor.</li>
-    <li>Sağlama başarısız: kopyanın sağlama toplamı kaynakla uyuşmuyor. Bu çalışmada ölçülemedi.</li>
+    <li>Job could not be queued: the previous run still holds the lock.</li>
+    <li>Snapshot could not be taken: disk quota full.</li>
+    <li data-state="on"><b>Lit ·</b> The region copy exceeded its 30-minute limit; network bandwidth is shared with the nightly backups.</li>
+    <li>Checksum failed: the copy's checksum does not match the source. Not measured in this run.</li>
   </ol>
-  <figcaption class="figcap"><b>Şekil 2.</b> Kopya fazı düştüğü için doğrulama bölgesi hiç çalışmadı; fazları ve lambası hayalettir.</figcaption>
+  <figcaption class="figcap"><b>Figure 2.</b> The copy phase failed, so the verification zone never ran; its phases and its lamp are ghosts.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Lamba bir listeye işaret eden bir numaradır. Numarasız, listesiz renkli noktalar bir pano değil, bir bulmacadır.">
+<chapter title="Do / don't" lead="A lamp is a number that points to a list. Colored dots with no number and no list are not a panel; they are a puzzle.">
 <div class="dodont">
-<demo label="Yap · numara ve liste">
+<demo label="Do · number and list">
 <div class="drawing" style="--aw:440;--ah:90">
   <svg viewBox="0 0 440 90" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
@@ -193,11 +193,11 @@
   </svg>
 </div>
 <ol class="lamps">
-  <li>Derleme başlamadı.</li>
-  <li data-state="on"><b>Yanıyor ·</b> Testler düştü: 3 birim testi.</li>
+  <li>The build did not start.</li>
+  <li data-state="on"><b>Lit ·</b> Tests failed: 3 unit tests.</li>
 </ol>
 </demo>
-<demo label="Yapma · yalnız renk">
+<demo label="Don't · color only">
 <div class="drawing" style="--aw:440;--ah:90">
   <svg viewBox="0 0 440 90" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
@@ -210,5 +210,5 @@
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Lamba numarası SVG içindedir; ekran okuyucu yalnızca listeyi okur. Bu yüzden yanan satır listede kelimeyle işaretlenir (“Yanıyor ·”) ve renk tek başına bırakılmaz. Liste <code>&lt;ol&gt;</code> olmalıdır: sıra numarası lambanın numarasıdır.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The lamp number lives inside the SVG; a screen reader reads only the list. So a lit row is marked with a word in the list (“Lit ·”), and color is never left on its own. The list must be an <code>&lt;ol&gt;</code>: the item number is the lamp's number.</p></div></div>
 </chapter>

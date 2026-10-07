@@ -28,7 +28,7 @@
 
 Hendese draws documentation, training and tool pages the way an engineer draws a sheet: pencil guides, inked figures, dimension lines and a title block. It ships design tokens, layered CSS components, drawing primitives, a small scroll-scene engine and **Hoca**, a pixel mascot who walks between figures and points at what matters.
 
-> **Status:** 0.x, maintained by one person. The API is documented and tested, but may still change between minor versions. The documentation pages and default UI strings are currently in Turkish; an English translation is planned.
+> **Status:** 0.x, maintained by one person. The API is documented and tested, but may still change between minor versions.
 
 ## Why Hendese
 
@@ -115,7 +115,7 @@ Light and dark themes follow the system preference; `[data-theme-toggle]` button
 
 | Option | Default | Description |
 |---|---|---|
-| `strings` | Turkish | UI text: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. |
+| `strings` | English; Turkish on `lang="tr"` pages | UI text: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. Built-in sets: `Hendese.locales.en`, `Hendese.locales.tr`. |
 | `themeKey` | `'hendese-theme'` | Storage key for the theme choice. Also settable as `<html data-theme-key="…">` so `head.js` reads the same key. |
 | `topId` | `'top'` | Id of the page-top section. |
 | `englishStems` | none | `RegExp`; wraps matching English words in uppercase labels in `lang="en"` (avoids the Turkish dotted capital İ). |

@@ -11,7 +11,7 @@ function* walk(p) {
   if (fs.statSync(p).isDirectory()) { for (const f of fs.readdirSync(p)) yield* walk(path.join(p, f)); return; }
   if (/\.(css|js|mjs|html|md|json|svg|txt|yml)$/.test(p)) yield p;
 }
-test('yasaklı adlar geçmiyor', () => {
+test('no banned names ship', () => {
   const hits = [];
   for (const r of ROOTS) for (const f of walk(r)) {
     fs.readFileSync(f, 'utf8').split('\n').forEach((l, i) => { if (BANNED.test(l)) hits.push(`${f}:${i + 1}`); });

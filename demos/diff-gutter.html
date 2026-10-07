@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diff gutter · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html" aria-current="page">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Kinds of change</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Key in the text</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>States</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Narrow space</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Diff gutter<em>Marks changed lines without polluting the copy.</em></h1>
+    <p class="intro">The diff gutter marks the changed lines of a code block with <code>Δ</code> markers in the left margin. The markers live outside the <code>&lt;code&gt;</code> element, so when the reader copies the block they get no plus, minus or marker. A <code>.diff-key</code> in the text repeats the same marker and ties the explanation to the line.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.diff-src</code> · <code>.diff-gut</code> · <code>.diff-key</code> · <code>.plus</code> · <code>.minus</code></dd><dt>Attributes</dt><dd><code>style="--l:N"</code> (line number, starting at 1) · <code>data-m</code> (marker text)</dd><dt>JS</dt><dd>Not needed</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Three layers: .diff-src wrapping the code block, the .diff-gut strip inside it (hidden from screen readers), and one i element per changed line. The line number is set with --l, the marker text with data-m.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a single change</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">ingress.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:5" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">web-api</span>
+  <span class="k">annotations</span>:
+    <span class="k">nginx.ingress.kubernetes.io/proxy-body-size</span>: <span class="s">"8m"</span>
+    <span class="k">nginx.ingress.kubernetes.io/proxy-read-timeout</span>: <span class="s">"120"</span></code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The read timeout went from 60 to 120 seconds because the report endpoint is slow (line 5).</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;ingress.yaml&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;metadata&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;name&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;annotations&lt;/<span class='k'>span</span>&gt;:
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;nginx.ingress.kubernetes.io/proxy-body-size&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"8m"&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;nginx.ingress.kubernetes.io/proxy-read-timeout&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"120"&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;The read timeout went from 60 to 120 seconds because the report endpoint is slow (line 5).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Element</th><th>Where</th><th>Job</th></tr></thead>
+  <tbody>
+    <tr><td><code>.diff-src</code></td><td>Inside <code>figure.code</code>, wrapping the <code>pre</code></td><td>Opens a 40px strip on the left and pushes the code in</td></tr>
+    <tr><td><code>.diff-gut</code></td><td>First child of <code>.diff-src</code></td><td>Holds the markers; <code>aria-hidden="true"</code>, not selectable</td></tr>
+    <tr><td><code>&lt;i style="--l:N"&gt;</code></td><td>Inside <code>.diff-gut</code></td><td>Paints line N with a green rule and a light background</td></tr>
+    <tr><td><code>data-m</code></td><td>On <code>i</code> and <code>.diff-key</code></td><td>The short marker printed in the strip and in the text</td></tr>
+    <tr><td><code>.diff-key</code></td><td>In the explanatory text</td><td>Repeats the same marker, framed</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Kinds of change">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Kinds of change</h2><p class="lead">The same structure describes any change. If a change spans several lines, give the first line the marker and the rest an empty data-m; the strip looks continuous.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · dependency upgrade</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">package.json</span>
+    <span class="code-lang">JSON</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i><i style="--l:5" data-m="Δ2"></i></div>
+<pre tabindex="0"><code>{
+  <span class="k">"dependencies"</span>: {
+    <span class="k">"pg"</span>: <span class="s">"^8.13.0"</span>,
+    <span class="k">"pino"</span>: <span class="s">"^9.4.0"</span>,
+    <span class="k">"undici"</span>: <span class="s">"^6.21.0"</span>
+  }
+}</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The database driver went from 8.11 to 8.13; it brings the fix for the connection pool leak. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>A security patch in the HTTP client.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;package.json&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;JSON&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:3</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;{
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"dependencies"&lt;/<span class='k'>span</span>&gt;: {
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"pg"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^8.13.0"&lt;/<span class='k'>span</span>&gt;,
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"pino"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^9.4.0"&lt;/<span class='k'>span</span>&gt;,
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;"undici"&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"^6.21.0"&lt;/<span class='k'>span</span>&gt;
+  }
+}&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;The database driver went from 8.11 to 8.13; it brings the fix for the connection pool leak. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;A security patch in the HTTP client.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · database migration, multi-line change</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">0043_invoice_due_index.sql</span>
+    <span class="code-lang">SQL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i><i style="--l:6" data-m=""></i></div>
+<pre tabindex="0"><code><span class="k">BEGIN</span>;
+<span class="k">ALTER TABLE</span> invoices <span class="k">ADD COLUMN</span> due_on date;
+<span class="c">-- to find overdue invoices quickly</span>
+<span class="k">CREATE INDEX CONCURRENTLY</span> invoices_due_open_idx
+  <span class="k">ON</span> invoices (due_on)
+  <span class="k">WHERE</span> paid_at <span class="k">IS NULL</span>;
+<span class="k">COMMIT</span>;</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>New due date column. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>A partial index covering only unpaid invoices (lines 4–6).</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;0043_invoice_due_index.sql&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;SQL&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:6</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;BEGIN&lt;/<span class='k'>span</span>&gt;;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; invoices &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ADD COLUMN&lt;/<span class='k'>span</span>&gt; due_on date;
+&lt;<span class='k'>span</span> class="<span class='s'>c</span>"&gt;-- to find overdue invoices quickly&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;CREATE INDEX CONCURRENTLY&lt;/<span class='k'>span</span>&gt; invoices_due_open_idx
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ON&lt;/<span class='k'>span</span>&gt; invoices (due_on)
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;WHERE&lt;/<span class='k'>span</span>&gt; paid_at &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;IS NULL&lt;/<span class='k'>span</span>&gt;;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;COMMIT&lt;/<span class='k'>span</span>&gt;;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;New due date column. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;A partial index covering only unpaid invoices (lines 4–6).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Line height</span><div class="co-body"><p>A marker's position is computed as <code>14px + (N − 1) × 1.6em</code>, so it depends on the <code>pre</code> font size (<code>--fs-sm</code>, 12.5px) and the 1.6 line height. If you change the block's font size, the markers drift.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Key in the text">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Key in the text</h2><p class="lead">diff-key ties the explanation to the line. It works the same way in a paragraph, a change list or a definition list.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · change list</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">redis.conf</span>
+    <span class="code-lang">CONF</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:1" data-m="Δ1"></i><i style="--l:2" data-m="Δ2"></i><i style="--l:4" data-m="Δ3"></i></div>
+<pre tabindex="0"><code><span class="k">maxmemory</span> <span class="v">6gb</span>
+<span class="k">maxmemory-policy</span> <span class="s">allkeys-lfu</span>
+<span class="k">timeout</span> <span class="v">0</span>
+<span class="k">tcp-keepalive</span> <span class="v">60</span></code></pre>
+</div>
+</figure>
+<ul style="list-style:none;padding:0">
+  <li><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>The memory limit went from 4 GB to 6 GB.</li>
+  <li><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Eviction policy is LFU instead of LRU: frequently read keys stay.</li>
+  <li><i class="diff-key" data-m="Δ3" aria-hidden="true"></i>Dead connections are detected within 60 seconds.</li>
+</ul>
+<p class="figcap"><b>Summary.</b> <span class="plus">+3</span> changed lines, <span class="minus">−0</span> deleted lines.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;redis.conf&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;CONF&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:1</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ3</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxmemory&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;6gb&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxmemory-policy&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;allkeys-lfu&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;timeout&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;0&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;tcp-keepalive&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;60&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>ul</span> style="<span class='s'>list-style:none;padding:0</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;The memory limit went from 4 GB to 6 GB.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Eviction policy is LFU instead of LRU: frequently read keys stay.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ3</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Dead connections are detected within 60 seconds.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ul</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Summary.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;+3&lt;/<span class='k'>span</span>&gt; changed lines, &lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;−0&lt;/<span class='k'>span</span>&gt; deleted lines.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · in a definition list</span>
+  <div class="demo-view">
+<dl class="kv">
+  <dt><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Memory</dt><dd>4 GB → 6 GB</dd>
+  <dt><i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Policy</dt><dd><code>allkeys-lru</code> → <code>allkeys-lfu</code></dd>
+</dl>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>dl</span> class="<span class='s'>kv</span>"&gt;
+  &lt;<span class='k'>dt</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Memory&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;4 GB → 6 GB&lt;/<span class='k'>dd</span>&gt;
+  &lt;<span class='k'>dt</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Policy&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;&lt;<span class='k'>code</span>&gt;allkeys-lru&lt;/<span class='k'>code</span>&gt; → &lt;<span class='k'>code</span>&gt;allkeys-lfu&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>dd</span>&gt;
+&lt;/<span class='k'>dl</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">04</p><h2>States</h2><p class="lead">The strip has a single state: changed. There is no separate color for added, deleted or risky lines; the kind of difference is stated in the text.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · changed, continued and unchanged lines</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">hpa.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i><i style="--l:4" data-m="Δ2"></i><i style="--l:5" data-m=""></i></div>
+<pre tabindex="0"><code><span class="k">spec</span>:
+  <span class="k">minReplicas</span>: <span class="v">3</span>
+  <span class="k">maxReplicas</span>: <span class="v">12</span>
+  <span class="k">behavior</span>:
+    <span class="k">scaleDown</span>: { <span class="k">stabilizationWindowSeconds</span>: <span class="v">600</span> }</code></pre>
+</div>
+</figure>
+<p><i class="diff-key" data-m="Δ1" aria-hidden="true"></i>Minimum replicas went from 2 to 3. <i class="diff-key" data-m="Δ2" aria-hidden="true"></i>Scale-down behavior added (lines 4–5). Deleted line: <code>targetCPUUtilizationPercentage: 80</code>; scaling decisions now use the default CPU target.</p>
+<p class="figcap"><b>Summary.</b> <span class="plus">+3</span> added or changed lines, <span class="minus">−1</span> deleted line.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;hpa.yaml&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:4</span>" data-m="<span class='s'>Δ2</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:5</span>" data-m="<span class='s'></span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;spec&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;minReplicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;3&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;maxReplicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;12&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;behavior&lt;/<span class='k'>span</span>&gt;:
+    &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;scaleDown&lt;/<span class='k'>span</span>&gt;: { &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;stabilizationWindowSeconds&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;600&lt;/<span class='k'>span</span>&gt; }&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ1</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Minimum replicas went from 2 to 3. &lt;<span class='k'>i</span> class="<span class='s'>diff-key</span>" data-m="<span class='s'>Δ2</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>i</span>&gt;Scale-down behavior added (lines 4–5). Deleted line: &lt;<span class='k'>code</span>&gt;targetCPUUtilizationPercentage: 80&lt;/<span class='k'>code</span>&gt;; scaling decisions now use the default CPU target.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Summary.&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;+3&lt;/<span class='k'>span</span>&gt; added or changed lines, &lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;−1&lt;/<span class='k'>span</span>&gt; deleted line.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Markup</th><th>Appearance</th></tr></thead>
+  <tbody>
+    <tr><td>Changed</td><td><code>&lt;i style="--l:N" data-m="Δ1"&gt;</code></td><td>Green rule, light background, marker</td></tr>
+    <tr><td>Change continues</td><td><code>data-m=""</code></td><td>Rule and background, no marker</td></tr>
+    <tr><td>Unchanged</td><td>no marker</td><td>Plain code</td></tr>
+    <tr><td>Deleted</td><td>not in the strip; the old value and a <code>.minus</code> count in the text</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>A deleted line is no longer in the code, so the strip cannot show it; the package offers no marker for it. Write the old value in the explanation. Do not add inline colors to fake a red or yellow strip: readers take any color other than green to mean something, and a screen reader hears none of them.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Narrow space">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Narrow space</h2><p class="lead">The strip sits outside the pre, so when a long line scrolls horizontally the markers stay put; only the code scrolls.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a long line in a narrow column</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">main.tf</span>
+    <span class="code-lang">HCL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:3" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_db_instance"</span> <span class="s">"orders"</span> {
+  <span class="k">instance_class</span> = <span class="s">"db.r6g.large"</span>
+  <span class="k">backup_retention_period</span> = <span class="v">14</span> <span class="c"># raised from 7 to 14 days for the audit, see access policy section 4.2</span>
+}</code></pre>
+</div>
+</figure>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;main.tf&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;HCL&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:3</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;resource&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"aws_db_instance"&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"orders"&lt;/<span class='k'>span</span>&gt; {
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;instance_class&lt;/<span class='k'>span</span>&gt; = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"db.r6g.large"&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;backup_retention_period&lt;/<span class='k'>span</span>&gt; = &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;14&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>c</span>"&gt;# raised from 7 to 14 days for the audit, see access policy section 4.2&lt;/<span class='k'>span</span>&gt;
+}&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Do / don't</h2><p class="lead">Copied text is working text. Do not add characters inside the code to mark a change.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · marker in the strip</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<div class="diff-src">
+  <div class="diff-gut" aria-hidden="true"><i style="--l:2" data-m="Δ1"></i></div>
+<pre tabindex="0"><code><span class="k">image</span>: <span class="s">web-api:1.9.0</span>
+<span class="k">replicas</span>: <span class="v">4</span></code></pre>
+</div>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>diff-src</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>diff-gut</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span> style="<span class='s'>--l:2</span>" data-m="<span class='s'>Δ1</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;image&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;web-api:1.9.0&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;replicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;4&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · plus and minus inside the code</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>  image: web-api:1.9.0
+- replicas: 3
++ replicas: 4</code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;  image: web-api:1.9.0
+- replicas: 3
++ replicas: 4&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The strip and <code>.diff-key</code> are hidden from screen readers. So the explanation must describe the change on its own: what the value was, what it became, and the line if needed. The marker is only a shortcut for sighted readers.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="code-block.html" rel="prev"><small>Previous · Components</small>Code block</a><a href="table.html" rel="next"><small>Next · Components</small>Table</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

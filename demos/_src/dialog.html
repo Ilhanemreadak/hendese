@@ -1,91 +1,91 @@
-<!-- meta {"title":"Diyalog","group":"Bileşenler","order":190,"tagline":"Akışı durduran tek bir karar.","intro":"<code>&lt;dialog class=\"dialog\"&gt;</code> yerel modal pencerenin görünüşüdür: damga gibi çift çerçeve, köşesiz. Açma ve kapama <code>command</code> / <code>commandfor</code> ile, odak tuzağı, Esc ve üst katman tarayıcıdan gelir. Bu özellikleri tanımayan tarayıcıda düğmeleri paket bağlar.","summary":"<code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; dönen değer, adı yazarak silme onayı, antetli ve kayıtlı diyalog.","facts":{"Sınıflar":"<code>.dialog</code> · <code>.dialog-head</code> · <code>.dialog-foot</code>","Açma / kapama":"<code>command=\"show-modal\"</code> · <code>command=\"close\"</code> · <code>commandfor</code> · <code>&lt;form method=\"dialog\"&gt;</code> · Esc","Sonuç":"<code>dialog.returnValue</code> · <code>close</code> olayı","JS":"Gerekmez; eski tarayıcı yedeği <code>Hendese.init()</code> içinde"}} -->
+<!-- meta {"title":"Dialog","group":"Components","order":190,"tagline":"A single decision that stops the flow.","intro":"<code>&lt;dialog class=\"dialog\"&gt;</code> is the look of the native modal window: a double frame like a stamp, with square corners. Opening and closing come from <code>command</code> / <code>commandfor</code>; the focus trap, Esc and the top layer come from the browser. In browsers that don't know these features, the package wires up the buttons.","summary":"<code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; return value, type-the-name delete confirmation, dialogs with a title block and a register.","facts":{"Classes":"<code>.dialog</code> · <code>.dialog-head</code> · <code>.dialog-foot</code>","Open / close":"<code>command=\"show-modal\"</code> · <code>command=\"close\"</code> · <code>commandfor</code> · <code>&lt;form method=\"dialog\"&gt;</code> · Esc","Result":"<code>dialog.returnValue</code> · the <code>close</code> event","JS":"Not required; the old-browser fallback lives in <code>Hendese.init()</code>"}} -->
 
-<chapter title="Anatomi" lead="Başlık satırında solda başlık, sağda kapatma düğmesi; ortada gövde; altta kararlar. Diyalog aria-labelledby ile başlığına bağlanır. Açan düğme diyaloğu commandfor ile adıyla çağırır.">
-<demo label="Örnek · sürüm geri alma">
-<button class="btn" type="button" command="show-modal" commandfor="dy-geri"><svg><use href="#i-reset"/></svg>Sürümü geri al…</button>
+<chapter title="Anatomy" lead="The header row has the title on the left and a close button on the right; the body in the middle; the decisions at the bottom. The dialog is linked to its title with aria-labelledby. The opening button calls the dialog by name with commandfor.">
+<demo label="Example · release rollback">
+<button class="btn" type="button" command="show-modal" commandfor="dy-geri"><svg><use href="#i-reset"/></svg>Roll back release…</button>
 <dialog class="dialog" id="dy-geri" aria-labelledby="dy-geri-h">
   <div class="dialog-head">
-    <h2 id="dy-geri-h">web-api önceki sürüme dönsün mü?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-geri" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-geri-h">Roll web-api back to the previous release?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-geri" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
-  <p>prod ortamındaki <code>web-api</code>, <code>v4.8.1</code> imajına döner. Kopyalar sırayla yenilenir; yaklaşık 3 dakika sürer ve kesinti olmaz.</p>
+  <p><code>web-api</code> in prod returns to the <code>v4.8.1</code> image. Replicas are replaced one by one; it takes about 3 minutes with no downtime.</p>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="vazgec">Vazgeç</button>
-    <button class="btn" value="geri-al"><svg><use href="#i-reset"/></svg>v4.8.1'e dön</button>
+    <button class="btn" value="cancel">Cancel</button>
+    <button class="btn" value="rollback"><svg><use href="#i-reset"/></svg>Roll back to v4.8.1</button>
   </form>
 </dialog>
 </demo>
 <dl class="kv">
-  <dt><code>dialog.dialog</code></dt><dd>Yerel öğe. <code>showModal()</code> ile açılınca üst katmana çıkar, arkasını <code>::backdrop</code> örter, sayfa kaydırması durur.</dd>
-  <dt><code>.dialog-head</code></dt><dd>Başlık (<code>h2</code>) ve isteğe bağlı kapatma düğmesi. Başlığın <code>id</code>'si diyaloğun <code>aria-labelledby</code> değeridir.</dd>
-  <dt><code>.dialog-foot</code></dt><dd>Karar düğmeleri, sağa yaslı. Çoğu zaman <code>&lt;form method="dialog"&gt;</code> öğesinin kendisi; düğmenin <code>value</code>'su dönen değer olur.</dd>
-  <dt><code>command</code> · <code>commandfor</code></dt><dd>Açan düğmede <code>show-modal</code>, kapatan düğmede <code>close</code>; <code>commandfor</code> diyaloğun <code>id</code>'si. Betik yazılmaz.</dd>
+  <dt><code>dialog.dialog</code></dt><dd>The native element. Opened with <code>showModal()</code>, it rises to the top layer, <code>::backdrop</code> covers what's behind it, and page scrolling stops.</dd>
+  <dt><code>.dialog-head</code></dt><dd>The title (<code>h2</code>) and an optional close button. The title's <code>id</code> is the dialog's <code>aria-labelledby</code> value.</dd>
+  <dt><code>.dialog-foot</code></dt><dd>The decision buttons, aligned right. Usually the <code>&lt;form method="dialog"&gt;</code> element itself; the button's <code>value</code> becomes the return value.</dd>
+  <dt><code>command</code> · <code>commandfor</code></dt><dd><code>show-modal</code> on the opening button, <code>close</code> on the closing button; <code>commandfor</code> is the dialog's <code>id</code>. No script is written.</dd>
 </dl>
 </chapter>
 
-<chapter title="Dönen değer" lead="form method=dialog içindeki düğme diyaloğu kapatır ve value'sunu dialog.returnValue'ya yazar. Sayfa close olayında bu değeri okur. Esc ve kapatma düğmesi değer yazmaz.">
-<demo label="Örnek · bakım penceresi seçimi">
-<button class="btn" type="button" command="show-modal" commandfor="dy-bakim">Bakım penceresi seç…</button>
+<chapter title="Return value" lead="A button inside form method=dialog closes the dialog and writes its value to dialog.returnValue. The page reads that value on the close event. Esc and the close button write no value.">
+<demo label="Example · picking a maintenance window">
+<button class="btn" type="button" command="show-modal" commandfor="dy-bakim">Pick a maintenance window…</button>
 <dialog class="dialog" id="dy-bakim" aria-labelledby="dy-bakim-h">
   <div class="dialog-head">
-    <h2 id="dy-bakim-h">report-cron ne zaman güncellensin?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-bakim" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-bakim-h">When should report-cron be updated?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-bakim" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
-  <p>Güncelleme sırasında zamanlanmış raporlar 10 dakika bekler. Gece penceresinde bekleyen rapor yoktur.</p>
+  <p>During the update, scheduled reports wait 10 minutes. No reports are waiting in the night window.</p>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="">Vazgeç</button>
-    <button class="btn" value="simdi">Şimdi</button>
-    <button class="btn" value="gece">Bu gece 02:00</button>
+    <button class="btn" value="">Cancel</button>
+    <button class="btn" value="now">Now</button>
+    <button class="btn" value="tonight">Tonight at 02:00</button>
   </form>
 </dialog>
-<div class="readout" id="dy-bakim-out" aria-live="polite"><p>Henüz seçim yok. Diyaloğu açın; bir düğmeyle, Esc ile ya da kapatma düğmesiyle kapatın.</p></div>
+<div class="readout" id="dy-bakim-out" aria-live="polite"><p>No choice yet. Open the dialog; close it with a button, with Esc or with the close button.</p></div>
 </demo>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var dlg = document.getElementById('dy-bakim'), out = document.getElementById('dy-bakim-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var dlg = document.getElementById('dy-bakim'), out = document.getElementById('dy-bakim-out');
 dlg.addEventListener('close', function () {
   var v = dlg.returnValue;
-  out.innerHTML = v ? '&lt;p&gt;Seçim: &lt;b&gt;' + v + '&lt;/b&gt;&lt;/p&gt;' : '&lt;p&gt;Seçim yapılmadı.&lt;/p&gt;';
-  dlg.returnValue = '';   /* Esc bir sonraki açılışta eski değeri döndürmesin */
+  out.innerHTML = v ? '&lt;p&gt;Choice: &lt;b&gt;' + v + '&lt;/b&gt;&lt;/p&gt;' : '&lt;p&gt;No choice made.&lt;/p&gt;';
+  dlg.returnValue = '';   /* so Esc doesn't return the old value on the next open */
 });</code></pre></figure>
-<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Eski değer kalır</span><div class="co-body"><p>Esc ve <code>command="close"</code> <code>returnValue</code>'yu değiştirmez; önceki açılışın değeri yerinde durur. Değeri okuduktan sonra boşaltın. “Vazgeç” düğmesine boş <code>value</code> vermek de aynı sonucu verir: boş değer “karar yok” demektir.</p></div></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">The old value stays</span><div class="co-body"><p>Esc and <code>command="close"</code> don't change <code>returnValue</code>; the value from the previous open stays in place. Clear it after reading it. Giving the “Cancel” button an empty <code>value</code> has the same effect: an empty value means “no decision”.</p></div></div>
 </chapter>
 
-<chapter title="Adı yazarak onay" lead="Geri alınamayan bir işlemde okur ne sildiğini yazarak onaylar. Eşleşme denetimi yerel form doğrulamasıdır: required ve pattern. Ad tutmazsa form gönderilmez ve .field hata satırını gösterir.">
-<demo label="Örnek · servis silme">
-<button class="btn" type="button" command="show-modal" commandfor="dy-sil"><svg><use href="#i-x"/></svg>search-indexer'ı sil…</button>
+<chapter title="Confirm by typing the name" lead="For an action that can't be undone, the reader confirms by typing what they are deleting. The match check is native form validation: required and pattern. If the name doesn't match, the form isn't submitted and .field shows the error line.">
+<demo label="Example · deleting a service">
+<button class="btn" type="button" command="show-modal" commandfor="dy-sil"><svg><use href="#i-x"/></svg>Delete search-indexer…</button>
 <dialog class="dialog" id="dy-sil" aria-labelledby="dy-sil-h" aria-describedby="dy-sil-d">
   <form method="dialog">
     <div class="dialog-head">
-      <h2 id="dy-sil-h">search-indexer kalıcı olarak silinsin mi?</h2>
-      <button class="icon-btn" type="button" command="close" commandfor="dy-sil" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+      <h2 id="dy-sil-h">Permanently delete search-indexer?</h2>
+      <button class="icon-btn" type="button" command="close" commandfor="dy-sil" aria-label="Close"><svg><use href="#i-x"/></svg></button>
     </div>
-    <p id="dy-sil-d">Servis, 3 kopyası ve <code>search-indexer-data</code> birimi silinir. Dizin yeniden kurulana kadar arama yanıt vermez. <b>Geri alınamaz.</b></p>
+    <p id="dy-sil-d">The service, its 3 replicas and the <code>search-indexer-data</code> volume are deleted. Search won't respond until the index is rebuilt. <b>This can't be undone.</b></p>
     <div class="field">
-      <label for="dy-sil-ad">Onay için servis adı</label>
+      <label for="dy-sil-ad">Service name to confirm</label>
       <input id="dy-sil-ad" class="mono" required pattern="search-indexer" autocomplete="off" spellcheck="false" aria-describedby="dy-sil-y dy-sil-e" autofocus>
-      <p class="field-help" id="dy-sil-y">Tam olarak <code>search-indexer</code> yazın.</p>
-      <p class="field-error" id="dy-sil-e">Ad eşleşmiyor.</p>
+      <p class="field-help" id="dy-sil-y">Type exactly <code>search-indexer</code>.</p>
+      <p class="field-error" id="dy-sil-e">The name doesn't match.</p>
     </div>
     <div class="dialog-foot">
-      <button class="btn" value="vazgec" formnovalidate>Vazgeç</button>
-      <button class="btn" value="sil"><svg><use href="#i-x"/></svg>Kalıcı olarak sil</button>
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn" value="delete"><svg><use href="#i-x"/></svg>Delete permanently</button>
     </div>
   </form>
 </dialog>
-<div class="readout" id="dy-sil-out" aria-live="polite"><p>Servis yerinde: <b>search-indexer</b> · 3 kopya.</p></div>
+<div class="readout" id="dy-sil-out" aria-live="polite"><p>Service in place: <b>search-indexer</b> · 3 replicas.</p></div>
 </demo>
-<div class="prose"><p>“Vazgeç” düğmesi <code>formnovalidate</code> taşır; yoksa boş alanla vazgeçmek de doğrulamaya takılır. Odak açılışta <code>autofocus</code> ile alana gelir. Sayfa betiği kapanışta formu sıfırlar; bir sonraki açılışta alan yine boştur.</p></div>
+<div class="prose"><p>The “Cancel” button carries <code>formnovalidate</code>; otherwise, cancelling with an empty field would also trip validation. On open, <code>autofocus</code> puts focus on the field. The page script resets the form on close, so the field is empty again on the next open.</p></div>
 </chapter>
 
-<chapter title="Antet ve kayıt ile" lead="Karar vermek için gereken özet diyaloğun içinde durur: değişen değişkenler .register ile, bir paftanın künyesi .titleblock ile.">
-<demo label="Örnek · dağıtım onayı, değişen değişkenler">
-<button class="btn" type="button" command="show-modal" commandfor="dy-kayit"><svg><use href="#i-check"/></svg>prod'a dağıt…</button>
+<chapter title="With a title block and a register" lead="The summary needed to decide sits inside the dialog: changed variables with .register, a sheet's details with .titleblock.">
+<demo label="Example · deploy approval, changed variables">
+<button class="btn" type="button" command="show-modal" commandfor="dy-kayit"><svg><use href="#i-check"/></svg>Deploy to prod…</button>
 <dialog class="dialog" id="dy-kayit" aria-labelledby="dy-kayit-h">
   <div class="dialog-head">
-    <h2 id="dy-kayit-h">billing-worker prod'a dağıtılsın mı?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-kayit" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-kayit-h">Deploy billing-worker to prod?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-kayit" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <div class="register">
-    <p class="register-h"><b>Değişen</b><span>staging → prod</span></p>
+    <p class="register-h"><b>Changed</b><span>staging → prod</span></p>
     <dl>
       <div class="now"><dt>IMAGE_TAG</dt><dd>prod-9d4e2c17</dd></div>
       <div><dt>WORKER_CONCURRENCY</dt><dd>8</dd></div>
@@ -94,143 +94,143 @@ dlg.addEventListener('close', function () {
     </dl>
   </div>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="">Vazgeç</button>
-    <button class="btn" value="dagit"><svg><use href="#i-check"/></svg>Dağıt</button>
+    <button class="btn" value="">Cancel</button>
+    <button class="btn" value="deploy"><svg><use href="#i-check"/></svg>Deploy</button>
   </form>
 </dialog>
-<div class="readout" id="dy-kayit-out" aria-live="polite"><p>prod'da: <b>prod-4a07b9e3</b>.</p></div>
+<div class="readout" id="dy-kayit-out" aria-live="polite"><p>In prod: <b>prod-4a07b9e3</b>.</p></div>
 </demo>
-<demo label="Örnek · pafta künyesi">
-<button class="btn" type="button" command="show-modal" commandfor="dy-antet"><svg><use href="#i-info"/></svg>Pafta künyesi</button>
+<demo label="Example · sheet details">
+<button class="btn" type="button" command="show-modal" commandfor="dy-antet"><svg><use href="#i-info"/></svg>Sheet details</button>
 <dialog class="dialog" id="dy-antet" aria-labelledby="dy-antet-h">
   <div class="dialog-head">
-    <h2 id="dy-antet-h">Şekil 7 · ağ geçidi yolu</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-antet" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-antet-h">Fig. 7 · gateway path</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-antet" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <dl class="titleblock">
-    <div class="tb-head"><dt>Pafta</dt><dd>Ağ geçidi yolu</dd></div>
-    <div><dt>Ortam</dt><dd>staging</dd></div>
-    <div><dt>Bölge</dt><dd>eu-central-1</dd></div>
-    <div><dt>Çizen</dt><dd>platform ekibi</dd></div>
-    <div><dt>Revizyon</dt><dd>C · 2026-09-18</dd></div>
+    <div class="tb-head"><dt>Sheet</dt><dd>Gateway path</dd></div>
+    <div><dt>Environment</dt><dd>staging</dd></div>
+    <div><dt>Region</dt><dd>eu-central-1</dd></div>
+    <div><dt>Drawn by</dt><dd>platform team</dd></div>
+    <div><dt>Revision</dt><dd>C · 2026-09-18</dd></div>
   </dl>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="">Kapat</button>
+    <button class="btn" value="">Close</button>
   </form>
 </dialog>
 </demo>
-<div class="prose"><p>Künye yalnız bilgi veriyor; karar yok. Yine de diyalog uygundur çünkü okur paftaya dönmeden önce künyeyi okumak ister. Bilgi okumayı durdurmuyorsa diyalog değil, sayfadaki metin ya da <a href="dimension-note.html">ölçü notu</a> kullanılır.</p></div>
+<div class="prose"><p>The details only inform; there is no decision. A dialog still fits, because the reader wants to read the details before returning to the sheet. If the information doesn't stop the reading, use text on the page or a <a href="dimension-note.html">dimension note</a>, not a dialog.</p></div>
 </chapter>
 
-<chapter title="Durumlar" lead="Diyalog kapalı ya da açıktır; açıkken sayfanın geri kalanı etkisizdir. Odak açılışta diyaloğa girer, kapanışta açan düğmeye döner.">
-<demo label="Örnek · odak nereye dönüyor">
+<chapter title="States" lead="A dialog is closed or open; while it is open, the rest of the page is inert. Focus enters the dialog on open and returns to the opening button on close.">
+<demo label="Example · where focus returns">
 <div class="pillrow">
-  <button class="btn" type="button" command="show-modal" commandfor="dy-odak" id="dy-odak-ac">Anahtarı yenile…</button>
-  <button class="btn" type="button" disabled>Anahtarı sil</button>
+  <button class="btn" type="button" command="show-modal" commandfor="dy-odak" id="dy-odak-ac">Rotate key…</button>
+  <button class="btn" type="button" disabled>Delete key</button>
 </div>
 <dialog class="dialog" id="dy-odak" aria-labelledby="dy-odak-h">
   <div class="dialog-head">
-    <h2 id="dy-odak-h">deploy-bot anahtarı yenilensin mi?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-odak" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-odak-h">Rotate the deploy-bot key?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-odak" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
-  <p>Eski anahtar 24 saat daha geçerli kalır; bu sürede hatlar yeni anahtara geçmelidir.</p>
+  <p>The old key stays valid for 24 more hours; pipelines must switch to the new key in that time.</p>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="" autofocus>Vazgeç</button>
-    <button class="btn" value="yenile">Yenile</button>
+    <button class="btn" value="" autofocus>Cancel</button>
+    <button class="btn" value="rotate">Rotate</button>
   </form>
 </dialog>
-<div class="readout" id="dy-odak-out" aria-live="polite"><p>Diyaloğu açıp Esc ile kapatın; odağın nereye döndüğü burada yazar.</p></div>
+<div class="readout" id="dy-odak-out" aria-live="polite"><p>Open the dialog and close it with Esc; this line says where focus went back to.</p></div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>Nasıl verilir</th><th>Ne olur</th></tr></thead>
+  <thead><tr><th>State</th><th>How it's set</th><th>What happens</th></tr></thead>
   <tbody>
-    <tr><td>Kapalı</td><td>Varsayılan</td><td>Diyalog çizilmez; açan düğme sayfadadır.</td></tr>
-    <tr><td>Açık (modal)</td><td><code>command="show-modal"</code> ya da <code>showModal()</code>; seçici <code>:modal</code></td><td>Üst katman, <code>::backdrop</code> örtüsü, sayfa kaydırması durur; arkadaki öğeler odaklanmaz.</td></tr>
-    <tr><td>Odak, açılışta</td><td><code>autofocus</code> ya da ilk odaklanabilir öğe</td><td>Yıkıcı olmayan karara (<code>Vazgeç</code>) ya da doldurulacak alana verin.</td></tr>
-    <tr><td>Odak, diyaloğun kendisinde</td><td><code>:focus-visible</code></td><td>İçinde odaklanacak öğe yoksa diyalog odaklanır; iç çerçeve (kalem çizgisi) korunur, ayrı bir halka çizilmez.</td></tr>
-    <tr><td>Odak, kapanışta</td><td>Tarayıcı</td><td>Açan düğmeye döner.</td></tr>
-    <tr><td>Kapanış</td><td>Form düğmesi · <code>command="close"</code> · Esc</td><td>Yalnız form düğmesi <code>returnValue</code> yazar; Esc önce <code>cancel</code> olayı yayar.</td></tr>
+    <tr><td>Closed</td><td>Default</td><td>The dialog isn't drawn; the opening button is on the page.</td></tr>
+    <tr><td>Open (modal)</td><td><code>command="show-modal"</code> or <code>showModal()</code>; selector <code>:modal</code></td><td>Top layer, <code>::backdrop</code> cover, page scrolling stops; elements behind it can't take focus.</td></tr>
+    <tr><td>Focus, on open</td><td><code>autofocus</code> or the first focusable element</td><td>Give it to the non-destructive decision (<code>Cancel</code>) or to the field to fill in.</td></tr>
+    <tr><td>Focus, on the dialog itself</td><td><code>:focus-visible</code></td><td>If there is nothing inside to focus, the dialog takes focus; the inner frame (pencil line) stays, and no separate ring is drawn.</td></tr>
+    <tr><td>Focus, on close</td><td>The browser</td><td>Returns to the opening button.</td></tr>
+    <tr><td>Closing</td><td>Form button · <code>command="close"</code> · Esc</td><td>Only a form button writes <code>returnValue</code>; Esc first fires the <code>cancel</code> event.</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Diyaloğun kendi devre dışı hali yoktur. İşlem o an yapılamıyorsa açan düğme devre dışıdır (<code>disabled</code> ya da nedenini söylemek için <code>aria-disabled</code>); diyalog açılıp “yapılamaz” demez.</p></div>
+<div class="prose"><p>A dialog has no disabled state of its own. If the action can't be done right now, the opening button is disabled (<code>disabled</code>, or <code>aria-disabled</code> to give the reason); the dialog doesn't open just to say “can't be done”.</p></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Diyalog okuru durdurur. Bu yalnız okurun şimdi vermesi gereken tek bir karar için haklıdır; bilgi vermek için değil.">
+<chapter title="Do / don't" lead="A dialog stops the reader. That is justified only for a single decision the reader must make now; not for giving information.">
 <div class="dodont">
-<demo label="Yap · tek karar, fiil etiket">
-<button class="btn" type="button" command="show-modal" commandfor="dy-yap">Kuyruğu boşalt…</button>
+<demo label="Do · one decision, verb label">
+<button class="btn" type="button" command="show-modal" commandfor="dy-yap">Purge queue…</button>
 <dialog class="dialog" id="dy-yap" aria-labelledby="dy-yap-h">
-  <div class="dialog-head"><h2 id="dy-yap-h">invoice-queue boşaltılsın mı?</h2></div>
-  <p>Kuyruktaki 1 240 ileti silinir; işlenmemiş faturalar yeniden üretilmez.</p>
+  <div class="dialog-head"><h2 id="dy-yap-h">Purge invoice-queue?</h2></div>
+  <p>The 1,240 messages in the queue are deleted; unprocessed invoices aren't regenerated.</p>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="" autofocus>Vazgeç</button>
-    <button class="btn" value="bosalt">1 240 iletiyi sil</button>
+    <button class="btn" value="" autofocus>Cancel</button>
+    <button class="btn" value="purge">Delete 1,240 messages</button>
   </form>
 </dialog>
 </demo>
-<demo label="Yapma · bilgi için diyalog, dört eşit düğme">
-<button class="btn" type="button" command="show-modal" commandfor="dy-yapma">Derlemeyi başlat</button>
+<demo label="Don't · a dialog for information, four equal buttons">
+<button class="btn" type="button" command="show-modal" commandfor="dy-yapma">Start build</button>
 <dialog class="dialog" id="dy-yapma" aria-labelledby="dy-yapma-h">
-  <div class="dialog-head"><h2 id="dy-yapma-h">Bilgi</h2></div>
-  <p>Derleme #4182 kuyruğa alındı.</p>
+  <div class="dialog-head"><h2 id="dy-yapma-h">Info</h2></div>
+  <p>Build #4182 was queued.</p>
   <form method="dialog" class="dialog-foot">
-    <button class="btn" value="tamam">Tamam</button>
-    <button class="btn" value="gunluk">Günlük</button>
-    <button class="btn" value="iptal">İptal</button>
-    <button class="btn" value="yeniden">Yeniden</button>
+    <button class="btn" value="ok">OK</button>
+    <button class="btn" value="log">Log</button>
+    <button class="btn" value="cancel">Cancel</button>
+    <button class="btn" value="retry">Retry</button>
   </form>
 </dialog>
 </demo>
 </div>
 <div class="prose"><ul>
-  <li><b>Başlık soru sorar</b> ve nesneyi adlandırır (“invoice-queue boşaltılsın mı?”), “Bilgi” ya da “Emin misiniz?” değil.</li>
-  <li><b>Bir karar, iki düğme.</b> Vazgeç ve sonucu söyleyen fiil. Üçüncü seçenek gerekiyorsa (yukarıdaki bakım penceresi) hepsi aynı sorunun cevabıdır.</li>
-  <li><b>Akışı durdurmayan bilgi</b> (“kuyruğa alındı”) sayfada kalır: bir <code>.readout</code> satırı ya da ilgili satırın durumu.</li>
-  <li><b>Diyalogdan diyalog açılmaz.</b> İkinci karar gerekiyorsa ilki kapanır.</li>
+  <li><b>The title asks a question</b> and names the object (“Purge invoice-queue?”), not “Info” or “Are you sure?”.</li>
+  <li><b>One decision, two buttons.</b> Cancel, and a verb that says the outcome. If a third option is needed (the maintenance window above), all of them answer the same question.</li>
+  <li><b>Information that doesn't stop the flow</b> (“was queued”) stays on the page: a <code>.readout</code> line or the status of the related row.</li>
+  <li><b>Never open a dialog from a dialog.</b> If a second decision is needed, the first one closes.</li>
 </ul></div>
 </chapter>
 
-<chapter title="API" lead="Paket diyalog için yalnız görünüş verir. Davranışın tamamı yerel öğeden ve Invoker Commands özelliğinden gelir; bu özelliği tanımayan tarayıcıda düğmeleri Hendese.init() bağlar.">
+<chapter title="API" lead="The package gives the dialog only its look. All the behavior comes from the native element and the Invoker Commands feature; in browsers that don't know that feature, Hendese.init() wires up the buttons.">
 <div class="tbl"><table>
-  <thead><tr><th>Öğe</th><th>Değer</th><th>Not</th></tr></thead>
+  <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead>
   <tbody>
-    <tr><td><code>command</code></td><td><code>show-modal</code> · <code>close</code> · <code>request-close</code></td><td>Düğmede. <code>show</code> (modal olmayan) kullanılmaz; paketin diyaloğu modaldır.</td></tr>
-    <tr><td><code>commandfor</code></td><td>diyaloğun <code>id</code>'si</td><td>Düğme diyaloğun dışında da içinde de olabilir.</td></tr>
-    <tr><td><code>form[method="dialog"]</code></td><td>—</td><td>Gönderilince diyaloğu kapatır; gönderen düğmenin <code>value</code>'su <code>returnValue</code> olur. Doğrulama çalışır; atlamak için <code>formnovalidate</code>.</td></tr>
-    <tr><td><code>close</code> olayı</td><td><code>dialog.returnValue</code></td><td>Her kapanışta; sonucu burada okuyun, sonra boşaltın.</td></tr>
-    <tr><td><code>cancel</code> olayı</td><td>—</td><td>Esc ile kapanmadan önce; <code>preventDefault()</code> kapanışı durdurur (kaydedilmemiş değişiklik uyarısı için).</td></tr>
+    <tr><td><code>command</code></td><td><code>show-modal</code> · <code>close</code> · <code>request-close</code></td><td>On the button. <code>show</code> (non-modal) isn't used; the package's dialog is modal.</td></tr>
+    <tr><td><code>commandfor</code></td><td>the dialog's <code>id</code></td><td>The button can be outside or inside the dialog.</td></tr>
+    <tr><td><code>form[method="dialog"]</code></td><td>—</td><td>Closes the dialog on submit; the submitting button's <code>value</code> becomes <code>returnValue</code>. Validation runs; use <code>formnovalidate</code> to skip it.</td></tr>
+    <tr><td><code>close</code> event</td><td><code>dialog.returnValue</code></td><td>On every close; read the result here, then clear it.</td></tr>
+    <tr><td><code>cancel</code> event</td><td>—</td><td>Before closing with Esc; <code>preventDefault()</code> stops the close (for an unsaved-changes warning).</td></tr>
   </tbody>
 </table></div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Eski tarayıcı yedeği</span><div class="co-body"><p>Tarayıcı <code>commandfor</code>'u tanımıyorsa (<code>HTMLButtonElement.prototype.commandForElement</code> yoksa) <code>Hendese.init()</code> her <code>button[commandfor]</code> düğmesine tıklama dinleyicisi bağlar: <code>show-modal</code> → <code>showModal()</code> (diyalog zaten açıksa yok sayılır), <code>close</code> → <code>close()</code>, <code>request-close</code> → <code>requestClose()</code> (tarayıcıda yoksa <code>close()</code>; <code>cancel</code> olayı yalnız ilkinde yayılır). Yedek yol da yerel davranış gibi <code>close</code> düğmesinin <code>value</code>'sunu <code>returnValue</code>'ya aktarır; yine de dönen değer gereken kararları <code>&lt;form method="dialog"&gt;</code> içindeki düğmelerle yazmak en sağlamıdır.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Old-browser fallback</span><div class="co-body"><p>If the browser doesn't know <code>commandfor</code> (no <code>HTMLButtonElement.prototype.commandForElement</code>), <code>Hendese.init()</code> attaches a click listener to every <code>button[commandfor]</code>: <code>show-modal</code> → <code>showModal()</code> (ignored if the dialog is already open), <code>close</code> → <code>close()</code>, <code>request-close</code> → <code>requestClose()</code> (<code>close()</code> if the browser lacks it; the <code>cancel</code> event fires only in the former). Like the native behavior, the fallback also copies the <code>close</code> button's <code>value</code> into <code>returnValue</code>; still, the most robust way to write decisions that need a return value is with buttons inside <code>&lt;form method="dialog"&gt;</code>.</p></div></div>
 </chapter>
 
 <script data-page>
-/* close → gösterge; okunan değer boşaltılır (Esc eski değeri döndürmesin) */
+/* close → readout; the value read is cleared (so Esc doesn't return the old value) */
 (function () {
   function onClose(id, fn) {
     var d = document.getElementById(id);
     d.addEventListener('close', function () { fn(d.returnValue, d); d.returnValue = ''; });
   }
   function out(id, html) { document.getElementById(id).innerHTML = html; }
-  var bakim = { simdi: 'şimdi', gece: 'bu gece 02:00' };
+  var bakim = { now: 'now', tonight: 'tonight at 02:00' };
   onClose('dy-bakim', function (v) {
-    out('dy-bakim-out', v ? '<p>Güncelleme: <b>' + bakim[v] + '</b> · <code>returnValue</code> = <code>' + v + '</code></p>'
-      : '<p><b>Seçim yapılmadı.</b> Vazgeç, Esc ya da kapatma düğmesi; <code>returnValue</code> boş.</p>');
+    out('dy-bakim-out', v ? '<p>Update: <b>' + bakim[v] + '</b> · <code>returnValue</code> = <code>' + v + '</code></p>'
+      : '<p><b>No choice made.</b> Cancel, Esc or the close button; <code>returnValue</code> is empty.</p>');
   });
   onClose('dy-sil', function (v, d) {
     d.querySelector('form').reset();
     var r = document.getElementById('dy-sil-out');
-    r.classList.toggle('s-bad', v === 'sil');
-    out('dy-sil-out', v === 'sil' ? '<p><b>search-indexer silindi.</b> (Örnek: gerçekte hiçbir şey silinmedi.)</p>' : '<p>Servis yerinde: <b>search-indexer</b> · 3 kopya. Silme iptal edildi.</p>');
+    r.classList.toggle('s-bad', v === 'delete');
+    out('dy-sil-out', v === 'delete' ? '<p><b>search-indexer deleted.</b> (Demo: nothing was actually deleted.)</p>' : '<p>Service in place: <b>search-indexer</b> · 3 replicas. Delete cancelled.</p>');
   });
   onClose('dy-kayit', function (v) {
     var r = document.getElementById('dy-kayit-out');
-    r.classList.toggle('s-ok', v === 'dagit');
-    out('dy-kayit-out', v === 'dagit' ? '<p>prod\'da: <b>prod-9d4e2c17</b> · dağıtım başladı.</p>' : '<p>prod\'da: <b>prod-4a07b9e3</b> · dağıtım yapılmadı.</p>');
+    r.classList.toggle('s-ok', v === 'deploy');
+    out('dy-kayit-out', v === 'deploy' ? '<p>In prod: <b>prod-9d4e2c17</b> · deployment started.</p>' : '<p>In prod: <b>prod-4a07b9e3</b> · not deployed.</p>');
   });
   onClose('dy-odak', function (v) {
     var a = document.activeElement;
-    out('dy-odak-out', '<p>Kapanış: <b>' + (v || 'karar yok') + '</b> · odak şimdi “' + (a && a.textContent.trim() || 'sayfa') + '” düğmesinde.</p>');
+    out('dy-odak-out', '<p>Closed with: <b>' + (v || 'no decision') + '</b> · focus is now on the “' + (a && a.textContent.trim() || 'page') + '” button.</p>');
   });
 })();
 </script>

@@ -1,124 +1,124 @@
-<!-- meta {"title":"Gösterge","group":"Bileşenler","order":110,"tagline":"Hesabın sonucu, tek satırda.","intro":"<code>.readout</code> bir seçimin, bir girdinin ya da bir hesabın sonucunu sol çizgili kısa bir satırda yazar. Kalın kısım sonucun kendisidir; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> ve <code>.s-sec</code> çizgiyi ve kalın metni duruma göre boyar.","summary":"<code>.readout</code> ve <code>.s-*</code> durumları; maliyet, düzenli ifade ve kapasite hesapları.","facts":{"Sınıflar":"<code>.readout</code> · <code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code>","Eski adlar":"<code>.readout.ok</code> · <code>.readout.bad</code> (1.0'a kadar çalışır)","Erişilebilirlik":"<code>aria-live=\"polite\"</code>","JS":"Paket hesap yapmaz; metni sayfa betiği yazar"}} -->
+<!-- meta {"title":"Readout","group":"Components","order":110,"tagline":"The result of a calculation, in one line.","intro":"<code>.readout</code> writes the result of a choice, an input or a calculation in a short line with a left rule. The bold part is the result itself; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> and <code>.s-sec</code> color the rule and the bold text by status.","summary":"<code>.readout</code> and the <code>.s-*</code> statuses; cost, regular expression and capacity calculations.","facts":{"Classes":"<code>.readout</code> · <code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code>","Old names":"<code>.readout.ok</code> · <code>.readout.bad</code> (work until 1.0)","Accessibility":"<code>aria-live=\"polite\"</code>","JS":"The package does no calculation; the page script writes the text"}} -->
 
-<chapter title="Durumlar" lead="Nötr, başarılı, uyarı, hata ve güvenlik. Renk tek başına anlam taşımaz: sonucun kendisi kalın metinde de söylenir.">
-<demo label="Örnek · beş durum">
-<div class="readout"><p><b>3 kopya</b> çalışıyor; son dağıtım 14 dakika önce.</p></div>
-<div class="readout s-ok"><p><b>Göç tamam.</b> 1,2 milyon satır 4 dakika 10 saniyede taşındı.</p></div>
-<div class="readout s-warn"><p><b>Sınıra yakın.</b> Disk doluluğu %82; uyarı eşiği %80, alarm %90.</p></div>
-<div class="readout s-bad"><p><b>Bütçe aşıldı.</b> Ekim harcaması 4.820 $; sınır 4.500 $.</p></div>
-<div class="readout s-sec"><p><b>Anahtar 3 gün içinde dolacak.</b> <code>deploy-bot</code> erişim anahtarını yenileyin.</p></div>
+<chapter title="States" lead="Neutral, success, warning, error and security. Color alone carries no meaning: the result itself is also stated in the bold text.">
+<demo label="Example · five statuses">
+<div class="readout"><p><b>3 replicas</b> running; last deployment 14 minutes ago.</p></div>
+<div class="readout s-ok"><p><b>Migration done.</b> 1.2 million rows moved in 4 minutes 10 seconds.</p></div>
+<div class="readout s-warn"><p><b>Close to the limit.</b> Disk usage 82%; warning threshold 80%, alarm 90%.</p></div>
+<div class="readout s-bad"><p><b>Budget exceeded.</b> October spend $4,820; limit $4,500.</p></div>
+<div class="readout s-sec"><p><b>Key expires in 3 days.</b> Rotate the <code>deploy-bot</code> access key.</p></div>
 </demo>
-<div class="prose"><p>Gösterge bir paragraf kabıdır; içinde birden çok <code>&lt;p&gt;</code> olabilir ama iki satırı geçen açıklama bir uyarı kutusuna (<code>.co</code>) daha uygundur. Sol çizgi nötr durumda çizim rengindedir. <code>.s-warn</code> yeni: eskiden “sınıra yakın” için ayrı bir durum yoktu. Eski <code>.ok</code> ve <code>.bad</code> adları 1.0'a kadar aynı rengi verir.</p></div>
+<div class="prose"><p>A readout is a paragraph container; it can hold several <code>&lt;p&gt;</code> elements, but an explanation longer than two lines fits better in a callout (<code>.co</code>). In the neutral status the left rule uses the drawing color. <code>.s-warn</code> is new: there used to be no separate status for “close to the limit”. The old <code>.ok</code> and <code>.bad</code> names give the same color until 1.0.</p></div>
 </chapter>
 
-<chapter title="Canlı hesap" lead="Girdi değiştikçe metin yeniden yazılır. Üç örnek: depolama maliyeti, etiket kalıbı testi ve kopya kapasitesi.">
-<demo label="Örnek · nesne deposu maliyet tahmini">
+<chapter title="Live calculation" lead="The text is rewritten as the input changes. Three examples: storage cost, a tag pattern test and replica capacity.">
+<demo label="Example · object storage cost estimate">
 <div id="gs-maliyet">
   <fieldset class="choice is-seg">
-    <legend>Aylık veri</legend>
+    <legend>Monthly data</legend>
     <label><input type="radio" name="gs-gb" value="500"><span>500 GB</span></label>
     <label><input type="radio" name="gs-gb" value="2000" checked><span>2 TB</span></label>
     <label><input type="radio" name="gs-gb" value="10000"><span>10 TB</span></label>
   </fieldset>
   <fieldset class="choice">
-    <legend>Saklama sınıfı</legend>
-    <label><input type="radio" name="gs-sinif" value="standart" checked><span>standart <small>0,023 $/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="seyrek"><span>seyrek erişim <small>0,0125 $/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="arşiv"><span>arşiv <small>0,004 $/GB</small></span></label>
+    <legend>Storage class</legend>
+    <label><input type="radio" name="gs-sinif" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
+    <label><input type="radio" name="gs-sinif" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
+    <label><input type="radio" name="gs-sinif" value="archive"><span>archive <small>$0.004/GB</small></span></label>
   </fieldset>
-  <div class="readout" id="gs-maliyet-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+  <div class="readout" id="gs-maliyet-out" aria-live="polite"><p>Calculating…</p></div>
 </div>
 </demo>
-<demo label="Örnek · etiket kalıbı testi">
+<demo label="Example · tag pattern test">
 <div id="gs-regex" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px">
-  <label class="chip" for="gs-kalip">Kalıp</label>
-  <label class="chip" for="gs-etiket">Etiket</label>
+  <label class="chip" for="gs-kalip">Pattern</label>
+  <label class="chip" for="gs-etiket">Tag</label>
   <input id="gs-kalip" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
   <input id="gs-etiket" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
 </div>
-<div class="readout" id="gs-regex-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+<div class="readout" id="gs-regex-out" aria-live="polite"><p>Calculating…</p></div>
 </demo>
-<demo label="Örnek · kapasite, tepe yüke karşı">
+<demo label="Example · capacity against peak load">
 <div id="gs-kapasite" style="max-width:640px">
-  <label class="chip" for="gs-kopya">Kopya sayısı: <output id="gs-kopya-n" for="gs-kopya">4</output></label>
+  <label class="chip" for="gs-kopya">Replicas: <output id="gs-kopya-n" for="gs-kopya">4</output></label>
   <input id="gs-kopya" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
-  <p class="figcap">Kopya başına 450 istek/sn · ölçülen tepe 1.800 istek/sn · hedef pay %25</p>
+  <p class="figcap">450 req/s per replica · measured peak 1,800 req/s · target headroom 25%</p>
 </div>
-<div class="readout" id="gs-kapasite-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+<div class="readout" id="gs-kapasite-out" aria-live="polite"><p>Calculating…</p></div>
 </demo>
-<div class="prose"><p>Hesabı paket yapmaz; sayfa betiği değeri okur, metni ve sınıfı yazar. Kapasite örneğinin betiği:</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-kopya'), out = document.getElementById('gs-kapasite-out');
+<div class="prose"><p>The package does not do the calculation; the page script reads the value and writes the text and the class. The script for the capacity example:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-kopya'), out = document.getElementById('gs-kapasite-out');
 function show() {
   var cap = r.value * 450, need = 1800 * 1.25;
   out.classList.toggle('s-ok', cap &gt;= need);
-  out.classList.toggle('s-warn', cap &gt;= 1800 &amp;&amp; cap &lt; need);   /* tepeyi karşılıyor, payı yok */
+  out.classList.toggle('s-warn', cap &gt;= 1800 &amp;&amp; cap &lt; need);   /* meets the peak, no headroom */
   out.classList.toggle('s-bad', cap &lt; 1800);
-  out.innerHTML = '&lt;p&gt;&lt;b&gt;' + cap + ' istek/sn&lt;/b&gt; kapasite; gereken ' + need + '.&lt;/p&gt;';
+  out.innerHTML = '&lt;p&gt;&lt;b&gt;' + cap + ' req/s&lt;/b&gt; capacity; needed ' + need + '.&lt;/p&gt;';
 }
 r.addEventListener('input', show);
 show();</code></pre></figure>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Gösterge bir kartın altında, koyu bir panelde ya da dar bir sütunda aynı şekilde durur; yalnızca metni kısalır.">
-<demo label="Örnek · kart altı, önbellek isabeti">
+<chapter title="In context" lead="A readout looks the same under a card, on a dark panel or in a narrow column; only its text gets shorter.">
+<demo label="Example · under a card, cache hit rate">
 <div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:460px">
   <p class="chip"><span lang="en">cache-redis</span> · eu-west-1</p>
-  <p style="margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)">Son 1 saatte 2,4 milyon okuma, 2,21 milyon isabet.</p>
-  <div class="readout s-ok"><p><b>%92,1 isabet</b> · hedef %90'ın üstünde.</p></div>
+  <p style="margin:6px 0 0;color:var(--ink-2);font-size:var(--fs-md)">2.4 million reads in the last hour, 2.21 million hits.</p>
+  <div class="readout s-ok"><p><b>92.1% hit rate</b> · above the 90% target.</p></div>
 </div>
 </demo>
-<demo label="Örnek · koyu panel, DNS yayılımı">
+<demo label="Example · dark panel, DNS propagation">
 <div class="scene-dark" style="border-radius:var(--r-md);padding:16px 18px">
-  <p class="chip"><span lang="en">api.example.com</span> · A kaydı</p>
-  <div class="readout"><p><b>6 / 8</b> çözümleyici yeni adresi döndürüyor; kalan ikisinde TTL 212 saniye.</p></div>
-  <div class="readout s-bad"><p><b>ns-2 yanıt vermiyor.</b> Son başarılı sorgu 09:41.</p></div>
+  <p class="chip"><span lang="en">api.example.com</span> · A record</p>
+  <div class="readout"><p><b>6 / 8</b> resolvers return the new address; on the other two the TTL is 212 seconds.</p></div>
+  <div class="readout s-bad"><p><b>ns-2 is not responding.</b> Last successful query 09:41.</p></div>
 </div>
 </demo>
-<demo label="Örnek · dar sütun">
+<demo label="Example · narrow column">
 <div style="max-width:260px">
-  <div class="readout"><p><b>12 işçi</b> · kuyrukta 340 iş, tahmini boşalma 6 dk.</p></div>
+  <div class="readout"><p><b>12 workers</b> · 340 jobs queued, estimated drain 6 min.</p></div>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Önce sonuç, sonra gerekçe. Durumu yalnızca renk söylüyorsa gösterge eksiktir.">
+<chapter title="Do / don't" lead="Result first, then the reason. If only the color states the status, the readout is incomplete.">
 <div class="dodont">
-<demo label="Yap · sonuç kalın, gerekçe kısa">
-<div class="readout s-bad"><p><b>Kalıp eşleşmiyor.</b> Etiket sekiz değil yedi onaltılık hane içeriyor.</p></div>
+<demo label="Do · bold result, short reason">
+<div class="readout s-bad"><p><b>Pattern does not match.</b> The tag has seven hex digits, not eight.</p></div>
 </demo>
-<demo label="Yapma · yalnızca renk">
-<div class="readout s-bad"><p>Test sonucu yukarıda belirtilen kurallara göre değerlendirilmiştir.</p></div>
+<demo label="Don't · color only">
+<div class="readout s-bad"><p>The test result has been evaluated according to the rules stated above.</p></div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Canlı güncellenen göstergeye <code>aria-live="polite"</code> verin; ekran okuyucu yazmayı bitirince değişikliği okur. Durağan bir göstergede gerekmez. Her tuşta yeniden yazılan bir göstergede metni kısa tutun: okuyucu her seferinde tümünü duyar.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Give a live-updating readout <code>aria-live="polite"</code>; the screen reader reads the change once typing stops. A static readout does not need it. In a readout rewritten on every keystroke, keep the text short: the reader hears all of it every time.</p></div></div>
 </chapter>
 
 <script data-page>
-/* depolama maliyeti */
+/* storage cost */
 (function () {
   var box = document.getElementById('gs-maliyet'), out = document.getElementById('gs-maliyet-out');
-  var fiyat = { standart: 0.023, seyrek: 0.0125, 'arşiv': 0.004 };
+  var fiyat = { standard: 0.023, infrequent: 0.0125, archive: 0.004 };
   function show() {
     var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-sinif"]:checked').value;
     var tl = gb * fiyat[s], over = tl > 150;
     out.classList.toggle('s-bad', over);
-    out.innerHTML = '<p><b>' + tl.toFixed(2).replace('.', ',') + ' $ / ay</b> · ' + gb.toLocaleString('tr-TR') + ' GB, ' + s + ' sınıf.' + (over ? ' Ekip bütçesi 150 $; arşiv sınıfını düşünün.' : '') + '</p>';
+    out.innerHTML = '<p><b>$' + tl.toFixed(2) + ' / month</b> · ' + gb.toLocaleString('en-US') + ' GB, ' + s + ' class.' + (over ? ' The team budget is $150; consider the archive class.' : '') + '</p>';
   }
   box.addEventListener('change', show); show();
 })();
-/* düzenli ifade testi */
+/* regular expression test */
 (function () {
   var k = document.getElementById('gs-kalip'), e = document.getElementById('gs-etiket'), out = document.getElementById('gs-regex-out');
   function show() {
     var re;
-    try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Kalıp geçersiz.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
+    try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Invalid pattern.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
     var ok = re.test(e.value);
     out.className = 'readout ' + (ok ? 's-ok' : 's-bad');
-    out.innerHTML = ok ? '<p><b>Eşleşiyor.</b> Bu etiket dağıtımı tetikler.</p>' : '<p><b>Eşleşmiyor.</b> İmaj kayda düşer ama kümeye inmez.</p>';
+    out.innerHTML = ok ? '<p><b>Matches.</b> This tag triggers a deployment.</p>' : '<p><b>Does not match.</b> The image lands in the registry but never reaches the cluster.</p>';
   }
   k.addEventListener('input', show); e.addEventListener('input', show); show();
 })();
-/* kapasite */
+/* capacity */
 (function () {
   var r = document.getElementById('gs-kopya'), n = document.getElementById('gs-kopya-n'), out = document.getElementById('gs-kapasite-out');
   function show() {
@@ -127,8 +127,8 @@ show();</code></pre></figure>
     out.classList.toggle('s-ok', ok);
     out.classList.toggle('s-warn', tight);
     out.classList.toggle('s-bad', !ok && !tight);
-    out.innerHTML = '<p><b>' + cap.toLocaleString('tr-TR') + ' istek/sn</b> kapasite; gereken ' + need.toLocaleString('tr-TR') + '. ' +
-      (ok ? 'Tepe yükte %' + Math.round(100 * 1800 / cap) + ' doluluk.' : tight ? 'Tepe karşılanıyor ama %25 pay yok; ' + Math.ceil(need / 450) + ' kopya önerilir.' : 'En az ' + Math.ceil(need / 450) + ' kopya gerekir.') + '</p>';
+    out.innerHTML = '<p><b>' + cap.toLocaleString('en-US') + ' req/s</b> capacity; needed ' + need.toLocaleString('en-US') + '. ' +
+      (ok ? Math.round(100 * 1800 / cap) + '% utilization at peak load.' : tight ? 'Meets the peak but has no 25% headroom; ' + Math.ceil(need / 450) + ' replicas recommended.' : 'At least ' + Math.ceil(need / 450) + ' replicas needed.') + '</p>';
   }
   r.addEventListener('input', show); show();
 })();

@@ -15,12 +15,12 @@ const MAX_MARKERS = 15;
 const bare = v => v.replace(/"[^"]*"|'[^']*'/g, '').replace(/--[\w-]+/g, '');
 const NAMED = /\b(black|white|red|green|blue|yellow|orange|purple|pink|gr[ae]y|silver|navy|teal|maroon|olive|lime|aqua|fuchsia|cyan|magenta|brown|gold)\b/i;
 const RULES = [
-  ['renk token dışında', (p, v) => /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(/i.test(bare(v)) || NAMED.test(bare(v))],
-  ['ham yazı boyutu (--fs-* kullanın)', (p, v) => /^font(-size)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.])\d*\.?\d+(px|rem|pt)\b/.test(bare(v))],
-  ['ham px köşe (--r-* kullanın)', (p, v) => /^border(-[\w-]+)?-radius$/.test(p) && /(?<![\w.])[1-9][\d.]*px/.test(bare(v))],
-  ['ham süre (--dur-* kullanın)', (p, v) => /^(transition|animation)(-duration|-delay)?$/.test(p) && /(?<![\w.-])\d*\.?\d+m?s\b/.test(v)],
-  ['ham z-index (--z-* kullanın)', (p, v) => p === 'z-index' && /^\s*([3-9]|\d{2,})/.test(v)],
-  ['kullanımdan kalkan token', (p, v) => /var\(--(t-fast|t-med|ease)\)/.test(v)],
+  ['color outside tokens', (p, v) => /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(/i.test(bare(v)) || NAMED.test(bare(v))],
+  ['raw font size (use --fs-*)', (p, v) => /^font(-size)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.])\d*\.?\d+(px|rem|pt)\b/.test(bare(v))],
+  ['raw px radius (use --r-*)', (p, v) => /^border(-[\w-]+)?-radius$/.test(p) && /(?<![\w.])[1-9][\d.]*px/.test(bare(v))],
+  ['raw duration (use --dur-*)', (p, v) => /^(transition|animation)(-duration|-delay)?$/.test(p) && /(?<![\w.-])\d*\.?\d+m?s\b/.test(v)],
+  ['raw z-index (use --z-*)', (p, v) => p === 'z-index' && /^\s*([3-9]|\d{2,})/.test(v)],
+  ['deprecated token', (p, v) => /var\(--(t-fast|t-med|ease)\)/.test(v)],
   ['!important', (p, v) => /!important/.test(v)],
 ];
 const SPACING = (p, v) => /^(padding|margin|gap|row-gap|column-gap|inset)(-[\w-]+)?$/.test(p) && !/var\(--u/.test(v) && /(?<![\w.])-?([4-9]|\d{2,})(\.\d+)?px/.test(bare(v));
@@ -35,27 +35,27 @@ function scan(file) {
   for (const m of text.matchAll(/(?:^|[{;])\s*([\w-]+)\s*:\s*([^;{}]+)/g)) {
     const [, p, v] = m, line = lineOf(text, m.index + m[0].indexOf(p)), at = `${file}:${line} ${p}:${v.trim().replace(/\s+/g, ' ').slice(0, 60)}`;
     const bad = RULES.filter(([, test]) => test(p, v)).map(([name]) => name);
-    if (SPACING_FILES.includes(file) && SPACING(p, v)) bad.push('ham boşluk (--sp-* kullanın)');
+    if (SPACING_FILES.includes(file) && SPACING(p, v)) bad.push('raw spacing (use --sp-*)');
     for (const name of bad) { if (markers.includes(line)) used.add(line); else hits.push(`${name} · ${at}`); }
   }
-  for (const line of markers.filter(l => !used.has(l))) hits.push(`kullanılmayan std:ok · ${file}:${line}`);
+  for (const line of markers.filter(l => !used.has(l))) hits.push(`unused std:ok · ${file}:${line}`);
   return { hits, markers: markers.length };
 }
 
-test('bileşen CSS yalnız token kullanır', () => {
+test('component CSS uses tokens only', () => {
   let all = [], markers = 0;
   for (const f of FILES) { const r = scan(f); all = all.concat(r.hits); markers += r.markers; }
   assert.deepEqual(all, [], '\n' + all.join('\n'));
-  assert.ok(markers <= MAX_MARKERS, `std:ok istisnası ${markers} > ${MAX_MARKERS}`);
+  assert.ok(markers <= MAX_MARKERS, `std:ok exceptions ${markers} > ${MAX_MARKERS}`);
 });
 
 // State classes set by JS and internal helpers are never hand-written in pages
 const INTERNAL = /^(on|past|now|show|complete|done|is-live|is-right|is-up|is-active|compact|hoca-quiet|nav-open|motion|js|intro-pending|intro-go|sketch|sketch-pending|face-l|hoca|hoca-still|hoca-img|hoca-layer|hoca-bubble|hoca-tag|mono|sun|moon|k|s|c|v|ln|cur)$/;
-test('her sınıf bir doküman ya da parça sayfasında gösterilir', () => {
+test('every class is shown on a docs or part page', () => {
   const css = ['components.css', 'blueprint.css'].map(f => fs.readFileSync(DIR + f, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\{[^{}]*\}/g, '{}')).join('\n');
   const classes = new Set([...css.matchAll(/\.([a-z][\w-]*)/g)].map(m => m[1]).filter(c => !INTERNAL.test(c)));
   const pages = ['docs', 'demos/_src'].flatMap(d => fs.readdirSync(d).filter(f => f.endsWith('.html')).map(f => fs.readFileSync(`${d}/${f}`, 'utf8'))).join('\n');
   const used = new Set([...pages.matchAll(/class="([^"]*)"/g)].flatMap(m => m[1].split(/\s+/)));
   const missing = [...classes].filter(c => !used.has(c)).sort();
-  assert.deepEqual(missing, [], 'gösterilmeyen: ' + missing.join(' '));
+  assert.deepEqual(missing, [], 'not shown anywhere: ' + missing.join(' '));
 });

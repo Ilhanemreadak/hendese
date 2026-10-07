@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,43 +39,43 @@
   </defs>
 </svg>
 <div class="rulers" aria-hidden="true"></div>
-<a class="skip" href="#content">İçeriğe geç</a>
+<a class="skip" href="#content">Skip to content</a>
 <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
 
 <header class="topbar">
-  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
   <a class="brand" href="#top">Hendese</a>
   <span class="spacer"></span>
   <span class="cur" id="topbar-cur" aria-live="polite"></span>
-  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
 </header>
 
 <div class="shell">
-<aside class="rail" id="rail" aria-label="Bölümler">
+<aside class="rail" id="rail" aria-label="Sections">
   <div class="rail-head">
-    <a class="brand" href="index.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
-    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+    <a class="brand" href="index.html">Hendese<small>Design language · docs</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
   </div>
-  <nav class="rail-nav" aria-label="İçindekiler">
-    <div class="nav-group">Sayfalar</div>
-    <a class="nav-page" href="index.html">Başlangıç</a>
-    <a class="nav-page" href="tokens.html">Token'lar</a>
-    <a class="nav-page" href="components.html">Bileşenler</a>
-    <a class="nav-page" href="blueprint.html">Blueprint ve tarifler</a>
-    <a class="nav-page" href="motion.html">Hareket motoru</a>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Pages</div>
+    <a class="nav-page" href="index.html">Getting started</a>
+    <a class="nav-page" href="tokens.html">Tokens</a>
+    <a class="nav-page" href="components.html">Components</a>
+    <a class="nav-page" href="blueprint.html">Blueprint and recipes</a>
+    <a class="nav-page" href="motion.html">Motion engine</a>
     <a class="nav-page" href="hoca.html" aria-current="page">Hoca</a>
-    <a class="nav-page" href="../demos/index.html">Parçalar (tek tek)</a>
-    <div class="nav-group">Bu sayfa</div>
-    <a class="nav-link" href="#h1"><span class="num">01</span><span>Karakter</span></a>
-    <a class="nav-link" href="#h2"><span class="num">02</span><span>Pozlar</span></a>
-    <a class="nav-link" href="#h3"><span class="num">03</span><span>Oyun alanı</span></a>
-    <a class="nav-link" href="#h4"><span class="num">04</span><span>Davranış kuralları</span></a>
+    <a class="nav-page" href="../demos/index.html">Parts, one by one</a>
+    <div class="nav-group">On this page</div>
+    <a class="nav-link" href="#h1"><span class="num">01</span><span>Character</span></a>
+    <a class="nav-link" href="#h2"><span class="num">02</span><span>Poses</span></a>
+    <a class="nav-link" href="#h3"><span class="num">03</span><span>Playground</span></a>
+    <a class="nav-link" href="#h4"><span class="num">04</span><span>Behavior rules</span></a>
     <a class="nav-link" href="#h5"><span class="num">05</span><span>API</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
-    <span class="pos" id="rail-pos">Giriş</span>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
   </div>
 </aside>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
@@ -83,87 +83,87 @@
 <main id="content">
 <div class="canvas">
 
-<section class="hero" id="top" data-section data-title="Giriş">
+<section class="hero" id="top" data-section data-title="Intro">
   <div class="hero-copy">
-    <p class="hero-label">Hendese · Maskot</p>
-    <h1>Hoca<em>Anlatıyı taşıyan değil, yanında yürüyen öğretmen.</em></h1>
-    <p class="intro">Turuncu, piksel bir blok karakter. Canvas ile boyanır, görsel dosyası yoktur. Sahneler onu çağırır; boştayken raydaki evinde bekler.</p>
+    <p class="hero-label">Hendese · Mascot</p>
+    <h1>Hoca<em>A teacher who walks beside the story, not one who carries it.</em></h1>
+    <p class="intro">An orange, pixel-block character. Painted with canvas; there is no image file. Scenes call Hoca in; when idle, Hoca waits at the home position on the rail.</p>
   </div>
   <dl class="titleblock">
-    <div class="tb-head"><dt>Sprite</dt><dd>44 × 36 hücre · ×2</dd></div>
-    <div><dt>Boyut</dt><dd>88 × 72 px</dd></div>
-    <div><dt>Poz</dt><dd>21</dd></div>
-    <div><dt>Görünür</dt><dd>≥ 1100px, ekran</dd></div>
+    <div class="tb-head"><dt>Sprite</dt><dd>44 × 36 cells · ×2</dd></div>
+    <div><dt>Size</dt><dd>88 × 72 px</dd></div>
+    <div><dt>Poses</dt><dd>21</dd></div>
+    <div><dt>Visible</dt><dd>≥ 1100px, screen</dd></div>
   </dl>
 </section>
 
-<article class="chapter" id="h1" data-section data-title="Karakter">
-  <header class="ch-head"><p class="ch-num">01</p><h2>Karakter</h2><p class="lead">Düz bir blok gövde, iki göz yarığı, yan çıkıntılar ve dört bacak. Öğretmen kişiliği yalnızca gözlükten, eşyalardan ve pozlardan gelir.</p></header>
+<article class="chapter" id="h1" data-section data-title="Character">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Character</h2><p class="lead">A flat block body, two eye slits, side nubs and four legs. The teacher personality comes only from the glasses, the props and the poses.</p></header>
   <div class="prose">
     <ul>
-      <li><b>Konuşma balonu</b> tek kısa cümledir ve metinde zaten geçen bir bilgiyi tekrar eder; yeni bilgi taşımaz.</li>
-      <li>Bir sahnede <b>bir kez</b>, anahtar anda konuşur.</li>
-      <li>Önemli bir etiketin üstünde durmaz; sahne onun için boş yer bırakır.</li>
-      <li>Ekran okuyucudan gizlidir (<code>aria-hidden</code>); yalnızca görsel bir eşlikçidir.</li>
+      <li>The <b>speech bubble</b> is one short sentence that repeats something the text already says; it never carries new information.</li>
+      <li>Hoca speaks <b>once</b> per scene, at the key moment.</li>
+      <li>Hoca never stands on top of an important label; the scene leaves room.</li>
+      <li>Hidden from screen readers (<code>aria-hidden</code>); a purely visual companion.</li>
     </ul>
   </div>
 </article>
 
-<article class="chapter" id="h2" data-section data-title="Pozlar">
-  <header class="ch-head"><p class="ch-num">02</p><h2>Pozlar</h2><p class="lead">21 poz. Kesikli çizgi zemin; bağlantı noktası ayakların alt ortasıdır (<code>sit</code> için oturma noktası).</p></header>
+<article class="chapter" id="h2" data-section data-title="Poses">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Poses</h2><p class="lead">21 poses. The dashed line is the ground; the anchor point is the bottom center of the feet (the seat point for <code>sit</code>).</p></header>
   <div class="h-grid" id="h-grid"></div>
-  <p class="figcap">Pozlar yalnızca 1100px ve üstünde, ekranda görünür (baskıda ve dar ekranda gizli).</p>
+  <p class="figcap">Poses are visible only on screens 1100px and wider (hidden in print and on narrow screens).</p>
 </article>
 
-<article class="chapter" id="h3" data-section data-title="Oyun alanı">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Oyun alanı</h2><p class="lead">Poz, yön, balon ve etiketi değiştirip <code>place()</code> çağrısının ne çizdiğini görün.</p></header>
+<article class="chapter" id="h3" data-section data-title="Playground">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Playground</h2><p class="lead">Change the pose, direction, bubble and tag, and see what the <code>place()</code> call draws.</p></header>
   <div class="h-row">
-    <label class="h-txt">Poz<select id="h-pose"></select></label>
-    <fieldset class="choice is-seg"><legend>Yön</legend>
-      <label><input type="radio" name="h-face" value="1" checked><span>sağa</span></label>
-      <label><input type="radio" name="h-face" value="-1"><span>sola</span></label>
+    <label class="h-txt">Pose<select id="h-pose"></select></label>
+    <fieldset class="choice is-seg"><legend>Direction</legend>
+      <label><input type="radio" name="h-face" value="1" checked><span>right</span></label>
+      <label><input type="radio" name="h-face" value="-1"><span>left</span></label>
     </fieldset>
-    <fieldset class="choice is-seg"><legend>Balon</legend>
-      <label><input type="radio" name="h-up" value="0" checked><span>yan</span></label>
-      <label><input type="radio" name="h-up" value="1"><span>üst</span></label>
+    <fieldset class="choice is-seg"><legend>Bubble</legend>
+      <label><input type="radio" name="h-up" value="0" checked><span>side</span></label>
+      <label><input type="radio" name="h-up" value="1"><span>top</span></label>
     </fieldset>
-    <label class="h-txt">Balon metni<input type="text" id="h-bub" value="Etiket tek sözleşme."></label>
-    <label class="h-txt">Etiket<input type="text" id="h-tag" value=""></label>
+    <label class="h-txt">Bubble text<input type="text" id="h-bub" value="The tag is the contract."></label>
+    <label class="h-txt">Tag<input type="text" id="h-tag" value=""></label>
   </div>
   <div class="h-stage" id="h-stage"></div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">çağrı</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code id="h-call"></code></pre></figure>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">call</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code id="h-call"></code></pre></figure>
 </article>
 
-<article class="chapter" id="h4" data-section data-title="Davranış kuralları">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Davranış kuralları</h2><p class="lead">Kontrolcü her karede kimin Hoca'ya sahip olduğuna karar verir; sahneler yalnızca talep eder.</p></header>
+<article class="chapter" id="h4" data-section data-title="Behavior rules">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Behavior rules</h2><p class="lead">Each frame, the controller decides who owns Hoca; scenes only request.</p></header>
   <div class="tbl wide"><table>
-    <thead><tr><th>Durum</th><th>Ne olur</th></tr></thead>
+    <thead><tr><th>State</th><th>What happens</th></tr></thead>
     <tbody>
-      <tr><td>Hiçbir sahne talep etmiyor</td><td>Raydaki <code>#hoca-home</code> evinde <code>idle</code> durur. Etkin bölüm <code>data-hoca="quiet"</code> ise soluk (%45).</td></tr>
-      <tr><td>Birden çok sahne talep ediyor</td><td>Kayıt sırasındaki ilk sahne kazanır.</td></tr>
-      <tr><td>Yakın iki nokta arası (≤ 260px)</td><td>650 ms yürür (<code>walkA/walkB</code>), yürürken balon ve etiket gizli.</td></tr>
-      <tr><td>Eve/evden, uzak mesafe, parça gezinmesi</td><td>320 ms: eski yerde söner, yenide belirir; ilgisiz içeriğin üstünden geçmez.</td></tr>
-      <tr><td>Reduced motion (masaüstü)</td><td>Her sahnede <code>still</code> pozunda durgun kopya; <code>Hendese.refresh()</code> yeniden yerleştirir.</td></tr>
-      <tr><td>&lt; 1100px, baskı</td><td>Gizli.</td></tr>
+      <tr><td>No scene requests Hoca</td><td>Hoca stands <code>idle</code> at the home position, <code>#hoca-home</code> on the rail. Dimmed (45%) if the active section has <code>data-hoca="quiet"</code>.</td></tr>
+      <tr><td>Several scenes request Hoca</td><td>The first scene in registration order wins.</td></tr>
+      <tr><td>Between two nearby points (≤ 260px)</td><td>Walks for 650 ms (<code>walkA/walkB</code>); bubble and tag are hidden while walking.</td></tr>
+      <tr><td>To or from home, long distance, part navigation</td><td>320 ms: fades out at the old spot and appears at the new one; never crosses unrelated content.</td></tr>
+      <tr><td>Reduced motion (desktop)</td><td>A still copy in the <code>still</code> pose in every scene; <code>Hendese.refresh()</code> places them again.</td></tr>
+      <tr><td>&lt; 1100px, print</td><td>Hidden.</td></tr>
     </tbody>
   </table></div>
-  <aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Yürüme</span><div class="co-body">Sahne içinde yürütürken pozu konuma bağlayın: <code>Math.floor(x / 16) % 2 ? 'walkA' : 'walkB'</code>, yalnızca <code>x</code> değişirken; <code>face</code> hareket yönüdür. Kutu taşırken <code>crateWalkA/B</code>.</div></aside>
+  <aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Walking</span><div class="co-body">When walking Hoca inside a scene, tie the pose to position: <code>Math.floor(x / 16) % 2 ? 'walkA' : 'walkB'</code>, only while <code>x</code> changes; <code>face</code> is the direction of travel. When carrying a crate, use <code>crateWalkA/B</code>.</div></aside>
 </article>
 
 <article class="chapter" id="h5" data-section data-title="API">
   <header class="ch-head"><p class="ch-num">05</p><h2>API</h2></header>
   <div class="tbl wide api"><table>
-    <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+    <thead><tr><th>Member</th><th>What it does</th></tr></thead>
     <tbody>
-      <tr><td><code>Hendese.createHoca()</code></td><td>Yeni bir sprite örneği; tüm pozları boyar ve sabit bir katman ekler. Motor kendi örneğini zaten oluşturur; bunu yalnızca bağımsız kullanım (örn. bu sayfadaki galeri) için çağırın.</td></tr>
-      <tr><td><code>render(s)</code></td><td>Sabit katmanda çizer. <code>s</code>: <code>{visible, x, y (viewport px), pose, face, squash (0..1), bubble, bubbleUp, tag, alpha}</code>.</td></tr>
-      <tr><td><code>place(kap, o)</code></td><td>Bir kabın içine durgun kopya koyar (kap <code>position:relative</code>). <code>o</code>: <code>{left, top (CSS uzunluk), pose, face, bubble, bubbleUp, tag}</code>.</td></tr>
-      <tr><td><code>clearPlaced()</code></td><td>Tüm durgun kopyaları kaldırır.</td></tr>
-      <tr><td><code>size</code>, <code>anchors</code></td><td><code>{w:88, h:72, scale:2}</code>; pozların bağlantı noktaları (px).</td></tr>
-      <tr><td>Sahne talebi</td><td>Sahnenin <code>render</code>'ı <code>hoca: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}</code> döndürür; koordinatlar çizim biriminde.</td></tr>
+      <tr><td><code>Hendese.createHoca()</code></td><td>A new sprite instance; paints every pose and adds a fixed layer. The engine already creates its own instance; call this only for standalone use (e.g. the gallery on this page).</td></tr>
+      <tr><td><code>render(s)</code></td><td>Draws on the fixed layer. <code>s</code>: <code>{visible, x, y (viewport px), pose, face, squash (0..1), bubble, bubbleUp, tag, alpha}</code>.</td></tr>
+      <tr><td><code>place(container, o)</code></td><td>Puts a still copy inside a container (the container needs <code>position:relative</code>). <code>o</code>: <code>{left, top (CSS length), pose, face, bubble, bubbleUp, tag}</code>.</td></tr>
+      <tr><td><code>clearPlaced()</code></td><td>Removes all still copies.</td></tr>
+      <tr><td><code>size</code>, <code>anchors</code></td><td><code>{w:88, h:72, scale:2}</code>; anchor points of the poses (px).</td></tr>
+      <tr><td>Scene request</td><td>A scene's <code>render</code> returns <code>hoca: {x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}</code>; coordinates are in drawing units.</td></tr>
     </tbody>
   </table></div>
-  <p class="prose">Balon solda durur; solda yer yoksa (<code>x &lt; balon genişliği + 20</code>) sağa geçer. Pixelify Sans dışı karakter içeren metin (örn. ≠) mono fonta düşer.</p>
+  <p class="prose">The bubble sits on the left; if there is no room on the left (<code>x &lt; bubble width + 20</code>), it moves to the right. Text with characters outside Pixelify Sans (e.g. ≠) falls back to the mono font.</p>
 </article>
 
 </div>
@@ -181,12 +181,12 @@ Hendese.start();
   POSES.forEach(function(p){var c=document.createElement('div');c.className='h-cell';c.innerHTML='<span>'+p+'</span>';grid.appendChild(c);
     var o=document.createElement('option');o.value=o.textContent=p;sel.appendChild(o)});
   function gallery(){$$('.h-cell',grid).forEach(function(c,i){g.place(c,{left:'50%',top:'calc(100% - 22px)',pose:POSES[i],face:1})})}
-  /* oyun alanı: ayrı bir örnek, böylece galeriyi silmeden yenilenir */
+  /* playground: a separate instance, so it refreshes without clearing the gallery */
   var pg=Hendese.createHoca();sel.value='pointUp';
   function play(){
     var face=+$('[name=h-face]:checked').value,up=$('[name=h-up]:checked').value==='1',bub=$('#h-bub').value.trim()||null,tag=$('#h-tag').value.trim()||null;
     pg.clearPlaced();pg.place(stage,{left:'60%',top:'calc(100% - 30px)',pose:sel.value,face:face,bubble:bub,bubbleUp:up,tag:tag});
-    $('#h-call').textContent="hoca.place(kap, { left: '60%', top: 'calc(100% - 30px)', pose: '"+sel.value+"', face: "+face+", bubble: "+(bub?JSON.stringify(bub):'null')+", bubbleUp: "+up+", tag: "+(tag?JSON.stringify(tag):'null')+" });";
+    $('#h-call').textContent="hoca.place(container, { left: '60%', top: 'calc(100% - 30px)', pose: '"+sel.value+"', face: "+face+", bubble: "+(bub?JSON.stringify(bub):'null')+", bubbleUp: "+up+", tag: "+(tag?JSON.stringify(tag):'null')+" });";
   }
   [sel,$('#h-bub'),$('#h-tag')].concat($$('[name=h-face],[name=h-up]')).forEach(function(el){el.addEventListener('input',play);el.addEventListener('change',play)});
   gallery();play();

@@ -1,7 +1,7 @@
-<!-- meta {"title":"Hat ve makas","group":"Blueprint","order":70,"tagline":"Trafik hangi yoldan gidiyor, hangisi kapalı.","intro":"Yönlendirme çizimleri demiryolu dilini kullanır: ray kalın çizgidir, makas yolun ayrıldığı noktadır, kullanılmayan kol hayalettir, filtre kolu kırmızıdır. Kanarya, mavi/yeşil ve bölge yedeği gibi trafik kararları bu dille tek bakışta okunur.","summary":"Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.","facts":{"Sınıflar":"<code>.ln-strong</code> (ray) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.tag</code> · <code>.state</code> · <code>.deck-cap</code>","Satır içi stil":"Filtre kolu: <code>stroke:var(--bad)</code>, 5 birim","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Track and switch","group":"Blueprint","order":70,"tagline":"Which way traffic goes, and which way is closed.","intro":"Routing drawings use the language of railways: the track is a heavy line, the switch is where the path splits, the unused branch is a ghost, and the filter arm is red. Traffic decisions like canary, blue/green and regional failover read at a glance in this language.","summary":"Track, switch, ghost branch and filter arm; canary, blue/green and failover region.","facts":{"Classes":"<code>.ln-strong</code> (track) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.tag</code> · <code>.state</code> · <code>.deck-cap</code>","Inline style":"Filter arm: <code>stroke:var(--bad)</code>, 5 units","JS":"Not needed"}} -->
 
-<chapter title="Anatomi" lead="Ray trafiği taşıyan yoldur ve kalın çizilir. Makasta yol ayrılır; o an kullanılmayan kol hayalet kalır. Filtre kolu bir rayı keser ve kırmızıdır.">
-<demo label="Örnek · bir makas ve bir filtre">
+<chapter title="Anatomy" lead="The track is the path that carries traffic and is drawn heavy. At the switch the path splits; the branch not in use stays a ghost. The filter arm cuts across a track and is red.">
+<demo label="Example · one switch and one filter">
 <div class="drawing" style="--aw:900;--ah:250">
   <svg viewBox="0 0 900 250" aria-hidden="true">
     <path class="ln-strong" d="M40 110H340L380 70H700"/>
@@ -13,38 +13,38 @@
     <circle class="ln-draw fill-paper" cx="250" cy="160" r="5"/>
     <path style="stroke:var(--bad);stroke-width:5;stroke-linecap:round" d="M250 186V234"/>
   </svg>
-  <p class="dl" style="--x:40;--y:84;--w:260">istekler · lb-public</p>
-  <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">makas</p>
-  <p class="dl" style="--x:420;--y:44;--w:200">ray · .ln-strong</p>
-  <p class="dl" style="--x:420;--y:158;--w:240">kullanılmayan kol · .ln-ghost</p>
-  <p class="dl" style="--x:40;--y:184;--w:200">tarama botları</p>
-  <p class="dl" style="--x:266;--y:164;--w:200">filtre kolu · WAF</p>
+  <p class="dl" style="--x:40;--y:84;--w:260">requests · lb-public</p>
+  <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">switch</p>
+  <p class="dl" style="--x:420;--y:44;--w:200">track · .ln-strong</p>
+  <p class="dl" style="--x:420;--y:158;--w:240">unused branch · .ln-ghost</p>
+  <p class="dl" style="--x:40;--y:184;--w:200">crawler bots</p>
+  <p class="dl" style="--x:266;--y:164;--w:200">filter arm · WAF</p>
   <p class="dl tag" style="--x:700;--y:58">web-api v2</p>
-  <p class="dl tag is-ghost" style="--x:700;--y:138">web-api v1 · boşta</p>
+  <p class="dl tag is-ghost" style="--x:700;--y:138">web-api v1 · idle</p>
 </div>
 </demo>
-<div class="prose"><p>Makas noktası <code>circle.fill-draw</code> ile işaretlenir. Filtre kolu bir direk (<code>.ln-draw</code>), bir mafsal (<code>circle.ln-draw.fill-paper</code>) ve rayı kesen kalın kırmızı bir çubuktur; kolun ötesindeki yol hayalettir, çünkü oraya hiçbir şey ulaşmaz. Varış etiketleri <code>.tag</code> hat etiketidir ve rayın ucuna oturur; boşta olan <code>.tag.is-ghost</code> ile kesikli çerçeve alır.</p></div>
+<div class="prose"><p>The switch point is marked with <code>circle.fill-draw</code>. The filter arm is a post (<code>.ln-draw</code>), a pivot (<code>circle.ln-draw.fill-paper</code>) and a heavy red bar across the track; the path beyond the arm is a ghost, because nothing reaches it. Destination labels are <code>.tag</code> line labels and sit at the end of the track; an idle one gets a dashed frame with <code>.tag.is-ghost</code>.</p></div>
 </chapter>
 
-<chapter title="Makas türleri" lead="Aynı makas üç farklı kararı çizer: trafiği ağırlıkla bölmek, bir taraftan ötekine bir anda geçmek ya da sağlıksız tarafı kapatmak.">
-<demo label="Örnek · kanarya · ağırlıklı bölme">
+<chapter title="Switch types" lead="The same switch draws three different decisions: splitting traffic by weight, cutting over from one side to the other at once, or closing off the unhealthy side.">
+<demo label="Example · canary · weighted split">
 <div class="drawing" style="--aw:900;--ah:190">
   <svg viewBox="0 0 900 190" aria-hidden="true">
     <path class="ln-strong" d="M40 90H680"/>
     <path class="ln-draw" d="M320 90L370 150H680"/>
     <circle class="fill-draw" cx="320" cy="90" r="4"/>
-    <text class="dim-t" x="520" y="80" text-anchor="middle">%95</text>
-    <text class="dim-t" x="520" y="140" text-anchor="middle">%5</text>
+    <text class="dim-t" x="520" y="80" text-anchor="middle">95%</text>
+    <text class="dim-t" x="520" y="140" text-anchor="middle">5%</text>
   </svg>
-  <p class="dl" style="--x:40;--y:64;--w:260">istekler</p>
-  <p class="dl tag" style="--x:690;--y:78">4.2.0 · kararlı</p>
-  <p class="dl tag" style="--x:690;--y:138">4.3.0 · kanarya</p>
-  <p class="dl" style="--x:690;--y:164;--w:200"><span class="state s-warn">Gözlemde</span></p>
-  <p class="dl" style="--x:380;--y:160;--w:300">hata %0,3 · eşik %1 · 30 dk</p>
+  <p class="dl" style="--x:40;--y:64;--w:260">requests</p>
+  <p class="dl tag" style="--x:690;--y:78">4.2.0 · stable</p>
+  <p class="dl tag" style="--x:690;--y:138">4.3.0 · canary</p>
+  <p class="dl" style="--x:690;--y:164;--w:200"><span class="state s-warn">Under watch</span></p>
+  <p class="dl" style="--x:380;--y:160;--w:300">errors 0.3% · threshold 1% · 30 min</p>
 </div>
 </demo>
-<div class="prose"><p>Kanaryada iki yol da gerçektir, bu yüzden ikisi de düz çizilir. Trafiğin çoğunu taşıyan kalın, azını taşıyan ince çizgidir; oran çizginin üstünde yazılıdır.</p></div>
-<demo label="Örnek · mavi/yeşil · önce ve sonra">
+<div class="prose"><p>In a canary both paths are real, so both are drawn solid. The one carrying most of the traffic is heavy and the one carrying a little is thin; the ratio is written above the line.</p></div>
+<demo label="Example · blue/green · before and after">
 <div class="drawing" style="--aw:900;--ah:210">
   <svg viewBox="0 0 900 210" aria-hidden="true">
     <path class="ln-pencil ln-dash" d="M450 0V210"/>
@@ -55,32 +55,32 @@
     <path class="ln-ghost" d="M620 120L660 80H800"/>
     <circle class="fill-draw" cx="620" cy="120" r="4"/>
   </svg>
-  <p class="sl deck-cap" style="--x:20;--y:14"><b>ÖNCE</b>trafik mavide</p>
-  <p class="sl deck-cap" style="--x:490;--y:14"><b>SONRA</b>trafik yeşilde</p>
-  <p class="dl" style="--x:340;--y:70;--w:100">mavi</p>
-  <p class="dl" style="--x:340;--y:150;--w:110">yeşil · boşta</p>
-  <p class="dl" style="--x:810;--y:70;--w:90">mavi</p>
-  <p class="dl" style="--x:810;--y:150;--w:90">yeşil</p>
-  <p class="dl" style="--x:20;--y:182;--w:420">yeşil kuruldu ve testleri geçti</p>
-  <p class="dl" style="--x:490;--y:182;--w:410">mavi geri dönüş için bir saat bekletilir</p>
+  <p class="sl deck-cap" style="--x:20;--y:14"><b>BEFORE</b>traffic on blue</p>
+  <p class="sl deck-cap" style="--x:490;--y:14"><b>AFTER</b>traffic on green</p>
+  <p class="dl" style="--x:340;--y:70;--w:100">blue</p>
+  <p class="dl" style="--x:340;--y:150;--w:110">green · idle</p>
+  <p class="dl" style="--x:810;--y:70;--w:90">blue</p>
+  <p class="dl" style="--x:810;--y:150;--w:90">green</p>
+  <p class="dl" style="--x:20;--y:182;--w:420">green deployed and passed its tests</p>
+  <p class="dl" style="--x:490;--y:182;--w:410">blue is kept for an hour for rollback</p>
 </div>
 </demo>
-<div class="prose"><p>Mavi/yeşilde makas tek hamlede döner. “Sonra” çiziminde mavi kol hayalettir: önceki konumdur ve geri dönüş yolu olarak durur. Ara durum yoktur; bu yüzden çizim iki ayrı paneldir, kesikli kılavuz çizgisi onları ayırır.</p></div>
+<div class="prose"><p>In blue/green the switch flips in one move. In the “after” drawing the blue branch is a ghost: it is the previous position and stays as the rollback path. There is no in-between state, so the drawing is two separate panels, divided by a dashed guide line.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Makas bir arıza ya da bakım anında neyin değiştiğini anlatır. İki kompozisyon: bölge yedeğine geçiş ve gece bakım penceresi.">
-<demo label="Örnek · bölge yedeğine geçiş">
+<chapter title="In context" lead="A switch shows what changed during an outage or a maintenance window. Two compositions: failing over to a backup region, and a nightly maintenance window.">
+<demo label="Example · failing over to a backup region">
 <div class="frame">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
-    <p class="chip">03 · Şekil 1</p>
-    <p class="fig-cap">Birincil bölge sağlıksız, trafik yedekte</p>
+    <p class="chip">03 · Figure 1</p>
+    <p class="fig-cap">Primary region unhealthy, traffic on the backup</p>
   </header>
   <div class="f-side">
     <ol class="beats">
-      <li><b>1 · Kontrol</b>DNS her 10 saniyede iki bölgeye de sağlık isteği gönderir.</li>
-      <li><b>2 · Karar</b>Birincil üç denemede de yanıt vermezse makas yedeğe döner.</li>
-      <li><b>3 · Yayılma</b>İstemciler yeni adresi TTL dolunca alır; en geç 60 saniye.</li>
+      <li><b>1 · Check</b>DNS sends a health request to both regions every 10 seconds.</li>
+      <li><b>2 · Decide</b>If the primary fails to respond three times in a row, the switch flips to the backup.</li>
+      <li><b>3 · Propagate</b>Clients pick up the new address when the TTL expires; 60 seconds at most.</li>
     </ol>
   </div>
   <div class="f-map">
@@ -95,23 +95,23 @@
         <rect class="ln-strong fill-paper" x="420" y="175" width="160" height="50"/>
         <text class="dim-t" x="110" y="158" text-anchor="middle">TTL 60 s</text>
       </svg>
-      <p class="dl" style="--x:20;--y:102;--w:180">api.ornek.net</p>
-      <p class="dl" style="--x:240;--y:14;--w:200">sağlık · 3/3 başarısız</p>
-      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state s-bad">Sağlıksız</span></p>
-      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state s-ok">Etkin</span></p>
+      <p class="dl" style="--x:20;--y:102;--w:180">api.example.net</p>
+      <p class="dl" style="--x:240;--y:14;--w:200">health · 3/3 failed</p>
+      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state s-bad">Unhealthy</span></p>
+      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state s-ok">Active</span></p>
     </div>
   </div>
   <div class="f-foot">
-    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Birincil bölge sağlık kontrolünden kaldı; DNS makası yedek bölgeye çevirdi ve yol engellendi.</p>
-    <p class="figcap"><b>Şekil 1.</b> Kırmızı kesik çizgi ve durdurma işareti denenen ama kapatılan yoldur; kalın ray şu an trafiği taşıyan yoldur.</p>
+    <p class="oneliner"><span class="co-label">In one sentence</span>The primary region failed its health check; DNS flipped the switch to the backup region and the path was blocked.</p>
+    <p class="figcap"><b>Figure 1.</b> The red dashed line and the stop mark are the path that was tried and closed; the heavy track is the path carrying traffic now.</p>
   </div>
 </div>
 </demo>
-<demo label="Örnek · gece bakım penceresi, koyu pafta">
+<demo label="Example · nightly maintenance window, dark sheet">
 <figure class="fig-sheet scene-dark">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">03 · Şekil 2</p>
-  <p class="fig-cap">Bakım sırasında yazmalar kuyruğa</p>
+  <p class="chip">03 · Figure 2</p>
+  <p class="fig-cap">Writes go to a queue during maintenance</p>
   <div class="drawing" style="--aw:900;--ah:240">
     <svg viewBox="0 0 900 240" aria-hidden="true">
       <path class="ln-strong" d="M40 130H220"/>
@@ -124,33 +124,33 @@
       <rect class="ln-draw ln-warn fill-paper" x="660" y="106" width="220" height="48"/>
       <rect class="ln-draw fill-paper" x="660" y="176" width="220" height="48"/>
     </svg>
-    <p class="dl" style="--x:40;--y:104;--w:170">istekler</p>
-    <p class="dl" style="--x:300;--y:34;--w:300">GET · okuma</p>
-    <p class="dl" style="--x:300;--y:104;--w:300">POST · doğrudan yazma</p>
-    <p class="dl" style="--x:300;--y:174;--w:300">POST · kuyruğa</p>
-    <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · kopya</p>
-    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state s-warn">Bakımda</span></p>
-    <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · yazma kuyruğu</p>
+    <p class="dl" style="--x:40;--y:104;--w:170">requests</p>
+    <p class="dl" style="--x:300;--y:34;--w:300">GET · read</p>
+    <p class="dl" style="--x:300;--y:104;--w:300">POST · direct write</p>
+    <p class="dl" style="--x:300;--y:174;--w:300">POST · to queue</p>
+    <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · replica</p>
+    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state s-warn">In maintenance</span></p>
+    <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · write queue</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 2.</b> Okumalar kopyadan devam eder. Birincile doğrudan yazma kapalıdır; yazmalar kuyrukta bekler ve bakım bitince sırayla işlenir.</figcaption>
+  <figcaption class="figcap"><b>Figure 2.</b> Reads continue from the replica. Direct writes to the primary are closed; writes wait in the queue and are processed in order when maintenance ends.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Bir makasta aynı anda tek bir kol gerçek trafik taşır; öteki hayalettir. İki kalın kol, okuyanı hangi yolun açık olduğu konusunda yalnız bırakır.">
+<chapter title="Do / don't" lead="At a switch only one branch carries real traffic at a time; the other is a ghost. Two heavy branches leave the reader guessing which path is open.">
 <div class="dodont">
-<demo label="Yap · tek gerçek kol">
+<demo label="Do · one real branch">
 <div class="drawing" style="--aw:440;--ah:150">
   <svg viewBox="0 0 440 150" aria-hidden="true">
     <path class="ln-strong" d="M10 75H150L190 40H430"/>
     <path class="ln-ghost" d="M150 75L190 110H430"/>
     <circle class="fill-draw" cx="150" cy="75" r="4"/>
   </svg>
-  <p class="dl" style="--x:330;--y:14;--w:100">v2 · etkin</p>
-  <p class="dl" style="--x:310;--y:118;--w:120">v1 · önceki</p>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2 · active</p>
+  <p class="dl" style="--x:310;--y:118;--w:120">v1 · previous</p>
 </div>
 </demo>
-<demo label="Yapma · iki kalın kol">
+<demo label="Don't · two heavy branches">
 <div class="drawing" style="--aw:440;--ah:150">
   <svg viewBox="0 0 440 150" aria-hidden="true">
     <path class="ln-strong" d="M10 75H150L190 40H430"/>
@@ -162,5 +162,5 @@
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Kalın ve hayalet çizgi arasındaki fark görsel bir farktır. Hangi yolun açık, hangisinin kapalı olduğu varış etiketinde (<code>.state</code>) ve şekil yazısında da söylenmelidir. Engellenen yol yalnız kırmızıyla değil, kesik desen ve durdurma işaretiyle de çizilir.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The difference between a heavy line and a ghost line is visual. Which path is open and which is closed must also be stated in the destination label (<code>.state</code>) and in the caption. A blocked path is drawn not only in red but also with a dashed pattern and a stop mark.</p></div></div>
 </chapter>

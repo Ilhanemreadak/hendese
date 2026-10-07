@@ -20,13 +20,13 @@ It recorded 54 findings: 4 release blockers, 7 high, 22 medium and 21 low. They 
 - packaging;
 - licensing and repository readiness.
 
-Release 0.4.0 resolved every finding that did not depend on a publication decision. The publication work that followed resolved most of the rest. **8 items remain open or partly open**. None of them is High; the one Blocker, the mascot's provenance, is accepted for 0.x. See [§6](#6-open-items).
+Release 0.4.0 resolved every finding that did not depend on a publication decision. The publication work that followed resolved most of the rest. **7 items remain open or partly open**. None of them is High; the one Blocker, the mascot's provenance, is accepted for 0.x. See [§6](#6-open-items).
 
 | Severity | Found | Resolved | Partly resolved | Open / accepted |
 |---|---|---|---|---|
 | Blocker | 4 | 3 | 0 | 1 |
 | High | 7 | 7 | 0 | 0 |
-| Medium | 22 | 21 | 1 | 0 |
+| Medium | 22 | 22 | 0 | 0 |
 | Low | 21 | 18 | 2 | 1 |
 
 ## 2. Scope
@@ -90,7 +90,7 @@ Release 0.4.0 resolved every finding that did not depend on a publication decisi
 | REL-05 | Medium | The release script did not re-check the tree after building, so a tag could differ from the packed files. | Resolved in 0.4.0. |
 | REL-06 | Medium | IBM Plex Mono licence missing; font licences were not shipped next to the fonts. | Resolved in 0.4.0. |
 | REL-07 | Medium | Repository metadata carried author details and internal references unsuitable for a public project. | Resolved: author metadata normalised, commit messages rewritten in English, references removed. |
-| REL-08 | Medium | Documentation, the standard and the default UI strings were Turkish only. | Partly resolved: English README and code comments; docs pages, `STANDARD.md` and the changelog are still Turkish. |
+| REL-08 | Medium | Documentation, the standard and the default UI strings were Turkish only. | Resolved: docs pages, part pages, `STANDARD.md`, the changelog and code comments are in English; UI strings default to English, with a Turkish set for `lang="tr"` pages. |
 | REL-09 | Low | Stray screenshots committed in a directory named `-`. | Resolved in 0.4.0. |
 
 ### 4.2 Packaging
@@ -191,7 +191,6 @@ These items were not defects at review time. They become part of the public cont
 | Item | Severity | Plan |
 |---|---|---|
 | REL-02 · mascot provenance | Blocker (accepted for 0.x) | Provenance note and originality review before 1.0. |
-| REL-08 · documentation language | Medium | Translate the docs pages, `STANDARD.md` and the changelog; ship an English `strings` preset. |
 | ENG-05 remainder | Low | A deep link stays locked for up to 4 s if the user scrolls only by dragging the scrollbar in browsers that fire no pointer event for it. |
 | ENG-15 · follow OS theme changes | Low | Decide the contract first. |
 | WID-04 remainder | Low | Card labels read only the first header row and ignore `rowspan`. |

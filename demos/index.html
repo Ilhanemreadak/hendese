@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parça galerisi · Hendese</title>
+<title>Part gallery · Hendese</title>
 <script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
 <link rel="stylesheet" href="../dist/hendese.css">
 <link rel="stylesheet" href="../docs/assets/docs.css">
@@ -27,160 +27,160 @@
   </defs>
 </svg>
 <div class="rulers" aria-hidden="true"></div>
-<a class="skip" href="#content">İçeriğe geç</a>
+<a class="skip" href="#content">Skip to content</a>
 <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
 <header class="topbar">
-  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
   <a class="brand" href="#top">Hendese</a>
   <span class="spacer"></span>
   <span class="cur" id="topbar-cur" aria-live="polite"></span>
-  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
 </header>
-<div class="shell"><aside class="rail" id="rail" aria-label="Bölümler">
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
   <div class="rail-head">
-    <a class="brand" href="index.html">Hendese<small>Parçalar · tek tek</small></a>
-    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
   </div>
-  <nav class="rail-nav" aria-label="İçindekiler">
+  <nav class="rail-nav" aria-label="Contents">
     <div class="nav-group">Belgeler</div>
-    <a class="nav-page" href="../docs/index.html">Başlangıç</a>
-    <a class="nav-page" href="index.html">Parça galerisi</a>
-    <div class="nav-group">Temel</div>
-    <a class="nav-page" href="renkler.html">Renkler</a>
-    <a class="nav-page" href="tipografi.html">Tipografi</a>
-    <a class="nav-page" href="olcu-ve-hareket.html">Ölçü ve hareket</a>
-    <a class="nav-page" href="ikonlar.html">İkonlar</a>
-    <a class="nav-page" href="iskelet.html">Sayfa iskeleti</a>
-    <div class="nav-group">Bileşenler</div>
-    <a class="nav-page" href="dugmeler.html">Düğmeler</a>
-    <a class="nav-page" href="rozetler.html">Rozetler</a>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Basics</div>
+    <a class="nav-page" href="colors.html">Colors</a>
+    <a class="nav-page" href="typography.html">Typography</a>
+    <a class="nav-page" href="scale-and-motion.html">Scale and motion</a>
+    <a class="nav-page" href="icons.html">Icons</a>
+    <a class="nav-page" href="page-shell.html">Page shell</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
     <a class="nav-page" href="callout.html">Callout</a>
-    <a class="nav-page" href="kod-blogu.html">Kod bloğu</a>
-    <a class="nav-page" href="diff-seridi.html">Diff şeridi</a>
-    <a class="nav-page" href="tablo.html">Tablo</a>
-    <a class="nav-page" href="tanim-listesi.html">Tanım listesi</a>
-    <a class="nav-page" href="adimlar.html">Adımlar</a>
-    <a class="nav-page" href="kontrol-listesi.html">Kontrol listesi</a>
-    <a class="nav-page" href="secim-gruplari.html">Seçim grupları</a>
-    <a class="nav-page" href="gosterge.html">Gösterge</a>
-    <a class="nav-page" href="degisken-kaydi.html">Değişken kaydı</a>
-    <a class="nav-page" href="damga.html">Damga</a>
-    <a class="nav-page" href="saha-defteri.html">Saha defteri</a>
-    <a class="nav-page" href="antet.html">Antet</a>
-    <a class="nav-page" href="form-alanlari.html">Form alanları</a>
-    <a class="nav-page" href="isaretler.html">Onay, radyo ve kaydırıcı</a>
-    <a class="nav-page" href="sekmeler.html">Sekmeler</a>
-    <a class="nav-page" href="diyalog.html">Diyalog</a>
-    <a class="nav-page" href="olcu-notu.html">Ölçü notu</a>
-    <a class="nav-page" href="bos-durum.html">Boş durum</a>
-    <div class="nav-group"><span lang="en">Blueprint</span></div>
-    <a class="nav-page" href="pafta.html">Pafta</a>
-    <a class="nav-page" href="cizim-birimleri.html">Çizim birimleri</a>
-    <a class="nav-page" href="cizgi-aileleri.html">Çizgi aileleri</a>
-    <a class="nav-page" href="istasyon-gezgini.html">İstasyon gezgini</a>
-    <a class="nav-page" href="izometrik-kutu.html">İzometrik kutu</a>
-    <a class="nav-page" href="olcu-aletleri.html">Ölçü aletleri</a>
-    <a class="nav-page" href="hat-ve-makas.html">Hat ve makas</a>
-    <a class="nav-page" href="ariza-panosu.html">Arıza panosu</a>
-    <a class="nav-page" href="koyu-sahne.html">Koyu sahne</a>
-    <div class="nav-group">Hareket</div>
-    <a class="nav-page" href="pin-sahnesi.html">Pin sahnesi</a>
-    <a class="nav-page" href="sticky-anlatim.html">Sticky anlatım</a>
-    <a class="nav-page" href="fig-sahnesi.html">Fig sahnesi</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html">Drawing units</a>
+    <a class="nav-page" href="line-families.html">Line families</a>
+    <a class="nav-page" href="station-explorer.html">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Motion</div>
+    <a class="nav-page" href="pin-scene.html">Pin scene</a>
+    <a class="nav-page" href="sticky-narrative.html">Sticky narrative</a>
+    <a class="nav-page" href="fig-scene.html">Fig scene</a>
     <a class="nav-page" href="hud.html">HUD</a>
-    <a class="nav-page" href="taslak-ve-belirme.html">Taslak ve belirme</a>
-    <a class="nav-page" href="dar-varyant.html">Dar varyant</a>
+    <a class="nav-page" href="sketch-and-reveal.html">Sketch and reveal</a>
+    <a class="nav-page" href="narrow-variant.html">Narrow variant</a>
     <div class="nav-group">Hoca</div>
-    <a class="nav-page" href="hoca-pozlar.html">Hoca · pozlar</a>
-    <a class="nav-page" href="hoca-davranis.html">Hoca · davranış</a>
+    <a class="nav-page" href="hoca-poses.html">Hoca · poses</a>
+    <a class="nav-page" href="hoca-behavior.html">Hoca · behavior</a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
-    <span class="pos" id="rail-pos">Giriş</span>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
   </div>
 </aside>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
 <main id="content">
 <div class="canvas">
-<section class="hero" id="top" data-section data-title="Giriş">
+<section class="hero" id="top" data-section data-title="Intro">
   <div class="hero-copy">
-    <p class="hero-label">Hendese · Parçalar</p>
-    <h1>Parça galerisi<em>Her parça kendi sayfasında.</em></h1>
-    <p class="intro">43 parça; her sayfada varyantlar, durumlar, gerçek bir kullanım bağlamı ve yapılmaması gerekenler. Örneklerin altındaki işaretleme kopyalanıp kullanılabilir.</p>
+    <p class="hero-label">Hendese · Parts</p>
+    <h1>Part gallery<em>Every part on its own page.</em></h1>
+    <p class="intro">43 parts; each page shows variants, states, a real context of use and what not to do. The markup under every example is ready to copy.</p>
   </div>
 </section>
 
-<article class="chapter" id="g1" data-section data-title="Temel">
-  <header class="ch-head"><p class="ch-num">01</p><h2>Temel</h2></header>
+<article class="chapter" id="g1" data-section data-title="Basics">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Basics</h2></header>
   <ul class="parts">
-    <li><a href="renkler.html"><b>Renkler</b><span>Yüzey, mürekkep, vurgu, durum, servis ve kod token'ları; <code>light-dark()</code>, tek renkle tema, ezme, yüksek kontrast ve zorunlu renk.</span></a></li>
-    <li><a href="tipografi.html"><b>Tipografi</b><span>Üç aile, <code>--fs-*</code> yazı ölçeği, başlık hiyerarşisi, metin içi öğeler, Türkçe büyük harf tuzağı ve piksel yazının sınırları.</span></a></li>
-    <li><a href="olcu-ve-hareket.html"><b>Ölçü ve hareket</b><span><code>--sp-*</code> boşluk cetveli, <code>--r-*</code>, kabuk ölçüleri, <code>--z-*</code>, tek hareket takımı (<code>--dur-1..5</code>, üç eğri) ve kalkan takma adlar; reduced-motion davranışı.</span></a></li>
-    <li><a href="ikonlar.html"><b>İkonlar</b><span>Sprite, boyutlar, bileşen içi kullanım, yeni ikon ekleme ve <code>aria</code> kuralları.</span></a></li>
-    <li><a href="iskelet.html"><b>Sayfa iskeleti</b><span>Topbar, ray, hero, bölüm başı, cetveller, okuma çubuğu, atlama bağlantısı, <code>[data-section]</code>, <code>col</code> kabı ve tam iskelet.</span></a></li>
+    <li><a href="colors.html"><b>Colors</b><span>Surface, ink, accent, status, service and code tokens; <code>light-dark()</code>, theming with a single color, overrides, high contrast and forced colors.</span></a></li>
+    <li><a href="typography.html"><b>Typography</b><span>Three families, the <code>--fs-*</code> type scale, heading hierarchy, inline elements, the Turkish uppercase trap and the limits of the pixel face.</span></a></li>
+    <li><a href="scale-and-motion.html"><b>Scale and motion</b><span>The <code>--sp-*</code> spacing ruler, <code>--r-*</code>, shell sizes, <code>--z-*</code>, a single motion set (<code>--dur-1..5</code>, three curves) and deprecated aliases; reduced-motion behavior.</span></a></li>
+    <li><a href="icons.html"><b>Icons</b><span>The sprite, sizes, use inside components, adding a new icon and <code>aria</code> rules.</span></a></li>
+    <li><a href="page-shell.html"><b>Page shell</b><span>Top bar, rail, hero, chapter head, rulers, reading bar, skip link, <code>[data-section]</code>, the <code>col</code> container and the full skeleton.</span></a></li>
   </ul>
 </article>
 
-<article class="chapter" id="g2" data-section data-title="Bileşenler">
-  <header class="ch-head"><p class="ch-num">02</p><h2>Bileşenler</h2></header>
+<article class="chapter" id="g2" data-section data-title="Components">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Components</h2></header>
   <ul class="parts">
-    <li><a href="dugmeler.html"><b>Düğmeler</b><span><code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; durumlar ve araç çubukları.</span></a></li>
-    <li><a href="rozetler.html"><b>Rozetler</b><span><code>.pill</code>, <code>.state</code>, <code>.chip</code>; <code>.s-*</code> durum ve servis renkleri, tablo hücresi, başlık ve liste içinde.</span></a></li>
-    <li><a href="callout.html"><b>Callout</b><span>Yedi tür <code>.co</code>; etiket seçimi, uzun gövde, adım ve metin içinde kullanım.</span></a></li>
-    <li><a href="kod-blogu.html"><b>Kod bloğu</b><span><code>.code</code> başlığı, elle vurgu (<code>.k .s .c .v</code>), kopyalama, uzun satır, açıklama ve yürütme imleci.</span></a></li>
-    <li><a href="diff-seridi.html"><b>Diff şeridi</b><span><code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; ayar değişikliği, bağımlılık yükseltmesi, veritabanı göçü.</span></a></li>
-    <li><a href="tablo.html"><b>Tablo</b><span><code>.tbl</code>, <code>.tbl.wide</code>; hücrede kod, rozet ve sayı, dar ekran etiketleri.</span></a></li>
-    <li><a href="tanim-listesi.html"><b>Tanım listesi</b><span><code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; servis kartı, alarm ayrıntısı, okuma metni.</span></a></li>
-    <li><a href="adimlar.html"><b>Adımlar</b><span><code>ol.steps</code> ve <code>.check</code>; işe başlama, olay müdahalesi ve sürüm prosedürü.</span></a></li>
-    <li><a href="kontrol-listesi.html"><b>Kontrol listesi</b><span><code>.runbook[data-store]</code>, <code>hendese:runbook</code> olayı; sürüm, olay ve işe başlama listeleri.</span></a></li>
-    <li><a href="secim-gruplari.html"><b>Seçim grupları</b><span><code>.choice</code> çipleri, <code>.choice.is-seg</code> segmentleri; klavye ve canlı bir yapılandırıcı.</span></a></li>
-    <li><a href="gosterge.html"><b>Gösterge</b><span><code>.readout</code> ve <code>.s-*</code> durumları; maliyet, düzenli ifade ve kapasite hesapları.</span></a></li>
-    <li><a href="degisken-kaydi.html"><b>Değişken kaydı</b><span><code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; adım adım ilerleyen ortam değişkenleri.</span></a></li>
-    <li><a href="damga.html"><b>Damga</b><span><code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; onay, sahiplik ve sürüm damgaları.</span></a></li>
-    <li><a href="saha-defteri.html"><b>Saha defteri</b><span><code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; olay, değişiklik ve ölçüm kayıtları.</span></a></li>
-    <li><a href="antet.html"><b>Antet</b><span><code>dl.titleblock</code>, <code>.tb-head</code>; tek başına, bir şekle bağlı ve sayfa başında.</span></a></li>
-    <li><a href="form-alanlari.html"><b>Form alanları</b><span><code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-unit</code>, <code>.field-row</code>; zorunlu, geçersiz ve devre dışı alanlar.</span></a></li>
-    <li><a href="isaretler.html"><b>Onay, radyo ve kaydırıcı</b><span><code>.field-check</code> onay kutusu ve radyo, kaydırıcı + <code>&lt;output&gt;</code>; çiplerle farkı.</span></a></li>
-    <li><a href="sekmeler.html"><b>Sekmeler</b><span><code>.tabs[data-tabs]</code>, <code>role="tab|tabpanel"</code>, klavye, <code>hendese:tab</code> olayı; yapılandırma biçimleri ve ortam ayarları.</span></a></li>
-    <li><a href="diyalog.html"><b>Diyalog</b><span><code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; dönen değer, adı yazarak silme onayı, antetli ve kayıtlı diyalog.</span></a></li>
-    <li><a href="olcu-notu.html"><b>Ölçü notu</b><span><code>popovertarget</code> + <code>.dim-tip[popover]</code>; metin içinde, alan başlığında, tablo başlığında; konum ve kapanma.</span></a></li>
-    <li><a href="bos-durum.html"><b>Boş durum</b><span><code>.empty</code>; tablo yerinde, pafta ve koyu sahne içinde; boş, yükleniyor ve hata durumlarının ayrımı.</span></a></li>
+    <li><a href="buttons.html"><b>Buttons</b><span><code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; states and toolbars.</span></a></li>
+    <li><a href="badges.html"><b>Badges</b><span><code>.pill</code>, <code>.state</code>, <code>.chip</code>; <code>.s-*</code> status and service colors, in a table cell, a heading and a list.</span></a></li>
+    <li><a href="callout.html"><b>Callout</b><span>Seven <code>.co</code> types; choosing a label, long bodies, use inside steps and body text.</span></a></li>
+    <li><a href="code-block.html"><b>Code block</b><span><code>.code</code> header, hand highlighting (<code>.k .s .c .v</code>), copy, long lines, annotations and an execution cursor.</span></a></li>
+    <li><a href="diff-gutter.html"><b>Diff gutter</b><span><code>.diff-src</code>, <code>.diff-gut</code>, <code>.diff-key</code>; a config change, a dependency upgrade, a database migration.</span></a></li>
+    <li><a href="table.html"><b>Table</b><span><code>.tbl</code>, <code>.tbl.wide</code>; code, badges and numbers in cells, narrow-screen labels.</span></a></li>
+    <li><a href="definition-list.html"><b>Definition list</b><span><code>dl.kv</code>, <code>.figcap</code>, <code>.prose</code>, <code>.mono</code>; service card, alarm details, reading text.</span></a></li>
+    <li><a href="steps.html"><b>Steps</b><span><code>ol.steps</code> and <code>.check</code>; onboarding, incident response and a release procedure.</span></a></li>
+    <li><a href="runbook.html"><b>Runbook</b><span><code>.runbook[data-store]</code>, the <code>hendese:runbook</code> event; release, incident and onboarding lists.</span></a></li>
+    <li><a href="choice-groups.html"><b>Choice groups</b><span><code>.choice</code> chips, <code>.choice.is-seg</code> segments; keyboard and a live configurator.</span></a></li>
+    <li><a href="readout.html"><b>Readout</b><span><code>.readout</code> and the <code>.s-*</code> statuses; cost, regular expression and capacity calculations.</span></a></li>
+    <li><a href="register.html"><b>Variable register</b><span><code>.register</code>, <code>.register-h</code>, <code>dl &gt; div.now</code>; environment variables advancing step by step.</span></a></li>
+    <li><a href="stamp.html"><b>Stamp</b><span><code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; approval, ownership and version stamps.</span></a></li>
+    <li><a href="survey-log.html"><b>Survey log</b><span><code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; incident, change and measurement records.</span></a></li>
+    <li><a href="title-block.html"><b>Title block</b><span><code>dl.titleblock</code>, <code>.tb-head</code>; on its own, attached to a figure and at the top of a page.</span></a></li>
+    <li><a href="form-fields.html"><b>Form fields</b><span><code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-unit</code>, <code>.field-row</code>; required, invalid and disabled fields.</span></a></li>
+    <li><a href="checkboxes.html"><b>Checkbox, radio and range</b><span><code>.field-check</code> checkboxes and radios, a range slider + <code>&lt;output&gt;</code>; how they differ from chips.</span></a></li>
+    <li><a href="tabs.html"><b>Tabs</b><span><code>.tabs[data-tabs]</code>, <code>role="tab|tabpanel"</code>, keyboard, the <code>hendese:tab</code> event; config formats and environment settings.</span></a></li>
+    <li><a href="dialog.html"><b>Dialog</b><span><code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; return value, type-the-name delete confirmation, dialogs with a title block and a register.</span></a></li>
+    <li><a href="dimension-note.html"><b>Dimension note</b><span><code>popovertarget</code> + <code>.dim-tip[popover]</code>; in running text, in a field heading, in a table header; position and dismissal.</span></a></li>
+    <li><a href="empty-state.html"><b>Empty state</b><span><code>.empty</code>; in place of a table, inside a sheet and a dark scene; telling empty, loading and error states apart.</span></a></li>
   </ul>
 </article>
 
 <article class="chapter" id="g3" data-section data-title="Blueprint">
   <header class="ch-head"><p class="ch-num">03</p><h2>Blueprint</h2></header>
   <ul class="parts">
-    <li><a href="pafta.html"><b>Pafta</b><span><code>.frame</code>, <code>.fig-sheet</code>, <code>.sheet</code>; başlık, yan sütun, harita ve alt alan.</span></a></li>
-    <li><a href="cizim-birimleri.html"><b>Çizim birimleri</b><span><code>.drawing</code>, <code>--aw</code>/<code>--ah</code>/<code>--u</code>, <code>.dl</code>, <code>.dim</code>, <code>.callout</code>, <code>.state</code>, <code>.oneliner</code>.</span></a></li>
-    <li><a href="cizgi-aileleri.html"><b>Çizgi aileleri</b><span><code>.ln-*</code> çizgi sınıfları, <code>.pencil</code>, <code>.fill-*</code> dolguları; lejant ve anlamlı kullanım.</span></a></li>
-    <li><a href="istasyon-gezgini.html"><b>İstasyon gezgini</b><span><code>[data-explorer]</code>, <code>.station</code>, <code>.st-detail</code> paneli ve <code>hendese:explore</code> olayı.</span></a></li>
-    <li><a href="izometrik-kutu.html"><b>İzometrik kutu</b><span>Ön yüz + iki paralelkenar; sunucu rafı, depolama katmanları, kuyruk ve düğüm havuzu.</span></a></li>
-    <li><a href="olcu-aletleri.html"><b>Ölçü aletleri</b><span>Regex kumpası, kadran ve doğrusal ölçer; istenen ile gerçek arasındaki fark.</span></a></li>
-    <li><a href="hat-ve-makas.html"><b>Hat ve makas</b><span>Ray, makas, hayalet kol ve filtre kolu; kanarya, mavi/yeşil ve yedek bölge.</span></a></li>
-    <li><a href="ariza-panosu.html"><b>Arıza panosu</b><span>Faz şeridi, bölge parantezleri, numaralı lambalar; istek yolu, servis sağlık matrisi, gece işi.</span></a></li>
-    <li><a href="koyu-sahne.html"><b>Koyu sahne</b><span><code>.scene-dark</code> ve <code>.scene-light</code>: kapsayıcı içinde token dönüşümü ve otomatik zemin; çizimler, pafta ve bileşenler.</span></a></li>
+    <li><a href="sheet.html"><b>Sheet</b><span><code>.frame</code>, <code>.fig-sheet</code>, <code>.sheet</code>; header, side column, map and footer.</span></a></li>
+    <li><a href="drawing-units.html"><b>Drawing units</b><span><code>.drawing</code>, <code>--aw</code>/<code>--ah</code>/<code>--u</code>, <code>.dl</code>, <code>.dim</code>, <code>.callout</code>, <code>.state</code>, <code>.oneliner</code>.</span></a></li>
+    <li><a href="line-families.html"><b>Line families</b><span><code>.ln-*</code> line classes, <code>.pencil</code>, <code>.fill-*</code> fills; legend and meaningful use.</span></a></li>
+    <li><a href="station-explorer.html"><b>Station explorer</b><span><code>[data-explorer]</code>, <code>.station</code>, the <code>.st-detail</code> panel and the <code>hendese:explore</code> event.</span></a></li>
+    <li><a href="isometric-box.html"><b>Isometric box</b><span>A front face + two parallelograms; server rack, storage tiers, queue and node pool.</span></a></li>
+    <li><a href="measuring-tools.html"><b>Measuring tools</b><span>A regex caliper, a dial and a linear gauge; the gap between desired and actual.</span></a></li>
+    <li><a href="track-and-switch.html"><b>Track and switch</b><span>Track, switch, ghost branch and filter arm; canary, blue/green and failover region.</span></a></li>
+    <li><a href="fault-panel.html"><b>Fault panel</b><span>Phase strip, zone brackets, numbered lamps; a request path, a service health matrix, a nightly job.</span></a></li>
+    <li><a href="dark-scene.html"><b>Dark scene</b><span><code>.scene-dark</code> and <code>.scene-light</code>: token switching inside a container and an automatic background; drawings, sheets and components.</span></a></li>
   </ul>
 </article>
 
-<article class="chapter" id="g4" data-section data-title="Hareket">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Hareket</h2></header>
+<article class="chapter" id="g4" data-section data-title="Motion">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Motion</h2></header>
   <ul class="parts">
-    <li><a href="pin-sahnesi.html"><b>Pin sahnesi</b><span><code>.pin</code> + <code>Hendese.pinScene()</code>: yapışkan pafta, kaydırmaya bağlı çizim, HUD ve Hoca talebi.</span></a></li>
-    <li><a href="sticky-anlatim.html"><b>Sticky anlatım</b><span><code>.sticky</code> + <code>Hendese.stickyScene()</code>: yapışkan şekil, <code>[data-beat]</code> adımları, <code>.on</code> / <code>.past</code>.</span></a></li>
-    <li><a href="fig-sahnesi.html"><b>Fig sahnesi</b><span><code>.fig-sheet</code> + <code>Hendese.figScene()</code>: etkileşimli çizim, sonuç satırı, zamanlı vuruş, <code>still</code> fonksiyonu.</span></a></li>
-    <li><a href="hud.html"><b>HUD</b><span><code>#hud</code> + <code>.hud-slot</code>: sahnelerin paylaştığı sabit gösterge, serbest alanlar, ilerleme çubuğu.</span></a></li>
-    <li><a href="taslak-ve-belirme.html"><b>Taslak ve belirme</b><span><code>.sketch-pending</code> → <code>.sketch</code> kalem taslağı ve saf CSS <code>[data-reveal]</code> / <code>[data-reveal="draw"]</code>.</span></a></li>
-    <li><a href="dar-varyant.html"><b>Dar varyant</b><span>Paketteki dar varyant: <code>fig</code> kabı, <code>--naw</code> / <code>--nah</code>, <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>; <code>api.aw</code> ile koordinat seçimi.</span></a></li>
+    <li><a href="pin-scene.html"><b>Pin scene</b><span><code>.pin</code> + <code>Hendese.pinScene()</code>: a sticky sheet, a scroll-driven drawing, a HUD and a Hoca request.</span></a></li>
+    <li><a href="sticky-narrative.html"><b>Sticky narrative</b><span><code>.sticky</code> + <code>Hendese.stickyScene()</code>: sticky figure, <code>[data-beat]</code> steps, <code>.on</code> / <code>.past</code>.</span></a></li>
+    <li><a href="fig-scene.html"><b>Fig scene</b><span><code>.fig-sheet</code> + <code>Hendese.figScene()</code>: interactive drawing, result line, timed beat, <code>still</code> function.</span></a></li>
+    <li><a href="hud.html"><b>HUD</b><span><code>#hud</code> + <code>.hud-slot</code>: a fixed readout shared by scenes, free-form fields, a progress bar.</span></a></li>
+    <li><a href="sketch-and-reveal.html"><b>Sketch and reveal</b><span>The <code>.sketch-pending</code> → <code>.sketch</code> pencil sketch, and pure CSS <code>[data-reveal]</code> / <code>[data-reveal="draw"]</code>.</span></a></li>
+    <li><a href="narrow-variant.html"><b>Narrow variant</b><span>The narrow variant in the package: the <code>fig</code> container, <code>--naw</code> / <code>--nah</code>, <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>; picking coordinates with <code>api.aw</code>.</span></a></li>
   </ul>
 </article>
 
 <article class="chapter" id="g5" data-section data-title="Hoca">
   <header class="ch-head"><p class="ch-num">05</p><h2>Hoca</h2></header>
   <ul class="parts">
-    <li><a href="hoca-pozlar.html"><b>Hoca · pozlar</b><span>Karakter ölçüleri, 21 pozun galerisi, <code>place()</code> oyun alanı ve balon kuralları.</span></a></li>
-    <li><a href="hoca-davranis.html"><b>Hoca · davranış</b><span>Kontrolcü: ev, sahne talebi, yürüme / sönme devri, <code>data-hoca="quiet"</code>, durgun kopyalar, <code>Hendese.hoca.dismiss()</code>.</span></a></li>
+    <li><a href="hoca-poses.html"><b>Hoca · poses</b><span>Character dimensions, a gallery of 21 poses, a <code>place()</code> playground and speech bubble rules.</span></a></li>
+    <li><a href="hoca-behavior.html"><b>Hoca · behavior</b><span>The controller: home, scene requests, walk / fade handover, <code>data-hoca="quiet"</code>, still copies, <code>Hendese.hoca.dismiss()</code>.</span></a></li>
   </ul>
 </article>
 </div>

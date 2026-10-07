@@ -1,148 +1,148 @@
-<!-- meta {"title":"Boş durum","group":"Bileşenler","order":210,"tagline":"Henüz veri yok; neden ve sıradaki adım.","intro":"<code>.empty</code> bir listenin, tablonun ya da şeklin yerinde durur ve orada neden bir şey olmadığını söyler. Kesikli çerçevelidir: dilde kesikli çizgi “henüz gerçek değil” demektir. Başlık bir <code>.chip</code>, gövde bir cümle; isteğe bağlı tek bir düğme.","summary":"<code>.empty</code>; tablo yerinde, pafta ve koyu sahne içinde; boş, yükleniyor ve hata durumlarının ayrımı.","facts":{"Sınıflar":"<code>.empty</code> · içinde <code>.chip</code>, <code>&lt;p&gt;</code>, <code>.btn</code>","Durum":"Yükleniyor: bölgeye <code>aria-busy=\"true\"</code> ve metin · Hata: <code>.co-trouble</code>","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Empty state","group":"Components","order":210,"tagline":"No data yet; why, and the next step.","intro":"<code>.empty</code> stands in place of a list, a table or a figure and says why there is nothing there. It has a dashed frame: in this language a dashed line means “not real yet”. The heading is a <code>.chip</code>, the body is one sentence, plus one optional button.","summary":"<code>.empty</code>; in place of a table, inside a sheet and a dark scene; telling empty, loading and error states apart.","facts":{"Classes":"<code>.empty</code> · inside it <code>.chip</code>, <code>&lt;p&gt;</code>, <code>.btn</code>","State":"Loading: <code>aria-busy=\"true\"</code> on the region plus text · Error: <code>.co-trouble</code>","JS":"Not needed"}} -->
 
-<chapter title="Anatomi" lead="Üç parça, alt alta ve sola yaslı: ne olmadığını adlandıran chip, nedenini ve sıradakini söyleyen cümle, isteğe bağlı tek eylem.">
-<demo label="Örnek · tam hal">
+<chapter title="Anatomy" lead="Three parts, stacked and left-aligned: a chip that names what is missing, a sentence that says why and what comes next, and one optional action.">
+<demo label="Example · complete">
 <div class="empty">
-  <p class="chip">Alarm yok</p>
-  <p>report-cron için henüz alarm tanımlanmadı. Başarısız çalışmalar şu an kimseye bildirilmiyor.</p>
-  <button class="btn" type="button"><svg><use href="#i-warn"/></svg>Alarm ekle</button>
+  <p class="chip">No alarms</p>
+  <p>No alarms have been defined for report-cron yet. Failed runs are not reported to anyone right now.</p>
+  <button class="btn" type="button"><svg><use href="#i-warn"/></svg>Add alarm</button>
 </div>
 </demo>
 <dl class="kv">
-  <dt><code>.empty</code></dt><dd>Kap. Kesikli çerçeve, iç boşluk ve sola yaslı ızgara; içindeki paragrafların payını sıfırlar.</dd>
-  <dt><code>.chip</code></dt><dd>Ne olmadığının adı: “Dağıtım yok”, “Sonuç yok”. İsim tamlaması, cümle değil.</dd>
-  <dt><code>&lt;p&gt;</code></dt><dd>Neden boş ve okur ne yapabilir. Bir iki cümle.</dd>
-  <dt><code>.btn</code></dt><dd>İsteğe bağlı. Boşluğu dolduracak tek eylem; okurun yetkisi yoksa çizilmez.</dd>
+  <dt><code>.empty</code></dt><dd>The container. Dashed frame, padding and a left-aligned grid; it resets the margins of the paragraphs inside.</dd>
+  <dt><code>.chip</code></dt><dd>The name of what is missing: “No deployments”, “No results”. A noun phrase, not a sentence.</dd>
+  <dt><code>&lt;p&gt;</code></dt><dd>Why it is empty and what the reader can do. One or two sentences.</dd>
+  <dt><code>.btn</code></dt><dd>Optional. The one action that fills the gap; not drawn if the reader lacks permission.</dd>
 </dl>
-<demo label="Örnek · düğmesiz, yalnız bilgi">
+<demo label="Example · no button, information only">
 <div class="empty">
-  <p class="chip">Değişiklik yok</p>
-  <p>Son dağıtımdan bu yana <code>main</code> dalına birleştirme olmadı.</p>
+  <p class="chip">No changes</p>
+  <p>Nothing has been merged into <code>main</code> since the last deployment.</p>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Tablonun yerinde" lead="Satırı olmayan bir tablo çizilmez: boş başlık satırı okura bir şey söylemez. Araç satırı (başlık, süzgeç) yerinde kalır, tablonun yerine .empty gelir.">
-<demo label="Örnek · süzgeç sonuç vermedi">
+<chapter title="In place of a table" lead="A table with no rows is not drawn: an empty header row tells the reader nothing. The toolbar (title, filter) stays; .empty takes the table's place.">
+<demo label="Example · the filter returned nothing">
 <div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
-  <p class="chip" style="margin-right:auto">Dağıtımlar · prod · son 7 gün</p>
+  <p class="chip" style="margin-right:auto">Deployments · prod · last 7 days</p>
   <div class="pillrow">
-    <button class="toggle-btn is-accent" type="button" aria-pressed="true">Yalnız başarısız</button>
-    <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Süzgeci kaldır</button>
+    <button class="toggle-btn is-accent" type="button" aria-pressed="true">Failed only</button>
+    <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Clear filter</button>
   </div>
 </div>
 <div class="empty">
-  <p class="chip">Sonuç yok</p>
-  <p>Son 7 günde prod'da başarısız dağıtım olmadı. Tüm dağıtımları görmek için süzgeci kaldırın.</p>
+  <p class="chip">No results</p>
+  <p>There were no failed deployments to prod in the last 7 days. Clear the filter to see all deployments.</p>
 </div>
 </demo>
-<div class="prose"><p>Süzgeçten gelen boşluk ile verinin hiç olmaması ayrı cümlelerdir. İlkinde okur süzgeci değiştirir; ikincisinde ilk kaydı oluşturur. Süzgeç sonucunda düğme süzgeci kaldırır, yeni kayıt açmaz.</p></div>
+<div class="prose"><p>An empty result from a filter and having no data at all need different sentences. In the first, the reader changes the filter; in the second, they create the first record. After a filter, the button clears the filter; it does not create a new record.</p></div>
 </chapter>
 
-<chapter title="Pafta ve koyu sahne içinde" lead="Bir şeklin verisi henüz yoksa pafta yine çizilir; çizimin yerinde .empty durur. Şekil adı ve yazısı kalır, okur neyin geleceğini bilir.">
-<demo label="Örnek · pafta, henüz ölçüm yok">
+<chapter title="Inside a sheet and a dark scene" lead="If a figure has no data yet, the sheet is still drawn; .empty sits where the drawing would be. The figure name and caption stay, so the reader knows what is coming.">
+<demo label="Example · sheet, no measurements yet">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">Şekil 3</p>
-  <p class="fig-cap">auth-gateway gecikme dağılımı</p>
+  <p class="chip">Figure 3</p>
+  <p class="fig-cap">auth-gateway latency distribution</p>
   <div class="empty">
-    <p class="chip">Ölçüm yok</p>
-    <p>Servis 4 dakika önce açıldı; ilk dağılım 15 dakikalık örnekten sonra çizilir.</p>
+    <p class="chip">No measurements</p>
+    <p>The service started 4 minutes ago; the first distribution is drawn after a 15-minute sample.</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 3.</b> İsteklerin gecikmesi, 10 ms'lik dilimlerle; eu-west-1.</figcaption>
+  <figcaption class="figcap"><b>Figure 3.</b> Request latency in 10 ms buckets; eu-west-1.</figcaption>
 </figure>
 </demo>
-<demo label="Örnek · koyu panel" view="scene-dark">
-<p class="chip">Açık olaylar · eu-central-1</p>
+<demo label="Example · dark panel" view="scene-dark">
+<p class="chip">Open incidents · eu-central-1</p>
 <div class="empty">
-  <p class="chip">Açık olay yok</p>
-  <p>Son olay 12 gün önce kapatıldı. Nöbet devrinde aktarılacak bir şey yok.</p>
-  <button class="btn" type="button"><svg><use href="#i-check"/></svg>Devri onayla</button>
+  <p class="chip">No open incidents</p>
+  <p>The last incident was closed 12 days ago. Nothing to hand over at the on-call handoff.</p>
+  <button class="btn" type="button"><svg><use href="#i-check"/></svg>Confirm handoff</button>
 </div>
 </demo>
 </chapter>
 
-<chapter title="Durumlar: boş, yükleniyor, hata" lead="Üçü aynı yerde durur ama aynı şeyi söylemez. Boş: istek başarılı, sonuç yok. Yükleniyor: henüz cevap yok. Hata: cevap gelmedi ya da bozuk. Hatayı boş durum gibi göstermek okuru yanıltır.">
-<demo label="Örnek · üç durum yan yana">
+<chapter title="States: empty, loading, error" lead="All three sit in the same place but say different things. Empty: the request succeeded and there is no result. Loading: no answer yet. Error: the answer never came or is broken. Showing an error as an empty state misleads the reader.">
+<demo label="Example · three states side by side">
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-6);align-items:start">
   <div>
-    <p class="chip">Boş</p>
+    <p class="chip">Empty</p>
     <div class="empty">
-      <p class="chip">Görev yok</p>
-      <p>Bu kümede zamanlanmış görev yok.</p>
+      <p class="chip">No jobs</p>
+      <p>There are no scheduled jobs on this cluster.</p>
     </div>
   </div>
   <div>
-    <p class="chip">Yükleniyor</p>
+    <p class="chip">Loading</p>
     <div aria-busy="true" style="margin:var(--sp-6) 0">
-      <p>Görevler yükleniyor…</p>
+      <p>Loading jobs…</p>
     </div>
   </div>
   <div>
-    <p class="chip">Hata</p>
-    <div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Görevler alınamadı</span><div class="co-body"><p>Küme API'si 503 döndü. Birkaç dakika sonra yeniden deneyin.</p></div></div>
+    <p class="chip">Error</p>
+    <div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Could not load jobs</span><div class="co-body"><p>The cluster API returned 503. Try again in a few minutes.</p></div></div>
   </div>
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>İşaretleme</th><th>Ne söyler</th></tr></thead>
+  <thead><tr><th>State</th><th>Markup</th><th>What it says</th></tr></thead>
   <tbody>
-    <tr><td>Boş</td><td><code>.empty</code></td><td>Neden yok ve okur ne yapabilir.</td></tr>
-    <tr><td>Yükleniyor</td><td>Bölgeye <code>aria-busy="true"</code> ve düz metin</td><td>Neyin beklendiği: “Görevler yükleniyor…”. Uzun sürerse neyi beklediğini (“3 bölgeden 2'si geldi”).</td></tr>
-    <tr><td>Hata</td><td><code>.co.co-trouble</code></td><td>Ne alınamadı, neden (biliniyorsa) ve ne yapılabilir.</td></tr>
+    <tr><td>Empty</td><td><code>.empty</code></td><td>Why there is nothing and what the reader can do.</td></tr>
+    <tr><td>Loading</td><td><code>aria-busy="true"</code> on the region plus plain text</td><td>What is being waited for: “Loading jobs…”. If it takes long, what it is still waiting for (“2 of 3 regions in”).</td></tr>
+    <tr><td>Error</td><td><code>.co.co-trouble</code></td><td>What could not be loaded, why (if known) and what can be done.</td></tr>
   </tbody>
 </table></div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">İskelet ve dönen simge yok</span><div class="co-body"><p>Paket bilerek iskelet satır ya da dönen simge içermez. İskelet, gelmemiş veriyi gerçekmiş gibi çizer; dilde düz çizgi gerçek demektir. Dönen simge ise hareket ister ve neyin beklendiğini söylemez. Bitmiş hal metindir: hareket kapalıyken, baskıda ve ekran okuyucuda aynı şeyi söyler.</p></div></div>
-<demo label="Örnek · yenile: yükleniyor, sonra boş">
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">No skeletons, no spinners</span><div class="co-body"><p>The package deliberately ships no skeleton rows or spinners. A skeleton draws data that has not arrived as if it were real; in this language a solid line means real. A spinner needs motion and does not say what is being waited for. The finished state is text: it says the same thing with motion off, in print and in a screen reader.</p></div></div>
+<demo label="Example · refresh: loading, then empty">
 <div id="bd-canli">
   <div class="pillrow">
-    <button class="btn" type="button" id="bd-yenile"><svg><use href="#i-reset"/></svg>Yenile</button>
-    <button class="btn" type="button" id="bd-hata">Hata ile dene</button>
+    <button class="btn" type="button" id="bd-yenile"><svg><use href="#i-reset"/></svg>Refresh</button>
+    <button class="btn" type="button" id="bd-hata">Try with an error</button>
   </div>
   <div id="bd-bolge" aria-live="polite">
     <div class="empty">
-      <p class="chip">Sürüm yok</p>
-      <p>web-api için bu hafta yayımlanmış sürüm yok.</p>
+      <p class="chip">No releases</p>
+      <p>No releases of web-api were published this week.</p>
     </div>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Bölge beklerken <code>aria-busy="true"</code> taşır; ekran okuyucu ara değişiklikleri okumaz, cevap gelince bölgeyi bir kez okur. Cevap gelince öznitelik kaldırılır.</p></div>
+<div class="prose"><p>While it waits, the region carries <code>aria-busy="true"</code>; the screen reader skips the intermediate changes and reads the region once when the answer arrives. The attribute is removed when the answer arrives.</p></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Boş durum neden boş olduğunu ve okurun sıradaki adımını söyler. “Veri yok” tek başına bir şey söylemez; hata da boşluk değildir.">
+<chapter title="Do / don't" lead="An empty state says why it is empty and what the reader can do next. “No data” on its own says nothing, and an error is not emptiness.">
 <div class="dodont">
-<demo label="Yap · neden ve sıradaki adım">
+<demo label="Do · reason and next step">
 <div class="empty">
-  <p class="chip">Gizli değer yok</p>
-  <p>staging ortamında gizli değer tanımlanmadı; servisler varsayılan yapılandırmayla çalışıyor.</p>
-  <button class="btn" type="button">Gizli değer ekle</button>
+  <p class="chip">No secrets</p>
+  <p>No secrets are defined in the staging environment; services run with the default configuration.</p>
+  <button class="btn" type="button">Add secret</button>
 </div>
 </demo>
-<demo label="Yapma · bağlamsız, hata boşluk gibi">
+<demo label="Don't · no context, an error shown as emptiness">
 <div class="empty">
-  <p class="chip">Veri yok</p>
-  <p>Gösterilecek bir şey yok.</p>
-  <button class="btn" type="button">Tamam</button>
+  <p class="chip">No data</p>
+  <p>Nothing to show.</p>
+  <button class="btn" type="button">OK</button>
 </div>
 </demo>
 </div>
 <div class="prose"><ul>
-  <li><b>Chip ne olmadığını adlandırır</b> (“Gizli değer yok”); “Veri yok” her yerde aynıdır ve bir şey söylemez.</li>
-  <li><b>Tek eylem.</b> Boşluğu dolduran eylem; “Tamam” gibi bir şey yapmayan düğme konmaz.</li>
-  <li><b>İstek başarısızsa boş durum değil, hata.</b> “Kayıt yok” görüp kayıtların gerçekten olmadığına inanan okur yanlış karar verir.</li>
-  <li><b>İskelet ve dönen simge yerine metin.</b> Yükleniyor durumu ne beklendiğini yazar.</li>
+  <li><b>The chip names what is missing</b> (“No secrets”); “No data” is the same everywhere and says nothing.</li>
+  <li><b>One action.</b> The action that fills the gap; no button that does nothing, like “OK”.</li>
+  <li><b>If the request failed, it is an error, not an empty state.</b> A reader who sees “No records” and believes there really are none makes the wrong decision.</li>
+  <li><b>Text instead of skeletons and spinners.</b> The loading state says what is being waited for.</li>
 </ul></div>
 </chapter>
 
 <script data-page>
-/* yenile → aria-busy metni → boş ya da hata */
+/* refresh → aria-busy text → empty or error */
 (function () {
   var bolge = document.getElementById('bd-bolge');
   var html = {
-    yuk: '<p>web-api sürümleri yükleniyor…</p>',
-    bos: '<div class="empty"><p class="chip">Sürüm yok</p><p>web-api için bu hafta yayımlanmış sürüm yok.</p></div>',
-    hata: '<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Sürümler alınamadı</span><div class="co-body"><p>Kayıt deposu 8 saniyede yanıt vermedi. Yenile ile yeniden deneyin.</p></div></div>'
+    yuk: '<p>Loading web-api releases…</p>',
+    bos: '<div class="empty"><p class="chip">No releases</p><p>No releases of web-api were published this week.</p></div>',
+    hata: '<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Could not load releases</span><div class="co-body"><p>The registry did not respond within 8 seconds. Try again with Refresh.</p></div></div>'
   };
   function run(son) {
     bolge.setAttribute('aria-busy', 'true');

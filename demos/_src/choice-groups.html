@@ -1,104 +1,104 @@
-<!-- meta {"title":"Seçim grupları","group":"Bileşenler","order":100,"tagline":"Yerel radyolar, iki görünüm.","intro":"<code>.choice</code> bir <code>&lt;fieldset&gt;</code> içindeki yerel radyo düğmelerini çip ya da segment olarak çizer. Davranış tarayıcınındır: klavye, form gönderimi ve ekran okuyucu desteği kendiliğinden gelir. Seçimin sonucu genellikle bir <code>.readout</code> satırına yazılır.","summary":"<code>.choice</code> çipleri, <code>.choice.is-seg</code> segmentleri; klavye ve canlı bir yapılandırıcı.","facts":{"Sınıflar":"<code>.choice</code> · <code>.choice.is-seg</code> · <code>legend</code> · <code>small</code>","Girdi":"<code>&lt;input type=\"radio\"&gt;</code>; çoklu seçim için <code>type=\"checkbox\"</code>","JS":"Gerekmez; sonucu yazmak için <code>change</code> dinleyicisi"}} -->
+<!-- meta {"title":"Choice groups","group":"Components","order":100,"tagline":"Native radios, two looks.","intro":"<code>.choice</code> draws the native radio buttons inside a <code>&lt;fieldset&gt;</code> as chips or segments. The behavior belongs to the browser: keyboard, form submission and screen reader support come for free. The result of a choice is usually written to a <code>.readout</code> line.","summary":"<code>.choice</code> chips, <code>.choice.is-seg</code> segments; keyboard and a live configurator.","facts":{"Classes":"<code>.choice</code> · <code>.choice.is-seg</code> · <code>legend</code> · <code>small</code>","Input":"<code>&lt;input type=\"radio\"&gt;</code>; <code>type=\"checkbox\"</code> for multiple choice","JS":"Not required; a <code>change</code> listener to write the result"}} -->
 
-<chapter title="Varyantlar" lead="Çip görünümünde seçili öğe kalın çerçeve alır; segment görünümünde dolgu. İkincil bilgi için etiketin içine small eklenir.">
-<demo label="Örnek · çip ve segment">
+<chapter title="Variants" lead="In the chip look, the selected item gets a heavy frame; in the segment look, a fill. Add small inside the label for secondary information.">
+<demo label="Example · chip and segment">
 <fieldset class="choice">
-  <legend>Bölge</legend>
+  <legend>Region</legend>
   <label><input type="radio" name="sg-bolge" value="eu-west-1" checked><span>eu-west-1 <small>18 ms</small></span></label>
   <label><input type="radio" name="sg-bolge" value="eu-central-1"><span>eu-central-1 <small>24 ms</small></span></label>
   <label><input type="radio" name="sg-bolge" value="us-east-1"><span>us-east-1 <small>96 ms</small></span></label>
 </fieldset>
 <fieldset class="choice is-seg">
-  <legend>Günlük seviyesi</legend>
+  <legend>Log level</legend>
   <label><input type="radio" name="sg-seviye" value="debug"><span>debug</span></label>
   <label><input type="radio" name="sg-seviye" value="info" checked><span>info</span></label>
   <label><input type="radio" name="sg-seviye" value="warn"><span>warn</span></label>
   <label><input type="radio" name="sg-seviye" value="error"><span>error</span></label>
 </fieldset>
 </demo>
-<div class="prose"><p>Çip, seçeneklerin kendisi bir ad ya da değer olduğunda (bölge, ortam, servis) iyi okunur. Segment, bir ölçeğin üzerinde konum seçildiğinde (seviye, aralık, boyut) daha doğaldır. İkisi de aynı işaretlemedir; fark yalnızca <code>.is-seg</code> sınıfıdır.</p></div>
+<div class="prose"><p>Chips read well when the options are themselves names or values (region, environment, service). Segments feel more natural when you pick a position on a scale (level, range, size). Both use the same markup; the only difference is the <code>.is-seg</code> class.</p></div>
 </chapter>
 
-<chapter title="Durumlar ve çoklu seçim" lead="Seçili, üzerine gelinmiş ve klavye odaklı. Aynı görünüm onay kutularıyla da çalışır; o zaman grup birden çok değer taşır.">
-<demo label="Örnek · onay kutulu çip grubu">
+<chapter title="States and multiple choice" lead="Selected, hovered and keyboard-focused. The same look works with checkboxes; then the group carries more than one value.">
+<demo label="Example · chip group with checkboxes">
 <fieldset class="choice" id="sg-kanal">
-  <legend>Alarm bildirimi</legend>
-  <label><input type="checkbox" name="sg-kanal" value="e-posta" checked><span>e-posta</span></label>
-  <label><input type="checkbox" name="sg-kanal" value="sohbet" checked><span>sohbet kanalı</span></label>
-  <label><input type="checkbox" name="sg-kanal" value="çağrı"><span>çağrı <small>yalnız kritik</small></span></label>
+  <legend>Alarm notification</legend>
+  <label><input type="checkbox" name="sg-kanal" value="email" checked><span>email</span></label>
+  <label><input type="checkbox" name="sg-kanal" value="chat" checked><span>chat channel</span></label>
+  <label><input type="checkbox" name="sg-kanal" value="pager"><span>pager <small>critical only</small></span></label>
   <label><input type="checkbox" name="sg-kanal" value="webhook"><span>webhook</span></label>
 </fieldset>
-<div class="readout" id="sg-kanal-out" aria-live="polite"><p><b>2 kanal</b>: e-posta, sohbet kanalı.</p></div>
+<div class="readout" id="sg-kanal-out" aria-live="polite"><p><b>2 channels</b>: email, chat.</p></div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>Tetikleyen</th><th>Görünüm</th></tr></thead>
+  <thead><tr><th>State</th><th>Trigger</th><th>Look</th></tr></thead>
   <tbody>
-    <tr><td>Seçili</td><td><code>input:checked</code></td><td>Çipte çift kalın çizim çerçevesi ve kalın metin; segmentte vurgu dolgusu.</td></tr>
-    <tr><td>Üzerinde</td><td><code>label:hover</code></td><td>Çerçeve çizim rengine döner.</td></tr>
-    <tr><td>Odak</td><td><code>input:focus-visible</code></td><td>Etiket kutusunun çevresinde 2px vurgu halkası.</td></tr>
+    <tr><td>Selected</td><td><code>input:checked</code></td><td>On a chip, a double heavy drawing frame and bold text; on a segment, an accent fill.</td></tr>
+    <tr><td>Hover</td><td><code>label:hover</code></td><td>The frame turns to the drawing color.</td></tr>
+    <tr><td>Focus</td><td><code>input:focus-visible</code></td><td>A 2px accent ring around the label box.</td></tr>
   </tbody>
 </table></div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Devre dışı yok</span><div class="co-body"><p>Paket <code>disabled</code> için ayrı bir görünüm tanımlamaz; devre dışı bir seçenek ötekilerle aynı görünür. Kullanılamayan seçeneği listeden çıkarın ve nedenini gruba yakın bir satırda yazın.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">No disabled look</span><div class="co-body"><p>The package defines no separate look for <code>disabled</code>; a disabled option looks the same as the others. Remove an unavailable option from the list and give the reason on a line near the group.</p></div></div>
 </chapter>
 
-<chapter title="Klavye" lead="Hiçbir betik klavye davranışı eklemez; aşağıdakilerin hepsi yerel radyo ve onay kutusundan gelir.">
+<chapter title="Keyboard" lead="No script adds keyboard behavior; everything below comes from the native radio and checkbox.">
 <div class="tbl"><table>
-  <thead><tr><th>Tuş</th><th>Radyo grubu</th><th>Onay kutusu grubu</th></tr></thead>
+  <thead><tr><th>Key</th><th>Radio group</th><th>Checkbox group</th></tr></thead>
   <tbody>
-    <tr><td><code>Tab</code></td><td>Gruba tek durakla girer, seçili seçeneğe odaklanır; bir sonraki Tab gruptan çıkar.</td><td>Her kutu ayrı bir duraktır.</td></tr>
-    <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>Odağı taşır ve aynı anda seçer; <code>change</code> olayı her adımda tetiklenir.</td><td>Etkisi yok.</td></tr>
-    <tr><td><code>Boşluk</code></td><td>Odaktaki seçeneği seçer.</td><td>Odaktaki kutuyu açar ya da kapatır.</td></tr>
+    <tr><td><code>Tab</code></td><td>Enters the group in a single stop and focuses the selected option; the next Tab leaves the group.</td><td>Each box is its own stop.</td></tr>
+    <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>Moves focus and selects at the same time; the <code>change</code> event fires on every step.</td><td>No effect.</td></tr>
+    <tr><td><code>Space</code></td><td>Selects the focused option.</td><td>Toggles the focused box.</td></tr>
   </tbody>
 </table></div>
-<demo label="Örnek · Tab ile girin, oklarla gezin" nocode>
+<demo label="Example · Tab in, move with the arrows" nocode>
 <fieldset class="choice is-seg" id="sg-aralik">
-  <legend>Grafik aralığı</legend>
-  <label><input type="radio" name="sg-aralik" value="1 saat" checked><span>1 sa</span></label>
-  <label><input type="radio" name="sg-aralik" value="6 saat"><span>6 sa</span></label>
-  <label><input type="radio" name="sg-aralik" value="24 saat"><span>24 sa</span></label>
-  <label><input type="radio" name="sg-aralik" value="7 gün"><span>7 g</span></label>
+  <legend>Chart range</legend>
+  <label><input type="radio" name="sg-aralik" value="1 hour" checked><span>1 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="6 hours"><span>6 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="24 hours"><span>24 h</span></label>
+  <label><input type="radio" name="sg-aralik" value="7 days"><span>7 d</span></label>
 </fieldset>
-<div class="readout" id="sg-aralik-out" aria-live="polite"><p>Son <b>1 saat</b> · 60 nokta, 1 dakikalık çözünürlük.</p></div>
+<div class="readout" id="sg-aralik-out" aria-live="polite"><p>Last <b>1 hour</b> · 60 points, 1-minute resolution.</p></div>
 </demo>
-<div class="prose"><p>Ok tuşları seçimi hemen değiştirdiği için, her <code>change</code> olayında ağır bir iş (ağ isteği, büyük yeniden çizim) başlatılıyorsa kısa bir gecikmeyle birleştirin; okuyucu dört aralığı geçerken dört istek beklemez.</p></div>
+<div class="prose"><p>Arrow keys change the selection right away, so if each <code>change</code> event starts heavy work (a network request, a big redraw), debounce it with a short delay; a reader passing through four ranges shouldn't wait for four requests.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Birkaç grup bir yapılandırıcıyı oluşturur; sonuç satırı her değişiklikte yeniden hesaplanır ve riskli bileşimi kırmızıyla söyler.">
-<demo label="Örnek · kuyruk işçisi yapılandırıcısı">
+<chapter title="In context" lead="A few groups make up a configurator; the result line is recalculated on every change and calls out a risky combination in red.">
+<demo label="Example · queue worker configurator">
 <div id="sg-isci">
   <fieldset class="choice">
-    <legend>Ortam</legend>
+    <legend>Environment</legend>
     <label><input type="radio" name="sg-ortam" value="dev"><span>dev</span></label>
     <label><input type="radio" name="sg-ortam" value="staging" checked><span>staging</span></label>
     <label><input type="radio" name="sg-ortam" value="prod"><span>prod</span></label>
   </fieldset>
   <fieldset class="choice">
-    <legend>Makine</legend>
+    <legend>Machine</legend>
     <label><input type="radio" name="sg-makine" value="small" checked><span>small <small>2 vCPU</small></span></label>
     <label><input type="radio" name="sg-makine" value="medium"><span>medium <small>4 vCPU</small></span></label>
     <label><input type="radio" name="sg-makine" value="large"><span>large <small>8 vCPU</small></span></label>
   </fieldset>
   <fieldset class="choice is-seg">
-    <legend>Kopya</legend>
+    <legend>Replicas</legend>
     <label><input type="radio" name="sg-kopya" value="1" checked><span>1</span></label>
     <label><input type="radio" name="sg-kopya" value="2"><span>2</span></label>
     <label><input type="radio" name="sg-kopya" value="3"><span>3</span></label>
     <label><input type="radio" name="sg-kopya" value="6"><span>6</span></label>
   </fieldset>
   <fieldset class="choice">
-    <legend>Seçenekler</legend>
-    <label><input type="checkbox" name="sg-ek" value="spot"><span>spot makine <small>−%60</small></span></label>
-    <label><input type="checkbox" name="sg-ek" value="otomatik"><span>otomatik ölçekleme</span></label>
+    <legend>Options</legend>
+    <label><input type="checkbox" name="sg-ek" value="spot"><span>spot machine <small>−60%</small></span></label>
+    <label><input type="checkbox" name="sg-ek" value="auto"><span>autoscaling</span></label>
   </fieldset>
-  <div class="readout" id="sg-isci-out" aria-live="polite"><p>Hesaplanıyor…</p></div>
+  <div class="readout" id="sg-isci-out" aria-live="polite"><p>Calculating…</p></div>
 </div>
 </demo>
-<demo label="Örnek · koyu panel başlığında segment">
+<demo label="Example · segment in a dark panel header">
 <div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:16px 18px">
   <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px">
-    <p class="chip" style="margin-bottom:14px"><span lang="en">web-api</span> · p95 gecikme</p>
+    <p class="chip" style="margin-bottom:14px"><span lang="en">web-api</span> · p95 latency</p>
     <fieldset class="choice is-seg" style="margin:0">
-      <legend>Yüzdelik</legend>
+      <legend>Percentile</legend>
       <label><input type="radio" name="sg-yuzde" value="p50"><span>p50</span></label>
       <label><input type="radio" name="sg-yuzde" value="p95" checked><span>p95</span></label>
       <label><input type="radio" name="sg-yuzde" value="p99"><span>p99</span></label>
@@ -108,62 +108,62 @@
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Az ve kısa seçenek segmente, uzun ve çok seçenek çiplere ya da bir listeye gider. Grubun adı her zaman legend ile verilir.">
+<chapter title="Do / don't" lead="A few short options go in a segment; many or long options go in chips or a list. Always name the group with a legend.">
 <div class="dodont">
-<demo label="Yap · adlı grup, kısa seçenek">
+<demo label="Do · named group, short options">
 <fieldset class="choice is-seg">
-  <legend>Önbellek süresi</legend>
-  <label><input type="radio" name="sg-ttl-yap" value="1 dk"><span>1 dk</span></label>
-  <label><input type="radio" name="sg-ttl-yap" value="5 dk" checked><span>5 dk</span></label>
-  <label><input type="radio" name="sg-ttl-yap" value="1 sa"><span>1 sa</span></label>
+  <legend>Cache TTL</legend>
+  <label><input type="radio" name="sg-ttl-yap" value="1 min"><span>1 min</span></label>
+  <label><input type="radio" name="sg-ttl-yap" value="5 min" checked><span>5 min</span></label>
+  <label><input type="radio" name="sg-ttl-yap" value="1 h"><span>1 h</span></label>
 </fieldset>
 </demo>
-<demo label="Yapma · adsız grup, uzun seçenekler">
+<demo label="Don't · unnamed group, long options">
 <fieldset class="choice is-seg">
-  <legend>Seç</legend>
-  <label><input type="radio" name="sg-ttl-yapma" value="a"><span>önbelleği hiç kullanma</span></label>
-  <label><input type="radio" name="sg-ttl-yapma" value="b" checked><span>yalnızca okuma isteklerinde kullan</span></label>
-  <label><input type="radio" name="sg-ttl-yapma" value="c"><span>her şeyi önbellekten ver ve arkada yenile</span></label>
+  <legend>Choose</legend>
+  <label><input type="radio" name="sg-ttl-yapma" value="a"><span>never use the cache</span></label>
+  <label><input type="radio" name="sg-ttl-yapma" value="b" checked><span>use it only for read requests</span></label>
+  <label><input type="radio" name="sg-ttl-yapma" value="c"><span>serve everything from cache and refresh in the background</span></label>
 </fieldset>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>Ekran okuyucu grubu <code>legend</code> metniyle duyurur; legend görünür olmalı ve ne seçildiğini söylemelidir (“Seç” değil “Önbellek süresi”). Her grubun <code>name</code> değeri sayfada benzersizdir. Sonuç satırına <code>aria-live="polite"</code> verin ki ok tuşuyla yapılan değişiklik de okunsun.</p></div></div>
-<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">JS yokken</span><div class="co-body"><p>Grup yalnızca bir betiğe sonuç yazdırıyorsa JS kapalıyken anlamsızdır; sayfa CSS'inde gizleyin:</p></div></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A screen reader announces the group by its <code>legend</code> text; the legend should be visible and say what is being chosen (“Cache TTL”, not “Choose”). Each group's <code>name</code> is unique on the page. Give the result line <code>aria-live="polite"</code> so changes made with the arrow keys are read too.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Without JS</span><div class="co-body"><p>If the group only makes a script write a result, it means nothing with JS off; hide it in the page CSS:</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
 </chapter>
 
 <script data-page>
 function sgVal(name) { var i = document.querySelector('input[name="' + name + '"]:checked'); return i ? i.value : ''; }
 function sgAll(name) { return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
-/* bildirim kanalları (onay kutuları) */
+/* notification channels (checkboxes) */
 (function () {
   var out = document.getElementById('sg-kanal-out');
   function show() {
     var v = sgAll('sg-kanal');
     out.classList.toggle('bad', !v.length);
-    out.innerHTML = v.length ? '<p><b>' + v.length + ' kanal</b>: ' + v.join(', ') + '.</p>' : '<p><b>Kanal yok.</b> Alarm tetiklense de kimseye ulaşmaz.</p>';
+    out.innerHTML = v.length ? '<p><b>' + v.length + (v.length === 1 ? ' channel' : ' channels') + '</b>: ' + v.join(', ') + '.</p>' : '<p><b>No channels.</b> Even if the alarm fires, it reaches no one.</p>';
   }
   document.getElementById('sg-kanal').addEventListener('change', show); show();
 })();
-/* grafik aralığı */
+/* chart range */
 (function () {
   var out = document.getElementById('sg-aralik-out');
-  var info = { '1 saat': '60 nokta, 1 dakikalık çözünürlük', '6 saat': '72 nokta, 5 dakikalık çözünürlük', '24 saat': '96 nokta, 15 dakikalık çözünürlük', '7 gün': '168 nokta, 1 saatlik çözünürlük' };
-  document.getElementById('sg-aralik').addEventListener('change', function () { var v = sgVal('sg-aralik'); out.innerHTML = '<p>Son <b>' + v + '</b> · ' + info[v] + '.</p>'; });
+  var info = { '1 hour': '60 points, 1-minute resolution', '6 hours': '72 points, 5-minute resolution', '24 hours': '96 points, 15-minute resolution', '7 days': '168 points, 1-hour resolution' };
+  document.getElementById('sg-aralik').addEventListener('change', function () { var v = sgVal('sg-aralik'); out.innerHTML = '<p>Last <b>' + v + '</b> · ' + info[v] + '.</p>'; });
 })();
-/* kuyruk işçisi yapılandırıcısı: aylık tahmini maliyet */
+/* queue worker configurator: estimated monthly cost */
 (function () {
   var out = document.getElementById('sg-isci-out'), saat = { small: 0.085, medium: 0.17, large: 0.34 };
   function show() {
     var env = sgVal('sg-ortam'), m = sgVal('sg-makine'), n = +sgVal('sg-kopya'), ek = sgAll('sg-ek');
-    var spot = ek.indexOf('spot') > -1, auto = ek.indexOf('otomatik') > -1;
+    var spot = ek.indexOf('spot') > -1, auto = ek.indexOf('auto') > -1;
     var aylik = saat[m] * 730 * n * (spot ? 0.4 : 1);
     var risk = env === 'prod' && (n === 1 || spot);
     out.classList.toggle('bad', risk);
     out.classList.toggle('ok', !risk && env === 'prod');
-    out.innerHTML = '<p><b>' + env + '</b> · ' + n + ' × ' + m + (spot ? ' (spot)' : '') + (auto ? ', otomatik ölçekleme açık' : '') +
-      ' · tahmini <b>' + aylik.toFixed(0) + ' $ / ay</b>.' +
-      (risk ? ' Üretimde ' + (n === 1 ? 'tek kopya bir yeniden başlatmada kuyruğu durdurur.' : 'spot makine her an geri alınabilir; işler yarıda kalır.') : env === 'prod' ? ' Üretim için uygun.' : '') + '</p>';
+    out.innerHTML = '<p><b>' + env + '</b> · ' + n + ' × ' + m + (spot ? ' (spot)' : '') + (auto ? ', autoscaling on' : '') +
+      ' · estimated <b>$' + aylik.toFixed(0) + ' / month</b>.' +
+      (risk ? ' In production, ' + (n === 1 ? 'a single replica stops the queue on any restart.' : 'a spot machine can be reclaimed at any moment; jobs are cut off halfway.') : env === 'prod' ? ' Fit for production.' : '') + '</p>';
   }
   document.getElementById('sg-isci').addEventListener('change', show); show();
 })();

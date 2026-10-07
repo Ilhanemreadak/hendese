@@ -523,10 +523,10 @@
     --ease-out:cubic-bezier(.2,.7,.2,1);
     --ease-in-out:cubic-bezier(.45,0,.55,1);
     --ease-snap:cubic-bezier(.3,1.6,.55,1);
-    --str-selected:"SEÇİLİ";
-    --str-station:"İstasyon";
-    --str-error:"Hata:";
-    --str-required:" · zorunlu";
+    --str-selected:"SELECTED";
+    --str-station:"Station";
+    --str-error:"Error:";
+    --str-required:" · required";
     --bg: light-dark(#f4f4ef, #0f1318);
     --surface: light-dark(#ffffff, #161b22);
     --surface-2: light-dark(#f8f8f4, #1a2029);
@@ -572,6 +572,12 @@
     --code-c:#7f8ca3;
     --code-v:#b8f2a6;
     --shadow-drawer:0 0 0 1px var(--line),20px 0 60px -20px rgba(0,0,0,.6);
+  }
+  :root:lang(tr) {
+    --str-selected:"SEÇİLİ";
+    --str-station:"İstasyon";
+    --str-error:"Hata:";
+    --str-required:" · zorunlu";
   }
   @media (prefers-contrast: more) {
     :root {

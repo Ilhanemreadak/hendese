@@ -11,9 +11,7 @@ Hendese targets **WCAG 2.2 level AA** for every component and docs page.
 
 ## Known gaps
 
-Open items and their status are listed in the [pre-release review](docs/audits/2026-10-pre-release-review.md#6-open-items). The main ones:
-- right-to-left layouts are not yet supported;
-- the documentation pages are currently in Turkish only.
+Open items and their status are listed in the [pre-release review](docs/audits/2026-10-pre-release-review.md#6-open-items). The main one: right-to-left layouts are not yet supported.
 
 ## Reporting a barrier
 

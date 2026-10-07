@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colors · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Basics</div>
+    <a class="nav-page" href="colors.html" aria-current="page">Colors</a>
+    <a class="nav-page" href="typography.html">Typography</a>
+    <a class="nav-page" href="scale-and-motion.html">Scale and motion</a>
+    <a class="nav-page" href="icons.html">Icons</a>
+    <a class="nav-page" href="page-shell.html">Page shell</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Surfaces and ink</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Accent, drawing and pencil</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Status colors</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Service and code colors</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Theme mechanism</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Contrast</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Basics</p>
+    <h1>Colors<em>Two themes, one line.</em></h1>
+    <p class="intro">Every color is defined once in <code>tokens.css</code> with <code>light-dark(light, dark)</code>. Components never write colors; they only read tokens, so adapting the theme comes down to overriding a few variables.</p>
+<dl class="kv"><dt>Tokens</dt><dd><code>--bg</code> · <code>--surface*</code> · <code>--paper</code> · <code>--scene-bg</code> <code>--scene-shade</code> · <code>--ink*</code> · <code>--accent*</code> · <code>--draw</code> · <code>--pencil*</code> · <code>--ok</code> <code>--warn</code> <code>--bad</code> <code>--sec</code> (+ <code>-soft</code>) · <code>--code-*</code></dd><dt>Theme</dt><dd><code>html[data-theme="light|dark"]</code> · <code>.scene-dark</code> · <code>.scene-light</code></dd><dt>JS</dt><dd>Not needed; the <code>[data-theme-toggle]</code> theme button works on its own</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Surfaces and ink">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Surfaces and ink</h2><p class="lead">Background, card, paper and scene; three ink tones on top of them. In the dark theme the surfaces lighten layer by layer, and because lines are transparent they keep the same weight on every background.</p></header>
+<div class="demo">
+  <span class="demo-label">Palette · surfaces and text</span>
+  <div class="demo-view">
+<div class="swatches">
+  <div style="--c:var(--bg)"><i></i><span>--bg<small>page background, rail</small></span></div>
+  <div style="--c:var(--surface)"><i></i><span>--surface<small>card, table</small></span></div>
+  <div style="--c:var(--surface-2)"><i></i><span>--surface-2<small>hover</small></span></div>
+  <div style="--c:var(--surface-3)"><i></i><span>--surface-3<small>inline code, track</small></span></div>
+  <div style="--c:var(--paper)"><i></i><span>--paper<small>title block, chip, register</small></span></div>
+  <div style="--c:var(--scene-bg)"><i></i><span>--scene-bg<small>sheet background</small></span></div>
+  <div style="--c:var(--scene-shade)"><i></i><span>--scene-shade<small>isometric side face</small></span></div>
+  <div style="--c:var(--line)"><i></i><span>--line<small>thin divider</small></span></div>
+  <div style="--c:var(--line-2)"><i></i><span>--line-2<small>visible border</small></span></div>
+  <div style="--c:var(--ink)"><i></i><span>--ink<small>headings, body</small></span></div>
+  <div style="--c:var(--ink-2)"><i></i><span>--ink-2<small>description, lead</small></span></div>
+  <div style="--c:var(--ink-3)"><i></i><span>--ink-3<small>labels, captions</small></span></div>
+</div>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · layers together</span>
+  <div class="demo-view">
+<div style="background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:18px">
+  <div style="background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);padding:var(--sp-7) var(--sp-8);max-width:540px">
+    <p class="chip">Migration 0042 · <span lang="en">billing-db</span></p>
+    <p style="margin:var(--sp-2) 0 var(--sp-1);color:var(--ink)"><b>Add a <code>region</code> column to the orders table</b></p>
+    <p style="margin:0 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)">The column is added with null values; the backfill runs in a separate job, in batches of 5,000 rows.</p>
+    <div style="background:var(--paper);border:1px dashed var(--pencil);padding:var(--sp-3) var(--sp-5);font:500 var(--fs-sm)/1.5 var(--font-mono);color:var(--ink-3)">eu-west-1 · estimated lock time: none · rollback: DROP COLUMN</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>background:var(--bg);border:1px solid var(--line);border-radius:var(--r-md);padding:18px</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);padding:var(--sp-7) var(--sp-8);max-width:540px</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Migration 0042 · &lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;billing-db&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-1);color:var(--ink)</span>"&gt;&lt;<span class='k'>b</span>&gt;Add a &lt;<span class='k'>code</span>&gt;region&lt;/<span class='k'>code</span>&gt; column to the orders table&lt;/<span class='k'>b</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;The column is added with null values; the backfill runs in a separate job, in batches of 5,000 rows.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>background:var(--paper);border:1px dashed var(--pencil);padding:var(--sp-3) var(--sp-5);font:500 var(--fs-sm)/1.5 var(--font-mono);color:var(--ink-3)</span>"&gt;eu-west-1 · estimated lock time: none · rollback: DROP COLUMN&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · sheet background, paper and side face</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-5)">
+  <div class="scene-light" style="padding:var(--sp-6);border-radius:var(--r-md)">
+    <p class="chip"><span lang="en">.scene-light</span></p>
+    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="Isometric server box: the top face is paper, the side face one tone darker">
+      <path class="ln-draw fill-paper" d="M40 50L130 20L220 50L130 80Z"/>
+      <path class="ln-draw fill-shade" d="M40 50V110L130 140V80Z"/>
+      <path class="ln-draw fill-paper" d="M130 80V140L220 110V50Z"/>
+      <path class="ln-pencil" d="M150 98H200M150 110H200"/>
+    </svg>
+  </div>
+  <div class="scene-dark" style="padding:var(--sp-6);border-radius:var(--r-md)">
+    <p class="chip">.scene-dark</p>
+    <svg viewBox="0 0 260 150" width="260" height="150" fill="none" role="img" aria-label="The same box on a dark sheet: the paper face stands out from the background">
+      <path class="ln-draw fill-paper" d="M40 50L130 20L220 50L130 80Z"/>
+      <path class="ln-draw fill-shade" d="M40 50V110L130 140V80Z"/>
+      <path class="ln-draw fill-paper" d="M130 80V140L220 110V50Z"/>
+      <path class="ln-pencil" d="M150 98H200M150 110H200"/>
+    </svg>
+  </div>
+</div>
+<p class="figcap"><b>Figure 1.</b> The top and right faces are <code>--paper</code>, the left face <code>--scene-shade</code>. In 0.2 the dark <code>--paper</code> was lightened to <code>#1a2331</code>; the old <code>#141b25</code> could not be told apart from the sheet background (<code>#121a27</code>).</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-5)</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-light</span>" style="<span class='s'>padding:var(--sp-6);border-radius:var(--r-md)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;.scene-light&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 260 150</span>" width="<span class='s'>260</span>" height="<span class='s'>150</span>" fill="<span class='s'>none</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>Isometric server box: the top face is paper, the side face one tone darker</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-paper</span>" d="<span class='s'>M40 50L130 20L220 50L130 80Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M40 50V110L130 140V80Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-paper</span>" d="<span class='s'>M130 80V140L220 110V50Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M150 98H200M150 110H200</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-6);border-radius:var(--r-md)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;.scene-dark&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 260 150</span>" width="<span class='s'>260</span>" height="<span class='s'>150</span>" fill="<span class='s'>none</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>The same box on a dark sheet: the paper face stands out from the background</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-paper</span>" d="<span class='s'>M40 50L130 20L220 50L130 80Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-shade</span>" d="<span class='s'>M40 50V110L130 140V80Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw fill-paper</span>" d="<span class='s'>M130 80V140L220 110V50Z</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M150 98H200M150 110H200</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 1.&lt;/<span class='k'>b</span>&gt; The top and right faces are &lt;<span class='k'>code</span>&gt;--paper&lt;/<span class='k'>code</span>&gt;, the left face &lt;<span class='k'>code</span>&gt;--scene-shade&lt;/<span class='k'>code</span>&gt;. In 0.2 the dark &lt;<span class='k'>code</span>&gt;--paper&lt;/<span class='k'>code</span>&gt; was lightened to &lt;<span class='k'>code</span>&gt;#1a2331&lt;/<span class='k'>code</span>&gt;; the old &lt;<span class='k'>code</span>&gt;#141b25&lt;/<span class='k'>code</span>&gt; could not be told apart from the sheet background (&lt;<span class='k'>code</span>&gt;#121a27&lt;/<span class='k'>code</span>&gt;).&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The rule is simple: <code>--ink</code> for everything that must be read, <code>--ink-2</code> for the sentence that explains it, <code>--ink-3</code> only for labels and metadata. Setting a paragraph in <code>--ink-3</code> does not make it "minor"; it makes it "unreadable".</p>
+<p><code>--scene-shade</code> is a mix, not a color: 8% of <code>--draw</code> blended into the sheet background (<code>.fill-shade</code>). <code>.scene-dark</code> and <code>.scene-light</code> give the scene background automatically to a container that has no <code>.frame-bg</code> of its own.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Accent, drawing and pencil">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Accent, drawing and pencil</h2><p class="lead">The accent marks interaction: links, focus and selection. Drawing and pencil are the lines on a sheet; ink shows what is real, the dashed pencil shows what is planned.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · DNS cutover draft</span>
+  <div class="demo-view">
+<svg viewBox="0 0 640 200" width="640" height="200" fill="none" role="img" aria-label="The resolver routes to eu-west-1 today; a path to eu-central-1 is planned">
+  <path class="pencil-2" d="M0 40H640M0 80H640M0 120H640M0 160H640"/>
+  <rect class="ln-draw fill-paper" x="20" y="70" width="150" height="60"/>
+  <text class="dim-t" x="38" y="105">api.example.dev</text>
+  <path class="ln-draw" d="M170 92H250V48H300"/>
+  <path class="ln-ghost" d="M170 108H250V152H300"/>
+  <rect class="ln-draw fill-paper" x="300" y="20" width="210" height="56"/>
+  <text class="dim-t" x="318" y="53">eu-west-1 · weight 100</text>
+  <rect class="ln-ghost" x="300" y="124" width="210" height="56"/>
+  <text class="dim-t" x="318" y="157">eu-central-1 · weight 0</text>
+  <path class="dim" d="M540 20V180M534 20H546M534 180H546"/>
+  <text class="dim-t" x="554" y="104">TTL 300 s</text>
+</svg>
+<p class="figcap"><b>Figure 2.</b> Solid ink shows today's path; the dashed pencil shows the planned second region. What the drawing says is in this caption too.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 640 200</span>" width="<span class='s'>640</span>" height="<span class='s'>200</span>" fill="<span class='s'>none</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>The resolver routes to eu-west-1 today; a path to eu-central-1 is planned</span>"&gt;
+  &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M0 40H640M0 80H640M0 120H640M0 160H640</span>"/&gt;
+  &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>70</span>" width="<span class='s'>150</span>" height="<span class='s'>60</span>"/&gt;
+  &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>38</span>" y="<span class='s'>105</span>"&gt;api.example.dev&lt;/<span class='k'>text</span>&gt;
+  &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M170 92H250V48H300</span>"/&gt;
+  &lt;<span class='k'>path</span> class="<span class='s'>ln-ghost</span>" d="<span class='s'>M170 108H250V152H300</span>"/&gt;
+  &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>300</span>" y="<span class='s'>20</span>" width="<span class='s'>210</span>" height="<span class='s'>56</span>"/&gt;
+  &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>318</span>" y="<span class='s'>53</span>"&gt;eu-west-1 · weight 100&lt;/<span class='k'>text</span>&gt;
+  &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>300</span>" y="<span class='s'>124</span>" width="<span class='s'>210</span>" height="<span class='s'>56</span>"/&gt;
+  &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>318</span>" y="<span class='s'>157</span>"&gt;eu-central-1 · weight 0&lt;/<span class='k'>text</span>&gt;
+  &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M540 20V180M534 20H546M534 180H546</span>"/&gt;
+  &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>554</span>" y="<span class='s'>104</span>"&gt;TTL 300 s&lt;/<span class='k'>text</span>&gt;
+&lt;/<span class='k'>svg</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 2.&lt;/<span class='k'>b</span>&gt; Solid ink shows today's path; the dashed pencil shows the planned second region. What the drawing says is in this caption too.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · accent only on interaction</span>
+  <div class="demo-view">
+<p style="margin:0 0 var(--sp-2)">Before changing the weight, see the <a href="#p5">theme mechanism</a> section.</p>
+<fieldset class="choice">
+  <legend>Target region</legend>
+  <label><input type="radio" name="rk-region" checked><span>eu-west-1</span></label>
+  <label><input type="radio" name="rk-region"><span>eu-central-1</span></label>
+</fieldset>
+<div class="pillrow">
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Health check</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false">Gradual cutover</button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0 0 var(--sp-2)</span>"&gt;Before changing the weight, see the &lt;<span class='k'>a</span> href="<span class='s'>#p5</span>"&gt;theme mechanism&lt;/<span class='k'>a</span>&gt; section.&lt;/<span class='k'>p</span>&gt;
+&lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
+  &lt;<span class='k'>legend</span>&gt;Target region&lt;/<span class='k'>legend</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>rk-region</span>" checked&gt;&lt;<span class='k'>span</span>&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>rk-region</span>"&gt;&lt;<span class='k'>span</span>&gt;eu-central-1&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+&lt;/<span class='k'>fieldset</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn is-accent</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>"&gt;Health check&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn is-accent</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>false</span>"&gt;Gradual cutover&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td><code>--accent</code></td><td><code>#2352c9</code></td><td><code>#8aaeff</code></td><td>Focus ring, reading bar, section number, skip link</td></tr>
+    <tr><td><code>--accent-2</code></td><td><code>#1d45ad</code></td><td><code>#a5c0ff</code></td><td>Link text</td></tr>
+    <tr><td><code>--accent-soft</code></td><td colspan="2">9% / 12% of <code>--accent</code></td><td>Selected segment, step number background</td></tr>
+    <tr><td><code>--draw</code></td><td colspan="2"><code>var(--accent)</code>: <code>#2352c9</code> / <code>#8aaeff</code></td><td>Ink line, selection frame, title block</td></tr>
+    <tr><td><code>--pencil</code> / <code>--pencil-2</code></td><td colspan="2">28% / 13% of <code>--draw</code></td><td>Pencil line / guide grid</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Status colors">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Status colors</h2><p class="lead">Four status colors, each with a soft background. Color never carries meaning alone; a word or an icon always sits next to it.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · alarm list</span>
+  <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Alarm</th><th>Status</th><th>Threshold</th><th>Last triggered</th></tr></thead>
+  <tbody>
+    <tr><td>web-api · p95 latency</td><td><span class="state s-ok">normal</span></td><td><code>&lt; 400 ms</code></td><td>3 days ago</td></tr>
+    <tr><td>billing-worker · queue depth</td><td><span class="state s-warn">warning</span></td><td><code>&gt; 2,000</code></td><td>12 min ago</td></tr>
+    <tr><td>orders-db · connection pool</td><td><span class="state s-bad">alarm</span></td><td><code>&gt; 90%</code></td><td>now</td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Alarm&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Status&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Threshold&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Last triggered&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;web-api · p95 latency&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;normal&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;&amp;lt; 400 ms&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;3 days ago&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;billing-worker · queue depth&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;warning&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;&amp;gt; 2,000&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;12 min ago&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;orders-db · connection pool&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;alarm&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>code</span>&gt;&amp;gt; 90%&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;now&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · main color + soft background</span>
+  <div class="demo-view">
+<div class="pillrow" style="margin-bottom:var(--sp-6)">
+  <span class="pill s-ok">green · 14 targets</span>
+  <span class="pill s-warn">pending · 2</span>
+  <span class="pill s-bad">failed · 1</span>
+  <span class="pill s-sec">permission required</span>
+  <span class="pill s-neutral">skipped · 3</span>
+</div>
+<div class="readout s-ok"><p><b>Migration complete.</b> 1.2 million rows backfilled; no lock waits.</p></div>
+<div class="readout s-bad"><p><b>Rolled back.</b> The migration stopped because the <code>orders-db</code> replica fell 40 s behind.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>margin-bottom:var(--sp-6)</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;green · 14 targets&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-warn</span>"&gt;pending · 2&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-bad</span>"&gt;failed · 1&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-sec</span>"&gt;permission required&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;skipped · 3&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-ok</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Migration complete.&lt;/<span class='k'>b</span>&gt; 1.2 million rows backfilled; no lock waits.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout s-bad</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;Rolled back.&lt;/<span class='k'>b</span>&gt; The migration stopped because the &lt;<span class='k'>code</span>&gt;orders-db&lt;/<span class='k'>code</span>&gt; replica fell 40 s behind.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p><code>--ok-soft</code>, <code>--warn-soft</code>, <code>--bad-soft</code> and <code>--sec-soft</code> are the main color at 9–13% opacity. They go only <b>under text of the same color</b>, as a background; on their own they carry no color information.</p>
+<p>A component reads its status color from <code>--c</code> and <code>--c-soft</code>; <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code>, <code>.s-neutral</code> and <code>.s-accent</code> set both. Old names like <code>.pill-ok</code>, <code>.state.ok</code> and <code>.readout.ok</code> work until 1.0.</p></div>
+<div class="co co-sec"><span class="co-ic"><svg><use href="#i-shield"/></svg></span><span class="co-label">Why purple is separate</span><div class="co-body"><p><code>--sec</code> is not an error or a warning: it is for permissions, secrets and access notes. Showing an access denial in purple rather than red tells the reader "permission missing", not "system broken".</p></div></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Service and code colors">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Service and code colors</h2><p class="lead">Four optional service colors for cloud and CI diagrams; code blocks use a separate palette that stays dark in both themes.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · monthly cost report</span>
+  <div class="demo-view">
+<div class="tbl"><table>
+  <thead><tr><th>Item</th><th>Source</th><th>October</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr><td>Compute · eu-west-1</td><td><span class="pill s-aws">cloud</span></td><td>$4,820</td><td><span class="minus">+6%</span></td></tr>
+    <tr><td>CI runners</td><td><span class="pill s-gitlab">ci</span></td><td>$610</td><td><span class="plus">−18%</span></td></tr>
+    <tr><td>Cluster nodes · prod</td><td><span class="pill s-k8s">cluster</span></td><td>$2,140</td><td>±0%</td></tr>
+    <tr><td>GitOps sync</td><td><span class="pill s-argo">sync</span></td><td>$35</td><td>±0%</td></tr>
+  </tbody>
+</table></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tbl</span>"&gt;&lt;<span class='k'>table</span>&gt;
+  &lt;<span class='k'>thead</span>&gt;&lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>th</span>&gt;Item&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Source&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;October&lt;/<span class='k'>th</span>&gt;&lt;<span class='k'>th</span>&gt;Change&lt;/<span class='k'>th</span>&gt;&lt;/<span class='k'>tr</span>&gt;&lt;/<span class='k'>thead</span>&gt;
+  &lt;<span class='k'>tbody</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;Compute · eu-west-1&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-aws</span>"&gt;cloud&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;$4,820&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>minus</span>"&gt;+6%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;CI runners&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-gitlab</span>"&gt;ci&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;$610&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>plus</span>"&gt;−18%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;Cluster nodes · prod&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-k8s</span>"&gt;cluster&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;$2,140&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;±0%&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+    &lt;<span class='k'>tr</span>&gt;&lt;<span class='k'>td</span>&gt;GitOps sync&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>pill s-argo</span>"&gt;sync&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;$35&lt;/<span class='k'>td</span>&gt;&lt;<span class='k'>td</span>&gt;±0%&lt;/<span class='k'>td</span>&gt;&lt;/<span class='k'>tr</span>&gt;
+  &lt;/<span class='k'>tbody</span>&gt;
+&lt;/<span class='k'>table</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Service colors are bound to the <code>--c</code> variable through the <code>.s-aws</code>, <code>.s-gitlab</code>, <code>.s-k8s</code> and <code>.s-argo</code> classes; on stations, <code>.svc-*</code> does the same job. If your diagram makes no distinction between services, ignore these four.</p>
+<p>Code blocks do not use <code>light-dark()</code>; <code>--code-bg</code> and the syntax colors are fixed. Highlighting is done by hand: <code>.k</code> key, <code>.s</code> string, <code>.c</code> comment, <code>.v</code> variable. The copy button on the code background reads from this palette too: its text is <code>--code-ink-2</code>, its background <code>--code-fill</code>, its border and hover state <code>--code-fill-2</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">alarm.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c"># if the queue depth stays above the threshold for 10 minutes</span>
+<span class="k">alarm</span>: <span class="s">billing-worker-queue-depth</span>
+<span class="k">threshold</span>: <span class="v">2000</span>
+<span class="k">period</span>: <span class="s">10m</span>
+<span class="k">notify</span>: <span class="v">${ONCALL_CHANNEL}</span></code></pre></figure>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td><code>--code-bg</code> · <code>--code-line</code></td><td><code>#0a0d13</code> · white 7%</td><td>Background · header divider, language tag border</td></tr>
+    <tr><td><code>--code-ink</code> · <code>--code-ink-2</code> · <code>--code-muted</code></td><td><code>#dfe6f1</code> · <code>#c9d2e0</code> · <code>#8a96ad</code></td><td>Code text · copy button · header text</td></tr>
+    <tr><td><code>--code-fill</code> · <code>--code-fill-2</code></td><td>white 6% · 12%</td><td>Button background · button border and hover</td></tr>
+    <tr><td><code>--code-k</code> <code>--code-s</code> <code>--code-c</code> <code>--code-v</code></td><td><code>#8ec5ff</code> <code>#ffd28a</code> <code>#7f8ca3</code> <code>#b8f2a6</code></td><td>Key, string, comment, variable</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Theme mechanism">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Theme mechanism</h2><p class="lead">Tokens are resolved with light-dark(); the element's color-scheme decides which side is picked. That is why forcing a theme and changing the accent color each take one line.</p></header>
+<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css (excerpt)</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>:root{
+  color-scheme:light dark;                       <span class="c">/* default: system theme */</span>
+  --surface: light-dark(#ffffff, #161b22);
+  --ink:     light-dark(#15171c, #e6e9ee);
+}
+html[data-theme="light"]{color-scheme:light}    <span class="c">/* manual choice */</span>
+html[data-theme="dark"]{color-scheme:dark}</code></pre></figure>
+<div class="prose"><p><code>light-dark()</code> looks at the element's own <code>color-scheme</code>. So giving a container <code>color-scheme:dark</code> (which is exactly what <code>.scene-dark</code> is) resolves every token below it as dark. The container must read its own background and <code>color</code> again; an inherited color arrives already resolved on the parent.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · same card, three schemes</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5)">
+  <div style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
+    <p class="chip">Follows the page</p>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">staging · 3 targets</p>
+    <span class="pill s-ok">synced</span>
+  </div>
+  <div class="scene-dark" style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
+    <p class="chip">.scene-dark</p>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">prod · 12 targets</p>
+    <span class="pill s-ok">synced</span>
+  </div>
+  <div class="scene-light" style="padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)">
+    <p class="chip"><span lang="en">.scene-light</span></p>
+    <p style="margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)">preview · 1 target</p>
+    <span class="pill s-ok">synced</span>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5)</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Follows the page&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)</span>"&gt;staging · 3 targets&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;synced&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;.scene-dark&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)</span>"&gt;prod · 12 targets&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;synced&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>scene-light</span>" style="<span class='s'>padding:var(--sp-6) var(--sp-7);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;.scene-light&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-4);font-size:var(--fs-md);color:var(--ink-2)</span>"&gt;preview · 1 target&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;synced&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>To force the whole page, <code>&lt;html data-theme="dark"&gt;</code> is enough. Theme buttons (<code>[data-theme-toggle]</code>) change this attribute, store the choice in <code>localStorage</code> under the <code>hendese-theme</code> key and dispatch the <code>hendese:theme</code> event. To avoid a theme flash on load, the <code>dist/head.js</code> line is inlined in the <code>&lt;head&gt;</code>.</p></div>
+
+<h3>Overriding tokens</h3>
+<div class="prose"><p>The whole theme lives inside <code>@layer hendese.*</code>. Any rule you write unlayered wins regardless of specificity; no <code>!important</code> or long selectors needed. Still give both themes in one line.</p>
+<p>The theme changes with a single color. <code>--draw</code>, <code>--accent-soft</code>, <code>--pencil</code>, <code>--pencil-2</code> and <code>--scene-shade</code> are derived from <code>--accent</code> with <code>color-mix()</code>; overriding <code>--accent</code> on <code>:root</code> carries all of them. <code>--accent-2</code> is the link text and is set separately for contrast.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">app.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">/* linked after hendese.css, outside @layer */</span>
+:root{
+  --accent:   light-dark(#0b7a5a, #5fd3a8);   <span class="c">/* drawing, pencil and selection background derive from this */</span>
+  --accent-2: light-dark(#09654a, #7fe0bb);   <span class="c">/* link text: AA contrast */</span>
+}</code></pre></figure>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Overriding on a descendant</span><div class="co-body"><p>The derived tokens are resolved once on <code>:root</code> and inherited as is. If you override only <code>--accent</code> on one box, the section number and focus ring change but the lines keep the old color. In a local override, write the derived tokens too; the box below does that.</p></div></div>
+<div class="demo">
+  <span class="demo-label">Example · overridden accent, in this box only</span>
+  <div class="demo-view">
+<div style="--accent:light-dark(#0b7a5a,#5fd3a8);--accent-2:light-dark(#09654a,#7fe0bb);--draw:var(--accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);--pencil:color-mix(in srgb,var(--draw) 28%,transparent);--pencil-2:color-mix(in srgb,var(--draw) 13%,transparent)">
+  <p class="ch-num">03 · Cache</p>
+  <svg viewBox="0 0 300 56" width="300" height="56" fill="none" role="img" aria-label="A pencil grid and an ink box in front of the cache, in the overridden color">
+    <path class="pencil-2" d="M0 14H300M0 28H300M0 42H300"/>
+    <rect class="ln-pencil" x="4" y="8" width="110" height="40"/>
+    <rect class="ln-draw fill-paper" x="160" y="8" width="136" height="40"/>
+  </svg>
+  <p style="margin:var(--sp-3) 0 var(--sp-4)">For the key scheme, see the <a href="#p4">service and code colors</a> section.</p>
+  <fieldset class="choice is-seg">
+    <legend>TTL</legend>
+    <label><input type="radio" name="rk-ttl"><span>60 s</span></label>
+    <label><input type="radio" name="rk-ttl" checked><span>5 min</span></label>
+    <label><input type="radio" name="rk-ttl"><span>1 h</span></label>
+  </fieldset>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Wait for warm-up</button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>--accent:light-dark(#0b7a5a,#5fd3a8);--accent-2:light-dark(#09654a,#7fe0bb);--draw:var(--accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,transparent);--pencil:color-mix(in srgb,var(--draw) 28%,transparent);--pencil-2:color-mix(in srgb,var(--draw) 13%,transparent)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>ch-num</span>"&gt;03 · Cache&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 300 56</span>" width="<span class='s'>300</span>" height="<span class='s'>56</span>" fill="<span class='s'>none</span>" role="<span class='s'>img</span>" aria-label="<span class='s'>A pencil grid and an ink box in front of the cache, in the overridden color</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M0 14H300M0 28H300M0 42H300</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-pencil</span>" x="<span class='s'>4</span>" y="<span class='s'>8</span>" width="<span class='s'>110</span>" height="<span class='s'>40</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>160</span>" y="<span class='s'>8</span>" width="<span class='s'>136</span>" height="<span class='s'>40</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-3) 0 var(--sp-4)</span>"&gt;For the key scheme, see the &lt;<span class='k'>a</span> href="<span class='s'>#p4</span>"&gt;service and code colors&lt;/<span class='k'>a</span>&gt; section.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
+    &lt;<span class='k'>legend</span>&gt;TTL&lt;/<span class='k'>legend</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>rk-ttl</span>"&gt;&lt;<span class='k'>span</span>&gt;60 s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>rk-ttl</span>" checked&gt;&lt;<span class='k'>span</span>&gt;5 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>rk-ttl</span>"&gt;&lt;<span class='k'>span</span>&gt;1 h&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>fieldset</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>toggle-btn is-accent</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>true</span>"&gt;Wait for warm-up&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Layer order</span><div class="co-body"><p>If you put your overrides in your own <code>@layer</code>, layer order comes into play: a layer declared before the Hendese layers loses. The safest choice is to write them unlayered.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Contrast">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Contrast</h2><p class="lead">Text and status tokens are tuned to pass the WCAG AA threshold (4.5:1) in both themes. There are two known exceptions, both on the same background.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><code>--ink-3</code></td><td><code>#60656e</code></td><td><code>#8a93a3</code></td><td>Label tone; darkened / lightened for AA in both themes</td></tr>
+    <tr><td><code>--ok</code></td><td><code>#127a4c</code></td><td><code>#38c98a</code></td><td>4.48 on <code>--surface-3</code></td></tr>
+    <tr><td><code>--warn</code></td><td><code>#93610f</code></td><td><code>#f2b53c</code></td><td>4.43 on <code>--surface-3</code></td></tr>
+    <tr><td><code>--bad</code></td><td><code>#c23434</code></td><td><code>#f06a6a</code></td><td>AA on all surfaces</td></tr>
+    <tr><td><code>--aws</code> · <code>--gitlab</code> · <code>--argo</code></td><td><code>#9c5600</code> · <code>#b54418</code> · <code>#ad4829</code></td><td><code>#ffa02e</code> · <code>#fc6d26</code> · <code>#f0805a</code></td><td>Darkened so they can be used as text in the light theme</td></tr>
+    <tr><td><code>--paper</code></td><td><code>#fbfbf8</code></td><td><code>#1a2331</code></td><td>The dark value was lightened in 0.2; AA holds for status and ink text on it</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Exception</span><div class="co-body"><p>Do not put <code>--ok</code> or <code>--warn</code> colored text on the darkest surface (<code>--surface-3</code>); that is also the inline <code>code</code> background. Status text belongs on <code>--surface</code>, <code>--paper</code> or its own <code>-soft</code> background.</p></div></div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · color + word</span>
+  <div class="demo-view">
+<p style="margin:0">
+  <span class="state s-ok">passed</span>
+  <span class="state s-warn">slow</span>
+  <span class="state s-bad">down</span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;passed&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;slow&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;down&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · color only</span>
+  <div class="demo-view">
+<p style="margin:0;display:flex;gap:var(--sp-3)">
+  <span style="width:14px;height:14px;background:var(--ok)"></span>
+  <span style="width:14px;height:14px;background:var(--warn)"></span>
+  <span style="width:14px;height:14px;background:var(--bad)"></span>
+</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>margin:0;display:flex;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>span</span> style="<span class='s'>width:14px;height:14px;background:var(--ok)</span>"&gt;&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> style="<span class='s'>width:14px;height:14px;background:var(--warn)</span>"&gt;&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> style="<span class='s'>width:14px;height:14px;background:var(--bad)</span>"&gt;&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="prose"><p>For a color-blind reader the three squares on the right look the same; for a screen reader they do not exist. Status is always given with a word (<code>.state</code>, <code>.pill</code>) or a labeled icon.</p></div>
+
+<h3>High contrast preference</h3>
+<div class="prose"><p>If "increase contrast" is on in the operating system (<code>prefers-contrast: more</code>), four tokens are redefined: pencil lines turn into ink, and the visible border and secondary text darken one step. Components read tokens, so no other rule is needed. The box on the right below sets the same four values locally, so you see the difference even with the setting off.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">tokens.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>@media (prefers-contrast:more){
+  :root{--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:var(--pencil);--ink-3:var(--ink-2)}
+}</code></pre></figure>
+<div class="demo">
+  <span class="demo-label">Example · default and high contrast</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-5)">
+  <div style="padding:var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
+    <p class="chip">Default</p>
+    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="A pencil grid, a dashed plan and an ink box, in the default tones">
+      <path class="pencil-2" d="M0 20H260M0 40H260M0 60H260"/>
+      <rect class="ln-ghost" x="6" y="12" width="100" height="44"/>
+      <rect class="ln-draw fill-paper" x="150" y="12" width="104" height="44"/>
+    </svg>
+    <p class="figcap">eu-central-1 · planned</p>
+  </div>
+  <div style="--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:var(--pencil);--ink-3:var(--ink-2);padding:var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper)">
+    <p class="chip">High contrast</p>
+    <svg viewBox="0 0 260 70" width="260" height="70" fill="none" role="img" aria-label="The same drawing in high contrast tones: pencil lines in the ink color">
+      <path class="pencil-2" d="M0 20H260M0 40H260M0 60H260"/>
+      <rect class="ln-ghost" x="6" y="12" width="100" height="44"/>
+      <rect class="ln-draw fill-paper" x="150" y="12" width="104" height="44"/>
+    </svg>
+    <p class="figcap">eu-central-1 · planned</p>
+  </div>
+</div>
+  </div>
+</div>
+<div class="prose"><p>Once pencil turns into ink, the difference between solid and dashed survives only in the line pattern, not in color. That is why "planned" is always drawn dashed; a faded color alone is not enough.</p></div>
+
+<h3>Forced colors</h3>
+<div class="prose"><p>In Windows high contrast mode (<code>forced-colors: active</code>) the browser maps backgrounds and colors to the system palette; meaning conveyed only by a background is lost. The package draws selected and current states (the <code>.choice</code> selection, a pressed <code>.toggle-btn</code>, the selected station, <code>aria-current</code> in <code>.steps</code>) with a frame in the <code>Highlight</code> color, and progress bars and a checked checkbox with a <code>Highlight</code> background; disabled elements get <code>GrayText</code>. In your own components, convey meaning with a border, a pattern or text too.</p></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><span></span><a href="typography.html" rel="next"><small>Next · Basics</small>Typography</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+});
+Hendese.start();
+</script>
+</body>
+</html>

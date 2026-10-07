@@ -1,7 +1,7 @@
-<!-- meta {"title":"Çizim birimleri","group":"Blueprint","order":20,"tagline":"Kendi koordinatında çiz, her genişlikte oku.","intro":"<code>.drawing</code> bir çizimi kendi birim sisteminde tanımlar: SVG <code>viewBox</code> ile HTML etiketleri aynı koordinatları paylaşır ve çizim kapsayıcısıyla birlikte ölçeklenir. Ölçü çizgisi, callout, durum etiketi ve istasyon bu sistemin üstüne oturur.","summary":"<code>.drawing</code>, <code>--aw</code>/<code>--ah</code>/<code>--u</code>, <code>.dl</code>, <code>.dim</code>, <code>.callout</code>, <code>.state</code>, <code>.oneliner</code>.","facts":{"Sınıflar":"<code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.callout</code> · <code>.state</code> · <code>.oneliner</code> · <code>.station</code>","Değişkenler":"<code>--aw</code> · <code>--ah</code> · <code>--u</code> · <code>--x</code> · <code>--y</code> · <code>--w</code> · <code>--h</code>","JS":"Gerekmez (istasyonlar için gezgin)"}} -->
+<!-- meta {"title":"Drawing units","group":"Blueprint","order":20,"tagline":"Draw in your own coordinates, read at any width.","intro":"<code>.drawing</code> defines a drawing in its own unit system: the SVG <code>viewBox</code> and the HTML labels share the same coordinates and scale together with the drawing's container. Dimension lines, callouts, state labels and stations sit on top of this system.","summary":"<code>.drawing</code>, <code>--aw</code>/<code>--ah</code>/<code>--u</code>, <code>.dl</code>, <code>.dim</code>, <code>.callout</code>, <code>.state</code>, <code>.oneliner</code>.","facts":{"Classes":"<code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.callout</code> · <code>.state</code> · <code>.oneliner</code> · <code>.station</code>","Variables":"<code>--aw</code> · <code>--ah</code> · <code>--u</code> · <code>--x</code> · <code>--y</code> · <code>--w</code> · <code>--h</code>","JS":"Not needed (the explorer, for stations)"}} -->
 
-<chapter title="Anatomi" lead="Çizim alanı aw × ah birimdir. SVG aynı viewBox ile çizilir, HTML etiketleri aynı birimlerle konumlanır; ikisi her genişlikte üst üste kalır.">
-<demo label="Örnek · 800 × 300 birimlik ızgarada yük dengeleyici">
+<chapter title="Anatomy" lead="The drawing area is aw × ah units. The SVG is drawn with the same viewBox and the HTML labels are positioned in the same units; the two stay aligned at every width.">
+<demo label="Example · a load balancer on an 800 × 300 unit grid">
 <div class="drawing" style="--aw:800;--ah:300">
   <svg viewBox="0 0 800 300" aria-hidden="true">
     <path class="pencil-2" d="M0 100H800M0 200H800M100 0V300M200 0V300M300 0V300M400 0V300M500 0V300M600 0V300M700 0V300"/>
@@ -16,22 +16,22 @@
     <rect class="ln-draw fill-paper" x="470" y="200" width="180" height="50"/>
     <path class="ln-draw" d="M300 155H385M385 85V225M385 85H464M385 155H464M385 225H464M464 85l-8-4M464 85l-8 4M464 155l-8-4M464 155l-8 4M464 225l-8-4M464 225l-8 4"/>
   </svg>
-  <p class="dl" style="--x:116;--y:124;--w:170"><span class="stamp-k">Yük dengeleyici</span>lb-public · :443</p>
+  <p class="dl" style="--x:116;--y:124;--w:170"><span class="stamp-k">Load balancer</span>lb-public · :443</p>
   <p class="dl" style="--x:484;--y:76;--w:160">web-1 · 10.0.1.11</p>
   <p class="dl" style="--x:484;--y:146;--w:160">web-2 · 10.0.1.12</p>
   <p class="dl" style="--x:484;--y:216;--w:160">web-3 · 10.0.1.13</p>
 </div>
 </demo>
 <div class="prose"><ul>
-  <li><code>.drawing</code> üzerindeki <code>--aw</code> ve <code>--ah</code> en-boy oranını ve birim sayısını verir; içteki <code>&lt;svg viewBox="0 0 aw ah"&gt;</code> aynı sistemi kullanır.</li>
-  <li><code>.dl</code> etiketi <code>--x</code>, <code>--y</code>, <code>--w</code> ile aynı birimlerde konumlanır. Yükseklik verilmez; metin aşağı akar.</li>
-  <li><code>--u</code> bir birimin piksel karşılığıdır (<code>100cqw / aw</code>). Yazı boyunu <code>max(10.5px, calc(12.5 * var(--u)))</code> gibi yazın: büyür ama okunmaz hale gelmez.</li>
-  <li>Çizgiler <code>vector-effect: non-scaling-stroke</code> ile her ölçekte aynı kalınlıktadır; SVG içindeki <code>&lt;text&gt;</code> ise çizimle birlikte büyür.</li>
+  <li><code>--aw</code> and <code>--ah</code> on <code>.drawing</code> set the aspect ratio and the number of units; the inner <code>&lt;svg viewBox="0 0 aw ah"&gt;</code> uses the same system.</li>
+  <li>A <code>.dl</code> label is positioned in the same units with <code>--x</code>, <code>--y</code> and <code>--w</code>. No height is given; the text flows down.</li>
+  <li><code>--u</code> is the pixel size of one unit (<code>100cqw / aw</code>). Write font sizes like <code>max(10.5px, calc(12.5 * var(--u)))</code>: they grow but never become unreadable.</li>
+  <li>With <code>vector-effect: non-scaling-stroke</code> lines keep the same weight at every scale; <code>&lt;text&gt;</code> inside the SVG grows with the drawing.</li>
 </ul></div>
 </chapter>
 
-<chapter title="Ölçü çizgileri" lead="Ölçü çizgisi bir uzunluğu ya da süreyi söyler: iki uzatma çizgisi, oklu bir ölçü çizgisi ve değer. Hepsi tek .dim yolu, değer .dim-t metni.">
-<demo label="Örnek · kuyrukta bir mesajın ömrü">
+<chapter title="Dimension lines" lead="A dimension line states a length or a duration: two extension lines, a dimension line with arrows, and the value. All of it is one .dim path; the value is a .dim-t text.">
+<demo label="Example · the life of a message in a queue">
 <div class="drawing" style="--aw:900;--ah:240">
   <svg viewBox="0 0 900 240" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="40" y="200" width="120" height="22"/>
@@ -40,66 +40,66 @@
     <rect class="ln-draw fill-paper" x="40" y="122" width="120" height="22"/>
     <rect class="ln-strong fill-paper" x="40" y="96" width="120" height="22"/>
     <path class="dim" d="M14 96H36M14 222H36M22 96V222M22 96l-3 8h6zM22 222l-3-8h6z"/>
-    <text class="dim-t" x="12" y="159" text-anchor="middle" transform="rotate(-90 12 159)">derinlik 1.240</text>
+    <text class="dim-t" x="12" y="159" text-anchor="middle" transform="rotate(-90 12 159)">depth 1,240</text>
     <path class="ln-pencil" d="M160 107H240V150"/>
     <path class="ln-draw" d="M240 150H480M240 138V162M400 138V162M480 138V162"/>
     <path class="ln-draw ln-dash" d="M480 150H800"/>
     <path class="ln-draw" d="M800 138V162"/>
     <path class="dim" d="M240 132V92M400 132V92M480 132V92M240 100H480M240 100l8-3v6zM400 100l-8-3v6zM400 100l8-3v6zM480 100l-8-3v6z"/>
-    <text class="dim-t" x="320" y="94" text-anchor="middle">bekleme 8 s</text>
+    <text class="dim-t" x="320" y="94" text-anchor="middle">wait 8 s</text>
     <text class="dim-t" x="440" y="94" text-anchor="middle">4 s</text>
     <path class="dim" d="M400 168V208M800 168V208M400 200H800M400 200l8-3v6zM800 200l-8-3v6z"/>
-    <text class="dim-t" x="600" y="222" text-anchor="middle">görünmezlik süresi 20 s</text>
+    <text class="dim-t" x="600" y="222" text-anchor="middle">visibility timeout 20 s</text>
   </svg>
-  <p class="dl" style="--x:40;--y:44;--w:160"><span class="stamp-k">Kuyruk</span>jobs-eu</p>
-  <p class="dl" style="--x:200;--y:44;--w:80;text-align:center">girdi</p>
-  <p class="dl" style="--x:360;--y:44;--w:80;text-align:center">alındı</p>
-  <p class="dl" style="--x:440;--y:44;--w:80;text-align:center">silindi</p>
-  <p class="dl" style="--x:700;--y:44;--w:200;text-align:center">süre dolarsa geri döner</p>
+  <p class="dl" style="--x:40;--y:44;--w:160"><span class="stamp-k">Queue</span>jobs-eu</p>
+  <p class="dl" style="--x:200;--y:44;--w:80;text-align:center">enqueued</p>
+  <p class="dl" style="--x:360;--y:44;--w:80;text-align:center">received</p>
+  <p class="dl" style="--x:440;--y:44;--w:80;text-align:center">deleted</p>
+  <p class="dl" style="--x:700;--y:44;--w:200;text-align:center">returns if the timeout expires</p>
 </div>
 </demo>
-<div class="prose"><p>Ölçü yolu üç parçadan, bu sırayla yazılır:</p>
+<div class="prose"><p>A dimension path has three parts, written in this order:</p>
 <ol class="plain">
-  <li>uzatma çizgileri: <code>M240 132V92</code>;</li>
-  <li>ölçü çizgisi: <code>M240 100H480</code>;</li>
-  <li>ok uçları: <code>l8-3v6z</code>.</li>
+  <li>extension lines: <code>M240 132V92</code>;</li>
+  <li>dimension line: <code>M240 100H480</code>;</li>
+  <li>arrowheads: <code>l8-3v6z</code>.</li>
 </ol>
-<p>Zincirleme ölçülerde ortadaki uzatma çizgisi iki ölçüye de aittir; ok uçları ona iki yönden dayanır. Dikey ölçünün değeri <code>rotate(-90)</code> ile döndürülür.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">ölçü tarifi</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- yatay: x1 → x2, ölçü çizgisi y'de; uzatma çizgileri nesneden y'nin biraz ötesine --&gt;
-&lt;path class="dim" d="M x1 nesne V y-8  M x2 nesne V y-8  M x1 y H x2  M x1 y l8-3v6z  M x2 y l-8-3v6z"/&gt;
-&lt;text class="dim-t" x="(x1+x2)/2" y="y-6" text-anchor="middle"&gt;değer&lt;/text&gt;</code></pre></figure>
+<p>In chained dimensions the middle extension line belongs to both dimensions; arrowheads meet it from both sides. A vertical dimension's value is rotated with <code>rotate(-90)</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">dimension recipe</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!-- horizontal: x1 → x2, dimension line at y; extension lines run from the object slightly past y --&gt;
+&lt;path class="dim" d="M x1 object V y-8  M x2 object V y-8  M x1 y H x2  M x1 y l8-3v6z  M x2 y l-8-3v6z"/&gt;
+&lt;text class="dim-t" x="(x1+x2)/2" y="y-6" text-anchor="middle"&gt;value&lt;/text&gt;</code></pre></figure>
 </chapter>
 
-<chapter title="Etiket, callout ve durum" lead="Kutunun içindeki ad .dl ile, kutunun dışındaki not .callout ile, durum .state ile yazılır. Çizimin bir cümlelik özeti .oneliner ile altta durur.">
-<demo label="Örnek · nesne deposu yaşam döngüsü">
+<chapter title="Label, callout and state" lead="A name inside a box is written with .dl, a note outside a box with .callout, a status with .state. A one-sentence summary of the drawing sits below with .oneliner.">
+<demo label="Example · object storage lifecycle">
 <div class="drawing" style="--aw:900;--ah:260">
   <svg viewBox="0 0 900 260" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="20" y="140" width="220" height="100"/>
     <rect class="ln-draw fill-paper" x="340" y="140" width="220" height="100"/>
     <rect class="ln-ghost" x="660" y="140" width="220" height="100"/>
     <path class="ln-draw" d="M240 190H334M334 190l-8-4M334 190l-8 4M560 190H654M654 190l-8-4M654 190l-8 4"/>
-    <text class="dim-t" x="287" y="180" text-anchor="middle">30 gün</text>
-    <text class="dim-t" x="607" y="180" text-anchor="middle">365 gün</text>
+    <text class="dim-t" x="287" y="180" text-anchor="middle">30 days</text>
+    <text class="dim-t" x="607" y="180" text-anchor="middle">365 days</text>
     <circle class="fill-draw" cx="450" cy="140" r="3"/>
     <path class="ln-pencil" d="M450 140V80L496 34H600"/>
   </svg>
-  <p class="dl" style="--x:20;--y:20;--w:400">Kural · <b>logs-prod/</b> öneki</p>
-  <p class="dl" style="--x:34;--y:152;--w:200"><span class="stamp-k">Sıcak katman</span>2,1 TB<br><span class="state s-ok">Erişilebilir</span></p>
-  <p class="dl" style="--x:354;--y:152;--w:200"><span class="stamp-k">Soğuk katman</span>18,4 TB<br><span class="state s-warn">Geri çağırma</span></p>
-  <p class="dl" style="--x:674;--y:152;--w:200"><span class="stamp-k">Silinir</span>kalıcı, geri alınamaz<br><span class="state s-bad">Siliniyor</span></p>
-  <p class="dl callout" style="--x:600;--y:20;--w:280"><b>Geri çağırma</b>Soğuk katmandan okuma 12 saate kadar sürer; acil iz için sıcakta tutun.</p>
+  <p class="dl" style="--x:20;--y:20;--w:400">Rule · <b>logs-prod/</b> prefix</p>
+  <p class="dl" style="--x:34;--y:152;--w:200"><span class="stamp-k">Hot tier</span>2.1 TB<br><span class="state s-ok">Available</span></p>
+  <p class="dl" style="--x:354;--y:152;--w:200"><span class="stamp-k">Cold tier</span>18.4 TB<br><span class="state s-warn">Restore</span></p>
+  <p class="dl" style="--x:674;--y:152;--w:200"><span class="stamp-k">Deleted</span>permanent, cannot be undone<br><span class="state s-bad">Deleting</span></p>
+  <p class="dl callout" style="--x:600;--y:20;--w:280"><b>Restore</b>Reading from the cold tier takes up to 12 hours; keep urgent traces in the hot tier.</p>
 </div>
-<p class="oneliner"><span class="co-label">Bir cümleyle</span>Nesneler 30 gün sıcakta, bir yıl soğukta kalır ve sonra kalıcı olarak silinir.</p>
+<p class="oneliner"><span class="co-label">In one sentence</span>Objects stay hot for 30 days and cold for a year, then are deleted permanently.</p>
 </demo>
-<div class="prose"><p>Callout kutusu HTML'dir, leader çizgisi SVG'de çizilir ve kutunun sol kenarında, ilk satır hizasında biter; metin uzasa da çizgi kopmaz. Leader nesneye bir nokta (<code>circle.fill-draw</code>) ile bağlanır.</p></div>
-<demo label="Örnek · .state etiketleri">
-<p style="display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:0"><span class="state s-ok">Eşitlendi</span><span class="state s-warn">Gecikmeli</span><span class="state s-bad">Düştü</span><span class="state">Planlandı</span></p>
+<div class="prose"><p>The callout box is HTML; its leader line is drawn in the SVG and ends at the box's left edge, level with the first line, so the line does not break when the text grows. The leader connects to the object with a dot (<code>circle.fill-draw</code>).</p></div>
+<demo label="Example · .state labels">
+<p style="display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:0"><span class="state s-ok">Synced</span><span class="state s-warn">Delayed</span><span class="state s-bad">Down</span><span class="state">Scheduled</span></p>
 </demo>
-<div class="prose"><p><code>.state</code> rengini <code>currentColor</code> ile çerçeveye de verir; renk tek başına anlam taşımaz, etiket her zaman bir kelimedir. Çizim dışında kullanıldığında <code>--u</code> yoksa 1px varsayılır.</p></div>
+<div class="prose"><p><code>.state</code> also gives its color to the frame through <code>currentColor</code>; color alone carries no meaning, and the label is always a word. Used outside a drawing, where there is no <code>--u</code>, it assumes 1px.</p></div>
 </chapter>
 
-<chapter title="İstasyon konumlama" lead="Tıklanabilir istasyonlar da çizim birimiyle yerleşir: --x, --y, --w ve --h. Ölçek değişince düğmeler çizimle birlikte büyür; köşeleri çizimdeki kutular gibi düzdür.">
-<demo label="Örnek · üretici, kuyruk, işçiler">
+<chapter title="Station positioning" lead="Clickable stations are placed in drawing units too: --x, --y, --w and --h. When the scale changes, the buttons grow with the drawing; their corners are square like the boxes in the drawing.">
+<demo label="Example · producer, queue, workers">
 <div data-explorer="cb-kuyruk">
   <div class="drawing" style="--aw:800;--ah:200">
     <svg viewBox="0 0 800 200" aria-hidden="true">
@@ -107,25 +107,25 @@
       <path class="dim" d="M20 146V176M220 146V176M20 168H220M20 168l8-3v6zM220 168l-8-3v6z"/>
       <text class="dim-t" x="120" y="190" text-anchor="middle">--w: 200</text>
     </svg>
-    <p class="sl" style="--x:226;--y:66">yayınla</p>
-    <p class="sl" style="--x:506;--y:66">çek</p>
+    <p class="sl" style="--x:226;--y:66">publish</p>
+    <p class="sl" style="--x:506;--y:66">pull</p>
     <p class="sl" style="--x:20;--y:16">--x: 20 · --y: 50</p>
-    <button class="station svc-k8s" type="button" data-key="uretici" aria-pressed="true" aria-controls="cb-kuyruk" style="--x:20;--y:50;--w:200;--h:90"><span class="st-name">Üretici</span><span class="st-sub">web-api</span><span class="st-meta">olay başına 1 mesaj</span></button>
-    <button class="station svc-aws" type="button" data-key="kuyruk" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:300;--y:50;--w:200;--h:90"><span class="st-name">Kuyruk</span><span class="st-sub">jobs-eu</span><span class="st-meta">derinlik 1.240</span></button>
-    <button class="station" type="button" data-key="isci" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)"><span class="st-name">İşçiler</span><span class="st-sub">billing-worker × 4</span><span class="st-meta">--h: 100</span></button>
+    <button class="station svc-k8s" type="button" data-key="uretici" aria-pressed="true" aria-controls="cb-kuyruk" style="--x:20;--y:50;--w:200;--h:90"><span class="st-name">Producer</span><span class="st-sub">web-api</span><span class="st-meta">1 message per event</span></button>
+    <button class="station svc-aws" type="button" data-key="kuyruk" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:300;--y:50;--w:200;--h:90"><span class="st-name">Queue</span><span class="st-sub">jobs-eu</span><span class="st-meta">depth 1,240</span></button>
+    <button class="station" type="button" data-key="isci" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)"><span class="st-name">Workers</span><span class="st-sub">billing-worker × 4</span><span class="st-meta">--h: 100</span></button>
   </div>
   <div class="st-detail" id="cb-kuyruk" aria-live="polite">
-    <div data-for="uretici"><b>Üretici.</b> Her sipariş olayı için kuyruğa bir mesaj bırakır ve beklemeden döner.</div>
-    <div data-for="kuyruk"><b>Kuyruk.</b> Mesajları sırayla tutar; alınan mesaj görünmezlik süresi boyunca diğer işçilere gösterilmez.</div>
-    <div data-for="isci"><b>İşçiler.</b> Dört kopya aynı kuyruktan çeker. Bu istasyon 10 birim yukarıda ve 10 birim daha yüksek: <code>--y: 40; --h: 100</code>.</div>
+    <div data-for="uretici"><b>Producer.</b> Drops one message into the queue for each order event and returns without waiting.</div>
+    <div data-for="kuyruk"><b>Queue.</b> Holds messages in order; a received message is hidden from other workers for the visibility timeout.</div>
+    <div data-for="isci"><b>Workers.</b> Four replicas pull from the same queue. This station sits 10 units higher and is 10 units taller: <code>--y: 40; --h: 100</code>.</div>
   </div>
 </div>
 </demo>
-<div class="prose"><p><code>.station</code> ve <code>.sl</code>, en yakın <code>.drawing</code>'in <code>--aw</code> / <code>--ah</code> değerini kalıtımla okur; verilmezse 1000 × 600 varsayılır. İstasyon kare köşelidir (<code>border-radius: 0</code>): çizilen her nesne gibi yuvarlatılmaz, böylece SVG kutularıyla aynı çizgiyi paylaşır. Gezgin davranışı için <a href="station-explorer.html">İstasyon gezgini</a> sayfasına bakın.</p></div>
+<div class="prose"><p><code>.station</code> and <code>.sl</code> inherit <code>--aw</code> / <code>--ah</code> from the nearest <code>.drawing</code>; if none is set, 1000 × 600 is assumed. A station has square corners (<code>border-radius: 0</code>): like every drawn object it is not rounded, so it shares a line with the SVG boxes. For explorer behavior, see the <a href="station-explorer.html">Station explorer</a> page.</p></div>
 </chapter>
 
-<chapter title="Ölçek" lead="Aynı çizim iki genişlikte: çizgiler aynı kalınlıkta kalır, yazılar --u ile küçülür ama alt sınırın altına inmez.">
-<demo label="Örnek · tam ve üçte bir genişlik">
+<chapter title="Scale" lead="The same drawing at two widths: lines keep the same weight, and text shrinks with --u but never below its floor.">
+<demo label="Example · full and one-third width">
 <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-8);align-items:start">
   <div class="drawing" style="--aw:600;--ah:170">
     <svg viewBox="0 0 600 170" aria-hidden="true">
@@ -133,10 +133,10 @@
       <rect class="ln-draw fill-paper" x="380" y="60" width="200" height="80"/>
       <path class="ln-draw" d="M220 100H374M374 100l-8-4M374 100l-8 4"/>
       <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
-      <text class="dim-t" x="300" y="24" text-anchor="middle">600 birim</text>
+      <text class="dim-t" x="300" y="24" text-anchor="middle">600 units</text>
     </svg>
-    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span>eu-west-1</p>
-    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span>eu-central-1</p>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Source</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Replica</span>eu-central-1</p>
   </div>
   <div class="drawing" style="--aw:600;--ah:170">
     <svg viewBox="0 0 600 170" aria-hidden="true">
@@ -144,35 +144,35 @@
       <rect class="ln-draw fill-paper" x="380" y="60" width="200" height="80"/>
       <path class="ln-draw" d="M220 100H374M374 100l-8-4M374 100l-8 4"/>
       <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
-      <text class="dim-t" x="300" y="24" text-anchor="middle">600 birim</text>
+      <text class="dim-t" x="300" y="24" text-anchor="middle">600 units</text>
     </svg>
-    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Kaynak</span>eu-west-1</p>
-    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Kopya</span>eu-central-1</p>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Source</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Replica</span>eu-central-1</p>
   </div>
 </div>
 </demo>
-<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Küçük ölçek</span><div class="co-body"><p>Sağdaki kopyada <code>.dl</code> yazısı 10.5px alt sınırına dayanır, SVG içindeki ölçü metni ise çizimle birlikte küçülür. Dar yerlerde gösterilecek bir çizimde değerleri SVG metni yerine <code>.dl</code> ile yazın ya da birim sayısını (<code>--aw</code>) azaltın.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Small scale</span><div class="co-body"><p>In the copy on the right, the <code>.dl</code> text hits its 10.5px floor, while the dimension text inside the SVG shrinks with the drawing. For a drawing shown in narrow places, write values with <code>.dl</code> instead of SVG text, or reduce the number of units (<code>--aw</code>).</p></div></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Etiket HTML'dir: seçilebilir, çevrilebilir, kutuya sığmazsa satır atlar. SVG metni yalnızca kısa ölçü değerleri içindir.">
+<chapter title="Do / don't" lead="A label is HTML: selectable, translatable, and it wraps if it does not fit the box. SVG text is only for short dimension values.">
 <div class="dodont">
-<demo label="Yap · etiket .dl ile">
+<demo label="Do · label with .dl">
 <div class="drawing" style="--aw:440;--ah:120">
   <svg viewBox="0 0 440 120" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="10" width="240" height="100"/>
   </svg>
-  <p class="dl" style="--x:24;--y:22;--w:214"><span class="stamp-k">Yedek kasası</span>gece 02:00'de alınan anlık görüntüler 35 gün saklanır</p>
+  <p class="dl" style="--x:24;--y:22;--w:214"><span class="stamp-k">Backup vault</span>snapshots taken nightly at 02:00 are kept for 35 days</p>
 </div>
 </demo>
-<demo label="Yapma · uzun metin SVG içinde">
+<demo label="Don't · long text inside the SVG">
 <div class="drawing" style="--aw:440;--ah:120">
   <svg viewBox="0 0 440 120" aria-hidden="true">
     <rect class="ln-draw fill-paper" x="10" y="10" width="240" height="100"/>
-    <text class="dim-t" x="24" y="40">YEDEK KASASI</text>
-    <text class="dim-t" x="24" y="62">gece 02:00'de alınan anlık görüntüler 35 gün saklanır</text>
+    <text class="dim-t" x="24" y="40">BACKUP VAULT</text>
+    <text class="dim-t" x="24" y="62">snapshots taken nightly at 02:00 are kept for 35 days</text>
   </svg>
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p>SVG her zaman <code>aria-hidden="true"</code> taşır; içindeki ölçü değerleri ekran okuyucuya ulaşmaz. Anlam taşıyan bir sayı varsa <code>.dl</code>, <code>.oneliner</code> ya da şekil yazısında da tekrar edin. Sağdaki örnekte metin ekran okuyucuya hiç ulaşmaz ve kutudan taşar.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The SVG always carries <code>aria-hidden="true"</code>; the dimension values inside it never reach a screen reader. If a number carries meaning, repeat it in a <code>.dl</code>, a <code>.oneliner</code> or the caption. In the example on the right, the text never reaches a screen reader and overflows the box.</p></div></div>
 </chapter>

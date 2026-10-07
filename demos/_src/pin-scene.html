@@ -1,7 +1,7 @@
-<!-- meta {"title":"Pin sahnesi","group":"Hareket","order":10,"tagline":"Uzun iz, yapışkan pafta.","intro":"Pafta, <code>--track</code> yüksekliğinde bir izin içinde ekrana yapışır; kaydırma ilerlemesi <code>p</code> (0..1, yumuşatılmış) çizimi adım adım tamamlar. Hareket kapalıyken aynı pafta bitmiş haliyle akışta durur.","summary":"<code>.pin</code> + <code>Hendese.pinScene()</code>: yapışkan pafta, kaydırmaya bağlı çizim, HUD ve Hoca talebi.","facts":{"Sınıflar":"<code>.pin</code> · <code>.route-stage</code> · <code>.frame</code> · <code>.f-head</code> · <code>.f-map</code> · <code>.f-side</code> · <code>.f-foot</code> · <code>.beats</code> · <code>.hud-slot</code>","JS":"<code>Hendese.pinScene(cfg)</code>; <code>render(p, api)</code> her karede","Canlı":"<code>html.motion</code> + <code>.pin.is-live</code> (≥ 1100px, reduced motion yok)"}} -->
+<!-- meta {"title":"Pin scene","group":"Motion","order":10,"tagline":"Long track, sticky sheet.","intro":"The sheet sticks to the screen inside a track that is <code>--track</code> tall; scroll progress <code>p</code> (0..1, smoothed) completes the drawing step by step. With motion off, the same sheet sits in the flow in its finished state.","summary":"<code>.pin</code> + <code>Hendese.pinScene()</code>: a sticky sheet, a scroll-driven drawing, a HUD and a Hoca request.","facts":{"Classes":"<code>.pin</code> · <code>.route-stage</code> · <code>.frame</code> · <code>.f-head</code> · <code>.f-map</code> · <code>.f-side</code> · <code>.f-foot</code> · <code>.beats</code> · <code>.hud-slot</code>","JS":"<code>Hendese.pinScene(cfg)</code>; <code>render(p, api)</code> on every frame","Live":"<code>html.motion</code> + <code>.pin.is-live</code> (≥ 1100px, no reduced motion)"}} -->
 
 <style>
-/* sayfaya özel çizim sınıfları (.ps-). Varsayılan = bitmiş hal; canlı kurallar yalnızca @media screen + .is-live altında. */
+/* page-specific drawing classes (.ps-). Default = finished state; live rules only under @media screen + .is-live. */
 .ps-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
 .ps-go{stroke:var(--draw);stroke-width:2.5;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--dns-go,1))}
 .ps-back{stroke:var(--ok);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--dns-back,1))}
@@ -22,16 +22,16 @@
 html.motion .ps-new,html.motion .ps-ttl{transition:opacity var(--dur-2)}
 </style>
 
-<chapter title="Anatomi" lead="Bir pin sahnesi dört katmandır: uzun iz, yapışkan sahne, pafta ve çizim. İz ne kadar uzunsa kaydırma o kadar yavaş ilerler." hoca="quiet">
-<div class="prose"><p>Dış kap <code>.pin</code> sayfa genişliğine taşar ve canlı modda <code>--track</code> kadar uzar (varsayılan <code>300vh</code>). İçindeki <code>.route-stage</code> ekrana yapışır ve 100vh yüksekliğinde kalır; böylece iz boyunca kaydırırken pafta yerinde durur, yalnızca çizim değişir. Motor <code>p</code> değerini izin başından sonuna 0'dan 1'e götürür ve her karede <code>render(p, api)</code> çağırır.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">iskelet</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pin" id="ornek" style="--track:280vh"&gt;     &lt;!-- iz: canlıda --track yüksekliğinde --&gt;
-  &lt;div class="route-stage"&gt;                             &lt;!-- yapışkan sahne (100vh) --&gt;
-    &lt;div class="frame"&gt;                                 &lt;!-- pafta ızgarası --&gt;
+<chapter title="Anatomy" lead="A pin scene has four layers: a long track, a sticky scene, a sheet and a drawing. The longer the track, the slower the scroll progresses." hoca="quiet">
+<div class="prose"><p>The outer container <code>.pin</code> spans the page width and, in live mode, grows to <code>--track</code> (default <code>300vh</code>). The <code>.route-stage</code> inside it sticks to the screen and stays 100vh tall, so the sheet holds still while you scroll along the track and only the drawing changes. The engine takes <code>p</code> from 0 to 1 between the start and end of the track and calls <code>render(p, api)</code> on every frame.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">skeleton</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="pin" id="sample" style="--track:280vh"&gt;     &lt;!-- track: --track tall in live mode --&gt;
+  &lt;div class="route-stage"&gt;                             &lt;!-- sticky scene (100vh) --&gt;
+    &lt;div class="frame"&gt;                                 &lt;!-- sheet grid --&gt;
       &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;div class="f-head"&gt;&lt;p class="chip"&gt;Şekil 1&lt;/p&gt;&lt;p class="fig-cap"&gt;…&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="f-head"&gt;&lt;p class="chip"&gt;Figure 1&lt;/p&gt;&lt;p class="fig-cap"&gt;…&lt;/p&gt;&lt;/div&gt;
       &lt;div class="f-side"&gt;
-        &lt;div class="hud-slot"&gt;&lt;/div&gt;                     &lt;!-- isteğe bağlı: HUD buraya iner --&gt;
-        &lt;ol class="beats"&gt;&lt;li&gt;&lt;b&gt;Adım&lt;/b&gt;Açıklama&lt;/li&gt; …&lt;/ol&gt;
+        &lt;div class="hud-slot"&gt;&lt;/div&gt;                     &lt;!-- optional: the HUD docks here --&gt;
+        &lt;ol class="beats"&gt;&lt;li&gt;&lt;b&gt;Step&lt;/b&gt;Description&lt;/li&gt; …&lt;/ol&gt;
       &lt;/div&gt;
       &lt;div class="f-map"&gt;
         &lt;div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420"&gt;
@@ -39,35 +39,35 @@ html.motion .ps-new,html.motion .ps-ttl{transition:opacity var(--dur-2)}
           &lt;p class="dl" style="--x:40;--y:120;--w:140"&gt;…&lt;/p&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class="f-foot"&gt;&lt;p class="figcap"&gt;&lt;b&gt;Şekil 1.&lt;/b&gt; …&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="f-foot"&gt;&lt;p class="figcap"&gt;&lt;b&gt;Figure 1.&lt;/b&gt; …&lt;/p&gt;&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre></figure>
 <div class="tbl"><table>
-  <thead><tr><th>Parça</th><th>Görevi</th><th>Zorunlu mu</th></tr></thead>
+  <thead><tr><th>Part</th><th>Role</th><th>Required</th></tr></thead>
   <tbody>
-    <tr><td><code>.pin</code> + <code>--track</code></td><td>Kaydırma izi. Beat başına yaklaşık 60–70vh iyi bir başlangıçtır.</td><td>Evet</td></tr>
-    <tr><td><code>.route-stage</code></td><td>Yapışkan sahne; motor CSS değişkenlerini (<code>api.set</code>) buraya yazar.</td><td>Evet</td></tr>
-    <tr><td><code>.drawing</code></td><td>Çizim birimi (<code>data-aw</code>/<code>data-ah</code>). Hoca koordinatları bu birimdedir.</td><td>Evet</td></tr>
-    <tr><td><code>.beats</code></td><td>Yan sütundaki adım yazıları; canlıda yalnız etkin olan açık kalır.</td><td>Hayır, önerilir</td></tr>
-    <tr><td><code>.hud-slot</code></td><td>HUD göstergesinin ineceği yer (bkz. HUD sayfası).</td><td>Hayır</td></tr>
+    <tr><td><code>.pin</code> + <code>--track</code></td><td>The scroll track. About 60–70vh per beat is a good starting point.</td><td>Yes</td></tr>
+    <tr><td><code>.route-stage</code></td><td>The sticky scene; the engine writes CSS variables (<code>api.set</code>) here.</td><td>Yes</td></tr>
+    <tr><td><code>.drawing</code></td><td>The drawing unit (<code>data-aw</code>/<code>data-ah</code>). Hoca coordinates are in this unit.</td><td>Yes</td></tr>
+    <tr><td><code>.beats</code></td><td>Step text in the side column; in live mode only the active one stays lit.</td><td>No, recommended</td></tr>
+    <tr><td><code>.hud-slot</code></td><td>Where the HUD readout docks (see the HUD page).</td><td>No</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Canlı örnek · DNS çözümleme" lead="Bir alan adı sorgusu dört duraktan geçer ve yanıtla geri döner. Kaydırdıkça mürekkep ilerler, HUD aşamayı yazar, Hoca sorguyu taşır.">
-<div class="prose"><p>İz <code>280vh</code>. İlk yüzde yetmişte sorgu istemciden yetkili sunucuya gider; son bölümde yeşil dönüş çizgisi yanıtı geri getirir ve kayıt çözümleyicinin önbelleğine yazılır. Hareket kapalıysa aşağıdaki pafta bu son haliyle görünür.</p></div>
+<chapter title="Live example · DNS resolution" lead="A domain name query passes four stops and comes back with an answer. As you scroll, the ink advances, the HUD names the stage and Hoca carries the query.">
+<div class="prose"><p>The track is <code>280vh</code>. In the first seventy percent the query travels from the client to the authoritative server; in the last part the green return line brings the answer back and the record is written to the resolver's cache. With motion off, the sheet below shows this finished state.</p></div>
 <div class="pin" id="ps-dns" style="--track:280vh">
   <div class="route-stage">
     <div class="frame">
       <div class="frame-bg" aria-hidden="true"></div>
-      <div class="f-head"><p class="chip">02 · Şekil 1</p><p class="fig-cap">magaza.example için A kaydı nasıl bulunur</p></div>
+      <div class="f-head"><p class="chip">02 · Figure 1</p><p class="fig-cap">How the A record for shop.example is found</p></div>
       <div class="f-side"><div class="hud-slot"></div>
-        <ol class="beats" aria-label="Çözümleme adımları">
-          <li><b>İstemci sorar</b>Tarayıcı, işletim sisteminin ayarlı çözümleyicisine A kaydını sorar.</li>
-          <li><b>Önbellekte yok</b>Çözümleyici kaydı daha önce görmemiş; zinciri baştan yürür.</li>
-          <li><b>Kök ve TLD yönlendirir</b>Kök sunucu .example sunucularını, onlar da yetkili ad sunucusunu gösterir.</li>
-          <li><b>Yetkili yanıtlar</b>Yanıt 203.0.113.10; çözümleyici onu TTL boyunca, 300 saniye önbellekte tutar.</li>
+        <ol class="beats" aria-label="Resolution steps">
+          <li><b>Client asks</b>The browser asks the operating system's configured resolver for the A record.</li>
+          <li><b>Not in cache</b>The resolver has not seen the record before; it walks the chain from the top.</li>
+          <li><b>Root and TLD refer</b>The root server points to the .example servers, and they point to the authoritative name server.</li>
+          <li><b>Authoritative answers</b>The answer is 203.0.113.10; the resolver caches it for the TTL, 300 seconds.</li>
         </ol>
       </div>
       <div class="f-map">
@@ -82,23 +82,23 @@ html.motion .ps-new,html.motion .ps-ttl{transition:opacity var(--dur-2)}
             <rect class="ps-box" data-st="2" x="480" y="110" width="150" height="96"/>
             <rect class="ps-box" data-st="3" x="705" y="110" width="150" height="96"/>
             <path class="dim" d="M105 60V76M780 60V76M105 68H780"/>
-            <text class="dim-t" x="442" y="56" text-anchor="middle">ilk sorgu · yaklaşık 120 ms</text>
+            <text class="dim-t" x="442" y="56" text-anchor="middle">first query · about 120 ms</text>
           </svg>
-          <p class="dl ps-lbl" data-st="0" style="--x:42;--y:132;--w:130"><b>İstemci</b>tarayıcı</p>
-          <p class="dl ps-lbl" data-st="1" style="--x:267;--y:132;--w:130"><b>Çözümleyici</b>önbellek</p>
-          <p class="dl ps-lbl" data-st="2" style="--x:492;--y:132;--w:130"><b>Kök · TLD</b>yönlendirme</p>
-          <p class="dl ps-lbl" data-st="3" style="--x:717;--y:132;--w:130"><b>Yetkili</b>203.0.113.10</p>
-          <p class="dl ps-ttl" style="--x:430;--y:266;--w:340"><span class="state ok">önbellekte</span> TTL 300 sn</p>
+          <p class="dl ps-lbl" data-st="0" style="--x:42;--y:132;--w:130"><b>Client</b>browser</p>
+          <p class="dl ps-lbl" data-st="1" style="--x:267;--y:132;--w:130"><b>Resolver</b>cache</p>
+          <p class="dl ps-lbl" data-st="2" style="--x:492;--y:132;--w:130"><b>Root · TLD</b>referral</p>
+          <p class="dl ps-lbl" data-st="3" style="--x:717;--y:132;--w:130"><b>Authoritative</b>203.0.113.10</p>
+          <p class="dl ps-ttl" style="--x:430;--y:266;--w:340"><span class="state ok">cached</span> TTL 300 s</p>
         </div>
       </div>
-      <div class="f-foot"><p class="figcap"><b>Şekil 1.</b> Siyah çizgi sorgunun gidişi, yeşil çizgi yanıtın dönüşü. Ölçü çizgisi önbellek boşken ilk sorgunun toplam süresini gösterir.</p></div>
+      <div class="f-foot"><p class="figcap"><b>Figure 1.</b> The black line is the query going out, the green line is the answer coming back. The dimension line shows the total time of the first query with an empty cache.</p></div>
     </div>
   </div>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var boxes = Hendese.$$('#ps-dns [data-st]'), beats = Hendese.$$('#ps-dns .beats li');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var boxes = Hendese.$$('#ps-dns [data-st]'), beats = Hendese.$$('#ps-dns .beats li');
 Hendese.pinScene({
-  el: '#ps-dns', chap: '02 · DNS çözümleme',
-  still: { x: 340, y: 404, pose: 'happy', face: -1, bubble: 'Yanıt 300 sn önbellekte.' },
+  el: '#ps-dns', chap: '02 · DNS resolution',
+  still: { x: 340, y: 404, pose: 'happy', face: -1, bubble: 'Answer cached for 300 s.' },
   render: function (p, api) {
     var d = api.seg(p, .04, .92), go = api.seg(d, 0, .7), back = api.seg(d, .75, 1);
     var n = Math.min(3, Math.floor(go * 3 + 1e-6));
@@ -107,26 +107,26 @@ Hendese.pinScene({
     beats.forEach(function (li, i) { api.cls(li, 'on', i === n); });
     var x = back &gt; 0 ? api.lerp(780, 340, back) : api.lerp(105, 780, go);
     return {
-      hud: { stage: …, name: 'magaza.example', rec: …, ttl: …, pct: Math.round(d * 100) + '%', fill: d },
-      hoca: { x: x, y: 404, pose: …, face: back &gt; 0 ? -1 : 1, bubble: back &gt;= 1 ? 'Yanıt 300 sn önbellekte.' : null }
+      hud: { stage: …, name: 'shop.example', rec: …, ttl: …, pct: Math.round(d * 100) + '%', fill: d },
+      hoca: { x: x, y: 404, pose: …, face: back &gt; 0 ? -1 : 1, bubble: back &gt;= 1 ? 'Answer cached for 300 s.' : null }
     };
   }
 });</code></pre></figure>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Neden CSS değişkeni</span><div class="co-body"><p>Mürekkep <code>stroke-dashoffset: calc(1 - var(--dns-go,1))</code> ile çizilir. JS hiçbir şey yazmadığında değişken yoktur, yedek değer 1 olur ve çizgi tamdır. Canlı mod kapanınca motor <code>.route-stage</code> üzerindeki tüm değişkenleri siler; ayrı bir <code>reset</code> yazmak gerekmez.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Why a CSS variable</span><div class="co-body"><p>The ink is drawn with <code>stroke-dashoffset: calc(1 - var(--dns-go,1))</code>. When JS writes nothing, the variable does not exist, the fallback is 1 and the line is complete. When live mode turns off, the engine removes every variable on <code>.route-stage</code>; you do not need a separate <code>reset</code>.</p></div></div>
 </chapter>
 
-<chapter title="Varyasyon · kısa iz, HUD ve Hoca yok" lead="Pin sahnesinin yalnız iz ve render kısmı zorunludur. Üç adımlık bir şema göçü için 200vh yeter; yan sütunda HUD yuvası, sahnede Hoca yok.">
-<div class="prose"><p>Genişlet, taşı, daralt: yeni sütunlar eklenir, veri arka planda kopyalanır, eski sütun en son kaldırılır. Çubuk <code>--mg</code> değişkeniyle dolar; eski sütunun etiketi canlı modda önce “kullanımda” yazar, son adımda “kaldırıldı”ya döner. <code>still</code> verilmediği için reduced motion'da bu sahnede Hoca kopyası çıkmaz.</p></div>
+<chapter title="Variation · short track, no HUD or Hoca" lead="Only the track and render are required in a pin scene. A three-step schema migration needs just 200vh; no HUD slot in the side column, no Hoca on the scene.">
+<div class="prose"><p>Expand, migrate, contract: new columns are added, data is copied in the background, and the old column is dropped last. The bar fills with the <code>--mg</code> variable; in live mode the old column's label first reads “in use” and turns to “dropped” on the last step. Because no <code>still</code> is given, this scene shows no Hoca copy under reduced motion.</p></div>
 <div class="pin" id="ps-mig" style="--track:200vh">
   <div class="route-stage">
     <div class="frame">
       <div class="frame-bg" aria-hidden="true"></div>
-      <div class="f-head"><p class="chip">03 · Şekil 2</p><p class="fig-cap">Kesintisiz şema göçü: musteri tablosu</p></div>
+      <div class="f-head"><p class="chip">03 · Figure 2</p><p class="fig-cap">Zero-downtime schema migration: the customer table</p></div>
       <div class="f-side">
-        <ol class="beats" aria-label="Göç adımları">
-          <li><b>Genişlet</b>ad ve soyad sütunları boş olarak eklenir; eski kod etkilenmez.</li>
-          <li><b>Taşı</b>Arka plan işi satırları parça parça kopyalar; uygulama iki yere de yazar.</li>
-          <li><b>Daralt</b>Okumalar yeni sütunlara geçince ad_soyad kaldırılır.</li>
+        <ol class="beats" aria-label="Migration steps">
+          <li><b>Expand</b>The first_name and last_name columns are added empty; old code is unaffected.</li>
+          <li><b>Migrate</b>A background job copies rows in batches; the application writes to both places.</li>
+          <li><b>Contract</b>Once reads move to the new columns, full_name is dropped.</li>
         </ol>
       </div>
       <div class="f-map">
@@ -142,19 +142,19 @@ Hendese.pinScene({
             <rect class="ps-bar" x="60" y="300" width="780" height="14"/>
           </svg>
           <p class="dl" style="--x:72;--y:70;--w:120"><b>id</b></p>
-          <p class="dl ps-oldlbl" style="--x:212;--y:70;--w:180">ad_soyad <span class="ps-keep state">kullanımda</span><span class="ps-drop state bad">kaldırıldı</span></p>
-          <p class="dl ps-new" style="--x:412;--y:70;--w:200">ad</p>
-          <p class="dl ps-new" style="--x:632;--y:70;--w:200">soyad</p>
-          <p class="dl" style="--x:60;--y:322;--w:400">kopyalanan satır · 4,2 milyon</p>
+          <p class="dl ps-oldlbl" style="--x:212;--y:70;--w:180">full_name <span class="ps-keep state">in use</span><span class="ps-drop state bad">dropped</span></p>
+          <p class="dl ps-new" style="--x:412;--y:70;--w:200">first_name</p>
+          <p class="dl ps-new" style="--x:632;--y:70;--w:200">last_name</p>
+          <p class="dl" style="--x:60;--y:322;--w:400">rows copied · 4.2 million</p>
         </div>
       </div>
-      <div class="f-foot"><p class="figcap"><b>Şekil 2.</b> Kırmızı kesikli kutu kaldırılan sütunun yeri; alttaki çubuk taşınan satırların payı.</p></div>
+      <div class="f-foot"><p class="figcap"><b>Figure 2.</b> The red dashed box marks the dropped column; the bar below shows the share of rows migrated.</p></div>
     </div>
   </div>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var add = Hendese.$$('#ps-mig .ps-new'), old = Hendese.$$('#ps-mig .ps-old, #ps-mig .ps-oldlbl'), steps = Hendese.$$('#ps-mig .beats li');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var add = Hendese.$$('#ps-mig .ps-new'), old = Hendese.$$('#ps-mig .ps-old, #ps-mig .ps-oldlbl'), steps = Hendese.$$('#ps-mig .beats li');
 Hendese.pinScene({
-  el: '#ps-mig',                     // chap, still, hud, hoca yok: hepsi isteğe bağlı
+  el: '#ps-mig',                     // no chap, still, hud or hoca: all optional
   render: function (p, api) {
     var a = api.seg(p, .05, .25), m = api.seg(p, .3, .7), z = api.seg(p, .75, .9), n = z &gt; 0 ? 2 : m &gt; 0 ? 1 : 0;
     add.forEach(function (el) { api.cls(el, 'in', a &gt; 0); });
@@ -164,77 +164,77 @@ Hendese.pinScene({
   }
 });</code></pre></figure>
 <div class="tbl"><table>
-  <thead><tr><th>Beat sayısı</th><th>Önerilen <code>--track</code></th><th>Not</th></tr></thead>
+  <thead><tr><th>Beats</th><th>Suggested <code>--track</code></th><th>Note</th></tr></thead>
   <tbody>
-    <tr><td>2–3</td><td><code>180vh</code>–<code>220vh</code></td><td>Kısa iz; okuyucu sahneyi atlıyor gibi hissetmez.</td></tr>
-    <tr><td>4</td><td><code>260vh</code>–<code>300vh</code></td><td>Başta ve sonda %5 boşluk bırakın (<code>seg(p, .05, .9)</code>).</td></tr>
-    <tr><td>5+</td><td>Bölün</td><td>İki sahne ya da sticky anlatım daha okunur.</td></tr>
+    <tr><td>2–3</td><td><code>180vh</code>–<code>220vh</code></td><td>A short track; the reader does not feel the scene is skipping.</td></tr>
+    <tr><td>4</td><td><code>260vh</code>–<code>300vh</code></td><td>Leave 5% of slack at the start and end (<code>seg(p, .05, .9)</code>).</td></tr>
+    <tr><td>5+</td><td>Split it</td><td>Two scenes or a sticky narrative read better.</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Hareket kapalıyken" lead="Reduced motion, 1100px altı, baskı ve JS'siz sayfa aynı şeyi görür: işaretlemenin kendisi, yani bitmiş pafta.">
+<chapter title="With motion off" lead="Reduced motion, widths under 1100px, print and a page without JS all see the same thing: the markup itself, which is the finished sheet.">
 <div class="prose">
-  <p>Canlı mod kapalıyken <code>.pin</code> uzamaz, <code>.route-stage</code> yapışmaz ve pafta akışta bir şekil gibi durur. <code>.beats</code> listesinin tüm maddeleri açık görünür; yan sütun 1100px altında çizimin altına iner. Bu yüzden anlatının tamamı adım metinlerinde de bulunmalıdır.</p>
-  <p>Canlı moddan çıkışta (pencere daraltılınca ya da sistem ayarı değişince) motor <code>setLive(false)</code> ile <code>.is-live</code>'ı, <code>api.cls</code> ile eklenen sınıfları ve <code>api.set</code> ile yazılan değişkenleri temizler, sonra varsa <code>reset(api)</code>'yi çağırır. <code>reset</code> yalnızca sizin elle yazdıklarınız içindir (örneğin bir öğeye doğrudan <code>style</code> verdiyseniz).</p>
+  <p>With live mode off, <code>.pin</code> does not grow, <code>.route-stage</code> does not stick, and the sheet sits in the flow like a figure. Every item in the <code>.beats</code> list is visible; below 1100px the side column drops under the drawing. So the whole narrative must also live in the step text.</p>
+  <p>On leaving live mode (when the window narrows or the system setting changes), the engine clears <code>.is-live</code> with <code>setLive(false)</code>, the classes added with <code>api.cls</code> and the variables written with <code>api.set</code>, then calls <code>reset(api)</code> if you gave one. <code>reset</code> is only for what you wrote by hand (for example, if you set a <code>style</code> directly on an element).</p>
 </div>
 <div class="tbl"><table>
-  <thead><tr><th>Mod</th><th>Pafta</th><th>HUD</th><th>Hoca</th></tr></thead>
+  <thead><tr><th>Mode</th><th>Sheet</th><th>HUD</th><th>Hoca</th></tr></thead>
   <tbody>
-    <tr><td>Canlı (≥ 1100px)</td><td>Yapışkan, kaydırmayla çizilir</td><td><code>.hud-slot</code> yerinde</td><td>Talep ederse sahnede</td></tr>
-    <tr><td>Reduced motion (masaüstü)</td><td>Bitmiş, akışta</td><td>Gizli</td><td><code>still</code> pozunda durgun kopya</td></tr>
-    <tr><td>&lt; 1100px</td><td>Bitmiş, tek sütun</td><td>Gizli</td><td>Gizli</td></tr>
-    <tr><td>Baskı, JS yok</td><td>Bitmiş</td><td>Gizli</td><td>Yok</td></tr>
+    <tr><td>Live (≥ 1100px)</td><td>Sticky, drawn as you scroll</td><td>In its <code>.hud-slot</code></td><td>On the scene if requested</td></tr>
+    <tr><td>Reduced motion (desktop)</td><td>Finished, in the flow</td><td>Hidden</td><td>Still copy in the <code>still</code> pose</td></tr>
+    <tr><td>&lt; 1100px</td><td>Finished, single column</td><td>Hidden</td><td>Hidden</td></tr>
+    <tr><td>Print, no JS</td><td>Finished</td><td>Hidden</td><td>None</td></tr>
   </tbody>
 </table></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* varsayılan: bitmiş hal (kutular dolu, çizgi tam) */
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* default: finished state (boxes filled, line complete) */
 .ps-box { stroke: var(--draw); fill: var(--paper); }
 .ps-go  { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--dns-go,1)); }
-/* yalnız canlıda: henüz ulaşılmamış kutu kalemle */
+/* live only: a box not yet reached is in pencil */
 @media screen { .is-live .ps-box:not(.on) { stroke: var(--pencil); fill: transparent; } }</code></pre></figure>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Pin sahnesi okuru bir süre tutar; bunu hak eden tek bir anlatı için kullanın ve son halini işaretlemeye yazın.">
+<chapter title="Do / don't" lead="A pin scene holds the reader for a while; use it for a single narrative that earns it, and write its finished state into the markup.">
 <div class="dodont">
-<demo label="Yap · varsayılan bitmiş hal" nocode>
+<demo label="Do · finished state by default" nocode>
 <div class="drawing" data-aw="600" data-ah="120" style="--aw:600;--ah:120">
   <svg viewBox="0 0 600 120" aria-hidden="true"><path class="ln-strong" d="M100 60H500"/><rect class="ps-box" x="20" y="30" width="160" height="60"/><rect class="ps-box" x="420" y="30" width="160" height="60"/></svg>
-  <p class="dl" style="--x:32;--y:50;--w:140">sorgu</p>
-  <p class="dl" style="--x:432;--y:50;--w:140">yanıt</p>
+  <p class="dl" style="--x:32;--y:50;--w:140">query</p>
+  <p class="dl" style="--x:432;--y:50;--w:140">answer</p>
 </div>
-<p class="figcap">JS gelmese de çizim tam: <code>var(--k,1)</code> ve <code>.is-live</code> altındaki ara haller.</p>
+<p class="figcap">The drawing is complete even without JS: <code>var(--k,1)</code>, and intermediate states only under <code>.is-live</code>.</p>
 </demo>
-<demo label="Yapma · boş başlayan pafta" nocode>
+<demo label="Don't · a sheet that starts empty" nocode>
 <div class="drawing" data-aw="600" data-ah="120" style="--aw:600;--ah:120">
   <svg viewBox="0 0 600 120" aria-hidden="true"><rect class="ln-pencil" x="20" y="30" width="160" height="60" stroke-dasharray="4 4"/><rect class="ln-pencil" x="420" y="30" width="160" height="60" stroke-dasharray="4 4"/></svg>
 </div>
-<p class="figcap"><code>.ps-go{stroke-dashoffset:1}</code> gibi varsayılanlar reduced motion'da, baskıda ve dar ekranda boş bir kutu bırakır.</p>
+<p class="figcap">Defaults like <code>.ps-go{stroke-dashoffset:1}</code> leave an empty box under reduced motion, in print and on narrow screens.</p>
 </demo>
 </div>
 <div class="dodont">
-<demo label="Yap · ölçüm measure içinde" nocode>
-<p><code>measure(api)</code> içinde bir kez <code>getBoundingClientRect()</code>; <code>render</code> yalnızca <code>api.cls</code>, <code>api.set</code> ve dönüş değeri yazar.</p>
+<demo label="Do · measure inside measure" nocode>
+<p>Call <code>getBoundingClientRect()</code> once inside <code>measure(api)</code>; <code>render</code> only writes <code>api.cls</code>, <code>api.set</code> and its return value.</p>
 </demo>
-<demo label="Yapma · render içinde düzen okumak" nocode>
-<p><code>render</code> her karede çalışır; içinde <code>offsetWidth</code> ya da <code>getBoundingClientRect()</code> okumak her karede düzeni yeniden hesaplatır ve kaydırmayı takılır hale getirir.</p>
+<demo label="Don't · read layout inside render" nocode>
+<p><code>render</code> runs on every frame; reading <code>offsetWidth</code> or <code>getBoundingClientRect()</code> there forces a layout recalculation every frame and makes scrolling stutter.</p>
 </demo>
 </div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Beat sayısı</span><div class="co-body"><p>Beş ve üstü adım tek pafta için fazladır: yan sütunda başlıklar tek satıra katlansa da okur neyin değiştiğini kaçırır. Anlatıyı ikiye bölün ya da sticky anlatıma geçin.</p></div></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Beat count</span><div class="co-body"><p>Five or more steps are too many for one sheet: even if the side column folds the titles to one line, the reader misses what changed. Split the narrative in two, or switch to a sticky narrative.</p></div></div>
 </chapter>
 
-<chapter title="API" lead="Kayıt Hendese.init() ile Hendese.start() arasında yapılır. Seçici bulunamazsa pinScene null döner ve sayfa olduğu gibi kalır.">
+<chapter title="API" lead="Register between Hendese.init() and Hendese.start(). If the selector is not found, pinScene returns null and the page stays as it is.">
 <div class="tbl wide api"><table>
-  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
   <tbody>
-    <tr><td><code>el</code></td><td>Sahnenin seçicisi (<code>.pin</code> öğesi). İçinde <code>.route-stage</code> ve <code>.drawing</code> bulunmalı.</td></tr>
-    <tr><td><code>chap</code></td><td>HUD başlığı; <code>hud</code> nesnesine <code>chap</code> alanı olarak eklenir.</td></tr>
-    <tr><td><code>still</code></td><td>Reduced motion'da Hoca'nın durgun kopyası: <code>{x, y, pose, face, bubble, bubbleUp, tag}</code>, çizim biriminde.</td></tr>
-    <tr><td><code>render(p, api)</code></td><td>Her karede; <code>p</code> 0..1 yumuşatılmış iz ilerlemesi. Döner: <code>{hud?, tb?, hoca?}</code>; <code>tb</code> 0..1 göstergeyi antet haline (<code>.hud-tb</code>) geçirir.</td></tr>
-    <tr><td><code>measure(api)</code></td><td>Yeniden ölçümde (yeniden boyutlandırma, font yüklenmesi). Düzen okumak için tek yer.</td></tr>
-    <tr><td><code>reset(api)</code></td><td>Canlı mod kapanınca, motor kendi yazdıklarını temizledikten sonra.</td></tr>
-    <tr><td><code>api</code></td><td><code>el, stage, drawing, aw, ah</code> (<code>aw</code>/<code>ah</code> her ölçümde hesaplanmış <code>--aw</code>/<code>--ah</code>'tan okunur), <code>set(k, v)</code> (<code>--k</code>'yı <code>.route-stage</code>'e yazar), <code>cls(node, c, on)</code>, <code>live()</code>, <code>poke()</code>, <code>seg, ease, lerp, clamp01</code>.</td></tr>
-    <tr><td><code>hud</code> dönüşü</td><td>Serbest alanlar: her anahtar aynı <code>data-hud</code> değerli öğeye yazılır; <code>fill</code> 0..1 çubuğu ölçekler.</td></tr>
-    <tr><td><code>hoca</code> dönüşü</td><td><code>{x, y, pose, face, bubble, bubbleUp, tag, squash}</code>; <code>x, y</code> ayakların alt ortası, çizim biriminde.</td></tr>
+    <tr><td><code>el</code></td><td>The scene's selector (the <code>.pin</code> element). It must contain a <code>.route-stage</code> and a <code>.drawing</code>.</td></tr>
+    <tr><td><code>chap</code></td><td>The HUD title; added to the <code>hud</code> object as the <code>chap</code> field.</td></tr>
+    <tr><td><code>still</code></td><td>Hoca's still copy under reduced motion: <code>{x, y, pose, face, bubble, bubbleUp, tag}</code>, in drawing units.</td></tr>
+    <tr><td><code>render(p, api)</code></td><td>On every frame; <code>p</code> is the smoothed track progress, 0..1. Returns <code>{hud?, tb?, hoca?}</code>; <code>tb</code> 0..1 turns the readout into a title block (<code>.hud-tb</code>).</td></tr>
+    <tr><td><code>measure(api)</code></td><td>On re-measure (resize, font load). The one place to read layout.</td></tr>
+    <tr><td><code>reset(api)</code></td><td>When live mode turns off, after the engine has cleared what it wrote itself.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, stage, drawing, aw, ah</code> (<code>aw</code>/<code>ah</code> are read from the computed <code>--aw</code>/<code>--ah</code> on every measure), <code>set(k, v)</code> (writes <code>--k</code> to <code>.route-stage</code>), <code>cls(node, c, on)</code>, <code>live()</code>, <code>poke()</code>, <code>seg, ease, lerp, clamp01</code>.</td></tr>
+    <tr><td><code>hud</code> return</td><td>Free-form fields: each key is written to the element with the same <code>data-hud</code> value; <code>fill</code> 0..1 scales the bar.</td></tr>
+    <tr><td><code>hoca</code> return</td><td><code>{x, y, pose, face, bubble, bubbleUp, tag, squash}</code>; <code>x, y</code> is the bottom center of the feet, in drawing units.</td></tr>
   </tbody>
 </table></div>
 </chapter>
@@ -242,9 +242,9 @@ Hendese.pinScene({
 <div class="hud" id="hud" aria-hidden="true">
   <div class="hud-live">
     <div class="hud-h"><span data-hud="chap">—</span><span data-hud="pct">0%</span></div>
-    <div class="hud-r"><span>Aşama</span><b data-hud="stage">—</b></div>
-    <div class="hud-r"><span>Ad</span><b data-hud="name">—</b></div>
-    <div class="hud-r"><span>Kayıt</span><b data-hud="rec">—</b></div>
+    <div class="hud-r"><span>Stage</span><b data-hud="stage">—</b></div>
+    <div class="hud-r"><span>Name</span><b data-hud="name">—</b></div>
+    <div class="hud-r"><span>Record</span><b data-hud="rec">—</b></div>
     <div class="hud-r"><span>TTL</span><b data-hud="ttl">—</b></div>
     <div class="hud-bar"><i id="hud-fill"></i></div>
   </div>
@@ -253,11 +253,11 @@ Hendese.pinScene({
 <script data-page>
 (function () {
   var $ = Hendese.$, $$ = Hendese.$$;
-  /* 02 · DNS çözümleme */
+  /* 02 · DNS resolution */
   var boxes = $$('#ps-dns [data-st]'), beats = $$('#ps-dns .beats li'), ttl = $$('#ps-dns .ps-ttl');
-  var STAGE = ['Sorgu', 'Önbellekte yok', 'Yönlendirme', 'Yetkili yanıt'], BUB = 'Yanıt 300 sn önbellekte.';
+  var STAGE = ['Query', 'Not in cache', 'Referral', 'Authoritative answer'], BUB = 'Answer cached for 300 s.';
   Hendese.pinScene({
-    el: '#ps-dns', chap: '02 · DNS çözümleme',
+    el: '#ps-dns', chap: '02 · DNS resolution',
     still: { x: 340, y: 404, pose: 'happy', face: -1, bubble: BUB },
     render: function (p, api) {
       var d = api.seg(p, .04, .92), go = api.seg(d, 0, .7), back = api.seg(d, .75, 1);
@@ -269,12 +269,12 @@ Hendese.pinScene({
       var x = back > 0 ? api.lerp(780, 340, back) : api.lerp(105, 780, go);
       var moving = (go > 0 && go < 1) || (back > 0 && back < 1);
       return {
-        hud: { stage: back >= 1 ? 'Önbellekte' : back > 0 ? 'Dönüş' : STAGE[n], name: 'magaza.example', rec: back > 0 ? 'A · 203.0.113.10' : '—', ttl: back >= 1 ? '300 sn' : '—', pct: Math.round(d * 100) + '%', fill: d },
+        hud: { stage: back >= 1 ? 'Cached' : back > 0 ? 'Return' : STAGE[n], name: 'shop.example', rec: back > 0 ? 'A · 203.0.113.10' : '—', ttl: back >= 1 ? '300 s' : '—', pct: Math.round(d * 100) + '%', fill: d },
         hoca: { x: x, y: 404, pose: moving ? (Math.floor(x / 16) % 2 ? 'walkA' : 'walkB') : back >= 1 ? 'happy' : 'carry', face: back > 0 ? -1 : 1, bubble: back >= 1 ? BUB : null }
       };
     }
   });
-  /* 03 · şema göçü */
+  /* 03 · schema migration */
   var add = $$('#ps-mig .ps-new'), old = $$('#ps-mig .ps-old, #ps-mig .ps-oldlbl'), steps = $$('#ps-mig .beats li');
   Hendese.pinScene({
     el: '#ps-mig',

@@ -1,15 +1,15 @@
-<!-- meta {"title":"Form alanları","group":"Bileşenler","order":160,"tagline":"Etiket, ipucu, hata; yerel denetim.","intro":"<code>.field</code> bir etiketi, yerel bir denetimi (<code>input</code>, <code>textarea</code>, <code>select</code>) ve altındaki ipucu ile hata satırını tek bir sütunda toplar. Zorunluluk işareti <code>:required</code> özniteliğinden, hata görünümü <code>aria-invalid</code> ya da tarayıcının kendi doğrulamasından gelir; betik gerekmez.","summary":"<code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-unit</code>, <code>.field-row</code>; zorunlu, geçersiz ve devre dışı alanlar.","facts":{"Sınıflar":"<code>.field</code> · <code>.field-help</code> · <code>.field-error</code> · <code>.field-unit</code> · <code>.field-row</code> · <code>.mono</code>","Durum":"<code>required</code> · <code>aria-invalid=\"true\"</code> · <code>:user-invalid</code> · <code>disabled</code>","Metin token'ları":"<code>--str-required</code> · <code>--str-error</code>","JS":"Gerekmez; varsa hata metnini yalnız geçersizken <code>aria-describedby</code>'a bağlar"}} -->
+<!-- meta {"title":"Form fields","group":"Components","order":160,"tagline":"Label, hint, error; native controls.","intro":"<code>.field</code> gathers a label, a native control (<code>input</code>, <code>textarea</code>, <code>select</code>) and the hint and error lines below it into a single column. The required mark comes from the <code>:required</code> attribute, and the error look from <code>aria-invalid</code> or the browser's own validation; no script is needed.","summary":"<code>.field</code>, <code>.field-help</code>, <code>.field-error</code>, <code>.field-unit</code>, <code>.field-row</code>; required, invalid and disabled fields.","facts":{"Classes":"<code>.field</code> · <code>.field-help</code> · <code>.field-error</code> · <code>.field-unit</code> · <code>.field-row</code> · <code>.mono</code>","State":"<code>required</code> · <code>aria-invalid=\"true\"</code> · <code>:user-invalid</code> · <code>disabled</code>","String tokens":"<code>--str-required</code> · <code>--str-error</code>","JS":"Not needed; if present, it links the error text to <code>aria-describedby</code> only while the field is invalid"}} -->
 
-<chapter title="Yapı" lead="Etiket üstte, denetim ortada, ipucu ve hata altta. Denetimler yalnız .field içinde biçimlenir; sayfadaki başka input'lara dokunulmaz.">
-<demo label="Örnek · metin, seçim, çok satır">
+<chapter title="Structure" lead="Label on top, control in the middle, hint and error below. Controls are styled only inside .field; other inputs on the page are left alone.">
+<demo label="Example · text, select, multi-line">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-servis">Servis adı</label>
+    <label for="fa-servis">Service name</label>
     <input id="fa-servis" name="servis" value="web-api" aria-describedby="fa-servis-h">
-    <p class="field-help" id="fa-servis-h">Panolarda ve alarm başlıklarında bu ad görünür.</p>
+    <p class="field-help" id="fa-servis-h">This name appears on dashboards and in alarm titles.</p>
   </div>
   <div class="field">
-    <label for="fa-seviye">Günlük seviyesi</label>
+    <label for="fa-seviye">Log level</label>
     <select id="fa-seviye" name="seviye">
       <option>debug</option>
       <option selected>info</option>
@@ -18,64 +18,64 @@
     </select>
   </div>
   <div class="field">
-    <label for="fa-not">Değişiklik notu</label>
-    <textarea id="fa-not" name="not" aria-describedby="fa-not-h">Bağlantı havuzu 20'den 40'a çıkarıldı.</textarea>
-    <p class="field-help" id="fa-not-h">Denetim kaydına olduğu gibi yazılır.</p>
+    <label for="fa-not">Change note</label>
+    <textarea id="fa-not" name="not" aria-describedby="fa-not-h">Connection pool raised from 20 to 40.</textarea>
+    <p class="field-help" id="fa-not-h">Written to the audit log as is.</p>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Etiket <code>for</code> ile denetime bağlanır; ipucu ve hata <code>aria-describedby</code> ile. Kenar rengi <code>--c</code> değişkenindedir: varsayılanı <code>--ink-3</code> (metin dışı öğe için 3:1 kontrast), alan geçersizken <code>--bad</code>. Çok satırlı alan dikeyde büyütülebilir.</p></div>
+<div class="prose"><p>The label is tied to the control with <code>for</code>; the hint and error with <code>aria-describedby</code>. The border color lives in the <code>--c</code> variable: <code>--ink-3</code> by default (3:1 contrast for non-text elements), <code>--bad</code> while the field is invalid. A multi-line field can be resized vertically.</p></div>
 </chapter>
 
-<chapter title="Durumlar" lead="Zorunlu, geçersiz ve devre dışı. Hata metni baştan HTML'de durur; CSS onu yalnız alan geçersizken gösterir.">
-<demo label="Örnek · canlı doğrulama: yazın, sonra alandan çıkın">
+<chapter title="States" lead="Required, invalid and disabled. The error text sits in the HTML from the start; CSS shows it only while the field is invalid.">
+<demo label="Example · live validation: type, then leave the field">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-kume">Küme adı</label>
+    <label for="fa-kume">Cluster name</label>
     <input id="fa-kume" name="kume" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-kume-h fa-kume-e">
-    <p class="field-help" id="fa-kume-h">Küçük harfle başlar; küçük harf, rakam ve tire; 3–24 karakter.</p>
-    <p class="field-error" id="fa-kume-e">küme adı bu kalıba uymuyor.</p>
+    <p class="field-help" id="fa-kume-h">Starts with a lowercase letter; lowercase letters, digits and hyphens; 3–24 characters.</p>
+    <p class="field-error" id="fa-kume-e">the cluster name does not match this pattern.</p>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Alan <code>required</code> taşıdığı için etiketin yanına “zorunlu” kendiliğinden yazılır. Hata, <code>:user-invalid</code> sayesinde sayfa açılır açılmaz değil, kullanıcı değeri değiştirip alandan çıktıktan (ya da formu göndermeye çalıştıktan) sonra görünür. Deneyin: <code>Prod_EU</code> yazıp Tab'a basın.</p></div>
-<demo label="Örnek · sunucunun reddettiği değer">
+<div class="prose"><p>Because the field carries <code>required</code>, “required” is written next to the label automatically. Thanks to <code>:user-invalid</code>, the error appears not as soon as the page opens but after the user changes the value and leaves the field (or tries to submit the form). Try it: type <code>Prod_EU</code> and press Tab.</p></div>
+<demo label="Example · a value the server rejected">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-bolge">Bölge kodu</label>
+    <label for="fa-bolge">Region code</label>
     <input id="fa-bolge" name="bolge" class="mono" value="EU West 1" aria-invalid="true" aria-describedby="fa-bolge-h fa-bolge-e">
-    <p class="field-help" id="fa-bolge-h">Bulut sağlayıcısının bölge kodu.</p>
-    <p class="field-error" id="fa-bolge-e">bölge kodu küçük harf ve tireyle yazılır, örneğin <code>eu-west-1</code>.</p>
+    <p class="field-help" id="fa-bolge-h">The cloud provider's region code.</p>
+    <p class="field-error" id="fa-bolge-e">region codes are written in lowercase with hyphens, for example <code>eu-west-1</code>.</p>
   </div>
 </div>
 </demo>
-<demo label="Örnek · devre dışı">
+<demo label="Example · disabled">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-hesap">Hesap kimliği</label>
+    <label for="fa-hesap">Account ID</label>
     <input id="fa-hesap" name="hesap" class="mono" value="123456789012" disabled aria-describedby="fa-hesap-h">
-    <p class="field-help" id="fa-hesap-h">Kuruluş düzeyinde atanır; buradan değiştirilemez.</p>
+    <p class="field-help" id="fa-hesap-h">Assigned at the organization level; it cannot be changed here.</p>
   </div>
 </div>
 </demo>
 <div class="tbl"><table>
-  <thead><tr><th>Durum</th><th>Tetikleyen</th><th>Görünüm</th></tr></thead>
+  <thead><tr><th>State</th><th>Trigger</th><th>Appearance</th></tr></thead>
   <tbody>
-    <tr><td>Zorunlu</td><td><code>required</code> (etiketten hemen sonra gelen ya da onu saran öğenin içindeki denetimde)</td><td>Etiketin sonuna <code>--str-required</code> metni: “ · zorunlu”. Yalnız görseldir, erişilebilir ada girmez; ekran okuyucu yerel <code>required</code>'ı duyurur.</td></tr>
-    <tr><td>Geçersiz (tarayıcı)</td><td><code>:user-invalid</code>: <code>required</code>, <code>pattern</code>, <code>type</code>, <code>min</code>/<code>max</code></td><td>Kenar <code>--bad</code>; <code>.field-error</code> görünür. Kullanıcı etkileşiminden önce tetiklenmez.</td></tr>
-    <tr><td>Geçersiz (uygulama)</td><td><code>aria-invalid="true"</code></td><td>Aynı görünüm; sunucu doğrulaması gibi tarayıcının bilemeyeceği hatalar için.</td></tr>
-    <tr><td>Üzerinde / odak</td><td><code>:hover</code> · <code>:focus-visible</code></td><td>Kenar koyulaşır; odakta 2px vurgu halkası.</td></tr>
-    <tr><td>Devre dışı</td><td><code>disabled</code></td><td>Kesikli kenar, şeffaf zemin, soluk metin. Değer formla gönderilmez.</td></tr>
+    <tr><td>Required</td><td><code>required</code> (on the control in the element right after the label, or in the element that wraps it)</td><td>The <code>--str-required</code> text at the end of the label: “ · required”. Visual only, not part of the accessible name; the screen reader announces the native <code>required</code>.</td></tr>
+    <tr><td>Invalid (browser)</td><td><code>:user-invalid</code>: <code>required</code>, <code>pattern</code>, <code>type</code>, <code>min</code>/<code>max</code></td><td>Border <code>--bad</code>; <code>.field-error</code> visible. Not triggered before the user interacts.</td></tr>
+    <tr><td>Invalid (app)</td><td><code>aria-invalid="true"</code></td><td>The same look; for errors the browser cannot know about, such as server validation.</td></tr>
+    <tr><td>Hover / focus</td><td><code>:hover</code> · <code>:focus-visible</code></td><td>The border darkens; a 2px focus ring on focus.</td></tr>
+    <tr><td>Disabled</td><td><code>disabled</code></td><td>Dashed border, transparent background, faded text. The value is not submitted with the form.</td></tr>
   </tbody>
 </table></div>
-<div class="prose"><p>Hata metninin başındaki “Hata:” CSS'ten gelir (<code>--str-error</code>); renk tek başına anlam taşımadığı için durum metinle de söylenir. HTML'deki metni bu yüzden küçük harfle ve önekin devamı olarak yazın.</p><p>Alanın “başarılı” durumu yoktur ve <code>.field</code> <code>.s-*</code> sınıflarını kabul etmez: geçerli alan sade kalır. Yeşil kenarlı bir “doğru” alan, okuyucuya her alanı tek tek onaylatır ve gerçek hatayı kalabalıkta kaybettirir.</p></div>
+<div class="prose"><p>The “Error:” at the start of the error text comes from CSS (<code>--str-error</code>); color alone carries no meaning, so the state is also stated in words. That is why you write the text in the HTML in lowercase, as a continuation of the prefix.</p><p>A field has no “success” state, and <code>.field</code> does not accept the <code>.s-*</code> classes: a valid field stays plain. A green-bordered “correct” field makes the reader confirm every field one by one and loses the real error in the crowd.</p></div>
 </chapter>
 
-<chapter title="Teknik değerler, birimler, yan yana alanlar" lead="Kimlik, adres, kalıp gibi karakter karakter okunan değerler .mono ile eş aralıklı yazılır; birim .field-unit ile kutunun sağına yapışır. .field-row alanları sütun genişliğine göre yan yana dizer; dar sütunda alt alta iner.">
-<demo label="Örnek · yan yana alanlarla ağ kuralı">
+<chapter title="Technical values, units, side-by-side fields" lead="Values read character by character, like IDs, addresses and patterns, are set monospaced with .mono; a unit sticks to the right of the box with .field-unit. .field-row lays fields out side by side based on column width; in a narrow column they stack.">
+<demo label="Example · a network rule with side-by-side fields">
 <div class="field-row">
   <div class="field">
-    <label for="fa-cidr">Kaynak <span lang="en">CIDR</span></label>
+    <label for="fa-cidr">Source <span lang="en">CIDR</span></label>
     <input id="fa-cidr" name="cidr" class="mono" value="10.20.0.0/16" spellcheck="false" autocomplete="off">
   </div>
   <div class="field">
@@ -83,7 +83,7 @@
     <input id="fa-port" name="port" class="mono" type="number" min="1" max="65535" value="443">
   </div>
   <div class="field">
-    <label for="fa-proto">Protokol</label>
+    <label for="fa-proto">Protocol</label>
     <select id="fa-proto" name="proto">
       <option selected>tcp</option>
       <option>udp</option>
@@ -92,131 +92,131 @@
   </div>
 </div>
 <div class="field">
-  <label for="fa-arn">Rol kimliği</label>
+  <label for="fa-arn">Role ARN</label>
   <input id="fa-arn" name="arn" class="mono" value="arn:aws:iam::123456789012:role/deploy-staging" spellcheck="false" autocomplete="off">
 </div>
 </demo>
-<demo label="Örnek · birimli alanlar">
+<demo label="Example · fields with units">
 <div class="field-row">
   <div class="field">
-    <label for="fa-zaman">İstek zaman aşımı</label>
+    <label for="fa-zaman">Request timeout</label>
     <div class="field-unit"><input id="fa-zaman" name="zaman" class="mono" type="number" min="100" max="60000" step="100" value="3000" required aria-describedby="fa-zaman-h fa-zaman-u fa-zaman-e"><span id="fa-zaman-u">ms</span></div>
-    <p class="field-help" id="fa-zaman-h">100–60000 arası.</p>
-    <p class="field-error" id="fa-zaman-e">zaman aşımı 100 ile 60000 ms arasında olmalı.</p>
+    <p class="field-help" id="fa-zaman-h">Between 100 and 60000.</p>
+    <p class="field-error" id="fa-zaman-e">the timeout must be between 100 and 60000 ms.</p>
   </div>
   <div class="field">
-    <label for="fa-bellek">Bellek sınırı</label>
+    <label for="fa-bellek">Memory limit</label>
     <div class="field-unit"><input id="fa-bellek" name="bellek" class="mono" type="number" min="1" max="64" value="4" aria-describedby="fa-bellek-u"><span id="fa-bellek-u">GiB</span></div>
   </div>
   <div class="field">
-    <label for="fa-adet">En az kopya</label>
-    <div class="field-unit"><input id="fa-adet" name="adet" class="mono" type="number" min="0" max="20" value="2" aria-describedby="fa-adet-u"><span id="fa-adet-u">adet</span></div>
+    <label for="fa-adet">Minimum replicas</label>
+    <div class="field-unit"><input id="fa-adet" name="adet" class="mono" type="number" min="0" max="20" value="2" aria-describedby="fa-adet-u"><span id="fa-adet-u">count</span></div>
   </div>
 </div>
 </demo>
-<div class="prose"><p>Birim kutunun dışında, ayrı bir <code>span</code>'dadır: değer yalnız sayıdır, formla <code>3000</code> gider, <code>3000ms</code> değil. Birim <code>span</code>'ının <code>id</code>'si <code>aria-describedby</code>'a eklenir ki ekran okuyucu sayının ne ölçtüğünü de söylesin. Zorunluluk işareti input sarılı olsa da etikete gelir.</p><p>Her sütun en az 200px'tir (sütun daha darsa tam genişlik); sığmayan alan bir alt satıra geçer. <code>.mono</code> kullanılan alanlarda <code>spellcheck="false"</code> ve <code>autocomplete="off"</code> da verin; yazım denetimi bir <span lang="en">ARN</span>'nin altını kırmızıyla çizmesin.</p></div>
+<div class="prose"><p>The unit sits outside the box, in a separate <code>span</code>: the value is just the number, so the form submits <code>3000</code>, not <code>3000ms</code>. The unit <code>span</code>'s <code>id</code> is added to <code>aria-describedby</code> so the screen reader also says what the number measures. The required mark goes on the label even when the input is wrapped.</p><p>Each column is at least 200px (full width if the column is narrower); a field that does not fit moves to the next row. On fields that use <code>.mono</code>, also set <code>spellcheck="false"</code> and <code>autocomplete="off"</code>, so the spell checker does not underline an <span lang="en">ARN</span> in red.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Koyu bir panelde yeni ortam formu. Göndermeye çalışınca tarayıcı geçersiz alanları işaretler; hepsi geçerliyse sonuç satırı yazılır.">
-<demo label="Örnek · yeni ortam, koyu sahne">
+<chapter title="In context" lead="A new environment form on a dark panel. When you try to submit, the browser marks the invalid fields; if all are valid, the result line is written.">
+<demo label="Example · new environment, dark scene">
 <div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
   <form id="fa-ortam" style="max-width:560px">
     <div class="field-row">
       <div class="field">
-        <label for="fa-o-ad">Ortam adı</label>
+        <label for="fa-o-ad">Environment name</label>
         <input id="fa-o-ad" name="ad" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-o-ad-h fa-o-ad-e">
-        <p class="field-help" id="fa-o-ad-h">Örneğin <code>staging-2</code>.</p>
-        <p class="field-error" id="fa-o-ad-e">küçük harf, rakam ve tire; 3–24 karakter.</p>
+        <p class="field-help" id="fa-o-ad-h">For example <code>staging-2</code>.</p>
+        <p class="field-error" id="fa-o-ad-e">lowercase letters, digits and hyphens; 3–24 characters.</p>
       </div>
       <div class="field">
-        <label for="fa-o-bolge">Bölge</label>
+        <label for="fa-o-bolge">Region</label>
         <select id="fa-o-bolge" name="bolge" required aria-describedby="fa-o-bolge-e">
-          <option value="">Seçin…</option>
+          <option value="">Choose…</option>
           <option>eu-west-1</option>
           <option>eu-central-1</option>
           <option>us-east-1</option>
           <option>ap-southeast-1</option>
         </select>
-        <p class="field-error" id="fa-o-bolge-e">bir bölge seçin.</p>
+        <p class="field-error" id="fa-o-bolge-e">choose a region.</p>
       </div>
     </div>
     <div class="field">
-      <label for="fa-o-aciklama">Açıklama</label>
-      <textarea id="fa-o-aciklama" name="aciklama" aria-describedby="fa-o-aciklama-h">Ödeme servisinin yük testi için geçici ortam.</textarea>
-      <p class="field-help" id="fa-o-aciklama-h">Ortam listesinde adın altında görünür.</p>
+      <label for="fa-o-aciklama">Description</label>
+      <textarea id="fa-o-aciklama" name="aciklama" aria-describedby="fa-o-aciklama-h">Temporary environment for load testing the payment service.</textarea>
+      <p class="field-help" id="fa-o-aciklama-h">Shown under the name in the environment list.</p>
     </div>
     <div class="field">
-      <label for="fa-o-kalip">Etiket kalıbı</label>
+      <label for="fa-o-kalip">Tag pattern</label>
       <input id="fa-o-kalip" name="kalip" class="mono" required pattern="[A-Za-z0-9._*\-]+" value="staging-*" spellcheck="false" autocomplete="off" aria-describedby="fa-o-kalip-h fa-o-kalip-e">
-      <p class="field-help" id="fa-o-kalip-h">Bu kalıba uyan imaj etiketleri ortama kendiliğinden dağıtılır; <code>*</code> herhangi bir dizi.</p>
-      <p class="field-error" id="fa-o-kalip-e">yalnız harf, rakam, nokta, tire, alt çizgi ve <code>*</code>.</p>
+      <p class="field-help" id="fa-o-kalip-h">Image tags that match this pattern are deployed to the environment automatically; <code>*</code> matches any sequence.</p>
+      <p class="field-error" id="fa-o-kalip-e">only letters, digits, dots, hyphens, underscores and <code>*</code>.</p>
     </div>
     <div class="pillrow" style="justify-content:flex-end">
-      <button class="btn" type="reset">Vazgeç</button>
-      <button class="btn" type="submit"><svg><use href="#i-check"/></svg>Ortamı oluştur</button>
+      <button class="btn" type="reset">Cancel</button>
+      <button class="btn" type="submit"><svg><use href="#i-check"/></svg>Create environment</button>
     </div>
-    <div class="readout" id="fa-ortam-out" aria-live="polite"><p>Form henüz gönderilmedi.</p></div>
+    <div class="readout" id="fa-ortam-out" aria-live="polite"><p>The form has not been submitted yet.</p></div>
   </form>
 </div>
 </demo>
-<div class="prose"><p>Sayfa betiği yalnız <code>submit</code> olayını durdurup sonucu yazar; doğrulamanın tamamı tarayıcınındır. Gönderme denemesi tüm alanları “etkileşimli” sayar, bu yüzden boş zorunlu alanlar aynı anda kırmızıya döner.</p></div>
+<div class="prose"><p>The page script only stops the <code>submit</code> event and writes the result; all validation belongs to the browser. A submit attempt counts every field as “interacted with”, so empty required fields all turn red at once.</p></div>
 </chapter>
 
-<chapter title="Metinleri çevirmek" lead="“ · zorunlu” ve “Hata:” CSS içerik metinleridir; HTML'de görünmezler. Başka bir dil için iki token ezilir.">
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* katmansız CSS: @layer içindeki varsayılanı seçici gücü gerekmeden ezer */
-:root{--str-required:" · required";--str-error:"Error:"}
-/* yalnız bir bölümde başka dil */
-[lang="de"]{--str-required:" · Pflichtfeld";--str-error:"Fehler:"}</code></pre></figure>
-<div class="prose"><p>Değer bir CSS dizgisidir; tırnaklar dahil yazılır. Zorunluluk metninin baştaki boşluğu ve ayırıcısı da token'ın parçasıdır. Önek yalnız ekranda görünür; ekran okuyucu açısından hata metni HTML'deki cümledir, bu yüzden cümle tek başına da anlaşılır olmalıdır.</p></div>
+<chapter title="Translating the strings" lead="“ · required” and “Error:” are CSS content strings; they do not appear in the HTML. A page with lang=&quot;tr&quot; gets the Turkish strings automatically; for any other language, override two tokens.">
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* unlayered CSS: overrides the default inside @layer without extra specificity */
+:root{--str-required:" · Pflichtfeld";--str-error:"Fehler:"}
+/* a different language in one section only */
+[lang="fr"]{--str-required:" · obligatoire";--str-error:"Erreur :"}</code></pre></figure>
+<div class="prose"><p>The value is a CSS string, written with its quotes. The leading space and separator of the required text are part of the token too. The prefix is visible on screen only; for a screen reader the error text is the sentence in the HTML, so that sentence must make sense on its own.</p></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Etiket her zaman görünür; yer tutucu etiketin yerine geçmez. Hata rengiyle değil cümlesiyle söylenir.">
+<chapter title="Do / don't" lead="The label is always visible; a placeholder does not replace it. An error is stated in a sentence, not by its color.">
 <div class="dodont">
-<demo label="Yap · görünür etiket">
+<demo label="Do · a visible label">
 <div class="field">
-  <label for="fa-yap-etiket">Sağlık denetimi yolu</label>
+  <label for="fa-yap-etiket">Health check path</label>
   <input id="fa-yap-etiket" class="mono" value="/healthz" spellcheck="false">
 </div>
 </demo>
-<demo label="Yapma · yalnız yer tutucu">
+<demo label="Don't · placeholder only">
 <div class="field">
-  <input class="mono" placeholder="Sağlık denetimi yolu" aria-label="Sağlık denetimi yolu" spellcheck="false">
+  <input class="mono" placeholder="Health check path" aria-label="Health check path" spellcheck="false">
 </div>
 </demo>
 </div>
-<div class="prose"><p>Yer tutucu yazmaya başlayınca kaybolur; okuyucu neyi doldurduğunu hatırlamak zorunda kalır, kontrastı da düşüktür. Etiketi küçültüp alanın içine taşımak da aynı sorunu taşır.</p></div>
+<div class="prose"><p>A placeholder disappears once you start typing; the reader has to remember what they are filling in, and its contrast is low. Shrinking the label and moving it inside the field has the same problem.</p></div>
 <div class="dodont">
-<demo label="Yap · hata cümlesi">
+<demo label="Do · an error sentence">
 <div class="field">
-  <label for="fa-yap-hata">Bellek sınırı</label>
+  <label for="fa-yap-hata">Memory limit</label>
   <input id="fa-yap-hata" class="mono" value="512" aria-invalid="true" aria-describedby="fa-yap-hata-h fa-yap-hata-e">
-  <p class="field-help" id="fa-yap-hata-h">Birimle yazın: <code>Mi</code> ya da <code>Gi</code>.</p>
-  <p class="field-error" id="fa-yap-hata-e">birim eksik; <code>512Mi</code> mi demek istediniz?</p>
+  <p class="field-help" id="fa-yap-hata-h">Include the unit: <code>Mi</code> or <code>Gi</code>.</p>
+  <p class="field-error" id="fa-yap-hata-e">the unit is missing; did you mean <code>512Mi</code>?</p>
 </div>
 </demo>
-<demo label="Yapma · yalnız kırmızı kenar">
+<demo label="Don't · a red border only">
 <div class="field">
-  <label for="fa-yapma-hata">Bellek sınırı</label>
+  <label for="fa-yapma-hata">Memory limit</label>
   <input id="fa-yapma-hata" class="mono" value="512" aria-invalid="true">
 </div>
 </demo>
 </div>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Erişilebilirlik</span><div class="co-body"><p><code>aria-describedby</code> önce ipucunu, sonra hatayı gösterir: <code>aria-describedby="x-h x-e"</code>. Ekran okuyucu açıklamayı bu sırayla okur; kural önce, ihlal sonra gelir. Gizli öğe de <code>aria-describedby</code> ile bağlanınca okunur; bu yüzden paketin betiği hata kimliğini alan geçerliyken listeden çıkarır, alan geçersiz olunca (<code>aria-invalid="true"</code> ya da <code>:user-invalid</code>) sona geri ekler. HTML'e ikisini birden yazın; JS yoksa hata metni hep okunur, bu yüzden cümle kuralı da söylemelidir. Zorunluluğu <code>required</code> özniteliğiyle verin: hem işareti çizer hem de ekran okuyucuya “zorunlu” dedirtir. Sunucudan dönen hatada <code>aria-invalid="true"</code> verin ve odağı ilk hatalı alana taşıyın.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p><code>aria-describedby</code> points to the hint first, then the error: <code>aria-describedby="x-h x-e"</code>. The screen reader reads the description in that order; the rule comes first, the violation second. A hidden element linked with <code>aria-describedby</code> is still read, so the package script removes the error ID from the list while the field is valid and adds it back at the end when the field becomes invalid (<code>aria-invalid="true"</code> or <code>:user-invalid</code>). Write both in the HTML; without JS the error text is always read, so the sentence should state the rule too. Set required with the <code>required</code> attribute: it draws the mark and makes the screen reader say “required”. For an error returned by the server, set <code>aria-invalid="true"</code> and move focus to the first invalid field.</p></div></div>
 </chapter>
 
 <script data-page>
-/* yeni ortam formu: doğrulama tarayıcıda; geçerliyse yalnız sonucu yaz */
+/* new environment form: validation happens in the browser; if valid, just write the result */
 (function () {
   var f = document.getElementById('fa-ortam'), out = document.getElementById('fa-ortam-out');
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(f);
     out.classList.add('s-ok');
-    out.innerHTML = '<p><b></b> · <span></span> bölgesinde oluşturulacak; <code></code> etiketleri buraya dağıtılır.</p>';
+    out.innerHTML = '<p><b></b> will be created in <span></span>; <code></code> tags will be deployed here.</p>';
     out.querySelector('b').textContent = d.get('ad');
     out.querySelector('span').textContent = d.get('bolge');
     out.querySelector('code').textContent = d.get('kalip');
   });
-  f.addEventListener('reset', function () { out.classList.remove('s-ok'); out.innerHTML = '<p>Form henüz gönderilmedi.</p>'; });
+  f.addEventListener('reset', function () { out.classList.remove('s-ok'); out.innerHTML = '<p>The form has not been submitted yet.</p>'; });
 })();
 </script>

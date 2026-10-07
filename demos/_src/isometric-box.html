@@ -1,7 +1,7 @@
-<!-- meta {"title":"İzometrik kutu","group":"Blueprint","order":50,"tagline":"Kapalı bir birimi üç yüzüyle çiz.","intro":"İzometrik kutu bir sunucuyu, bir depolama katmanını ya da bir kuyruktaki mesajı gölgesiz bir derinlikle gösterir: ön yüz kâğıt, üst ve yan yüz zeminden bir ton koyu (<code>.fill-shade</code>). Tarif yalnızca paketin çizgi ve dolgu sınıflarını kullanır; yeni bir sınıf gerekmez.","summary":"Ön yüz + iki paralelkenar; sunucu rafı, depolama katmanları, kuyruk ve düğüm havuzu.","facts":{"Sınıflar":"<code>.ln-draw</code> · <code>.ln-strong</code> · <code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.fill-paper</code> · <code>.fill-shade</code>","Yüz tonu":"<code>--scene-shade</code> = <code>--scene-bg</code> + %8 çizim rengi","Kaydırma":"büyük <code>dx +36, dy −22</code> · küçük <code>dx +20, dy −12</code>","JS":"Gerekmez"}} -->
+<!-- meta {"title":"Isometric box","group":"Blueprint","order":50,"tagline":"Draw a closed unit with three faces.","intro":"An isometric box shows a server, a storage tier or a message in a queue with shadowless depth: the front face is paper, the top and side faces one shade darker than the background (<code>.fill-shade</code>). The recipe uses only the package's line and fill classes; no new class is needed.","summary":"A front face + two parallelograms; server rack, storage tiers, queue and node pool.","facts":{"Classes":"<code>.ln-draw</code> · <code>.ln-strong</code> · <code>.ln-dash</code> · <code>.ln-ghost</code> · <code>.fill-paper</code> · <code>.fill-shade</code>","Face shade":"<code>--scene-shade</code> = <code>--scene-bg</code> + 8% drawing color","Offset":"large <code>dx +36, dy −22</code> · small <code>dx +20, dy −12</code>","JS":"Not required"}} -->
 
-<chapter title="Anatomi" lead="Ön yüz W × H bir dikdörtgendir. Üst ve sağ yüz, aynı kenarların dx, dy kadar kaydırılmış paralelkenarlarıdır. Işık hep aynı yönden gelir.">
-<demo label="Örnek · yüzler ve ölçüler">
+<chapter title="Anatomy" lead="The front face is a W × H rectangle. The top and right faces are parallelograms of the same edges, offset by dx, dy. The light always comes from the same direction.">
+<demo label="Example · faces and dimensions">
 <div class="drawing" style="--aw:900;--ah:340">
   <svg viewBox="0 0 900 340" aria-hidden="true">
     <path class="ln-draw fill-shade" d="M180 110L216 88H536L500 110Z"/>
@@ -17,21 +17,21 @@
     <circle class="fill-draw" cx="536" cy="88" r="3"/>
     <path class="ln-pencil" d="M358 99V40H600M518 184H600M536 88L560 112H600"/>
   </svg>
-  <p class="dl" style="--x:198;--y:126;--w:290"><span class="stamp-k">Ön yüz</span>.fill-paper · W × H</p>
-  <p class="dl" style="--x:604;--y:28;--w:280"><span class="stamp-k">Üst yüz</span>.fill-shade · --scene-shade</p>
-  <p class="dl" style="--x:604;--y:100;--w:280"><span class="stamp-k">Kaydırma</span>dx = +36 · dy = −22</p>
-  <p class="dl" style="--x:604;--y:172;--w:280"><span class="stamp-k">Yan yüz</span>.fill-shade</p>
+  <p class="dl" style="--x:198;--y:126;--w:290"><span class="stamp-k">Front face</span>.fill-paper · W × H</p>
+  <p class="dl" style="--x:604;--y:28;--w:280"><span class="stamp-k">Top face</span>.fill-shade · --scene-shade</p>
+  <p class="dl" style="--x:604;--y:100;--w:280"><span class="stamp-k">Offset</span>dx = +36 · dy = −22</p>
+  <p class="dl" style="--x:604;--y:172;--w:280"><span class="stamp-k">Side face</span>.fill-shade</p>
 </div>
 </demo>
-<div class="prose"><p>Çizim sırası önemlidir: önce üst ve yan yüz, en son ön yüz. Böylece ön yüzün kâğıt dolgusu kenar birleşimlerini temiz kapatır. Köşe çentikleri (<code>.ln-pencil</code>) isteğe bağlıdır; büyük kutularda yüzün çerçevesini belirtir.</p><p>Üst ve yan yüz <code>.fill-shade</code> ile boyanır: <code>--scene-shade</code> tokenı sahne zemininden bir ton koyudur. Bu yüzden kutu hem düz sayfada hem de zemini zaten <code>--scene-bg</code> olan bir paftada (<code>.fig-sheet</code>, <code>.frame</code>) üç yüzüyle okunur.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">tarif</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;!-- ön yüz sol üst köşesi (x, y), boyut W × H, kaydırma dx, dy (dy negatif) --&gt;
-&lt;path class="ln-draw fill-shade" d="M x y  L x+dx y+dy  H x+W+dx  L x+W y  Z"/&gt;          &lt;!-- üst --&gt;
-&lt;path class="ln-draw fill-shade" d="M x+W y  L x+W+dx y+dy  V y+H+dy  L x+W y+H  Z"/&gt;  &lt;!-- sağ --&gt;
-&lt;rect class="ln-draw fill-paper" x="x" y="y" width="W" height="H"/&gt;                &lt;!-- ön --&gt;</code></pre></figure>
+<div class="prose"><p>Drawing order matters: the top and side faces first, the front face last. That way the front face's paper fill covers the edge joins cleanly. The corner ticks (<code>.ln-pencil</code>) are optional; on large boxes they mark the face's frame.</p><p>The top and side faces are painted with <code>.fill-shade</code>: the <code>--scene-shade</code> token is one shade darker than the scene background. So the box reads with all three faces both on a plain page and on a sheet whose background is already <code>--scene-bg</code> (<code>.fig-sheet</code>, <code>.frame</code>).</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">recipe</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!-- front face top-left corner (x, y), size W × H, offset dx, dy (dy negative) --&gt;
+&lt;path class="ln-draw fill-shade" d="M x y  L x+dx y+dy  H x+W+dx  L x+W y  Z"/&gt;          &lt;!-- top --&gt;
+&lt;path class="ln-draw fill-shade" d="M x+W y  L x+W+dx y+dy  V y+H+dy  L x+W y+H  Z"/&gt;  &lt;!-- right --&gt;
+&lt;rect class="ln-draw fill-paper" x="x" y="y" width="W" height="H"/&gt;                &lt;!-- front --&gt;</code></pre></figure>
 </chapter>
 
-<chapter title="Yığınlar" lead="Kutular üst üste konunca alttakinin üst yüzü üsttekinin altında kalır. Aşağıdan yukarıya çizin; her yeni kutu altındakinin çizgilerini kapatır.">
-<demo label="Örnek · sunucu rafı">
+<chapter title="Stacks" lead="When boxes are stacked, the top face of the lower box ends up under the upper one. Draw from the bottom up; each new box covers the lines of the one below.">
+<demo label="Example · server rack">
 <div class="drawing" style="--aw:900;--ah:290">
   <svg viewBox="0 0 900 290" aria-hidden="true">
     <path class="ln-draw fill-shade" d="M60 220L80 208H380L360 220Z"/>
@@ -50,15 +50,15 @@
     <circle class="fill-draw" cx="340" cy="246" r="3"/>
     <path class="ln-pencil" d="M384 80H466"/>
   </svg>
-  <p class="dl" style="--x:74;--y:80;--w:250">web-4 · boş yuva</p>
-  <p class="dl" style="--x:74;--y:132;--w:250">web-3 · 4 vCPU <span class="state s-ok">Hazır</span></p>
-  <p class="dl" style="--x:74;--y:184;--w:250">web-2 · 4 vCPU <span class="state s-ok">Hazır</span></p>
-  <p class="dl" style="--x:74;--y:236;--w:250">web-1 · 4 vCPU <span class="state s-warn">Yoğun</span></p>
-  <p class="dl callout" style="--x:466;--y:66;--w:300"><b>Boş yuva</b>web-4 bir sonraki kapasite artışında eklenir; şimdilik hayalet.</p>
-  <p class="dl" style="--x:466;--y:236;--w:380">raf eu-west-1a · toplam 12 vCPU · 48 GB</p>
+  <p class="dl" style="--x:74;--y:80;--w:250">web-4 · empty slot</p>
+  <p class="dl" style="--x:74;--y:132;--w:250">web-3 · 4 vCPU <span class="state s-ok">Ready</span></p>
+  <p class="dl" style="--x:74;--y:184;--w:250">web-2 · 4 vCPU <span class="state s-ok">Ready</span></p>
+  <p class="dl" style="--x:74;--y:236;--w:250">web-1 · 4 vCPU <span class="state s-warn">Busy</span></p>
+  <p class="dl callout" style="--x:466;--y:66;--w:300"><b>Empty slot</b>web-4 is added at the next capacity increase; a ghost for now.</p>
+  <p class="dl" style="--x:466;--y:236;--w:380">rack eu-west-1a · 12 vCPU · 48 GB total</p>
 </div>
 </demo>
-<demo label="Örnek · depolama katmanları">
+<demo label="Example · storage tiers">
 <div class="drawing" style="--aw:900;--ah:290">
   <svg viewBox="0 0 900 290" aria-hidden="true">
     <path class="ln-draw fill-shade" d="M40 220L68 203H488L460 220Z"/>
@@ -73,20 +73,20 @@
     <path class="ln-pencil" d="M376 118H560M442 178H560M488 238H560"/>
     <path class="dim" d="M540 30H570M540 270H570M550 30V270M550 30l-3 8h6zM550 270l-3-8h6z"/>
   </svg>
-  <p class="dl" style="--x:202;--y:118;--w:140">Sıcak · 2 TB</p>
-  <p class="dl" style="--x:128;--y:177;--w:270">Ilık · 18 TB · disk</p>
-  <p class="dl" style="--x:54;--y:236;--w:390">Soğuk · 120 TB · arşiv</p>
-  <p class="dl" style="--x:580;--y:22;--w:300"><span class="stamp-k">Erişim süresi</span>yukarı çıktıkça kısalır</p>
+  <p class="dl" style="--x:202;--y:118;--w:140">Hot · 2 TB</p>
+  <p class="dl" style="--x:128;--y:177;--w:270">Warm · 18 TB · disk</p>
+  <p class="dl" style="--x:54;--y:236;--w:390">Cold · 120 TB · archive</p>
+  <p class="dl" style="--x:580;--y:22;--w:300"><span class="stamp-k">Access time</span>shorter toward the top</p>
   <p class="dl" style="--x:580;--y:110;--w:300">&lt; 10 ms · SSD</p>
   <p class="dl" style="--x:580;--y:170;--w:300">≈ 50 ms · disk</p>
-  <p class="dl" style="--x:580;--y:230;--w:300">saatler · geri çağırma gerekir</p>
+  <p class="dl" style="--x:580;--y:230;--w:300">hours · needs a restore request</p>
 </div>
 </demo>
-<div class="prose"><p>Üst katmanı alttakinin üst yüzüne oturtmak için ön yüzünü kaydırmanın yarısı kadar geri ve yukarı alın (burada <code>+14, −8.5</code>, sonra kenarlardan içeri). Tam kenara oturan kutu, katmanlar yerine tek bir blok gibi okunur.</p></div>
+<div class="prose"><p>To seat an upper tier on the top face of the one below, move its front face back and up by half the offset (here <code>+14, −8.5</code>, then inset from the edges). A box flush with the edges reads as a single block instead of tiers.</p></div>
 </chapter>
 
-<chapter title="Durumlar" lead="Kutunun durumu çizgi sınıfıyla verilir; dolgu aynı kalır. Kelimeyi kutunun içine ya da altına yazın.">
-<demo label="Örnek · beş durum">
+<chapter title="States" lead="The box's state is set with a line class; the fill stays the same. Write the word inside or under the box.">
+<demo label="Example · five states">
 <div class="drawing" style="--aw:900;--ah:200">
   <svg viewBox="0 0 900 200" aria-hidden="true">
     <path class="ln-draw fill-shade" d="M20 50L40 38H160L140 50ZM140 50L160 38V118L140 130Z"/>
@@ -104,23 +104,23 @@
   <p class="dl" style="--x:212;--y:62;--w:100">cache-2</p>
   <p class="dl" style="--x:392;--y:62;--w:100">cache-3</p>
   <p class="dl" style="--x:572;--y:62;--w:100">cache-0</p>
-  <p class="dl" style="--x:752;--y:62;--w:100">cache-4<br><span class="state s-bad">Düştü</span></p>
-  <p class="dl" style="--x:20;--y:146;--w:150"><code>.ln-draw</code><br>çalışıyor</p>
-  <p class="dl" style="--x:200;--y:146;--w:150"><code>.ln-strong</code><br>seçili</p>
-  <p class="dl" style="--x:380;--y:146;--w:150"><code>.ln-dash</code><br>planlı</p>
-  <p class="dl" style="--x:560;--y:146;--w:150"><code>.ln-ghost</code><br>kaldırıldı</p>
-  <p class="dl" style="--x:740;--y:146;--w:150"><code>.ln-bad</code><br>arızalı</p>
+  <p class="dl" style="--x:752;--y:62;--w:100">cache-4<br><span class="state s-bad">Down</span></p>
+  <p class="dl" style="--x:20;--y:146;--w:150"><code>.ln-draw</code><br>running</p>
+  <p class="dl" style="--x:200;--y:146;--w:150"><code>.ln-strong</code><br>selected</p>
+  <p class="dl" style="--x:380;--y:146;--w:150"><code>.ln-dash</code><br>planned</p>
+  <p class="dl" style="--x:560;--y:146;--w:150"><code>.ln-ghost</code><br>removed</p>
+  <p class="dl" style="--x:740;--y:146;--w:150"><code>.ln-bad</code><br>faulty</p>
 </div>
 </demo>
-<div class="prose"><p>Üst ve yan yüz tek bir <code>&lt;path&gt;</code> içinde yazılabilir (iki alt yol, <code>Z</code> ile kapanır); durum sınıfını iki öğeye vermek yeter. Hayalet kutu dolgusuzdur: arkasında ne varsa görünür, çünkü o parça henüz ya da artık orada değildir.</p></div>
+<div class="prose"><p>The top and side faces can be written in a single <code>&lt;path&gt;</code> (two subpaths, each closed with <code>Z</code>); then the state class goes on just two elements. A ghost box has no fill: whatever is behind it shows through, because that part isn't there yet, or is no longer there.</p></div>
 </chapter>
 
-<chapter title="Bağlam içinde" lead="Kutular bir sistemin parçalarını aynı ölçekte yan yana koyar. İki tipik kompozisyon: kuyruk ve işçiler, düğüm havuzundaki podlar.">
-<demo label="Örnek · kuyruk + işçiler">
+<chapter title="In context" lead="Boxes put the parts of a system side by side at the same scale. Two typical compositions: a queue and workers, pods in a node pool.">
+<demo label="Example · queue + workers">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">04 · Şekil 1</p>
-  <p class="fig-cap">jobs-eu kuyruğu üç işçiye dağıtıyor</p>
+  <p class="chip">04 · Fig. 1</p>
+  <p class="fig-cap">The jobs-eu queue hands out to three workers</p>
   <div class="drawing" style="--aw:900;--ah:240">
     <svg viewBox="0 0 900 240" aria-hidden="true">
       <path class="ln-draw fill-shade" d="M20 110L34 101H144L130 110ZM130 110L144 101V155L130 164Z"/>
@@ -149,21 +149,21 @@
       <rect class="ln-ghost" x="700" y="180" width="170" height="44"/>
     </svg>
     <p class="dl" style="--x:30;--y:128;--w:96">web-api</p>
-    <p class="dl" style="--x:200;--y:50;--w:360"><span class="stamp-k">Kuyruk</span>jobs-eu · ilk giren ilk çıkar</p>
-    <p class="dl" style="--x:200;--y:176;--w:280">6 gösterilen · toplam 1.240</p>
-    <p class="dl" style="--x:490;--y:176;--w:70;text-align:center">sıradaki</p>
-    <p class="dl" style="--x:712;--y:52;--w:150">işçi-1 <span class="state s-ok">Çalışıyor</span></p>
-    <p class="dl" style="--x:712;--y:122;--w:150">işçi-2 <span class="state s-ok">Çalışıyor</span></p>
-    <p class="dl" style="--x:712;--y:192;--w:150">işçi-3 · planlı</p>
+    <p class="dl" style="--x:200;--y:50;--w:360"><span class="stamp-k">Queue</span>jobs-eu · first in, first out</p>
+    <p class="dl" style="--x:200;--y:176;--w:280">6 shown · 1,240 total</p>
+    <p class="dl" style="--x:490;--y:176;--w:70;text-align:center">next</p>
+    <p class="dl" style="--x:712;--y:52;--w:150">worker-1 <span class="state s-ok">Running</span></p>
+    <p class="dl" style="--x:712;--y:122;--w:150">worker-2 <span class="state s-ok">Running</span></p>
+    <p class="dl" style="--x:712;--y:192;--w:150">worker-3 · planned</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 1.</b> Her küp bir mesajdır; kalın küp sıradaki mesaj. Derinlik 1.000'i geçerse üçüncü işçi açılır (hayalet).</figcaption>
+  <figcaption class="figcap"><b>Fig. 1.</b> Each cube is a message; the heavy cube is the next message. If the depth passes 1,000, the third worker starts (the ghost).</figcaption>
 </figure>
 </demo>
-<demo label="Örnek · düğüm havuzu ve podlar">
+<demo label="Example · node pool and pods">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">04 · Şekil 2</p>
-  <p class="fig-cap">node-c boşaltılıyor</p>
+  <p class="chip">04 · Fig. 2</p>
+  <p class="fig-cap">node-c is being drained</p>
   <div class="drawing" style="--aw:900;--ah:210">
     <svg viewBox="0 0 900 210" aria-hidden="true">
       <path class="ln-draw fill-shade" d="M40 120L76 98H296L260 120ZM260 120L296 98V168L260 190Z"/>
@@ -189,22 +189,22 @@
       <path class="ln-draw ln-dash" d="M680 66V40H510V58"/>
       <path class="ln-draw" d="M510 62l-4 -8M510 62l4 -8"/>
     </svg>
-    <p class="dl" style="--x:54;--y:134;--w:200"><span class="stamp-k">node-a</span>3 pod</p>
-    <p class="dl" style="--x:344;--y:134;--w:200"><span class="stamp-k">node-b</span>2 pod + 1 bekleyen</p>
-    <p class="dl" style="--x:634;--y:134;--w:200"><span class="stamp-k">node-c</span><span class="state s-warn">Boşaltılıyor</span></p>
-    <p class="dl" style="--x:520;--y:8;--w:200;text-align:center">yeniden planlanır</p>
+    <p class="dl" style="--x:54;--y:134;--w:200"><span class="stamp-k">node-a</span>3 pods</p>
+    <p class="dl" style="--x:344;--y:134;--w:200"><span class="stamp-k">node-b</span>2 pods + 1 pending</p>
+    <p class="dl" style="--x:634;--y:134;--w:200"><span class="stamp-k">node-c</span><span class="state s-warn">Draining</span></p>
+    <p class="dl" style="--x:520;--y:8;--w:200;text-align:center">rescheduled</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 2.</b> Podlar düğümün üst yüzüne oturan küçük kutulardır. node-c'deki pod, node-b'deki boş yere (hayalet) taşınacak; kesikli ok henüz olmamış bir hareketi gösterir.</figcaption>
+  <figcaption class="figcap"><b>Fig. 2.</b> Pods are small boxes sitting on the node's top face. The pod on node-c will move to the free spot on node-b (the ghost); the dashed arrow shows a move that hasn't happened yet.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Koyu sahnede" lead="Aynı tarif .scene-dark altında değişmeden çalışır: kâğıt ve yüz tonu koyu tonlara, çizim rengi açık maviye döner.">
-<demo label="Örnek · birincil ve okuma kopyası">
+<chapter title="On a dark scene" lead="The same recipe works unchanged under .scene-dark: the paper and face shade turn dark, and the drawing color turns light blue.">
+<demo label="Example · primary and read replica">
 <figure class="fig-sheet scene-dark">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">05 · Şekil 3</p>
-  <p class="fig-cap">Bölgeler arası kopya</p>
+  <p class="chip">05 · Fig. 3</p>
+  <p class="fig-cap">Cross-region replica</p>
   <div class="drawing" style="--aw:900;--ah:190">
     <svg viewBox="0 0 900 190" aria-hidden="true">
       <path class="ln-draw fill-shade" d="M60 70L96 48H336L300 70ZM300 70L336 48V138L300 160Z"/>
@@ -213,19 +213,19 @@
       <rect class="ln-draw fill-paper" x="560" y="70" width="240" height="90"/>
       <path class="ln-draw ln-dash" d="M336 115H554"/>
       <path class="ln-draw" d="M554 115l-8-4M554 115l-8 4"/>
-      <text class="dim-t" x="445" y="106" text-anchor="middle">eşzamansız · 0,8 s</text>
+      <text class="dim-t" x="445" y="106" text-anchor="middle">async · 0.8 s</text>
     </svg>
-    <p class="dl" style="--x:76;--y:84;--w:210"><span class="stamp-k">eu-west-1</span>orders-db · birincil<br><span class="state s-ok">Yazılır</span></p>
-    <p class="dl" style="--x:576;--y:84;--w:210"><span class="stamp-k">eu-central-1</span>orders-db · kopya<br><span class="state s-warn">Salt okunur</span></p>
+    <p class="dl" style="--x:76;--y:84;--w:210"><span class="stamp-k">eu-west-1</span>orders-db · primary<br><span class="state s-ok">Writable</span></p>
+    <p class="dl" style="--x:576;--y:84;--w:210"><span class="stamp-k">eu-central-1</span>orders-db · replica<br><span class="state s-warn">Read-only</span></p>
   </div>
-  <figcaption class="figcap"><b>Şekil 3.</b> Kesikli ok eşzamansız kopyalamadır: kopya birincilin biraz gerisinden gelir.</figcaption>
+  <figcaption class="figcap"><b>Fig. 3.</b> The dashed arrow is asynchronous replication: the replica trails a little behind the primary.</figcaption>
 </figure>
 </demo>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Bütün kutular aynı kaydırmayı kullanır; ön yüz her zaman kâğıttır. Işık iki yönden gelirse çizim düzlemi kırılır.">
+<chapter title="Do / don't" lead="Every box uses the same offset; the front face is always paper. If the light comes from two directions, the drawing plane breaks.">
 <div class="dodont">
-<demo label="Yap · tek kaydırma, ön yüz kâğıt">
+<demo label="Do · one offset, paper front face">
 <div class="drawing" style="--aw:440;--ah:180">
   <svg viewBox="0 0 440 180" aria-hidden="true">
     <path class="ln-draw fill-shade" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
@@ -235,10 +235,10 @@
   </svg>
   <p class="dl" style="--x:32;--y:72;--w:130">api</p>
   <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
-  <p class="dl" style="--x:20;--y:152;--w:400">dx +20, dy −12 · iki kutuda aynı</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">dx +20, dy −12 · the same on both boxes</p>
 </div>
 </demo>
-<demo label="Yapma · ters yüzler, karışık yön">
+<demo label="Don't · inverted faces, mixed directions">
 <div class="drawing" style="--aw:440;--ah:180">
   <svg viewBox="0 0 440 180" aria-hidden="true">
     <path class="ln-draw fill-paper" d="M20 60L40 48H190L170 60ZM170 60L190 48V128L170 140Z"/>
@@ -248,12 +248,12 @@
   </svg>
   <p class="dl" style="--x:32;--y:72;--w:130">api</p>
   <p class="dl" style="--x:252;--y:72;--w:130">worker</p>
-  <p class="dl" style="--x:20;--y:152;--w:400">ön yüz sahne, ikinci kutu sola bakıyor</p>
+  <p class="dl" style="--x:20;--y:152;--w:400">front face is shaded, the second box faces left</p>
 </div>
 </demo>
 </div>
 <div class="dodont">
-<demo label="Yap · paftada .fill-shade">
+<demo label="Do · .fill-shade on a sheet">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
   <div class="drawing" style="--aw:440;--ah:160">
@@ -265,11 +265,11 @@
     </svg>
     <p class="dl" style="--x:32;--y:62;--w:130">api</p>
     <p class="dl" style="--x:252;--y:62;--w:130">worker</p>
-    <p class="dl" style="--x:20;--y:138;--w:400">yüzler paftanın zemininden ayrılır</p>
+    <p class="dl" style="--x:20;--y:138;--w:400">the faces stand out from the sheet background</p>
   </div>
 </figure>
 </demo>
-<demo label="Yapma · paftada .fill-scene">
+<demo label="Don't · .fill-scene on a sheet">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
   <div class="drawing" style="--aw:440;--ah:160">
@@ -281,10 +281,10 @@
     </svg>
     <p class="dl" style="--x:32;--y:62;--w:130">api</p>
     <p class="dl" style="--x:252;--y:62;--w:130">worker</p>
-    <p class="dl" style="--x:20;--y:138;--w:400">yüzler zeminle aynı renk: kutu düz görünür</p>
+    <p class="dl" style="--x:20;--y:138;--w:400">the faces match the background: the box looks flat</p>
   </div>
 </figure>
 </demo>
 </div>
-<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Gölge yok</span><div class="co-body"><p>Derinliği yalnızca yüzler verir; <code>filter: drop-shadow</code>, gradyan ya da yarı saydam koyu bir dolgu eklemeyin. Kutunun anlamı içindeki etiket ve <code>.state</code> kelimesindedir, SVG <code>aria-hidden="true"</code> kalır.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">No shadows</span><div class="co-body"><p>Only the faces give depth; don't add <code>filter: drop-shadow</code>, a gradient or a semi-transparent dark fill. The box's meaning lives in its label and <code>.state</code> word, and the SVG stays <code>aria-hidden="true"</code>.</p></div></div>
 </chapter>
