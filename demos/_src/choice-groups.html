@@ -1,0 +1,170 @@
+<!-- meta {"title":"Choice groups","group":"Components","order":100,"tagline":"Native radios, two looks.","intro":"<code>.choice</code> draws the native radio buttons inside a <code>&lt;fieldset&gt;</code> as chips or segments. The behavior belongs to the browser: keyboard, form submission and screen reader support come for free. The result of a choice is usually written to a <code>.readout</code> line.","summary":"<code>.choice</code> chips, <code>.choice.is-seg</code> segments; keyboard and a live configurator.","facts":{"Classes":"<code>.choice</code> · <code>.choice.is-seg</code> · <code>legend</code> · <code>small</code>","Input":"<code>&lt;input type=\"radio\"&gt;</code>; <code>type=\"checkbox\"</code> for multiple choice","JS":"Not required; a <code>change</code> listener to write the result"}} -->
+
+<chapter title="Variants" lead="In the chip look, the selected item gets a heavy frame; in the segment look, a fill. Add small inside the label for secondary information.">
+<demo label="Example · chip and segment">
+<fieldset class="choice">
+  <legend>Region</legend>
+  <label><input type="radio" name="sg-region" value="eu-west-1" checked><span>eu-west-1 <small>18 ms</small></span></label>
+  <label><input type="radio" name="sg-region" value="eu-central-1"><span>eu-central-1 <small>24 ms</small></span></label>
+  <label><input type="radio" name="sg-region" value="us-east-1"><span>us-east-1 <small>96 ms</small></span></label>
+</fieldset>
+<fieldset class="choice is-seg">
+  <legend>Log level</legend>
+  <label><input type="radio" name="sg-level" value="debug"><span>debug</span></label>
+  <label><input type="radio" name="sg-level" value="info" checked><span>info</span></label>
+  <label><input type="radio" name="sg-level" value="warn"><span>warn</span></label>
+  <label><input type="radio" name="sg-level" value="error"><span>error</span></label>
+</fieldset>
+</demo>
+<div class="prose"><p>Chips read well when the options are themselves names or values (region, environment, service). Segments feel more natural when you pick a position on a scale (level, range, size). Both use the same markup; the only difference is the <code>.is-seg</code> class.</p></div>
+</chapter>
+
+<chapter title="States and multiple choice" lead="Selected, hovered and keyboard-focused. The same look works with checkboxes; then the group carries more than one value.">
+<demo label="Example · chip group with checkboxes">
+<fieldset class="choice" id="sg-channel">
+  <legend>Alarm notification</legend>
+  <label><input type="checkbox" name="sg-channel" value="email" checked><span>email</span></label>
+  <label><input type="checkbox" name="sg-channel" value="chat" checked><span>chat channel</span></label>
+  <label><input type="checkbox" name="sg-channel" value="pager"><span>pager <small>critical only</small></span></label>
+  <label><input type="checkbox" name="sg-channel" value="webhook"><span>webhook</span></label>
+</fieldset>
+<div class="readout" id="sg-channel-out" aria-live="polite"><p><b>2 channels</b>: email, chat.</p></div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Trigger</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td>Selected</td><td><code>input:checked</code></td><td>On a chip, a double heavy drawing frame and bold text; on a segment, an accent fill.</td></tr>
+    <tr><td>Hover</td><td><code>label:hover</code></td><td>The frame turns to the drawing color.</td></tr>
+    <tr><td>Focus</td><td><code>input:focus-visible</code></td><td>A 2px accent ring around the label box.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">No disabled look</span><div class="co-body"><p>The package defines no separate look for <code>disabled</code>; a disabled option looks the same as the others. Remove an unavailable option from the list and give the reason on a line near the group.</p></div></div>
+</chapter>
+
+<chapter title="Keyboard" lead="No script adds keyboard behavior; everything below comes from the native radio and checkbox.">
+<div class="tbl"><table>
+  <thead><tr><th>Key</th><th>Radio group</th><th>Checkbox group</th></tr></thead>
+  <tbody>
+    <tr><td><code>Tab</code></td><td>Enters the group in a single stop and focuses the selected option; the next Tab leaves the group.</td><td>Each box is its own stop.</td></tr>
+    <tr><td><code>←</code> <code>→</code> <code>↑</code> <code>↓</code></td><td>Moves focus and selects at the same time; the <code>change</code> event fires on every step.</td><td>No effect.</td></tr>
+    <tr><td><code>Space</code></td><td>Selects the focused option.</td><td>Toggles the focused box.</td></tr>
+  </tbody>
+</table></div>
+<demo label="Example · Tab in, move with the arrows" nocode>
+<fieldset class="choice is-seg" id="sg-interval">
+  <legend>Chart range</legend>
+  <label><input type="radio" name="sg-interval" value="1 hour" checked><span>1 h</span></label>
+  <label><input type="radio" name="sg-interval" value="6 hours"><span>6 h</span></label>
+  <label><input type="radio" name="sg-interval" value="24 hours"><span>24 h</span></label>
+  <label><input type="radio" name="sg-interval" value="7 days"><span>7 d</span></label>
+</fieldset>
+<div class="readout" id="sg-interval-out" aria-live="polite"><p>Last <b>1 hour</b> · 60 points, 1-minute resolution.</p></div>
+</demo>
+<div class="prose"><p>Arrow keys change the selection right away, so if each <code>change</code> event starts heavy work (a network request, a big redraw), debounce it with a short delay; a reader passing through four ranges shouldn't wait for four requests.</p></div>
+</chapter>
+
+<chapter title="In context" lead="A few groups make up a configurator; the result line is recalculated on every change and calls out a risky combination in red.">
+<demo label="Example · queue worker configurator">
+<div id="sg-worker">
+  <fieldset class="choice">
+    <legend>Environment</legend>
+    <label><input type="radio" name="sg-env" value="dev"><span>dev</span></label>
+    <label><input type="radio" name="sg-env" value="staging" checked><span>staging</span></label>
+    <label><input type="radio" name="sg-env" value="prod"><span>prod</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Machine</legend>
+    <label><input type="radio" name="sg-machine" value="small" checked><span>small <small>2 vCPU</small></span></label>
+    <label><input type="radio" name="sg-machine" value="medium"><span>medium <small>4 vCPU</small></span></label>
+    <label><input type="radio" name="sg-machine" value="large"><span>large <small>8 vCPU</small></span></label>
+  </fieldset>
+  <fieldset class="choice is-seg">
+    <legend>Replicas</legend>
+    <label><input type="radio" name="sg-replica" value="1" checked><span>1</span></label>
+    <label><input type="radio" name="sg-replica" value="2"><span>2</span></label>
+    <label><input type="radio" name="sg-replica" value="3"><span>3</span></label>
+    <label><input type="radio" name="sg-replica" value="6"><span>6</span></label>
+  </fieldset>
+  <fieldset class="choice">
+    <legend>Options</legend>
+    <label><input type="checkbox" name="sg-extra" value="spot"><span>spot machine <small>−60%</small></span></label>
+    <label><input type="checkbox" name="sg-extra" value="auto"><span>autoscaling</span></label>
+  </fieldset>
+  <div class="readout" id="sg-worker-out" aria-live="polite"><p>Calculating…</p></div>
+</div>
+</demo>
+<demo label="Example · segment in a dark panel header">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:16px 18px">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px">
+    <p class="chip" style="margin-bottom:14px"><span lang="en">web-api</span> · p95 latency</p>
+    <fieldset class="choice is-seg" style="margin:0">
+      <legend>Percentile</legend>
+      <label><input type="radio" name="sg-percent" value="p50"><span>p50</span></label>
+      <label><input type="radio" name="sg-percent" value="p95" checked><span>p95</span></label>
+      <label><input type="radio" name="sg-percent" value="p99"><span>p99</span></label>
+    </fieldset>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="A few short options go in a segment; many or long options go in chips or a list. Always name the group with a legend.">
+<div class="dodont">
+<demo label="Do · named group, short options">
+<fieldset class="choice is-seg">
+  <legend>Cache TTL</legend>
+  <label><input type="radio" name="sg-ttl-do" value="1 min"><span>1 min</span></label>
+  <label><input type="radio" name="sg-ttl-do" value="5 min" checked><span>5 min</span></label>
+  <label><input type="radio" name="sg-ttl-do" value="1 h"><span>1 h</span></label>
+</fieldset>
+</demo>
+<demo label="Don't · unnamed group, long options">
+<fieldset class="choice is-seg">
+  <legend>Choose</legend>
+  <label><input type="radio" name="sg-ttl-dont" value="a"><span>never use the cache</span></label>
+  <label><input type="radio" name="sg-ttl-dont" value="b" checked><span>use it only for read requests</span></label>
+  <label><input type="radio" name="sg-ttl-dont" value="c"><span>serve everything from cache and refresh in the background</span></label>
+</fieldset>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A screen reader announces the group by its <code>legend</code> text; the legend should be visible and say what is being chosen (“Cache TTL”, not “Choose”). Each group's <code>name</code> is unique on the page. Give the result line <code>aria-live="polite"</code> so changes made with the arrow keys are read too.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Without JS</span><div class="co-body"><p>If the group only makes a script write a result, it means nothing with JS off; hide it in the page CSS:</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>html:not(.js) .choice{display:none}</code></pre></figure>
+</chapter>
+
+<script data-page>
+function sgVal(name) { var i = document.querySelector('input[name="' + name + '"]:checked'); return i ? i.value : ''; }
+function sgAll(name) { return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+/* notification channels (checkboxes) */
+(function () {
+  var out = document.getElementById('sg-channel-out');
+  function show() {
+    var v = sgAll('sg-channel');
+    out.classList.toggle('bad', !v.length);
+    out.innerHTML = v.length ? '<p><b>' + v.length + (v.length === 1 ? ' channel' : ' channels') + '</b>: ' + v.join(', ') + '.</p>' : '<p><b>No channels.</b> Even if the alarm fires, it reaches no one.</p>';
+  }
+  document.getElementById('sg-channel').addEventListener('change', show); show();
+})();
+/* chart range */
+(function () {
+  var out = document.getElementById('sg-interval-out');
+  var info = { '1 hour': '60 points, 1-minute resolution', '6 hours': '72 points, 5-minute resolution', '24 hours': '96 points, 15-minute resolution', '7 days': '168 points, 1-hour resolution' };
+  document.getElementById('sg-interval').addEventListener('change', function () { var v = sgVal('sg-interval'); out.innerHTML = '<p>Last <b>' + v + '</b> · ' + info[v] + '.</p>'; });
+})();
+/* queue worker configurator: estimated monthly cost */
+(function () {
+  var out = document.getElementById('sg-worker-out'), saat = { small: 0.085, medium: 0.17, large: 0.34 };
+  function show() {
+    var env = sgVal('sg-env'), m = sgVal('sg-machine'), n = +sgVal('sg-replica'), ek = sgAll('sg-extra');
+    var spot = ek.indexOf('spot') > -1, auto = ek.indexOf('auto') > -1;
+    var aylik = saat[m] * 730 * n * (spot ? 0.4 : 1);
+    var risk = env === 'prod' && (n === 1 || spot);
+    out.classList.toggle('bad', risk);
+    out.classList.toggle('ok', !risk && env === 'prod');
+    out.innerHTML = '<p><b>' + env + '</b> · ' + n + ' × ' + m + (spot ? ' (spot)' : '') + (auto ? ', autoscaling on' : '') +
+      ' · estimated <b>$' + aylik.toFixed(0) + ' / month</b>.' +
+      (risk ? ' In production, ' + (n === 1 ? 'a single replica stops the queue on any restart.' : 'a spot machine can be reclaimed at any moment; jobs are cut off halfway.') : env === 'prod' ? ' Fit for production.' : '') + '</p>';
+  }
+  document.getElementById('sg-worker').addEventListener('change', show); show();
+})();
+</script>

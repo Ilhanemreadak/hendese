@@ -1,0 +1,220 @@
+<!-- meta {"title":"Fig scene","group":"Motion","order":30,"tagline":"A drawing the reader plays with.","intro":"No scroll progress: the figure stays in the flow, the reader makes a choice and the drawing changes with it. State and events belong to the page and work in every mode; the scene only manages Hoca and short, timed beats.","summary":"<code>.fig-sheet</code> + <code>Hendese.figScene()</code>: interactive drawing, result line, timed beat, <code>still</code> function.","facts":{"Classes":"<code>.fig-sheet</code> · <code>.frame-bg</code> · <code>.fig-cap</code> · <code>.choice.is-seg</code> · <code>.readout</code> · <code>.figcap</code>","JS":"<code>Hendese.figScene(cfg)</code>; <code>render(api, t, vis)</code>, <code>poke()</code>, <code>Hendese.refresh()</code>","State":"The page's own variables; the engine only adds <code>.is-live</code>"}} -->
+
+<style>
+/* page-specific drawing classes (.fs-). The state classes (fs-free, fs-none) apply in every mode; transitions only under html.motion. */
+.fs-slot{stroke:var(--draw);stroke-width:1;fill:var(--draw)}
+.fs-slot.fs-free{fill:var(--paper)}
+.fs-slot.fs-none{stroke:var(--pencil);stroke-dasharray:3 3;fill:none}
+.fs-q{stroke:var(--bad);stroke-width:1.5;fill:var(--bad-soft)}
+.fs-q.fs-none{opacity:0}
+.fs-win{fill:var(--warn-soft);stroke:var(--warn);stroke-dasharray:5 4}
+.fs-mark{stroke:var(--draw);stroke-width:3;transform:translateX(calc(var(--fs-x,520) * 1px))}
+.fs-sheet .dl b{display:block}
+.fs-sheet .drawing{max-width:760px;margin-left:0}
+html.motion .fs-slot,html.motion .fs-q{transition:fill var(--dur-2),opacity var(--dur-2)}
+html.motion .fs-mark{transition:transform var(--dur-3) var(--ease-out)}
+html:not(.js) .fs-sheet .choice,html:not(.js) .fs-sheet .btn{display:none}
+</style>
+
+<chapter title="Anatomy" lead="One sheet, one choice, one drawing, one result line. Hoca is optional and speaks only in live mode." hoca="quiet">
+<div class="prose"><p><code>.fig-sheet</code> is a figure that stays in the flow; it doesn't stick and has no track. The choice controls (<code>.choice</code>, buttons) are wired to the page's own script and work with motion off too. <code>figScene</code>, on the other hand, calls <code>render(api, t, vis)</code> on every frame while the scene is visible: <code>t</code> is the time in milliseconds, <code>vis</code> is the visible share of the figure (0..1). Hoca can be requested while at least 45% of the figure is visible.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">skeleton</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet" id="example"&gt;
+  &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;p class="chip"&gt;Fig. 1&lt;/p&gt;&lt;p class="fig-cap"&gt;…&lt;/p&gt;
+  &lt;fieldset class="choice is-seg"&gt;&lt;legend&gt;…&lt;/legend&gt; … &lt;/fieldset&gt;   &lt;!-- the page's script listens --&gt;
+  &lt;div class="drawing" data-aw="640" data-ah="240" style="--aw:640;--ah:240"&gt;…&lt;/div&gt;
+  &lt;div class="readout ok" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;…&lt;/b&gt; …&lt;/p&gt;&lt;/div&gt;   &lt;!-- the meaning lives here --&gt;
+  &lt;p class="figcap"&gt;&lt;b&gt;Fig. 1.&lt;/b&gt; …&lt;/p&gt;
+&lt;/figure&gt;</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Division of labor</span><div class="co-body"><p>The page holds the state and updates the drawing and the result line. The scene returns Hoca's pose and speech bubble, and says <code>busy: true</code> while a timed beat is running. When the state changes, the page wakes the loop with <code>fig.poke()</code>.</p></div></div>
+</chapter>
+
+<chapter title="Live example · connection pool" lead="Thirty concurrent requests arrive at a database connection pool of the chosen size. If the pool isn't big enough, requests wait in a queue.">
+<figure class="fig-sheet fs-sheet" id="fs-pool">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Fig. 1</p><p class="fig-cap">Pool size and waiting requests</p>
+  <fieldset class="choice is-seg">
+    <legend>Pool size</legend>
+    <label><input type="radio" name="fs-size" value="10"><span>10</span></label>
+    <label><input type="radio" name="fs-size" value="20"><span>20</span></label>
+    <label><input type="radio" name="fs-size" value="40" checked><span>40</span></label>
+  </fieldset>
+  <div class="drawing" data-aw="640" data-ah="240" style="--aw:640;--ah:240">
+    <svg viewBox="0 0 640 240" aria-hidden="true">
+      <rect class="ln-pencil" x="20" y="50" width="280" height="118" stroke-dasharray="4 4"/>
+      <rect class="ln-pencil" x="336" y="64" width="210" height="58" stroke-dasharray="4 4"/>
+      <rect class="fs-slot" x="30" y="60" width="20" height="20"/><rect class="fs-slot" x="56" y="60" width="20" height="20"/><rect class="fs-slot" x="82" y="60" width="20" height="20"/><rect class="fs-slot" x="108" y="60" width="20" height="20"/><rect class="fs-slot" x="134" y="60" width="20" height="20"/><rect class="fs-slot" x="160" y="60" width="20" height="20"/><rect class="fs-slot" x="186" y="60" width="20" height="20"/><rect class="fs-slot" x="212" y="60" width="20" height="20"/><rect class="fs-slot" x="238" y="60" width="20" height="20"/><rect class="fs-slot" x="264" y="60" width="20" height="20"/>
+      <rect class="fs-slot" x="30" y="86" width="20" height="20"/><rect class="fs-slot" x="56" y="86" width="20" height="20"/><rect class="fs-slot" x="82" y="86" width="20" height="20"/><rect class="fs-slot" x="108" y="86" width="20" height="20"/><rect class="fs-slot" x="134" y="86" width="20" height="20"/><rect class="fs-slot" x="160" y="86" width="20" height="20"/><rect class="fs-slot" x="186" y="86" width="20" height="20"/><rect class="fs-slot" x="212" y="86" width="20" height="20"/><rect class="fs-slot" x="238" y="86" width="20" height="20"/><rect class="fs-slot" x="264" y="86" width="20" height="20"/>
+      <rect class="fs-slot" x="30" y="112" width="20" height="20"/><rect class="fs-slot" x="56" y="112" width="20" height="20"/><rect class="fs-slot" x="82" y="112" width="20" height="20"/><rect class="fs-slot" x="108" y="112" width="20" height="20"/><rect class="fs-slot" x="134" y="112" width="20" height="20"/><rect class="fs-slot" x="160" y="112" width="20" height="20"/><rect class="fs-slot" x="186" y="112" width="20" height="20"/><rect class="fs-slot" x="212" y="112" width="20" height="20"/><rect class="fs-slot" x="238" y="112" width="20" height="20"/><rect class="fs-slot" x="264" y="112" width="20" height="20"/>
+      <rect class="fs-slot fs-free" x="30" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="56" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="82" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="108" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="134" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="160" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="186" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="212" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="238" y="138" width="20" height="20"/><rect class="fs-slot fs-free" x="264" y="138" width="20" height="20"/>
+      <circle class="fs-q fs-none" cx="350" cy="80" r="7"/><circle class="fs-q fs-none" cx="370" cy="80" r="7"/><circle class="fs-q fs-none" cx="390" cy="80" r="7"/><circle class="fs-q fs-none" cx="410" cy="80" r="7"/><circle class="fs-q fs-none" cx="430" cy="80" r="7"/><circle class="fs-q fs-none" cx="450" cy="80" r="7"/><circle class="fs-q fs-none" cx="470" cy="80" r="7"/><circle class="fs-q fs-none" cx="490" cy="80" r="7"/><circle class="fs-q fs-none" cx="510" cy="80" r="7"/><circle class="fs-q fs-none" cx="530" cy="80" r="7"/><circle class="fs-q fs-none" cx="350" cy="106" r="7"/><circle class="fs-q fs-none" cx="370" cy="106" r="7"/><circle class="fs-q fs-none" cx="390" cy="106" r="7"/><circle class="fs-q fs-none" cx="410" cy="106" r="7"/><circle class="fs-q fs-none" cx="430" cy="106" r="7"/><circle class="fs-q fs-none" cx="450" cy="106" r="7"/><circle class="fs-q fs-none" cx="470" cy="106" r="7"/><circle class="fs-q fs-none" cx="490" cy="106" r="7"/><circle class="fs-q fs-none" cx="510" cy="106" r="7"/><circle class="fs-q fs-none" cx="530" cy="106" r="7"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:20;--w:280"><b>Pool</b></p>
+    <p class="dl" style="--x:336;--y:34;--w:210"><b>Queue</b></p>
+    <p class="dl" style="--x:20;--y:180;--w:420" id="fs-pool-lbl">30 in use · 10 idle · 0 waiting</p>
+  </div>
+  <div class="readout ok" id="fs-pool-out" aria-live="polite"><p><b>Enough.</b> All 30 requests got a connection; 10 connections are idle.</p></div>
+  <p class="figcap"><b>Fig. 1.</b> A filled square is a connection in use, an empty square an idle connection, a dashed square a place that isn't in the pool. The red circles are requests waiting for a connection.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var LOAD = 30, size = 40, beat = -1e9;
+function draw() { /* update the squares, the queue and the result line from size (in every mode) */ }
+var fig = Hendese.figScene({
+  el: '#fs-pool',
+  still: function () { return { x: 600, y: 230, pose: size &gt;= LOAD ? 'glasses' : 'worried', face: -1 }; },
+  render: function (api, t) {
+    var busy = t - beat &lt; 1200, wait = Math.max(0, LOAD - size);
+    return { busy: busy, hoca: { x: 600, y: 230, face: -1,
+      pose: busy ? 'pointUp' : wait ? 'worried' : 'glasses',
+      bubble: busy ? (wait ? wait + ' requests waiting.' : (size - LOAD) + ' connections idle.') : null } };
+  }
+});
+Hendese.$$('[name=fs-size]').forEach(function (r) { r.addEventListener('change', function () {
+  size = +r.value; draw();
+  beat = performance.now(); fig.poke();     // start the timed beat
+  Hendese.refresh();                        // reduced motion: move the still Hoca to the new pose
+}); });</code></pre></figure>
+</chapter>
+
+<chapter title="Timed beat · certificate renewal" lead="Press the button and Hoca stamps for a second and a half, then returns to a calm pose. As long as it returns busy: true, the loop doesn't sleep.">
+<figure class="fig-sheet fs-sheet" id="fs-cert">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Fig. 2</p><p class="fig-cap">api.example certificate: remaining validity</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:end;gap:6px 18px">
+    <fieldset class="choice is-seg">
+      <legend>Days left</legend>
+      <label><input type="radio" name="fs-rem" value="90" checked><span>90</span></label>
+      <label><input type="radio" name="fs-rem" value="25"><span>25</span></label>
+      <label><input type="radio" name="fs-rem" value="5"><span>5</span></label>
+    </fieldset>
+    <button class="btn" type="button" id="fs-renew" style="margin-bottom:14px"><svg><use href="#i-reset"/></svg>Renew now</button>
+  </div>
+  <div class="drawing" id="fs-cert-dr" data-aw="640" data-ah="200" style="--aw:640;--ah:200">
+    <svg viewBox="0 0 640 200" aria-hidden="true">
+      <rect class="fs-win" x="40" y="70" width="160" height="40"/>
+      <rect class="ln-draw" x="40" y="70" width="480" height="40"/>
+      <path class="dim" d="M40 130V146M520 130V146M40 138H520"/>
+      <line class="fs-mark" x1="0" y1="54" x2="0" y2="126"/>
+    </svg>
+    <p class="dl" style="--x:40;--y:20;--w:220"><b>Renewal window</b>last 30 days</p>
+    <p class="dl" style="--x:40;--y:152;--w:120">expiry</p>
+    <p class="dl" style="--x:430;--y:152;--w:90">90 days</p>
+  </div>
+  <div class="readout ok" id="fs-cert-out" aria-live="polite"><p><b>Valid.</b> 90 days left; outside the renewal window.</p></div>
+  <p class="figcap"><b>Fig. 2.</b> The heavy vertical line marks today. The yellow dashed area is the last 30 days, when automatic renewal is attempted.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var rem = 90, stamp = -1e9, cert = Hendese.figScene({
+  el: '#fs-cert',
+  still: function () { return { x: 590, y: 190, pose: rem &lt;= 5 ? 'worried' : 'glasses', face: -1 }; },
+  render: function (api, t) {
+    var busy = t - stamp &lt; 1500;                        // a 1.5 s beat
+    return { busy: busy, hoca: { x: 590, y: 190, face: -1,
+      pose: busy ? 'stamp' : rem &lt;= 5 ? 'worried' : 'glasses',
+      bubble: busy ? 'New certificate: 90 days.' : null } };
+  }
+});
+Hendese.$('#fs-renew').addEventListener('click', function () {
+  setRem(90);                                          // update the radio, the line and the result line
+  stamp = performance.now(); cert.poke(); Hendese.refresh();
+});</code></pre></figure>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Sleep</span><div class="co-body"><p>When the beat ends, <code>render</code> returns <code>busy: false</code> and the engine sleeps on the next frame; <code>Hendese.state.idle</code> becomes <code>true</code> again. Returning <code>busy: true</code> all the time never lets the loop sleep.</p></div></div>
+</chapter>
+
+<chapter title="With motion off" lead="The controls work in every mode; only Hoca changes. The result line carries the meaning.">
+<div class="prose">
+  <p>With reduced motion, below 1100px and in print, the two figures above work the same: the radio buttons update the squares and the line, and the result line (<code>aria-live="polite"</code>) states the new state in text. Transitions are defined only under <code>html.motion</code>, so the change is instant.</p>
+  <p>On desktop with reduced motion on, Hoca sits in the drawing as a still copy in the pose the <code>still</code> function returns. When <code>still</code> is a function, its value is reread on every <code>Hendese.refresh()</code> call; that is why every handler that changes the state calls <code>refresh()</code> at the end. Timed beats (stamp, speech bubble) don't play at all with reduced motion.</p>
+  <p>Without JS the controls have no purpose; on this page the <code>html:not(.js) .fs-sheet .choice</code> rule hides them, and the figure shows the default state from the markup (40 connections, 90 days).</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mode</th><th>Controls</th><th>Hoca</th></tr></thead>
+  <tbody>
+    <tr><td>Live</td><td>Work, with transitions</td><td>In the scene; pose and speech bubble on a beat</td></tr>
+    <tr><td>Reduced motion (desktop)</td><td>Work, instantly</td><td>Still copy in the <code>still()</code> pose; updated with <code>refresh()</code></td></tr>
+    <tr><td>&lt; 1100px, print</td><td>Work (last choice in print)</td><td>Hidden</td></tr>
+    <tr><td>No JS</td><td>Hidden</td><td>Absent</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Do / don't" lead="The figure is played to learn; the result is always written in text too.">
+<div class="dodont">
+<demo label="Do · the result line states the state">
+<div class="readout bad" aria-live="polite"><p><b>Queue forming.</b> 10 of 30 requests are waiting for a connection; grow the pool or shorten the queries.</p></div>
+</demo>
+<demo label="Don't · meaning only in color">
+<div class="readout"><p>See the red circles.</p></div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · a short beat, then sleep" nocode>
+<p>The beat lasts 1–1.5 seconds; <code>busy</code> is <code>true</code> only during that time. Hoca speaks once and repeats what the result line says.</p>
+</demo>
+<demo label="Don't · constant animation" nocode>
+<p>If <code>render</code> always returns <code>busy: true</code>, the loop never sleeps and battery and CPU are wasted; you have also bypassed reduced motion.</p>
+</demo>
+</div>
+</chapter>
+
+<chapter title="API" lead="Register between Hendese.init() and Hendese.start(); figScene returns the scene object.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>el</code></td><td>The figure's selector; it must contain a <code>.drawing</code>.</td></tr>
+    <tr><td><code>render(api, t, vis)</code></td><td>On every wake while the scene is on screen and live. <code>t</code> is the rAF time (ms), <code>vis</code> the visible share. Returns <code>{hoca?, busy?}</code>.</td></tr>
+    <tr><td><code>still</code></td><td>An object or a function. If a function, it is reread every time <code>Hendese.refresh()</code> is called.</td></tr>
+    <tr><td><code>measure(api)</code>, <code>reset(api)</code></td><td>On remeasure / when live mode turns off.</td></tr>
+    <tr><td>Returned object · <code>poke()</code></td><td>Wakes the loop; call it when the state changes or a beat starts.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, drawing, aw, ah, cls(node, c, on), live(), poke(), seg, ease, lerp, clamp01</code>. The fig scene has no <code>set</code>; the page writes CSS variables itself.</td></tr>
+    <tr><td><code>Hendese.refresh()</code></td><td>Removes the still Hoca copies drawn under reduced motion and places them again from the <code>still</code> values.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  /* 02 · connection pool */
+  var LOAD = 30, size = 40, beat = -1e9, slots = $$('#fs-pool .fs-slot'), qs = $$('#fs-pool .fs-q'), lbl = $('#fs-pool-lbl'), out = $('#fs-pool-out');
+  function draw() {
+    var used = Math.min(size, LOAD), wait = Math.max(0, LOAD - size);
+    slots.forEach(function (s, i) { s.classList.toggle('fs-none', i >= size); s.classList.toggle('fs-free', i >= used && i < size); });
+    qs.forEach(function (q, i) { q.classList.toggle('fs-none', i >= wait); });
+    lbl.textContent = used + ' in use · ' + (size - used) + ' idle · ' + wait + ' waiting';
+    out.className = 'readout ' + (wait ? 'bad' : 'ok');
+    out.innerHTML = wait ? '<p><b>Queue forming.</b> ' + wait + " of 30 requests are waiting for a connection; average response time goes up.</p>" : '<p><b>Enough.</b> All 30 requests got a connection; ' + (size - used) + ' connections are idle.</p>';
+  }
+  var fig = Hendese.figScene({
+    el: '#fs-pool',
+    still: function () { return { x: 600, y: 230, pose: size >= LOAD ? 'glasses' : 'worried', face: -1 }; },
+    render: function (api, t) {
+      var busy = t - beat < 1200, wait = Math.max(0, LOAD - size);
+      return { busy: busy, hoca: { x: 600, y: 230, face: -1, pose: busy ? 'pointUp' : wait ? 'worried' : 'glasses',
+        bubble: busy ? (wait ? wait + ' requests waiting.' : (size - LOAD) + ' connections idle.') : null } };
+    }
+  });
+  $$('[name=fs-size]').forEach(function (r) { r.addEventListener('change', function () { size = +r.value; draw(); beat = performance.now(); fig.poke(); Hendese.refresh(); }); });
+  draw();
+  /* 03 · certificate */
+  var rem = 90, stamp = -1e9, dr = $('#fs-cert-dr'), cout = $('#fs-cert-out');
+  function setRem(v) {
+    rem = v;
+    $$('[name=fs-rem]').forEach(function (r) { r.checked = +r.value === v; });
+    dr.style.setProperty('--fs-x', 40 + v / 90 * 480);
+    var cls = v <= 5 ? 'bad' : v <= 30 ? '' : 'ok';
+    cout.className = 'readout ' + cls;
+    cout.innerHTML = v <= 5 ? '<p><b>Expiring.</b> ' + v + ' days left; automatic renewal may have failed, renew by hand.</p>'
+      : v <= 30 ? '<p><b>In the window.</b> ' + v + ' days left; automatic renewal will be attempted on the next run.</p>'
+      : '<p><b>Valid.</b> ' + v + ' days left; outside the renewal window.</p>';
+  }
+  var cert = Hendese.figScene({
+    el: '#fs-cert',
+    still: function () { return { x: 590, y: 190, pose: rem <= 5 ? 'worried' : 'glasses', face: -1 }; },
+    render: function (api, t) {
+      var busy = t - stamp < 1500;
+      return { busy: busy, hoca: { x: 590, y: 190, face: -1, pose: busy ? 'stamp' : rem <= 5 ? 'worried' : 'glasses', bubble: busy ? 'New certificate: 90 days.' : null } };
+    }
+  });
+  $$('[name=fs-rem]').forEach(function (r) { r.addEventListener('change', function () { setRem(+r.value); cert.poke(); Hendese.refresh(); }); });
+  $('#fs-renew').addEventListener('click', function () { setRem(90); stamp = performance.now(); cert.poke(); Hendese.refresh(); });
+})();
+</script>

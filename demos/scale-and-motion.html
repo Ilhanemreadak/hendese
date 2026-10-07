@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scale and motion · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Basics</div>
+    <a class="nav-page" href="colors.html">Colors</a>
+    <a class="nav-page" href="typography.html">Typography</a>
+    <a class="nav-page" href="scale-and-motion.html" aria-current="page">Scale and motion</a>
+    <a class="nav-page" href="icons.html">Icons</a>
+    <a class="nav-page" href="page-shell.html">Page shell</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Spacing scale</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Corners</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Shell sizes</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Durations and easing</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>In context</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Reduced motion</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Basics</p>
+    <h1>Scale and motion<em>Spacing, corners, layers, duration and easing.</em></h1>
+    <p class="intro">Components don't write sizes or durations; they read spacing, corners, shell widths, layer order, transition durations and easing curves from tokens. When the reduced motion preference is on, every transition drops to zero and the finished state shows at once.</p>
+<dl class="kv"><dt>Tokens</dt><dd><code>--sp-1..11</code> · <code>--r-xs</code> <code>--r-sm</code> <code>--r-md</code> <code>--r-lg</code> <code>--r-pill</code> · <code>--rail-w</code> <code>--side-w</code> <code>--canvas-max</code> <code>--topbar-h</code> · <code>--z-*</code> · <code>--dur-1..5</code> · <code>--ease-out</code> <code>--ease-in-out</code> <code>--ease-snap</code></dd><dt>Class</dt><dd><code>html.motion</code> (live mode)</dd><dt>JS</dt><dd>Not required; the play buttons in the examples are a few lines of page script</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Spacing scale">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Spacing scale</h2><p class="lead">Eleven steps, from 4px to 48px. padding, margin, gap and inset read from these steps; values in between are off the scale.</p></header>
+<div class="demo">
+  <span class="demo-label">Ruler · --sp-1 … --sp-11</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:80px 40px minmax(0,1fr);gap:var(--sp-2) var(--sp-5);align-items:center;font:500 var(--fs-sm)/1.3 var(--font-mono);color:var(--ink-2)">
+  <span>--sp-1</span><span class="tnum">4</span><i style="display:block;height:12px;width:var(--sp-1);background:var(--draw)"></i>
+  <span>--sp-2</span><span class="tnum">6</span><i style="display:block;height:12px;width:var(--sp-2);background:var(--draw)"></i>
+  <span>--sp-3</span><span class="tnum">8</span><i style="display:block;height:12px;width:var(--sp-3);background:var(--draw)"></i>
+  <span>--sp-4</span><span class="tnum">10</span><i style="display:block;height:12px;width:var(--sp-4);background:var(--draw)"></i>
+  <span>--sp-5</span><span class="tnum">12</span><i style="display:block;height:12px;width:var(--sp-5);background:var(--draw)"></i>
+  <span>--sp-6</span><span class="tnum">14</span><i style="display:block;height:12px;width:var(--sp-6);background:var(--draw)"></i>
+  <span>--sp-7</span><span class="tnum">16</span><i style="display:block;height:12px;width:var(--sp-7);background:var(--draw)"></i>
+  <span>--sp-8</span><span class="tnum">20</span><i style="display:block;height:12px;width:var(--sp-8);background:var(--draw)"></i>
+  <span>--sp-9</span><span class="tnum">28</span><i style="display:block;height:12px;width:var(--sp-9);background:var(--draw)"></i>
+  <span>--sp-10</span><span class="tnum">32</span><i style="display:block;height:12px;width:var(--sp-10);background:var(--draw)"></i>
+  <span>--sp-11</span><span class="tnum">48</span><i style="display:block;height:12px;width:var(--sp-11);background:var(--draw)"></i>
+</div>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · the same card, spacing from the scale</span>
+  <div class="demo-view">
+<div style="max-width:420px;padding:var(--sp-7) var(--sp-8);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--surface)">
+  <p class="chip">Queue · <span lang="en">billing-worker</span></p>
+  <p style="margin:var(--sp-2) 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)">4 replicas, 120 jobs per minute. Depth is under the threshold.</p>
+  <div class="pillrow" style="gap:var(--sp-3)">
+    <span class="pill s-ok">healthy</span>
+    <span class="pill s-neutral">eu-west-1</span>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:420px;padding:var(--sp-7) var(--sp-8);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--surface)</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Queue · &lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;billing-worker&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-2) 0 var(--sp-5);color:var(--ink-2);font-size:var(--fs-md)</span>"&gt;4 replicas, 120 jobs per minute. Depth is under the threshold.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>gap:var(--sp-3)</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-ok</span>"&gt;healthy&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>pill s-neutral</span>"&gt;eu-west-1&lt;/<span class='k'>span</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Inner spacing (<code>padding</code>) and the space between elements (<code>gap</code>) aren't picked from the same step: <code>--sp-7</code> / <code>--sp-8</code> inside a card, <code>--sp-2</code> / <code>--sp-5</code> between lines, <code>--sp-3</code> between badges. Values of 0–3px are optical corrections (for example a badge's vertical 1px) and stay off the scale. Spacing inside a drawing is in drawing units, via <code>calc(N * var(--u))</code>.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Corners">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Corners</h2><p class="lead">Five radii: the smallest mark, a control, a card, a large panel and the fully rounded badge. The corner grows with the surface; giving a small chip a big corner makes it look like a button.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · five corners, five scales</span>
+  <div class="demo-view">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--sp-7)">
+  <code>--r-xs</code>
+  <span class="pill s-accent">--r-pill</span>
+  <span style="padding:var(--sp-1) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);font:500 var(--fs-sm)/1.4 var(--font-mono);color:var(--ink-2)">prod · eu-west-1</span>
+  <div style="width:240px;padding:var(--sp-5) var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--surface)">
+    <p class="chip">Queue</p>
+    <p style="margin:var(--sp-1) 0 0;font-size:var(--fs-md);color:var(--ink-2)">billing-worker · 4 replicas · 120 jobs/min</p>
+  </div>
+  <div style="width:300px;padding:var(--sp-7) var(--sp-8);border:1px solid var(--line-2);border-radius:var(--r-lg);background:var(--scene-bg)">
+    <p class="chip">Panel</p>
+    <p style="margin:var(--sp-1) 0 0;font-size:var(--fs-md);color:var(--ink-2)">The latency, error and saturation charts of three services sit on this surface.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--sp-7)</span>"&gt;
+  &lt;<span class='k'>code</span>&gt;--r-xs&lt;/<span class='k'>code</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>pill s-accent</span>"&gt;--r-pill&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> style="<span class='s'>padding:var(--sp-1) var(--sp-4);border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);font:500 var(--fs-sm)/1.4 var(--font-mono);color:var(--ink-2)</span>"&gt;prod · eu-west-1&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>width:240px;padding:var(--sp-5) var(--sp-6);border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--surface)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Queue&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-1) 0 0;font-size:var(--fs-md);color:var(--ink-2)</span>"&gt;billing-worker · 4 replicas · 120 jobs/min&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>width:300px;padding:var(--sp-7) var(--sp-8);border:1px solid var(--line-2);border-radius:var(--r-lg);background:var(--scene-bg)</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Panel&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:var(--sp-1) 0 0;font-size:var(--fs-md);color:var(--ink-2)</span>"&gt;The latency, error and saturation charts of three services sit on this surface.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+  <tbody>
+    <tr><td><code>--r-xs</code></td><td><code>4px</code></td><td>Inline <code>code</code>, focus ring, code language label, HUD</td></tr>
+    <tr><td><code>--r-sm</code></td><td><code>6px</code></td><td>Button, icon button, table container, choice chip, toggle button</td></tr>
+    <tr><td><code>--r-md</code></td><td><code>10px</code></td><td>Code block, step card, demo box</td></tr>
+    <tr><td><code>--r-lg</code></td><td><code>14px</code></td><td>Runbook, sheet background</td></tr>
+    <tr><td><code>--r-pill</code></td><td><code>999px</code></td><td>Badge (<code>.pill</code>), runbook progress bar</td></tr>
+    <tr><td><code>0</code></td><td>—</td><td>Drawn objects: station, label, title block, cell strip</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The fixed corners from 0.1 (<code>.btn</code> 7px, <code>.icon-btn</code> 8px) were snapped to <code>--r-sm</code> in 0.2; no component in the package writes a raw corner anymore. The drawing language has no corners: everything drawn on a sheet has zero radius, and rounded corners exist only on interface surfaces.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Shell sizes">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Shell sizes</h2><p class="lead">The rail, the canvas and the sheet's side column are tokens; the screen breakpoints are fixed, because they can't be CSS variables: 1100px and 720px.</p></header>
+<div class="demo">
+  <span class="demo-label">Diagram · the shell at 1440px wide</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:17.2% minmax(0,1fr);height:150px;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;font:500 var(--fs-xs)/1.4 var(--font-mono);color:var(--ink-2)">
+  <div style="border-right:1px solid var(--line-2);background:var(--bg);padding:var(--sp-3)">--rail-w<br>248px</div>
+  <div style="display:grid;grid-template-columns:5.6% minmax(0,1fr) 5.6%;background:var(--surface)">
+    <span></span>
+    <div style="border-inline:1px dashed var(--pencil);background:var(--paper);padding:var(--sp-3);display:grid;grid-template-columns:minmax(0,1fr) 26%;gap:var(--sp-3)">
+      <span>--canvas-max · 1040px</span>
+      <span style="border-left:1px dashed var(--pencil);padding-left:var(--sp-2)">--side-w<br>230–290px</span>
+    </div>
+    <span></span>
+  </div>
+</div>
+<p class="figcap"><b>Diagram.</b> The rail is fixed on the left; the canvas is centered in the remaining space. A sheet (<code>.frame</code>) opens a side column <code>--side-w</code> wide on its right. Below 1100px the rail becomes a drawer, and a top bar <code>--topbar-h</code> (52px) tall takes its place.</p>
+  </div>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+  <tbody>
+    <tr><td><code>--rail-w</code></td><td><code>248px</code></td><td>The left rail and where the ruler lines start</td></tr>
+    <tr><td><code>--canvas-max</code></td><td><code>1040px</code></td><td>Maximum width of the content canvas</td></tr>
+    <tr><td><code>--side-w</code></td><td><code>clamp(230px,20vw,290px)</code></td><td>The sheet's side column (beats, HUD)</td></tr>
+    <tr><td><code>--topbar-h</code></td><td><code>52px</code></td><td>Top bar on narrow screens</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>For a document where you want a narrower canvas, one line is enough: <code>:root{--canvas-max:880px}</code>. The ruler lines read the same token, so they move with the new edges.</p></div>
+<h3>Layer order</h3>
+<div class="prose"><p>Fixed-position shell elements stack on top of each other; their order is a token. When you add your own fixed element (for example a notice bar), place it between two neighboring tokens. Local stacking of 0–2 inside a component is free.</p></div>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>Element</th></tr></thead>
+  <tbody>
+    <tr><td><code>--z-topbar</code></td><td class="tnum">40</td><td>Top bar on narrow screens</td></tr>
+    <tr><td><code>--z-scrim</code></td><td class="tnum">45</td><td>Drawer scrim</td></tr>
+    <tr><td><code>--z-rail</code></td><td class="tnum">50</td><td>Rail and drawer</td></tr>
+    <tr><td><code>--z-hud</code></td><td class="tnum">55</td><td>HUD readout</td></tr>
+    <tr><td><code>--z-hoca</code></td><td class="tnum">60</td><td>Hoca layer</td></tr>
+    <tr><td><code>--z-progress</code></td><td class="tnum">70</td><td>Reading progress bar</td></tr>
+    <tr><td><code>--z-skip</code></td><td class="tnum">100</td><td>Skip link</td></tr>
+  </tbody>
+</table></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">app.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">/* below the drawer, above the top bar */</span>
+.notice-bar{position:sticky;top:0;z-index:calc(var(--z-topbar) + 1)}</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Durations and easing">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Durations and easing</h2><p class="lead">A single motion set: five durations and three curves. The duration follows the size of the movement; the curve sets its character. Press the play button.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · five durations, same curve</span>
+  <div class="demo-view">
+<div id="oh-dur" style="display:grid;gap:var(--sp-3)">
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--dur-1 · 120ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-1) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--dur-2 · 250ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-2) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--dur-3 · 320ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-3) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--dur-4 · 650ms</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--dur-5 · 2s</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-5) var(--ease-out)"></i></div>
+  </div>
+</div>
+<button class="toggle-btn is-accent" type="button" aria-pressed="false" data-play="oh-dur" style="margin-top:var(--sp-6)">Play</button>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · three curves, same duration (--dur-4)</span>
+  <div class="demo-view">
+<div id="oh-ease" style="display:grid;gap:var(--sp-3)">
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--ease-out</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip"><span lang="en">--ease-in-out</span></p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-in-out)"></i></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center">
+    <p class="chip">--ease-snap</p>
+    <div style="height:24px;border:1px dashed var(--pencil);container-type:inline-size"><i data-move style="display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-snap)"></i></div>
+  </div>
+</div>
+<button class="toggle-btn is-accent" type="button" aria-pressed="false" data-play="oh-ease" style="margin-top:var(--sp-6)">Play</button>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>oh-ease</span>" style="<span class='s'>display:grid;gap:var(--sp-3)</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;--ease-out&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>height:24px;border:1px dashed var(--pencil);container-type:inline-size</span>"&gt;&lt;<span class='k'>i</span> data-move style="<span class='s'>display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-out)</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;&lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;--ease-in-out&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>height:24px;border:1px dashed var(--pencil);container-type:inline-size</span>"&gt;&lt;<span class='k'>i</span> data-move style="<span class='s'>display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-in-out)</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--sp-6);align-items:center</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;--ease-snap&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>div</span> style="<span class='s'>height:24px;border:1px dashed var(--pencil);container-type:inline-size</span>"&gt;&lt;<span class='k'>i</span> data-move style="<span class='s'>display:block;width:16px;height:16px;margin:3px;background:var(--draw);transition:transform var(--dur-4) var(--ease-snap)</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>button</span> class="<span class='s'>toggle-btn is-accent</span>" type="<span class='s'>button</span>" aria-pressed="<span class='s'>false</span>" data-play="<span class='s'>oh-ease</span>" style="<span class='s'>margin-top:var(--sp-6)</span>"&gt;Play&lt;/<span class='k'>button</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>When</th></tr></thead>
+  <tbody>
+    <tr><td><code>--dur-1</code></td><td><code>120ms</code></td><td>Instant feedback: border color, hover</td></tr>
+    <tr><td><code>--dur-2</code></td><td><code>250ms</code></td><td>Small state change: badge, icon</td></tr>
+    <tr><td><code>--dur-3</code></td><td><code>320ms</code></td><td>Row highlight, panel opening</td></tr>
+    <tr><td><code>--dur-4</code></td><td><code>650ms</code></td><td>Moving within a scene</td></tr>
+    <tr><td><code>--dur-5</code></td><td><code>2s</code></td><td>Only for inking a pencil sketch</td></tr>
+    <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(.2,.7,.2,1)</code></td><td>Default: start fast, stop softly</td></tr>
+    <tr><td><code>--ease-in-out</code></td><td><code>cubic-bezier(.45,0,.55,1)</code></td><td>From one place to another along a visible path</td></tr>
+    <tr><td><code>--ease-snap</code></td><td><code>cubic-bezier(.3,1.6,.55,1)</code></td><td>Snapping into place; overshoots slightly and comes back</td></tr>
+  </tbody>
+</table></div>
+<div class="tbl"><table>
+  <thead><tr><th>Deprecated name</th><th>Now</th><th>Use instead</th></tr></thead>
+  <tbody>
+    <tr><td><code>--ease</code> <span class="pill s-warn">removed in 0.3</span></td><td><code>var(--ease-out)</code></td><td><code>--ease-out</code></td></tr>
+    <tr><td><code>--t-fast</code> <span class="pill s-warn">removed in 0.3</span></td><td><code>var(--dur-1)</code> · 120ms (was 160ms)</td><td><code>--dur-1</code></td></tr>
+    <tr><td><code>--t-med</code> <span class="pill s-warn">removed in 0.3</span></td><td><code>var(--dur-3)</code> · 320ms</td><td><code>--dur-3</code></td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Old names</span><div class="co-body"><p>In 0.2 no component in the package reads the old names; all three stay as aliases only so your code doesn't break. <code>--t-fast</code> dropped from 160ms to 120ms because it is now tied to the new set. A unit test rejects these names and raw durations (<code>300ms</code>, <code>.25s</code>) in component CSS.</p></div></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">05</p><h2>In context</h2><p class="lead">Motion is for making a state change visible, not for decoration. In the two examples below, motion shows the reader what changed.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · clearing a cache (--dur-4, --ease-out)</span>
+  <div class="demo-view">
+<div style="max-width:460px">
+  <div style="display:flex;align-items:center;gap:var(--sp-5);margin-bottom:var(--sp-4)">
+    <p style="margin:0;margin-right:auto"><b>cache-eu-1</b> <span class="mono" style="color:var(--ink-3)">· 18,400 keys</span></p>
+    <button class="btn" type="button" id="oh-purge"><svg><use href="#i-reset"/></svg>Clear</button>
+  </div>
+  <div style="height:6px;background:var(--surface-3);border-radius:var(--r-pill);overflow:hidden"><i id="oh-purge-bar" style="display:block;height:100%;width:0;background:var(--ok);transition:width var(--dur-4) var(--ease-out)"></i></div>
+  <div class="readout" id="oh-purge-out" aria-live="polite"><p>Ready; clearing lowers the hit rate until the cache warms up.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:460px</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:flex;align-items:center;gap:var(--sp-5);margin-bottom:var(--sp-4)</span>"&gt;
+    &lt;<span class='k'>p</span> style="<span class='s'>margin:0;margin-right:auto</span>"&gt;&lt;<span class='k'>b</span>&gt;cache-eu-1&lt;/<span class='k'>b</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>mono</span>" style="<span class='s'>color:var(--ink-3)</span>"&gt;· 18,400 keys&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>oh-purge</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Clear&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>height:6px;background:var(--surface-3);border-radius:var(--r-pill);overflow:hidden</span>"&gt;&lt;<span class='k'>i</span> id="<span class='s'>oh-purge-bar</span>" style="<span class='s'>display:block;height:100%;width:0;background:var(--ok);transition:width var(--dur-4) var(--ease-out)</span>"&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>oh-purge-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Ready; clearing lowers the hit rate until the cache warms up.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · step highlight (--dur-3)</span>
+  <div class="demo-view">
+<div style="display:flex;flex-wrap:wrap;gap:var(--sp-7);align-items:flex-start">
+  <div class="register" id="oh-reg" style="width:320px">
+    <p class="register-h"><b>Migration 0042</b><span>orders-db</span></p>
+    <dl>
+      <div class="now"><dt>01</dt><dd>Create the shadow table</dd></div>
+      <div><dt>02</dt><dd>Copy the rows</dd></div>
+      <div><dt>03</dt><dd>Dual-write</dd></div>
+      <div><dt>04</dt><dd>Swap the tables</dd></div>
+    </dl>
+  </div>
+  <button class="btn" type="button" id="oh-next">Next step</button>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:flex;flex-wrap:wrap;gap:var(--sp-7);align-items:flex-start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>" id="<span class='s'>oh-reg</span>" style="<span class='s'>width:320px</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Migration 0042&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;orders-db&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;01&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Create the shadow table&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;02&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Copy the rows&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;03&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Dual-write&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;04&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;Swap the tables&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>oh-next</span>"&gt;Next step&lt;/<span class='k'>button</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p><code>.register</code> rows already transition <code>background-color</code> with <code>--dur-3</code>; all you need to do is move the <code>.now</code> class.</p></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Reduced motion">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Reduced motion</h2><p class="lead">When reduced motion is on in the operating system, base.css pulls every transition and animation duration close to zero. The examples above then jump straight to their final position.</p></header>
+<div class="readout" id="oh-motion" aria-live="polite"><p>Reading the setting…</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">base.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}</code></pre></figure>
+<div class="prose"><p>This safety net also catches transitions written in an inline <code>style</code>. Still, for any motion that changes position, depends on scrolling or draws attention, the contract is: <b>put the transition under <code>html.motion</code>.</b> That class exists only while JS is running, the screen is 1100px or wider and reduced motion is off.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">app.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">/* the finished state is always right; the transition only in live mode */</span>
+.deploy-card{transform:none}
+html.motion .deploy-card{transition:transform var(--dur-3) var(--ease-out)}</code></pre></figure>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · one property, a token duration</span>
+  <div class="demo-view">
+<button class="btn" type="button" style="transition:background var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out)">Download log</button>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" style="<span class='s'>transition:background var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out)</span>"&gt;Download log&lt;/<span class='k'>button</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · everything, a fixed long duration</span>
+  <div class="demo-view">
+<button class="btn" type="button" style="transition:all 900ms linear">Download log</button>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" style="<span class='s'>transition:all 900ms linear</span>"&gt;Download log&lt;/<span class='k'>button</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="prose"><p>Hover over both. The right-hand button stays in an in-between color for 900ms; the user has long since moved the pointer away. <code>all</code> also animates properties that affect layout.</p></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="typography.html" rel="prev"><small>Previous · Basics</small>Typography</a><a href="icons.html" rel="next"><small>Next · Basics</small>Icons</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+document.querySelectorAll('[data-play]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on));
+    b.textContent = on ? 'Reset' : 'Play';
+    document.querySelectorAll('#' + b.getAttribute('data-play') + ' [data-move]').forEach(function (i) {
+      i.style.transform = on ? 'translateX(calc(100cqw - 22px))' : '';
+    });
+  });
+});
+(function () {
+  var btn = document.getElementById('oh-purge'), bar = document.getElementById('oh-purge-bar'), out = document.getElementById('oh-purge-out');
+  btn.addEventListener('click', function () {
+    var done = bar.style.width === '100%';
+    bar.style.width = done ? '0' : '100%';
+    out.className = done ? 'readout' : 'readout s-ok';
+    out.innerHTML = done ? '<p>Ready; clearing lowers the hit rate until the cache warms up.</p>' : '<p><b>Cleared.</b> 18,400 keys deleted; the cache is warming up again.</p>';
+  });
+  var rows = document.querySelectorAll('#oh-reg dl > div'), k = 0;
+  document.getElementById('oh-next').addEventListener('click', function () {
+    rows[k].classList.remove('now'); k = (k + 1) % rows.length; rows[k].classList.add('now');
+  });
+  var rm = matchMedia('(prefers-reduced-motion: reduce)'), m = document.getElementById('oh-motion');
+  function show() {
+    m.innerHTML = rm.matches
+      ? '<p><b>Reduced motion is on.</b> Transitions on this page finish instantly; no <code>html.motion</code>.</p>'
+      : '<p><b>Reduced motion is off.</b> Transitions play; <code>html.motion</code> is ' + (document.documentElement.classList.contains('motion') ? 'present (live mode).' : 'absent (screen below 1100px).') + '</p>';
+  }
+  /* html.motion is written inside Hendese.start(); this script runs before that, so wait one tick */
+  rm.addEventListener('change', function () { setTimeout(show); }); setTimeout(show);
+})();
+Hendese.start();
+</script>
+</body>
+</html>

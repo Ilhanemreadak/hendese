@@ -1,0 +1,309 @@
+<!-- meta {"title":"Sheet","group":"Blueprint","order":10,"tagline":"The frame of a drawing: header, side column, map, caption.","intro":"Every figure sits on a sheet. <code>.frame</code> is a four-area grid; for figures that need no side column there is the lighter <code>.fig-sheet</code>, and for a fixed 1000 × 600 unit grid there is <code>.sheet</code>.","summary":"<code>.frame</code>, <code>.fig-sheet</code>, <code>.sheet</code>; header, side column, map and footer.","facts":{"Classes":"<code>.frame</code> · <code>.frame-bg</code> · <code>.f-head</code> · <code>.f-side</code> · <code>.f-map</code> · <code>.f-foot</code> · <code>.fig-sheet</code> · <code>.fig-cap</code> · <code>.sheet</code>","Breakpoint":"One column when the column (<code>col</code> container) drops below 760px, narrow padding below 720px","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="A sheet is made of four areas and a background layer. Header on top, side column on the right, drawing in the middle, caption at the bottom.">
+<demo label="Example · the skeleton of the four areas">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">f-head · chip</p>
+    <p class="fig-cap">f-head · figure title</p>
+  </header>
+  <div class="f-side">
+    <div class="prose">
+      <p><b>f-side</b> · side column. A step list, prose or a title block goes here; its width is the <code>--side-w</code> token.</p>
+      <p>It spans three rows, from the header down to the footer.</p>
+    </div>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:200">
+      <svg viewBox="0 0 600 200" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="600" height="200"/></svg>
+      <p class="dl" style="--x:0;--y:92;--w:600;text-align:center">f-map · drawing area</p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="figcap"><b>f-foot.</b> Caption, one-line summary or station panel.</p>
+  </div>
+</div>
+</demo>
+<div class="prose"><p><code>.frame-bg</code> is an empty layer that draws the background and border; it is always the first child and carries <code>aria-hidden="true"</code>. The areas place themselves on the grid, so their order is free. Below, the same skeleton is filled with a real drawing.</p></div>
+<demo label="Example · DNS resolution path">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">01 · Figure 1</p>
+    <p class="fig-cap">Three stops for one name</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Query</b>The client asks for <code>api.example.net</code>; it checks its own cache first.</li>
+      <li><b>2 · Resolver</b>If the record is cached and its TTL has not expired, the resolver answers right away.</li>
+      <li><b>3 · Authoritative server</b>On a miss, the resolver goes to the authoritative server and keeps the answer for the TTL.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:220">
+      <svg viewBox="0 0 600 220" aria-hidden="true">
+        <path class="dim" d="M80 56V22M300 56V22M520 56V22M80 30H520M80 30l8-3v6zM300 30l-8-3v6zM300 30l8-3v6zM520 30l-8-3v6z"/>
+        <text class="dim-t" x="190" y="24" text-anchor="middle">≈ 2 ms</text>
+        <text class="dim-t" x="410" y="24" text-anchor="middle">≈ 40 ms</text>
+        <rect class="ln-draw fill-paper" x="10" y="60" width="140" height="80"/>
+        <rect class="ln-draw fill-paper" x="230" y="60" width="140" height="80"/>
+        <rect class="ln-draw fill-paper" x="450" y="60" width="140" height="80"/>
+        <path class="ln-draw" d="M150 100H224M224 100l-8-4M224 100l-8 4"/>
+        <path class="ln-draw ln-dash" d="M370 100H444"/>
+        <path class="ln-draw" d="M444 100l-8-4M444 100l-8 4"/>
+        <path class="ln-draw" d="M300 140V176H80V146M80 146l-4 8M80 146l4 8"/>
+      </svg>
+      <p class="dl" style="--x:22;--y:72;--w:118"><span class="stamp-k">Client</span>browser</p>
+      <p class="dl" style="--x:242;--y:72;--w:118"><span class="stamp-k">Resolver</span>TTL 300 s</p>
+      <p class="dl" style="--x:462;--y:72;--w:118"><span class="stamp-k">Authoritative</span>example.net NS</p>
+      <p class="dl" style="--x:380;--y:106;--w:64">miss</p>
+      <p class="dl" style="--x:120;--y:184;--w:300">answer · A 203.0.113.10</p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="figcap"><b>Figure 1.</b> Solid arrows are the path taken on every query; the dashed arrow is used only on a cache miss. Times are observed values.</p>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Variants" lead="frame if you need a side column, fig-sheet for a single figure in the flow, sheet for a map with a fixed ratio.">
+<div class="prose"><p><code>.fig-sheet</code> carries the same background but is a single column; the chip, the <code>.fig-cap</code> title, the drawing and the <code>figcaption.figcap</code> flow one under another. Write it as a <code>&lt;figure&gt;</code>.</p></div>
+<demo label="Example · fig-sheet · backup chain">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Figure 2</p>
+  <p class="fig-cap">Weekly backup chain</p>
+  <div class="drawing" style="--aw:900;--ah:150">
+    <svg viewBox="0 0 900 150" aria-hidden="true">
+      <path class="ln-draw" d="M40 80H740"/>
+      <path class="ln-draw ln-dash" d="M740 80H870"/>
+      <rect class="fill-draw" x="33" y="73" width="14" height="14"/>
+      <rect class="fill-draw" x="733" y="73" width="14" height="14"/>
+      <circle class="ln-draw fill-paper" cx="140" cy="80" r="6"/>
+      <circle class="ln-draw fill-paper" cx="240" cy="80" r="6"/>
+      <circle class="ln-draw fill-paper" cx="340" cy="80" r="6"/>
+      <circle class="ln-draw fill-paper" cx="440" cy="80" r="6"/>
+      <circle class="ln-draw fill-paper" cx="540" cy="80" r="6"/>
+      <circle class="ln-draw fill-paper" cx="640" cy="80" r="6"/>
+      <path class="dim" d="M40 96V122M740 96V122M40 114H740M40 114l8-3v6zM740 114l-8-3v6z"/>
+      <text class="dim-t" x="390" y="136" text-anchor="middle">one chain · 7 days · a restore needs all of it</text>
+    </svg>
+    <p class="dl" style="--x:-20;--y:36;--w:140;text-align:center">full · Mon 02:00</p>
+    <p class="dl" style="--x:240;--y:36;--w:300;text-align:center">incremental × 6 · nightly</p>
+    <p class="dl" style="--x:670;--y:36;--w:140;text-align:center">full · Mon 02:00</p>
+    <p class="dl" style="--x:790;--y:88;--w:110">next chain</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 2.</b> A square is a full backup, a circle an incremental one. The dashed part shows backups not yet taken.</figcaption>
+</figure>
+</demo>
+<div class="prose"><p><code>.sheet</code> is a fixed 1000 × 600 unit grid. The <code>.sl</code> labels and <code>.station</code> buttons inside it assume this size when <code>--aw</code> / <code>--ah</code> are not given. Below 720 pixels the SVG is hidden and the labels stack, so everything that carries meaning must also be written in a <code>.deck-cap</code> or a station.</p></div>
+<demo label="Example · sheet · CDN cache map">
+<div class="sheet">
+  <svg viewBox="0 0 1000 600" aria-hidden="true">
+    <path class="pencil-2" d="M0 100H1000M0 200H1000M0 300H1000M0 400H1000M0 500H1000M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600M600 0V600M700 0V600M800 0V600M900 0V600"/>
+    <rect class="pencil" x="0" y="0" width="1000" height="600"/>
+    <rect class="ln-draw fill-paper" x="80" y="140" width="220" height="100"/>
+    <rect class="ln-draw fill-paper" x="390" y="140" width="220" height="100"/>
+    <rect class="ln-draw fill-paper" x="700" y="140" width="220" height="100"/>
+    <rect class="ln-strong fill-paper" x="390" y="420" width="220" height="100"/>
+    <path class="ln-draw ln-dash" d="M190 240V330H500V414M500 240V414M810 240V330H500"/>
+    <path class="ln-draw" d="M500 414l-5-9M500 414l5-9"/>
+  </svg>
+  <p class="sl deck-cap" style="--x:80;--y:60"><b>EDGE</b>The three endpoints closest to the user</p>
+  <p class="sl" style="--x:96;--y:156">edge-fra · hit rate 94%</p>
+  <p class="sl" style="--x:406;--y:156">edge-ams · hit rate 91%</p>
+  <p class="sl" style="--x:716;--y:156">edge-ist · hit rate 88%</p>
+  <p class="sl" style="--x:406;--y:436">origin · web-api</p>
+  <p class="sl" style="--x:520;--y:340">only on a miss</p>
+  <p class="sl deck-cap" style="--x:80;--y:540"><b>ORIGIN</b>A missed request goes down to the origin</p>
+</div>
+</demo>
+</chapter>
+
+<chapter title="In context" lead="A sheet carries a story: a title block or steps in the side column, a one-sentence summary below. Three typical layouts.">
+<demo label="Example · title block in the side column · database replicas">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Figure 3</p>
+    <p class="fig-cap">orders-db read replicas</p>
+  </header>
+  <div class="f-side">
+    <dl class="titleblock">
+      <div class="tb-head"><dt>Sheet</dt><dd>orders-db</dd></div>
+      <div><dt>Environment</dt><dd>prod</dd></div>
+      <div><dt>Region</dt><dd>eu-west-1</dd></div>
+      <div><dt>Replicas</dt><dd>1 primary · 2 read</dd></div>
+      <div><dt>Date</dt><dd>October 6, 2026</dd></div>
+    </dl>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:270">
+      <svg viewBox="0 0 600 270" aria-hidden="true">
+        <rect class="ln-strong fill-paper" x="20" y="90" width="180" height="96"/>
+        <rect class="ln-draw fill-paper" x="400" y="20" width="180" height="96"/>
+        <rect class="ln-draw fill-paper" x="400" y="160" width="180" height="96"/>
+        <path class="ln-draw ln-ok" d="M200 138H290V68H394M394 68l-8-4M394 68l-8 4"/>
+        <path class="ln-draw ln-warn" d="M200 138H290V208H394M394 208l-8-4M394 208l-8 4"/>
+        <text class="dim-t" x="345" y="60" text-anchor="middle">0.4 s</text>
+        <text class="dim-t" x="345" y="200" text-anchor="middle">6.2 s</text>
+      </svg>
+      <p class="dl" style="--x:34;--y:102;--w:160"><span class="stamp-k">Primary</span>orders-db-1<br><span class="state s-ok">Writable</span></p>
+      <p class="dl" style="--x:414;--y:32;--w:160"><span class="stamp-k">Read replica</span>orders-db-2<br><span class="state s-ok">Ready</span></p>
+      <p class="dl" style="--x:414;--y:172;--w:160"><span class="stamp-k">Read replica</span>orders-db-3<br><span class="state s-warn">Lagging</span></p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>Writes go to the primary; replicas follow it within seconds, and a replica lagging more than 5 seconds is taken out of the read pool.</p>
+    <p class="figcap"><b>Figure 3.</b> Line color is the replica's status; the value is written above the line, the status in words inside the box.</p>
+  </div>
+</div>
+</demo>
+<demo label="Example · steps in the side column · secret key rotation">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Figure 4</p>
+    <p class="fig-cap">Three days when two keys overlap</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Create</b>A new version, <code>v2</code>, is generated in the vault; nobody uses it yet.</li>
+      <li><b>2 · Roll out</b>Services read <code>v2</code> but still accept requests signed with <code>v1</code>.</li>
+      <li><b>3 · Retire</b>When the cutover ends, <code>v1</code> is revoked; the ghost line shows it is no longer valid.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:180">
+      <svg viewBox="0 0 600 180" aria-hidden="true">
+        <rect class="ln-draw fill-paper" x="20" y="30" width="420" height="40"/>
+        <rect class="ln-ghost" x="440" y="30" width="140" height="40"/>
+        <rect class="ln-draw ln-dash fill-paper" x="300" y="130" width="80" height="40"/>
+        <rect class="ln-strong fill-paper" x="380" y="130" width="200" height="40"/>
+        <path class="dim" d="M380 124V90M440 76V110M380 100H440M380 100l8-3v6zM440 100l-8-3v6z"/>
+        <text class="dim-t" x="452" y="104">cutover · 3 days</text>
+      </svg>
+      <p class="dl" style="--x:32;--y:40;--w:300">key v1 · active</p>
+      <p class="dl" style="--x:452;--y:40;--w:120;color:var(--ink-3)">v1 · revoked</p>
+      <p class="dl" style="--x:308;--y:140;--w:70">rollout</p>
+      <p class="dl" style="--x:392;--y:140;--w:180">key v2 · active</p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>The new key is rolled out before the old one is revoked; the window when both are valid is shown with a dimension line.</p>
+  </div>
+</div>
+</demo>
+<demo label="Example · dark fig-sheet · alarm flow">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 5</p>
+  <p class="fig-cap">How an alarm reaches the on-call engineer</p>
+  <div class="drawing" style="--aw:900;--ah:170">
+    <svg viewBox="0 0 900 170" aria-hidden="true">
+      <path class="dim" d="M105 56V22M335 56V22M565 56V22M795 56V22M105 30H795M105 30l8-3v6zM335 30l-8-3v6zM335 30l8-3v6zM565 30l-8-3v6zM565 30l8-3v6zM795 30l-8-3v6z"/>
+      <text class="dim-t" x="220" y="24" text-anchor="middle">1 min window</text>
+      <text class="dim-t" x="450" y="24" text-anchor="middle">≈ 5 s</text>
+      <text class="dim-t" x="680" y="24" text-anchor="middle">ack ≤ 5 min</text>
+      <rect class="ln-draw fill-paper" x="20" y="60" width="170" height="86"/>
+      <rect class="ln-strong fill-paper" x="250" y="60" width="170" height="86"/>
+      <rect class="ln-draw fill-paper" x="480" y="60" width="170" height="86"/>
+      <rect class="ln-draw fill-paper" x="710" y="60" width="170" height="86"/>
+      <path class="ln-draw" d="M190 103H244M244 103l-8-4M244 103l-8 4M420 103H474M474 103l-8-4M474 103l-8 4M650 103H704M704 103l-8-4M704 103l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:32;--y:72;--w:150"><span class="stamp-k">Metric</span>5xx rate 4.1%</p>
+    <p class="dl" style="--x:262;--y:72;--w:150"><span class="stamp-k">Rule</span><span class="state s-bad">Triggered</span></p>
+    <p class="dl" style="--x:492;--y:72;--w:150"><span class="stamp-k">Router</span>team: payments</p>
+    <p class="dl" style="--x:722;--y:72;--w:150"><span class="stamp-k">On call</span><span class="state s-warn">Awaiting ack</span></p>
+  </div>
+  <figcaption class="figcap"><b>Figure 5.</b> The heavy frame marks the current stop; the dimensions above show how long each stage takes. The dark sheet sets the “on-call screen” context.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Sizes and breakpoints" lead="A sheet has few sizes of its own, and all of them are tokens. Breakpoints follow the column the sheet sits in, not the screen; only .sheet looks at the screen.">
+<div class="tbl"><table>
+  <thead><tr><th>Value</th><th>Where</th><th>What it does</th></tr></thead>
+  <tbody>
+  <tr><td><code>--side-w</code></td><td><code>.frame</code></td><td>Side column width: <code>clamp(230px, 20vw, 290px)</code>.</td></tr>
+  <tr><td><code>--sp-8 --sp-9</code></td><td><code>.frame</code></td><td>Padding 20px / 28px; column gap <code>--sp-10</code> (32px), row gap <code>--sp-6</code> (14px).</td></tr>
+  <tr><td><code>--r-lg</code></td><td><code>.frame-bg</code></td><td>Corner radius of the background; background color <code>--scene-bg</code>, border <code>--line</code>.</td></tr>
+  <tr><td><code>--sp-7 --sp-8 --sp-6</code></td><td><code>.fig-sheet</code></td><td>Padding of the single-column sheet (16px 20px 14px); <code>--sp-5 --sp-4</code> in a narrow column.</td></tr>
+  <tr><td><code>1000 × 600</code></td><td><code>.sheet</code></td><td>Fixed unit grid; grows to at most 1100px.</td></tr>
+  <tr><td><code>@container col (max-width: 760px)</code></td><td><code>.frame</code></td><td>The side column drops below the drawing and the title block aligns left.</td></tr>
+  <tr><td><code>@container col (max-width: 719px)</code></td><td><code>.frame</code>, <code>.fig-sheet</code></td><td>Padding narrows, the footer becomes one column, the title block goes full width.</td></tr>
+  <tr><td><code>@media (max-width: 719px)</code></td><td><code>.sheet</code></td><td>When the screen narrows, <code>.sheet</code> turns into a list; this is the one window-based exception.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Breakpoints follow the column</span><div class="co-body"><p><code>.frame</code> switches to one column based on the width of the nearest <code>col</code> container. By default that container is <code>main</code> and <code>.sticky-text</code>; a sheet in a narrow column drops its side column below even on a wide screen. If you set up your own narrow column (a card, a side panel, a two-up grid), give it <code>container: col / inline-size</code>; in a narrow column with no container, the frame looks at the nearest wide container and keeps its side column.</p></div></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A sheet gives a figure an identity: a number, a title and a one-sentence description. The frame alone says nothing.">
+<div class="dodont">
+<demo label="Do · number, title and caption">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">05 · Figure 6</p>
+  <p class="fig-cap">Cache hit</p>
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="10" y="30" width="150" height="60"/>
+      <rect class="ln-strong fill-paper" x="280" y="30" width="150" height="60"/>
+      <path class="ln-draw" d="M160 60H274M274 60l-8-4M274 60l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:22;--y:48;--w:130">client</p>
+    <p class="dl" style="--x:292;--y:48;--w:130">edge-fra</p>
+    <p class="dl" style="--x:170;--y:34;--w:100;text-align:center">hit</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 6.</b> The request is answered at the edge without going down to the origin.</figcaption>
+</figure>
+</demo>
+<demo label="Don't · a drawing with no title or caption">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="10" y="30" width="150" height="60"/>
+      <rect class="ln-strong fill-paper" x="280" y="30" width="150" height="60"/>
+      <path class="ln-draw" d="M160 60H274M274 60l-8-4M274 60l-8 4"/>
+    </svg>
+    <p class="dl" style="--x:22;--y:48;--w:130">client</p>
+    <p class="dl" style="--x:292;--y:48;--w:130">edge-fra</p>
+  </div>
+</figure>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · a narrow column as a col container">
+<div style="container:col / inline-size">
+  <div class="frame">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <header class="f-head"><p class="chip">05 · Figure 7</p></header>
+    <div class="f-side"><div class="prose"><p>The side column drops below the drawing.</p></div></div>
+    <div class="f-map">
+    <div class="drawing" style="--aw:400;--ah:110">
+      <svg viewBox="0 0 400 110" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="400" height="110"/></svg>
+      <p class="dl" style="--x:0;--y:47;--w:400;text-align:center">drawing</p>
+    </div>
+    </div>
+  </div>
+</div>
+</demo>
+<demo label="Don't · a frame in a narrow column with no container">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head"><p class="chip">05 · Figure 7</p></header>
+  <div class="f-side"><div class="prose"><p>It looks at the main column and keeps its side column.</p></div></div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:400;--ah:110">
+      <svg viewBox="0 0 400 110" aria-hidden="true"><rect class="ln-ghost" x="0" y="0" width="400" height="110"/></svg>
+      <p class="dl" style="--x:0;--y:47;--w:400;text-align:center">drawing</p>
+    </div>
+  </div>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The drawing's SVG and <code>.frame-bg</code> carry <code>aria-hidden="true"</code>; the figure's meaning must also be in the <code>.beats</code> list, the <code>.oneliner</code> summary or the <code>.figcap</code> caption. Write <code>.fig-sheet</code> as a <code>&lt;figure&gt;</code> and its caption as a <code>&lt;figcaption&gt;</code>; a screen reader reads them together.</p></div></div>
+</chapter>

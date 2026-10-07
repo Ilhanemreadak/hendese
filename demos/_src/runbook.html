@@ -1,0 +1,260 @@
+<!-- meta {"title":"Runbook","group":"Components","order":90,"tagline":"Check, count, remember.","intro":"<code>.runbook</code> lists the items of a job carried out by hand: the counter, progress bar, reset and done line come with the package. The boxes are real <code>&lt;input type=\"checkbox\"&gt;</code> elements; if you want, the choices are saved in the browser.","summary":"<code>.runbook[data-store]</code>, the <code>hendese:runbook</code> event; release, incident and onboarding lists.","facts":{"Classes":"<code>.runbook</code> · <code>.rb-head</code> · <code>.rb-count</code> · <code>.rb-bar</code> · <code>.rb-reset</code> · <code>.rb-list</code> · <code>.rb-item</code> · <code>.rb-done</code>","Storage":"<code>data-store</code> → <code>localStorage</code> key","Event":"<code>hendese:runbook</code> · <code>detail.done</code>, <code>detail.total</code>","JS":"<code>Hendese.init()</code> wires up the lists on its own"}} -->
+
+<chapter title="Anatomy" lead="Counter, bar and reset at the top; the items in the middle; at the bottom, a done line that opens only when everything is checked. The choices in this example are saved in this browser.">
+<demo label="Example · pre-release check">
+<div class="runbook" data-store="hendese-demo-kl-version">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">All jobs in the latest pipeline on <code>main</code> are green</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Database migration <code>0042_add_invoice_index</code> ran on staging</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Image tag <code>prod-7c1e94d0</code> shows up in the registry</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Release note posted to the channel, on-call informed</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Rollback command ready: previous tag <code>prod-2b80f3aa</code></span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Ready to release.</div>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.runbook</code></dt><dd>The container. With <code>data-store</code>, the choices are written to <code>localStorage</code> under that key.</dd>
+  <dt><code>.rb-count</code></dt><dd>The package rewrites the <code>n / total</code> text on every change; the initial value shows only without JS.</dd>
+  <dt><code>.rb-bar &gt; i</code></dt><dd>The progress bar; the package sets its width as a percentage. It is decoration, so <code>aria-hidden</code>.</dd>
+  <dt><code>.rb-reset</code></dt><dd>Optional. Clears all boxes, updates the saved state and moves focus to the first box.</dd>
+  <dt><code>.rb-item</code></dt><dd>Inside a <code>&lt;label&gt;</code>: the hidden box, the drawn <code>.box</code> and the text <code>.txt</code>. The whole row is clickable.</dd>
+  <dt><code>.rb-done</code></dt><dd>Hidden; opens with <code>.runbook.complete</code> once every item is checked.</dd>
+</dl>
+</chapter>
+
+<chapter title="States" lead="Empty, partial and complete. The state is computed from the checked boxes; the package adds the complete class, not the page.">
+<demo label="Example · three states side by side">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start">
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Alarm owner assigned</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Threshold value written</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Notification channel chosen</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Alarm ready.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">2 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">DNS record lowered</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL down to 60 seconds</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">New target healthy</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL back to its old value</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Cutover done.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">3 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Cache flushed</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Hit rate watched</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Warm-up complete</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Cache is warm.</div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>These three lists have no <code>data-store</code>: they aren't saved, and their initial state comes from the <code>checked</code> attribute in the HTML. The reset button is optional too; you can drop it from short lists that run only once.</p></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Initial state of a saved list</span><div class="co-body"><p>A list with <code>data-store</code> reads its saved state on load. If nothing is saved, the <code>checked</code> marks in the HTML are the initial state; after the first change, the saved state wins.</p></div></div>
+</chapter>
+
+<chapter title="Event and listener" lead="On every change, the list dispatches a bubbling hendese:runbook event on itself. The readout below listens to it and writes the next step.">
+<demo label="Example · incident response, live readout">
+<div class="runbook" data-store="hendese-demo-kl-incident">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Open the incident channel, assign roles</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Record the <code>billing-worker</code> queue depth and error rate</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Roll back the last release or stop the worker</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Watch the queue drain for 15 minutes</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Update the status page, close the incident</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Response complete.</div>
+</div>
+<div class="readout" id="kl-incident-out" aria-live="polite"><p>No response yet.</p></div>
+</demo>
+<div class="prose"><p>The first event fires on load, during <code>Hendese.init()</code>; the page script attaches its listener after that, so it must read the initial state itself. The readout's class changes with the state too: <code>.bad</code> with no items checked, <code>.ok</code> with all of them.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+var out = document.getElementById('kl-incident-out');
+function show(done, total) {
+  var next = rb.querySelector('input:not(:checked) ~ .txt');
+  out.classList.toggle('bad', done === 0);
+  out.classList.toggle('ok', done === total);
+  out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;The incident can be closed.&lt;/b&gt; …&lt;/p&gt;'
+    : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; · Next: ' + next.innerHTML + '&lt;/p&gt;';
+}
+rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);</code></pre></figure>
+</chapter>
+
+<chapter title="In context" lead="Several lists can be gathered with a single listener, and a list can sit in a dark panel or a narrow side column.">
+<demo label="Example · onboarding, two lists, one readout">
+<div id="kl-member">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start">
+    <div>
+      <p class="chip">Accounts</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-account" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Company identity created</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Added to the code repository group</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Read-only cloud role granted</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Accounts ready.</div>
+      </div>
+    </div>
+    <div>
+      <p class="chip">Tools</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-tools" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">VPN client installed</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>kubectl</code> context is <code>staging</code></span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">First change opened for review</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Tools ready.</div>
+      </div>
+    </div>
+  </div>
+  <div class="readout" id="kl-member-out" aria-live="polite"><p>Day one: <b>0 / 6</b> items.</p></div>
+</div>
+</demo>
+<div class="prose"><p>Because the event bubbles, the listener is attached once to the shared container; the total is recounted from every box in the container.</p></div>
+<demo label="Example · on-call handover, dark panel">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <p class="chip">On-call handover · eu-west-1</p>
+  <div class="runbook" data-store="hendese-demo-kl-oncall" style="margin-bottom:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Open alarms walked through one by one with the incoming engineer</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">End times of silenced alarms written down</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Ongoing maintenance windows shared</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Paging routed to the new on-call</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Handover complete.</div>
+  </div>
+</div>
+</demo>
+<demo label="Example · narrow side column">
+<div style="max-width:320px">
+  <div class="runbook" data-store="hendese-demo-kl-narrow" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Old certificate's expiry date noted</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">New certificate attached to the load balancer and verified with <code>openssl s_client</code></span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Old certificate deleted</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Renewal done.</div>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="Each item is a single action, and you can verify it was done. A vague or compound item doesn't say what happened, even when checked.">
+<div class="dodont">
+<demo label="Do · single action, verifiable">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 3</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>/healthz</code> returns 200</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Error rate below 0.5%</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Queue depth below 100</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Service healthy.</div>
+</div>
+</demo>
+<demo label="Don't · vague and compound items">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 2</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Everything checked</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Run the tests, do the migration, ship the release and let people know</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Done.</div>
+</div>
+</demo>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Key name</span><div class="co-body"><p>The <code>data-store</code> value is used as is. Giving two lists the same key writes one list's state over the other; pick a name that is unique per page, like <code>app-page-list</code>.</p></div></div>
+</chapter>
+
+<chapter title="Accessibility and API" lead="The boxes are native checkboxes; keyboard, screen reader and form behavior come from the browser.">
+<div class="tbl"><table>
+  <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-store</code></td><td>text</td><td>The <code>localStorage</code> key; without it, the list isn't saved.</td></tr>
+    <tr><td><code>hendese:runbook</code></td><td><code>{done, total}</code></td><td>Once on load and on every change; bubbles.</td></tr>
+    <tr><td><code>.complete</code></td><td>class</td><td>Added to the list while every box is checked; <code>.rb-done</code> shows.</td></tr>
+    <tr><td><code>.rb-reset</code></td><td>button</td><td>Clears the boxes, saves, gives focus to the first box.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Tab moves from box to box, Space checks; the focus ring shows on the drawn <code>.box</code>. The <code>aria-live="polite"</code> on <code>.rb-count</code> reads out counter changes. The struck-through text is visual only; the state is read from the box itself.</p></div></div>
+</chapter>
+
+<script data-page>
+/* incident response → readout */
+(function () {
+  var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+  var out = document.getElementById('kl-incident-out');
+  function show(done, total) {
+    var next = rb.querySelector('input:not(:checked) ~ .txt');
+    out.classList.toggle('bad', done === 0);
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === 0 ? '<p><b>Response not started.</b> First step: ' + next.innerHTML + '</p>'
+      : done === total ? '<p><b>The incident can be closed.</b> All ' + total + ' steps are checked; copy the timeline into the survey log.</p>'
+      : '<p><b>' + done + ' / ' + total + '</b> · Next: ' + next.innerHTML + '</p>';
+  }
+  rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+  show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);
+})();
+/* two lists, one listener (bubbling) */
+(function () {
+  var box = document.getElementById('kl-member'), out = document.getElementById('kl-member-out');
+  function show() {
+    var done = box.querySelectorAll('.runbook input:checked').length, total = box.querySelectorAll('.runbook input').length;
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === total ? '<p><b>Day one complete.</b> Accounts and tools are ready.</p>' : '<p>Day one: <b>' + done + ' / ' + total + '</b> items.</p>';
+  }
+  box.addEventListener('hendese:runbook', show);
+  show();
+})();
+</script>

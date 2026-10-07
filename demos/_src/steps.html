@@ -1,0 +1,179 @@
+<!-- meta {"title":"Steps","group":"Components","order":80,"tagline":"Numbered cards for sequential work.","intro":"<code>ol.steps</code> turns each item into a numbered card. The number is printed with two digits by a CSS counter. Each step carries a title, a short description and an optional check line: the reader knows what to look at to tell the step is done.","summary":"<code>ol.steps</code> and <code>.check</code>; onboarding, incident response and a release procedure.","facts":{"Classes":"<code>.steps</code> · <code>.check</code> · <code>.s-warn</code> · <code>.s-bad</code>","State":"<code>aria-current=\"step\"</code> · <code>data-state=\"done|blocked\"</code> · <code>start</code>","Structure":"<code>ol.steps &gt; li &gt; h3 + p + p.check</code>","JS":"Not needed"}} -->
+
+
+<chapter title="Anatomy" lead="A step is three lines: what to do, how to do it, how to tell it is done. Only the title is required.">
+<demo label="Example · a single step">
+<ol class="steps">
+  <li>
+    <h3>Upgrade the read replica</h3>
+    <p>Move the <code>orders-replica</code> instance to the new version first; the primary keeps taking writes meanwhile.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: replica lag dropped below 5 seconds.</span></p>
+  </li>
+</ol>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Part</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><code>li::before</code></td><td>The number badge; <code>01</code>, <code>02</code>… from the <code>list-item</code> list counter, so it follows <code>start</code></td></tr>
+    <tr><td><code>h3</code></td><td>Imperative, a single action</td></tr>
+    <tr><td><code>p</code></td><td>How to do it; stops at 72 characters</td></tr>
+    <tr><td><code>p.check</code></td><td>The completion criterion; green, with a check icon</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Variants" lead="A step can be as short as a title or long enough to carry code and a note. The start attribute is all you need to continue numbering midway.">
+<demo label="Example · titles only">
+<ol class="steps">
+  <li><h3>Create a branch</h3></li>
+  <li><h3>Make the change</h3></li>
+  <li><h3>Open a merge request</h3></li>
+</ol>
+</demo>
+<demo label="Example · a step with code and a note">
+<ol class="steps">
+  <li>
+    <h3>Dry-run the migration</h3>
+    <p>The migration tool prints the SQL before applying any changes.</p>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">migrate</span> -path ./migrations -database <span class="s">"$DATABASE_URL"</span> up --dry-run</code></pre></figure>
+    <div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Lock</span><div class="co-body"><p>If you see <code>ACCESS EXCLUSIVE</code> in the output, leave the migration for a maintenance window.</p></div></div>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: the output has only the two expected statements.</span></p>
+  </li>
+</ol>
+</demo>
+<demo label="Example · continuing the numbering">
+<ol class="steps" start="4">
+  <li>
+    <h3>Send traffic to the new target</h3>
+    <p>Set the weight on the load balancer to <code>100 / 0</code>.</p>
+  </li>
+  <li>
+    <h3>Shut down the old target</h3>
+    <p>If no errors show for an hour, delete the old target group.</p>
+  </li>
+</ol>
+</demo>
+<div class="prose"><p>The visible number comes from the browser's list counter (<code>list-item</code>); <code>start="4"</code> is enough for both screen readers and the badge. Delete the <code>counter-reset:s 3</code> line that older versions needed.</p></div>
+</chapter>
+
+<chapter title="States" lead="A step can be current, done or blocked. The state is given through ARIA (aria-current) or data-state, and is always said in text too; color only reinforces it.">
+<demo label="Example · done, current, blocked">
+<ol class="steps">
+  <li data-state="done">
+    <h3>Take the backup <span class="visually-hidden">(done)</span></h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: the backup is in the bucket, 4.2 GB in size.</span></p>
+  </li>
+  <li aria-current="step">
+    <h3>Run the migration <span class="state s-accent">now</span></h3>
+    <p>Apply migration <code>0043</code> with <code>migrate up</code>.</p>
+    <p class="check s-warn"><svg><use href="#i-warn"/></svg><span>Check: stop if the table lock exceeds 30 seconds.</span></p>
+  </li>
+  <li data-state="blocked">
+    <h3>Upgrade the read replica <span class="state s-bad">blocked</span></h3>
+    <p>Replica lag is over 5 minutes; do not start until the migration finishes.</p>
+    <p class="check s-bad"><svg><use href="#i-x"/></svg><span>Stop criterion: roll back if the lag keeps growing.</span></p>
+  </li>
+</ol>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Markup</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td>Current</td><td><code>aria-current="step"</code></td><td>A 2px drawing border; screen readers say “current step”</td></tr>
+    <tr><td>Done</td><td><code>data-state="done"</code> + text</td><td>Green number badge</td></tr>
+    <tr><td>Blocked</td><td><code>data-state="blocked"</code> + text</td><td>Dashed border, red badge</td></tr>
+    <tr><td>Check line</td><td><code>.check.s-warn</code> · <code>.check.s-bad</code></td><td>A warning or stop criterion; choose the icon yourself</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>data-state</code> does not reach screen readers. Either write the state visibly (a <code>.state</code> label) or add it to the title as <code>.visually-hidden</code> text; the first step above uses the second way. If a script changes the state, update the attribute and the text together.</p></div>
+<demo label="Example · the numbering continues, and so does the state">
+<ol class="steps" start="7">
+  <li data-state="done"><h3>Send traffic to the new target <span class="state s-ok">done</span></h3></li>
+  <li aria-current="step"><h3>Watch the error rate for an hour <span class="visually-hidden">(current step)</span></h3></li>
+  <li><h3>Shut down the old target</h3></li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="In context" lead="Three typical jobs: a new developer getting access, responding to an incident, and shipping a release.">
+<demo label="Example · onboarding" nocode>
+<ol class="steps">
+  <li>
+    <h3>Activate your account in the identity provider</h3>
+    <p>Use the link in the invitation email to set your password and two-step verification.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: you can see the app list in the single sign-on dashboard.</span></p>
+  </li>
+  <li>
+    <h3>Request the developer role</h3>
+    <p>Choose the <code>dev-readonly</code> role in the access request form; your manager approves it.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: <span class="mono">aws sts get-caller-identity</span> prints your role.</span></p>
+  </li>
+  <li>
+    <h3>Clone the repository and run the tests</h3>
+    <p><code>make bootstrap &amp;&amp; make test</code> sets up the local environment and runs the unit tests.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: all tests passed.</span></p>
+  </li>
+</ol>
+</demo>
+<demo label="Example · incident response" nocode>
+<ol class="steps">
+  <li>
+    <h3>Declare the incident <span class="state s-warn">first 5 minutes</span></h3>
+    <p>Open the incident channel, write down the severity, assign a coordinator.</p>
+  </li>
+  <li>
+    <h3>Contain the impact</h3>
+    <p>If the errors started with the last deployment, roll back first and look for the cause later.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: the 5xx rate dropped below the alert threshold.</span></p>
+  </li>
+  <li>
+    <h3>Announce the status</h3>
+    <p>Post a short update every 30 minutes, even if nothing has changed.</p>
+  </li>
+  <li>
+    <h3>Schedule the post-incident review <span class="state">within 5 business days</span></h3>
+    <p>Look for causes, not culprits; follow-up work is recorded with its owners.</p>
+  </li>
+</ol>
+</demo>
+<demo label="Example · release procedure" nocode>
+<ol class="steps">
+  <li>
+    <h3>Push the release tag</h3>
+    <p><code>git tag v1.9.0 &amp;&amp; git push origin v1.9.0</code>; the build sees the tag and produces the image.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: <span class="mono">web-api:1.9.0</span> is in the image registry.</span></p>
+  </li>
+  <li>
+    <h3>Run the smoke test on staging</h3>
+    <p>Once sync has updated staging, start the end-to-end test suite.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: 42 of 42 scenarios passed.</span></p>
+  </li>
+  <li>
+    <h3>Roll out to prod gradually</h3>
+    <p>10% of traffic, 50% after 15 minutes, all of it after another 15 minutes.</p>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: p95 latency stays under 800 ms at every stage.</span></p>
+  </li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="A good step is a single action, and you can see when it is done. If a step holds three jobs, write three steps.">
+<div class="dodont">
+<demo label="Do · one action, a measurable finish">
+<ol class="steps">
+  <li>
+    <h3>Warm the cache</h3>
+    <p class="check"><svg><use href="#i-check"/></svg><span>Check: hit rate above 80%.</span></p>
+  </li>
+</ol>
+</demo>
+<demo label="Don't · many jobs in one step">
+<ol class="steps">
+  <li>
+    <h3>Preparation</h3>
+    <p>Warm the cache, also silence the alerts and, if needed, take a backup and tell the team.</p>
+  </li>
+</ol>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>An <code>ol</code> is announced as an ordered list; a screen reader says “2 of 3”, while the visible number badge is decoration. The check icon is decoration too; start the check line with a word such as <b>Check:</b>. If steps need to be ticked off, use the runbook (<code>.runbook</code>).</p></div></div>
+</chapter>

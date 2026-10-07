@@ -1,0 +1,122 @@
+<!-- meta {"title":"Stamp","group":"Components","order":130,"tagline":"Seal a name.","intro":"<code>.stamp</code> is a double-framed name plate: a small type label on top, the name in large mono below. It names the single subject of a figure, a section or a decision: who approved it, who owns it, which version.","summary":"<code>.stamp</code>, <code>.stamp-k</code>, <code>.stamp-name</code>; approval, ownership and version stamps.","facts":{"Classes":"<code>.stamp</code> · <code>.stamp-k</code> · <code>.stamp-name</code>","Width":"Fills its container; narrow it with <code>max-width</code>","State":"No status color of its own; put a <code>.state.s-*</code> next to it","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="The outer frame is in the drawing color, the thin inner line in pencil. The label says what kind of name it is; the name says itself.">
+<demo label="Example · an ownership plate">
+<div class="stamp" style="max-width:280px">
+  <span class="stamp-k">Owner</span>
+  <span class="stamp-name">billing-worker</span>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.stamp</code></dt><dd>The container; laid out as a grid, text centered. It is a block element and fills its whole container.</dd>
+  <dt><code>.stamp-k</code></dt><dd>The type label: uppercase, letter-spaced mono, in the drawing color. For example “Owner”, “Version”, “Approved by”.</dd>
+  <dt><code>.stamp-name</code></dt><dd>The name itself: 22px bold mono. If it does not fit, it breaks anywhere.</dd>
+</dl>
+</chapter>
+
+<chapter title="Uses" lead="The same markup answers three different questions: who approved this, whose is it, which version.">
+<demo label="Example · approval, ownership, version">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+  <div class="stamp">
+    <span class="stamp-k">Approved by</span>
+    <span class="stamp-name">security team</span>
+  </div>
+  <div class="stamp">
+    <span class="stamp-k">Owner</span>
+    <span class="stamp-name">platform</span>
+  </div>
+  <div class="stamp">
+    <span class="stamp-k">Version</span>
+    <span class="stamp-name">v2.14.0</span>
+  </div>
+</div>
+</demo>
+<demo label="Example · a long name">
+<div class="stamp" style="max-width:300px">
+  <span class="stamp-k">Internal endpoint</span>
+  <span class="stamp-name">web-api.prod.eu-west-1.internal</span>
+</div>
+</demo>
+<div class="prose"><p>A long name breaks onto two lines, but the stamp loses readability. If the full name is not needed, put the distinctive part in the stamp and the full name in the text next to it.</p></div>
+</chapter>
+
+<chapter title="In context" lead="A stamp shows the subject at the start of a section, the signature under a decision, or the owner in the corner of a card.">
+<demo label="Example · a release notes header">
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:start">
+  <div class="stamp">
+    <span class="stamp-k">Version</span>
+    <span class="stamp-name">v2.14.0</span>
+  </div>
+  <div>
+    <p style="margin:0 0 6px"><b>Invoice export and faster search</b></p>
+    <ul style="margin:0;color:var(--ink-2);font-size:var(--fs-md)">
+      <li>Invoices can be exported as CSV.</li>
+      <li>Due-date searches are 6 times faster with the <code>due_date</code> index.</li>
+      <li>The old <code>/v0/invoices</code> endpoint was removed.</li>
+    </ul>
+  </div>
+</div>
+</demo>
+<demo label="Example · an access request decision">
+<div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:560px">
+  <p class="chip">Access request · #2318</p>
+  <p style="margin:6px 0 14px;color:var(--ink-2);font-size:var(--fs-md)">Read-only access to the <code>prod</code> database, for 7 days, for an incident review.</p>
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <div class="stamp" style="min-width:200px">
+      <span class="stamp-k">Approved by</span>
+      <span class="stamp-name">data team</span>
+    </div>
+    <span class="state s-ok">Approved</span>
+    <span class="mono" style="color:var(--ink-3)">expires October 13, 2026</span>
+  </div>
+</div>
+</demo>
+<demo label="Example · a dark sheet, service owners">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px">
+  <p class="chip">Ownership map · eu-west-1</p>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:10px">
+    <div class="stamp"><span class="stamp-k" lang="en">web-api</span><span class="stamp-name">frontend</span></div>
+    <div class="stamp"><span class="stamp-k" lang="en">billing-worker</span><span class="stamp-name">payments</span></div>
+    <div class="stamp"><span class="stamp-k" lang="en">cache-redis</span><span class="stamp-name">platform</span></div>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="States" lead="A stamp seals a name, not a status. Its color and frame are always the same; the decision goes in the .state label next to it, and an empty name is written as a dash.">
+<demo label="Example · the same stamp, three decisions">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-7)">
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Approved by</span><span class="stamp-name">security team</span></div>
+    <span class="state s-ok">approved</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Approved by</span><span class="stamp-name">data team</span></div>
+    <span class="state s-bad">rejected</span>
+  </div>
+  <div style="display:grid;gap:var(--sp-3);justify-items:start">
+    <div class="stamp" style="width:100%"><span class="stamp-k">Approved by</span><span class="stamp-name"><span aria-hidden="true">—</span><span class="visually-hidden">not assigned yet</span></span></div>
+    <span class="state s-neutral">pending</span>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Do not remove the stamp for a name not yet assigned; write “—” and leave a <code>.visually-hidden</code> word for screen readers. By the language's rules, “not real yet” is drawn dashed, but the stamp has no dashed form: the label says it is pending. Do not change the color or frame with inline styles.</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A stamp is for a name, not a sentence. It is not something to click either; actions belong to a button.">
+<div class="dodont">
+<demo label="Do · short, a single subject">
+<div class="stamp" style="max-width:240px">
+  <span class="stamp-k">On-call</span>
+  <span class="stamp-name">payments team</span>
+</div>
+</demo>
+<demo label="Don't · a sentence and an action">
+<div class="stamp" style="max-width:240px">
+  <span class="stamp-k">Note</span>
+  <span class="stamp-name">Click here to approve</span>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A stamp is plain text; a screen reader reads “Owner billing-worker”. Keep the label and the name in the same container so their meaning stays linked. Write the status (approved, rejected) in the <code>.state</code> label next to it, not in the stamp's color: the stamp has no status colors.</p></div></div>
+</chapter>

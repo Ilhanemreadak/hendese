@@ -1,0 +1,236 @@
+<!-- meta {"title":"Dialog","group":"Components","order":190,"tagline":"A single decision that stops the flow.","intro":"<code>&lt;dialog class=\"dialog\"&gt;</code> is the look of the native modal window: a double frame like a stamp, with square corners. Opening and closing come from <code>command</code> / <code>commandfor</code>; the focus trap, Esc and the top layer come from the browser. In browsers that don't know these features, the package wires up the buttons.","summary":"<code>dialog.dialog</code>, <code>.dialog-head</code>, <code>.dialog-foot</code>; return value, type-the-name delete confirmation, dialogs with a title block and a register.","facts":{"Classes":"<code>.dialog</code> · <code>.dialog-head</code> · <code>.dialog-foot</code>","Open / close":"<code>command=\"show-modal\"</code> · <code>command=\"close\"</code> · <code>commandfor</code> · <code>&lt;form method=\"dialog\"&gt;</code> · Esc","Result":"<code>dialog.returnValue</code> · the <code>close</code> event","JS":"Not required; the old-browser fallback lives in <code>Hendese.init()</code>"}} -->
+
+<chapter title="Anatomy" lead="The header row has the title on the left and a close button on the right; the body in the middle; the decisions at the bottom. The dialog is linked to its title with aria-labelledby. The opening button calls the dialog by name with commandfor.">
+<demo label="Example · release rollback">
+<button class="btn" type="button" command="show-modal" commandfor="dy-back"><svg><use href="#i-reset"/></svg>Roll back release…</button>
+<dialog class="dialog" id="dy-back" aria-labelledby="dy-back-h">
+  <div class="dialog-head">
+    <h2 id="dy-back-h">Roll web-api back to the previous release?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-back" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <p><code>web-api</code> in prod returns to the <code>v4.8.1</code> image. Replicas are replaced one by one; it takes about 3 minutes with no downtime.</p>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="cancel">Cancel</button>
+    <button class="btn" value="rollback"><svg><use href="#i-reset"/></svg>Roll back to v4.8.1</button>
+  </form>
+</dialog>
+</demo>
+<dl class="kv">
+  <dt><code>dialog.dialog</code></dt><dd>The native element. Opened with <code>showModal()</code>, it rises to the top layer, <code>::backdrop</code> covers what's behind it, and page scrolling stops.</dd>
+  <dt><code>.dialog-head</code></dt><dd>The title (<code>h2</code>) and an optional close button. The title's <code>id</code> is the dialog's <code>aria-labelledby</code> value.</dd>
+  <dt><code>.dialog-foot</code></dt><dd>The decision buttons, aligned right. Usually the <code>&lt;form method="dialog"&gt;</code> element itself; the button's <code>value</code> becomes the return value.</dd>
+  <dt><code>command</code> · <code>commandfor</code></dt><dd><code>show-modal</code> on the opening button, <code>close</code> on the closing button; <code>commandfor</code> is the dialog's <code>id</code>. No script is written.</dd>
+</dl>
+</chapter>
+
+<chapter title="Return value" lead="A button inside form method=dialog closes the dialog and writes its value to dialog.returnValue. The page reads that value on the close event. Esc and the close button write no value.">
+<demo label="Example · picking a maintenance window">
+<button class="btn" type="button" command="show-modal" commandfor="dy-maint">Pick a maintenance window…</button>
+<dialog class="dialog" id="dy-maint" aria-labelledby="dy-maint-h">
+  <div class="dialog-head">
+    <h2 id="dy-maint-h">When should report-cron be updated?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-maint" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <p>During the update, scheduled reports wait 10 minutes. No reports are waiting in the night window.</p>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="">Cancel</button>
+    <button class="btn" value="now">Now</button>
+    <button class="btn" value="tonight">Tonight at 02:00</button>
+  </form>
+</dialog>
+<div class="readout" id="dy-maint-out" aria-live="polite"><p>No choice yet. Open the dialog; close it with a button, with Esc or with the close button.</p></div>
+</demo>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var dlg = document.getElementById('dy-maint'), out = document.getElementById('dy-maint-out');
+dlg.addEventListener('close', function () {
+  var v = dlg.returnValue;
+  out.innerHTML = v ? '&lt;p&gt;Choice: &lt;b&gt;' + v + '&lt;/b&gt;&lt;/p&gt;' : '&lt;p&gt;No choice made.&lt;/p&gt;';
+  dlg.returnValue = '';   /* so Esc doesn't return the old value on the next open */
+});</code></pre></figure>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">The old value stays</span><div class="co-body"><p>Esc and <code>command="close"</code> don't change <code>returnValue</code>; the value from the previous open stays in place. Clear it after reading it. Giving the “Cancel” button an empty <code>value</code> has the same effect: an empty value means “no decision”.</p></div></div>
+</chapter>
+
+<chapter title="Confirm by typing the name" lead="For an action that can't be undone, the reader confirms by typing what they are deleting. The match check is native form validation: required and pattern. If the name doesn't match, the form isn't submitted and .field shows the error line.">
+<demo label="Example · deleting a service">
+<button class="btn" type="button" command="show-modal" commandfor="dy-del"><svg><use href="#i-x"/></svg>Delete search-indexer…</button>
+<dialog class="dialog" id="dy-del" aria-labelledby="dy-del-h" aria-describedby="dy-del-d">
+  <form method="dialog">
+    <div class="dialog-head">
+      <h2 id="dy-del-h">Permanently delete search-indexer?</h2>
+      <button class="icon-btn" type="button" command="close" commandfor="dy-del" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <p id="dy-del-d">The service, its 3 replicas and the <code>search-indexer-data</code> volume are deleted. Search won't respond until the index is rebuilt. <b>This can't be undone.</b></p>
+    <div class="field">
+      <label for="dy-del-name">Service name to confirm</label>
+      <input id="dy-del-name" class="mono" required pattern="search-indexer" autocomplete="off" spellcheck="false" aria-describedby="dy-del-y dy-del-e" autofocus>
+      <p class="field-help" id="dy-del-y">Type exactly <code>search-indexer</code>.</p>
+      <p class="field-error" id="dy-del-e">The name doesn't match.</p>
+    </div>
+    <div class="dialog-foot">
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn" value="delete"><svg><use href="#i-x"/></svg>Delete permanently</button>
+    </div>
+  </form>
+</dialog>
+<div class="readout" id="dy-del-out" aria-live="polite"><p>Service in place: <b>search-indexer</b> · 3 replicas.</p></div>
+</demo>
+<div class="prose"><p>The “Cancel” button carries <code>formnovalidate</code>; otherwise, cancelling with an empty field would also trip validation. On open, <code>autofocus</code> puts focus on the field. The page script resets the form on close, so the field is empty again on the next open.</p></div>
+</chapter>
+
+<chapter title="With a title block and a register" lead="The summary needed to decide sits inside the dialog: changed variables with .register, a sheet's details with .titleblock.">
+<demo label="Example · deploy approval, changed variables">
+<button class="btn" type="button" command="show-modal" commandfor="dy-log"><svg><use href="#i-check"/></svg>Deploy to prod…</button>
+<dialog class="dialog" id="dy-log" aria-labelledby="dy-log-h">
+  <div class="dialog-head">
+    <h2 id="dy-log-h">Deploy billing-worker to prod?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-log" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <div class="register">
+    <p class="register-h"><b>Changed</b><span>staging → prod</span></p>
+    <dl>
+      <div class="now"><dt>IMAGE_TAG</dt><dd>prod-9d4e2c17</dd></div>
+      <div><dt>WORKER_CONCURRENCY</dt><dd>8</dd></div>
+      <div class="now"><dt>RETRY_LIMIT</dt><dd>3 → 5</dd></div>
+      <div><dt>REGION</dt><dd>eu-west-1</dd></div>
+    </dl>
+  </div>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="">Cancel</button>
+    <button class="btn" value="deploy"><svg><use href="#i-check"/></svg>Deploy</button>
+  </form>
+</dialog>
+<div class="readout" id="dy-log-out" aria-live="polite"><p>In prod: <b>prod-4a07b9e3</b>.</p></div>
+</demo>
+<demo label="Example · sheet details">
+<button class="btn" type="button" command="show-modal" commandfor="dy-title"><svg><use href="#i-info"/></svg>Sheet details</button>
+<dialog class="dialog" id="dy-title" aria-labelledby="dy-title-h">
+  <div class="dialog-head">
+    <h2 id="dy-title-h">Fig. 7 · gateway path</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-title" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Sheet</dt><dd>Gateway path</dd></div>
+    <div><dt>Environment</dt><dd>staging</dd></div>
+    <div><dt>Region</dt><dd>eu-central-1</dd></div>
+    <div><dt>Drawn by</dt><dd>platform team</dd></div>
+    <div><dt>Revision</dt><dd>C · 2026-09-18</dd></div>
+  </dl>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="">Close</button>
+  </form>
+</dialog>
+</demo>
+<div class="prose"><p>The details only inform; there is no decision. A dialog still fits, because the reader wants to read the details before returning to the sheet. If the information doesn't stop the reading, use text on the page or a <a href="dimension-note.html">dimension note</a>, not a dialog.</p></div>
+</chapter>
+
+<chapter title="States" lead="A dialog is closed or open; while it is open, the rest of the page is inert. Focus enters the dialog on open and returns to the opening button on close.">
+<demo label="Example · where focus returns">
+<div class="pillrow">
+  <button class="btn" type="button" command="show-modal" commandfor="dy-focus" id="dy-focus-open">Rotate key…</button>
+  <button class="btn" type="button" disabled>Delete key</button>
+</div>
+<dialog class="dialog" id="dy-focus" aria-labelledby="dy-focus-h">
+  <div class="dialog-head">
+    <h2 id="dy-focus-h">Rotate the deploy-bot key?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-focus" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <p>The old key stays valid for 24 more hours; pipelines must switch to the new key in that time.</p>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="" autofocus>Cancel</button>
+    <button class="btn" value="rotate">Rotate</button>
+  </form>
+</dialog>
+<div class="readout" id="dy-focus-out" aria-live="polite"><p>Open the dialog and close it with Esc; this line says where focus went back to.</p></div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>How it's set</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr><td>Closed</td><td>Default</td><td>The dialog isn't drawn; the opening button is on the page.</td></tr>
+    <tr><td>Open (modal)</td><td><code>command="show-modal"</code> or <code>showModal()</code>; selector <code>:modal</code></td><td>Top layer, <code>::backdrop</code> cover, page scrolling stops; elements behind it can't take focus.</td></tr>
+    <tr><td>Focus, on open</td><td><code>autofocus</code> or the first focusable element</td><td>Give it to the non-destructive decision (<code>Cancel</code>) or to the field to fill in.</td></tr>
+    <tr><td>Focus, on the dialog itself</td><td><code>:focus-visible</code></td><td>If there is nothing inside to focus, the dialog takes focus; the inner frame (pencil line) stays, and no separate ring is drawn.</td></tr>
+    <tr><td>Focus, on close</td><td>The browser</td><td>Returns to the opening button.</td></tr>
+    <tr><td>Closing</td><td>Form button · <code>command="close"</code> · Esc</td><td>Only a form button writes <code>returnValue</code>; Esc first fires the <code>cancel</code> event.</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>A dialog has no disabled state of its own. If the action can't be done right now, the opening button is disabled (<code>disabled</code>, or <code>aria-disabled</code> to give the reason); the dialog doesn't open just to say “can't be done”.</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A dialog stops the reader. That is justified only for a single decision the reader must make now; not for giving information.">
+<div class="dodont">
+<demo label="Do · one decision, verb label">
+<button class="btn" type="button" command="show-modal" commandfor="dy-do">Purge queue…</button>
+<dialog class="dialog" id="dy-do" aria-labelledby="dy-do-h">
+  <div class="dialog-head"><h2 id="dy-do-h">Purge invoice-queue?</h2></div>
+  <p>The 1,240 messages in the queue are deleted; unprocessed invoices aren't regenerated.</p>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="" autofocus>Cancel</button>
+    <button class="btn" value="purge">Delete 1,240 messages</button>
+  </form>
+</dialog>
+</demo>
+<demo label="Don't · a dialog for information, four equal buttons">
+<button class="btn" type="button" command="show-modal" commandfor="dy-dont">Start build</button>
+<dialog class="dialog" id="dy-dont" aria-labelledby="dy-dont-h">
+  <div class="dialog-head"><h2 id="dy-dont-h">Info</h2></div>
+  <p>Build #4182 was queued.</p>
+  <form method="dialog" class="dialog-foot">
+    <button class="btn" value="ok">OK</button>
+    <button class="btn" value="log">Log</button>
+    <button class="btn" value="cancel">Cancel</button>
+    <button class="btn" value="retry">Retry</button>
+  </form>
+</dialog>
+</demo>
+</div>
+<div class="prose"><ul>
+  <li><b>The title asks a question</b> and names the object (“Purge invoice-queue?”), not “Info” or “Are you sure?”.</li>
+  <li><b>One decision, two buttons.</b> Cancel, and a verb that says the outcome. If a third option is needed (the maintenance window above), all of them answer the same question.</li>
+  <li><b>Information that doesn't stop the flow</b> (“was queued”) stays on the page: a <code>.readout</code> line or the status of the related row.</li>
+  <li><b>Never open a dialog from a dialog.</b> If a second decision is needed, the first one closes.</li>
+</ul></div>
+</chapter>
+
+<chapter title="API" lead="The package gives the dialog only its look. All the behavior comes from the native element and the Invoker Commands feature; in browsers that don't know that feature, Hendese.init() wires up the buttons.">
+<div class="tbl"><table>
+  <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><code>command</code></td><td><code>show-modal</code> · <code>close</code> · <code>request-close</code></td><td>On the button. <code>show</code> (non-modal) isn't used; the package's dialog is modal.</td></tr>
+    <tr><td><code>commandfor</code></td><td>the dialog's <code>id</code></td><td>The button can be outside or inside the dialog.</td></tr>
+    <tr><td><code>form[method="dialog"]</code></td><td>—</td><td>Closes the dialog on submit; the submitting button's <code>value</code> becomes <code>returnValue</code>. Validation runs; use <code>formnovalidate</code> to skip it.</td></tr>
+    <tr><td><code>close</code> event</td><td><code>dialog.returnValue</code></td><td>On every close; read the result here, then clear it.</td></tr>
+    <tr><td><code>cancel</code> event</td><td>—</td><td>Before closing with Esc; <code>preventDefault()</code> stops the close (for an unsaved-changes warning).</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Old-browser fallback</span><div class="co-body"><p>If the browser doesn't know <code>commandfor</code> (no <code>HTMLButtonElement.prototype.commandForElement</code>), <code>Hendese.init()</code> attaches a click listener to every <code>button[commandfor]</code>: <code>show-modal</code> → <code>showModal()</code> (ignored if the dialog is already open), <code>close</code> → <code>close()</code>, <code>request-close</code> → <code>requestClose()</code> (<code>close()</code> if the browser lacks it; the <code>cancel</code> event fires only in the former). Like the native behavior, the fallback also copies the <code>close</code> button's <code>value</code> into <code>returnValue</code>; still, the most robust way to write decisions that need a return value is with buttons inside <code>&lt;form method="dialog"&gt;</code>.</p></div></div>
+</chapter>
+
+<script data-page>
+/* close → readout; the value read is cleared (so Esc doesn't return the old value) */
+(function () {
+  function onClose(id, fn) {
+    var d = document.getElementById(id);
+    d.addEventListener('close', function () { fn(d.returnValue, d); d.returnValue = ''; });
+  }
+  function out(id, html) { document.getElementById(id).innerHTML = html; }
+  var bakim = { now: 'now', tonight: 'tonight at 02:00' };
+  onClose('dy-maint', function (v) {
+    out('dy-maint-out', v ? '<p>Update: <b>' + bakim[v] + '</b> · <code>returnValue</code> = <code>' + v + '</code></p>'
+      : '<p><b>No choice made.</b> Cancel, Esc or the close button; <code>returnValue</code> is empty.</p>');
+  });
+  onClose('dy-del', function (v, d) {
+    d.querySelector('form').reset();
+    var r = document.getElementById('dy-del-out');
+    r.classList.toggle('s-bad', v === 'delete');
+    out('dy-del-out', v === 'delete' ? '<p><b>search-indexer deleted.</b> (Demo: nothing was actually deleted.)</p>' : '<p>Service in place: <b>search-indexer</b> · 3 replicas. Delete cancelled.</p>');
+  });
+  onClose('dy-log', function (v) {
+    var r = document.getElementById('dy-log-out');
+    r.classList.toggle('s-ok', v === 'deploy');
+    out('dy-log-out', v === 'deploy' ? '<p>In prod: <b>prod-9d4e2c17</b> · deployment started.</p>' : '<p>In prod: <b>prod-4a07b9e3</b> · not deployed.</p>');
+  });
+  onClose('dy-focus', function (v) {
+    var a = document.activeElement;
+    out('dy-focus-out', '<p>Closed with: <b>' + (v || 'no decision') + '</b> · focus is now on the “' + (a && a.textContent.trim() || 'page') + '” button.</p>');
+  });
+})();
+</script>

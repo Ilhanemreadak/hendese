@@ -25,20 +25,20 @@ for (const p of PAGES) {
         await page.setViewportSize({ width: w, height: 900 });
         await page.emulateMedia({ colorScheme: theme });
         const { errors, external } = await open(page, p);
-        expect(errors, 'konsol hatası').toEqual([]);
-        expect(external, 'dış istek').toEqual([]);
-        expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'yatay taşma').toBeLessThanOrEqual(0);
+        expect(errors, 'console errors').toEqual([]);
+        expect(external, 'external requests').toEqual([]);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'horizontal overflow').toBeLessThanOrEqual(0);
       });
     }
     // axe runs in the accessible base state (reduced motion): in live mode, inactive beats are deliberately dimmed
-    for (const theme of ['light', 'dark']) test(`erişilebilirlik (axe) · ${theme}`, async ({ page }) => {
+    for (const theme of ['light', 'dark']) test(`accessibility (axe) · ${theme}`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
       await open(page, p);
       const r = await new AxeBuilder({ page }).analyze();
-      const bad = r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id}: ${v.nodes.length} öğe · ${v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')}`);
+      const bad = r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id}: ${v.nodes.length} nodes · ${v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')}`);
       expect(bad).toEqual([]);
     });
-    test('görsel (reduced motion, açık + koyu)', async ({ page }) => {
+    test('visual (reduced motion, light + dark)', async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       for (const theme of ['light', 'dark']) {
         await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });

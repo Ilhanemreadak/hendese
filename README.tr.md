@@ -28,7 +28,7 @@
 
 Hendese dokümantasyon, eğitim ve araç sayfalarını bir mühendisin paftasını çizdiği gibi çizer: kalemle kılavuz, mürekkeple şekil, ölçü çizgileri ve antet. Pakette tasarım token'ları, katmanlı CSS bileşenleri, çizim primitifleri, küçük bir kaydırma sahnesi motoru ve şekiller arasında yürüyüp önemli yeri gösteren piksel maskot **Hoca** var.
 
-> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon sayfaları ve varsayılan arayüz metinleri şimdilik Türkçe; İngilizce çevirisi planlanıyor.
+> **Durum:** 0.x sürümünde, tek kişi tarafından geliştiriliyor. API belgelenmiş ve testli, ama küçük sürümler arasında değişebilir. Dokümantasyon İngilizcedir; `<html lang="tr">` olan sayfalar arayüz metinlerini otomatik olarak Türkçe alır.
 
 ## Neden Hendese
 
@@ -115,7 +115,7 @@ Açık ve koyu tema sistem tercihini izler; `[data-theme-toggle]` düğmeleri te
 
 | Seçenek | Varsayılan | Açıklama |
 |---|---|---|
-| `strings` | Türkçe | Arayüz metinleri: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. |
+| `strings` | İngilizce; `lang="tr"` sayfalarda Türkçe | Arayüz metinleri: `intro`, `copy`, `copied`, `copyFail`, `toLight`, `toDark`. Hazır setler: `Hendese.locales.en`, `Hendese.locales.tr`. |
 | `themeKey` | `'hendese-theme'` | Tema seçiminin saklama anahtarı. `head.js` de aynı anahtarı okusun diye `<html data-theme-key="…">` olarak da verilebilir. |
 | `topId` | `'top'` | Sayfa başı bölümünün id'si. |
 | `englishStems` | yok | `RegExp`; büyük harfli etiketlerdeki İngilizce kelimeleri `lang="en"` içine alır (Türkçedeki noktalı büyük İ sorununu önler). |
@@ -145,7 +145,7 @@ Hedef WCAG 2.2 AA. Her CI çalışmasında bütün doküman ve parça sayfaları
 
 - [`docs/`](docs/index.html): token'lar, bileşenler, blueprint tarifleri, hareket motoru ve Hoca. Dosyaları tarayıcıda açmanız yeter, sunucu gerekmez.
 - [`demos/`](demos/index.html): her parça için ayrı sayfa; varyantlar, durumlar ve yap / yapma çiftleri.
-- [`STANDART.md`](STANDART.md): her parçanın uyduğu kurallar. Test paketi bunları denetler.
+- [`STANDARD.md`](STANDARD.md): her parçanın uyduğu kurallar. Test paketi bunları denetler.
 
 ## Geliştirme
 

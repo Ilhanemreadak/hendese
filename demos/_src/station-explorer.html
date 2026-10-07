@@ -1,0 +1,203 @@
+<!-- meta {"title":"Station explorer","group":"Blueprint","order":40,"tagline":"Every stop in the drawing is a clickable button.","intro":"The explorer turns the stops of a drawing into real <code>&lt;button&gt;</code> elements. Hovering or focusing previews, clicking selects; the selected stop's description appears in the panel under the sheet. A page can have as many explorers as you like.","summary":"<code>[data-explorer]</code>, <code>.station</code>, the <code>.st-detail</code> panel and the <code>hendese:explore</code> event.","facts":{"Classes":"<code>.station</code> · <code>.svc-*</code> · <code>.st-name</code> · <code>.st-sub</code> · <code>.st-meta</code> · <code>.st-detail</code> · <code>.sl</code> · <code>.deck-cap</code>","Attributes":"<code>data-explorer</code> · <code>data-key</code> · <code>aria-pressed</code> · <code>data-for</code>","Event":"<code>hendese:explore</code> → <code>detail.key</code>"}} -->
+
+<chapter title="Anatomy" lead="Three parts: a container that carries data-explorer, buttons inside it that carry data-key and aria-pressed, and a panel whose id equals the data-explorer value.">
+<demo label="Example · the smallest explorer · CDN path">
+<div data-explorer="ig-cdn">
+  <div class="drawing" style="--aw:800;--ah:150">
+    <svg viewBox="0 0 800 150" aria-hidden="true">
+      <path class="ln-strong" d="M220 80H294M294 80l-9-5M294 80l-9 5"/>
+      <path class="ln-draw ln-dash" d="M500 80H574"/>
+      <path class="ln-draw" d="M574 80l-8-4M574 80l-8 4"/>
+    </svg>
+    <p class="sl" style="--x:510;--y:52">miss</p>
+    <button class="station" type="button" data-key="client" aria-pressed="true" aria-controls="ig-cdn" style="--x:20;--y:40;--w:200;--h:80;--svc:var(--sec)"><span class="st-name">Client</span><span class="st-sub">browser</span></button>
+    <button class="station" type="button" data-key="edge" aria-pressed="false" aria-controls="ig-cdn" style="--x:300;--y:40;--w:200;--h:80"><span class="st-name">Edge</span><span class="st-sub">edge-fra</span></button>
+    <button class="station" type="button" data-key="origin" aria-pressed="false" aria-controls="ig-cdn" style="--x:580;--y:40;--w:200;--h:80;--svc:var(--ok)"><span class="st-name">Origin</span><span class="st-sub">web-api</span></button>
+  </div>
+  <div class="st-detail" id="ig-cdn" aria-live="polite">
+    <div data-for="client"><b>Client.</b> Sends the request to the nearest edge; the address comes from DNS.</div>
+    <div data-for="edge"><b>Edge.</b> If the response is cached and fresh, it returns without going to the origin at all. Hit rate 94%.</div>
+    <div data-for="origin"><b>Origin.</b> Called only on a miss; sends the response back together with a <code>Cache-Control</code> header.</div>
+  </div>
+</div>
+</demo>
+<div class="prose"><ul>
+  <li>Container: <code>data-explorer="ig-cdn"</code>. The value is the panel's <code>id</code>, so it must be unique on the page.</li>
+  <li>Buttons: <code>[data-key][aria-pressed]</code>. A button without both doesn't join the explorer. The one that starts with <code>aria-pressed="true"</code> is selected; otherwise, the first button.</li>
+  <li>Panel: <code>[data-for="key"]</code> blocks. If JavaScript doesn't run, and in print, all blocks show one under another (the finished state); JS writes the <code>.show</code> class.</li>
+  <li><code>aria-controls</code> links the button to the panel, and <code>aria-live="polite"</code> links the panel to the screen reader.</li>
+</ul></div>
+</chapter>
+
+<chapter title="States" lead="A stop carries one, two or three lines. Hover gives a thin inner line, selection a heavy inner line and the SELECTED badge, keyboard focus an accent ring.">
+<demo label="Example · line count, selection and color">
+<div data-explorer="ig-status">
+  <div class="drawing" style="--aw:900;--ah:180">
+    <svg viewBox="0 0 900 180" aria-hidden="true">
+      <path class="ln-pencil" d="M0 138H900"/>
+    </svg>
+    <button class="station" type="button" data-key="ad" aria-pressed="false" aria-controls="ig-status" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">web-api</span></button>
+    <button class="station" type="button" data-key="alt" aria-pressed="false" aria-controls="ig-status" style="--x:245;--y:30;--w:200;--h:90;--svc:var(--sec)"><span class="st-name">orders-db</span><span class="st-sub">primary</span></button>
+    <button class="station" type="button" data-key="edge" aria-pressed="true" aria-controls="ig-status" style="--x:470;--y:30;--w:200;--h:90;--svc:var(--warn)"><span class="st-name">jobs-eu</span><span class="st-sub">queue</span><span class="st-meta">depth 1,240</span></button>
+    <button class="station" type="button" data-key="color" aria-pressed="false" aria-controls="ig-status" style="--x:695;--y:30;--w:200;--h:90;--svc:var(--bad)"><span class="st-name">auth</span><span class="st-sub">identity</span><span class="st-meta">errors 3.2%</span></button>
+    <p class="sl" style="--x:20;--y:142">name only</p>
+    <p class="sl" style="--x:245;--y:142">name + subline</p>
+    <p class="sl" style="--x:470;--y:142">selected · three lines</p>
+    <p class="sl" style="--x:695;--y:142">--svc: var(--bad)</p>
+  </div>
+  <div class="st-detail" id="ig-status" aria-live="polite">
+    <div data-for="ad"><b>.st-name</b> on its own. Without <code>--svc</code>, the square mark takes the drawing color.</div>
+    <div data-for="alt"><b>.st-sub</b> is the second line, in plain text. The square is purple via <code>--svc: var(--sec)</code>.</div>
+    <div data-for="edge"><b>.st-meta</b> is the third line, mono and faded. This stop starts selected: <code>aria-pressed="true"</code>.</div>
+    <div data-for="color"><b>Color</b> stays in the square only; the frame is the same on every stop. The ready-made <code>.svc-*</code> classes set the same variable.</div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Lines are cut with <code>text-overflow: ellipsis</code>; a long name doesn't grow the stop. Font sizes scale with <code>--u</code> and never go below 10.5px. The badge text comes from the <code>--str-selected</code> token; override it for another language.</p></div>
+<demo label="Example · service marks · .svc-*">
+<div data-explorer="ig-svc">
+  <div class="drawing" style="--aw:900;--ah:150">
+    <svg viewBox="0 0 900 150" aria-hidden="true">
+      <path class="ln-draw" d="M220 75H239M239 75l-8-4M239 75l-8 4M445 75H464M464 75l-8-4M464 75l-8 4M670 75H689M689 75l-8-4M689 75l-8 4"/>
+    </svg>
+    <button class="station svc-gitlab" type="button" data-key="source" aria-pressed="true" aria-controls="ig-svc" style="--x:20;--y:30;--w:200;--h:90"><span class="st-name">Source</span><span class="st-sub">GitLab repository</span><span class="st-meta">.svc-gitlab</span></button>
+    <button class="station svc-aws" type="button" data-key="build" aria-pressed="false" aria-controls="ig-svc" style="--x:245;--y:30;--w:200;--h:90"><span class="st-name">Build</span><span class="st-sub">AWS · eu-west-1</span><span class="st-meta">.svc-aws</span></button>
+    <button class="station svc-argo" type="button" data-key="sync" aria-pressed="false" aria-controls="ig-svc" style="--x:470;--y:30;--w:200;--h:90"><span class="st-name">Sync</span><span class="st-sub">Argo CD</span><span class="st-meta">.svc-argo</span></button>
+    <button class="station svc-k8s" type="button" data-key="cluster" aria-pressed="false" aria-controls="ig-svc" style="--x:695;--y:30;--w:200;--h:90"><span class="st-name">Cluster</span><span class="st-sub">Kubernetes · web-api</span><span class="st-meta">.svc-k8s</span></button>
+  </div>
+  <div class="st-detail" id="ig-svc" aria-live="polite">
+    <div data-for="source"><b>.svc-gitlab</b> colors the square in the source repository's color. The class only sets the <code>--svc</code> variable; the frame and text don't change.</div>
+    <div data-for="build"><b>.svc-aws</b> for cloud services: build, registry, queue.</div>
+    <div data-for="sync"><b>.svc-argo</b> for the syncer that carries the desired state in the repository to the cluster.</div>
+    <div data-for="cluster"><b>.svc-k8s</b> for workloads running in the cluster. The color tells the service; a word still tells the status.</div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>For service color, use the ready-made class instead of writing an inline <code>--svc</code>: <code>.svc-gitlab</code>, <code>.svc-aws</code>, <code>.svc-argo</code>, <code>.svc-k8s</code>. The color stays in the small square; the service name is always written in the subline too.</p></div>
+</chapter>
+
+<chapter title="In context" lead="The explorer usually lives inside a sheet: the drawing in the f-map area, the panel in the f-foot area, right under the one-sentence summary.">
+<demo label="Example · explorer 1 · backup chain">
+<div class="frame" data-explorer="ig-backup">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Fig. 1</p>
+    <p class="fig-cap">The five stops of a backup</p>
+  </header>
+  <div class="f-side">
+    <div class="prose">
+      <p>Click a stop or focus it with Tab; the panel below describes that stop.</p>
+      <p>The top row captures and protects the data; the bottom row keeps it until it expires and tests it regularly. The ghost box is a stage that isn't built yet, and it can't be clicked.</p>
+    </div>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:350">
+      <svg viewBox="0 0 600 350" aria-hidden="true">
+        <path class="ln-pencil ln-dash" d="M0 190H600"/>
+        <path class="ln-draw" d="M180 90H214M214 90l-8-4M214 90l-8 4M380 90H414M414 90l-8-4M414 90l-8 4"/>
+        <path class="ln-draw" d="M500 130V244M500 244l-4-8M500 244l4-8"/>
+        <path class="ln-draw" d="M420 290H386M386 290l8-4M386 290l8 4"/>
+        <path class="ln-ghost" d="M220 290H186"/>
+        <rect class="ln-ghost" x="20" y="250" width="160" height="80"/>
+      </svg>
+      <p class="sl deck-cap" style="--x:20;--y:12"><b>INTAKE</b>Capture and protect</p>
+      <p class="sl deck-cap" style="--x:20;--y:208"><b>RETENTION</b>Keep and test</p>
+      <p class="sl" style="--x:32;--y:282">archive · planned</p>
+      <button class="station" type="button" data-key="snapshot" aria-pressed="true" aria-controls="ig-backup" style="--x:20;--y:50;--w:160;--h:80"><span class="st-name">Snapshot</span><span class="st-sub">orders-db · point-in-time</span><span class="st-meta">nightly 02:00</span></button>
+      <button class="station" type="button" data-key="secret" aria-pressed="false" aria-controls="ig-backup" style="--x:220;--y:50;--w:160;--h:80;--svc:var(--sec)"><span class="st-name">Encryption</span><span class="st-sub">vault key</span><span class="st-meta">AES-256</span></button>
+      <button class="station" type="button" data-key="replica" aria-pressed="false" aria-controls="ig-backup" style="--x:420;--y:50;--w:160;--h:80;--svc:var(--warn)"><span class="st-name">Copy</span><span class="st-sub">eu-central-1</span><span class="st-meta">≈ 12 min</span></button>
+      <button class="station" type="button" data-key="retention" aria-pressed="false" aria-controls="ig-backup" style="--x:420;--y:250;--w:160;--h:80"><span class="st-name">Retention</span><span class="st-sub">35 days</span><span class="st-meta">delete lock on</span></button>
+      <button class="station" type="button" data-key="test" aria-pressed="false" aria-controls="ig-backup" style="--x:220;--y:250;--w:160;--h:80;--svc:var(--ok)"><span class="st-name">Test</span><span class="st-sub">monthly restore</span><span class="st-meta">last: Oct 2</span></button>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>The nightly snapshot is encrypted, copied to a second region, kept for 35 days and tested every month with a real restore.</p>
+    <div class="st-detail" id="ig-backup" aria-live="polite">
+      <div data-for="snapshot"><b>Snapshot.</b> A disk-level consistent copy of the database. It doesn't stop writes; there may be an I/O pause of a few seconds.</div>
+      <div data-for="secret"><b>Encryption.</b> The snapshot is encrypted with the key in the vault. When the key rotates, old snapshots keep being read with the old version.</div>
+      <div data-for="replica"><b>Copy.</b> The encrypted snapshot is sent to the second region; if a region is lost, the restore runs from here.</div>
+      <div data-for="retention"><b>Retention.</b> Snapshots are kept for 35 days. While the delete lock is on, an unexpired snapshot can't be deleted even by hand.</div>
+      <div data-for="test"><b>Test.</b> Every month a random snapshot is restored to a temporary copy and check queries are run. An untested backup doesn't count as a backup.</div>
+    </div>
+    <p class="figcap"><b>Fig. 1.</b> Five stops, clockwise. The dashed line is the border between intake and retention; the ghost box is a planned but unbuilt archive.</p>
+  </div>
+</div>
+</demo>
+<demo label="Example · explorer 2 · alarm flow, dark sheet">
+<figure class="fig-sheet scene-dark" data-explorer="ig-alarm">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Fig. 2</p>
+  <p class="fig-cap">The path of an alarm</p>
+  <div class="drawing" style="--aw:900;--ah:160">
+    <svg viewBox="0 0 900 160" aria-hidden="true">
+      <path class="ln-draw" d="M170 95H194M194 95l-7-4M194 95l-7 4M350 95H374M374 95l-7-4M374 95l-7 4M530 95H554M554 95l-7-4M554 95l-7 4M710 95H734M734 95l-7-4M734 95l-7 4"/>
+    </svg>
+    <p class="sl deck-cap" style="--x:20;--y:10"><b>ALARM</b>From metric to incident record</p>
+    <button class="station" type="button" data-key="metric" aria-pressed="false" aria-controls="ig-alarm" style="--x:20;--y:50;--w:150;--h:90"><span class="st-name">Metric</span><span class="st-sub">5xx rate</span><span class="st-meta">4.1%</span></button>
+    <button class="station" type="button" data-key="rule" aria-pressed="true" aria-controls="ig-alarm" style="--x:200;--y:50;--w:150;--h:90;--svc:var(--bad)"><span class="st-name">Rule</span><span class="st-sub">threshold 2%</span><span class="st-meta">1 min window</span></button>
+    <button class="station" type="button" data-key="router" aria-pressed="false" aria-controls="ig-alarm" style="--x:380;--y:50;--w:150;--h:90"><span class="st-name">Router</span><span class="st-sub">team: payments</span><span class="st-meta">severity: P2</span></button>
+    <button class="station" type="button" data-key="oncall" aria-pressed="false" aria-controls="ig-alarm" style="--x:560;--y:50;--w:150;--h:90;--svc:var(--warn)"><span class="st-name">On-call</span><span class="st-sub">primary</span><span class="st-meta">ack ≤ 5 min</span></button>
+    <button class="station" type="button" data-key="log" aria-pressed="false" aria-controls="ig-alarm" style="--x:740;--y:50;--w:150;--h:90;--svc:var(--ok)"><span class="st-name">Incident record</span><span class="st-sub">timeline</span><span class="st-meta">automatic</span></button>
+  </div>
+  <div class="st-detail" id="ig-alarm" aria-live="polite" style="margin-top:var(--sp-5)">
+    <div data-for="metric"><b>Metric.</b> web-api's per-minute 5xx rate. It triggers nothing on its own; it is only measured.</div>
+    <div data-for="rule"><b>Rule.</b> If the rate stays above 2% for one minute, the alarm opens. A single spike isn't enough.</div>
+    <div data-for="router"><b>Router.</b> Reads the labels and sends the alarm to the payments team's P2 channel.</div>
+    <div data-for="oncall"><b>On-call.</b> If not acknowledged within five minutes, the alarm escalates to the secondary on-call.</div>
+    <div data-for="log"><b>Incident record.</b> Open, acknowledge and close times are written automatically; the postmortem starts from here.</div>
+  </div>
+  <figcaption class="figcap"><b>Fig. 2.</b> Five stops, left to right. The red square shows the rule that fired; the orange square shows the on-call engineer awaiting acknowledgment.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Event: hendese:explore" lead="When a selection is made by click, the container dispatches a bubbling hendese:explore event. Previews don't dispatch it; neither does the initial selection.">
+<demo label="Example · the last selection of the two explorers" nocode>
+<div class="readout" id="ig-out" aria-live="polite"><p>No selection yet. Click a stop in one of the two explorers above.</p></div>
+</demo>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>// the event bubbles up to the document: one listener hears every explorer
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');           // which explorer
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});</code></pre></figure>
+<div class="prose"><p><code>e.target</code> is the container itself; <code>detail.key</code> is the <code>data-key</code> value of the selected button. Use the event to write to the address bar, send a metric or update another drawing. To change the selection from code, call <code>click()</code> on the matching button.</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A stop is a button; a stop with no panel, or one the keyboard can't select, isn't an explorer, just a picture.">
+<div class="dodont">
+<demo label="Do · button + linked panel">
+<div data-explorer="ig-do">
+  <div class="drawing" style="--aw:440;--ah:110">
+    <svg viewBox="0 0 440 110" aria-hidden="true">
+      <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+    </svg>
+    <button class="station" type="button" data-key="primary" aria-pressed="true" aria-controls="ig-do" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Primary</span><span class="st-sub">orders-db-1</span></button>
+    <button class="station" type="button" data-key="replica" aria-pressed="false" aria-controls="ig-do" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Replica</span><span class="st-sub">orders-db-2</span></button>
+  </div>
+  <div class="st-detail" id="ig-do" aria-live="polite">
+    <div data-for="primary"><b>Primary.</b> All writes come here.</div>
+    <div data-for="replica"><b>Replica.</b> Serves reads; lag 0.4 s.</div>
+  </div>
+</div>
+</demo>
+<demo label="Don't · a div as a stop, no panel">
+<div class="drawing" style="--aw:440;--ah:110">
+  <svg viewBox="0 0 440 110" aria-hidden="true">
+    <path class="ln-draw" d="M200 55H234M234 55l-8-4M234 55l-8 4"/>
+  </svg>
+  <div class="station" style="--x:10;--y:15;--w:190;--h:80"><span class="st-name">Primary</span><span class="st-sub">orders-db-1</span></div>
+  <div class="station" style="--x:240;--y:15;--w:190;--h:80"><span class="st-name">Replica</span><span class="st-sub">orders-db-2</span></div>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Stops are visited in Tab order; focus opens the preview, Enter or Space selects. A screen reader reads the button as “pressed / not pressed” and, thanks to <code>aria-live</code>, announces the new text when the panel changes. On narrow screens (below 720px) the SVG is hidden and the stops stack; that is why the sentence that explains the arrows must also be in the panel or the summary.</p></div></div>
+</chapter>
+
+<script data-page>
+document.addEventListener('hendese:explore', function (e) {
+  var ex = e.target.getAttribute('data-explorer');
+  var ad = e.target.querySelector('[data-key="' + e.detail.key + '"] .st-name');
+  document.querySelector('#ig-out p').textContent = ex + ' → ' + (ad ? ad.textContent : e.detail.key);
+});
+</script>

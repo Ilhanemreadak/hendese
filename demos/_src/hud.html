@@ -1,7 +1,7 @@
-<!-- meta {"title":"HUD","group":"Hareket","order":40,"tagline":"Tek sabit gösterge.","intro":"Sayfada tek bir <code>#hud</code> bulunur. Canlı modda, <code>hud</code> döndüren sahnelerden en görünürü göstergeyi kendi <code>.hud-slot</code> yuvasına çeker ve alanlarını doldurur. Hareket kapalıyken gösterge hiç görünmez; bu yüzden içindeki her bilgi metinde de yazılıdır.","summary":"<code>#hud</code> + <code>.hud-slot</code>: sahnelerin paylaştığı sabit gösterge, serbest alanlar, ilerleme çubuğu.","facts":{"İşaretleme":"<code>#hud.hud</code> · <code>.hud-live</code> · <code>.hud-h</code> · <code>.hud-r</code> · <code>.hud-bar</code> &gt; <code>#hud-fill</code> · <code>[data-hud]</code>","Yuva":"Sahne içinde <code>.hud-slot</code> (pin: <code>.f-side</code>, sticky: <code>.sf-head</code>)","JS":"Sahnenin <code>render</code>'ı <code>{hud: {…}}</code> döndürür; ayrı API yok"}} -->
+<!-- meta {"title":"HUD","group":"Motion","order":40,"tagline":"One fixed readout.","intro":"A page has a single <code>#hud</code>. In live mode, the most visible of the scenes that return <code>hud</code> pulls the readout into its own <code>.hud-slot</code> and fills in its fields. With motion off the readout never shows, so every piece of information in it is also written in the text.","summary":"<code>#hud</code> + <code>.hud-slot</code>: a fixed readout shared by scenes, free-form fields, a progress bar.","facts":{"Markup":"<code>#hud.hud</code> · <code>.hud-live</code> · <code>.hud-h</code> · <code>.hud-r</code> · <code>.hud-bar</code> &gt; <code>#hud-fill</code> · <code>[data-hud]</code>","Slot":"<code>.hud-slot</code> inside the scene (pin: <code>.f-side</code>, sticky: <code>.sf-head</code>)","JS":"The scene's <code>render</code> returns <code>{hud: {…}}</code>; there is no separate API"}} -->
 
 <style>
-/* sayfaya özel: durgun HUD örnekleri (.hd-mock) ve sahne çizimleri (.hd-). */
+/* page-specific: still HUD examples (.hd-mock) and scene drawings (.hd-). */
 .hd-mock{position:relative;width:260px;height:176px;background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r-xs);font-family:var(--font-mono);color:var(--ink);--tb:0}
 .hd-row{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-start}
 .hd-row .figcap{max-width:44ch;margin:0}
@@ -15,46 +15,46 @@
 html.motion .hd-box,html.motion .hd-lbl{transition:opacity var(--dur-2),fill var(--dur-2),stroke var(--dur-2)}
 </style>
 
-<chapter title="Anatomi" lead="Bir başlık satırı, dört alan satırı ve bir ilerleme çubuğu. Etiketler işaretlemede sabittir; değerleri sahne yazar." hoca="quiet">
+<chapter title="Anatomy" lead="A header row, four field rows and a progress bar. The labels are fixed in the markup; the scene writes the values." hoca="quiet">
 <div class="hd-row">
   <div class="hd-mock" aria-hidden="true">
     <div class="hud-live">
-      <div class="hud-h"><span>02 · Alarm akışı</span><span>58%</span></div>
-      <div class="hud-r"><span>Aşama</span><b>İkincil çağrıldı</b></div>
-      <div class="hud-r"><span>Kaynak</span><b>odeme-api · 5xx</b></div>
-      <div class="hud-r"><span>Sahip</span><b>ikincil nöbetçi</b></div>
-      <div class="hud-r"><span>Süre</span><b>9 dk</b></div>
+      <div class="hud-h"><span>02 · Alert flow</span><span>58%</span></div>
+      <div class="hud-r"><span>Stage</span><b>Secondary paged</b></div>
+      <div class="hud-r"><span>Source</span><b>payment-api · 5xx</b></div>
+      <div class="hud-r"><span>Owner</span><b>secondary on-call</b></div>
+      <div class="hud-r"><span>Elapsed</span><b>9 min</b></div>
       <div class="hud-bar"><i style="transform:scaleX(.58)"></i></div>
     </div>
   </div>
-  <p class="figcap"><b>Şekil 1.</b> Göstergenin durgun bir kopyası (yalnızca bu sayfada, anlatım için). Gerçek gösterge <code>position: fixed</code> çalışır, 260 × 176 px'tir ve yalnız <code>html.motion</code> altında görünür.</p>
+  <p class="figcap"><b>Figure 1.</b> A still copy of the readout (on this page only, for explanation). The real readout is <code>position: fixed</code>, 260 × 176 px, and shows only under <code>html.motion</code>.</p>
 </div>
-<div class="prose"><p>Gösterge sayfanın sonunda bir kez yazılır. Her <code>[data-hud]</code> öğesi, sahnenin döndürdüğü <code>hud</code> nesnesindeki aynı adlı alanı gösterir; adlar serbesttir. <code>chap</code> sahne kaydındaki <code>chap</code> değerinden gelir, <code>fill</code> (0..1) metin değil çubuğun ölçeğidir.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa sonunda bir kez</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="hud" id="hud" aria-hidden="true"&gt;
+<div class="prose"><p>The readout is written once, at the end of the page. Each <code>[data-hud]</code> element shows the field of the same name in the <code>hud</code> object the scene returns; names are free-form. <code>chap</code> comes from the <code>chap</code> value in the scene registration, and <code>fill</code> (0..1) is not text but the bar's scale.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">once, at the end of the page</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="hud" id="hud" aria-hidden="true"&gt;
   &lt;div class="hud-live"&gt;
     &lt;div class="hud-h"&gt;&lt;span data-hud="chap"&gt;—&lt;/span&gt;&lt;span data-hud="pct"&gt;0%&lt;/span&gt;&lt;/div&gt;
-    &lt;div class="hud-r"&gt;&lt;span&gt;Aşama&lt;/span&gt;&lt;b data-hud="stage"&gt;—&lt;/b&gt;&lt;/div&gt;
-    &lt;div class="hud-r"&gt;&lt;span&gt;Kaynak&lt;/span&gt;&lt;b data-hud="source"&gt;—&lt;/b&gt;&lt;/div&gt;
-    &lt;div class="hud-r"&gt;&lt;span&gt;Sahip&lt;/span&gt;&lt;b data-hud="owner"&gt;—&lt;/b&gt;&lt;/div&gt;
-    &lt;div class="hud-r"&gt;&lt;span&gt;Süre&lt;/span&gt;&lt;b data-hud="took"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Stage&lt;/span&gt;&lt;b data-hud="stage"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Source&lt;/span&gt;&lt;b data-hud="source"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Owner&lt;/span&gt;&lt;b data-hud="owner"&gt;—&lt;/b&gt;&lt;/div&gt;
+    &lt;div class="hud-r"&gt;&lt;span&gt;Elapsed&lt;/span&gt;&lt;b data-hud="took"&gt;—&lt;/b&gt;&lt;/div&gt;
     &lt;div class="hud-bar"&gt;&lt;i id="hud-fill"&gt;&lt;/i&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre></figure>
-<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Altı satır</span><div class="co-body"><p><code>.hud-live</code> altı eşit satırlık bir ızgaradır: başlık, dört alan, çubuk. Alan sayısını değiştirmeyin; az bilgi için bir satırı <code>—</code> bırakın.</p></div></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Six rows</span><div class="co-body"><p><code>.hud-live</code> is a grid of six equal rows: header, four fields, bar. Do not change the number of fields; with less information, leave a row as <code>—</code>.</p></div></div>
 </chapter>
 
-<chapter title="Canlı örnek · alarm → nöbetçi" lead="Bir hata oranı eşiği aşar, birincil nöbetçi çağrılır, yanıt gelmeyince ikincile geçilir. HUD her an kimin sorumlu olduğunu yazar.">
+<chapter title="Live example · alert → on-call" lead="An error rate crosses a threshold, the primary on-call is paged, and with no answer it moves to the secondary. The HUD shows who is responsible at every moment.">
 <div class="pin hd-scene" id="hd-alarm" style="--track:280vh">
   <div class="route-stage">
     <div class="frame">
       <div class="frame-bg" aria-hidden="true"></div>
-      <div class="f-head"><p class="chip">02 · Şekil 2</p><p class="fig-cap">odeme-api: alarmdan onaya</p></div>
+      <div class="f-head"><p class="chip">02 · Figure 2</p><p class="fig-cap">payment-api: from alert to acknowledgment</p></div>
       <div class="f-side"><div class="hud-slot"></div>
-        <ol class="beats" aria-label="Alarm adımları">
-          <li><b>Eşik aşıldı</b>5xx oranı üç dakika boyunca %2'nin üstünde kaldı; alarm tetiklendi.</li>
-          <li><b>Birincil çağrıldı</b>Nöbet çizelgesindeki birincil kişiye çağrı gitti.</li>
-          <li><b>İkincile geçti</b>Beş dakika onay gelmedi; çağrı ikincil nöbetçiye yükseltildi.</li>
-          <li><b>Onaylandı</b>İkincil nöbetçi 9. dakikada onayladı ve olayı üstlendi.</li>
+        <ol class="beats" aria-label="Alert steps">
+          <li><b>Threshold crossed</b>The 5xx rate stayed above 2% for three minutes; the alert fired.</li>
+          <li><b>Primary paged</b>The page went to the primary on the on-call schedule.</li>
+          <li><b>Escalated to secondary</b>No acknowledgment for five minutes; the page escalated to the secondary on-call.</li>
+          <li><b>Acknowledged</b>The secondary on-call acknowledged at minute 9 and took the incident.</li>
         </ol>
       </div>
       <div class="f-map">
@@ -70,40 +70,40 @@ html.motion .hd-box,html.motion .hd-lbl{transition:opacity var(--dur-2),fill var
             <rect class="hd-box" data-st="2" x="500" y="210" width="160" height="70"/>
             <rect class="hd-box" data-st="3" x="720" y="140" width="150" height="70"/>
           </svg>
-          <p class="dl" style="--x:30;--y:52;--w:220"><b>5xx oranı</b></p>
-          <p class="dl" style="--x:180;--y:176;--w:70">%2</p>
-          <p class="dl hd-lbl" data-st="0" style="--x:312;--y:146;--w:120"><b>Alarm</b>3 dk &gt; %2</p>
-          <p class="dl hd-lbl" data-st="1" style="--x:512;--y:86;--w:140"><b>Birincil</b>yanıt yok</p>
-          <p class="dl hd-lbl" data-st="2" style="--x:512;--y:226;--w:140"><b>İkincil</b>5. dk</p>
-          <p class="dl hd-lbl" data-st="3" style="--x:732;--y:156;--w:130"><b>Onay</b>9. dk</p>
-          <p class="dl" style="--x:590;--y:164;--w:110">5 dk</p>
+          <p class="dl" style="--x:30;--y:52;--w:220"><b>5xx rate</b></p>
+          <p class="dl" style="--x:180;--y:176;--w:70">2%</p>
+          <p class="dl hd-lbl" data-st="0" style="--x:312;--y:146;--w:120"><b>Alert</b>3 min &gt; 2%</p>
+          <p class="dl hd-lbl" data-st="1" style="--x:512;--y:86;--w:140"><b>Primary</b>no answer</p>
+          <p class="dl hd-lbl" data-st="2" style="--x:512;--y:226;--w:140"><b>Secondary</b>min 5</p>
+          <p class="dl hd-lbl" data-st="3" style="--x:732;--y:156;--w:130"><b>Ack</b>min 9</p>
+          <p class="dl" style="--x:590;--y:164;--w:110">5 min</p>
         </div>
       </div>
-      <div class="f-foot"><p class="figcap"><b>Şekil 2.</b> Sarı kesikli çizgi eşik, kırmızı çizgi hata oranı. Kırmızı kesik, birincil nöbetçiden yükseltmeye geçen zaman aşımı.</p></div>
+      <div class="f-foot"><p class="figcap"><b>Figure 2.</b> The yellow dashed line is the threshold, the red line is the error rate. The red break is the timeout that moves from the primary on-call to escalation.</p></div>
     </div>
   </div>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>var STAGE = ['Eşik aşıldı', 'Birincil çağrıldı', 'İkincil çağrıldı', 'Onaylandı'],
-    OWNER = ['—', 'birincil nöbetçi', 'ikincil nöbetçi', 'ikincil nöbetçi'];
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var STAGE = ['Threshold crossed', 'Primary paged', 'Secondary paged', 'Acknowledged'],
+    OWNER = ['—', 'primary on-call', 'secondary on-call', 'secondary on-call'];
 Hendese.pinScene({
-  el: '#hd-alarm', chap: '02 · Alarm akışı',              // HUD başlığı
+  el: '#hd-alarm', chap: '02 · Alert flow',              // HUD title
   render: function (p, api) {
     var d = api.seg(p, .05, .9), n = Math.min(3, Math.floor(d * 4));
-    /* … kutular, beat'ler, api.set('al', …) … */
+    /* … boxes, beats, api.set('al', …) … */
     return { hud: {
-      stage: STAGE[n], source: 'odeme-api · 5xx', owner: OWNER[n],
-      took: Math.round(d * 9) + ' dk', pct: Math.round(d * 100) + '%', fill: d
+      stage: STAGE[n], source: 'payment-api · 5xx', owner: OWNER[n],
+      took: Math.round(d * 9) + ' min', pct: Math.round(d * 100) + '%', fill: d
     } };
   }
 });</code></pre></figure>
 </chapter>
 
-<chapter title="Devir · ikinci sahne" lead="Aynı sayfada HUD isteyen ikinci bir sahne olabilir. Her karede en görünür sahne kazanır; geçişte gösterge bir yuvadan sönüp diğerinde belirir.">
-<div class="prose"><p>Sticky anlatımda yuva <code>.sf-head</code> içindedir. Gösterge aynı dört etiketi kullanır, bu yüzden alanları iki sahneye uyacak kadar genel seçin: aşama, kaynak, sahip, süre. Sahne ekranın kenarına yaklaştıkça göstergenin opaklığı azalır; iki sahne arasında okurken bir an hiçbir gösterge görünmeyebilir.</p></div>
+<chapter title="Handover · a second scene" lead="A page can have a second scene that wants the HUD. On every frame the most visible scene wins; at the handover the readout fades out of one slot and appears in the other.">
+<div class="prose"><p>In a sticky narrative the slot is inside <code>.sf-head</code>. The readout uses the same four labels, so choose fields general enough to fit both scenes: stage, source, owner, elapsed. As a scene nears the edge of the screen the readout's opacity drops; while reading between two scenes, there may briefly be no readout at all.</p></div>
 <div class="sticky hd-scene" id="hd-backup">
   <div class="sticky-fig">
     <div class="frame-bg" aria-hidden="true"></div>
-    <div class="sf-head"><div><p class="chip">03 · Şekil 3</p><p class="sf-cap">Gece yedek işi: dört adım</p></div><div class="hud-slot"></div></div>
+    <div class="sf-head"><div><p class="chip">03 · Figure 3</p><p class="sf-cap">Nightly backup job: four steps</p></div><div class="hud-slot"></div></div>
     <div class="f-map">
       <div class="drawing" data-aw="600" data-ah="300" style="--aw:600;--ah:300">
         <svg viewBox="0 0 600 300" aria-hidden="true">
@@ -113,87 +113,87 @@ Hendese.pinScene({
           <rect class="hd-box" data-st="2" x="340" y="170" width="200" height="70"/>
           <rect class="hd-box" data-st="3" x="40" y="170" width="200" height="70"/>
         </svg>
-        <p class="dl hd-lbl" data-st="0" style="--x:52;--y:56;--w:180"><b>Anlık görüntü</b>02:00 · 185 GB</p>
-        <p class="dl hd-lbl" data-st="1" style="--x:352;--y:56;--w:180"><b>Sıkıştırma</b>185 → 61 GB</p>
-        <p class="dl hd-lbl" data-st="2" style="--x:352;--y:186;--w:180"><b>Uzak kopya</b>ikinci bölge</p>
-        <p class="dl hd-lbl" data-st="3" style="--x:52;--y:186;--w:180"><b>Doğrulama</b>sağlama toplamı tutar</p>
+        <p class="dl hd-lbl" data-st="0" style="--x:52;--y:56;--w:180"><b>Snapshot</b>02:00 · 185 GB</p>
+        <p class="dl hd-lbl" data-st="1" style="--x:352;--y:56;--w:180"><b>Compression</b>185 → 61 GB</p>
+        <p class="dl hd-lbl" data-st="2" style="--x:352;--y:186;--w:180"><b>Remote copy</b>second region</p>
+        <p class="dl hd-lbl" data-st="3" style="--x:52;--y:186;--w:180"><b>Verification</b>checksum matches</p>
       </div>
     </div>
-    <p class="figcap"><b>Şekil 3.</b> Yedek, alındığı yerden çıkıp başka bir bölgede doğrulanınca tamamdır.</p>
+    <p class="figcap"><b>Figure 3.</b> A backup is complete once it has left where it was taken and been verified in another region.</p>
   </div>
   <ol class="sticky-text steps">
-    <li data-beat="0"><h3>Anlık görüntü al</h3><p>Saat 02:00'de siparis-db'nin tutarlı bir anlık görüntüsü alınır: 185 GB.</p></li>
-    <li data-beat="1"><h3>Sıkıştır</h3><p>Görüntü sıkıştırılır ve 61 GB'a iner. Bu adım işin en uzun kısmıdır, yaklaşık 18 dakika.</p></li>
-    <li data-beat="2"><h3>Uzak bölgeye kopyala</h3><p>Sıkıştırılmış dosya ikinci bölgedeki depolamaya yazılır; tek bölgede duran yedek, bölge kaybında işe yaramaz.</p></li>
-    <li data-beat="3"><h3>Doğrula</h3><p>Uzak kopyanın sağlama toplamı kaynakla karşılaştırılır. Toplam süre 31 dakika; iş başarılı.</p></li>
+    <li data-beat="0"><h3>Take a snapshot</h3><p>At 02:00 a consistent snapshot of orders-db is taken: 185 GB.</p></li>
+    <li data-beat="1"><h3>Compress</h3><p>The snapshot is compressed down to 61 GB. This is the longest part of the job, about 18 minutes.</p></li>
+    <li data-beat="2"><h3>Copy to a remote region</h3><p>The compressed file is written to storage in a second region; a backup kept in one region is useless if that region is lost.</p></li>
+    <li data-beat="3"><h3>Verify</h3><p>The remote copy's checksum is compared with the source. Total time is 31 minutes; the job succeeded.</p></li>
   </ol>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">sayfa betiği</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>Hendese.stickyScene({
-  el: '#hd-backup', chap: '03 · Gece yedeği',
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.stickyScene({
+  el: '#hd-backup', chap: '03 · Nightly backup',
   render: function (i, t, api) {
-    var f = (i + t) / 4;                                     // beat içi ilerleme çubuğa da yansır
-    return { hud: { stage: STEP[i], source: 'siparis-db', owner: 'yedek işi', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
+    var f = (i + t) / 4;                                     // progress within a beat shows on the bar too
+    return { hud: { stage: STEP[i], source: 'orders-db', owner: 'backup job', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
   }
 });</code></pre></figure>
 </chapter>
 
-<chapter title="Hareket kapalıyken" lead="Reduced motion, 1100px altı, baskı ve JS yok: gösterge hiç görünmez. Bu bir eksik değil, sözleşmedir.">
+<chapter title="With motion off" lead="Reduced motion, widths under 1100px, print and no JS: the readout never shows. This is not a gap; it is the contract.">
 <div class="prose">
-  <p><code>.hud</code> varsayılan olarak <code>display: none</code>'dır; yalnızca <code>html.motion</code> altında sabit konumlu göstergeye döner. <code>.hud-slot</code> da canlı mod dışında yer kaplamaz, böylece yan sütunda boşluk kalmaz. Yukarıdaki iki sahnede göstergenin yazdığı her şey (aşama, sahip, süre) adım metinlerinde de geçer: “İkincil nöbetçi 9. dakikada onayladı”, “Toplam süre 31 dakika”.</p>
-  <p>Gösterge <code>aria-hidden="true"</code>'dur; ekran okuyucu onu hiç okumaz. Aynı bilgiyi canlı modda da metin taşır.</p>
+  <p><code>.hud</code> is <code>display: none</code> by default; it becomes the fixed readout only under <code>html.motion</code>. <code>.hud-slot</code> takes no space outside live mode either, so no gap is left in the side column. Everything the readout shows in the two scenes above (stage, owner, elapsed time) also appears in the step text: “The secondary on-call acknowledged at minute 9”, “Total time is 31 minutes”.</p>
+  <p>The readout is <code>aria-hidden="true"</code>; screen readers never read it. The text carries the same information in live mode too.</p>
 </div>
 <div class="tbl"><table>
-  <thead><tr><th>Mod</th><th>Gösterge</th><th>Bilgi nerede</th></tr></thead>
+  <thead><tr><th>Mode</th><th>Readout</th><th>Where the information is</th></tr></thead>
   <tbody>
-    <tr><td>Canlı</td><td>En görünür sahnenin yuvasında</td><td>Gösterge + adım metni</td></tr>
-    <tr><td>Reduced motion, &lt; 1100px, baskı, JS yok</td><td>Yok</td><td>Adım metni</td></tr>
+    <tr><td>Live</td><td>In the slot of the most visible scene</td><td>Readout + step text</td></tr>
+    <tr><td>Reduced motion, &lt; 1100px, print, no JS</td><td>None</td><td>Step text</td></tr>
   </tbody>
 </table></div>
 </chapter>
 
-<chapter title="Yap / yapma" lead="Gösterge bir bakışta okunur: kısa değerler, değişen alanlar, metinde de geçen bilgiler.">
+<chapter title="Do / don't" lead="The readout is read at a glance: short values, fields that change, information that also appears in the text.">
 <div class="dodont">
-<demo label="Yap · kısa, değişen değerler" nocode>
+<demo label="Do · short, changing values" nocode>
 <div class="hd-mock" aria-hidden="true">
   <div class="hud-live">
-    <div class="hud-h"><span>03 · Gece yedeği</span><span>75%</span></div>
-    <div class="hud-r"><span>Aşama</span><b>Uzak kopya</b></div>
-    <div class="hud-r"><span>Kaynak</span><b>siparis-db</b></div>
-    <div class="hud-r"><span>Sahip</span><b>yedek işi</b></div>
-    <div class="hud-r"><span>Süre</span><b>27 dk</b></div>
+    <div class="hud-h"><span>03 · Nightly backup</span><span>75%</span></div>
+    <div class="hud-r"><span>Stage</span><b>Remote copy</b></div>
+    <div class="hud-r"><span>Source</span><b>orders-db</b></div>
+    <div class="hud-r"><span>Owner</span><b>backup job</b></div>
+    <div class="hud-r"><span>Elapsed</span><b>27 min</b></div>
     <div class="hud-bar"><i style="transform:scaleX(.75)"></i></div>
   </div>
 </div>
 </demo>
-<demo label="Yapma · cümle ve sabit alanlar" nocode>
+<demo label="Don't · sentences and fixed fields" nocode>
 <div class="hd-mock" aria-hidden="true">
   <div class="hud-live">
-    <div class="hud-h"><span>Şekil</span><span>—</span></div>
-    <div class="hud-r"><span>Aşama</span><b>Sıkıştırılmış dosya ikinci bölgeye yazılıyor</b></div>
-    <div class="hud-r"><span>Kaynak</span><b>—</b></div>
-    <div class="hud-r"><span>Sahip</span><b>—</b></div>
-    <div class="hud-r"><span>Süre</span><b>—</b></div>
+    <div class="hud-h"><span>Figure</span><span>—</span></div>
+    <div class="hud-r"><span>Stage</span><b>The compressed file is being written to the second region</b></div>
+    <div class="hud-r"><span>Source</span><b>—</b></div>
+    <div class="hud-r"><span>Owner</span><b>—</b></div>
+    <div class="hud-r"><span>Elapsed</span><b>—</b></div>
     <div class="hud-bar"><i></i></div>
   </div>
 </div>
 </demo>
 </div>
-<div class="prose"><p>Sağdaki örnekte cümle kesilir, üç alan hiç değişmez ve çubuk ilerlemez: gösterge yer kaplar ama bir şey söylemez. Değerler 20 karakteri geçmesin; geçen kısım üç noktayla kesilir.</p></div>
-<div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Yalnız göstergede bilgi</span><div class="co-body"><p>Göstergede olup metinde olmayan bir değer, reduced motion kullanan, dar ekranda okuyan ya da sayfayı basan herkes için kaybolur.</p></div></div>
+<div class="prose"><p>In the example on the right the sentence is cut off, three fields never change and the bar does not move: the readout takes space but says nothing. Keep values under 20 characters; anything longer is cut with an ellipsis.</p></div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Information only in the readout</span><div class="co-body"><p>A value that is in the readout but not in the text is lost for anyone using reduced motion, reading on a narrow screen or printing the page.</p></div></div>
 </chapter>
 
-<chapter title="API" lead="HUD'un ayrı bir çağrısı yok: Hendese.init() göstergeyi bulur, sahnelerin render dönüşü onu doldurur.">
+<chapter title="API" lead="The HUD has no call of its own: Hendese.init() finds the readout, and the scenes' render return value fills it.">
 <div class="tbl wide api"><table>
-  <thead><tr><th>Üye</th><th>Ne yapar</th></tr></thead>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
   <tbody>
-    <tr><td><code>#hud.hud</code></td><td>Sayfada bir tane. <code>Hendese.init()</code> içinde aranır; yoksa HUD hiç çalışmaz.</td></tr>
-    <tr><td><code>[data-hud="ad"]</code></td><td><code>hud.ad</code> değerinin yazılacağı öğe (<code>textContent</code>). Değer değişmedikçe yeniden yazılmaz.</td></tr>
-    <tr><td><code>#hud-fill</code></td><td><code>hud.fill</code> (0..1) ile <code>scaleX</code> ölçeklenen çubuk.</td></tr>
-    <tr><td><code>.hud-slot</code></td><td>Sahne içinde göstergenin ineceği yer; konumu ve genişliği <code>measure</code>'da ölçülür.</td></tr>
-    <tr><td><code>render → {hud}</code></td><td>Pin ve sticky sahnelerinde. Fig sahnesi HUD talep etmez.</td></tr>
-    <tr><td><code>render → {tb}</code></td><td>0..1: göstergenin antet haline (<code>.hud-tb</code>) geçişi; 1 tam antet, 0 canlı alanlar. Pin ve sticky sahnelerinde okunur.</td></tr>
-    <tr><td><code>cfg.chap</code></td><td><code>hud.chap</code> olarak eklenir (sahne <code>hud</code> içinde <code>chap</code> verirse o kazanır).</td></tr>
-    <tr><td>Seçim</td><td>Her karede <code>alpha</code>'sı en yüksek talep; alpha, sahnenin ekrana giriş ve çıkışında 0'a iner.</td></tr>
+    <tr><td><code>#hud.hud</code></td><td>One per page. Looked up in <code>Hendese.init()</code>; without it, the HUD does not run at all.</td></tr>
+    <tr><td><code>[data-hud="name"]</code></td><td>The element that receives the value of <code>hud.name</code> (<code>textContent</code>). It is not rewritten unless the value changes.</td></tr>
+    <tr><td><code>#hud-fill</code></td><td>The bar, scaled with <code>scaleX</code> by <code>hud.fill</code> (0..1).</td></tr>
+    <tr><td><code>.hud-slot</code></td><td>Where the readout docks inside the scene; its position and width are measured in <code>measure</code>.</td></tr>
+    <tr><td><code>render → {hud}</code></td><td>In pin and sticky scenes. The fig scene does not request the HUD.</td></tr>
+    <tr><td><code>render → {tb}</code></td><td>0..1: the readout's transition into a title block (<code>.hud-tb</code>); 1 is a full title block, 0 the live fields. Read in pin and sticky scenes.</td></tr>
+    <tr><td><code>cfg.chap</code></td><td>Added as <code>hud.chap</code> (if the scene gives <code>chap</code> inside <code>hud</code>, that wins).</td></tr>
+    <tr><td>Selection</td><td>On every frame, the request with the highest <code>alpha</code>; alpha drops to 0 as the scene enters and leaves the screen.</td></tr>
   </tbody>
 </table></div>
 </chapter>
@@ -201,10 +201,10 @@ Hendese.pinScene({
 <div class="hud" id="hud" aria-hidden="true">
   <div class="hud-live">
     <div class="hud-h"><span data-hud="chap">—</span><span data-hud="pct">0%</span></div>
-    <div class="hud-r"><span>Aşama</span><b data-hud="stage">—</b></div>
-    <div class="hud-r"><span>Kaynak</span><b data-hud="source">—</b></div>
-    <div class="hud-r"><span>Sahip</span><b data-hud="owner">—</b></div>
-    <div class="hud-r"><span>Süre</span><b data-hud="took">—</b></div>
+    <div class="hud-r"><span>Stage</span><b data-hud="stage">—</b></div>
+    <div class="hud-r"><span>Source</span><b data-hud="source">—</b></div>
+    <div class="hud-r"><span>Owner</span><b data-hud="owner">—</b></div>
+    <div class="hud-r"><span>Elapsed</span><b data-hud="took">—</b></div>
     <div class="hud-bar"><i id="hud-fill"></i></div>
   </div>
 </div>
@@ -212,28 +212,28 @@ Hendese.pinScene({
 <script data-page>
 (function () {
   var $$ = Hendese.$$;
-  /* 02 · alarm akışı */
-  var STAGE = ['Eşik aşıldı', 'Birincil çağrıldı', 'İkincil çağrıldı', 'Onaylandı'], OWNER = ['—', 'birincil nöbetçi', 'ikincil nöbetçi', 'ikincil nöbetçi'];
+  /* 02 · alert flow */
+  var STAGE = ['Threshold crossed', 'Primary paged', 'Secondary paged', 'Acknowledged'], OWNER = ['—', 'primary on-call', 'secondary on-call', 'secondary on-call'];
   var aEls = $$('#hd-alarm [data-st]'), aBeats = $$('#hd-alarm .beats li');
   Hendese.pinScene({
-    el: '#hd-alarm', chap: '02 · Alarm akışı',
+    el: '#hd-alarm', chap: '02 · Alert flow',
     render: function (p, api) {
       var d = api.seg(p, .05, .9), n = Math.min(3, Math.floor(d * 4));
       api.set('al', api.seg(d, 0, .25));
       aEls.forEach(function (el) { api.cls(el, 'on', +el.getAttribute('data-st') <= n); });
       aBeats.forEach(function (li, i) { api.cls(li, 'on', i === n); });
-      return { hud: { stage: STAGE[n], source: 'odeme-api · 5xx', owner: OWNER[n], took: Math.round(d * 9) + ' dk', pct: Math.round(d * 100) + '%', fill: d } };
+      return { hud: { stage: STAGE[n], source: 'payment-api · 5xx', owner: OWNER[n], took: Math.round(d * 9) + ' min', pct: Math.round(d * 100) + '%', fill: d } };
     }
   });
-  /* 03 · gece yedeği */
-  var STEP = ['Anlık görüntü', 'Sıkıştırma', 'Uzak kopya', 'Doğrulama'], TOOK = ['2 dk', '20 dk', '27 dk', '31 dk'];
+  /* 03 · nightly backup */
+  var STEP = ['Snapshot', 'Compression', 'Remote copy', 'Verification'], TOOK = ['2 min', '20 min', '27 min', '31 min'];
   var bEls = $$('#hd-backup [data-st]');
   Hendese.stickyScene({
-    el: '#hd-backup', chap: '03 · Gece yedeği',
+    el: '#hd-backup', chap: '03 · Nightly backup',
     render: function (i, t, api) {
       var f = (i + t) / 4;
       bEls.forEach(function (el) { api.cls(el, 'on', +el.getAttribute('data-st') <= i); });
-      return { hud: { stage: STEP[i], source: 'siparis-db', owner: 'yedek işi', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
+      return { hud: { stage: STEP[i], source: 'orders-db', owner: 'backup job', took: TOOK[i], pct: Math.round(f * 100) + '%', fill: f } };
     }
   });
 })();

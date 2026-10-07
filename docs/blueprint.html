@@ -1,67 +1,67 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blueprint ve tarifler · Hendese</title>
+<title>Blueprint and recipes · Hendese</title>
 <script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
 <link rel="stylesheet" href="../dist/hendese.css">
 <link rel="stylesheet" href="assets/docs.css">
 <style>
-/* Sayfaya özel tarif stilleri: paketin parçası değildir, her tarifin "stil" bloğunda aynen görünür. */
-/* yalnız bu sayfa: çizgi tablosundaki örnek çizgiler */
+/* Page-specific recipe styles: not part of the package; each one appears verbatim in its recipe's "style" block. */
+/* this page only: sample lines in the line table */
 .r-sw{display:block;width:120px;height:16px;fill:none;overflow:visible}
-/* ortak: ortalı etiket, mürekkep renkleri; anahtar etiketi .stamp-k paket sınıfı */
+/* shared: centered label, ink colors; the key label is the .stamp-k package class */
 .r-c{text-align:center}
 .r-ink{color:var(--ink)}
 .r-mute{color:var(--ink-3)}
 .r-badt{color:var(--bad)}
-/* damga: çift çizgi + köşe çentikleri SVG'de, ad HTML'de */
+/* stamp: double rule + corner ticks in SVG, name in HTML */
 .r-stamp{display:grid;gap:calc(6 * var(--u));text-align:center}
 .r-stamp-name{font:600 max(14px,calc(24 * var(--u)))/1.2 var(--font-mono);color:var(--ink);white-space:nowrap}
 .r-alt{border-style:dashed}
-/* modül metinleri SVG içinde: çizimle birlikte ölçeklenir */
+/* module text lives inside the SVG: it scales with the drawing */
 .r-mn{font:600 11px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-mt{font:600 11.5px var(--font-mono);letter-spacing:.06em;fill:var(--ink)}
 .r-ms{font:500 11px var(--font-mono);fill:var(--ink-3)}
 .r-ms.r-on{fill:var(--ok)}
-/* ayrıcalıklı anahtar: açık = kırmızı ray, düğme sağda; kapalı için .r-knob'u 24 birim sola alın */
+/* privileged switch: on = red track, knob on the right; for off, move .r-knob 24 units left */
 .r-sw-on{fill:var(--bad-soft);stroke:var(--bad);stroke-width:1.5}
 .r-knob{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
 .r-wire{stroke:var(--bad);stroke-width:1.5}
-/* kumpas: hücreler çizim birimiyle (26 birim) ölçülür; sabit çene ^, kayan çene $ */
+/* caliper: cells are measured in drawing units (26 units); fixed jaw ^, sliding jaw $ */
 .r-anc{font:600 18px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-gauge{display:flex}
-/* hücreler: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark paket sınıfı */
+/* cells: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark are package classes */
 .r-seg>code{display:block;margin-top:calc(22 * var(--u));padding:calc(3 * var(--u)) 0 0;border:0;border-top:calc(2 * var(--u)) solid currentColor;border-radius:0;background:none;font:600 max(11px,calc(14 * var(--u)))/1.3 var(--font-mono);color:var(--draw);white-space:nowrap}
 .r-seg.ok>code{color:var(--ok)}.r-seg.bad>code{color:var(--bad)}
 .r-verdict{color:var(--ink);font-size:max(11px,calc(14 * var(--u)))}
 .r-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
 .r-legend .cells>i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}
-/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir; .needle (istenen) ve .needle.is-actual (gerçek) paket sınıfı, merkez --ox/--oy (view-box koordinatı) */
+/* dial: needles are drawn upright and angled with a single rotate; .needle (desired) and .needle.is-actual (actual) are package classes, center --ox/--oy (view-box coordinates) */
 .r-gap{stroke:var(--warn);stroke-width:6}
 .r-sweep{stroke:var(--draw);stroke-width:2;transform-box:view-box;transform-origin:60px 300px;transform:rotate(135deg)}
-/* lejant çizgileri de ibre: .needle (istenen), .needle.is-actual (gerçek) */
-/* hat: kalın ray; makasın kullanılmayan kolu hayalet; filtre kolu kırmızı */
+/* legend lines are needles too: .needle (desired), .needle.is-actual (actual) */
+/* track: heavy rail; the switch's unused leg is a ghost; the filter arm is red */
 .r-tr{stroke:var(--draw);stroke-width:2.5}
 .r-arm{stroke:var(--bad);stroke-width:5;stroke-linecap:round}
-/* hat etiketi: .tag, .tag.is-ghost paket sınıfı */
-/* açılır kapak: menteşe view-box koordinatında; durum değişince yalnızca rotate değişir */
+/* track tag: .tag, .tag.is-ghost are package classes */
+/* bascule leaf: hinge in view-box coordinates; a state change only changes the rotate */
 .r-deck{stroke:var(--draw);stroke-width:2.5}
 .r-hinge{fill:var(--scene-bg);stroke:var(--draw);stroke-width:1.5}
 .r-leaf{transform-box:view-box;transform-origin:420px 194px}
 .r-leaf.r-up{transform:rotate(60deg);stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
 .r-n{display:block;font:600 max(14px,calc(20 * var(--u)))/1.2 var(--font-mono);color:var(--draw)}
-/* plaka: evenodd ile pencere kesilir; renk --c ile */
+/* plate: the window is cut with evenodd; color via --c */
 .r-st .r-pl{fill:color-mix(in srgb,var(--c) 16%,transparent);fill-rule:evenodd;stroke:var(--c);stroke-width:1.5}
 .r-st text{font:600 14px var(--font-mono);fill:var(--c);text-anchor:middle}
-/* pano: lamba numarası = alttaki listenin satırı; yanan lamba ve fazı kırmızı */
+/* panel: lamp number = row of the list below; the lit lamp and its phase are red */
 .r-z{color:var(--draw);letter-spacing:.06em;text-transform:uppercase}
 .r-seg2{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
 .r-seg2[data-state="on"]{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
 .r-ld{stroke:var(--pencil);stroke-width:1}
 .r-ld[data-state="on"]{stroke:var(--bad);stroke-width:2}
-/* lamba ve liste: .lamp, .lamps, data-state="on" paket sınıfı */
+/* lamp and list: .lamp, .lamps, data-state="on" are package classes */
 </style>
 </head>
 <body>
@@ -83,47 +83,47 @@
   </defs>
 </svg>
 <div class="rulers" aria-hidden="true"></div>
-<a class="skip" href="#content">İçeriğe geç</a>
+<a class="skip" href="#content">Skip to content</a>
 <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
 
 <header class="topbar">
-  <button class="icon-btn" id="nav-open" type="button" aria-label="Bölümleri aç" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
   <a class="brand" href="#top">Hendese</a>
   <span class="spacer"></span>
   <span class="cur" id="topbar-cur" aria-live="polite"></span>
-  <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
 </header>
 
 <div class="shell">
-<aside class="rail" id="rail" aria-label="Bölümler">
+<aside class="rail" id="rail" aria-label="Sections">
   <div class="rail-head">
-    <a class="brand" href="index.html">Hendese<small>Tasarım dili · dokümantasyon</small></a>
-    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Bölümleri kapat"><svg><use href="#i-x"/></svg></button>
+    <a class="brand" href="index.html">Hendese<small>Design language · docs</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
   </div>
-  <nav class="rail-nav" aria-label="İçindekiler">
-    <div class="nav-group">Sayfalar</div>
-    <a class="nav-page" href="index.html">Başlangıç</a>
-    <a class="nav-page" href="tokens.html">Token'lar</a>
-    <a class="nav-page" href="components.html">Bileşenler</a>
-    <a class="nav-page" href="blueprint.html" aria-current="page">Blueprint ve tarifler</a>
-    <a class="nav-page" href="motion.html">Hareket motoru</a>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Pages</div>
+    <a class="nav-page" href="index.html">Getting started</a>
+    <a class="nav-page" href="tokens.html">Tokens</a>
+    <a class="nav-page" href="components.html">Components</a>
+    <a class="nav-page" href="blueprint.html" aria-current="page">Blueprint and recipes</a>
+    <a class="nav-page" href="motion.html">Motion engine</a>
     <a class="nav-page" href="hoca.html">Hoca</a>
-    <a class="nav-page" href="../demos/index.html">Parçalar (tek tek)</a>
-    <div class="nav-group">Bu sayfa</div>
-    <a class="nav-link" href="#b1"><span class="num">01</span><span>Dil kuralları</span></a>
-    <a class="nav-link" href="#b2"><span class="num">02</span><span>Pafta</span></a>
-    <a class="nav-link" href="#b3"><span class="num">03</span><span>Çizim birimleri</span></a>
-    <a class="nav-link" href="#b4"><span class="num">04</span><span>Antet ve damga</span></a>
-    <a class="nav-link" href="#b5"><span class="num">05</span><span>İstasyon gezgini</span></a>
-    <a class="nav-link" href="#b6"><span class="num">06</span><span>İzometrik kutu</span></a>
-    <a class="nav-link" href="#b7"><span class="num">07</span><span>Ölçü aletleri</span></a>
-    <a class="nav-link" href="#b8"><span class="num">08</span><span>Hat ve makas</span></a>
-    <a class="nav-link" href="#b9"><span class="num">09</span><span>Arıza lambası panosu</span></a>
+    <a class="nav-page" href="../demos/index.html">Parts, one by one</a>
+    <div class="nav-group">On this page</div>
+    <a class="nav-link" href="#b1"><span class="num">01</span><span>Language rules</span></a>
+    <a class="nav-link" href="#b2"><span class="num">02</span><span>Sheet</span></a>
+    <a class="nav-link" href="#b3"><span class="num">03</span><span>Drawing units</span></a>
+    <a class="nav-link" href="#b4"><span class="num">04</span><span>Title block and stamp</span></a>
+    <a class="nav-link" href="#b5"><span class="num">05</span><span>Station explorer</span></a>
+    <a class="nav-link" href="#b6"><span class="num">06</span><span>Isometric box</span></a>
+    <a class="nav-link" href="#b7"><span class="num">07</span><span>Measuring tools</span></a>
+    <a class="nav-link" href="#b8"><span class="num">08</span><span>Track and switch</span></a>
+    <a class="nav-link" href="#b9"><span class="num">09</span><span>Fault lamp panel</span></a>
   </nav>
   <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
   <div class="rail-foot">
-    <span class="pos" id="rail-pos">Giriş</span>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="Temayı değiştir"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
   </div>
 </aside>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
@@ -131,40 +131,40 @@
 <main id="content">
 <div class="canvas">
 
-<section class="hero" id="top" data-section data-title="Giriş">
+<section class="hero" id="top" data-section data-title="Intro">
   <div class="hero-copy">
     <p class="hero-label">Hendese · <span lang="en">Blueprint</span></p>
-    <h1>Blueprint ve tarifler<em>Çizim dilinin kuralları ve kopyalanabilir çizim tarifleri.</em></h1>
-    <p class="intro">Her tarif üç parçadır: ne zaman kullanılacağı, canlı çizim ve kopyalanabilir işaretleme. Çizimler paketin sınıflarıyla kurulur; paketin karşılamadığı birkaç ayrıntı <code>.r-</code> önekli küçük bir stil bloğunda durur. Birden çok sayfada gereken tarifler (<code>.tag</code>, <code>.cells</code>, <code>.needle</code>, <code>.lamp</code>, çizim içinde <code>.stamp-k</code>) paket sınıfıdır; stil bloğunda yalnız adları geçer.</p>
+    <h1>Blueprint and recipes<em>The rules of the drawing language, and drawing recipes you can copy.</em></h1>
+    <p class="intro">Every recipe has three parts: when to use it, a live drawing and markup you can copy. Drawings are built from the package classes; the few details the package does not cover live in a small style block with the <code>.r-</code> prefix. Recipes needed on more than one page (<code>.tag</code>, <code>.cells</code>, <code>.needle</code>, <code>.lamp</code>, and <code>.stamp-k</code> inside a drawing) are package classes; the style block only names them.</p>
   </div>
 </section>
 
-<article class="chapter" id="b1" data-section data-title="Dil kuralları">
-  <header class="ch-head"><p class="ch-num">01</p><h2>Dil kuralları</h2><p class="lead">Tek çizgi ailesi, mono etiketler ve iki çizgi anlamı: düz gerçektir, kesikli örnek ya da sınırdır.</p></header>
-<p>Hendese çizimleri teknik resim gibi okunur. Her çizgi, her etiket bir şey söyler; süs yoktur. Kalınlık ailesi sabittir:</p>
+<article class="chapter" id="b1" data-section data-title="Language rules">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Language rules</h2><p class="lead">One line family, mono labels and two line meanings: solid is real, dashed is a sample or a boundary.</p></header>
+<p>Hendese drawings read like technical drawings. Every line and every label says something; there is no decoration. The weight family is fixed:</p>
 <div class="tbl"><table>
-  <thead><tr><th>Sınıf</th><th>Ad</th><th>Örnek</th><th>Ne zaman</th></tr></thead>
+  <thead><tr><th>Class</th><th>Name</th><th>Example</th><th>When</th></tr></thead>
   <tbody>
-  <tr><td><code>.ln-pencil</code></td><td>kılavuz</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-pencil" d="M0 8H120"/></svg></td><td>Izgara, taban çizgisi, ölçü uzatma çizgisi, ikincil leader.</td></tr>
-  <tr><td><code>.ln-draw</code></td><td>çizim</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw" d="M0 8H120"/></svg></td><td>Kutu, yüz, hat: çizimin gövdesi. Varsayılan budur.</td></tr>
-  <tr><td><code>.ln-strong</code></td><td>vurgu</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-strong" d="M0 8H120"/></svg></td><td>Bir çizimde tek bir şeyi öne çıkarır: şimdiki an, seçili hat.</td></tr>
-  <tr><td><code>.dim</code></td><td>ölçü</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="dim" d="M2 8H118M2 2V14M118 2V14M2 8l8-3v6zM118 8l-8-3v6z"/></svg></td><td>Ölçü çizgisi ve ok uçları; değer yanında <code>.dim-t</code> ile yazılır.</td></tr>
-  <tr><td><code>.ln-draw .ln-dash</code></td><td>örnek</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw ln-dash" d="M0 8H120"/></svg></td><td>Kalıp, örnek değer ya da sınır: “böyle bir şey olabilir”.</td></tr>
-  <tr><td><code>.ln-ghost</code></td><td>hayalet</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-ghost" d="M0 8H120"/></svg></td><td>Henüz olmayan ya da artık kullanılmayan parça; önceki/sonraki konum.</td></tr>
-  <tr><td><code>.ln-block</code></td><td>engellenen yol</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-block" d="M0 8H104"/><path class="ln-draw ln-bad" d="M106 2V14M112 3l8 10M120 3l-8 10"/></svg></td><td>Denenen ama reddedilen yol; daima bir durdurma işaretiyle birlikte.</td></tr>
-  <tr><td><code>.ln-draw .ln-ok</code></td><td>durum rengi</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw ln-ok" d="M0 8H120"/></svg></td><td><code>.ln-ok</code> / <code>.ln-warn</code> / <code>.ln-bad</code> yalnızca rengi değiştirir; kalınlık ailesiyle birlikte kullanılır.</td></tr>
+  <tr><td><code>.ln-pencil</code></td><td>guide</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-pencil" d="M0 8H120"/></svg></td><td>Grid, baseline, dimension extension line, secondary leader.</td></tr>
+  <tr><td><code>.ln-draw</code></td><td>drawing</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw" d="M0 8H120"/></svg></td><td>Box, face, track: the body of the drawing. This is the default.</td></tr>
+  <tr><td><code>.ln-strong</code></td><td>emphasis</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-strong" d="M0 8H120"/></svg></td><td>Highlights one thing in a drawing: the current moment, the selected track.</td></tr>
+  <tr><td><code>.dim</code></td><td>dimension</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="dim" d="M2 8H118M2 2V14M118 2V14M2 8l8-3v6zM118 8l-8-3v6z"/></svg></td><td>Dimension line and arrowheads; the value goes next to it with <code>.dim-t</code>.</td></tr>
+  <tr><td><code>.ln-draw .ln-dash</code></td><td>sample</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw ln-dash" d="M0 8H120"/></svg></td><td>Pattern, sample value or boundary: “something like this may exist”.</td></tr>
+  <tr><td><code>.ln-ghost</code></td><td>ghost</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-ghost" d="M0 8H120"/></svg></td><td>A part that does not exist yet or is no longer used; a previous/next position.</td></tr>
+  <tr><td><code>.ln-block</code></td><td>blocked path</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-block" d="M0 8H104"/><path class="ln-draw ln-bad" d="M106 2V14M112 3l8 10M120 3l-8 10"/></svg></td><td>A path that was tried and rejected; always paired with a stop mark.</td></tr>
+  <tr><td><code>.ln-draw .ln-ok</code></td><td>status color</td><td><svg class="r-sw" viewBox="0 0 120 16" aria-hidden="true"><path class="ln-draw ln-ok" d="M0 8H120"/></svg></td><td><code>.ln-ok</code> / <code>.ln-warn</code> / <code>.ln-bad</code> only change the color; use them with the weight family.</td></tr>
   </tbody>
 </table></div>
-<h3>Etiket kuralları</h3>
+<h3>Label rules</h3>
 <ul>
-  <li>Etiketler SVG metni değil, çizim birimiyle konumlanan HTML'dir (<code>.dl</code>): seçilebilir, çevrilebilir, ölçekle birlikte büyür.</li>
-  <li>Başlık satırı mono, büyük harf ve açık harf aralıklıdır (küçük-büyük harf etkisi); değer satırı düz mono yazılır.</li>
-  <li>Durum yalnızca <code>.state</code> etiketiyle ve <code>ok / warn / bad</code> renkleriyle anlatılır; renk tek başına anlam taşımaz, yanında hep bir kelime vardır.</li>
-  <li>Gölge, gradyan ve parıltı yoktur. Derinlik, izometrik yüzler ve <code>.fill-scene</code> zemin ile verilir.</li>
-  <li>SVG her zaman <code>aria-hidden="true"</code>; anlam figür yazısında, adım listesinde ya da çevredeki metinde de bulunur.</li>
+  <li>Labels are HTML positioned in drawing units, not SVG text (<code>.dl</code>): selectable, translatable, and they grow with the scale.</li>
+  <li>The heading line is mono, uppercase and widely tracked (a small-caps effect); the value line is plain mono.</li>
+  <li>Status is shown only with the <code>.state</code> label and the <code>ok / warn / bad</code> colors; color never carries meaning alone, there is always a word next to it.</li>
+  <li>No shadows, gradients or glow. Depth comes from isometric faces and the <code>.fill-scene</code> fill.</li>
+  <li>SVG is always <code>aria-hidden="true"</code>; the meaning also lives in the caption, the step list or the surrounding text.</li>
 </ul>
 <div class="demo">
-  <span class="demo-label">Örnek · etiket ve çizgi anlamı</span>
+  <span class="demo-label">Example · labels and line meaning</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:800;--ah:230">
   <svg viewBox="0 0 800 230" aria-hidden="true">
@@ -174,15 +174,15 @@
     <path class="ln-draw ln-dash" d="M280 105H512"/>
     <path class="ln-draw" d="M512 105l-9-4M512 105l-9 4"/>
   </svg>
-  <p class="dl" style="--x:40;--y:20;--w:240"><span class="stamp-k">gerçek · düz çizgi</span></p>
-  <p class="dl" style="--x:520;--y:20;--w:240"><span class="stamp-k">örnek · kesikli çizgi</span></p>
-  <p class="dl r-ink" style="--x:54;--y:72;--w:216"><span class="stamp-k">Servis</span>web-api<br><span class="r-mute">prod-3f9c2a1b</span></p>
-  <p class="dl" style="--x:534;--y:72;--w:216"><span class="stamp-k">Kalıp</span>&lt;ad&gt;-dev<br><span class="r-mute">yalnızca tetiklenirse oluşur</span></p>
-  <p class="dl r-c" style="--x:300;--y:80;--w:200">kalıp eşlemesi</p>
-  <p class="dl" style="--x:40;--y:192;--w:720"><span class="state s-ok">Hazır</span> <span class="state s-warn">Bekliyor</span> <span class="state s-bad">Reddedildi</span> <span class="state">Taslak</span></p>
+  <p class="dl" style="--x:40;--y:20;--w:240"><span class="stamp-k">real · solid line</span></p>
+  <p class="dl" style="--x:520;--y:20;--w:240"><span class="stamp-k">sample · dashed line</span></p>
+  <p class="dl r-ink" style="--x:54;--y:72;--w:216"><span class="stamp-k">Service</span>web-api<br><span class="r-mute">prod-3f9c2a1b</span></p>
+  <p class="dl" style="--x:534;--y:72;--w:216"><span class="stamp-k">Pattern</span>&lt;name&gt;-dev<br><span class="r-mute">only created if triggered</span></p>
+  <p class="dl r-c" style="--x:300;--y:80;--w:200">pattern match</p>
+  <p class="dl" style="--x:40;--y:192;--w:720"><span class="state s-ok">Ready</span> <span class="state s-warn">Pending</span> <span class="state s-bad">Rejected</span> <span class="state">Draft</span></p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:230"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:230"&gt;
   &lt;svg viewBox="0 0 800 230" aria-hidden="true"&gt;
     &lt;path class="ln-pencil" d="M0 170H800"/&gt;
     &lt;rect class="ln-draw fill-paper" x="40" y="60" width="240" height="90"/&gt;
@@ -190,39 +190,39 @@
     &lt;path class="ln-draw ln-dash" d="M280 105H512"/&gt;
     &lt;path class="ln-draw" d="M512 105l-9-4M512 105l-9 4"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl" style="--x:40;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;gerçek · düz çizgi&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl" style="--x:520;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;örnek · kesikli çizgi&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:54;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Servis&lt;/span&gt;web-api&lt;br&gt;&lt;span class="r-mute"&gt;prod-3f9c2a1b&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl" style="--x:534;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Kalıp&lt;/span&gt;&amp;lt;ad&amp;gt;-dev&lt;br&gt;&lt;span class="r-mute"&gt;yalnızca tetiklenirse oluşur&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:300;--y:80;--w:200"&gt;kalıp eşlemesi&lt;/p&gt;
-  &lt;p class="dl" style="--x:40;--y:192;--w:720"&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt; &lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="state"&gt;Taslak&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;real · solid line&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:520;--y:20;--w:240"&gt;&lt;span class="stamp-k"&gt;sample · dashed line&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:54;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Service&lt;/span&gt;web-api&lt;br&gt;&lt;span class="r-mute"&gt;prod-3f9c2a1b&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:534;--y:72;--w:216"&gt;&lt;span class="stamp-k"&gt;Pattern&lt;/span&gt;&amp;lt;name&amp;gt;-dev&lt;br&gt;&lt;span class="r-mute"&gt;only created if triggered&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:300;--y:80;--w:200"&gt;pattern match&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:192;--w:720"&gt;&lt;span class="state s-ok"&gt;Ready&lt;/span&gt; &lt;span class="state s-warn"&gt;Pending&lt;/span&gt; &lt;span class="state s-bad"&gt;Rejected&lt;/span&gt; &lt;span class="state"&gt;Draft&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* ortak: ortalı etiket, mürekkep renkleri; anahtar etiketi .stamp-k paket sınıfı */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* shared: centered label, ink colors; the key label is the .stamp-k package class */
 .r-c{text-align:center}
 .r-ink{color:var(--ink)}
 .r-mute{color:var(--ink-3)}
 .r-badt{color:var(--bad)}</code></pre></figure>
 </div>
-<aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Statik son durum kuralı</span><div class="co-body">Varsayılan işaretleme her zaman son durumu çizer: animasyon hiç çalışmasa da (hareket azaltma, yazdırma, JavaScript yok) resim eksiksiz ve doğrudur. Hareket yalnızca bu son duruma giden yolu oynatır; ara durumlar sınıf ya da CSS değişkeniyle eklenir. Bu sayfadaki tarifler bu yüzden yalnızca son durumu gösterir; hareketi <a href="motion.html">Hareket motoru</a> sayfası anlatır.</div></aside>
+<aside class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Static finished-state rule</span><div class="co-body">The default markup always draws the finished state: even if the animation never runs (reduced motion, print, no JavaScript), the picture is complete and correct. Motion only plays the path to that finished state; intermediate states are added with a class or a CSS variable. That is why the recipes on this page show only the finished state; the <a href="motion.html">Motion engine</a> page covers motion.</div></aside>
 </article>
 
-<article class="chapter" id="b2" data-section data-title="Pafta">
-  <header class="ch-head"><p class="ch-num">02</p><h2>Pafta</h2><p class="lead">Sahne çerçevesi: başlık, yan sütunda adımlar, ortada çizim, altta figür yazısı. Sabit (pin edilmeyen) figürler için daha hafif fig-sheet.</p></header>
-<p><code>.frame</code> dört alanlı bir ızgaradır: <code>.f-head</code> (çip ve başlık), <code>.f-side</code> (adım listesi <code>.beats</code> ya da düzyazı), <code>.f-map</code> (çizim) ve <code>.f-foot</code> (figür yazısı, gezgin paneli). Zemin ve kenar <code>.frame-bg</code> katmanından gelir. 1100 pikselin altında yan sütun çizimin altına iner.</p>
+<article class="chapter" id="b2" data-section data-title="Sheet">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Sheet</h2><p class="lead">The scene frame: title, steps in the side column, drawing in the middle, caption below. Static (unpinned) figures use the lighter fig-sheet.</p></header>
+<p><code>.frame</code> is a four-area grid: <code>.f-head</code> (chip and title), <code>.f-side</code> (the <code>.beats</code> step list or prose), <code>.f-map</code> (drawing) and <code>.f-foot</code> (caption, explorer panel). The fill and border come from the <code>.frame-bg</code> layer. Below 1100 pixels the side column drops below the drawing.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · pafta (frame)</span>
+  <span class="demo-label">Recipe · sheet (frame)</span>
   <div class="demo-view">
 <div class="frame">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
-    <p class="chip">02 · Şekil 1</p>
-    <p class="fig-cap">Bir değişikliğin üç durağı</p>
+    <p class="chip">02 · Figure 1</p>
+    <p class="fig-cap">Three stops of a change</p>
   </header>
   <div class="f-side">
     <ol class="beats">
-      <li><b>1 · Kaynak</b>Geliştirici ana dala push eder; tetik filtresi dalı kontrol eder.</li>
-      <li><b>2 · Derleme</b>Geçici bir konteyner imajı üretir ve <code>prod-3f9c2a1b</code> etiketiyle gönderir.</li>
-      <li><b>3 · Kayıt</b>İmaj, <code>eu-west-1</code> bölgesindeki depoda bekler; dağıtım ayrı bir adımdır.</li>
+      <li><b>1 · Source</b>A developer pushes to the main branch; the trigger filter checks the branch.</li>
+      <li><b>2 · Build</b>A temporary container builds the image and pushes it as <code>prod-3f9c2a1b</code>.</li>
+      <li><b>3 · Registry</b>The image waits in the registry in the <code>eu-west-1</code> region; deployment is a separate step.</li>
     </ol>
   </div>
   <div class="f-map">
@@ -230,33 +230,33 @@
       <svg viewBox="0 0 600 250" aria-hidden="true">
         <path class="ln-pencil" d="M0 220H600"/>
         <path class="dim" d="M20 104V52M580 104V52M20 60H580M20 60l8-3v6zM580 60l-8-3v6z"/>
-        <text class="dim-t" x="300" y="50" text-anchor="middle">uçtan uca ≈ 4 dk</text>
+        <text class="dim-t" x="300" y="50" text-anchor="middle">end to end ≈ 4 min</text>
         <rect class="ln-draw fill-paper" x="20" y="110" width="160" height="90"/>
         <rect class="ln-draw fill-paper" x="220" y="110" width="160" height="90"/>
         <rect class="ln-draw fill-paper" x="420" y="110" width="160" height="90"/>
         <path class="ln-draw" d="M180 155H214M214 155l-8-4M214 155l-8 4M380 155H414M414 155l-8-4M414 155l-8 4"/>
       </svg>
-      <p class="dl r-ink" style="--x:30;--y:122;--w:140"><span class="stamp-k">1 · Kaynak</span>ornek-servis</p>
-      <p class="dl r-ink" style="--x:230;--y:122;--w:140"><span class="stamp-k">2 · Derleme</span>prod-3f9c2a1b</p>
-      <p class="dl r-ink" style="--x:430;--y:122;--w:140"><span class="stamp-k">3 · Kayıt</span>eu-west-1</p>
+      <p class="dl r-ink" style="--x:30;--y:122;--w:140"><span class="stamp-k">1 · Source</span>sample-service</p>
+      <p class="dl r-ink" style="--x:230;--y:122;--w:140"><span class="stamp-k">2 · Build</span>prod-3f9c2a1b</p>
+      <p class="dl r-ink" style="--x:430;--y:122;--w:140"><span class="stamp-k">3 · Registry</span>eu-west-1</p>
     </div>
   </div>
   <div class="f-foot">
-    <p class="figcap"><b>Şekil 1.</b> Kaynak, derleme ve kayıt soldan sağa; üstteki ölçü çizgisi toplam süreyi gösterir. Süre gözlenen bir değerdir, garanti değildir.</p>
+    <p class="figcap"><b>Figure 1.</b> Source, build and registry from left to right; the dimension line above shows the total time. The time is an observed value, not a guarantee.</p>
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="frame"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="frame"&gt;
   &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;header class="f-head"&gt;
-    &lt;p class="chip"&gt;02 · Şekil 1&lt;/p&gt;
-    &lt;p class="fig-cap"&gt;Bir değişikliğin üç durağı&lt;/p&gt;
+    &lt;p class="chip"&gt;02 · Figure 1&lt;/p&gt;
+    &lt;p class="fig-cap"&gt;Three stops of a change&lt;/p&gt;
   &lt;/header&gt;
   &lt;div class="f-side"&gt;
     &lt;ol class="beats"&gt;
-      &lt;li&gt;&lt;b&gt;1 · Kaynak&lt;/b&gt;Geliştirici ana dala push eder; tetik filtresi dalı kontrol eder.&lt;/li&gt;
-      &lt;li&gt;&lt;b&gt;2 · Derleme&lt;/b&gt;Geçici bir konteyner imajı üretir ve &lt;code&gt;prod-3f9c2a1b&lt;/code&gt; etiketiyle gönderir.&lt;/li&gt;
-      &lt;li&gt;&lt;b&gt;3 · Kayıt&lt;/b&gt;İmaj, &lt;code&gt;eu-west-1&lt;/code&gt; bölgesindeki depoda bekler; dağıtım ayrı bir adımdır.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;1 · Source&lt;/b&gt;A developer pushes to the main branch; the trigger filter checks the branch.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;2 · Build&lt;/b&gt;A temporary container builds the image and pushes it as &lt;code&gt;prod-3f9c2a1b&lt;/code&gt;.&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;3 · Registry&lt;/b&gt;The image waits in the registry in the &lt;code&gt;eu-west-1&lt;/code&gt; region; deployment is a separate step.&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/div&gt;
   &lt;div class="f-map"&gt;
@@ -264,30 +264,30 @@
       &lt;svg viewBox="0 0 600 250" aria-hidden="true"&gt;
         &lt;path class="ln-pencil" d="M0 220H600"/&gt;
         &lt;path class="dim" d="M20 104V52M580 104V52M20 60H580M20 60l8-3v6zM580 60l-8-3v6z"/&gt;
-        &lt;text class="dim-t" x="300" y="50" text-anchor="middle"&gt;uçtan uca ≈ 4 dk&lt;/text&gt;
+        &lt;text class="dim-t" x="300" y="50" text-anchor="middle"&gt;end to end ≈ 4 min&lt;/text&gt;
         &lt;rect class="ln-draw fill-paper" x="20" y="110" width="160" height="90"/&gt;
         &lt;rect class="ln-draw fill-paper" x="220" y="110" width="160" height="90"/&gt;
         &lt;rect class="ln-draw fill-paper" x="420" y="110" width="160" height="90"/&gt;
         &lt;path class="ln-draw" d="M180 155H214M214 155l-8-4M214 155l-8 4M380 155H414M414 155l-8-4M414 155l-8 4"/&gt;
       &lt;/svg&gt;
-      &lt;p class="dl r-ink" style="--x:30;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;1 · Kaynak&lt;/span&gt;ornek-servis&lt;/p&gt;
-      &lt;p class="dl r-ink" style="--x:230;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;2 · Derleme&lt;/span&gt;prod-3f9c2a1b&lt;/p&gt;
-      &lt;p class="dl r-ink" style="--x:430;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;3 · Kayıt&lt;/span&gt;eu-west-1&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:30;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;1 · Source&lt;/span&gt;sample-service&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:230;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;2 · Build&lt;/span&gt;prod-3f9c2a1b&lt;/p&gt;
+      &lt;p class="dl r-ink" style="--x:430;--y:122;--w:140"&gt;&lt;span class="stamp-k"&gt;3 · Registry&lt;/span&gt;eu-west-1&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="f-foot"&gt;
-    &lt;p class="figcap"&gt;&lt;b&gt;Şekil 1.&lt;/b&gt; Kaynak, derleme ve kayıt soldan sağa; üstteki ölçü çizgisi toplam süreyi gösterir. Süre gözlenen bir değerdir, garanti değildir.&lt;/p&gt;
+    &lt;p class="figcap"&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Source, build and registry from left to right; the dimension line above shows the total time. The time is an observed value, not a guarantee.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
-<p>Yan sütuna ihtiyaç duymayan, akış içinde duran bir şekil için <code>.fig-sheet</code> yeterlidir: aynı zemin, tek sütun.</p>
+<p>For a figure that sits in the flow and needs no side column, <code>.fig-sheet</code> is enough: same fill, one column.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · figür paftası (<span lang="en">fig-sheet</span>)</span>
+  <span class="demo-label">Recipe · figure sheet (<span lang="en">fig-sheet</span>)</span>
   <div class="demo-view">
 <figure class="fig-sheet">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">02 · Şekil 2</p>
-  <p class="fig-cap">Zaman çizelgesi</p>
+  <p class="chip">02 · Figure 2</p>
+  <p class="fig-cap">Timeline</p>
   <div class="drawing" style="--aw:900;--ah:130">
     <svg viewBox="0 0 900 130" aria-hidden="true">
       <path class="ln-draw" d="M40 80H560M40 70V90M300 70V90M560 70V90"/>
@@ -296,18 +296,18 @@
       <path class="dim" d="M560 104V116M840 104V116M560 110H840M560 110l8-3v6zM840 110l-8-3v6z"/>
     </svg>
     <p class="dl r-c r-ink" style="--x:-30;--y:36;--w:140">t = 0 · push</p>
-    <p class="dl r-c r-ink" style="--x:230;--y:36;--w:140">+50 s · imaj</p>
-    <p class="dl r-c r-ink" style="--x:490;--y:36;--w:140">+2 dk · tarama</p>
-    <p class="dl r-c r-ink" style="--x:780;--y:36;--w:120">+4 dk · canlı</p>
-    <p class="dl r-c" style="--x:600;--y:84;--w:200">gözlenen aralık</p>
+    <p class="dl r-c r-ink" style="--x:230;--y:36;--w:140">+50 s · image</p>
+    <p class="dl r-c r-ink" style="--x:490;--y:36;--w:140">+2 min · scan</p>
+    <p class="dl r-c r-ink" style="--x:780;--y:36;--w:120">+4 min · live</p>
+    <p class="dl r-c" style="--x:600;--y:84;--w:200">observed range</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 2.</b> Düz bölüm ölçülen süre, kesikli bölüm tarama aralığına bağlı değişken kısım.</figcaption>
+  <figcaption class="figcap"><b>Figure 2.</b> The solid part is measured time; the dashed part varies with the scan interval.</figcaption>
 </figure>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet"&gt;
   &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
-  &lt;p class="chip"&gt;02 · Şekil 2&lt;/p&gt;
-  &lt;p class="fig-cap"&gt;Zaman çizelgesi&lt;/p&gt;
+  &lt;p class="chip"&gt;02 · Figure 2&lt;/p&gt;
+  &lt;p class="fig-cap"&gt;Timeline&lt;/p&gt;
   &lt;div class="drawing" style="--aw:900;--ah:130"&gt;
     &lt;svg viewBox="0 0 900 130" aria-hidden="true"&gt;
       &lt;path class="ln-draw" d="M40 80H560M40 70V90M300 70V90M560 70V90"/&gt;
@@ -316,22 +316,22 @@
       &lt;path class="dim" d="M560 104V116M840 104V116M560 110H840M560 110l8-3v6zM840 110l-8-3v6z"/&gt;
     &lt;/svg&gt;
     &lt;p class="dl r-c r-ink" style="--x:-30;--y:36;--w:140"&gt;t = 0 · push&lt;/p&gt;
-    &lt;p class="dl r-c r-ink" style="--x:230;--y:36;--w:140"&gt;+50 s · imaj&lt;/p&gt;
-    &lt;p class="dl r-c r-ink" style="--x:490;--y:36;--w:140"&gt;+2 dk · tarama&lt;/p&gt;
-    &lt;p class="dl r-c r-ink" style="--x:780;--y:36;--w:120"&gt;+4 dk · canlı&lt;/p&gt;
-    &lt;p class="dl r-c" style="--x:600;--y:84;--w:200"&gt;gözlenen aralık&lt;/p&gt;
+    &lt;p class="dl r-c r-ink" style="--x:230;--y:36;--w:140"&gt;+50 s · image&lt;/p&gt;
+    &lt;p class="dl r-c r-ink" style="--x:490;--y:36;--w:140"&gt;+2 min · scan&lt;/p&gt;
+    &lt;p class="dl r-c r-ink" style="--x:780;--y:36;--w:120"&gt;+4 min · live&lt;/p&gt;
+    &lt;p class="dl r-c" style="--x:600;--y:84;--w:200"&gt;observed range&lt;/p&gt;
   &lt;/div&gt;
-  &lt;figcaption class="figcap"&gt;&lt;b&gt;Şekil 2.&lt;/b&gt; Düz bölüm ölçülen süre, kesikli bölüm tarama aralığına bağlı değişken kısım.&lt;/figcaption&gt;
+  &lt;figcaption class="figcap"&gt;&lt;b&gt;Figure 2.&lt;/b&gt; The solid part is measured time; the dashed part varies with the scan interval.&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre></figure>
 </div>
-<p><code>.scene-dark</code>, kapsayıcının <code>color-scheme</code> değerini koyuya çevirir; <code>light-dark()</code> token'ları içeride koyu çözülür. “Ağın içi” gibi bağlamsal olarak farklı bir yeri göstermek için kullanın; açık temada da koyu kalır.</p>
+<p><code>.scene-dark</code> switches the container's <code>color-scheme</code> to dark; <code>light-dark()</code> tokens resolve dark inside it. Use it to show a contextually different place, such as “inside the network”; it stays dark in the light theme too.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · koyu pafta (scene-dark)</span>
+  <span class="demo-label">Recipe · dark sheet (scene-dark)</span>
   <div class="demo-view">
 <figure class="fig-sheet scene-dark">
   <div class="frame-bg" aria-hidden="true"></div>
-  <p class="chip">02 · Şekil 3</p>
-  <p class="fig-cap">Ağın içinden bakış</p>
+  <p class="chip">02 · Figure 3</p>
+  <p class="fig-cap">A view from inside the network</p>
   <div class="drawing" style="--aw:900;--ah:150">
     <svg viewBox="0 0 900 150" aria-hidden="true">
       <rect class="ln-draw fill-paper" x="20" y="30" width="260" height="90"/>
@@ -339,17 +339,17 @@
       <path class="ln-block" d="M280 75H560"/>
       <path class="ln-draw ln-bad" d="M566 58V92M576 64l14 22M590 64l-14 22"/>
     </svg>
-    <p class="dl r-ink" style="--x:36;--y:44;--w:230"><span class="stamp-k">İç ağ</span>web-api · 10.0.0.0/16</p>
-    <p class="dl" style="--x:636;--y:44;--w:230"><span class="stamp-k">İnternet</span>dışarıdan erişim</p>
-    <p class="dl r-c r-badt" style="--x:320;--y:44;--w:200">yol yok</p>
+    <p class="dl r-ink" style="--x:36;--y:44;--w:230"><span class="stamp-k">Internal network</span>web-api · 10.0.0.0/16</p>
+    <p class="dl" style="--x:636;--y:44;--w:230"><span class="stamp-k">Internet</span>outside access</p>
+    <p class="dl r-c r-badt" style="--x:320;--y:44;--w:200">no path</p>
   </div>
-  <figcaption class="figcap"><b>Şekil 3.</b> İç ağ ile internet arasında doğrudan yol yoktur; kırmızı kesik çizgi reddedilen denemeyi gösterir.</figcaption>
+  <figcaption class="figcap"><b>Figure 3.</b> There is no direct path between the internal network and the internet; the red dashed line shows the rejected attempt.</figcaption>
 </figure>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet scene-dark"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;figure class="fig-sheet scene-dark"&gt;
   &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
-  &lt;p class="chip"&gt;02 · Şekil 3&lt;/p&gt;
-  &lt;p class="fig-cap"&gt;Ağın içinden bakış&lt;/p&gt;
+  &lt;p class="chip"&gt;02 · Figure 3&lt;/p&gt;
+  &lt;p class="fig-cap"&gt;A view from inside the network&lt;/p&gt;
   &lt;div class="drawing" style="--aw:900;--ah:150"&gt;
     &lt;svg viewBox="0 0 900 150" aria-hidden="true"&gt;
       &lt;rect class="ln-draw fill-paper" x="20" y="30" width="260" height="90"/&gt;
@@ -357,84 +357,84 @@
       &lt;path class="ln-block" d="M280 75H560"/&gt;
       &lt;path class="ln-draw ln-bad" d="M566 58V92M576 64l14 22M590 64l-14 22"/&gt;
     &lt;/svg&gt;
-    &lt;p class="dl r-ink" style="--x:36;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;İç ağ&lt;/span&gt;web-api · 10.0.0.0/16&lt;/p&gt;
-    &lt;p class="dl" style="--x:636;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;İnternet&lt;/span&gt;dışarıdan erişim&lt;/p&gt;
-    &lt;p class="dl r-c r-badt" style="--x:320;--y:44;--w:200"&gt;yol yok&lt;/p&gt;
+    &lt;p class="dl r-ink" style="--x:36;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;Internal network&lt;/span&gt;web-api · 10.0.0.0/16&lt;/p&gt;
+    &lt;p class="dl" style="--x:636;--y:44;--w:230"&gt;&lt;span class="stamp-k"&gt;Internet&lt;/span&gt;outside access&lt;/p&gt;
+    &lt;p class="dl r-c r-badt" style="--x:320;--y:44;--w:200"&gt;no path&lt;/p&gt;
   &lt;/div&gt;
-  &lt;figcaption class="figcap"&gt;&lt;b&gt;Şekil 3.&lt;/b&gt; İç ağ ile internet arasında doğrudan yol yoktur; kırmızı kesik çizgi reddedilen denemeyi gösterir.&lt;/figcaption&gt;
+  &lt;figcaption class="figcap"&gt;&lt;b&gt;Figure 3.&lt;/b&gt; There is no direct path between the internal network and the internet; the red dashed line shows the rejected attempt.&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b3" data-section data-title="Çizim birimleri">
-  <header class="ch-head"><p class="ch-num">03</p><h2>Çizim birimleri</h2><p class="lead">Çizim, kendi birim sisteminde tasarlanır ve kapsayıcının genişliğine göre ölçeklenir. SVG ve HTML etiketleri aynı koordinatları kullanır.</p></header>
+<article class="chapter" id="b3" data-section data-title="Drawing units">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Drawing units</h2><p class="lead">A drawing is designed in its own unit system and scales with the width of its container. SVG and HTML labels use the same coordinates.</p></header>
 <ul>
-  <li><code>.drawing</code> üzerinde <code>--aw</code> ve <code>--ah</code> çizimin birim olarak genişliği ve yüksekliğidir; içindeki SVG <code>viewBox="0 0 aw ah"</code> ile aynı sistemi kullanır.</li>
-  <li><code>.dl</code> etiketleri <code>--x</code>, <code>--y</code>, <code>--w</code> ile aynı birimlerde konumlanır.</li>
-  <li><code>--u</code> bir birimin piksel karşılığıdır (<code>100cqw / aw</code>); yazı ve boşlukları <code>calc(12 * var(--u))</code> gibi yazıp <code>max()</code> ile okunur bir alt sınır verin.</li>
-  <li>Çizgiler <code>vector-effect: non-scaling-stroke</code> ile her ölçekte aynı kalınlıkta kalır.</li>
-  <li>Callout kutusu HTML'dir; leader çizgisi SVG'de çizilir ve kutunun sol kenarında, ilk satır hizasında biter. Böylece kutu metni uzasa da çizgi kopmaz.</li>
+  <li>On <code>.drawing</code>, <code>--aw</code> and <code>--ah</code> are the width and height of the drawing in units; the SVG inside uses the same system through <code>viewBox="0 0 aw ah"</code>.</li>
+  <li><code>.dl</code> labels are positioned in the same units with <code>--x</code>, <code>--y</code>, <code>--w</code>.</li>
+  <li><code>--u</code> is one unit in pixels (<code>100cqw / aw</code>); write type and spacing as <code>calc(12 * var(--u))</code> and give them a readable floor with <code>max()</code>.</li>
+  <li>Lines keep the same weight at every scale through <code>vector-effect: non-scaling-stroke</code>.</li>
+  <li>The callout box is HTML; the leader line is drawn in SVG and ends at the box's left edge, level with the first line. So the line stays attached even when the box text grows.</li>
 </ul>
 <div class="demo">
-  <span class="demo-label">Tarif · <span lang="en">drawing + .dl + callout</span> + ölçü</span>
+  <span class="demo-label">Recipe · <span lang="en">drawing + .dl + callout</span> + dimension</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:800;--ah:290">
   <svg viewBox="0 0 800 290" aria-hidden="true">
     <path class="ln-pencil" d="M0 230H800"/>
     <path class="dim" d="M60 104V70M340 104V70M60 80H340M60 80l8-3v6zM340 80l-8-3v6z"/>
-    <text class="dim-t" x="200" y="72" text-anchor="middle">280 birim</text>
+    <text class="dim-t" x="200" y="72" text-anchor="middle">280 units</text>
     <rect class="ln-draw fill-paper" x="60" y="110" width="280" height="110"/>
     <path class="ln-pencil" d="M340 165H430V56H480"/>
     <circle class="fill-draw" cx="340" cy="165" r="3"/>
   </svg>
-  <div class="dl r-ink" style="--x:76;--y:124;--w:250"><span class="stamp-k">Servis</span>web-api · 3 kopya<br><span class="state s-ok">Hazır</span></div>
-  <p class="dl callout" style="--x:480;--y:40;--w:280"><b>Çağrı notu</b>Kutu HTML'de, leader çizgisi SVG'de. İkisi de çizim birimiyle konumlanır.</p>
-  <p class="dl" style="--x:60;--y:246;--w:700"><span class="state s-ok">Hazır</span> <span class="state s-warn">Bekliyor</span> <span class="state s-bad">Reddedildi</span> <span class="r-mute">· .state etiketi metnin içinde akar</span></p>
+  <div class="dl r-ink" style="--x:76;--y:124;--w:250"><span class="stamp-k">Service</span>web-api · 3 replicas<br><span class="state s-ok">Ready</span></div>
+  <p class="dl callout" style="--x:480;--y:40;--w:280"><b>Callout note</b>The box is in HTML, the leader line in SVG. Both are positioned in drawing units.</p>
+  <p class="dl" style="--x:60;--y:246;--w:700"><span class="state s-ok">Ready</span> <span class="state s-warn">Pending</span> <span class="state s-bad">Rejected</span> <span class="r-mute">· the .state label flows with the text</span></p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:290"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:290"&gt;
   &lt;svg viewBox="0 0 800 290" aria-hidden="true"&gt;
     &lt;path class="ln-pencil" d="M0 230H800"/&gt;
     &lt;path class="dim" d="M60 104V70M340 104V70M60 80H340M60 80l8-3v6zM340 80l-8-3v6z"/&gt;
-    &lt;text class="dim-t" x="200" y="72" text-anchor="middle"&gt;280 birim&lt;/text&gt;
+    &lt;text class="dim-t" x="200" y="72" text-anchor="middle"&gt;280 units&lt;/text&gt;
     &lt;rect class="ln-draw fill-paper" x="60" y="110" width="280" height="110"/&gt;
     &lt;path class="ln-pencil" d="M340 165H430V56H480"/&gt;
     &lt;circle class="fill-draw" cx="340" cy="165" r="3"/&gt;
   &lt;/svg&gt;
-  &lt;div class="dl r-ink" style="--x:76;--y:124;--w:250"&gt;&lt;span class="stamp-k"&gt;Servis&lt;/span&gt;web-api · 3 kopya&lt;br&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt;&lt;/div&gt;
-  &lt;p class="dl callout" style="--x:480;--y:40;--w:280"&gt;&lt;b&gt;Çağrı notu&lt;/b&gt;Kutu HTML'de, leader çizgisi SVG'de. İkisi de çizim birimiyle konumlanır.&lt;/p&gt;
-  &lt;p class="dl" style="--x:60;--y:246;--w:700"&gt;&lt;span class="state s-ok"&gt;Hazır&lt;/span&gt; &lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt; &lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; &lt;span class="r-mute"&gt;· .state etiketi metnin içinde akar&lt;/span&gt;&lt;/p&gt;
+  &lt;div class="dl r-ink" style="--x:76;--y:124;--w:250"&gt;&lt;span class="stamp-k"&gt;Service&lt;/span&gt;web-api · 3 replicas&lt;br&gt;&lt;span class="state s-ok"&gt;Ready&lt;/span&gt;&lt;/div&gt;
+  &lt;p class="dl callout" style="--x:480;--y:40;--w:280"&gt;&lt;b&gt;Callout note&lt;/b&gt;The box is in HTML, the leader line in SVG. Both are positioned in drawing units.&lt;/p&gt;
+  &lt;p class="dl" style="--x:60;--y:246;--w:700"&gt;&lt;span class="state s-ok"&gt;Ready&lt;/span&gt; &lt;span class="state s-warn"&gt;Pending&lt;/span&gt; &lt;span class="state s-bad"&gt;Rejected&lt;/span&gt; &lt;span class="r-mute"&gt;· the .state label flows with the text&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b4" data-section data-title="Antet ve damga">
-  <header class="ch-head"><p class="ch-num">04</p><h2>Antet ve damga</h2><p class="lead">Antet paftanın kimliğidir; damga tek bir adı öne çıkarıp nerelerde geçtiğini gösterir.</p></header>
-<p><code>dl.titleblock</code> her satırı <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> olarak yazar; ilk satır <code>.tb-head</code> ile kalınlaşır. Genelde sayfanın giriş bölümünde sağda durur.</p>
+<article class="chapter" id="b4" data-section data-title="Title block and stamp">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Title block and stamp</h2><p class="lead">The title block is the identity of the sheet; the stamp highlights one name and shows where it appears.</p></header>
+<p><code>dl.titleblock</code> writes each row as <code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code>; the first row turns bold with <code>.tb-head</code>. It usually sits on the right of the page's intro section.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · antet (titleblock)</span>
+  <span class="demo-label">Recipe · title block (titleblock)</span>
   <div class="demo-view">
 <dl class="titleblock">
-  <div class="tb-head"><dt>Pafta</dt><dd>ornek-servis</dd></div>
-  <div><dt>Ortam</dt><dd>prod</dd></div>
-  <div><dt>Bölge</dt><dd>eu-west-1</dd></div>
-  <div><dt>Ölçek</dt><dd>1 birim = 1 px (aw 1000)</dd></div>
-  <div><dt>Tarih</dt><dd>6 Ekim 2026</dd></div>
-  <div><dt>Kapsam</dt><dd>4 istasyon · 2 ortam</dd></div>
+  <div class="tb-head"><dt>Sheet</dt><dd>sample-service</dd></div>
+  <div><dt>Environment</dt><dd>prod</dd></div>
+  <div><dt>Region</dt><dd>eu-west-1</dd></div>
+  <div><dt>Scale</dt><dd>1 unit = 1 px (aw 1000)</dd></div>
+  <div><dt>Date</dt><dd>October 6, 2026</dd></div>
+  <div><dt>Scope</dt><dd>4 stations · 2 environments</dd></div>
 </dl>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;dl class="titleblock"&gt;
-  &lt;div class="tb-head"&gt;&lt;dt&gt;Pafta&lt;/dt&gt;&lt;dd&gt;ornek-servis&lt;/dd&gt;&lt;/div&gt;
-  &lt;div&gt;&lt;dt&gt;Ortam&lt;/dt&gt;&lt;dd&gt;prod&lt;/dd&gt;&lt;/div&gt;
-  &lt;div&gt;&lt;dt&gt;Bölge&lt;/dt&gt;&lt;dd&gt;eu-west-1&lt;/dd&gt;&lt;/div&gt;
-  &lt;div&gt;&lt;dt&gt;Ölçek&lt;/dt&gt;&lt;dd&gt;1 birim = 1 px (aw 1000)&lt;/dd&gt;&lt;/div&gt;
-  &lt;div&gt;&lt;dt&gt;Tarih&lt;/dt&gt;&lt;dd&gt;6 Ekim 2026&lt;/dd&gt;&lt;/div&gt;
-  &lt;div&gt;&lt;dt&gt;Kapsam&lt;/dt&gt;&lt;dd&gt;4 istasyon · 2 ortam&lt;/dd&gt;&lt;/div&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;dl class="titleblock"&gt;
+  &lt;div class="tb-head"&gt;&lt;dt&gt;Sheet&lt;/dt&gt;&lt;dd&gt;sample-service&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Environment&lt;/dt&gt;&lt;dd&gt;prod&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Region&lt;/dt&gt;&lt;dd&gt;eu-west-1&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Scale&lt;/dt&gt;&lt;dd&gt;1 unit = 1 px (aw 1000)&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Date&lt;/dt&gt;&lt;dd&gt;October 6, 2026&lt;/dd&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;dt&gt;Scope&lt;/dt&gt;&lt;dd&gt;4 stations · 2 environments&lt;/dd&gt;&lt;/div&gt;
 &lt;/dl&gt;</code></pre></figure>
 </div>
-<p>Damga: çift çizgi ve köşe çentikleri SVG'de, ad HTML'de. Düz leader “aynı ad, birebir”, kesikli leader “adı içeren kalıp” demektir. Çizim dışında tek başına bir damga için paketteki <code>.stamp</code> bileşeni (<code>.stamp-k</code>, <code>.stamp-name</code>) yeterlidir.</p>
+<p>Stamp: double rule and corner ticks in SVG, name in HTML. A solid leader means “same name, exact”; a dashed leader means “pattern containing the name”. For a standalone stamp outside a drawing, the package's <code>.stamp</code> component (<code>.stamp-k</code>, <code>.stamp-name</code>) is enough.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · damga ve ad haritası</span>
+  <span class="demo-label">Recipe · stamp and name map</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:900;--ah:330">
   <svg viewBox="0 0 900 330" aria-hidden="true">
@@ -449,16 +449,16 @@
     <path class="ln-draw" d="M0 270H44"/>
     <path class="ln-draw ln-dash" d="M0 300H44"/>
   </svg>
-  <p class="dl r-stamp" style="--x:14;--y:138;--w:272"><span class="stamp-k">Uygulama adı</span><span class="r-stamp-name">web-api</span></p>
+  <p class="dl r-stamp" style="--x:14;--y:138;--w:272"><span class="stamp-k">Application name</span><span class="r-stamp-name">web-api</span></p>
   <p class="dl callout" style="--x:450;--y:10;--w:440"><b>Deployment · metadata.name</b>web-api</p>
   <p class="dl callout" style="--x:450;--y:90;--w:440"><b><span lang="en">Service</span> · metadata.name</b>web-api</p>
-  <p class="dl callout r-alt" style="--x:450;--y:170;--w:440"><b>Namespace · kalıp</b>web-api-prod</p>
-  <p class="dl callout r-alt" style="--x:450;--y:250;--w:440"><b>İmaj deposu · yol</b>ornek/web-api</p>
-  <p class="dl" style="--x:56;--y:260;--w:300">aynı ad, birebir</p>
-  <p class="dl" style="--x:56;--y:290;--w:300">adı içeren kalıp</p>
+  <p class="dl callout r-alt" style="--x:450;--y:170;--w:440"><b>Namespace · pattern</b>web-api-prod</p>
+  <p class="dl callout r-alt" style="--x:450;--y:250;--w:440"><b>Image repository · path</b>sample/web-api</p>
+  <p class="dl" style="--x:56;--y:260;--w:300">same name, exact</p>
+  <p class="dl" style="--x:56;--y:290;--w:300">pattern containing the name</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:330"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:330"&gt;
   &lt;svg viewBox="0 0 900 330" aria-hidden="true"&gt;
     &lt;rect class="ln-draw fill-paper" x="0" y="120" width="300" height="100"/&gt;
     &lt;rect class="ln-pencil" x="6" y="126" width="288" height="88"/&gt;
@@ -471,37 +471,37 @@
     &lt;path class="ln-draw" d="M0 270H44"/&gt;
     &lt;path class="ln-draw ln-dash" d="M0 300H44"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-stamp" style="--x:14;--y:138;--w:272"&gt;&lt;span class="stamp-k"&gt;Uygulama adı&lt;/span&gt;&lt;span class="r-stamp-name"&gt;web-api&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-stamp" style="--x:14;--y:138;--w:272"&gt;&lt;span class="stamp-k"&gt;Application name&lt;/span&gt;&lt;span class="r-stamp-name"&gt;web-api&lt;/span&gt;&lt;/p&gt;
   &lt;p class="dl callout" style="--x:450;--y:10;--w:440"&gt;&lt;b&gt;Deployment · metadata.name&lt;/b&gt;web-api&lt;/p&gt;
   &lt;p class="dl callout" style="--x:450;--y:90;--w:440"&gt;&lt;b&gt;&lt;span lang="en"&gt;Service&lt;/span&gt; · metadata.name&lt;/b&gt;web-api&lt;/p&gt;
-  &lt;p class="dl callout r-alt" style="--x:450;--y:170;--w:440"&gt;&lt;b&gt;Namespace · kalıp&lt;/b&gt;web-api-prod&lt;/p&gt;
-  &lt;p class="dl callout r-alt" style="--x:450;--y:250;--w:440"&gt;&lt;b&gt;İmaj deposu · yol&lt;/b&gt;ornek/web-api&lt;/p&gt;
-  &lt;p class="dl" style="--x:56;--y:260;--w:300"&gt;aynı ad, birebir&lt;/p&gt;
-  &lt;p class="dl" style="--x:56;--y:290;--w:300"&gt;adı içeren kalıp&lt;/p&gt;
+  &lt;p class="dl callout r-alt" style="--x:450;--y:170;--w:440"&gt;&lt;b&gt;Namespace · pattern&lt;/b&gt;web-api-prod&lt;/p&gt;
+  &lt;p class="dl callout r-alt" style="--x:450;--y:250;--w:440"&gt;&lt;b&gt;Image repository · path&lt;/b&gt;sample/web-api&lt;/p&gt;
+  &lt;p class="dl" style="--x:56;--y:260;--w:300"&gt;same name, exact&lt;/p&gt;
+  &lt;p class="dl" style="--x:56;--y:290;--w:300"&gt;pattern containing the name&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* damga: çift çizgi + köşe çentikleri SVG'de, ad HTML'de */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* stamp: double rule + corner ticks in SVG, name in HTML */
 .r-stamp{display:grid;gap:calc(6 * var(--u));text-align:center}
 .r-stamp-name{font:600 max(14px,calc(24 * var(--u)))/1.2 var(--font-mono);color:var(--ink);white-space:nowrap}
 .r-alt{border-style:dashed}</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b5" data-section data-title="İstasyon gezgini">
-  <header class="ch-head"><p class="ch-num">05</p><h2>İstasyon gezgini</h2><p class="lead">Bir hattaki her durağı tıklanabilir yapar; seçilen istasyonun açıklaması paftanın altında görünür.</p></header>
-<p>Kapsayıcıya <code>data-explorer="panel-id"</code> verin. İçindeki <code>[data-key][aria-pressed]</code> düğmeleri gezgin olur; panel, aynı kimlikli öğedeki <code>[data-for="anahtar"]</code> blokları arasında geçiş yapar. Üzerine gelme ve odak önizler, ayrılınca seçili olana döner; tıklama seçer ve <code>hendese:explore</code> olayı (<code>detail.key</code>) yayar. JavaScript yoksa ve baskıda bütün bloklar görünür; <code>.show</code> sınıfını JS yazar.</p>
+<article class="chapter" id="b5" data-section data-title="Station explorer">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Station explorer</h2><p class="lead">Makes every stop on a line clickable; the description of the selected station appears below the sheet.</p></header>
+<p>Give the container <code>data-explorer="panel-id"</code>. The <code>[data-key][aria-pressed]</code> buttons inside it become the explorer; the panel switches between the <code>[data-for="key"]</code> blocks in the element with that id. Hover and focus preview a station, and leaving returns to the selected one; a click selects and fires a <code>hendese:explore</code> event (<code>detail.key</code>). Without JavaScript and in print, every block is visible; JS writes the <code>.show</code> class.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · istasyon gezgini (explorer)</span>
+  <span class="demo-label">Recipe · station explorer (explorer)</span>
   <div class="demo-view">
 <div class="frame" data-explorer="bp-detail">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
-    <p class="chip">05 · Şekil 4</p>
-    <p class="fig-cap">Dört istasyonlu hat</p>
+    <p class="chip">05 · Figure 4</p>
+    <p class="fig-cap">A four-station line</p>
   </header>
   <div class="f-side">
     <div class="prose">
-      <p>Bir istasyona tıkla ya da klavyeyle odaklan; alttaki panel o istasyonu anlatır.</p>
-      <p>Üst sıra kodu imaja çevirir, alt sıra imajı kümeye çıkarır. İki taraf arasındaki tek sözleşme kesikli çizginin üzerindeki etikettir.</p>
+      <p>Click a station or focus it with the keyboard; the panel below describes that station.</p>
+      <p>The top row turns code into an image; the bottom row ships the image to the cluster. The only contract between the two sides is the tag on the dashed line.</p>
     </div>
   </div>
   <div class="f-map">
@@ -513,37 +513,37 @@
         <path class="ln-draw" d="M320 310H284M284 310l8-4M284 310l8 4"/>
         <rect class="ln-draw fill-paper" x="380" y="186" width="140" height="28"/>
       </svg>
-      <p class="sl deck-cap" style="--x:20;--y:12"><b>CI</b>Kodu imaja çevir</p>
-      <p class="sl deck-cap" style="--x:20;--y:232"><b>CD</b>İmajı kümeye çıkar</p>
+      <p class="sl deck-cap" style="--x:20;--y:12"><b>CI</b>Turn code into an image</p>
+      <p class="sl deck-cap" style="--x:20;--y:232"><b>CD</b>Ship the image to the cluster</p>
       <p class="sl r-c" style="--x:380;--y:192;--w:140">prod-3f9c2a1b</p>
-      <button class="station" type="button" data-key="src" aria-pressed="true" aria-controls="bp-detail" style="--x:20;--y:50;--w:260;--h:80;--svc:var(--sec)"><span class="st-name">Kaynak</span><span class="st-sub">ornek-servis deposu</span><span class="st-meta">ana dal · push</span></button>
-      <button class="station" type="button" data-key="build" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:50;--w:260;--h:80;--svc:var(--draw)"><span class="st-name">Derleme</span><span class="st-sub">geçici konteyner</span><span class="st-meta">build + push</span></button>
-      <button class="station" type="button" data-key="reg" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:270;--w:260;--h:80;--svc:var(--warn)"><span class="st-name">Kayıt</span><span class="st-sub">imaj deposu</span><span class="st-meta">web-api:prod-3f9c2a1b</span></button>
-      <button class="station" type="button" data-key="cluster" aria-pressed="false" aria-controls="bp-detail" style="--x:20;--y:270;--w:260;--h:80;--svc:var(--ok)"><span class="st-name">Küme</span><span class="st-sub">prod ortamı</span><span class="st-meta">yuvarlanan güncelleme</span></button>
+      <button class="station" type="button" data-key="src" aria-pressed="true" aria-controls="bp-detail" style="--x:20;--y:50;--w:260;--h:80;--svc:var(--sec)"><span class="st-name">Source</span><span class="st-sub">sample-service repo</span><span class="st-meta">main branch · push</span></button>
+      <button class="station" type="button" data-key="build" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:50;--w:260;--h:80;--svc:var(--draw)"><span class="st-name">Build</span><span class="st-sub">temporary container</span><span class="st-meta">build + push</span></button>
+      <button class="station" type="button" data-key="reg" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:270;--w:260;--h:80;--svc:var(--warn)"><span class="st-name">Registry</span><span class="st-sub">image repository</span><span class="st-meta">web-api:prod-3f9c2a1b</span></button>
+      <button class="station" type="button" data-key="cluster" aria-pressed="false" aria-controls="bp-detail" style="--x:20;--y:270;--w:260;--h:80;--svc:var(--ok)"><span class="st-name">Cluster</span><span class="st-sub">prod environment</span><span class="st-meta">rolling update</span></button>
     </div>
   </div>
   <div class="f-foot">
-    <p class="oneliner"><span class="co-label">Bir cümleyle</span>Push → derleme imajı üretir → kayıt deposu saklar → küme yeni imajla güncellenir.</p>
+    <p class="oneliner"><span class="co-label">In one sentence</span>Push → the build produces an image → the registry stores it → the cluster updates to the new image.</p>
     <div class="st-detail" id="bp-detail" aria-live="polite">
-      <div data-for="src"><b>Kaynak.</b> Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.</div>
-      <div data-for="build"><b>Derleme.</b> Her çalıştırmada sıfırdan açılan geçici bir konteyner. İmajı üretir, etiketler ve gönderir; dağıtım yapmaz.</div>
-      <div data-for="reg"><b>Kayıt.</b> İmaj deposu. Etiket biçimi <code>prod-&lt;8 hane&gt;</code>; CI ile CD arasındaki tek sözleşme budur.</div>
-      <div data-for="cluster"><b>Küme.</b> Yeni etiketi gören dağıtım aracı istenen durumu günceller; podlar sırayla yenilenir.</div>
+      <div data-for="src"><b>Source.</b> The repository where the code lives. A push to the main branch fires the build trigger; other branches stop at the filter.</div>
+      <div data-for="build"><b>Build.</b> A temporary container started fresh on every run. It builds, tags and pushes the image; it does not deploy.</div>
+      <div data-for="reg"><b>Registry.</b> The image repository. Tag format: <code>prod-&lt;8 hex&gt;</code>; this is the only contract between CI and CD.</div>
+      <div data-for="cluster"><b>Cluster.</b> The deployment tool sees the new tag and updates the desired state; pods are replaced one by one.</div>
     </div>
-    <p class="figcap"><b>Şekil 4.</b> Dört istasyon saat yönünde: kaynak, derleme, kayıt, küme. Kesikli çizgi CI ile CD arasındaki sınırdır.</p>
+    <p class="figcap"><b>Figure 4.</b> Four stations, clockwise: source, build, registry, cluster. The dashed line is the boundary between CI and CD.</p>
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="frame" data-explorer="bp-detail"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="frame" data-explorer="bp-detail"&gt;
   &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
   &lt;header class="f-head"&gt;
-    &lt;p class="chip"&gt;05 · Şekil 4&lt;/p&gt;
-    &lt;p class="fig-cap"&gt;Dört istasyonlu hat&lt;/p&gt;
+    &lt;p class="chip"&gt;05 · Figure 4&lt;/p&gt;
+    &lt;p class="fig-cap"&gt;A four-station line&lt;/p&gt;
   &lt;/header&gt;
   &lt;div class="f-side"&gt;
     &lt;div class="prose"&gt;
-      &lt;p&gt;Bir istasyona tıkla ya da klavyeyle odaklan; alttaki panel o istasyonu anlatır.&lt;/p&gt;
-      &lt;p&gt;Üst sıra kodu imaja çevirir, alt sıra imajı kümeye çıkarır. İki taraf arasındaki tek sözleşme kesikli çizginin üzerindeki etikettir.&lt;/p&gt;
+      &lt;p&gt;Click a station or focus it with the keyboard; the panel below describes that station.&lt;/p&gt;
+      &lt;p&gt;The top row turns code into an image; the bottom row ships the image to the cluster. The only contract between the two sides is the tag on the dashed line.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="f-map"&gt;
@@ -555,34 +555,34 @@
         &lt;path class="ln-draw" d="M320 310H284M284 310l8-4M284 310l8 4"/&gt;
         &lt;rect class="ln-draw fill-paper" x="380" y="186" width="140" height="28"/&gt;
       &lt;/svg&gt;
-      &lt;p class="sl deck-cap" style="--x:20;--y:12"&gt;&lt;b&gt;CI&lt;/b&gt;Kodu imaja çevir&lt;/p&gt;
-      &lt;p class="sl deck-cap" style="--x:20;--y:232"&gt;&lt;b&gt;CD&lt;/b&gt;İmajı kümeye çıkar&lt;/p&gt;
+      &lt;p class="sl deck-cap" style="--x:20;--y:12"&gt;&lt;b&gt;CI&lt;/b&gt;Turn code into an image&lt;/p&gt;
+      &lt;p class="sl deck-cap" style="--x:20;--y:232"&gt;&lt;b&gt;CD&lt;/b&gt;Ship the image to the cluster&lt;/p&gt;
       &lt;p class="sl r-c" style="--x:380;--y:192;--w:140"&gt;prod-3f9c2a1b&lt;/p&gt;
-      &lt;button class="station" type="button" data-key="src" aria-pressed="true" aria-controls="bp-detail" style="--x:20;--y:50;--w:260;--h:80;--svc:var(--sec)"&gt;&lt;span class="st-name"&gt;Kaynak&lt;/span&gt;&lt;span class="st-sub"&gt;ornek-servis deposu&lt;/span&gt;&lt;span class="st-meta"&gt;ana dal · push&lt;/span&gt;&lt;/button&gt;
-      &lt;button class="station" type="button" data-key="build" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:50;--w:260;--h:80;--svc:var(--draw)"&gt;&lt;span class="st-name"&gt;Derleme&lt;/span&gt;&lt;span class="st-sub"&gt;geçici konteyner&lt;/span&gt;&lt;span class="st-meta"&gt;build + push&lt;/span&gt;&lt;/button&gt;
-      &lt;button class="station" type="button" data-key="reg" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:270;--w:260;--h:80;--svc:var(--warn)"&gt;&lt;span class="st-name"&gt;Kayıt&lt;/span&gt;&lt;span class="st-sub"&gt;imaj deposu&lt;/span&gt;&lt;span class="st-meta"&gt;web-api:prod-3f9c2a1b&lt;/span&gt;&lt;/button&gt;
-      &lt;button class="station" type="button" data-key="cluster" aria-pressed="false" aria-controls="bp-detail" style="--x:20;--y:270;--w:260;--h:80;--svc:var(--ok)"&gt;&lt;span class="st-name"&gt;Küme&lt;/span&gt;&lt;span class="st-sub"&gt;prod ortamı&lt;/span&gt;&lt;span class="st-meta"&gt;yuvarlanan güncelleme&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="station" type="button" data-key="src" aria-pressed="true" aria-controls="bp-detail" style="--x:20;--y:50;--w:260;--h:80;--svc:var(--sec)"&gt;&lt;span class="st-name"&gt;Source&lt;/span&gt;&lt;span class="st-sub"&gt;sample-service repo&lt;/span&gt;&lt;span class="st-meta"&gt;main branch · push&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="station" type="button" data-key="build" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:50;--w:260;--h:80;--svc:var(--draw)"&gt;&lt;span class="st-name"&gt;Build&lt;/span&gt;&lt;span class="st-sub"&gt;temporary container&lt;/span&gt;&lt;span class="st-meta"&gt;build + push&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="station" type="button" data-key="reg" aria-pressed="false" aria-controls="bp-detail" style="--x:320;--y:270;--w:260;--h:80;--svc:var(--warn)"&gt;&lt;span class="st-name"&gt;Registry&lt;/span&gt;&lt;span class="st-sub"&gt;image repository&lt;/span&gt;&lt;span class="st-meta"&gt;web-api:prod-3f9c2a1b&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="station" type="button" data-key="cluster" aria-pressed="false" aria-controls="bp-detail" style="--x:20;--y:270;--w:260;--h:80;--svc:var(--ok)"&gt;&lt;span class="st-name"&gt;Cluster&lt;/span&gt;&lt;span class="st-sub"&gt;prod environment&lt;/span&gt;&lt;span class="st-meta"&gt;rolling update&lt;/span&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="f-foot"&gt;
-    &lt;p class="oneliner"&gt;&lt;span class="co-label"&gt;Bir cümleyle&lt;/span&gt;Push → derleme imajı üretir → kayıt deposu saklar → küme yeni imajla güncellenir.&lt;/p&gt;
+    &lt;p class="oneliner"&gt;&lt;span class="co-label"&gt;In one sentence&lt;/span&gt;Push → the build produces an image → the registry stores it → the cluster updates to the new image.&lt;/p&gt;
     &lt;div class="st-detail" id="bp-detail" aria-live="polite"&gt;
-      &lt;div data-for="src"&gt;&lt;b&gt;Kaynak.&lt;/b&gt; Kodun yaşadığı depo. Ana dala yapılan push, derleme tetiğini çalıştırır; diğer dallar filtrede durur.&lt;/div&gt;
-      &lt;div data-for="build"&gt;&lt;b&gt;Derleme.&lt;/b&gt; Her çalıştırmada sıfırdan açılan geçici bir konteyner. İmajı üretir, etiketler ve gönderir; dağıtım yapmaz.&lt;/div&gt;
-      &lt;div data-for="reg"&gt;&lt;b&gt;Kayıt.&lt;/b&gt; İmaj deposu. Etiket biçimi &lt;code&gt;prod-&amp;lt;8 hane&amp;gt;&lt;/code&gt;; CI ile CD arasındaki tek sözleşme budur.&lt;/div&gt;
-      &lt;div data-for="cluster"&gt;&lt;b&gt;Küme.&lt;/b&gt; Yeni etiketi gören dağıtım aracı istenen durumu günceller; podlar sırayla yenilenir.&lt;/div&gt;
+      &lt;div data-for="src"&gt;&lt;b&gt;Source.&lt;/b&gt; The repository where the code lives. A push to the main branch fires the build trigger; other branches stop at the filter.&lt;/div&gt;
+      &lt;div data-for="build"&gt;&lt;b&gt;Build.&lt;/b&gt; A temporary container started fresh on every run. It builds, tags and pushes the image; it does not deploy.&lt;/div&gt;
+      &lt;div data-for="reg"&gt;&lt;b&gt;Registry.&lt;/b&gt; The image repository. Tag format: &lt;code&gt;prod-&amp;lt;8 hex&amp;gt;&lt;/code&gt;; this is the only contract between CI and CD.&lt;/div&gt;
+      &lt;div data-for="cluster"&gt;&lt;b&gt;Cluster.&lt;/b&gt; The deployment tool sees the new tag and updates the desired state; pods are replaced one by one.&lt;/div&gt;
     &lt;/div&gt;
-    &lt;p class="figcap"&gt;&lt;b&gt;Şekil 4.&lt;/b&gt; Dört istasyon saat yönünde: kaynak, derleme, kayıt, küme. Kesikli çizgi CI ile CD arasındaki sınırdır.&lt;/p&gt;
+    &lt;p class="figcap"&gt;&lt;b&gt;Figure 4.&lt;/b&gt; Four stations, clockwise: source, build, registry, cluster. The dashed line is the boundary between CI and CD.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b6" data-section data-title="İzometrik kutu">
-  <header class="ch-head"><p class="ch-num">06</p><h2>İzometrik kutu</h2><p class="lead">Kapalı bir birimi (konteyner, ortam, paket) üç yüzüyle gösterir: ön yüz kâğıt, üst ve sağ yüz sahne zemini.</p></header>
-<p>Ön yüz <code>W × H</code> dikdörtgendir; üst ve sağ yüz aynı kenarların <code>dx = +36, dy = −22</code> kaydırılmış paralelkenarlarıdır. Etiket ön yüzün sol üstüne yazılır; köşe çentikleri yüzün çerçevesini belirtir.</p>
+<article class="chapter" id="b6" data-section data-title="Isometric box">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Isometric box</h2><p class="lead">Shows a closed unit (container, environment, package) with three faces: the front face is paper, the top and right faces are scene fill.</p></header>
+<p>The front face is a <code>W × H</code> rectangle; the top and right faces are parallelograms of the same edges shifted by <code>dx = +36, dy = −22</code>. The label goes in the top left of the front face; corner ticks mark the face's frame.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · izometrik kutu</span>
+  <span class="demo-label">Recipe · isometric box</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:800;--ah:320">
   <svg viewBox="0 0 800 320" aria-hidden="true">
@@ -597,11 +597,11 @@
     <path class="ln-pencil" d="M466 180H520L540 166H560"/>
     <circle class="fill-draw" cx="466" cy="180" r="3"/>
   </svg>
-  <p class="dl r-ink" style="--x:78;--y:114;--w:350"><span class="stamp-k">Derleme konteyneri</span>linux-x86_64-standard · orta boy</p>
-  <p class="dl callout" style="--x:560;--y:146;--w:220"><b>Geçici</b>Her build için açılır, iş bitince yok edilir.</p>
+  <p class="dl r-ink" style="--x:78;--y:114;--w:350"><span class="stamp-k">Build container</span>linux-x86_64-standard · medium</p>
+  <p class="dl callout" style="--x:560;--y:146;--w:220"><b>Temporary</b>Started for each build, destroyed when the job ends.</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:320"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:320"&gt;
   &lt;svg viewBox="0 0 800 320" aria-hidden="true"&gt;
     &lt;path class="ln-pencil" d="M20 290H780"/&gt;
     &lt;path class="dim" d="M96 72V36M476 72V36M96 44H476M96 44l8-3v6zM476 44l-8-3v6z"/&gt;
@@ -614,13 +614,13 @@
     &lt;path class="ln-pencil" d="M466 180H520L540 166H560"/&gt;
     &lt;circle class="fill-draw" cx="466" cy="180" r="3"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:78;--y:114;--w:350"&gt;&lt;span class="stamp-k"&gt;Derleme konteyneri&lt;/span&gt;linux-x86_64-standard · orta boy&lt;/p&gt;
-  &lt;p class="dl callout" style="--x:560;--y:146;--w:220"&gt;&lt;b&gt;Geçici&lt;/b&gt;Her build için açılır, iş bitince yok edilir.&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:78;--y:114;--w:350"&gt;&lt;span class="stamp-k"&gt;Build container&lt;/span&gt;linux-x86_64-standard · medium&lt;/p&gt;
+  &lt;p class="dl callout" style="--x:560;--y:146;--w:220"&gt;&lt;b&gt;Temporary&lt;/b&gt;Started for each build, destroyed when the job ends.&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
 </div>
-<p>Kutuyu açıp ayarlarını göstermek için aynı tarifi küçük ölçekte (<code>dx = +20, dy = −12</code>) modüllere bölün. Numara rozeti, alttaki açıklamanın sırasıdır; bir ayarın etkisi telle bağlı kutuda görünür (burada ayrıcalıklı anahtar açık, Docker servisi çalışıyor).</p>
+<p>To open the box and show its settings, split the same recipe into modules at a smaller scale (<code>dx = +20, dy = −12</code>). The number badge follows the order of the description below; the effect of a setting shows in the box wired to it (here the privileged switch is on and the Docker service is running).</p>
 <div class="demo">
-  <span class="demo-label">Tarif · yapılandırma modülleri + anahtar</span>
+  <span class="demo-label">Recipe · configuration modules + switch</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:920;--ah:300">
   <svg viewBox="0 0 920 300" aria-hidden="true">
@@ -630,8 +630,8 @@
       <rect class="ln-draw fill-paper" x="20" y="60" width="180" height="90"/>
       <rect class="ln-draw fill-paper" x="28" y="68" width="16" height="16"/>
       <text class="r-mn" x="36" y="80">1</text>
-      <text class="r-mt" x="52" y="80">KAYNAK</text>
-      <text class="r-ms" x="30" y="138">derinlik 1</text>
+      <text class="r-mt" x="52" y="80">SOURCE</text>
+      <text class="r-ms" x="30" y="138">depth 1</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M240 60l20 -12h180l-20 12Z"/>
@@ -639,8 +639,8 @@
       <rect class="ln-draw fill-paper" x="240" y="60" width="180" height="90"/>
       <rect class="ln-draw fill-paper" x="248" y="68" width="16" height="16"/>
       <text class="r-mn" x="256" y="80">2</text>
-      <text class="r-mt" x="272" y="80">TETİK</text>
-      <text class="r-ms" x="250" y="138">PUSH · ana dal</text>
+      <text class="r-mt" x="272" y="80">TRIGGER</text>
+      <text class="r-ms" x="250" y="138">PUSH · main branch</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M460 60l20 -12h420l-20 12Z"/>
@@ -648,14 +648,14 @@
       <rect class="ln-draw fill-paper" x="460" y="60" width="420" height="90"/>
       <rect class="ln-draw fill-paper" x="468" y="68" width="16" height="16"/>
       <text class="r-mn" x="476" y="80">3</text>
-      <text class="r-mt" x="492" y="80">ORTAM</text>
-      <text class="r-ms" x="470" y="138">ayrıcalıklı · açık</text>
+      <text class="r-mt" x="492" y="80">ENVIRONMENT</text>
+      <text class="r-ms" x="470" y="138">privileged · on</text>
       <rect class="r-sw-on" x="480" y="96" width="40" height="16" rx="8"/>
       <circle class="r-knob" cx="512" cy="104" r="5.5"/>
       <path class="r-wire" d="M520 104H620"/>
       <rect class="ln-draw fill-paper" x="620" y="76" width="240" height="56"/>
-      <text class="r-mt" x="632" y="98">DOCKER SERVİSİ</text>
-      <text class="r-ms r-on" x="632" y="120">● ÇALIŞIYOR</text>
+      <text class="r-mt" x="632" y="98">DOCKER SERVICE</text>
+      <text class="r-ms r-on" x="632" y="120">● RUNNING</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M20 190l20 -12h180l-20 12Z"/>
@@ -663,8 +663,8 @@
       <rect class="ln-draw fill-paper" x="20" y="190" width="180" height="80"/>
       <rect class="ln-draw fill-paper" x="28" y="198" width="16" height="16"/>
       <text class="r-mn" x="36" y="210">4</text>
-      <text class="r-mt" x="52" y="210">ROL</text>
-      <text class="r-ms" x="30" y="258">kimlik rolü</text>
+      <text class="r-mt" x="52" y="210">ROLE</text>
+      <text class="r-ms" x="30" y="258">identity role</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M240 190l20 -12h180l-20 12Z"/>
@@ -672,8 +672,8 @@
       <rect class="ln-draw fill-paper" x="240" y="190" width="180" height="80"/>
       <rect class="ln-draw fill-paper" x="248" y="198" width="16" height="16"/>
       <text class="r-mn" x="256" y="210">5</text>
-      <text class="r-mt" x="272" y="210">ÇIKTI</text>
-      <text class="r-ms" x="250" y="258">çıktı yok</text>
+      <text class="r-mt" x="272" y="210">ARTIFACTS</text>
+      <text class="r-ms" x="250" y="258">no artifacts</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M460 190l20 -12h180l-20 12Z"/>
@@ -681,8 +681,8 @@
       <rect class="ln-draw fill-paper" x="460" y="190" width="180" height="80"/>
       <rect class="ln-draw fill-paper" x="468" y="198" width="16" height="16"/>
       <text class="r-mn" x="476" y="210">6</text>
-      <text class="r-mt" x="492" y="210">GÜNLÜK</text>
-      <text class="r-ms" x="470" y="258">günlük grubu</text>
+      <text class="r-mt" x="492" y="210">LOGS</text>
+      <text class="r-ms" x="470" y="258">log group</text>
     </g>
     <g>
       <path class="ln-draw fill-scene" d="M680 190l20 -12h180l-20 12Z"/>
@@ -690,13 +690,13 @@
       <rect class="ln-draw fill-paper" x="680" y="190" width="180" height="80"/>
       <rect class="ln-draw fill-paper" x="688" y="198" width="16" height="16"/>
       <text class="r-mn" x="696" y="210">7</text>
-      <text class="r-mt" x="712" y="210">DİĞER</text>
-      <text class="r-ms" x="690" y="258">zaman aşımı 60 dk</text>
+      <text class="r-mt" x="712" y="210">OTHER</text>
+      <text class="r-ms" x="690" y="258">timeout 60 min</text>
     </g>
   </svg>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:920;--ah:300"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:920;--ah:300"&gt;
   &lt;svg viewBox="0 0 920 300" aria-hidden="true"&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M20 60l20 -12h180l-20 12Z"/&gt;
@@ -704,8 +704,8 @@
       &lt;rect class="ln-draw fill-paper" x="20" y="60" width="180" height="90"/&gt;
       &lt;rect class="ln-draw fill-paper" x="28" y="68" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="36" y="80"&gt;1&lt;/text&gt;
-      &lt;text class="r-mt" x="52" y="80"&gt;KAYNAK&lt;/text&gt;
-      &lt;text class="r-ms" x="30" y="138"&gt;derinlik 1&lt;/text&gt;
+      &lt;text class="r-mt" x="52" y="80"&gt;SOURCE&lt;/text&gt;
+      &lt;text class="r-ms" x="30" y="138"&gt;depth 1&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M240 60l20 -12h180l-20 12Z"/&gt;
@@ -713,8 +713,8 @@
       &lt;rect class="ln-draw fill-paper" x="240" y="60" width="180" height="90"/&gt;
       &lt;rect class="ln-draw fill-paper" x="248" y="68" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="256" y="80"&gt;2&lt;/text&gt;
-      &lt;text class="r-mt" x="272" y="80"&gt;TETİK&lt;/text&gt;
-      &lt;text class="r-ms" x="250" y="138"&gt;PUSH · ana dal&lt;/text&gt;
+      &lt;text class="r-mt" x="272" y="80"&gt;TRIGGER&lt;/text&gt;
+      &lt;text class="r-ms" x="250" y="138"&gt;PUSH · main branch&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M460 60l20 -12h420l-20 12Z"/&gt;
@@ -722,14 +722,14 @@
       &lt;rect class="ln-draw fill-paper" x="460" y="60" width="420" height="90"/&gt;
       &lt;rect class="ln-draw fill-paper" x="468" y="68" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="476" y="80"&gt;3&lt;/text&gt;
-      &lt;text class="r-mt" x="492" y="80"&gt;ORTAM&lt;/text&gt;
-      &lt;text class="r-ms" x="470" y="138"&gt;ayrıcalıklı · açık&lt;/text&gt;
+      &lt;text class="r-mt" x="492" y="80"&gt;ENVIRONMENT&lt;/text&gt;
+      &lt;text class="r-ms" x="470" y="138"&gt;privileged · on&lt;/text&gt;
       &lt;rect class="r-sw-on" x="480" y="96" width="40" height="16" rx="8"/&gt;
       &lt;circle class="r-knob" cx="512" cy="104" r="5.5"/&gt;
       &lt;path class="r-wire" d="M520 104H620"/&gt;
       &lt;rect class="ln-draw fill-paper" x="620" y="76" width="240" height="56"/&gt;
-      &lt;text class="r-mt" x="632" y="98"&gt;DOCKER SERVİSİ&lt;/text&gt;
-      &lt;text class="r-ms r-on" x="632" y="120"&gt;● ÇALIŞIYOR&lt;/text&gt;
+      &lt;text class="r-mt" x="632" y="98"&gt;DOCKER SERVICE&lt;/text&gt;
+      &lt;text class="r-ms r-on" x="632" y="120"&gt;● RUNNING&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M20 190l20 -12h180l-20 12Z"/&gt;
@@ -737,8 +737,8 @@
       &lt;rect class="ln-draw fill-paper" x="20" y="190" width="180" height="80"/&gt;
       &lt;rect class="ln-draw fill-paper" x="28" y="198" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="36" y="210"&gt;4&lt;/text&gt;
-      &lt;text class="r-mt" x="52" y="210"&gt;ROL&lt;/text&gt;
-      &lt;text class="r-ms" x="30" y="258"&gt;kimlik rolü&lt;/text&gt;
+      &lt;text class="r-mt" x="52" y="210"&gt;ROLE&lt;/text&gt;
+      &lt;text class="r-ms" x="30" y="258"&gt;identity role&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M240 190l20 -12h180l-20 12Z"/&gt;
@@ -746,8 +746,8 @@
       &lt;rect class="ln-draw fill-paper" x="240" y="190" width="180" height="80"/&gt;
       &lt;rect class="ln-draw fill-paper" x="248" y="198" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="256" y="210"&gt;5&lt;/text&gt;
-      &lt;text class="r-mt" x="272" y="210"&gt;ÇIKTI&lt;/text&gt;
-      &lt;text class="r-ms" x="250" y="258"&gt;çıktı yok&lt;/text&gt;
+      &lt;text class="r-mt" x="272" y="210"&gt;ARTIFACTS&lt;/text&gt;
+      &lt;text class="r-ms" x="250" y="258"&gt;no artifacts&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M460 190l20 -12h180l-20 12Z"/&gt;
@@ -755,8 +755,8 @@
       &lt;rect class="ln-draw fill-paper" x="460" y="190" width="180" height="80"/&gt;
       &lt;rect class="ln-draw fill-paper" x="468" y="198" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="476" y="210"&gt;6&lt;/text&gt;
-      &lt;text class="r-mt" x="492" y="210"&gt;GÜNLÜK&lt;/text&gt;
-      &lt;text class="r-ms" x="470" y="258"&gt;günlük grubu&lt;/text&gt;
+      &lt;text class="r-mt" x="492" y="210"&gt;LOGS&lt;/text&gt;
+      &lt;text class="r-ms" x="470" y="258"&gt;log group&lt;/text&gt;
     &lt;/g&gt;
     &lt;g&gt;
       &lt;path class="ln-draw fill-scene" d="M680 190l20 -12h180l-20 12Z"/&gt;
@@ -764,28 +764,28 @@
       &lt;rect class="ln-draw fill-paper" x="680" y="190" width="180" height="80"/&gt;
       &lt;rect class="ln-draw fill-paper" x="688" y="198" width="16" height="16"/&gt;
       &lt;text class="r-mn" x="696" y="210"&gt;7&lt;/text&gt;
-      &lt;text class="r-mt" x="712" y="210"&gt;DİĞER&lt;/text&gt;
-      &lt;text class="r-ms" x="690" y="258"&gt;zaman aşımı 60 dk&lt;/text&gt;
+      &lt;text class="r-mt" x="712" y="210"&gt;OTHER&lt;/text&gt;
+      &lt;text class="r-ms" x="690" y="258"&gt;timeout 60 min&lt;/text&gt;
     &lt;/g&gt;
   &lt;/svg&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* modül metinleri SVG içinde: çizimle birlikte ölçeklenir */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* module text lives inside the SVG: it scales with the drawing */
 .r-mn{font:600 11px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-mt{font:600 11.5px var(--font-mono);letter-spacing:.06em;fill:var(--ink)}
 .r-ms{font:500 11px var(--font-mono);fill:var(--ink-3)}
 .r-ms.r-on{fill:var(--ok)}
-/* ayrıcalıklı anahtar: açık = kırmızı ray, düğme sağda; kapalı için .r-knob'u 24 birim sola alın */
+/* privileged switch: on = red track, knob on the right; for off, move .r-knob 24 units left */
 .r-sw-on{fill:var(--bad-soft);stroke:var(--bad);stroke-width:1.5}
 .r-knob{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
 .r-wire{stroke:var(--bad);stroke-width:1.5}</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b7" data-section data-title="Ölçü aletleri">
-  <header class="ch-head"><p class="ch-num">07</p><h2>Ölçü aletleri</h2><p class="lead">Bir değeri kurala karşı ölçmek için: kumpas karakter karakter eşleşmeyi, kadran istenen ile gerçek arasındaki farkı gösterir.</p></header>
-<p>Kumpas bir etiketi düzenli ifadeye karşı ölçer. Hücre durumları: <b>geçti</b> (yeşil alt çizgi), <b>kaldı</b> (kırmızı kutu, ▲ işaretli), <b>eksik</b> (kesikli kırmızı, boş), <b>bakılmadı</b> (kesikli, soluk). Hücre genişliği çizim birimidir; kayan çene son hücrenin sağ kenarında durur.</p>
+<article class="chapter" id="b7" data-section data-title="Measuring tools">
+  <header class="ch-head"><p class="ch-num">07</p><h2>Measuring tools</h2><p class="lead">For measuring a value against a rule: the caliper shows the match character by character, the dial shows the gap between desired and actual.</p></header>
+<p>The caliper measures a tag against a regular expression. Cell states: <b>pass</b> (green underline), <b>fail</b> (red box, marked ▲), <b>missing</b> (dashed red, empty), <b>unchecked</b> (dashed, faded). Cell width is in drawing units; the sliding jaw stops at the right edge of the last cell.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · regex kumpası</span>
+  <span class="demo-label">Recipe · regex caliper</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:900;--ah:210">
   <svg viewBox="0 0 900 210" aria-hidden="true">
@@ -801,11 +801,11 @@
     <div class="r-seg ok"><div class="cells"><i class="s-ok">p</i><i class="s-ok">r</i><i class="s-ok">o</i><i class="s-ok">d</i><i class="s-ok">-</i></div><code>^prod-</code></div>
     <div class="r-seg bad"><div class="cells"><i class="s-ok">3</i><i class="s-ok">f</i><i class="s-ok">9</i><i class="s-ok">c</i><i class="s-ok">2</i><i class="s-bad" data-mark>g</i><i data-state="ghost">1</i><i data-state="miss"></i></div><code>[a-f0-9]{8} · 5/8</code></div>
   </div>
-  <div class="dl r-verdict" style="--x:540;--y:76;--w:340"><span class="state s-bad">Uymaz</span> 6. karakter <b>g</b> onaltılık değil; sekiz haneden yalnızca yedisi var.</div>
-  <p class="dl r-legend" style="--x:540;--y:150;--w:340"><span class="cells"><i class="s-ok">a</i></span>geçti <span class="cells"><i class="s-bad">x</i></span>kaldı <span class="cells"><i data-state="miss"></i></span>eksik <span class="cells"><i data-state="ghost">b</i></span>bakılmadı</p>
+  <div class="dl r-verdict" style="--x:540;--y:76;--w:340"><span class="state s-bad">No match</span> character 6, <b>g</b>, is not hex; only seven of the eight characters are there.</div>
+  <p class="dl r-legend" style="--x:540;--y:150;--w:340"><span class="cells"><i class="s-ok">a</i></span>pass <span class="cells"><i class="s-bad">x</i></span>fail <span class="cells"><i data-state="miss"></i></span>missing <span class="cells"><i data-state="ghost">b</i></span>unchecked</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:210"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:210"&gt;
   &lt;svg viewBox="0 0 900 210" aria-hidden="true"&gt;
     &lt;path class="ln-draw" d="M20 198H880"/&gt;&lt;path class="ln-pencil" d="M20 204H880"/&gt;
     &lt;path class="ln-draw fill-paper" d="M100 30H860V46H100Z"/&gt;
@@ -819,22 +819,22 @@
     &lt;div class="r-seg ok"&gt;&lt;div class="cells"&gt;&lt;i class="s-ok"&gt;p&lt;/i&gt;&lt;i class="s-ok"&gt;r&lt;/i&gt;&lt;i class="s-ok"&gt;o&lt;/i&gt;&lt;i class="s-ok"&gt;d&lt;/i&gt;&lt;i class="s-ok"&gt;-&lt;/i&gt;&lt;/div&gt;&lt;code&gt;^prod-&lt;/code&gt;&lt;/div&gt;
     &lt;div class="r-seg bad"&gt;&lt;div class="cells"&gt;&lt;i class="s-ok"&gt;3&lt;/i&gt;&lt;i class="s-ok"&gt;f&lt;/i&gt;&lt;i class="s-ok"&gt;9&lt;/i&gt;&lt;i class="s-ok"&gt;c&lt;/i&gt;&lt;i class="s-ok"&gt;2&lt;/i&gt;&lt;i class="s-bad" data-mark&gt;g&lt;/i&gt;&lt;i data-state="ghost"&gt;1&lt;/i&gt;&lt;i data-state="miss"&gt;&lt;/i&gt;&lt;/div&gt;&lt;code&gt;[a-f0-9]{8} · 5/8&lt;/code&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class="dl r-verdict" style="--x:540;--y:76;--w:340"&gt;&lt;span class="state s-bad"&gt;Uymaz&lt;/span&gt; 6. karakter &lt;b&gt;g&lt;/b&gt; onaltılık değil; sekiz haneden yalnızca yedisi var.&lt;/div&gt;
-  &lt;p class="dl r-legend" style="--x:540;--y:150;--w:340"&gt;&lt;span class="cells"&gt;&lt;i class="s-ok"&gt;a&lt;/i&gt;&lt;/span&gt;geçti &lt;span class="cells"&gt;&lt;i class="s-bad"&gt;x&lt;/i&gt;&lt;/span&gt;kaldı &lt;span class="cells"&gt;&lt;i data-state="miss"&gt;&lt;/i&gt;&lt;/span&gt;eksik &lt;span class="cells"&gt;&lt;i data-state="ghost"&gt;b&lt;/i&gt;&lt;/span&gt;bakılmadı&lt;/p&gt;
+  &lt;div class="dl r-verdict" style="--x:540;--y:76;--w:340"&gt;&lt;span class="state s-bad"&gt;No match&lt;/span&gt; character 6, &lt;b&gt;g&lt;/b&gt;, is not hex; only seven of the eight characters are there.&lt;/div&gt;
+  &lt;p class="dl r-legend" style="--x:540;--y:150;--w:340"&gt;&lt;span class="cells"&gt;&lt;i class="s-ok"&gt;a&lt;/i&gt;&lt;/span&gt;pass &lt;span class="cells"&gt;&lt;i class="s-bad"&gt;x&lt;/i&gt;&lt;/span&gt;fail &lt;span class="cells"&gt;&lt;i data-state="miss"&gt;&lt;/i&gt;&lt;/span&gt;missing &lt;span class="cells"&gt;&lt;i data-state="ghost"&gt;b&lt;/i&gt;&lt;/span&gt;unchecked&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* kumpas: hücreler çizim birimiyle (26 birim) ölçülür; sabit çene ^, kayan çene $ */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* caliper: cells are measured in drawing units (26 units); fixed jaw ^, sliding jaw $ */
 .r-anc{font:600 18px var(--font-mono);fill:var(--draw);text-anchor:middle}
 .r-gauge{display:flex}
-/* hücreler: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark paket sınıfı */
+/* cells: .cells, .s-ok / .s-bad, data-state="miss|ghost", data-mark are package classes */
 .r-seg&gt;code{display:block;margin-top:calc(22 * var(--u));padding:calc(3 * var(--u)) 0 0;border:0;border-top:calc(2 * var(--u)) solid currentColor;border-radius:0;background:none;font:600 max(11px,calc(14 * var(--u)))/1.3 var(--font-mono);color:var(--draw);white-space:nowrap}
 .r-seg.ok&gt;code{color:var(--ok)}.r-seg.bad&gt;code{color:var(--bad)}
 .r-verdict{color:var(--ink);font-size:max(11px,calc(14 * var(--u)))}
 .r-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
 .r-legend .cells>i{width:max(18px,calc(22 * var(--u)));height:max(22px,calc(26 * var(--u)));font-size:max(11px,calc(14 * var(--u)))}</code></pre></figure>
 </div>
-<p>Kadran, istenen durum (ince ibre, ok uçlu) ile gerçek durumu (kalın ibre) aynı ölçek üzerinde gösterir; aradaki fark turuncu yayla işaretlenir. Soldaki tarayıcı simgesi düzenli kontrolü anlatır.</p>
+<p>The dial shows the desired state (thin needle with an arrowhead) and the actual state (heavy needle) on the same scale; the gap between them is marked with an orange arc. The scanner icon on the left stands for the periodic check.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · kadran (istenen ↔ gerçek)</span>
+  <span class="demo-label">Recipe · dial (desired ↔ actual)</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:640;--ah:360">
   <svg viewBox="0 0 640 360" aria-hidden="true">
@@ -852,13 +852,13 @@
   </svg>
   <p class="dl r-c r-ink" style="--x:95;--y:30;--w:150">prod-79457ad0</p>
   <p class="dl r-c r-ink" style="--x:395;--y:30;--w:150">prod-3f9c2a1b</p>
-  <p class="dl r-c" style="--x:245;--y:30;--w:150"><span class="state s-warn">Fark</span></p>
-  <p class="dl" style="--x:104;--y:300;--w:120">tarama · 2 dk</p>
-  <p class="dl" style="--x:510;--y:292;--w:130">istenen (Git)</p>
-  <p class="dl" style="--x:510;--y:320;--w:130">gerçek (küme)</p>
+  <p class="dl r-c" style="--x:245;--y:30;--w:150"><span class="state s-warn">Drift</span></p>
+  <p class="dl" style="--x:104;--y:300;--w:120">scan · 2 min</p>
+  <p class="dl" style="--x:510;--y:292;--w:130">desired (Git)</p>
+  <p class="dl" style="--x:510;--y:320;--w:130">actual (cluster)</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:640;--ah:360"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:640;--ah:360"&gt;
   &lt;svg viewBox="0 0 640 360" aria-hidden="true"&gt;
     &lt;path class="ln-draw" d="M122.7 218.2A210 210 0 0 1 517.3 218.2"/&gt;
     &lt;path class="ln-pencil" d="M122.7 218.2L131.1 221.3M138.1 185L152 193M159.1 155L166 160.8M185 129.1L190.8 136M215 108.1L223 122M248.2 92.7L251.3 101.1M283.5 83.2L285.1 92.1M320 80L320 96M356.5 83.2L354.9 92.1M391.8 92.7L388.7 101.1M425 108.1L417 122M455 129.1L449.2 136M480.9 155L474 160.8M501.9 185L488 193M517.3 218.2L508.9 221.3"/&gt;
@@ -874,23 +874,23 @@
   &lt;/svg&gt;
   &lt;p class="dl r-c r-ink" style="--x:95;--y:30;--w:150"&gt;prod-79457ad0&lt;/p&gt;
   &lt;p class="dl r-c r-ink" style="--x:395;--y:30;--w:150"&gt;prod-3f9c2a1b&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:245;--y:30;--w:150"&gt;&lt;span class="state s-warn"&gt;Fark&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl" style="--x:104;--y:300;--w:120"&gt;tarama · 2 dk&lt;/p&gt;
-  &lt;p class="dl" style="--x:510;--y:292;--w:130"&gt;istenen (Git)&lt;/p&gt;
-  &lt;p class="dl" style="--x:510;--y:320;--w:130"&gt;gerçek (küme)&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:245;--y:30;--w:150"&gt;&lt;span class="state s-warn"&gt;Drift&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl" style="--x:104;--y:300;--w:120"&gt;scan · 2 min&lt;/p&gt;
+  &lt;p class="dl" style="--x:510;--y:292;--w:130"&gt;desired (Git)&lt;/p&gt;
+  &lt;p class="dl" style="--x:510;--y:320;--w:130"&gt;actual (cluster)&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* kadran: ibreler dik çizilir, açı tek bir rotate ile verilir; .needle (istenen) ve .needle.is-actual (gerçek) paket sınıfı, merkez --ox/--oy (view-box koordinatı) */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* dial: needles are drawn upright and angled with a single rotate; .needle (desired) and .needle.is-actual (actual) are package classes, center --ox/--oy (view-box coordinates) */
 .r-gap{stroke:var(--warn);stroke-width:6}
 .r-sweep{stroke:var(--draw);stroke-width:2;transform-box:view-box;transform-origin:60px 300px;transform:rotate(135deg)}
-/* lejant çizgileri de ibre: .needle (istenen), .needle.is-actual (gerçek) */</code></pre></figure>
+/* legend lines are needles too: .needle (desired), .needle.is-actual (actual) */</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b8" data-section data-title="Hat ve makas">
-  <header class="ch-head"><p class="ch-num">08</p><h2>Hat ve makas</h2><p class="lead">Yönlendirme ve izin çizimleri: hangi yol gerçek, hangisi yalnızca kalıp, hangisi engelli.</p></header>
-<p>Makas sahası: ray kalın çizgidir, kullanılmayan kol hayalettir, filtre kolu kırmızıdır. Oluşmayan çıktı kesikli kutuyla ve nedeniyle birlikte yazılır.</p>
+<article class="chapter" id="b8" data-section data-title="Track and switch">
+  <header class="ch-head"><p class="ch-num">08</p><h2>Track and switch</h2><p class="lead">Routing and permission drawings: which path is real, which is only a pattern, which is blocked.</p></header>
+<p>Switch yard: the rail is a heavy line, the unused leg is a ghost, the filter arm is red. An output that is never created is drawn as a dashed box, together with the reason.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · makas sahası</span>
+  <span class="demo-label">Recipe · switch yard</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:900;--ah:240">
   <svg viewBox="0 0 900 240" aria-hidden="true">
@@ -902,17 +902,17 @@
     <circle class="ln-draw fill-paper" cx="250" cy="40" r="5"/>
     <path class="r-arm" d="M250 140V188"/>
   </svg>
-  <p class="dl" style="--x:40;--y:44;--w:200">ana dal</p>
-  <p class="dl" style="--x:40;--y:134;--w:200">diğer dallar</p>
-  <p class="dl r-badt" style="--x:120;--y:206;--w:200">tetik filtresi</p>
-  <p class="dl r-ink" style="--x:332;--y:32;--w:210"><span class="stamp-k">Derleme projesi</span>tek tarif dosyası</p>
-  <p class="dl r-c" style="--x:385;--y:124;--w:120">makas</p>
+  <p class="dl" style="--x:40;--y:44;--w:200">main branch</p>
+  <p class="dl" style="--x:40;--y:134;--w:200">other branches</p>
+  <p class="dl r-badt" style="--x:120;--y:206;--w:200">trigger filter</p>
+  <p class="dl r-ink" style="--x:332;--y:32;--w:210"><span class="stamp-k">Build project</span>one buildspec</p>
+  <p class="dl r-c" style="--x:385;--y:124;--w:120">switch</p>
   <p class="dl tag" style="--x:600;--y:42;--w:150">prod-&lt;hash&gt;</p>
   <p class="dl tag is-ghost" style="--x:600;--y:168;--w:150">dev-&lt;hash&gt;</p>
-  <p class="dl r-mute" style="--x:600;--y:200;--w:290">oluşmaz: filtre dalı geçirmez</p>
+  <p class="dl r-mute" style="--x:600;--y:200;--w:290">not created: the filter blocks the branch</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:240"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:240"&gt;
   &lt;svg viewBox="0 0 900 240" aria-hidden="true"&gt;
     &lt;rect class="ln-draw fill-paper" x="320" y="24" width="230" height="190"/&gt;
     &lt;path class="r-tr" d="M40 70H360L405 115H445L490 70H880M40 160H250"/&gt;
@@ -922,23 +922,23 @@
     &lt;circle class="ln-draw fill-paper" cx="250" cy="40" r="5"/&gt;
     &lt;path class="r-arm" d="M250 140V188"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl" style="--x:40;--y:44;--w:200"&gt;ana dal&lt;/p&gt;
-  &lt;p class="dl" style="--x:40;--y:134;--w:200"&gt;diğer dallar&lt;/p&gt;
-  &lt;p class="dl r-badt" style="--x:120;--y:206;--w:200"&gt;tetik filtresi&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:332;--y:32;--w:210"&gt;&lt;span class="stamp-k"&gt;Derleme projesi&lt;/span&gt;tek tarif dosyası&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:385;--y:124;--w:120"&gt;makas&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:44;--w:200"&gt;main branch&lt;/p&gt;
+  &lt;p class="dl" style="--x:40;--y:134;--w:200"&gt;other branches&lt;/p&gt;
+  &lt;p class="dl r-badt" style="--x:120;--y:206;--w:200"&gt;trigger filter&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:332;--y:32;--w:210"&gt;&lt;span class="stamp-k"&gt;Build project&lt;/span&gt;one buildspec&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:385;--y:124;--w:120"&gt;switch&lt;/p&gt;
   &lt;p class="dl tag" style="--x:600;--y:42;--w:150"&gt;prod-&amp;lt;hash&amp;gt;&lt;/p&gt;
   &lt;p class="dl tag is-ghost" style="--x:600;--y:168;--w:150"&gt;dev-&amp;lt;hash&amp;gt;&lt;/p&gt;
-  &lt;p class="dl r-mute" style="--x:600;--y:200;--w:290"&gt;oluşmaz: filtre dalı geçirmez&lt;/p&gt;
+  &lt;p class="dl r-mute" style="--x:600;--y:200;--w:290"&gt;not created: the filter blocks the branch&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* hat: kalın ray; makasın kullanılmayan kolu hayalet; filtre kolu kırmızı */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* track: heavy rail; the switch's unused leg is a ghost; the filter arm is red */
 .r-tr{stroke:var(--draw);stroke-width:2.5}
 .r-arm{stroke:var(--bad);stroke-width:5;stroke-linecap:round}
-/* hat etiketi: .tag, .tag.is-ghost paket sınıfı */</code></pre></figure>
+/* track tag: .tag, .tag.is-ghost are package classes */</code></pre></figure>
 </div>
-<p>Pilon ve açılır köprü: iki kıyı arasındaki bağlantı. Kapak menteşede <code>transform-box: view-box</code> ile döner; son durum (indirilmiş, bağlı) düz, önceki durum (kalkık, bekliyor) hayalet çizilir. Pilon başındaki yelpaze, bağlantıyı kullanan referansların sayısını gösterir.</p>
+<p>Pylon and bascule bridge: a link between two shores. The leaf turns on its hinge with <code>transform-box: view-box</code>; the finished state (lowered, connected) is drawn solid, the previous state (raised, pending) as a ghost. The fan at the head of the pylon shows how many references use the link.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · pilon ve açılır köprü</span>
+  <span class="demo-label">Recipe · pylon and bascule bridge</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:800;--ah:340">
   <svg viewBox="0 0 800 340" aria-hidden="true">
@@ -952,16 +952,16 @@
     <circle class="r-hinge" cx="420" cy="194" r="3.5"/>
     <path class="ln-pencil" d="M620 120L700 60H708M620 120L700 70H708M620 120L700 80H708M620 120L700 90H708M620 120L700 100H708M620 120L700 110H708M620 120L700 120H708M620 120L700 130H708M620 120L700 140H708M620 120L700 150H708M620 120L700 160H708M620 120L700 170H708"/>
   </svg>
-  <p class="dl r-ink" style="--x:34;--y:214;--w:180"><span class="stamp-k">Kurum ağı</span>iç servis</p>
-  <p class="dl r-ink" style="--x:436;--y:214;--w:200"><span class="stamp-k">Bağlantı ana makinesi</span>alt ağ başına bir ayak</p>
-  <p class="dl r-ink" style="--x:660;--y:214;--w:110"><span class="stamp-k">Bulut</span>eu-west-1</p>
-  <p class="dl" style="--x:120;--y:12;--w:190"><span class="state s-warn">Bekliyor</span><br>hayalet: kapak açık</p>
-  <p class="dl" style="--x:280;--y:208;--w:120"><span class="state s-ok">Bağlı</span></p>
-  <p class="dl r-ink" style="--x:716;--y:92;--w:84"><b class="r-n">12</b>proje kullanır</p>
-  <p class="dl r-c r-mute" style="--x:220;--y:274;--w:200">boşluk</p>
+  <p class="dl r-ink" style="--x:34;--y:214;--w:180"><span class="stamp-k">Corporate network</span>internal service</p>
+  <p class="dl r-ink" style="--x:436;--y:214;--w:200"><span class="stamp-k">Connection host</span>one leg per subnet</p>
+  <p class="dl r-ink" style="--x:660;--y:214;--w:110"><span class="stamp-k">Cloud</span>eu-west-1</p>
+  <p class="dl" style="--x:120;--y:12;--w:190"><span class="state s-warn">Pending</span><br>ghost: leaf raised</p>
+  <p class="dl" style="--x:280;--y:208;--w:120"><span class="state s-ok">Connected</span></p>
+  <p class="dl r-ink" style="--x:716;--y:92;--w:84"><b class="r-n">12</b>projects use it</p>
+  <p class="dl r-c r-mute" style="--x:220;--y:274;--w:200">gap</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:340"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:800;--ah:340"&gt;
   &lt;svg viewBox="0 0 800 340" aria-hidden="true"&gt;
     &lt;rect class="ln-draw fill-paper" x="20" y="200" width="200" height="120"/&gt;
     &lt;rect class="ln-draw fill-paper" x="420" y="200" width="360" height="120"/&gt;
@@ -973,24 +973,24 @@
     &lt;circle class="r-hinge" cx="420" cy="194" r="3.5"/&gt;
     &lt;path class="ln-pencil" d="M620 120L700 60H708M620 120L700 70H708M620 120L700 80H708M620 120L700 90H708M620 120L700 100H708M620 120L700 110H708M620 120L700 120H708M620 120L700 130H708M620 120L700 140H708M620 120L700 150H708M620 120L700 160H708M620 120L700 170H708"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:34;--y:214;--w:180"&gt;&lt;span class="stamp-k"&gt;Kurum ağı&lt;/span&gt;iç servis&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:436;--y:214;--w:200"&gt;&lt;span class="stamp-k"&gt;Bağlantı ana makinesi&lt;/span&gt;alt ağ başına bir ayak&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:660;--y:214;--w:110"&gt;&lt;span class="stamp-k"&gt;Bulut&lt;/span&gt;eu-west-1&lt;/p&gt;
-  &lt;p class="dl" style="--x:120;--y:12;--w:190"&gt;&lt;span class="state s-warn"&gt;Bekliyor&lt;/span&gt;&lt;br&gt;hayalet: kapak açık&lt;/p&gt;
-  &lt;p class="dl" style="--x:280;--y:208;--w:120"&gt;&lt;span class="state s-ok"&gt;Bağlı&lt;/span&gt;&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:716;--y:92;--w:84"&gt;&lt;b class="r-n"&gt;12&lt;/b&gt;proje kullanır&lt;/p&gt;
-  &lt;p class="dl r-c r-mute" style="--x:220;--y:274;--w:200"&gt;boşluk&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:34;--y:214;--w:180"&gt;&lt;span class="stamp-k"&gt;Corporate network&lt;/span&gt;internal service&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:436;--y:214;--w:200"&gt;&lt;span class="stamp-k"&gt;Connection host&lt;/span&gt;one leg per subnet&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:660;--y:214;--w:110"&gt;&lt;span class="stamp-k"&gt;Cloud&lt;/span&gt;eu-west-1&lt;/p&gt;
+  &lt;p class="dl" style="--x:120;--y:12;--w:190"&gt;&lt;span class="state s-warn"&gt;Pending&lt;/span&gt;&lt;br&gt;ghost: leaf raised&lt;/p&gt;
+  &lt;p class="dl" style="--x:280;--y:208;--w:120"&gt;&lt;span class="state s-ok"&gt;Connected&lt;/span&gt;&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:716;--y:92;--w:84"&gt;&lt;b class="r-n"&gt;12&lt;/b&gt;projects use it&lt;/p&gt;
+  &lt;p class="dl r-c r-mute" style="--x:220;--y:274;--w:200"&gt;gap&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* açılır kapak: menteşe view-box koordinatında; durum değişince yalnızca rotate değişir */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* bascule leaf: hinge in view-box coordinates; a state change only changes the rotate */
 .r-deck{stroke:var(--draw);stroke-width:2.5}
 .r-hinge{fill:var(--scene-bg);stroke:var(--draw);stroke-width:1.5}
 .r-leaf{transform-box:view-box;transform-origin:420px 194px}
 .r-leaf.r-up{transform:rotate(60deg);stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
 .r-n{display:block;font:600 max(14px,calc(20 * var(--u)))/1.2 var(--font-mono);color:var(--draw)}</code></pre></figure>
 </div>
-<p>Şablon plakaları: her plaka bir izni temsil eder ve pencereyi <code>fill-rule: evenodd</code> ile keser. Bir satırın hizasında pencere olan plaka varsa yol geçer (düz çizgi, dolu ok ucu); yoksa yol <code>.ln-block</code> ile çizilir, plakada durdurma işareti ve hedefte kesikli kutu olur.</p>
+<p>Stencil plates: each plate stands for one permission and cuts its window with <code>fill-rule: evenodd</code>. If a plate has a window level with a row, the path passes (solid line, filled arrowhead); otherwise the path is drawn with <code>.ln-block</code>, with a stop mark at the plate and a dashed box at the target.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · şablon plakaları ve engellenen yol</span>
+  <span class="demo-label">Recipe · stencil plates and a blocked path</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:900;--ah:330">
   <svg viewBox="0 0 900 330" aria-hidden="true">
@@ -1007,17 +1007,17 @@
     <g class="r-st" style="--c:var(--ok)"><path class="r-pl" d="M340 70L380 46V296L340 320ZM346 108.4L374 91.6L374 111.6L346 128.4Z"/><text x="364" y="38">1</text></g>
     <g class="r-st" style="--c:var(--sec)"><path class="r-pl" d="M372 70L412 46V296L372 320ZM378 178.4L406 161.6L406 181.6L378 198.4Z"/><text x="396" y="38">2</text></g>
   </svg>
-  <p class="dl r-ink" style="--x:30;--y:72;--w:140"><span class="stamp-k">Derleme</span>hizmet rolü</p>
-  <p class="dl" style="--x:224;--y:88;--w:110">log yaz</p>
-  <p class="dl" style="--x:224;--y:158;--w:110">kaynak çek</p>
-  <p class="dl r-badt" style="--x:224;--y:228;--w:110">imaj gönder</p>
-  <p class="dl r-ink" style="--x:716;--y:100;--w:160">günlük grubu</p>
-  <p class="dl r-ink" style="--x:716;--y:170;--w:160">kaynak deposu</p>
-  <p class="dl r-badt" style="--x:716;--y:240;--w:160">imaj deposu · red</p>
-  <p class="dl" style="--x:460;--y:264;--w:240"><span class="state s-bad">Reddedildi</span> pencere yok</p>
+  <p class="dl r-ink" style="--x:30;--y:72;--w:140"><span class="stamp-k">Build</span>service role</p>
+  <p class="dl" style="--x:224;--y:88;--w:110">write logs</p>
+  <p class="dl" style="--x:224;--y:158;--w:110">pull source</p>
+  <p class="dl r-badt" style="--x:224;--y:228;--w:110">push image</p>
+  <p class="dl r-ink" style="--x:716;--y:100;--w:160">log group</p>
+  <p class="dl r-ink" style="--x:716;--y:170;--w:160">source repository</p>
+  <p class="dl r-badt" style="--x:716;--y:240;--w:160">image repository · denied</p>
+  <p class="dl" style="--x:460;--y:264;--w:240"><span class="state s-bad">Rejected</span> no window</p>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:330"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:900;--ah:330"&gt;
   &lt;svg viewBox="0 0 900 330" aria-hidden="true"&gt;
     &lt;path class="ln-draw fill-scene" d="M20 60L56 38H216L180 60Z"/&gt;
     &lt;path class="ln-draw fill-scene" d="M180 60L216 38V268L180 290Z"/&gt;
@@ -1032,26 +1032,26 @@
     &lt;g class="r-st" style="--c:var(--ok)"&gt;&lt;path class="r-pl" d="M340 70L380 46V296L340 320ZM346 108.4L374 91.6L374 111.6L346 128.4Z"/&gt;&lt;text x="364" y="38"&gt;1&lt;/text&gt;&lt;/g&gt;
     &lt;g class="r-st" style="--c:var(--sec)"&gt;&lt;path class="r-pl" d="M372 70L412 46V296L372 320ZM378 178.4L406 161.6L406 181.6L378 198.4Z"/&gt;&lt;text x="396" y="38"&gt;2&lt;/text&gt;&lt;/g&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-ink" style="--x:30;--y:72;--w:140"&gt;&lt;span class="stamp-k"&gt;Derleme&lt;/span&gt;hizmet rolü&lt;/p&gt;
-  &lt;p class="dl" style="--x:224;--y:88;--w:110"&gt;log yaz&lt;/p&gt;
-  &lt;p class="dl" style="--x:224;--y:158;--w:110"&gt;kaynak çek&lt;/p&gt;
-  &lt;p class="dl r-badt" style="--x:224;--y:228;--w:110"&gt;imaj gönder&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:716;--y:100;--w:160"&gt;günlük grubu&lt;/p&gt;
-  &lt;p class="dl r-ink" style="--x:716;--y:170;--w:160"&gt;kaynak deposu&lt;/p&gt;
-  &lt;p class="dl r-badt" style="--x:716;--y:240;--w:160"&gt;imaj deposu · red&lt;/p&gt;
-  &lt;p class="dl" style="--x:460;--y:264;--w:240"&gt;&lt;span class="state s-bad"&gt;Reddedildi&lt;/span&gt; pencere yok&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:30;--y:72;--w:140"&gt;&lt;span class="stamp-k"&gt;Build&lt;/span&gt;service role&lt;/p&gt;
+  &lt;p class="dl" style="--x:224;--y:88;--w:110"&gt;write logs&lt;/p&gt;
+  &lt;p class="dl" style="--x:224;--y:158;--w:110"&gt;pull source&lt;/p&gt;
+  &lt;p class="dl r-badt" style="--x:224;--y:228;--w:110"&gt;push image&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:716;--y:100;--w:160"&gt;log group&lt;/p&gt;
+  &lt;p class="dl r-ink" style="--x:716;--y:170;--w:160"&gt;source repository&lt;/p&gt;
+  &lt;p class="dl r-badt" style="--x:716;--y:240;--w:160"&gt;image repository · denied&lt;/p&gt;
+  &lt;p class="dl" style="--x:460;--y:264;--w:240"&gt;&lt;span class="state s-bad"&gt;Rejected&lt;/span&gt; no window&lt;/p&gt;
 &lt;/div&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* plaka: evenodd ile pencere kesilir; renk --c ile */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* plate: the window is cut with evenodd; color via --c */
 .r-st .r-pl{fill:color-mix(in srgb,var(--c) 16%,transparent);fill-rule:evenodd;stroke:var(--c);stroke-width:1.5}
 .r-st text{font:600 14px var(--font-mono);fill:var(--c);text-anchor:middle}</code></pre></figure>
 </div>
 </article>
 
-<article class="chapter" id="b9" data-section data-title="Arıza lambası panosu">
-  <header class="ch-head"><p class="ch-num">09</p><h2>Arıza lambası panosu</h2><p class="lead">Bir sürecin hangi fazında arıza olduğunu gösterir: orantılı faz şeridi, bölge parantezleri ve numaralı lambalar.</p></header>
-<p>Şeridin orta bölümü süreyle orantılıdır (10 birim = 1 s) ve altındaki saniye cetveliyle okunur; yan bölümler orantısızdır ve bölge parantezleriyle ayrılır. Her lamba alttaki listenin bir satırıdır; yanan lamba ve fazı kırmızı çizilir. Liste, çizimin metin karşılığıdır.</p>
+<article class="chapter" id="b9" data-section data-title="Fault lamp panel">
+  <header class="ch-head"><p class="ch-num">09</p><h2>Fault lamp panel</h2><p class="lead">Shows which phase of a process failed: a proportional phase strip, zone brackets and numbered lamps.</p></header>
+<p>The middle section of the strip is proportional to time (10 units = 1 s) and reads against the seconds ruler below it; the side sections are not to scale and are set apart by zone brackets. Each lamp is a row of the list below; the lit lamp and its phase are drawn in red. The list is the text equivalent of the drawing.</p>
 <div class="demo">
-  <span class="demo-label">Tarif · arıza lambası panosu + faz şeridi</span>
+  <span class="demo-label">Recipe · fault lamp panel + phase strip</span>
   <div class="demo-view">
 <div class="drawing" style="--aw:1000;--ah:310">
   <svg viewBox="0 0 1000 310" aria-hidden="true">
@@ -1084,19 +1084,19 @@
     <path class="ln-pencil" d="M180 262V266M190 262V266M200 262V266M210 262V266M220 262V269M230 262V266M240 262V266M250 262V266M260 262V266M280 262V266M290 262V266M300 262V266M310 262V266M320 262V269M330 262V266M340 262V266M350 262V266M360 262V266M380 262V266M390 262V266M400 262V266M410 262V266M420 262V269M430 262V266M440 262V266M450 262V266M460 262V266M480 262V266M490 262V266M500 262V266M510 262V266M520 262V269M530 262V266M540 262V266M550 262V266M560 262V266M580 262V266M590 262V266M600 262V266M610 262V266M620 262V269M630 262V266M640 262V266M650 262V266M660 262V266"/>
     <path class="ln-draw" d="M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
   </svg>
-  <p class="dl r-z" style="--x:10;--y:8;--w:150">Tetik</p>
-  <p class="dl r-z" style="--x:170;--y:8;--w:500">Derleme fazları · orantılı</p>
-  <p class="dl r-z" style="--x:700;--y:8;--w:290">Kayıt → dağıtım</p>
+  <p class="dl r-z" style="--x:10;--y:8;--w:150">Trigger</p>
+  <p class="dl r-z" style="--x:170;--y:8;--w:500">Build phases · proportional</p>
+  <p class="dl r-z" style="--x:700;--y:8;--w:290">Registry → deploy</p>
   <p class="dl r-c" style="--x:0;--y:190;--w:110">webhook</p>
-  <p class="dl r-c" style="--x:100;--y:208;--w:70">kuyruk</p>
-  <p class="dl r-c" style="--x:160;--y:190;--w:100">HAZIRLIK</p>
-  <p class="dl r-c" style="--x:240;--y:208;--w:80">İNDİR</p>
-  <p class="dl r-c" style="--x:300;--y:190;--w:120">ÖN DERLEME</p>
-  <p class="dl r-c r-badt" style="--x:400;--y:208;--w:230">DERLEME</p>
-  <p class="dl r-c" style="--x:610;--y:190;--w:70">SON</p>
-  <p class="dl r-c" style="--x:690;--y:208;--w:90">kayıt</p>
-  <p class="dl r-c" style="--x:775;--y:190;--w:140">dağıtım</p>
-  <p class="dl r-c" style="--x:905;--y:208;--w:95">doğrulama</p>
+  <p class="dl r-c" style="--x:100;--y:208;--w:70">queue</p>
+  <p class="dl r-c" style="--x:160;--y:190;--w:100">PROVISION</p>
+  <p class="dl r-c" style="--x:240;--y:208;--w:80">DOWNLOAD</p>
+  <p class="dl r-c" style="--x:300;--y:190;--w:120">PRE-BUILD</p>
+  <p class="dl r-c r-badt" style="--x:400;--y:208;--w:230">BUILD</p>
+  <p class="dl r-c" style="--x:610;--y:190;--w:70">POST</p>
+  <p class="dl r-c" style="--x:690;--y:208;--w:90">registry</p>
+  <p class="dl r-c" style="--x:775;--y:190;--w:140">deploy</p>
+  <p class="dl r-c" style="--x:905;--y:208;--w:95">verify</p>
   <p class="dl r-c r-mute" style="--x:140;--y:276;--w:60">0 s</p>
   <p class="dl r-c r-mute" style="--x:240;--y:276;--w:60">10 s</p>
   <p class="dl r-c r-mute" style="--x:340;--y:276;--w:60">20 s</p>
@@ -1105,15 +1105,15 @@
   <p class="dl r-c r-mute" style="--x:640;--y:276;--w:60">50 s</p>
 </div>
 <ol class="lamps">
-  <li>Build hiç başlamadı: tetik filtresi dalı eşleştirmedi.</li>
-  <li>Hazırlık düştü: derleme imajı çekilemedi ya da kapasite yok.</li>
-  <li data-state="on"><b>Yanıyor ·</b> Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.</li>
-  <li>Ayrıcalıklı mod kapalı: Docker servisi başlamadı.</li>
-  <li>Gönderim reddedildi: rolün imaj deposuna yazma izni yok.</li>
-  <li>Dağıtım güncellenmedi: etiket <code>^prod-[a-f0-9]{8}$</code> kalıbına uymuyor.</li>
+  <li>The build never started: the trigger filter did not match the branch.</li>
+  <li>Provisioning failed: the build image could not be pulled, or there is no capacity.</li>
+  <li data-state="on"><b>Lit ·</b> The build step failed: a command in the buildspec returned an error.</li>
+  <li>Privileged mode is off: the Docker service did not start.</li>
+  <li>Push rejected: the role has no write access to the image repository.</li>
+  <li>The deployment was not updated: the tag does not match <code>^prod-[a-f0-9]{8}$</code>.</li>
 </ol>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">işaretleme</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:1000;--ah:310"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML/SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="drawing" style="--aw:1000;--ah:310"&gt;
   &lt;svg viewBox="0 0 1000 310" aria-hidden="true"&gt;
     &lt;path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/&gt;
     &lt;path class="ln-pencil" d="M10 166H990"/&gt;
@@ -1144,19 +1144,19 @@
     &lt;path class="ln-pencil" d="M180 262V266M190 262V266M200 262V266M210 262V266M220 262V269M230 262V266M240 262V266M250 262V266M260 262V266M280 262V266M290 262V266M300 262V266M310 262V266M320 262V269M330 262V266M340 262V266M350 262V266M360 262V266M380 262V266M390 262V266M400 262V266M410 262V266M420 262V269M430 262V266M440 262V266M450 262V266M460 262V266M480 262V266M490 262V266M500 262V266M510 262V266M520 262V269M530 262V266M540 262V266M550 262V266M560 262V266M580 262V266M590 262V266M600 262V266M610 262V266M620 262V269M630 262V266M640 262V266M650 262V266M660 262V266"/&gt;
     &lt;path class="ln-draw" d="M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/&gt;
   &lt;/svg&gt;
-  &lt;p class="dl r-z" style="--x:10;--y:8;--w:150"&gt;Tetik&lt;/p&gt;
-  &lt;p class="dl r-z" style="--x:170;--y:8;--w:500"&gt;Derleme fazları · orantılı&lt;/p&gt;
-  &lt;p class="dl r-z" style="--x:700;--y:8;--w:290"&gt;Kayıt → dağıtım&lt;/p&gt;
+  &lt;p class="dl r-z" style="--x:10;--y:8;--w:150"&gt;Trigger&lt;/p&gt;
+  &lt;p class="dl r-z" style="--x:170;--y:8;--w:500"&gt;Build phases · proportional&lt;/p&gt;
+  &lt;p class="dl r-z" style="--x:700;--y:8;--w:290"&gt;Registry → deploy&lt;/p&gt;
   &lt;p class="dl r-c" style="--x:0;--y:190;--w:110"&gt;webhook&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:100;--y:208;--w:70"&gt;kuyruk&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:160;--y:190;--w:100"&gt;HAZIRLIK&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:240;--y:208;--w:80"&gt;İNDİR&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:300;--y:190;--w:120"&gt;ÖN DERLEME&lt;/p&gt;
-  &lt;p class="dl r-c r-badt" style="--x:400;--y:208;--w:230"&gt;DERLEME&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:610;--y:190;--w:70"&gt;SON&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:690;--y:208;--w:90"&gt;kayıt&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:775;--y:190;--w:140"&gt;dağıtım&lt;/p&gt;
-  &lt;p class="dl r-c" style="--x:905;--y:208;--w:95"&gt;doğrulama&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:100;--y:208;--w:70"&gt;queue&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:160;--y:190;--w:100"&gt;PROVISION&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:240;--y:208;--w:80"&gt;DOWNLOAD&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:300;--y:190;--w:120"&gt;PRE-BUILD&lt;/p&gt;
+  &lt;p class="dl r-c r-badt" style="--x:400;--y:208;--w:230"&gt;BUILD&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:610;--y:190;--w:70"&gt;POST&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:690;--y:208;--w:90"&gt;registry&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:775;--y:190;--w:140"&gt;deploy&lt;/p&gt;
+  &lt;p class="dl r-c" style="--x:905;--y:208;--w:95"&gt;verify&lt;/p&gt;
   &lt;p class="dl r-c r-mute" style="--x:140;--y:276;--w:60"&gt;0 s&lt;/p&gt;
   &lt;p class="dl r-c r-mute" style="--x:240;--y:276;--w:60"&gt;10 s&lt;/p&gt;
   &lt;p class="dl r-c r-mute" style="--x:340;--y:276;--w:60"&gt;20 s&lt;/p&gt;
@@ -1165,20 +1165,20 @@
   &lt;p class="dl r-c r-mute" style="--x:640;--y:276;--w:60"&gt;50 s&lt;/p&gt;
 &lt;/div&gt;
 &lt;ol class="lamps"&gt;
-  &lt;li&gt;Build hiç başlamadı: tetik filtresi dalı eşleştirmedi.&lt;/li&gt;
-  &lt;li&gt;Hazırlık düştü: derleme imajı çekilemedi ya da kapasite yok.&lt;/li&gt;
-  &lt;li data-state="on"&gt;&lt;b&gt;Yanıyor ·&lt;/b&gt; Derleme adımı düştü: tarif dosyasındaki bir komut hata verdi.&lt;/li&gt;
-  &lt;li&gt;Ayrıcalıklı mod kapalı: Docker servisi başlamadı.&lt;/li&gt;
-  &lt;li&gt;Gönderim reddedildi: rolün imaj deposuna yazma izni yok.&lt;/li&gt;
-  &lt;li&gt;Dağıtım güncellenmedi: etiket &lt;code&gt;^prod-[a-f0-9]{8}$&lt;/code&gt; kalıbına uymuyor.&lt;/li&gt;
+  &lt;li&gt;The build never started: the trigger filter did not match the branch.&lt;/li&gt;
+  &lt;li&gt;Provisioning failed: the build image could not be pulled, or there is no capacity.&lt;/li&gt;
+  &lt;li data-state="on"&gt;&lt;b&gt;Lit ·&lt;/b&gt; The build step failed: a command in the buildspec returned an error.&lt;/li&gt;
+  &lt;li&gt;Privileged mode is off: the Docker service did not start.&lt;/li&gt;
+  &lt;li&gt;Push rejected: the role has no write access to the image repository.&lt;/li&gt;
+  &lt;li&gt;The deployment was not updated: the tag does not match &lt;code&gt;^prod-[a-f0-9]{8}$&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;</code></pre></figure>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">stil</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Kopyala</span></button></figcaption><pre tabindex="0"><code>/* pano: lamba numarası = alttaki listenin satırı; yanan lamba ve fazı kırmızı */
+  <figure class="code"><figcaption class="code-head"><span class="code-file">style</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* panel: lamp number = row of the list below; the lit lamp and its phase are red */
 .r-z{color:var(--draw);letter-spacing:.06em;text-transform:uppercase}
 .r-seg2{fill:var(--paper);stroke:var(--draw);stroke-width:1.5}
 .r-seg2[data-state="on"]{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
 .r-ld{stroke:var(--pencil);stroke-width:1}
 .r-ld[data-state="on"]{stroke:var(--bad);stroke-width:2}
-/* lamba ve liste: .lamp, .lamps, data-state="on" paket sınıfı */</code></pre></figure>
+/* lamp and list: .lamp, .lamps, data-state="on" are package classes */</code></pre></figure>
 </div>
 </article>
 
@@ -1189,7 +1189,7 @@
 <script src="../dist/hendese.js"></script>
 <script>
 Hendese.init();
-/* sahne kayıtları buraya */
+/* scene registrations go here */
 Hendese.start();
 </script>
 </body>

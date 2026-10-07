@@ -1,0 +1,155 @@
+<!-- meta {"title":"Empty state","group":"Components","order":210,"tagline":"No data yet; why, and the next step.","intro":"<code>.empty</code> stands in place of a list, a table or a figure and says why there is nothing there. It has a dashed frame: in this language a dashed line means “not real yet”. The heading is a <code>.chip</code>, the body is one sentence, plus one optional button.","summary":"<code>.empty</code>; in place of a table, inside a sheet and a dark scene; telling empty, loading and error states apart.","facts":{"Classes":"<code>.empty</code> · inside it <code>.chip</code>, <code>&lt;p&gt;</code>, <code>.btn</code>","State":"Loading: <code>aria-busy=\"true\"</code> on the region plus text · Error: <code>.co-trouble</code>","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="Three parts, stacked and left-aligned: a chip that names what is missing, a sentence that says why and what comes next, and one optional action.">
+<demo label="Example · complete">
+<div class="empty">
+  <p class="chip">No alarms</p>
+  <p>No alarms have been defined for report-cron yet. Failed runs are not reported to anyone right now.</p>
+  <button class="btn" type="button"><svg><use href="#i-warn"/></svg>Add alarm</button>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.empty</code></dt><dd>The container. Dashed frame, padding and a left-aligned grid; it resets the margins of the paragraphs inside.</dd>
+  <dt><code>.chip</code></dt><dd>The name of what is missing: “No deployments”, “No results”. A noun phrase, not a sentence.</dd>
+  <dt><code>&lt;p&gt;</code></dt><dd>Why it is empty and what the reader can do. One or two sentences.</dd>
+  <dt><code>.btn</code></dt><dd>Optional. The one action that fills the gap; not drawn if the reader lacks permission.</dd>
+</dl>
+<demo label="Example · no button, information only">
+<div class="empty">
+  <p class="chip">No changes</p>
+  <p>Nothing has been merged into <code>main</code> since the last deployment.</p>
+</div>
+</demo>
+</chapter>
+
+<chapter title="In place of a table" lead="A table with no rows is not drawn: an empty header row tells the reader nothing. The toolbar (title, filter) stays; .empty takes the table's place.">
+<demo label="Example · the filter returned nothing">
+<div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
+  <p class="chip" style="margin-right:auto">Deployments · prod · last 7 days</p>
+  <div class="pillrow">
+    <button class="toggle-btn is-accent" type="button" aria-pressed="true">Failed only</button>
+    <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Clear filter</button>
+  </div>
+</div>
+<div class="empty">
+  <p class="chip">No results</p>
+  <p>There were no failed deployments to prod in the last 7 days. Clear the filter to see all deployments.</p>
+</div>
+</demo>
+<div class="prose"><p>An empty result from a filter and having no data at all need different sentences. In the first, the reader changes the filter; in the second, they create the first record. After a filter, the button clears the filter; it does not create a new record.</p></div>
+</chapter>
+
+<chapter title="Inside a sheet and a dark scene" lead="If a figure has no data yet, the sheet is still drawn; .empty sits where the drawing would be. The figure name and caption stay, so the reader knows what is coming.">
+<demo label="Example · sheet, no measurements yet">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Figure 3</p>
+  <p class="fig-cap">auth-gateway latency distribution</p>
+  <div class="empty">
+    <p class="chip">No measurements</p>
+    <p>The service started 4 minutes ago; the first distribution is drawn after a 15-minute sample.</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 3.</b> Request latency in 10 ms buckets; eu-west-1.</figcaption>
+</figure>
+</demo>
+<demo label="Example · dark panel" view="scene-dark">
+<p class="chip">Open incidents · eu-central-1</p>
+<div class="empty">
+  <p class="chip">No open incidents</p>
+  <p>The last incident was closed 12 days ago. Nothing to hand over at the on-call handoff.</p>
+  <button class="btn" type="button"><svg><use href="#i-check"/></svg>Confirm handoff</button>
+</div>
+</demo>
+</chapter>
+
+<chapter title="States: empty, loading, error" lead="All three sit in the same place but say different things. Empty: the request succeeded and there is no result. Loading: no answer yet. Error: the answer never came or is broken. Showing an error as an empty state misleads the reader.">
+<demo label="Example · three states side by side">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-6);align-items:start">
+  <div>
+    <p class="chip">Empty</p>
+    <div class="empty">
+      <p class="chip">No jobs</p>
+      <p>There are no scheduled jobs on this cluster.</p>
+    </div>
+  </div>
+  <div>
+    <p class="chip">Loading</p>
+    <div aria-busy="true" style="margin:var(--sp-6) 0">
+      <p>Loading jobs…</p>
+    </div>
+  </div>
+  <div>
+    <p class="chip">Error</p>
+    <div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Could not load jobs</span><div class="co-body"><p>The cluster API returned 503. Try again in a few minutes.</p></div></div>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Markup</th><th>What it says</th></tr></thead>
+  <tbody>
+    <tr><td>Empty</td><td><code>.empty</code></td><td>Why there is nothing and what the reader can do.</td></tr>
+    <tr><td>Loading</td><td><code>aria-busy="true"</code> on the region plus plain text</td><td>What is being waited for: “Loading jobs…”. If it takes long, what it is still waiting for (“2 of 3 regions in”).</td></tr>
+    <tr><td>Error</td><td><code>.co.co-trouble</code></td><td>What could not be loaded, why (if known) and what can be done.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">No skeletons, no spinners</span><div class="co-body"><p>The package deliberately ships no skeleton rows or spinners. A skeleton draws data that has not arrived as if it were real; in this language a solid line means real. A spinner needs motion and does not say what is being waited for. The finished state is text: it says the same thing with motion off, in print and in a screen reader.</p></div></div>
+<demo label="Example · refresh: loading, then empty">
+<div id="bd-live">
+  <div class="pillrow">
+    <button class="btn" type="button" id="bd-refresh"><svg><use href="#i-reset"/></svg>Refresh</button>
+    <button class="btn" type="button" id="bd-error">Try with an error</button>
+  </div>
+  <div id="bd-region" aria-live="polite">
+    <div class="empty">
+      <p class="chip">No releases</p>
+      <p>No releases of web-api were published this week.</p>
+    </div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>While it waits, the region carries <code>aria-busy="true"</code>; the screen reader skips the intermediate changes and reads the region once when the answer arrives. The attribute is removed when the answer arrives.</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="An empty state says why it is empty and what the reader can do next. “No data” on its own says nothing, and an error is not emptiness.">
+<div class="dodont">
+<demo label="Do · reason and next step">
+<div class="empty">
+  <p class="chip">No secrets</p>
+  <p>No secrets are defined in the staging environment; services run with the default configuration.</p>
+  <button class="btn" type="button">Add secret</button>
+</div>
+</demo>
+<demo label="Don't · no context, an error shown as emptiness">
+<div class="empty">
+  <p class="chip">No data</p>
+  <p>Nothing to show.</p>
+  <button class="btn" type="button">OK</button>
+</div>
+</demo>
+</div>
+<div class="prose"><ul>
+  <li><b>The chip names what is missing</b> (“No secrets”); “No data” is the same everywhere and says nothing.</li>
+  <li><b>One action.</b> The action that fills the gap; no button that does nothing, like “OK”.</li>
+  <li><b>If the request failed, it is an error, not an empty state.</b> A reader who sees “No records” and believes there really are none makes the wrong decision.</li>
+  <li><b>Text instead of skeletons and spinners.</b> The loading state says what is being waited for.</li>
+</ul></div>
+</chapter>
+
+<script data-page>
+/* refresh → aria-busy text → empty or error */
+(function () {
+  var region = document.getElementById('bd-region');
+  var html = {
+    yuk: '<p>Loading web-api releases…</p>',
+    bos: '<div class="empty"><p class="chip">No releases</p><p>No releases of web-api were published this week.</p></div>',
+    hata: '<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Could not load releases</span><div class="co-body"><p>The registry did not respond within 8 seconds. Try again with Refresh.</p></div></div>'
+  };
+  function run(son) {
+    region.setAttribute('aria-busy', 'true');
+    region.innerHTML = html.yuk;
+    setTimeout(function () { region.innerHTML = html[son]; region.removeAttribute('aria-busy'); }, 1200);
+  }
+  document.getElementById('bd-refresh').addEventListener('click', function () { run('bos'); });
+  document.getElementById('bd-error').addEventListener('click', function () { run('hata'); });
+})();
+</script>

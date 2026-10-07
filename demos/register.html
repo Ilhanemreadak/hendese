@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variable register · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html" aria-current="page">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Step by step</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>States</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Variable register<em>A step's state at that moment.</em></h1>
+    <p class="intro"><code>.register</code> shows a process's variables at a given moment as name / value rows; the row that changes in this step is highlighted with <code>.now</code>. It suits a pipeline's environment variables, a migration's lock state or the fields of a DNS query.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.register</code> · <code>.register-h</code> · <code>dl &gt; div</code> · <code>div.now</code></dd><dt>Structure</dt><dd><code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> rows inside a <code>&lt;dl&gt;</code></dd><dt>JS</dt><dd>Not needed; the page script changes the values and the <code>.now</code> class</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">The header row has the register's name on the left and position info on the right; name / value rows sit below. The name column widens to fit the longest name.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a DNS query</span>
+  <div class="demo-view">
+<div class="register" style="max-width:360px">
+  <p class="register-h"><b>Query</b><span>ns-1 · 09:42:07</span></p>
+  <dl>
+    <div><dt>QNAME</dt><dd>api.example.com.</dd></div>
+    <div><dt>QTYPE</dt><dd>A</dd></div>
+    <div class="now"><dt>ANSWER</dt><dd>203.0.113.24</dd></div>
+    <div><dt>TTL</dt><dd>300</dd></div>
+    <div><dt>RCODE</dt><dd>NOERROR</dd></div>
+  </dl>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>register</span>" style="<span class='s'>max-width:360px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Query&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;ns-1 · 09:42:07&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>dl</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;QNAME&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;api.example.com.&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;QTYPE&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;A&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;ANSWER&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;203.0.113.24&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;TTL&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;300&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;RCODE&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;NOERROR&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>dl</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<dl class="kv">
+  <dt><code>.register-h</code></dt><dd>The header row: <code>&lt;b&gt;</code> is the register's name (uppercase, drawing color), <code>&lt;span&gt;</code> the step or time.</dd>
+  <dt><code>dl &gt; div</code></dt><dd>One row. Its <code>dt</code> is the name and <code>dd</code> the value; rows share one grid, so values start aligned.</dd>
+  <dt><code>div.now</code></dt><dd>The row that changes in this step; it gets a highlight fill and its name darkens. The fill comes in with a soft transition.</dd>
+</dl>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Step by step">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Step by step</h2><p class="lead">A pipeline's environment variables fill in as the job advances. Use the button to move to the next step; changed rows are highlighted, and the readout says what happened.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · pipeline variables, live</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start">
+  <div class="register" id="dk-track">
+    <p class="register-h"><b>Variables</b><span id="dk-step">step 1 / 4</span></p>
+    <dl>
+      <div data-k="sha"><dt>COMMIT_SHA</dt><dd>3f9c2a1b</dd></div>
+      <div data-k="tag"><dt>IMAGE_TAG</dt><dd>—</dd></div>
+      <div data-k="reg"><dt>REGISTRY</dt><dd>—</dd></div>
+      <div data-k="env"><dt>DEPLOY_ENV</dt><dd>—</dd></div>
+      <div data-k="st"><dt>STATUS</dt><dd>checkout</dd></div>
+    </dl>
+  </div>
+  <div>
+    <div class="pillrow">
+      <button class="btn" type="button" id="dk-next"><svg><use href="#i-check"/></svg>Next step</button>
+      <button class="btn" type="button" id="dk-start"><svg><use href="#i-reset"/></svg>Start over</button>
+    </div>
+    <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Source checked out from the <code>main</code> branch.</p></div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>" id="<span class='s'>dk-track</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Variables&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span> id="<span class='s'>dk-step</span>"&gt;step 1 / 4&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span> data-k="<span class='s'>sha</span>"&gt;&lt;<span class='k'>dt</span>&gt;COMMIT_SHA&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;3f9c2a1b&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-k="<span class='s'>tag</span>"&gt;&lt;<span class='k'>dt</span>&gt;IMAGE_TAG&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-k="<span class='s'>reg</span>"&gt;&lt;<span class='k'>dt</span>&gt;REGISTRY&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-k="<span class='s'>env</span>"&gt;&lt;<span class='k'>dt</span>&gt;DEPLOY_ENV&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> data-k="<span class='s'>st</span>"&gt;&lt;<span class='k'>dt</span>&gt;STATUS&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;checkout&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-next</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Next step&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-start</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Start over&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>dk-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;checkout&lt;/<span class='k'>b</span>&gt; · Source checked out from the &lt;<span class='k'>code</span>&gt;main&lt;/<span class='k'>code</span>&gt; branch.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The register is only a view; the page script runs the steps. On each step, <code>.now</code> is first removed from every row, then added to the rows that changed:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>function set(reg, changes) {
+  reg.querySelectorAll('dl &gt; div').forEach(function (row) {
+    var k = row.getAttribute('data-k'), hit = k in changes;
+    if (hit) row.querySelector('dd').textContent = changes[k];
+    row.classList.toggle('now', hit);
+  });
+}
+set(document.getElementById('dk-track'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">03</p><h2>States</h2><p class="lead">A row with no value yet, a long value, and several changes in the same step.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · empty, long, multiple</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start">
+  <div class="register">
+    <p class="register-h"><b>Role</b><span>billing-worker</span></p>
+    <dl>
+      <div><dt>ROLE_ARN</dt><dd>arn:aws:iam::123456789012:role/billing-worker-prod-eu-west-1</dd></div>
+      <div><dt>SESSION</dt><dd>—</dd></div>
+      <div><dt>EXPIRES</dt><dd>—</dd></div>
+    </dl>
+  </div>
+  <div class="register">
+    <p class="register-h"><b>Scaling</b><span>10:15 → 10:16</span></p>
+    <dl>
+      <div class="now"><dt>REPLICAS</dt><dd>3 → 6</dd></div>
+      <div class="now"><dt>QUEUE_DEPTH</dt><dd>1,240</dd></div>
+      <div><dt>CPU_TARGET</dt><dd>70%</dd></div>
+    </dl>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Role&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;billing-worker&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;ROLE_ARN&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;arn:aws:iam::123456789012:role/billing-worker-prod-eu-west-1&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;SESSION&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;EXPIRES&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Scaling&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;10:15 → 10:16&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;REPLICAS&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;3 → 6&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;QUEUE_DEPTH&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;1,240&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;CPU_TARGET&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;70%&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>A long value breaks anywhere; the register never overflows its container. For a value not yet assigned, write a dash instead of leaving it blank: the row's presence says it will fill in at a later step.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">A register sits next to a piece of code or a drawing and tells the reader what is known at that point.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · next to a migration script</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start">
+  <figure class="code" style="margin:0"><figcaption class="code-head"><span class="code-file">0042_add_invoice_index.sql</span><span class="code-lang">SQL</span></figcaption><pre tabindex="0"><code>SELECT pg_advisory_lock(42);
+CREATE INDEX CONCURRENTLY idx_invoice_due
+  ON invoice (due_date);
+UPDATE schema_version SET v = 42;
+SELECT pg_advisory_unlock(42);</code></pre></figure>
+  <div class="register">
+    <p class="register-h"><b>Migration</b><span>line 2 / 5</span></p>
+    <dl>
+      <div><dt>SCHEMA</dt><dd>41</dd></div>
+      <div class="now"><dt>LOCK</dt><dd>42 · held</dd></div>
+      <div><dt>INDEX</dt><dd>—</dd></div>
+    </dl>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start</span>"&gt;
+  &lt;<span class='k'>figure</span> class="<span class='s'>code</span>" style="<span class='s'>margin:0</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;0042_add_invoice_index.sql&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;SQL&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;SELECT pg_advisory_lock(42);
+CREATE INDEX CONCURRENTLY idx_invoice_due
+  ON invoice (due_date);
+UPDATE schema_version SET v = 42;
+SELECT pg_advisory_unlock(42);&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Migration&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;line 2 / 5&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;SCHEMA&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;41&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;LOCK&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;42 · held&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;INDEX&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · dark panel, a request trace</span>
+  <div class="demo-view">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <div class="register" style="max-width:420px">
+    <p class="register-h"><b>Request</b><span>trace 7a1f · span 3 / 6</span></p>
+    <dl>
+      <div><dt>SERVICE</dt><dd>web-api</dd></div>
+      <div><dt>ROUTE</dt><dd>GET /v1/invoices</dd></div>
+      <div class="now"><dt>UPSTREAM</dt><dd>billing-worker · 184 ms</dd></div>
+      <div><dt>CACHE</dt><dd>miss</dd></div>
+    </dl>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>" style="<span class='s'>max-width:420px</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Request&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;trace 7a1f · span 3 / 6&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>dl</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;SERVICE&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;web-api&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;ROUTE&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;GET /v1/invoices&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;UPSTREAM&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;billing-worker · 184 ms&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;CACHE&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;miss&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>dl</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">Only the row that changes in this step is highlighted. If every row is highlighted, none of them is.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · a single change highlighted</span>
+  <div class="demo-view">
+<div class="register">
+  <p class="register-h"><b>Cache</b><span>step 3 / 3</span></p>
+  <dl>
+    <div><dt>KEY</dt><dd>invoice:8812</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · evicted</dd></div>
+    <div><dt>HITS</dt><dd>41</dd></div>
+  </dl>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>register</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Cache&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;step 3 / 3&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>dl</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;KEY&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;invoice:8812&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;TTL&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;0 · evicted&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;&lt;<span class='k'>dt</span>&gt;HITS&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;41&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>dl</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · every row highlighted</span>
+  <div class="demo-view">
+<div class="register">
+  <p class="register-h"><b>Cache</b><span>step 3 / 3</span></p>
+  <dl>
+    <div class="now"><dt>KEY</dt><dd>invoice:8812</dd></div>
+    <div class="now"><dt>TTL</dt><dd>0 · evicted</dd></div>
+    <div class="now"><dt>HITS</dt><dd>41</dd></div>
+  </dl>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>register</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Cache&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span>&gt;step 3 / 3&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>dl</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;KEY&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;invoice:8812&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;TTL&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;0 · evicted&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>now</span>"&gt;&lt;<span class='k'>dt</span>&gt;HITS&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;41&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>dl</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>A <code>&lt;dl&gt;</code> gives screen readers name / value pairs correctly; a <code>&lt;div&gt;</code> wrapping each row is valid HTML. <code>.now</code> is only a visual highlight: if what changed matters, also say it as text in a <code>.readout</code> next to it, with <code>aria-live</code>.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="readout.html" rel="prev"><small>Previous · Components</small>Readout</a><a href="stamp.html" rel="next"><small>Next · Components</small>Stamp</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* pipeline variables: step by step */
+(function () {
+  var reg = document.getElementById('dk-track'), step = document.getElementById('dk-step'), out = document.getElementById('dk-out');
+  var steps = [
+    { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Source checked out from the <code>main</code> branch.' },
+    { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · Image built; the tag comes from the short SHA.' },
+    { c: { reg: '123456789012.dkr.ecr.eu-west-1', st: 'push' }, now: ['reg', 'st'], t: '<b>push</b> · Image pushed to the registry.' },
+    { c: { env: 'prod', st: 'deploy · done' }, now: ['env', 'st'], t: '<b>deploy</b> · <code>prod-3f9c2a1b</code> is in production.' }
+  ], i = 0;
+  function render() {
+    var s = steps[i];
+    reg.querySelectorAll('dl > div').forEach(function (row) {
+      var k = row.getAttribute('data-k');
+      if (k in s.c) row.querySelector('dd').textContent = s.c[k];
+      row.classList.toggle('now', s.now.indexOf(k) > -1);
+    });
+    step.textContent = 'step ' + (i + 1) + ' / ' + steps.length;
+    out.classList.toggle('ok', i === steps.length - 1);
+    out.innerHTML = '<p>' + s.t + '</p>';
+    document.getElementById('dk-next').disabled = i === steps.length - 1;
+  }
+  document.getElementById('dk-next').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
+  document.getElementById('dk-start').addEventListener('click', function () { i = 0; render(); });
+  render();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

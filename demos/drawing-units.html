@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drawing units · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html" aria-current="page">Drawing units</a>
+    <a class="nav-page" href="line-families.html">Line families</a>
+    <a class="nav-page" href="station-explorer.html">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Dimension lines</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Label, callout and state</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Station positioning</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Scale</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Blueprint</p>
+    <h1>Drawing units<em>Draw in your own coordinates, read at any width.</em></h1>
+    <p class="intro"><code>.drawing</code> defines a drawing in its own unit system: the SVG <code>viewBox</code> and the HTML labels share the same coordinates and scale together with the drawing's container. Dimension lines, callouts, state labels and stations sit on top of this system.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.callout</code> · <code>.state</code> · <code>.oneliner</code> · <code>.station</code></dd><dt>Variables</dt><dd><code>--aw</code> · <code>--ah</code> · <code>--u</code> · <code>--x</code> · <code>--y</code> · <code>--w</code> · <code>--h</code></dd><dt>JS</dt><dd>Not needed (the explorer, for stations)</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">The drawing area is aw × ah units. The SVG is drawn with the same viewBox and the HTML labels are positioned in the same units; the two stay aligned at every width.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a load balancer on an 800 × 300 unit grid</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:800;--ah:300">
+  <svg viewBox="0 0 800 300" aria-hidden="true">
+    <path class="pencil-2" d="M0 100H800M0 200H800M100 0V300M200 0V300M300 0V300M400 0V300M500 0V300M600 0V300M700 0V300"/>
+    <rect class="pencil" x="0" y="0" width="800" height="300"/>
+    <text class="dim-t" x="6" y="16">0, 0</text>
+    <text class="dim-t" x="794" y="292" text-anchor="end">800, 300</text>
+    <rect class="ln-strong fill-paper" x="100" y="110" width="200" height="90"/>
+    <circle class="fill-draw" cx="100" cy="110" r="3.5"/>
+    <text class="dim-t" x="104" y="104">x 100 · y 110</text>
+    <rect class="ln-draw fill-paper" x="470" y="60" width="180" height="50"/>
+    <rect class="ln-draw fill-paper" x="470" y="130" width="180" height="50"/>
+    <rect class="ln-draw fill-paper" x="470" y="200" width="180" height="50"/>
+    <path class="ln-draw" d="M300 155H385M385 85V225M385 85H464M385 155H464M385 225H464M464 85l-8-4M464 85l-8 4M464 155l-8-4M464 155l-8 4M464 225l-8-4M464 225l-8 4"/>
+  </svg>
+  <p class="dl" style="--x:116;--y:124;--w:170"><span class="stamp-k">Load balancer</span>lb-public · :443</p>
+  <p class="dl" style="--x:484;--y:76;--w:160">web-1 · 10.0.1.11</p>
+  <p class="dl" style="--x:484;--y:146;--w:160">web-2 · 10.0.1.12</p>
+  <p class="dl" style="--x:484;--y:216;--w:160">web-3 · 10.0.1.13</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:800;--ah:300</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 800 300</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M0 100H800M0 200H800M100 0V300M200 0V300M300 0V300M400 0V300M500 0V300M600 0V300M700 0V300</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>pencil</span>" x="<span class='s'>0</span>" y="<span class='s'>0</span>" width="<span class='s'>800</span>" height="<span class='s'>300</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>6</span>" y="<span class='s'>16</span>"&gt;0, 0&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>794</span>" y="<span class='s'>292</span>" text-anchor="<span class='s'>end</span>"&gt;800, 300&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>100</span>" y="<span class='s'>110</span>" width="<span class='s'>200</span>" height="<span class='s'>90</span>"/&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>100</span>" cy="<span class='s'>110</span>" r="<span class='s'>3.5</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>104</span>" y="<span class='s'>104</span>"&gt;x 100 · y 110&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>470</span>" y="<span class='s'>60</span>" width="<span class='s'>180</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>470</span>" y="<span class='s'>130</span>" width="<span class='s'>180</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>470</span>" y="<span class='s'>200</span>" width="<span class='s'>180</span>" height="<span class='s'>50</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M300 155H385M385 85V225M385 85H464M385 155H464M385 225H464M464 85l-8-4M464 85l-8 4M464 155l-8-4M464 155l-8 4M464 225l-8-4M464 225l-8 4</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:116;--y:124;--w:170</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Load balancer&lt;/<span class='k'>span</span>&gt;lb-public · :443&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:484;--y:76;--w:160</span>"&gt;web-1 · 10.0.1.11&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:484;--y:146;--w:160</span>"&gt;web-2 · 10.0.1.12&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:484;--y:216;--w:160</span>"&gt;web-3 · 10.0.1.13&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><ul>
+  <li><code>--aw</code> and <code>--ah</code> on <code>.drawing</code> set the aspect ratio and the number of units; the inner <code>&lt;svg viewBox="0 0 aw ah"&gt;</code> uses the same system.</li>
+  <li>A <code>.dl</code> label is positioned in the same units with <code>--x</code>, <code>--y</code> and <code>--w</code>. No height is given; the text flows down.</li>
+  <li><code>--u</code> is the pixel size of one unit (<code>100cqw / aw</code>). Write font sizes like <code>max(10.5px, calc(12.5 * var(--u)))</code>: they grow but never become unreadable.</li>
+  <li>With <code>vector-effect: non-scaling-stroke</code> lines keep the same weight at every scale; <code>&lt;text&gt;</code> inside the SVG grows with the drawing.</li>
+</ul></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Dimension lines">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Dimension lines</h2><p class="lead">A dimension line states a length or a duration: two extension lines, a dimension line with arrows, and the value. All of it is one .dim path; the value is a .dim-t text.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the life of a message in a queue</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:240">
+  <svg viewBox="0 0 900 240" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="40" y="200" width="120" height="22"/>
+    <rect class="ln-draw fill-paper" x="40" y="174" width="120" height="22"/>
+    <rect class="ln-draw fill-paper" x="40" y="148" width="120" height="22"/>
+    <rect class="ln-draw fill-paper" x="40" y="122" width="120" height="22"/>
+    <rect class="ln-strong fill-paper" x="40" y="96" width="120" height="22"/>
+    <path class="dim" d="M14 96H36M14 222H36M22 96V222M22 96l-3 8h6zM22 222l-3-8h6z"/>
+    <text class="dim-t" x="12" y="159" text-anchor="middle" transform="rotate(-90 12 159)">depth 1,240</text>
+    <path class="ln-pencil" d="M160 107H240V150"/>
+    <path class="ln-draw" d="M240 150H480M240 138V162M400 138V162M480 138V162"/>
+    <path class="ln-draw ln-dash" d="M480 150H800"/>
+    <path class="ln-draw" d="M800 138V162"/>
+    <path class="dim" d="M240 132V92M400 132V92M480 132V92M240 100H480M240 100l8-3v6zM400 100l-8-3v6zM400 100l8-3v6zM480 100l-8-3v6z"/>
+    <text class="dim-t" x="320" y="94" text-anchor="middle">wait 8 s</text>
+    <text class="dim-t" x="440" y="94" text-anchor="middle">4 s</text>
+    <path class="dim" d="M400 168V208M800 168V208M400 200H800M400 200l8-3v6zM800 200l-8-3v6z"/>
+    <text class="dim-t" x="600" y="222" text-anchor="middle">visibility timeout 20 s</text>
+  </svg>
+  <p class="dl" style="--x:40;--y:44;--w:160"><span class="stamp-k">Queue</span>jobs-eu</p>
+  <p class="dl" style="--x:200;--y:44;--w:80;text-align:center">enqueued</p>
+  <p class="dl" style="--x:360;--y:44;--w:80;text-align:center">received</p>
+  <p class="dl" style="--x:440;--y:44;--w:80;text-align:center">deleted</p>
+  <p class="dl" style="--x:700;--y:44;--w:200;text-align:center">returns if the timeout expires</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:240</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 240</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>200</span>" width="<span class='s'>120</span>" height="<span class='s'>22</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>174</span>" width="<span class='s'>120</span>" height="<span class='s'>22</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>148</span>" width="<span class='s'>120</span>" height="<span class='s'>22</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>122</span>" width="<span class='s'>120</span>" height="<span class='s'>22</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong fill-paper</span>" x="<span class='s'>40</span>" y="<span class='s'>96</span>" width="<span class='s'>120</span>" height="<span class='s'>22</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M14 96H36M14 222H36M22 96V222M22 96l-3 8h6zM22 222l-3-8h6z</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>12</span>" y="<span class='s'>159</span>" text-anchor="<span class='s'>middle</span>" transform="<span class='s'>rotate(-90 12 159)</span>"&gt;depth 1,240&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M160 107H240V150</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M240 150H480M240 138V162M400 138V162M480 138V162</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw ln-dash</span>" d="<span class='s'>M480 150H800</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M800 138V162</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M240 132V92M400 132V92M480 132V92M240 100H480M240 100l8-3v6zM400 100l-8-3v6zM400 100l8-3v6zM480 100l-8-3v6z</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>320</span>" y="<span class='s'>94</span>" text-anchor="<span class='s'>middle</span>"&gt;wait 8 s&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>440</span>" y="<span class='s'>94</span>" text-anchor="<span class='s'>middle</span>"&gt;4 s&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M400 168V208M800 168V208M400 200H800M400 200l8-3v6zM800 200l-8-3v6z</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>600</span>" y="<span class='s'>222</span>" text-anchor="<span class='s'>middle</span>"&gt;visibility timeout 20 s&lt;/<span class='k'>text</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:40;--y:44;--w:160</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Queue&lt;/<span class='k'>span</span>&gt;jobs-eu&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:200;--y:44;--w:80;text-align:center</span>"&gt;enqueued&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:360;--y:44;--w:80;text-align:center</span>"&gt;received&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:440;--y:44;--w:80;text-align:center</span>"&gt;deleted&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:44;--w:200;text-align:center</span>"&gt;returns if the timeout expires&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>A dimension path has three parts, written in this order:</p>
+<ol class="plain">
+  <li>extension lines: <code>M240 132V92</code>;</li>
+  <li>dimension line: <code>M240 100H480</code>;</li>
+  <li>arrowheads: <code>l8-3v6z</code>.</li>
+</ol>
+<p>In chained dimensions the middle extension line belongs to both dimensions; arrowheads meet it from both sides. A vertical dimension's value is rotated with <code>rotate(-90)</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">dimension recipe</span><span class="code-lang">SVG</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!-- horizontal: x1 → x2, dimension line at y; extension lines run from the object slightly past y --&gt;
+&lt;path class="dim" d="M x1 object V y-8  M x2 object V y-8  M x1 y H x2  M x1 y l8-3v6z  M x2 y l-8-3v6z"/&gt;
+&lt;text class="dim-t" x="(x1+x2)/2" y="y-6" text-anchor="middle"&gt;value&lt;/text&gt;</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Label, callout and state">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Label, callout and state</h2><p class="lead">A name inside a box is written with .dl, a note outside a box with .callout, a status with .state. A one-sentence summary of the drawing sits below with .oneliner.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · object storage lifecycle</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:260">
+  <svg viewBox="0 0 900 260" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="20" y="140" width="220" height="100"/>
+    <rect class="ln-draw fill-paper" x="340" y="140" width="220" height="100"/>
+    <rect class="ln-ghost" x="660" y="140" width="220" height="100"/>
+    <path class="ln-draw" d="M240 190H334M334 190l-8-4M334 190l-8 4M560 190H654M654 190l-8-4M654 190l-8 4"/>
+    <text class="dim-t" x="287" y="180" text-anchor="middle">30 days</text>
+    <text class="dim-t" x="607" y="180" text-anchor="middle">365 days</text>
+    <circle class="fill-draw" cx="450" cy="140" r="3"/>
+    <path class="ln-pencil" d="M450 140V80L496 34H600"/>
+  </svg>
+  <p class="dl" style="--x:20;--y:20;--w:400">Rule · <b>logs-prod/</b> prefix</p>
+  <p class="dl" style="--x:34;--y:152;--w:200"><span class="stamp-k">Hot tier</span>2.1 TB<br><span class="state s-ok">Available</span></p>
+  <p class="dl" style="--x:354;--y:152;--w:200"><span class="stamp-k">Cold tier</span>18.4 TB<br><span class="state s-warn">Restore</span></p>
+  <p class="dl" style="--x:674;--y:152;--w:200"><span class="stamp-k">Deleted</span>permanent, cannot be undone<br><span class="state s-bad">Deleting</span></p>
+  <p class="dl callout" style="--x:600;--y:20;--w:280"><b>Restore</b>Reading from the cold tier takes up to 12 hours; keep urgent traces in the hot tier.</p>
+</div>
+<p class="oneliner"><span class="co-label">In one sentence</span>Objects stay hot for 30 days and cold for a year, then are deleted permanently.</p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:260</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 260</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>140</span>" width="<span class='s'>220</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>340</span>" y="<span class='s'>140</span>" width="<span class='s'>220</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>660</span>" y="<span class='s'>140</span>" width="<span class='s'>220</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M240 190H334M334 190l-8-4M334 190l-8 4M560 190H654M654 190l-8-4M654 190l-8 4</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>287</span>" y="<span class='s'>180</span>" text-anchor="<span class='s'>middle</span>"&gt;30 days&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>607</span>" y="<span class='s'>180</span>" text-anchor="<span class='s'>middle</span>"&gt;365 days&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>circle</span> class="<span class='s'>fill-draw</span>" cx="<span class='s'>450</span>" cy="<span class='s'>140</span>" r="<span class='s'>3</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M450 140V80L496 34H600</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:20;--y:20;--w:400</span>"&gt;Rule · &lt;<span class='k'>b</span>&gt;logs-prod/&lt;/<span class='k'>b</span>&gt; prefix&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:152;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Hot tier&lt;/<span class='k'>span</span>&gt;2.1 TB&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Available&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:354;--y:152;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Cold tier&lt;/<span class='k'>span</span>&gt;18.4 TB&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Restore&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:674;--y:152;--w:200</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Deleted&lt;/<span class='k'>span</span>&gt;permanent, cannot be undone&lt;<span class='k'>br</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Deleting&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl callout</span>" style="<span class='s'>--x:600;--y:20;--w:280</span>"&gt;&lt;<span class='k'>b</span>&gt;Restore&lt;/<span class='k'>b</span>&gt;Reading from the cold tier takes up to 12 hours; keep urgent traces in the hot tier.&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>p</span> class="<span class='s'>oneliner</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;In one sentence&lt;/<span class='k'>span</span>&gt;Objects stay hot for 30 days and cold for a year, then are deleted permanently.&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The callout box is HTML; its leader line is drawn in the SVG and ends at the box's left edge, level with the first line, so the line does not break when the text grows. The leader connects to the object with a dot (<code>circle.fill-draw</code>).</p></div>
+<div class="demo">
+  <span class="demo-label">Example · .state labels</span>
+  <div class="demo-view">
+<p style="display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:0"><span class="state s-ok">Synced</span><span class="state s-warn">Delayed</span><span class="state s-bad">Down</span><span class="state">Scheduled</span></p>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>p</span> style="<span class='s'>display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:0</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-ok</span>"&gt;Synced&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-warn</span>"&gt;Delayed&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state s-bad</span>"&gt;Down&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>state</span>"&gt;Scheduled&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p><code>.state</code> also gives its color to the frame through <code>currentColor</code>; color alone carries no meaning, and the label is always a word. Used outside a drawing, where there is no <code>--u</code>, it assumes 1px.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Station positioning">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Station positioning</h2><p class="lead">Clickable stations are placed in drawing units too: --x, --y, --w and --h. When the scale changes, the buttons grow with the drawing; their corners are square like the boxes in the drawing.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · producer, queue, workers</span>
+  <div class="demo-view">
+<div data-explorer="cb-queue">
+  <div class="drawing" style="--aw:800;--ah:200">
+    <svg viewBox="0 0 800 200" aria-hidden="true">
+      <path class="ln-draw" d="M220 95H294M294 95l-8-4M294 95l-8 4M500 95H574M574 95l-8-4M574 95l-8 4"/>
+      <path class="dim" d="M20 146V176M220 146V176M20 168H220M20 168l8-3v6zM220 168l-8-3v6z"/>
+      <text class="dim-t" x="120" y="190" text-anchor="middle">--w: 200</text>
+    </svg>
+    <p class="sl" style="--x:226;--y:66">publish</p>
+    <p class="sl" style="--x:506;--y:66">pull</p>
+    <p class="sl" style="--x:20;--y:16">--x: 20 · --y: 50</p>
+    <button class="station svc-k8s" type="button" data-key="producer" aria-pressed="true" aria-controls="cb-queue" style="--x:20;--y:50;--w:200;--h:90"><span class="st-name">Producer</span><span class="st-sub">web-api</span><span class="st-meta">1 message per event</span></button>
+    <button class="station svc-aws" type="button" data-key="queue" aria-pressed="false" aria-controls="cb-queue" style="--x:300;--y:50;--w:200;--h:90"><span class="st-name">Queue</span><span class="st-sub">jobs-eu</span><span class="st-meta">depth 1,240</span></button>
+    <button class="station" type="button" data-key="worker" aria-pressed="false" aria-controls="cb-queue" style="--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)"><span class="st-name">Workers</span><span class="st-sub">billing-worker × 4</span><span class="st-meta">--h: 100</span></button>
+  </div>
+  <div class="st-detail" id="cb-queue" aria-live="polite">
+    <div data-for="producer"><b>Producer.</b> Drops one message into the queue for each order event and returns without waiting.</div>
+    <div data-for="queue"><b>Queue.</b> Holds messages in order; a received message is hidden from other workers for the visibility timeout.</div>
+    <div data-for="worker"><b>Workers.</b> Four replicas pull from the same queue. This station sits 10 units higher and is 10 units taller: <code>--y: 40; --h: 100</code>.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> data-explorer="<span class='s'>cb-queue</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:800;--ah:200</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 800 200</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 95H294M294 95l-8-4M294 95l-8 4M500 95H574M574 95l-8-4M574 95l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M20 146V176M220 146V176M20 168H220M20 168l8-3v6zM220 168l-8-3v6z</span>"/&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>120</span>" y="<span class='s'>190</span>" text-anchor="<span class='s'>middle</span>"&gt;--w: 200&lt;/<span class='k'>text</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:226;--y:66</span>"&gt;publish&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:506;--y:66</span>"&gt;pull&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>sl</span>" style="<span class='s'>--x:20;--y:16</span>"&gt;--x: 20 · --y: 50&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-k8s</span>" type="<span class='s'>button</span>" data-key="<span class='s'>producer</span>" aria-pressed="<span class='s'>true</span>" aria-controls="<span class='s'>cb-queue</span>" style="<span class='s'>--x:20;--y:50;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Producer&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;web-api&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;1 message per event&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station svc-aws</span>" type="<span class='s'>button</span>" data-key="<span class='s'>queue</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>cb-queue</span>" style="<span class='s'>--x:300;--y:50;--w:200;--h:90</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Queue&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;jobs-eu&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;depth 1,240&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>station</span>" type="<span class='s'>button</span>" data-key="<span class='s'>worker</span>" aria-pressed="<span class='s'>false</span>" aria-controls="<span class='s'>cb-queue</span>" style="<span class='s'>--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-name</span>"&gt;Workers&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-sub</span>"&gt;billing-worker × 4&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>st-meta</span>"&gt;--h: 100&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>st-detail</span>" id="<span class='s'>cb-queue</span>" aria-live="<span class='s'>polite</span>"&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>producer</span>"&gt;&lt;<span class='k'>b</span>&gt;Producer.&lt;/<span class='k'>b</span>&gt; Drops one message into the queue for each order event and returns without waiting.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>queue</span>"&gt;&lt;<span class='k'>b</span>&gt;Queue.&lt;/<span class='k'>b</span>&gt; Holds messages in order; a received message is hidden from other workers for the visibility timeout.&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> data-for="<span class='s'>worker</span>"&gt;&lt;<span class='k'>b</span>&gt;Workers.&lt;/<span class='k'>b</span>&gt; Four replicas pull from the same queue. This station sits 10 units higher and is 10 units taller: &lt;<span class='k'>code</span>&gt;--y: 40; --h: 100&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p><code>.station</code> and <code>.sl</code> inherit <code>--aw</code> / <code>--ah</code> from the nearest <code>.drawing</code>; if none is set, 1000 × 600 is assumed. A station has square corners (<code>border-radius: 0</code>): like every drawn object it is not rounded, so it shares a line with the SVG boxes. For explorer behavior, see the <a href="station-explorer.html">Station explorer</a> page.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Scale">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Scale</h2><p class="lead">The same drawing at two widths: lines keep the same weight, and text shrinks with --u but never below its floor.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · full and one-third width</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-8);align-items:start">
+  <div class="drawing" style="--aw:600;--ah:170">
+    <svg viewBox="0 0 600 170" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="20" y="60" width="200" height="80"/>
+      <rect class="ln-draw fill-paper" x="380" y="60" width="200" height="80"/>
+      <path class="ln-draw" d="M220 100H374M374 100l-8-4M374 100l-8 4"/>
+      <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
+      <text class="dim-t" x="300" y="24" text-anchor="middle">600 units</text>
+    </svg>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Source</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Replica</span>eu-central-1</p>
+  </div>
+  <div class="drawing" style="--aw:600;--ah:170">
+    <svg viewBox="0 0 600 170" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="20" y="60" width="200" height="80"/>
+      <rect class="ln-draw fill-paper" x="380" y="60" width="200" height="80"/>
+      <path class="ln-draw" d="M220 100H374M374 100l-8-4M374 100l-8 4"/>
+      <path class="dim" d="M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z"/>
+      <text class="dim-t" x="300" y="24" text-anchor="middle">600 units</text>
+    </svg>
+    <p class="dl" style="--x:34;--y:72;--w:180"><span class="stamp-k">Source</span>eu-west-1</p>
+    <p class="dl" style="--x:394;--y:72;--w:180"><span class="stamp-k">Replica</span>eu-central-1</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-8);align-items:start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:170</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 170</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>60</span>" width="<span class='s'>200</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>380</span>" y="<span class='s'>60</span>" width="<span class='s'>200</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 100H374M374 100l-8-4M374 100l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z</span>"/&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>300</span>" y="<span class='s'>24</span>" text-anchor="<span class='s'>middle</span>"&gt;600 units&lt;/<span class='k'>text</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:72;--w:180</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Source&lt;/<span class='k'>span</span>&gt;eu-west-1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:394;--y:72;--w:180</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Replica&lt;/<span class='k'>span</span>&gt;eu-central-1&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:600;--ah:170</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 600 170</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>20</span>" y="<span class='s'>60</span>" width="<span class='s'>200</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>380</span>" y="<span class='s'>60</span>" width="<span class='s'>200</span>" height="<span class='s'>80</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M220 100H374M374 100l-8-4M374 100l-8 4</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M20 54V22M580 54V22M20 30H580M20 30l8-3v6zM580 30l-8-3v6z</span>"/&gt;
+      &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>300</span>" y="<span class='s'>24</span>" text-anchor="<span class='s'>middle</span>"&gt;600 units&lt;/<span class='k'>text</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:34;--y:72;--w:180</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Source&lt;/<span class='k'>span</span>&gt;eu-west-1&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:394;--y:72;--w:180</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Replica&lt;/<span class='k'>span</span>&gt;eu-central-1&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Small scale</span><div class="co-body"><p>In the copy on the right, the <code>.dl</code> text hits its 10.5px floor, while the dimension text inside the SVG shrinks with the drawing. For a drawing shown in narrow places, write values with <code>.dl</code> instead of SVG text, or reduce the number of units (<code>--aw</code>).</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Do / don't</h2><p class="lead">A label is HTML: selectable, translatable, and it wraps if it does not fit the box. SVG text is only for short dimension values.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · label with .dl</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:120">
+  <svg viewBox="0 0 440 120" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="10" width="240" height="100"/>
+  </svg>
+  <p class="dl" style="--x:24;--y:22;--w:214"><span class="stamp-k">Backup vault</span>snapshots taken nightly at 02:00 are kept for 35 days</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:120</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 120</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>10</span>" width="<span class='s'>240</span>" height="<span class='s'>100</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:22;--w:214</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Backup vault&lt;/<span class='k'>span</span>&gt;snapshots taken nightly at 02:00 are kept for 35 days&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · long text inside the SVG</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:120">
+  <svg viewBox="0 0 440 120" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="10" width="240" height="100"/>
+    <text class="dim-t" x="24" y="40">BACKUP VAULT</text>
+    <text class="dim-t" x="24" y="62">snapshots taken nightly at 02:00 are kept for 35 days</text>
+  </svg>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:120</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 120</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>10</span>" width="<span class='s'>240</span>" height="<span class='s'>100</span>"/&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>24</span>" y="<span class='s'>40</span>"&gt;BACKUP VAULT&lt;/<span class='k'>text</span>&gt;
+    &lt;<span class='k'>text</span> class="<span class='s'>dim-t</span>" x="<span class='s'>24</span>" y="<span class='s'>62</span>"&gt;snapshots taken nightly at 02:00 are kept for 35 days&lt;/<span class='k'>text</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The SVG always carries <code>aria-hidden="true"</code>; the dimension values inside it never reach a screen reader. If a number carries meaning, repeat it in a <code>.dl</code>, a <code>.oneliner</code> or the caption. In the example on the right, the text never reaches a screen reader and overflows the box.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="sheet.html" rel="prev"><small>Previous · Blueprint</small>Sheet</a><a href="line-families.html" rel="next"><small>Next · Blueprint</small>Line families</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

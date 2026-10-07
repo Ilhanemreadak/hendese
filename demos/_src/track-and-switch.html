@@ -1,0 +1,166 @@
+<!-- meta {"title":"Track and switch","group":"Blueprint","order":70,"tagline":"Which way traffic goes, and which way is closed.","intro":"Routing drawings use the language of railways: the track is a heavy line, the switch is where the path splits, the unused branch is a ghost, and the filter arm is red. Traffic decisions like canary, blue/green and regional failover read at a glance in this language.","summary":"Track, switch, ghost branch and filter arm; canary, blue/green and failover region.","facts":{"Classes":"<code>.ln-strong</code> (track) · <code>.ln-ghost</code> · <code>.ln-block</code> · <code>.tag</code> · <code>.state</code> · <code>.deck-cap</code>","Inline style":"Filter arm: <code>stroke:var(--bad)</code>, 5 units","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="The track is the path that carries traffic and is drawn heavy. At the switch the path splits; the branch not in use stays a ghost. The filter arm cuts across a track and is red.">
+<demo label="Example · one switch and one filter">
+<div class="drawing" style="--aw:900;--ah:250">
+  <svg viewBox="0 0 900 250" aria-hidden="true">
+    <path class="ln-strong" d="M40 110H340L380 70H700"/>
+    <path class="ln-ghost" d="M340 110L380 150H700"/>
+    <circle class="fill-draw" cx="340" cy="110" r="4"/>
+    <path class="ln-strong" d="M40 210H250"/>
+    <path class="ln-ghost" d="M250 210H330"/>
+    <path class="ln-draw" d="M250 160V236"/>
+    <circle class="ln-draw fill-paper" cx="250" cy="160" r="5"/>
+    <path style="stroke:var(--bad);stroke-width:5;stroke-linecap:round" d="M250 186V234"/>
+  </svg>
+  <p class="dl" style="--x:40;--y:84;--w:260">requests · lb-public</p>
+  <p class="dl" style="--x:250;--y:118;--w:80;text-align:center">switch</p>
+  <p class="dl" style="--x:420;--y:44;--w:200">track · .ln-strong</p>
+  <p class="dl" style="--x:420;--y:158;--w:240">unused branch · .ln-ghost</p>
+  <p class="dl" style="--x:40;--y:184;--w:200">crawler bots</p>
+  <p class="dl" style="--x:266;--y:164;--w:200">filter arm · WAF</p>
+  <p class="dl tag" style="--x:700;--y:58">web-api v2</p>
+  <p class="dl tag is-ghost" style="--x:700;--y:138">web-api v1 · idle</p>
+</div>
+</demo>
+<div class="prose"><p>The switch point is marked with <code>circle.fill-draw</code>. The filter arm is a post (<code>.ln-draw</code>), a pivot (<code>circle.ln-draw.fill-paper</code>) and a heavy red bar across the track; the path beyond the arm is a ghost, because nothing reaches it. Destination labels are <code>.tag</code> line labels and sit at the end of the track; an idle one gets a dashed frame with <code>.tag.is-ghost</code>.</p></div>
+</chapter>
+
+<chapter title="Switch types" lead="The same switch draws three different decisions: splitting traffic by weight, cutting over from one side to the other at once, or closing off the unhealthy side.">
+<demo label="Example · canary · weighted split">
+<div class="drawing" style="--aw:900;--ah:190">
+  <svg viewBox="0 0 900 190" aria-hidden="true">
+    <path class="ln-strong" d="M40 90H680"/>
+    <path class="ln-draw" d="M320 90L370 150H680"/>
+    <circle class="fill-draw" cx="320" cy="90" r="4"/>
+    <text class="dim-t" x="520" y="80" text-anchor="middle">95%</text>
+    <text class="dim-t" x="520" y="140" text-anchor="middle">5%</text>
+  </svg>
+  <p class="dl" style="--x:40;--y:64;--w:260">requests</p>
+  <p class="dl tag" style="--x:690;--y:78">4.2.0 · stable</p>
+  <p class="dl tag" style="--x:690;--y:138">4.3.0 · canary</p>
+  <p class="dl" style="--x:690;--y:164;--w:200"><span class="state s-warn">Under watch</span></p>
+  <p class="dl" style="--x:380;--y:160;--w:300">errors 0.3% · threshold 1% · 30 min</p>
+</div>
+</demo>
+<div class="prose"><p>In a canary both paths are real, so both are drawn solid. The one carrying most of the traffic is heavy and the one carrying a little is thin; the ratio is written above the line.</p></div>
+<demo label="Example · blue/green · before and after">
+<div class="drawing" style="--aw:900;--ah:210">
+  <svg viewBox="0 0 900 210" aria-hidden="true">
+    <path class="ln-pencil ln-dash" d="M450 0V210"/>
+    <path class="ln-strong" d="M20 120H150L190 80H330"/>
+    <path class="ln-draw" d="M150 120L190 160H330"/>
+    <circle class="fill-draw" cx="150" cy="120" r="4"/>
+    <path class="ln-strong" d="M490 120H620L660 160H800"/>
+    <path class="ln-ghost" d="M620 120L660 80H800"/>
+    <circle class="fill-draw" cx="620" cy="120" r="4"/>
+  </svg>
+  <p class="sl deck-cap" style="--x:20;--y:14"><b>BEFORE</b>traffic on blue</p>
+  <p class="sl deck-cap" style="--x:490;--y:14"><b>AFTER</b>traffic on green</p>
+  <p class="dl" style="--x:340;--y:70;--w:100">blue</p>
+  <p class="dl" style="--x:340;--y:150;--w:110">green · idle</p>
+  <p class="dl" style="--x:810;--y:70;--w:90">blue</p>
+  <p class="dl" style="--x:810;--y:150;--w:90">green</p>
+  <p class="dl" style="--x:20;--y:182;--w:420">green deployed and passed its tests</p>
+  <p class="dl" style="--x:490;--y:182;--w:410">blue is kept for an hour for rollback</p>
+</div>
+</demo>
+<div class="prose"><p>In blue/green the switch flips in one move. In the “after” drawing the blue branch is a ghost: it is the previous position and stays as the rollback path. There is no in-between state, so the drawing is two separate panels, divided by a dashed guide line.</p></div>
+</chapter>
+
+<chapter title="In context" lead="A switch shows what changed during an outage or a maintenance window. Two compositions: failing over to a backup region, and a nightly maintenance window.">
+<demo label="Example · failing over to a backup region">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">03 · Figure 1</p>
+    <p class="fig-cap">Primary region unhealthy, traffic on the backup</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Check</b>DNS sends a health request to both regions every 10 seconds.</li>
+      <li><b>2 · Decide</b>If the primary fails to respond three times in a row, the switch flips to the backup.</li>
+      <li><b>3 · Propagate</b>Clients pick up the new address when the TTL expires; 60 seconds at most.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" style="--aw:600;--ah:250">
+      <svg viewBox="0 0 600 250" aria-hidden="true">
+        <path class="ln-strong" d="M20 130H200"/>
+        <circle class="fill-draw" cx="200" cy="130" r="4"/>
+        <path class="ln-block" d="M200 130L240 60H380"/>
+        <path class="ln-draw ln-bad" d="M386 44V76M394 48l14 24M408 48l-14 24"/>
+        <rect class="ln-draw ln-bad fill-paper" x="420" y="36" width="160" height="50"/>
+        <path class="ln-strong" d="M200 130L240 200H414M414 200l-9-5M414 200l-9 5"/>
+        <rect class="ln-strong fill-paper" x="420" y="175" width="160" height="50"/>
+        <text class="dim-t" x="110" y="158" text-anchor="middle">TTL 60 s</text>
+      </svg>
+      <p class="dl" style="--x:20;--y:102;--w:180">api.example.net</p>
+      <p class="dl" style="--x:240;--y:14;--w:200">health · 3/3 failed</p>
+      <p class="dl" style="--x:432;--y:44;--w:140">eu-west-1<br><span class="state s-bad">Unhealthy</span></p>
+      <p class="dl" style="--x:432;--y:183;--w:140">eu-central-1<br><span class="state s-ok">Active</span></p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="oneliner"><span class="co-label">In one sentence</span>The primary region failed its health check; DNS flipped the switch to the backup region and the path was blocked.</p>
+    <p class="figcap"><b>Figure 1.</b> The red dashed line and the stop mark are the path that was tried and closed; the heavy track is the path carrying traffic now.</p>
+  </div>
+</div>
+</demo>
+<demo label="Example · nightly maintenance window, dark sheet">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 2</p>
+  <p class="fig-cap">Writes go to a queue during maintenance</p>
+  <div class="drawing" style="--aw:900;--ah:240">
+    <svg viewBox="0 0 900 240" aria-hidden="true">
+      <path class="ln-strong" d="M40 130H220"/>
+      <circle class="fill-draw" cx="220" cy="130" r="4"/>
+      <path class="ln-strong" d="M220 130L260 60H654M654 60l-9-5M654 60l-9 5"/>
+      <path class="ln-block" d="M220 130H600"/>
+      <path class="ln-draw ln-bad" d="M606 114V146M614 118l14 24M628 118l-14 24"/>
+      <path class="ln-draw" d="M220 130L260 200H654M654 200l-8-4M654 200l-8 4"/>
+      <rect class="ln-draw fill-paper" x="660" y="36" width="220" height="48"/>
+      <rect class="ln-draw ln-warn fill-paper" x="660" y="106" width="220" height="48"/>
+      <rect class="ln-draw fill-paper" x="660" y="176" width="220" height="48"/>
+    </svg>
+    <p class="dl" style="--x:40;--y:104;--w:170">requests</p>
+    <p class="dl" style="--x:300;--y:34;--w:300">GET · read</p>
+    <p class="dl" style="--x:300;--y:104;--w:300">POST · direct write</p>
+    <p class="dl" style="--x:300;--y:174;--w:300">POST · to queue</p>
+    <p class="dl" style="--x:672;--y:50;--w:200">orders-db-2 · replica</p>
+    <p class="dl" style="--x:672;--y:120;--w:200">orders-db-1 <span class="state s-warn">In maintenance</span></p>
+    <p class="dl" style="--x:672;--y:190;--w:200">jobs-eu · write queue</p>
+  </div>
+  <figcaption class="figcap"><b>Figure 2.</b> Reads continue from the replica. Direct writes to the primary are closed; writes wait in the queue and are processed in order when maintenance ends.</figcaption>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="At a switch only one branch carries real traffic at a time; the other is a ghost. Two heavy branches leave the reader guessing which path is open.">
+<div class="dodont">
+<demo label="Do · one real branch">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-ghost" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2 · active</p>
+  <p class="dl" style="--x:310;--y:118;--w:120">v1 · previous</p>
+</div>
+</demo>
+<demo label="Don't · two heavy branches">
+<div class="drawing" style="--aw:440;--ah:150">
+  <svg viewBox="0 0 440 150" aria-hidden="true">
+    <path class="ln-strong" d="M10 75H150L190 40H430"/>
+    <path class="ln-strong" d="M150 75L190 110H430"/>
+    <circle class="fill-draw" cx="150" cy="75" r="4"/>
+  </svg>
+  <p class="dl" style="--x:330;--y:14;--w:100">v2</p>
+  <p class="dl" style="--x:330;--y:118;--w:100">v1</p>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The difference between a heavy line and a ghost line is visual. Which path is open and which is closed must also be stated in the destination label (<code>.state</code>) and in the caption. A blocked path is drawn not only in red but also with a dashed pattern and a stop mark.</p></div></div>
+</chapter>

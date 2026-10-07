@@ -1,0 +1,159 @@
+<!-- meta {"title":"Hoca · poses","group":"Hoca","order":10,"tagline":"Character, 21 poses, speech bubble.","intro":"Hoca is an orange, pixel block character. It is painted with canvas and has no image file. Its teacher role comes from the glasses, the item in hand and the pose; it speaks one short sentence that repeats what the text already says.","summary":"Character dimensions, a gallery of 21 poses, a <code>place()</code> playground and speech bubble rules.","facts":{"Sprite":"44 × 36 cells, ×2 → 88 × 72 px","JS":"<code>Hendese.createHoca()</code> → <code>render</code> · <code>place</code> · <code>clearPlaced</code> · <code>size</code> · <code>anchors</code>","Visible":"≥ 1100px, screen; <code>aria-hidden</code>"}} -->
+
+<style>
+/* page-specific (.hp-): gallery cells and stages; Hoca copies are put inside them with place(). */
+.hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0 22px}
+.hp-cell,.hp-stage{position:relative;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--scene-bg)}
+.hp-cell{height:150px}
+.hp-cell span{position:absolute;left:8px;top:6px;font:500 11px/1.4 var(--font-mono);color:var(--ink-2)}
+.hp-cell::after,.hp-stage::after{content:"";position:absolute;left:12px;right:12px;bottom:22px;border-top:1px dashed var(--pencil)}
+.hp-stage{height:170px}
+.hp-stage.is-tall{height:220px}
+.hp-anchor{position:absolute;left:50%;bottom:22px;width:15px;height:15px;transform:translate(-50%,50%);pointer-events:none;
+  background:linear-gradient(var(--bad),var(--bad)) center/1px 100% no-repeat,linear-gradient(var(--bad),var(--bad)) center/100% 1px no-repeat}
+.hp-row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end}
+.hp-row label.hp-txt{display:grid;gap:4px;font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.hp-row input[type=text]{font:14px/1.4 var(--font-pixel);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink);width:240px}
+.hp-row select{font:13px/1.4 var(--font-mono);padding:6px 9px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)}
+html:not(.js) .hp-row{display:none}
+</style>
+
+<chapter title="Character" lead="A flat block body, two eye slits, side nubs and four legs. Its dimensions are fixed; Hoca does not scale.">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:start">
+  <div class="hp-stage is-tall" id="hp-hero" aria-hidden="true"><i class="hp-anchor"></i></div>
+  <dl class="kv" style="grid-template-columns:150px minmax(0,1fr);margin:0">
+    <dt>Grid</dt><dd>44 × 36 cells, each cell 2 × 2 px; 88 × 72 px on screen. No scaling, sharp edges (<code>image-rendering: pixelated</code>).</dd>
+    <dt>Anchor point</dt><dd>The bottom center of the feet (<code>{x: 44, y: 68}</code>); in the <code>sit</code> pose, the seat point (<code>{x: 44, y: 60}</code>). The red cross on the left marks this point.</dd>
+    <dt>Personality</dt><dd>Small glasses, the item in hand, the pose. Facial expression comes from the eye slits alone.</dd>
+    <dt>Painting</dt><dd>Each pose is drawn to a canvas once and turned into a data URL; no external file is loaded.</dd>
+    <dt>Accessibility</dt><dd>The layer and all copies are <code>aria-hidden</code>; everything Hoca says is also written in the text.</dd>
+  </dl>
+</div>
+<div class="prose"><p>The engine creates its own Hoca instance inside <code>Hendese.start()</code> (when the rail has <code>#hoca-home</code> or a scene carries <code>still</code>). The gallery and playground on this page open separate instances with <code>Hendese.createHoca()</code> and put copies inside the boxes with <code>place()</code>.</p></div>
+</chapter>
+
+<chapter title="Pose gallery" lead="21 poses. The dashed line is the floor; each copy stands with its feet on the line.">
+<div class="hp-grid" id="hp-grid">
+  <div class="hp-cell"><span>idle</span></div><div class="hp-cell"><span>carry</span></div><div class="hp-cell"><span>walkA</span></div>
+  <div class="hp-cell"><span>walkB</span></div><div class="hp-cell"><span>stepA</span></div><div class="hp-cell"><span>stepB</span></div>
+  <div class="hp-cell"><span>pointUp</span></div><div class="hp-cell"><span>pointDown</span></div><div class="hp-cell"><span>glasses</span></div>
+  <div class="hp-cell"><span>terminal</span></div><div class="hp-cell"><span>stamp</span></div><div class="hp-cell"><span>worried</span></div>
+  <div class="hp-cell"><span>happy</span></div><div class="hp-cell"><span>sit</span></div><div class="hp-cell"><span>shrug</span></div>
+  <div class="hp-cell"><span>clipboard</span></div><div class="hp-cell"><span>keycard</span></div><div class="hp-cell"><span>crate</span></div>
+  <div class="hp-cell"><span>crateWalkA</span></div><div class="hp-cell"><span>crateWalkB</span></div><div class="hp-cell"><span>helm</span></div>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Group</th><th>Poses</th><th>When</th></tr></thead>
+  <tbody>
+    <tr><td>Resting</td><td><code>idle</code>, <code>sit</code></td><td>At home or at the end of a scene, when nothing is happening.</td></tr>
+    <tr><td>Walking</td><td><code>walkA/B</code> (with a card), <code>stepA/B</code> (empty-handed), <code>crateWalkA/B</code> (with a crate)</td><td>Two frames tied to position: <code>Math.floor(x / 16) % 2</code>. Only while <code>x</code> changes.</td></tr>
+    <tr><td>Pointing</td><td><code>pointUp</code>, <code>pointDown</code></td><td>To draw attention to a label or a part that just changed.</td></tr>
+    <tr><td>Inspecting</td><td><code>glasses</code>, <code>clipboard</code></td><td>While reading a value or checking a list.</td></tr>
+    <tr><td>Working</td><td><code>terminal</code>, <code>stamp</code>, <code>keycard</code>, <code>helm</code>, <code>carry</code>, <code>crate</code></td><td>Running a command, approving, granting access, deploying, carrying something.</td></tr>
+    <tr><td>Emotion</td><td><code>happy</code>, <code>worried</code>, <code>shrug</code></td><td>The outcome: success, risk, uncertainty. Once per scene.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Playground" lead="Change the pose, direction, bubble and tag, and see what the place() call draws. The code below updates on every change.">
+<div class="hp-row">
+  <label class="hp-txt">Pose<select id="hp-pose"></select></label>
+  <fieldset class="choice is-seg"><legend>Direction</legend>
+    <label><input type="radio" name="hp-face" value="1"><span>right</span></label>
+    <label><input type="radio" name="hp-face" value="-1" checked><span>left</span></label>
+  </fieldset>
+  <fieldset class="choice is-seg"><legend>Bubble</legend>
+    <label><input type="radio" name="hp-up" value="0" checked><span>side</span></label>
+    <label><input type="radio" name="hp-up" value="1"><span>top</span></label>
+  </fieldset>
+  <label class="hp-txt">Bubble text<input type="text" id="hp-bub" value="The certificate is valid for 90 days."></label>
+  <label class="hp-txt">Tag<input type="text" id="hp-tag" value=""></label>
+</div>
+<div class="hp-stage is-tall" id="hp-play" aria-hidden="true"></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">call</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code id="hp-call">hoca.place(container, { left: '62%', top: 'calc(100% - 22px)', pose: 'stamp', face: -1, bubble: "The certificate is valid for 90 days.", bubbleUp: false, tag: null });</code></pre></figure>
+</chapter>
+
+<chapter title="Speech bubble rules" lead="A speech bubble is one short sentence. It repeats something the text already says, and it appears once per scene, at the key moment.">
+<div class="prose">
+  <ul>
+    <li><b>Short.</b> At most 230px wide; a sentence longer than two lines doesn't fit the bubble and weighs on the reader.</li>
+    <li><b>No new information.</b> The bubble never reaches a screen reader and is hidden on narrow screens; everything it says must be written on the page.</li>
+    <li><b>Position.</b> The bubble sits to Hoca's left. In <code>render()</code> it moves to the right when there is no room on the left; <code>place()</code> doesn't do that on its own, so put Hoca where the bubble has room. <code>bubbleUp</code> lifts the bubble above head level.</li>
+    <li><b>Font.</b> If the text has a character Pixelify Sans doesn't cover (for example ≠), the whole bubble falls back to the mono font.</li>
+  </ul>
+</div>
+<div class="dodont">
+<demo label="Do · one sentence, already in the text" nocode>
+<div class="hp-stage" id="hp-do" aria-hidden="true"></div>
+<p class="figcap">The result line says “Backup verified: checksum matches”; the bubble shortens it.</p>
+</demo>
+<demo label="Don't · a paragraph, new information" nocode>
+<div class="hp-stage" id="hp-dont" aria-hidden="true"></div>
+<p class="figcap">A long instruction that appears nowhere on the page: it is lost on narrow screens, in print and to screen readers.</p>
+</demo>
+</div>
+<demo label="Example · mono fallback and top bubble" nocode>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+  <div class="hp-stage" id="hp-mono" aria-hidden="true"></div>
+  <div class="hp-stage" id="hp-up" aria-hidden="true"></div>
+</div>
+<p class="figcap">On the left, a bubble containing “≠” fell back to the mono font. On the right, <code>bubbleUp: true</code>: the bubble sits above the head, with its tail at the bottom corner.</p>
+</demo>
+</chapter>
+
+<chapter title="With motion off and on narrow screens" lead="Hoca is visible only on screens 1100px and wider. Reduced motion stops it but doesn't remove it.">
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Hoca</th></tr></thead>
+  <tbody>
+    <tr><td>Live (≥ 1100px)</td><td>On the fixed layer; the engine moves it from scene to scene with <code>render()</code>.</td></tr>
+    <tr><td>Reduced motion (desktop)</td><td>A still copy in each scene's <code>still</code> pose, placed with <code>place()</code> like the gallery on this page.</td></tr>
+    <tr><td>&lt; 1100px</td><td>The layer and all copies are hidden (<code>display: none !important</code>). Only the pose names remain in the gallery.</td></tr>
+    <tr><td>Print</td><td>Hidden.</td></tr>
+    <tr><td>No JS</td><td>Absent; Hoca is painted entirely with JS.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Bubble transition</span><div class="co-body"><p>The bubble appears with a short two-step (<code>steps(2)</code>) transition; with reduced motion there is no transition.</p></div></div>
+</chapter>
+
+<chapter title="API" lead="createHoca() returns a standalone sprite instance. The engine manages the Hoca in scenes; you don't call it directly.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>Hendese.createHoca()</code></td><td>Paints every pose, adds a fixed layer (<code>.hoca-layer</code>) to <code>body</code> and returns the instance. Each call means a new layer and a new paint; one or two instances per page are enough.</td></tr>
+    <tr><td><code>render(s)</code></td><td>Draws on the fixed layer. <code>s</code>: <code>{visible, x, y</code> (viewport px), <code>pose, face</code> (1 | -1), <code>squash</code> (0..1), <code>bubble, bubbleUp, tag, alpha}</code>.</td></tr>
+    <tr><td><code>place(container, o)</code></td><td>Puts a still copy inside the container; the container must be positioned (<code>position: relative</code>). <code>o</code>: <code>{left, top</code> (CSS length), <code>pose, face, bubble, bubbleUp, tag}</code>.</td></tr>
+    <tr><td><code>clearPlaced()</code></td><td>Removes every copy this instance has placed.</td></tr>
+    <tr><td><code>size</code></td><td><code>{w: 88, h: 72, scale: 2}</code>.</td></tr>
+    <tr><td><code>anchors</code></td><td>Pose name → anchor point (px): <code>{x: 44, y: 68}</code>, <code>{x: 44, y: 60}</code> for <code>sit</code>.</td></tr>
+    <tr><td>Classes</td><td><code>.hoca</code>, <code>.hoca-img</code>, <code>.hoca-bubble</code> (<code>.on</code>, <code>.is-up</code>, <code>.is-right</code>, <code>.mono</code>), <code>.hoca-tag</code>, <code>.hoca-still</code>.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  var POSES = ['idle', 'carry', 'walkA', 'walkB', 'stepA', 'stepB', 'pointUp', 'pointDown', 'glasses', 'terminal', 'stamp', 'worried', 'happy', 'sit', 'shrug', 'clipboard', 'keycard', 'crate', 'crateWalkA', 'crateWalkB', 'helm'];
+  var FLOOR = 'calc(100% - 22px)';
+  /* gallery + still examples: one instance */
+  var g = Hendese.createHoca();
+  $$('#hp-grid .hp-cell').forEach(function (c, i) { g.place(c, { left: '50%', top: FLOOR, pose: POSES[i], face: 1 }); });
+  g.place($('#hp-hero'), { left: '50%', top: FLOOR, pose: 'idle', face: 1 });
+  g.place($('#hp-do'), { left: '78%', top: FLOOR, pose: 'happy', face: -1, bubble: 'Backup verified.' });
+  g.place($('#hp-dont'), { left: '88%', top: FLOOR, pose: 'pointUp', face: -1, bubble: 'Before rolling back, remember to delete the old instance and archive the logs separately, or there will be trouble.' });
+  g.place($('#hp-mono'), { left: '80%', top: FLOOR, pose: 'worried', face: -1, bubble: 'Desired ≠ running' });
+  g.place($('#hp-up'), { left: '80%', top: FLOOR, pose: 'glasses', face: -1, bubble: 'Threshold 2%.', bubbleUp: true });
+  /* playground: a separate instance, redrawn without clearing the gallery */
+  var pg = Hendese.createHoca(), sel = $('#hp-pose'), stage = $('#hp-play');
+  POSES.forEach(function (p) { var o = document.createElement('option'); o.value = o.textContent = p; sel.appendChild(o); });
+  sel.value = 'stamp';
+  function play() {
+    var face = +$('[name=hp-face]:checked').value, up = $('[name=hp-up]:checked').value === '1', bub = $('#hp-bub').value.trim() || null, tag = $('#hp-tag').value.trim() || null;
+    pg.clearPlaced();
+    pg.place(stage, { left: '62%', top: FLOOR, pose: sel.value, face: face, bubble: bub, bubbleUp: up, tag: tag });
+    $('#hp-call').textContent = "hoca.place(container, { left: '62%', top: '" + FLOOR + "', pose: '" + sel.value + "', face: " + face + ', bubble: ' + (bub ? JSON.stringify(bub) : 'null') + ', bubbleUp: ' + up + ', tag: ' + (tag ? JSON.stringify(tag) : 'null') + ' });';
+  }
+  [sel, $('#hp-bub'), $('#hp-tag')].concat($$('[name=hp-face],[name=hp-up]')).forEach(function (el) { el.addEventListener('input', play); el.addEventListener('change', play); });
+  play();
+})();
+</script>

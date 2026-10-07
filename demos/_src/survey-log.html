@@ -1,0 +1,242 @@
+<!-- meta {"title":"Survey log","group":"Components","order":140,"tagline":"Numbered notes, entries with a header.","intro":"<code>.survey-log</code> is an ordered notebook: each entry has its number and header on the left and labeled paragraphs on the right. For texts that answer “when, where, what did we see, what did we do” in order, like a post-incident timeline, a change log or a measurement record.","summary":"<code>.survey-log</code>, <code>.sl-meta</code>, <code>.sl-no</code>, <code>.sl-body</code>, <code>.sl-label</code>; incident, change and measurement records.","facts":{"Classes":"<code>.survey-log</code> · <code>.sl-meta</code> · <code>.sl-no</code> · <code>.sl-body</code> · <code>.sl-label</code>","Status":"<code>li.s-ok</code> · <code>li.s-warn</code> · <code>li.s-bad</code> colors the number","Structure":"<code>&lt;li&gt;</code> inside an <code>&lt;ol&gt;</code>; header as a <code>&lt;dl&gt;</code>","Narrow column":"If the container is narrower than 720px, the header moves above the text","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="A 200px header column on the left, text at a readable width on the right. A heavy rule on top opens the log, and a thin rule under each entry closes it.">
+<demo label="Example · a single entry">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">L-07</span>
+      <dl><dt>Date</dt><dd>2026-10-05</dd><dt>Environment</dt><dd>staging</dd><dt>Author</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Observation</span>
+      <p>After the cache restarted, database read load tripled for the first 10 minutes.</p>
+      <span class="sl-label">Decision</span>
+      <p>The top 1,000 keys will be warmed before a restart; the script was added to the <code>cache-warm</code> job.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<dl class="kv">
+  <dt><code>.sl-no</code></dt><dd>The entry number. The list order already comes from the <code>&lt;ol&gt;</code>; the number lets readers refer to it from elsewhere (“see L-07”).</dd>
+  <dt><code>.sl-meta dl</code></dt><dd>The header: short fields like date, environment and source. A long value wraps within the line.</dd>
+  <dt><code>.sl-label</code></dt><dd>The kind of paragraph. Using the same label order in every entry makes the log scannable.</dd>
+</dl>
+</chapter>
+
+<chapter title="Post-incident timeline" lead="What was seen and what was done, in time order. Time and source in the header; observation and action under separate labels in the text.">
+<demo label="Example · payment queue backlog">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-01</span>
+      <dl><dt>Time</dt><dd>09:41</dd><dt>Source</dt><dd>alarm</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Observation</span>
+      <p><code>billing-worker</code> queue depth went from 120 to 4,800 in 5 minutes; all workers are up.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-02</span>
+      <dl><dt>Time</dt><dd>09:48</dd><dt>Source</dt><dd>log</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Observation</span>
+      <p>In every job, the call to the payment provider times out after 30 seconds.</p>
+      <span class="sl-label">Action</span>
+      <p>Checked the provider's status page; no known outage.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-03</span>
+      <dl><dt>Time</dt><dd>10:02</dd><dt>Source</dt><dd>network</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Observation</span>
+      <p>The NAT gateway has hit its connection limit; new outbound connections are being rejected.</p>
+      <span class="sl-label">Action</span>
+      <p>Opened a second gateway and split the worker subnet's routing in two.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">T-04</span>
+      <dl><dt>Time</dt><dd>10:31</dd><dt>Source</dt><dd>dashboard</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Outcome</span>
+      <p>The queue drained in 29 minutes. No jobs lost; 212 payments were processed late.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="Change log and measurement record" lead="The same log holds two different kinds of record. A change labels impact and rollback; a measurement labels value and interpretation.">
+<demo label="Example · infrastructure change log">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-41</span>
+      <dl><dt>Date</dt><dd>2026-09-29</dd><dt>Version</dt><dd>infra v318</dd><dt>Author</dt><dd>network team</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Change</span>
+      <p>The internal DNS zone's default TTL dropped from 300 to 60 seconds.</p>
+      <span class="sl-label">Impact</span>
+      <p>Resolver query count rises about fivefold; the cost difference is under $3 a month.</p>
+      <span class="sl-label">Rollback</span>
+      <p>Reapply the same change with <code>ttl = 300</code>.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">C-42</span>
+      <dl><dt>Date</dt><dd>2026-10-01</dd><dt>Version</dt><dd>infra v319</dd><dt>Author</dt><dd>platform</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Change</span>
+      <p>Build workers moved to spot instances.</p>
+      <span class="sl-label">Impact</span>
+      <p>Build cost dropped 58%; on a reclaimed instance the job starts over.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<demo label="Example · latency measurements">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-01</span>
+      <dl><dt>Environment</dt><dd>prod</dd><dt>Tool</dt><dd>k6 · 200 VU</dd><dt>Duration</dt><dd>10 min</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Measurement</span>
+      <p><code>GET /v1/invoices</code> · p50 <b>41 ms</b>, p95 <b>182 ms</b>, p99 <b>390 ms</b> · errors <span class="pill s-ok">0.02%</span></p>
+      <span class="sl-label">Interpretation</span>
+      <p>p99 comes from cache-miss requests; within the 400 ms target.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">M-02</span>
+      <dl><dt>Environment</dt><dd>prod</dd><dt>Tool</dt><dd>k6 · 400 VU</dd><dt>Duration</dt><dd>10 min</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Measurement</span>
+      <p>p50 <b>58 ms</b>, p95 <b>410 ms</b>, p99 <b>1,240 ms</b> · errors <span class="pill s-warn">0.9%</span></p>
+      <span class="sl-label">Interpretation</span>
+      <p>The connection pool saturates at 50; the pool will be raised to 100 and the measurement repeated (see M-03).</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</chapter>
+
+<chapter title="States" lead="Give an entry .s-* and its number takes that color; the rules and text do not change. Also state the status in a header field: color only speeds up scanning.">
+<demo label="Example · rollback attempts">
+<ol class="survey-log">
+  <li class="s-bad">
+    <div class="sl-meta">
+      <span class="sl-no">R-01</span>
+      <dl><dt>Time</dt><dd>14:05</dd><dt>Outcome</dt><dd>failed</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Action</span>
+      <p>Rolled <code>web-api</code> back to 1.8.2; the new replicas could not pull the image.</p>
+    </div>
+  </li>
+  <li class="s-warn">
+    <div class="sl-meta">
+      <span class="sl-no">R-02</span>
+      <dl><dt>Time</dt><dd>14:19</dd><dt>Outcome</dt><dd>partial</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Action</span>
+      <p>Fixed the image registry permission; 2 of 3 replicas came up.</p>
+    </div>
+  </li>
+  <li class="s-ok">
+    <div class="sl-meta">
+      <span class="sl-no">R-03</span>
+      <dl><dt>Time</dt><dd>14:31</dd><dt>Outcome</dt><dd>succeeded</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Action</span>
+      <p>Moved the last replica to a new node; the 5xx rate dropped to 0.1%.</p>
+    </div>
+  </li>
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">R-04</span>
+      <dl><dt>Time</dt><dd>15:00</dd><dt>Outcome</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">none</span></dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Note</span>
+      <p>An entry with no class stays in the drawing color: an observation or a note, a record with no outcome.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<div class="prose"><p>The accepted classes are <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code>, <code>.s-sec</code> and <code>.s-neutral</code>; only the <code>.sl-no</code> color changes. Do not leave an empty value blank: show <b>—</b>, plus a <code>.visually-hidden</code> word for screen readers. An empty <code>dd</code> is skipped, and the field seems to be missing.</p></div>
+</chapter>
+
+<chapter title="Dark scene" lead="The log looks the same on a dark panel; the rules and header colors resolve according to the container's theme.">
+<demo label="Example · on-call log, dark panel">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:18px 22px">
+  <p class="chip">On-call log · night</p>
+  <ol class="survey-log">
+    <li>
+      <div class="sl-meta">
+        <span class="sl-no">N-01</span>
+        <dl><dt>Time</dt><dd>02:14</dd><dt>Alarm</dt><dd>disk-usage</dd></dl>
+      </div>
+      <div class="sl-body">
+        <span class="sl-label">Observation</span>
+        <p>The <code>logs-db</code> disk is 91% full; growing 1% an hour.</p>
+        <span class="sl-label">Action</span>
+        <p>Moved partitions older than 30 days to the archive; usage dropped to 64%. Handed over to the morning team.</p>
+      </div>
+    </li>
+  </ol>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="Keep observation and interpretation apart: what was seen under one label, what was thought or done under another.">
+<div class="dodont">
+<demo label="Do · separate labels">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Time</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <span class="sl-label">Observation</span>
+      <p>5xx rate at 4%.</p>
+      <span class="sl-label">Action</span>
+      <p>Rolled back the last release.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+<demo label="Don't · everything in one paragraph">
+<ol class="survey-log">
+  <li>
+    <div class="sl-meta">
+      <span class="sl-no">N-12</span>
+      <dl><dt>Time</dt><dd>14:05</dd></dl>
+    </div>
+    <div class="sl-body">
+      <p>Errors went up, probably the release, we rolled back and then it kind of got better.</p>
+    </div>
+  </li>
+</ol>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The <code>&lt;ol&gt;</code> gives the screen reader the number and order of entries; the <code>&lt;dl&gt;</code> in the header pairs field names with their values. <code>.sl-label</code> is only a visual heading and is not part of the heading outline; keep the label text short and meaningful on its own.</p></div></div>
+</chapter>

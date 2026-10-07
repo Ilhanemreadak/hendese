@@ -39,8 +39,8 @@
   --ease-in-out:cubic-bezier(.45,0,.55,1);    /* in-scene movement */
   --ease-snap:cubic-bezier(.3,1.6,.55,1);     /* snap into place, slight overshoot */
 
-  /* UI strings printed via CSS content; override for other languages */
-  --str-selected:"SEÇİLİ";--str-station:"İstasyon";--str-error:"Hata:";--str-required:" · zorunlu";
+  /* UI strings printed via CSS content: English by default, Turkish under <html lang="tr">; override for other languages */
+  --str-selected:"SELECTED";--str-station:"Station";--str-error:"Error:";--str-required:" · required";
 
   /* Surfaces                 light                    dark */
   --bg:         light-dark(#f4f4ef,               #0f1318);
@@ -94,6 +94,8 @@
   /* Shadow: sliding drawer only (language rule: no shadows; the shell is the exception) */
   --shadow-drawer:0 0 0 1px var(--line),20px 0 60px -20px rgba(0,0,0,.6);
 }
+/* Turkish pages get Turkish CSS strings (the JS strings switch the same way) */
+:root:lang(tr){--str-selected:"SEÇİLİ";--str-station:"İstasyon";--str-error:"Hata:";--str-required:" · zorunlu"}
 /* High contrast request: pencil lines become ink, secondary text darkens one step */
 @media (prefers-contrast:more){
   :root{--line-2:var(--ink-3);--pencil:var(--draw);--pencil-2:color-mix(in srgb,var(--draw) 45%,transparent);--ink-3:var(--ink-2)}

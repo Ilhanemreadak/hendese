@@ -1,0 +1,153 @@
+<!-- meta {"title":"Badges","group":"Components","order":20,"tagline":"State and ownership in one word.","intro":"Three small labels: the round, colored <code>.pill</code>, the square, uppercase <code>.state</code>, and the backgroundless mono <code>.chip</code>. None of them is clickable; they sit next to a row, a heading or a figure and say what it is or what state it is in.","summary":"<code>.pill</code>, <code>.state</code>, <code>.chip</code>; <code>.s-*</code> status and service colors, in a table cell, a heading and a list.","facts":{"Classes":"<code>.pill</code> · <code>.state</code> · <code>.chip</code>","Status":"<code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code> · <code>.s-sec</code> · <code>.s-neutral</code> · <code>.s-accent</code> · <code>.s-gitlab</code> · <code>.s-aws</code> · <code>.s-k8s</code> · <code>.s-argo</code>","Variables":"<code>--c</code> (line + text), <code>--c-soft</code> (background), <code>--u</code> (<code>.state</code> scale, default 1px)","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="The three labels do different jobs. A pill carries the type or result of something, a state the current status in a drawing or a record, and a chip the name of a figure or section.">
+<demo label="Example · three labels side by side">
+<div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+  <span class="pill s-ok">live</span>
+  <span class="state s-ok">succeeded</span>
+  <p class="chip">Figure 2 · release flow</p>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Class</th><th>Form</th><th>Color source</th><th>Typical place</th></tr></thead>
+  <tbody>
+    <tr><td><code>.pill</code></td><td>Round, 11px mono, lowercase</td><td><code>--c</code> + <code>--c-soft</code></td><td>Table cell, start of a list item, next to a heading</td></tr>
+    <tr><td><code>.state</code></td><td>Square, bold, uppercase</td><td><code>--c</code> (<code>.s-*</code>), no background</td><td>Drawing label, job log, step title</td></tr>
+    <tr><td><code>.chip</code></td><td>No border, uppercase, letter-spaced</td><td><code>--ink-3</code></td><td>Figure title, column name, counter</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="States" lead="Color comes from the .s-* classes and sets two variables together: --c paints the line and text, --c-soft the background. The same class means the same thing on .pill and .state.">
+<demo label="Example · status colors, pill and state">
+<div style="display:grid;gap:var(--sp-5)">
+  <div class="pillrow">
+    <span class="pill s-ok">passed</span>
+    <span class="pill s-warn">slow</span>
+    <span class="pill s-bad">down</span>
+    <span class="pill s-sec">secret</span>
+    <span class="pill s-neutral">on hold</span>
+    <span class="pill s-accent">new</span>
+    <span class="pill">no class</span>
+  </div>
+  <p class="pillrow" style="margin:0">
+    <span class="state s-ok">done</span>
+    <span class="state s-warn">retrying</span>
+    <span class="state s-bad">timed out</span>
+    <span class="state s-sec">awaiting signature</span>
+    <span class="state s-neutral">queued</span>
+    <span class="state s-accent">selected</span>
+  </p>
+</div>
+</demo>
+<demo label="Example · service colors, background included">
+<div class="pillrow">
+  <span class="pill s-gitlab">source repo</span>
+  <span class="pill s-aws">eu-west-1</span>
+  <span class="pill s-k8s">cluster</span>
+  <span class="pill s-argo">sync</span>
+</div>
+</demo>
+<div class="prose"><p>Service classes now set the background themselves: 10% of the <code>--c</code> color. Older <code>style="--c-soft:color-mix(…)"</code> lines can be deleted. A <code>.pill</code> with no class is neutral, and so is <code>.state</code>. Color reinforces meaning, it does not carry it: each badge's word states the status on its own.</p></div>
+<demo label="Example · --c does not leak into a nested component">
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Disk almost full</span><div class="co-body"><p><code>logs-db</code> is 91% full · owner <span class="pill">platform</span> · last backup <span class="pill s-ok">succeeded</span></p></div></div>
+</demo>
+<div class="prose"><p>The warning box sets <code>--c</code> to yellow; the unclassed badge inside it still stays neutral, because every component defines its own defaults for <code>--c</code> and <code>--c-soft</code>. Badges used to inherit the container's color.</p></div>
+<h3>Deprecated names</h3>
+<div class="prose"><p>The old classes keep working until 1.0 and give the same color. In new markup, write the one in the right-hand column.</p></div>
+<div class="tbl"><table>
+  <thead><tr><th>Old</th><th>Look</th><th>New</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td><code>.pill-ok</code></td><td><span class="pill pill-ok">healthy</span></td><td><code>.s-ok</code></td><td><span class="pill s-ok">healthy</span></td></tr>
+    <tr><td><code>.pill-neutral</code></td><td><span class="pill pill-neutral">archived</span></td><td><code>.s-neutral</code></td><td><span class="pill s-neutral">archived</span></td></tr>
+    <tr><td><code>.state.ok</code> · <code>.warn</code> · <code>.bad</code></td><td><span class="state ok">done</span> <span class="state warn">waiting</span> <span class="state bad">error</span></td><td><code>.s-ok</code> · <code>.s-warn</code> · <code>.s-bad</code></td><td><span class="state s-ok">done</span> <span class="state s-warn">waiting</span> <span class="state s-bad">error</span></td></tr>
+    <tr><td><code>.p-auto</code></td><td><span class="pill p-auto">automatic</span></td><td><code>.s-ok</code></td><td><span class="pill s-ok">automatic</span></td></tr>
+    <tr><td><code>.p-manual</code></td><td><span class="pill p-manual">manual</span></td><td><code>.s-warn</code></td><td><span class="pill s-warn">manual</span></td></tr>
+    <tr><td><code>.p-inline</code></td><td><span class="pill p-inline">inline</span></td><td><code>.s-bad</code></td><td><span class="pill s-bad">inline</span></td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="State label" lead="state comes from the drawing language: square, uppercase, no background; its line and text in the --c color. Without a class it is neutral.">
+<demo label="Example · four states">
+<p class="pillrow">
+  <span class="state">queued</span>
+  <span class="state s-ok">done</span>
+  <span class="state s-warn">retrying</span>
+  <span class="state s-bad">timed out</span>
+</p>
+</demo>
+<div class="prose"><p>Its size is computed from the drawing unit <code>--u</code>: <code>max(9.5px, 11 × --u)</code>. Inside a drawing, <code>--u</code> comes from the drawing's width; outside a drawing it defaults to 1px, so you need not set it. For a larger label, enlarge the unit; the smallest size stops at 9.5px.</p></div>
+<demo label="Example · scaling with the unit">
+<div style="display:grid;gap:10px">
+  <p class="pillrow" style="--u:.8px;margin:0"><span class="state s-ok">0.8px</span><span class="state s-bad">floor 9.5px</span></p>
+  <p class="pillrow" style="--u:1px;margin:0"><span class="state s-ok">1px</span><span class="state s-bad">default</span></p>
+  <p class="pillrow" style="--u:1.3px;margin:0"><span class="state s-ok">1.3px</span><span class="state s-bad">dashboard heading</span></p>
+</div>
+</demo>
+</chapter>
+
+<chapter title="In context" lead="Labels gain meaning next to data, not on their own. A table cell, a heading and a list are the three most common places.">
+<demo label="Example · a queue workers table">
+<p class="chip" style="margin-bottom:8px">Table 1 · invoice worker queues</p>
+<div class="tbl"><table>
+  <thead><tr><th>Queue</th><th>Region</th><th>Pending</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>create-invoice</td><td><span class="pill s-aws">eu-west-1</span></td><td>12</td><td><span class="pill s-ok">flowing</span></td></tr>
+    <tr><td>send-email</td><td><span class="pill s-aws">eu-west-1</span></td><td>4,810</td><td><span class="pill s-warn">backing up</span></td></tr>
+    <tr><td>process-refund</td><td><span class="pill s-aws">eu-central-1</span></td><td>0</td><td><span class="pill s-neutral">stopped</span></td></tr>
+  </tbody>
+</table></div>
+</demo>
+<demo label="Example · next to a heading">
+<h3 style="margin:0 0 6px">Cache layer <span class="pill s-accent">experimental</span></h3>
+<p style="margin:0 0 18px;color:var(--ink-2)">70% of read requests are now answered without reaching the database.</p>
+<h3 style="margin:0 0 6px">Nightly backup <span class="state s-bad">failed</span></h3>
+<p style="margin:0;color:var(--ink-2)">The 03:00 backup hit the disk quota; it was retaken by hand at 09:00.</p>
+</demo>
+<demo label="Example · a release notes list">
+<ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+  <li><span class="pill s-ok">added</span> Quiet hours window for alert rules.</li>
+  <li><span class="pill s-sec">security</span> Session cookies are now sent over HTTPS only.</li>
+  <li><span class="pill s-bad">removed</span> The old <code>/v1/metrics</code> endpoint.</li>
+  <li><span class="pill s-neutral">internal</span> Dependency updates, no behavior change.</li>
+</ul>
+</demo>
+<demo label="Example · inside a dark scene">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:16px">
+  <p class="chip" style="margin-bottom:10px">Figure 4 · deployment to the test environment</p>
+  <div class="pillrow" style="align-items:center">
+    <span class="pill s-gitlab">source</span>
+    <span class="pill s-k8s">staging</span>
+    <span class="state s-ok">synced</span>
+    <span class="state s-warn">2 pods pending</span>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="A badge is a word; not a sentence, and never a button. Color reinforces meaning but does not carry it alone.">
+<div class="dodont">
+<demo label="Do · the word states the meaning">
+<div class="pillrow">
+  <span class="pill s-ok">passed</span>
+  <span class="pill s-bad">failed</span>
+</div>
+</demo>
+<demo label="Don't · meaning only in color">
+<div class="pillrow">
+  <span class="pill s-ok">test</span>
+  <span class="pill s-bad">test</span>
+</div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · one word, details alongside">
+<p style="margin:0"><span class="pill s-neutral">on hold</span> The owner is on leave; it will be taken over on October 14.</p>
+</demo>
+<demo label="Don't · squeezing a sentence into a badge">
+<p style="margin:0"><span class="pill s-neutral">owner on leave, takeover on october 14</span></p>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Badges are plain text; screen readers read the word, not the color. So the status word must make sense on its own. Do not add click behavior to a badge; if you need a filter or a selection, use <code>.toggle-btn</code> or <code>.choice</code>. If the status changes live, give the container <code>aria-live="polite"</code>.</p></div></div>
+</chapter>

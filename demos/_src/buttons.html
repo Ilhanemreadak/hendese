@@ -1,0 +1,113 @@
+<!-- meta {"title":"Buttons","group":"Components","order":10,"tagline":"Text, icon, toggle.","intro":"There are three button types, and all three are real <code>&lt;button&gt;</code> elements. There is no highlighted \"primary\" button: in the blueprint language an action stands out by its position and label, not by its color.","summary":"<code>.btn</code>, <code>.icon-btn</code>, <code>.toggle-btn</code>; states and toolbars.","facts":{"Classes":"<code>.btn</code> · <code>.icon-btn</code> · <code>.toggle-btn</code> · <code>.is-accent</code> · <code>.pillrow</code>","State":"<code>aria-pressed</code> (toggle) · <code>disabled</code> · <code>aria-disabled=\"true\"</code>","JS":"Not required; a one-line page script for toggles"}} -->
+
+<chapter title="Variants" lead="Text button, icon + text, and icon only. All are 32–34px tall; side by side, their baselines line up.">
+<demo label="Example · three types">
+<div class="pillrow">
+  <button class="btn" type="button">Retry</button>
+  <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Copy</button>
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+  <button class="icon-btn" type="button" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+  <button class="icon-btn" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+<div class="prose"><p>An icon button with no visible text requires <code>aria-label</code>. The icon comes from the sprite via <code>&lt;svg&gt;&lt;use href="#i-…"/&gt;&lt;/svg&gt;</code>; the button sets its size (14px / 16px).</p></div>
+</chapter>
+
+<chapter title="Toggle" lead="A button that turns a setting on and off carries its state in aria-pressed. The default color is red: the pressed state blocks or bypasses something. Use .is-accent for a harmless option.">
+<demo label="Example · click them">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Skip tests</button>
+  <button class="toggle-btn" type="button" aria-pressed="true">Ignore cache</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false">Verbose log</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Line numbers</button>
+</div>
+</demo>
+<div class="prose"><p>The package adds no behavior to <code>.toggle-btn</code>; the state belongs to your app. The shortest version:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>document.querySelectorAll('.toggle-btn').forEach(b =&gt;
+  b.addEventListener('click', () =&gt; b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))));</code></pre></figure>
+</chapter>
+
+<chapter title="States" lead="A disabled button is drawn with a dashed border and faded ink: in this language a dashed line means “not real yet”. There are two ways to do it; the difference shows up on the keyboard.">
+<demo label="Example · enabled, <span lang='en'>disabled</span>, <span lang='en'>aria-disabled</span>">
+<div class="pillrow">
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Retry</button>
+  <button class="btn" type="button" disabled><svg><use href="#i-reset"/></svg>Retry</button>
+  <button class="btn" type="button" aria-disabled="true" aria-describedby="dg-reason"><svg><use href="#i-reset"/></svg>Retry</button>
+  <button class="icon-btn" type="button" aria-label="Close" disabled><svg><use href="#i-x"/></svg></button>
+</div>
+<p class="figcap" id="dg-reason">Retry stays off until the queued job finishes.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Way</th><th>Focus</th><th>Click</th><th>When</th></tr></thead>
+  <tbody>
+    <tr><td><code>disabled</code></td><td>Tab skips it</td><td>The browser blocks it</td><td>When the button makes no sense right now and the reason need not be told</td></tr>
+    <tr><td><code>aria-disabled="true"</code></td><td>Focusable; the screen reader says “unavailable”</td><td>The click arrives, the script ignores it</td><td>When the reason it is off must be told; link the reason with <code>aria-describedby</code></td></tr>
+  </tbody>
+</table></div>
+<demo label="Example · toggle: not pressed, pressed, disabled">
+<div class="pillrow">
+  <button class="toggle-btn" type="button" aria-pressed="false">Skip tests</button>
+  <button class="toggle-btn" type="button" aria-pressed="true">Ignore cache</button>
+  <button class="toggle-btn" type="button" aria-pressed="true" disabled>Locked: prod</button>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="false" disabled>Verbose log</button>
+</div>
+</demo>
+<div class="prose"><p>A disabled pressed button keeps its border color but is drawn dashed; the fill and text fade. Say in the label which position it is locked in (“Locked: prod”). A page that uses <code>aria-disabled</code> stops the click itself:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>btn.addEventListener('click', e =&gt; {
+  if (btn.getAttribute('aria-disabled') === 'true') return e.preventDefault();
+  /* … */
+});</code></pre></figure>
+</chapter>
+
+<chapter title="In context" lead="Buttons don't live alone; they sit at the end of a row or under a card. Three typical layouts below.">
+<demo label="Example · section header action row">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+  <p class="chip" style="margin-right:auto">Fig. 3 · release trace</p>
+  <button class="toggle-btn is-accent" type="button" aria-pressed="true">Show dimensions</button>
+  <button class="btn" type="button"><svg><use href="#i-reset"/></svg>Replay</button>
+</div>
+</demo>
+<demo label="Example · card footer">
+<div style="border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--paper);padding:16px 18px;max-width:440px">
+  <p style="margin:0 0 4px"><b>Clear the cache?</b></p>
+  <p style="margin:0 0 14px;color:var(--ink-2);font-size:var(--fs-md)">The next build downloads dependencies from scratch; it takes about 4 minutes.</p>
+  <div class="pillrow" style="justify-content:flex-end">
+    <button class="btn" type="button">Cancel</button>
+    <button class="btn" type="button"><svg><use href="#i-check"/></svg>Clear</button>
+  </div>
+</div>
+</demo>
+<demo label="Example · inside a dark scene">
+<div class="scene-dark" style="border-radius:var(--r-sm);padding:16px">
+  <div class="pillrow">
+    <button class="btn" type="button"><svg><use href="#i-copy"/></svg>Copy</button>
+    <button class="toggle-btn" type="button" aria-pressed="true">Skip tests</button>
+    <button class="icon-btn" type="button" aria-label="Info"><svg><use href="#i-info"/></svg></button>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="A button is an action; a link is a place. The label starts with a verb and says what will happen.">
+<div class="dodont">
+<demo label="Do · verb + object">
+<div class="pillrow">
+  <button class="btn" type="button">Download log</button>
+  <button class="icon-btn" type="button" aria-label="Close panel"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+<demo label="Don't · vague label, unnamed icon">
+<div class="pillrow">
+  <button class="btn" type="button">OK</button>
+  <button class="icon-btn" type="button" aria-label="button"><svg><use href="#i-x"/></svg></button>
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Keyboard focus on every button is a 2px accent ring (<code>:focus-visible</code>). Try it with Tab. An element that changes the page should be an <code>&lt;a&gt;</code>; the <code>.btn</code> class works on links too.</p></div></div>
+</chapter>
+
+<script data-page>
+document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+});
+</script>

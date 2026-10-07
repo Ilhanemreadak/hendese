@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code block · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html" aria-current="page">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Languages and highlighting</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Copying and long lines</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Annotations and cursor</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>States</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Code block<em>Dark in both themes, ready to copy.</em></h1>
+    <p class="intro"><code>figure.code</code> carries a header row (file, language, copy) and a scrollable <code>&lt;pre&gt;</code>. Highlighting is done by hand with four classes; the copy button works automatically through <code>Hendese.init()</code> and takes only the code.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code> · <code>.g1</code>–<code>.g5</code></dd><dt>Tokens</dt><dd><code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code></dd><dt>JS</dt><dd>Copy: <code>Hendese.init()</code>; text in <code>strings.copy / copied / copyFail</code></dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">The header row has the file name on the left and the language and copy button on the right. The pre must be keyboard-focusable; long lines scroll sideways.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the smallest complete block</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">.env.example</span>
+    <span class="code-lang">ENV</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">DATABASE_URL</span>=<span class="s">postgres://app@db.internal:5432/orders</span>
+<span class="k">CACHE_TTL</span>=<span class="v">300</span>
+<span class="k">LOG_LEVEL</span>=<span class="s">info</span></code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;.env.example&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;ENV&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;DATABASE_URL&lt;/<span class='k'>span</span>&gt;=&lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;postgres://app@db.internal:5432/orders&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;CACHE_TTL&lt;/<span class='k'>span</span>&gt;=&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;300&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;LOG_LEVEL&lt;/<span class='k'>span</span>&gt;=&lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;info&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Part</th><th>Role</th><th>Required</th></tr></thead>
+  <tbody>
+    <tr><td><code>.code-head</code></td><td>The header row; as a <code>figcaption</code>, it names the figure</td><td>No; without it there is no copy button either</td></tr>
+    <tr><td><code>.code-file</code></td><td>File name or context (<i>terminal</i>, <i>request</i>)</td><td>Yes, if there is a header</td></tr>
+    <tr><td><code>.code-lang</code></td><td>Short language name, uppercase</td><td>No</td></tr>
+    <tr><td><code>.code-copy</code></td><td>Copy button; an icon + <code>&lt;span&gt;</code> inside</td><td>No</td></tr>
+    <tr><td><code>pre[tabindex="0"]</code></td><td>Scrollable area, keyboard-focusable</td><td>Yes</td></tr>
+  </tbody>
+</table></div>
+<div class="demo">
+  <span class="demo-label">Example · a block without a header</span>
+  <div class="demo-view">
+<figure class="code">
+<pre tabindex="0"><code>make test</code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;make test&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Languages and highlighting">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Languages and highlighting</h2><p class="lead">The package includes no syntax highlighter. Four classes are enough: k for a key or command, s for a string value, c for a comment, v for a variable or number.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Class</th><th>Token</th><th>For</th></tr></thead>
+  <tbody>
+    <tr><td><code>.k</code></td><td><code>--code-k</code></td><td>Key, command, instruction (<code>FROM</code>, <code>resource</code>)</td></tr>
+    <tr><td><code>.s</code></td><td><code>--code-s</code></td><td>String value, quoted expression</td></tr>
+    <tr><td><code>.c</code></td><td><code>--code-c</code></td><td>Comment; italic</td></tr>
+    <tr><td><code>.v</code></td><td><code>--code-v</code></td><td>Variable, number, a spot the reader will change</td></tr>
+  </tbody>
+</table></div>
+<div class="demo">
+  <span class="demo-label">Example · YAML, a scheduled job</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">cronjob-report.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="c"># cost report every night at 02:30</span>
+<span class="k">apiVersion</span>: <span class="s">batch/v1</span>
+<span class="k">kind</span>: <span class="s">CronJob</span>
+<span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">cost-report</span>
+<span class="k">spec</span>:
+  <span class="k">schedule</span>: <span class="s">"30 2 * * *"</span>
+  <span class="k">concurrencyPolicy</span>: <span class="s">Forbid</span>
+  <span class="k">successfulJobsHistoryLimit</span>: <span class="v">3</span></code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;cronjob-report.yaml&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>c</span>"&gt;# cost report every night at 02:30&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;apiVersion&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;batch/v1&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kind&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;CronJob&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;metadata&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;name&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;cost-report&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;spec&lt;/<span class='k'>span</span>&gt;:
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;schedule&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"30 2 * * *"&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;concurrencyPolicy&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;Forbid&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;successfulJobsHistoryLimit&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;3&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · other languages</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">backup.sh</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="k">set</span> -euo pipefail
+<span class="v">STAMP</span>=$(date +%Y%m%d-%H%M)
+<span class="k">pg_dump</span> --format=custom <span class="s">"$DATABASE_URL"</span> &gt; <span class="s">"orders-${STAMP}.dump"</span>
+<span class="k">aws</span> s3 cp <span class="s">"orders-${STAMP}.dump"</span> s3://backup-eu-west-1/orders/</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">alert-rule.json</span><span class="code-lang">JSON</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>{
+  <span class="k">"name"</span>: <span class="s">"web-api 5xx rate"</span>,
+  <span class="k">"metric"</span>: <span class="s">"http_requests_total"</span>,
+  <span class="k">"threshold"</span>: <span class="v">0.02</span>,
+  <span class="k">"window"</span>: <span class="s">"5m"</span>,
+  <span class="k">"notify"</span>: [<span class="s">"oncall-platform"</span>]
+}</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">Dockerfile</span><span class="code-lang">DOCKERFILE</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c"># build stage</span>
+<span class="k">FROM</span> node:22-alpine <span class="k">AS</span> build
+<span class="k">WORKDIR</span> /app
+<span class="k">COPY</span> package*.json ./
+<span class="k">RUN</span> npm ci &amp;&amp; npm run build
+
+<span class="c"># runtime stage</span>
+<span class="k">FROM</span> node:22-alpine
+<span class="k">ENV</span> <span class="v">NODE_ENV</span>=<span class="s">production</span>
+<span class="k">COPY</span> --from=build /app/dist ./dist
+<span class="k">CMD</span> [<span class="s">"node"</span>, <span class="s">"dist/server.js"</span>]</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">queue.tf</span><span class="code-lang">HCL</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_sqs_queue"</span> <span class="s">"invoices"</span> {
+  <span class="k">name</span>                       = <span class="s">"invoices-${var.env}"</span>
+  <span class="k">visibility_timeout_seconds</span> = <span class="v">120</span>
+  <span class="k">message_retention_seconds</span>  = <span class="v">345600</span> <span class="c"># 4 days</span>
+}</code></pre></figure>
+  </div>
+</div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Copying and long lines">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Copying and long lines</h2><p class="lead">The copy button takes the plain text of the code element; it drops trailing blank lines and leaves out the highlighting tags. The result shows on the button for 1.6 seconds.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · try it, then paste</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">staging</span> rollout status deploy/web-api --timeout=<span class="v">120s</span></code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; -n &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;staging&lt;/<span class='k'>span</span>&gt; rollout status deploy/web-api --timeout=&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;120s&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>On a successful copy the button gets <code>data-state="done"</code> and turns green; without clipboard permission it retries with a hidden <code>textarea</code>, and if that fails too it gets <code>data-state="fail"</code>, turns red and reads <b>Copy failed</b>. Because the label is <code>aria-live="polite"</code>, the result is announced to screen readers too. Override the button text like this:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.init({
+  strings: { copy: 'Copy', copied: 'Copied', copyFail: 'Copy failed' }
+});</code></pre></figure>
+<div class="prose"><p>Long lines do not wrap; the block scrolls sideways and the page does not overflow. Thanks to <code>tabindex="0"</code> on the <code>pre</code>, keyboard users can focus the block and scroll it with the arrow keys.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · a long line in a narrow space</span>
+  <div class="demo-view">
+<div style="max-width:420px">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">request</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">curl</span> -sS -X POST <span class="s">"https://api.example.com/v2/cache/invalidate?region=eu-west-1&amp;scope=product"</span> -H <span class="s">"Authorization: Bearer $TOKEN"</span></code></pre>
+</figure>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:420px</span>"&gt;
+&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;request&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;curl&lt;/<span class='k'>span</span>&gt; -sS -X POST &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"https://api.example.com/v2/cache/invalidate?region=eu-west-1&amp;amp;scope=product"&lt;/<span class='k'>span</span>&gt; -H &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;"Authorization: Bearer $TOKEN"&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Annotations and cursor">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Annotations and cursor</h2><p class="lead">Two extra layers: pre.annotated puts colored labels on groups of lines; .ln.cur highlights the line running now. Neither changes the copied text.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · an annotated migration script</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">0042_order_status.sql</span>
+    <span class="code-lang">SQL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre class="annotated" tabindex="0"><code><span class="grp g1" data-label="lock">  <span class="k">SET</span> lock_timeout = <span class="s">'5s'</span>;
+</span><span class="grp g2" data-label="schema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
+</span><span class="grp g3" data-label="data">  <span class="k">UPDATE</span> orders <span class="k">SET</span> status = <span class="s">'paid'</span> <span class="k">WHERE</span> paid_at <span class="k">IS NOT NULL</span>;
+</span><span class="grp g4" data-label="constraint">  <span class="k">ALTER TABLE</span> orders <span class="k">ALTER COLUMN</span> status <span class="k">SET NOT NULL</span>;
+</span><span class="grp g5" data-label="grant">  <span class="k">GRANT SELECT</span> (status) <span class="k">ON</span> orders <span class="k">TO</span> reporting;
+</span></code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;0042_order_status.sql&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;SQL&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> class="<span class='s'>annotated</span>" tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g1</span>" data-label="<span class='s'>lock</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET&lt;/<span class='k'>span</span>&gt; lock_timeout = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;'5s'&lt;/<span class='k'>span</span>&gt;;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g2</span>" data-label="<span class='s'>schema</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ADD COLUMN&lt;/<span class='k'>span</span>&gt; status text;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g3</span>" data-label="<span class='s'>data</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;UPDATE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET&lt;/<span class='k'>span</span>&gt; status = &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;'paid'&lt;/<span class='k'>span</span>&gt; &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;WHERE&lt;/<span class='k'>span</span>&gt; paid_at &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;IS NOT NULL&lt;/<span class='k'>span</span>&gt;;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g4</span>" data-label="<span class='s'>constraint</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER TABLE&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ALTER COLUMN&lt;/<span class='k'>span</span>&gt; status &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;SET NOT NULL&lt;/<span class='k'>span</span>&gt;;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>grp g5</span>" data-label="<span class='s'>grant</span>"&gt;  &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;GRANT SELECT&lt;/<span class='k'>span</span>&gt; (status) &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;ON&lt;/<span class='k'>span</span>&gt; orders &lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;TO&lt;/<span class='k'>span</span>&gt; reporting;
+&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>There are five group colors (<code>.g1</code>–<code>.g5</code>); the order carries no meaning, as long as adjacent groups get different colors. Color only separates groups; <code>data-label</code> says what each one is. In a narrow column the labels hide and the colored rule stays.</p></div>
+<div class="prose"><p>For the execution cursor, wrap each line in <code>.ln</code> and put the line break inside the <code>&lt;/span&gt;</code>. The button below moves the cursor to the next line.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · step-by-step execution</span>
+  <div class="demo-view">
+<figure class="code" id="kb-run">
+  <figcaption class="code-head">
+    <span class="code-file">release.sh</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="ln cur"><span class="k">npm</span> run test
+</span><span class="ln"><span class="k">docker</span> build -t web-api:<span class="v">$TAG</span> .
+</span><span class="ln"><span class="k">docker</span> push web-api:<span class="v">$TAG</span>
+</span><span class="ln"><span class="k">kubectl</span> set image deploy/web-api app=web-api:<span class="v">$TAG</span>
+</span></code></pre>
+</figure>
+<div class="pillrow" style="align-items:center">
+  <button class="btn" type="button" id="kb-next">Next line</button>
+  <span id="kb-pos" class="chip" aria-live="polite">line 1 / 4</span>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>" id="<span class='s'>kb-run</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;release.sh&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>ln cur</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;npm&lt;/<span class='k'>span</span>&gt; run test
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>ln</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;docker&lt;/<span class='k'>span</span>&gt; build -t web-api:&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;$TAG&lt;/<span class='k'>span</span>&gt; .
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>ln</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;docker&lt;/<span class='k'>span</span>&gt; push web-api:&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;$TAG&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>ln</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; set image deploy/web-api app=web-api:&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;$TAG&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>align-items:center</span>"&gt;
+  &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>kb-next</span>"&gt;Next line&lt;/<span class='k'>button</span>&gt;
+  &lt;<span class='k'>span</span> id="<span class='s'>kb-pos</span>" class="<span class='s'>chip</span>" aria-live="<span class='s'>polite</span>"&gt;line 1 / 4&lt;/<span class='k'>span</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">05</p><h2>States</h2><p class="lead">A code block's state lives in the copy button and in focus. The button has three states; text signals two of them, and text plus color the third.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · copy and watch the button</span>
+  <div class="demo-view">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">prod</span> get pods -l app=web-api</code></pre>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>figcaption</span>&gt;
+&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; -n &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;prod&lt;/<span class='k'>span</span>&gt; get pods -l app=web-api&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Button text</th><th>Look</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td>Ready</td><td>Copy</td><td>Thin border, light ink</td><td>Markup</td></tr>
+    <tr><td>Copied</td><td>Copied</td><td>Green border and text, 1.6 seconds</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Copy failed</td><td>Copy failed</td><td>No color change; text only</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Focus</td><td>—</td><td>A 2px inset ring on the <code>pre</code>, a light blue ring on the button</td><td>Browser (<code>:focus-visible</code>)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The script sets the result class and removes it again; do not set it by hand in the markup. A block without a header has no button, so it has no state either. The copy button has no disabled state: text that should not be copied does not go in a code block. A line's “running now” state is given with <code>.ln.cur</code> (see the section above).</p></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Do / don't</h2><p class="lead">A code block exists to be copied. What the reader pastes must run; prompts, output and decoration stay out of the code.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · the command only</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">redis-cli</span> -h cache-eu info stats</code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;redis-cli&lt;/<span class='k'>span</span>&gt; -h cache-eu info stats&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · prompt and output together</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>$ redis-cli -h cache-eu info stats
+# Stats
+total_connections_received:91822</code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;terminal&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;BASH&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>button</span> class="<span class='s'>code-copy</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-copy</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;<span class='k'>span</span>&gt;Copy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>button</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;$ redis-cli -h cache-eu info stats
+# Stats
+total_connections_received:91822&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · little highlighting, in meaningful places</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="k">replicas</span>: <span class="v">3</span>
+<span class="k">image</span>: <span class="s">web-api:1.8.2</span></code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;replicas&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;3&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;image&lt;/<span class='k'>span</span>&gt;: &lt;<span class='k'>span</span> class="<span class='s'>s</span>"&gt;web-api:1.8.2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · everything highlighted in one color</span>
+  <div class="demo-view">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="v">replicas: 3</span>
+<span class="v">image: web-api:1.8.2</span></code></pre></figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>code</span>"&gt;&lt;<span class='k'>figcaption</span> class="<span class='s'>code-head</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-file</span>"&gt;values.yaml&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>code-lang</span>"&gt;YAML&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>figcaption</span>&gt;&lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;replicas: 3&lt;/<span class='k'>span</span>&gt;
+&lt;<span class='k'>span</span> class="<span class='s'>v</span>"&gt;image: web-api:1.8.2&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The colors pass the contrast threshold on <code>--code-bg</code> in both themes. The copy button has visible text; do not leave the icon on its own. Code is given as text, not as a screenshot: it stays searchable, zoomable and copyable.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="callout.html" rel="prev"><small>Previous · Components</small>Callout</a><a href="diff-gutter.html" rel="next"><small>Next · Components</small>Diff gutter</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  var fig = document.getElementById('kb-run'), btn = document.getElementById('kb-next'), pos = document.getElementById('kb-pos');
+  if (!fig || !btn) return;
+  var lines = fig.querySelectorAll('.ln'), i = 0;
+  btn.addEventListener('click', function () {
+    lines[i].classList.remove('cur');
+    i = (i + 1) % lines.length;
+    lines[i].classList.add('cur');
+    pos.textContent = 'line ' + (i + 1) + ' / ' + lines.length;
+  });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

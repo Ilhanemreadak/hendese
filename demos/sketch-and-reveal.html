@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketch and reveal · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Motion</div>
+    <a class="nav-page" href="pin-scene.html">Pin scene</a>
+    <a class="nav-page" href="sticky-narrative.html">Sticky narrative</a>
+    <a class="nav-page" href="fig-scene.html">Fig scene</a>
+    <a class="nav-page" href="hud.html">HUD</a>
+    <a class="nav-page" href="sketch-and-reveal.html" aria-current="page">Sketch and reveal</a>
+    <a class="nav-page" href="narrow-variant.html">Narrow variant</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Live example · pencil sketch</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Live example · reveal</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>With motion off</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Motion</p>
+    <h1>Sketch and reveal<em>Two small motions, no scene needed.</em></h1>
+    <p class="intro">The pencil sketch draws a drawing in pencil in two seconds; <code>[data-reveal]</code> fades an element in as it enters the viewport. Neither needs a scene registration, and both show the finished state directly in unsupported browsers and under reduced motion.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.sketch-pending</code> · <code>.sketch</code> · <code>.pencil</code> (SVG group)</dd><dt>Attribute</dt><dd><code>data-reveal</code> · <code>data-reveal="draw"</code></dd><dt>JS</dt><dd>Sketch: a few lines that swap two classes. Reveal: none (<code>animation-timeline: view()</code>)</dd></dl>
+  </div>
+</section>
+
+<style>
+/* page-specific (.ts-). The sketch requires pathLength="1" on its paths. */
+.ts-sk .pencil{stroke-width:1.5}
+.ts-ink{stroke:var(--draw);stroke-width:1.5;fill:none}
+.ts-sk .dl b{display:block}
+@media screen{
+  .sketch-pending .ts-ink,.sketch-pending .dl{opacity:0}
+  .sketch .ts-ink,.sketch .dl{transition:opacity var(--dur-3) var(--ease-out) 1.8s}
+}
+.ts-sk .drawing,.fig-sheet .drawing{max-width:760px;margin-left:0}
+.ts-actions{display:flex;justify-content:flex-end;margin-top:10px}
+html:not(.js) .ts-actions{display:none}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Two tools, two separate jobs. The sketch shows how a drawing is built; the reveal adds a small accent to the reading flow.</p></header>
+<div class="prose">
+  <p><b>Pencil sketch.</b> First <code>.sketch-pending</code> is added to the container (the pencil paths become invisible), then on the next frame it is swapped for <code>.sketch</code>: every path in the <code>.pencil</code> group is drawn in two seconds (<code>--dur-5</code>) with a <code>stroke-dashoffset</code> transition. The paths must carry <code>pathLength="1"</code>; short and long paths finish at the same time.</p>
+  <p><b>[data-reveal].</b> The element fades in as it enters the viewport; <code>data-reveal="draw"</code> draws the SVG shapes inside it instead. The timing is pure CSS (<code>animation-timeline: view()</code>) with no JS, and scrolling back rewinds the animation.</p>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;!-- pencil sketch: a class on the container, pathLength on the paths --&gt;
+&lt;div class="sample-sketch"&gt;
+  &lt;div class="drawing" data-aw="600" data-ah="200" style="--aw:600;--ah:200"&gt;
+    &lt;svg viewBox="0 0 600 200" aria-hidden="true"&gt;
+      &lt;g class="pencil"&gt;&lt;path pathLength="1" d="…"/&gt; …&lt;/g&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- reveal: the attribute is enough --&gt;
+&lt;aside class="co co-tip" data-reveal&gt;…&lt;/aside&gt;
+&lt;div class="drawing" data-reveal="draw" …&gt;&lt;svg …&gt;&lt;path class="ln-draw" pathLength="1" d="…"/&gt;&lt;/svg&gt;&lt;/div&gt;</code></pre></figure>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Live example · pencil sketch">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Live example · pencil sketch</h2><p class="lead">A network plan is drawn in pencil first, then the ink lines and labels arrive. The figure plays once when it enters the viewport; the button replays it.</p></header>
+<figure class="fig-sheet ts-sk" id="ts-net">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Figure 1</p><p class="fig-cap">Two subnets, one router</p>
+  <div class="drawing" data-aw="720" data-ah="300" style="--aw:720;--ah:300">
+    <svg viewBox="0 0 720 300" aria-hidden="true">
+      <g class="pencil">
+        <path pathLength="1" d="M40 60H320V250H40Z"/>
+        <path pathLength="1" d="M400 60H680V250H400Z"/>
+        <path pathLength="1" d="M330 20H390V50H330Z"/>
+        <path pathLength="1" d="M180 60V35H330M540 60V35H390"/>
+        <path pathLength="1" d="M70 110H150V160H70ZM190 110H270V160H190ZM430 110H510V160H430ZM550 110H630V160H550Z"/>
+      </g>
+      <path class="ts-ink" d="M110 160V200H230V160M470 160V200H590V160"/>
+      <path class="dim" d="M40 275V285M320 275V285M40 280H320"/>
+    </svg>
+    <p class="dl" style="--x:52;--y:72;--w:200"><b>Subnet A</b>10.0.1.0/24</p>
+    <p class="dl" style="--x:412;--y:72;--w:200"><b>Subnet B</b>10.0.2.0/24</p>
+    <p class="dl" style="--x:330;--y:26;--w:60">rtr.</p>
+    <p class="dl" style="--x:120;--y:204;--w:160">application</p>
+    <p class="dl" style="--x:480;--y:204;--w:160">database</p>
+    <p class="dl" style="--x:120;--y:286;--w:160">254 addresses</p>
+  </div>
+  <div class="ts-actions"><button class="btn" type="button" data-replay="ts-net"><svg><use href="#i-reset"/></svg>Redraw</button></div>
+  <p class="figcap"><b>Figure 1.</b> Thin lines are the pencil sketch; heavy lines are the ink that follows. With motion off, everything is visible from the start.</p>
+</figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>function sketch(el) {                       // .sketch-pending → (one frame) → .sketch
+  el.classList.remove('sketch'); el.classList.add('sketch-pending');
+  void el.offsetWidth;
+  requestAnimationFrame(function () { el.classList.remove('sketch-pending'); el.classList.add('sketch'); });
+}
+/* once, on entering the viewport; never hidden under reduced motion */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches &amp;&amp; 'IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+    if (e.isIntersecting) { sketch(e.target); io.unobserve(e.target); } }); }, { threshold: .35 });
+  el.classList.add('sketch-pending'); io.observe(el);
+}</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Ink delay</span><div class="co-body"><p>The package only draws the pencil paths. Having the ink and labels arrive after the sketch is this page's own rule: <code>.sketch-pending .ts-ink{opacity:0}</code> and <code>.sketch .ts-ink{transition: opacity … 1.8s}</code>, both inside <code>@media screen</code>.</p></div></div>
+<h3>Variation · pencil only</h3>
+<div class="prose"><p>A rack plan drawn in pencil with a dimension line and no ink layer. The same two classes, different content; the labels still arrive after the sketch.</p></div>
+<figure class="fig-sheet ts-sk" id="ts-rack">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">02 · Figure 2</p><p class="fig-cap">Server rack: three servers, one switch</p>
+  <div class="drawing" data-aw="720" data-ah="240" style="--aw:720;--ah:240">
+    <svg viewBox="0 0 720 240" aria-hidden="true">
+      <g class="pencil">
+        <path pathLength="1" d="M200 20H520V220H200Z"/>
+        <path pathLength="1" d="M220 40H500V70H220Z"/>
+        <path pathLength="1" d="M220 90H500V120H220Z"/>
+        <path pathLength="1" d="M220 130H500V160H220Z"/>
+        <path pathLength="1" d="M220 170H500V200H220Z"/>
+        <path pathLength="1" d="M560 20V220M552 20H568M552 220H568"/>
+      </g>
+    </svg>
+    <p class="dl" style="--x:20;--y:44;--w:180">switch · 1U</p>
+    <p class="dl" style="--x:20;--y:94;--w:180">server 1 · 1U</p>
+    <p class="dl" style="--x:20;--y:134;--w:180">server 2 · 1U</p>
+    <p class="dl" style="--x:20;--y:174;--w:180">server 3 · 1U</p>
+    <p class="dl" style="--x:580;--y:110;--w:120">12U</p>
+  </div>
+  <div class="ts-actions"><button class="btn" type="button" data-replay="ts-rack"><svg><use href="#i-reset"/></svg>Redraw</button></div>
+  <p class="figcap"><b>Figure 2.</b> The rack is 12U tall; the dimension line on the right shows it. There is a one-unit gap between the switch and the first server.</p>
+</figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Live example · reveal">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Live example · reveal</h2><p class="lead">Small accents you pass while reading: a tip, a warning, the path a health check follows. Each fades in as it enters the viewport, with no JS.</p></header>
+<aside class="co co-tip" data-reveal><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Tip</span><div class="co-body"><p>Make the health check path touch everything the app really depends on; saying “the process is up” is not enough.</p></div></aside>
+<div class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 3</p><p class="fig-cap">The path a health check follows</p>
+  <div class="drawing" data-aw="720" data-ah="140" style="--aw:720;--ah:140" data-reveal="draw">
+    <svg viewBox="0 0 720 140" aria-hidden="true">
+      <path class="ln-draw" pathLength="1" d="M40 70H200"/>
+      <path class="ln-draw" pathLength="1" d="M300 70H440"/>
+      <path class="ln-draw" pathLength="1" d="M540 70H660"/>
+      <rect class="ln-strong fill-paper" pathLength="1" x="200" y="40" width="100" height="60"/>
+      <rect class="ln-strong fill-paper" pathLength="1" x="440" y="40" width="100" height="60"/>
+    </svg>
+    <p class="dl" style="--x:20;--y:90;--w:160">/health</p>
+    <p class="dl" style="--x:212;--y:60;--w:80">application</p>
+    <p class="dl" style="--x:452;--y:60;--w:80">database</p>
+    <p class="dl" style="--x:600;--y:90;--w:100">200 OK</p>
+  </div>
+  <p class="figcap"><b>Figure 3.</b> The request passes through the app and sends one query to the database; if both respond, it returns 200.</p>
+</div>
+<div class="co co-warn" data-reveal><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Caution</span><div class="co-body"><p>A health check must not run an expensive query; the load balancer calls it every few seconds.</p></div></div>
+<div class="demo">
+  <span class="demo-label">Example · markup</span>
+  <div class="demo-view">
+<aside class="co co-tip" data-reveal>
+  <span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Tip</span>
+  <div class="co-body"><p>Reveal is only for small accents.</p></div>
+</aside>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>aside</span> class="<span class='s'>co co-tip</span>" data-reveal&gt;
+  &lt;<span class='k'>span</span> class="<span class='s'>co-ic</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-bulb</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>co-label</span>"&gt;Tip&lt;/<span class='k'>span</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>co-body</span>"&gt;&lt;<span class='k'>p</span>&gt;Reveal is only for small accents.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>aside</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+
+<article class="chapter" id="p4" data-section data-title="With motion off">
+  <header class="ch-head"><p class="ch-num">04</p><h2>With motion off</h2><p class="lead">Both tools treat the finished state as the default. If something is missing, the markup is wrong.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Condition</th><th>Pencil sketch</th><th>[data-reveal]</th></tr></thead>
+  <tbody>
+    <tr><td>Live, supporting browser</td><td>Drawn in 2 s</td><td>Fades in / is drawn as it enters the viewport</td></tr>
+    <tr><td>Reduced motion</td><td>Never hidden on this page; even if it were, transitions take ~0</td><td>No animation, element visible</td></tr>
+    <tr><td><code>animation-timeline</code> unsupported</td><td>Unaffected</td><td>Element visible</td></tr>
+    <tr><td>Print</td><td>Rules are inside <code>@media screen</code>: full drawing</td><td>Visible</td></tr>
+    <tr><td>No JS</td><td>No class is added: full drawing, button hidden</td><td>Unaffected (no JS anyway)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The sketch also plays below 1100px; that limit applies only to the scene engine. If you do not want it to play on narrow screens, check <code>Hendese.state.motion</code> before adding <code>sketch-pending</code>.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">Reveal is a decoration layer; it must not slow down reading or hide information.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · a small accent</span>
+  <div class="demo-view">
+<aside class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Tip</span><div class="co-body"><p>A note, a figure, a line: a few places on the page.</p></div></aside>
+<p class="figcap"><code>data-reveal</code> on self-contained elements like tips and figures.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · every paragraph fades in</span>
+  <div class="demo-view">
+<p>When every paragraph and list item carries <code>data-reveal</code>, the text stays a step behind the reader; a fast scroller sees half-transparent lines.</p>
+  </div>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · visible by default</span>
+  <div class="demo-view">
+<p>Hiding happens only in the package, under <code>@supports</code> and <code>prefers-reduced-motion: no-preference</code>. Page CSS does not hide the element.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · your own opacity:0</span>
+  <div class="demo-view">
+<p>A page rule like <code>[data-reveal]{opacity:0}</code> hides the content for good in an unsupported browser.</p>
+  </div>
+</div>
+</div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>API</h2><p class="lead">The package provides two classes and one attribute; timing and triggering belong to the page.</p></header>
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>.sketch-pending</code></td><td>On the container: paths inside <code>.pencil</code> are invisible (<code>stroke-dashoffset: 1</code>). Screen only.</td></tr>
+    <tr><td><code>.sketch</code></td><td>On the container: paths are drawn over <code>--dur-5</code> (2 s). <code>.sketch-pending</code> must be set one frame earlier.</td></tr>
+    <tr><td><code>.pencil</code></td><td>SVG group; pencil color and weight. Its paths require <code>pathLength="1"</code>.</td></tr>
+    <tr><td><code>data-reveal</code></td><td>Opacity and a 12px shift as it enters the viewport (<code>entry 0%</code> → <code>entry 60%</code>).</td></tr>
+    <tr><td><code>data-reveal="draw"</code></td><td>Draws the <code>path, line, polyline, rect, circle</code> shapes inside it (<code>entry 10%</code> → <code>cover 45%</code>); the shapes require <code>pathLength="1"</code>.</td></tr>
+    <tr><td>Condition</td><td>Reveal: <code>@supports (animation-timeline: view())</code> and <code>prefers-reduced-motion: no-preference</code>. Sketch: <code>@media screen</code>.</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="hud.html" rel="prev"><small>Previous · Motion</small>HUD</a><a href="narrow-variant.html" rel="next"><small>Next · Motion</small>Narrow variant</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  function sketch(el) {
+    el.classList.remove('sketch'); el.classList.add('sketch-pending');
+    void el.offsetWidth;
+    requestAnimationFrame(function () { el.classList.remove('sketch-pending'); el.classList.add('sketch'); });
+  }
+  var els = Hendese.$$('.ts-sk');
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { sketch(e.target); io.unobserve(e.target); } }); }, { threshold: .35 });
+    els.forEach(function (el) { el.classList.add('sketch-pending'); io.observe(el); });
+  }
+  Hendese.$$('[data-replay]').forEach(function (b) { b.addEventListener('click', function () { sketch(document.getElementById(b.getAttribute('data-replay'))); }); });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

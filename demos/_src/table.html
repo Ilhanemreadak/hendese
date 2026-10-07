@@ -1,0 +1,143 @@
+<!-- meta {"title":"Table","group":"Components","order":60,"tagline":"Rows and columns for comparing.","intro":"The <code>.tbl</code> container frames a <code>&lt;table&gt;</code> and scrolls it sideways when needed. The first column is in ink, headers are mono and uppercase. On narrow screens rows turn into cards; <code>Hendese.init()</code> writes each cell's label.","summary":"<code>.tbl</code>, <code>.tbl.wide</code>; code, badges and numbers in cells, narrow-screen labels.","facts":{"Classes":"<code>.tbl</code> · <code>.tbl.wide</code> · <code>th.num</code> / <code>td.num</code> (number column) · in cells <code>code</code>, <code>small</code>, <code>.pill</code>, <code>.state</code>, <code>.plus</code>, <code>.minus</code>","Minimum width":"620px (<code>.tbl</code>) · 820px (<code>.tbl.wide</code>)","JS":"<code>Hendese.init()</code> writes <code>data-th</code> on every <code>td</code> (the narrow-screen label)"}} -->
+
+<chapter title="Anatomy" lead="The .tbl container holds a plain table. thead is required; the narrow-screen labels are read from it. In a cell, small is for secondary info and code for a value that must not wrap.">
+<demo label="Example · environments">
+<div class="tbl"><table>
+  <thead><tr><th>Environment</th><th>Cluster</th><th>Region</th><th>Last deployment</th></tr></thead>
+  <tbody>
+    <tr><td>prod</td><td><code>eks-prod-01</code></td><td><code>eu-west-1</code></td><td>Today 10:42 <small>(1.8.2)</small></td></tr>
+    <tr><td>staging</td><td><code>eks-stg-01</code></td><td><code>eu-west-1</code></td><td>Today 09:15 <small>(1.9.0-rc.2)</small></td></tr>
+    <tr><td>dev</td><td><code>eks-dev-01</code></td><td><code>eu-central-1</code></td><td>Yesterday 18:03 <small>(main@4c1e9a0)</small></td></tr>
+  </tbody>
+</table></div>
+</demo>
+<div class="prose"><p>The container's border, corners and background come from <code>.tbl</code>; do not put a class on the <code>table</code>. The last row's bottom rule is removed automatically.</p></div>
+</chapter>
+
+<chapter title="Width and scrolling" lead="A table is at least 620px wide, 820px with .tbl.wide. If the container is narrower, the table does not squeeze; it scrolls sideways.">
+<demo label="Example · a wide table, CI stages">
+<div class="tbl wide"><table>
+  <thead><tr><th>Stage</th><th>Image</th><th>Cache</th><th>Duration</th><th>Success</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>Dependencies</td><td><code>node:22-alpine</code></td><td>On</td><td>0:48</td><td>99.6%</td><td>Skipped unless the lock file changes</td></tr>
+    <tr><td>Unit tests</td><td><code>node:22-alpine</code></td><td>Off</td><td>2:15</td><td>97.1%</td><td>4 parallel jobs</td></tr>
+    <tr><td>Image</td><td><code>docker:27</code></td><td>Layer</td><td>3:02</td><td>99.9%</td><td>Tag: <code>main-4c1e9a0</code></td></tr>
+  </tbody>
+</table></div>
+</demo>
+<demo label="Example · scrolling in a narrow column">
+<div style="max-width:380px">
+  <div class="tbl" tabindex="0" role="region" aria-label="Cache nodes, scrolls horizontally"><table>
+    <thead><tr><th>Node</th><th>Memory</th><th>Hit rate</th><th>Connections</th></tr></thead>
+    <tbody>
+      <tr><td>cache-eu-1</td><td>5.1 / 6 GB</td><td>94%</td><td>1,204</td></tr>
+      <tr><td>cache-eu-2</td><td>4.8 / 6 GB</td><td>93%</td><td>1,187</td></tr>
+    </tbody>
+  </table></div>
+</div>
+</demo>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">A scrolling container</span><div class="co-body"><p>If the container scrolls, keyboard users must be able to reach it. Give <code>.tbl</code> <code>tabindex="0"</code>, <code>role="region"</code> and an <code>aria-label</code> that describes the table; the same rule as for the <code>pre</code> in code blocks.</p></div></div>
+</chapter>
+
+<chapter title="Cell content" lead="A cell holds a single fact: a value, a status, a number. Give a number column .num: it aligns right, uses equal-width digits and does not wrap, so comparisons read top to bottom.">
+<demo label="Example · a monthly cost report">
+<div class="tbl"><table>
+  <thead><tr><th>Account</th><th>Owner</th><th class="num">September</th><th class="num">October</th><th class="num">Change</th></tr></thead>
+  <tbody>
+    <tr><td>prod-app</td><td>platform</td><td class="num">$18,420</td><td class="num">$17,980</td><td class="num"><span class="plus">−2.4%</span></td></tr>
+    <tr><td>prod-data</td><td>data</td><td class="num">$9,310</td><td class="num">$11,045</td><td class="num"><span class="minus">+18.6%</span></td></tr>
+    <tr><td>staging</td><td>platform</td><td class="num">$2,870</td><td class="num">$2,905</td><td class="num">+1.2%</td></tr>
+  </tbody>
+</table></div>
+<p class="figcap"><b>Table 2.</b> In the change column, green means savings and red means an increase; color only reinforces the sign.</p>
+</demo>
+<demo label="Example · access grants">
+<div class="tbl"><table>
+  <thead><tr><th>Person or role</th><th>Resource</th><th>Permission</th><th>Expires</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>oncall-platform</td><td><code>prod/*</code></td><td><span class="pill s-sec">admin</span></td><td>never</td><td><span class="state s-ok">active</span></td></tr>
+    <tr><td>a.smith</td><td><code>prod/billing</code></td><td><span class="pill s-neutral">read</span></td><td>October 12</td><td><span class="state s-warn">awaiting approval</span></td></tr>
+    <tr><td>old-ci-role</td><td><code>staging/*</code></td><td><span class="pill s-neutral">write</span></td><td>October 1</td><td><span class="state s-bad">expired</span></td></tr>
+  </tbody>
+</table></div>
+</demo>
+</chapter>
+
+<chapter title="States" lead="A table row has no status color of its own; the badge in a cell carries the status. A number column, empty cells and a status column together.">
+<demo label="Example · a deployment summary">
+<div class="tbl"><table>
+  <thead><tr><th>Service</th><th class="num">Replicas</th><th class="num">p95 (ms)</th><th class="num">Errors</th><th>Latest version</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>web-api</td><td class="num">3 / 3</td><td class="num">182</td><td class="num">0.02%</td><td><code>1.9.0</code></td><td><span class="pill s-ok">healthy</span></td></tr>
+    <tr><td>billing-worker</td><td class="num">2 / 3</td><td class="num">1,240</td><td class="num">0.90%</td><td><code>4.2.1</code></td><td><span class="pill s-warn">slow</span></td></tr>
+    <tr><td>report-api</td><td class="num">0 / 2</td><td class="num"><span aria-hidden="true">—</span><span class="visually-hidden">no data</span></td><td class="num"><span aria-hidden="true">—</span><span class="visually-hidden">no data</span></td><td><code>0.7.3</code></td><td><span class="pill s-bad">down</span></td></tr>
+    <tr><td>legacy-cron</td><td class="num">0 / 0</td><td class="num"><span aria-hidden="true">—</span><span class="visually-hidden">no data</span></td><td class="num"><span aria-hidden="true">—</span><span class="visually-hidden">no data</span></td><td><span aria-hidden="true">—</span><span class="visually-hidden">no version</span></td><td><span class="pill s-neutral">off</span></td></tr>
+  </tbody>
+</table></div>
+<p class="figcap"><b>Table 4.</b> An empty cell shows “—”, and screen readers hear “no data”. Zero is a value and is written (<i>0 / 2</i>); a dash means “no information”.</p>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>What</th><th>Markup</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Number column</td><td><code>&lt;th class="num"&gt;</code> and <code>&lt;td class="num"&gt;</code></td><td>The header aligns right too; digits line up</td></tr>
+    <tr><td>Empty cell</td><td><code>&lt;span aria-hidden="true"&gt;—&lt;/span&gt;&lt;span class="visually-hidden"&gt;no data&lt;/span&gt;</code></td><td>An empty <code>td</code> is not read; the reader thinks the value was forgotten</td></tr>
+    <tr><td>Row status</td><td><code>.pill.s-*</code> or <code>.state.s-*</code> in the last column</td><td>Coloring the row breaks the scanning pattern; a badge carries both color and a word</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>If you need equal-width digits outside a number cell (a counter, a duration), use the <code>.tnum</code> utility class; do not write an inline <code>font-variant-numeric</code>.</p></div>
+</chapter>
+
+<chapter title="Narrow screens" lead="Below 720px the header row hides and each row becomes a card. Each cell shows its column name on the left; init writes these names onto every td as data-th.">
+<demo label="Example · labels written by JS" nocode>
+<div class="tbl" id="tb-queue"><table>
+  <thead><tr><th>Worker</th><th>Queue</th><th>Concurrency</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>billing-worker</td><td><code>invoices</code></td><td>8</td><td><span class="pill s-ok">running</span></td></tr>
+    <tr><td>mail-worker</td><td><code>email</code></td><td>4</td><td><span class="pill s-neutral">paused</span></td></tr>
+  </tbody>
+</table></div>
+<div class="readout" aria-live="polite"><p id="tb-tag">Reading the labels…</p></div>
+</demo>
+<div class="prose"><p>The card view is a container query: it kicks in when the content column holding the table (<code>main</code>) is narrower than 720px. A narrow box inside the page does not trigger it on its own; narrow the window to see it. If JS does not run, the cell labels are not written; the cards still form, but without column names.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">markup after init</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;tr&gt;
+  &lt;td data-th="Worker"&gt;billing-worker&lt;/td&gt;
+  &lt;td data-th="Queue"&gt;&lt;code&gt;invoices&lt;/code&gt;&lt;/td&gt;
+  &lt;td data-th="Concurrency"&gt;8&lt;/td&gt;
+  &lt;td data-th="Status"&gt;&lt;span class="pill s-ok"&gt;running&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre></figure>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Short headers</span><div class="co-body"><p>The card label fits in 88px. Keep headers short (if <i>Concurrency</i> does not fit, write <i>Parallel</i>); put the unit in the cell, not the header.</p></div></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A table is for comparing. The reader must be able to scan a column top to bottom; a paragraph in a cell, or a layout table, breaks that.">
+<div class="dodont">
+<demo label="Do · one fact per cell">
+<div class="tbl" tabindex="0" role="region" aria-label="Alert thresholds"><table>
+  <thead><tr><th>Alert</th><th>Threshold</th><th>Window</th></tr></thead>
+  <tbody>
+    <tr><td>5xx rate</td><td>2%</td><td>5 min</td></tr>
+    <tr><td>p95 latency</td><td>800 ms</td><td>10 min</td></tr>
+  </tbody>
+</table></div>
+</demo>
+<demo label="Don't · sentences in cells">
+<div class="tbl" tabindex="0" role="region" aria-label="Alert descriptions"><table>
+  <thead><tr><th>Alert</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>5xx rate</td><td>If more than two percent of requests return an error within five minutes, the on-call is notified.</td></tr>
+    <tr><td>p95 latency</td><td>If it exceeds 800 milliseconds for ten minutes.</td></tr>
+  </tbody>
+</table></div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Headers must be real <code>&lt;th&gt;</code> elements; a screen reader says the column name as it reads a cell. Do not use tables for page layout. If you need a title, put a <code>.chip</code> before the table or a <code>.figcap</code> below it.</p></div></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var out = document.getElementById('tb-tag');
+  if (!out) return;
+  var tds = document.querySelectorAll('#tb-queue tbody tr:first-child td'), names = [];
+  for (var i = 0; i < tds.length; i++) names.push(tds[i].getAttribute('data-th') || '(none)');
+  out.innerHTML = '<b>First row labels:</b> ' + names.join(' · ');
+})();
+</script>

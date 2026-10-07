@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fault panel · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Blueprint</div>
+    <a class="nav-page" href="sheet.html">Sheet</a>
+    <a class="nav-page" href="drawing-units.html">Drawing units</a>
+    <a class="nav-page" href="line-families.html">Line families</a>
+    <a class="nav-page" href="station-explorer.html">Station explorer</a>
+    <a class="nav-page" href="isometric-box.html">Isometric box</a>
+    <a class="nav-page" href="measuring-tools.html">Measuring tools</a>
+    <a class="nav-page" href="track-and-switch.html">Track and switch</a>
+    <a class="nav-page" href="fault-panel.html" aria-current="page">Fault panel</a>
+    <a class="nav-page" href="dark-scene.html">Dark scene</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Lamp states</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>In context</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Blueprint</p>
+    <h1>Fault panel<em>Which phase, which lamp is lit.</em></h1>
+    <p class="intro">A fault panel shows at a glance where a process or a group of services broke: the phases in a strip, the possible faults on numbered lamps. Each lamp is a row in the list below; the list is the text equivalent of the drawing and is always written.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.drawing</code> · <code>.dl</code> · <code>.dim</code> · <code>.dim-t</code> · <code>.ln-*</code> · <code>.stamp-k</code> · <code>.state</code> · <code>.lamp</code> · <code>.lamps</code> · <code>.fill-soft</code></dd><dt>JS</dt><dd>Not needed</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Zone brackets on top, the phase strip in the middle, lamps above the strip and a time ruler below it. The middle zone is proportional to time; the side zones are not.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · the path of a request, slow query</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:1000;--ah:300">
+  <svg viewBox="0 0 1000 300" aria-hidden="true">
+    <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
+    <path class="ln-pencil" d="M10 166H370M670 166H990"/>
+    <path class="ln-pencil" d="M50 122V150M130 122V150M270 122V150M520 90V98M947 122V150"/>
+    <path class="ln-strong ln-bad" d="M520 122V150"/>
+    <rect class="ln-draw fill-paper" x="10" y="150" width="80" height="32"/>
+    <rect class="ln-draw fill-paper" x="100" y="150" width="60" height="32"/>
+    <rect class="ln-draw fill-paper" x="170" y="150" width="40" height="32"/>
+    <rect class="ln-draw fill-paper" x="210" y="150" width="120" height="32"/>
+    <rect class="ln-draw fill-paper" x="330" y="150" width="40" height="32"/>
+    <rect class="ln-strong ln-c fill-soft s-bad" x="370" y="150" width="300" height="32"/>
+    <rect class="ln-draw fill-paper" x="700" y="150" width="90" height="32"/>
+    <rect class="ln-draw fill-paper" x="805" y="150" width="85" height="32"/>
+    <rect class="ln-draw fill-paper" x="905" y="150" width="85" height="32"/>
+    <path class="ln-draw" d="M670 166H698M698 166l-9-4M698 166l-9 4"/>
+    <g class="lamp"><circle cx="50" cy="110" r="12"/><text x="50" y="110">1</text></g>
+    <g class="lamp"><circle cx="130" cy="110" r="12"/><text x="130" y="110">2</text></g>
+    <g class="lamp"><circle cx="270" cy="110" r="12"/><text x="270" y="110">3</text></g>
+    <g class="lamp" data-state="on"><circle cx="520" cy="110" r="12"/><text x="520" y="110">4</text></g>
+    <g class="lamp"><circle cx="520" cy="78" r="12"/><text x="520" y="78">5</text></g>
+    <g class="lamp"><circle cx="947" cy="110" r="12"/><text x="947" y="110">6</text></g>
+    <path class="ln-draw" d="M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273"/>
+    <path class="ln-pencil" d="M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5"/>
+  </svg>
+  <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Connection</span></p>
+  <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Application · proportional</span></p>
+  <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Response</span></p>
+  <p class="dl" style="--x:0;--y:190;--w:100;text-align:center">DNS</p>
+  <p class="dl" style="--x:90;--y:208;--w:80;text-align:center">TLS</p>
+  <p class="dl" style="--x:150;--y:190;--w:80;text-align:center">LB</p>
+  <p class="dl" style="--x:210;--y:208;--w:120;text-align:center">web-api</p>
+  <p class="dl" style="--x:310;--y:190;--w:80;text-align:center">cache</p>
+  <p class="dl" style="--x:370;--y:208;--w:300;text-align:center">database · 120 ms</p>
+  <p class="dl" style="--x:695;--y:190;--w:100;text-align:center">serialize</p>
+  <p class="dl" style="--x:797;--y:208;--w:100;text-align:center">compress</p>
+  <p class="dl" style="--x:897;--y:190;--w:100;text-align:center">client</p>
+  <p class="dl" style="--x:140;--y:276;--w:60;text-align:center">0</p>
+  <p class="dl" style="--x:240;--y:276;--w:60;text-align:center">40</p>
+  <p class="dl" style="--x:340;--y:276;--w:60;text-align:center">80</p>
+  <p class="dl" style="--x:440;--y:276;--w:60;text-align:center">120</p>
+  <p class="dl" style="--x:540;--y:276;--w:60;text-align:center">160</p>
+  <p class="dl" style="--x:630;--y:276;--w:80;text-align:center">200 ms</p>
+</div>
+<ol class="lamps">
+  <li>DNS did not resolve: no record, or the resolver is unreachable.</li>
+  <li>TLS handshake failed: the certificate expired or the chain is incomplete.</li>
+  <li>web-api returned 5xx: application error, stack trace in the log.</li>
+  <li data-state="on"><b>Lit ·</b> The database phase took 120 ms (budget 30 ms): an unindexed query on the <code>orders</code> table.</li>
+  <li>Connection pool exhausted: requests queued while waiting for the database.</li>
+  <li>Client timeout: the response did not complete within 2 seconds.</li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:1000;--ah:300</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 1000 300</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M10 166H370M670 166H990</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M50 122V150M130 122V150M270 122V150M520 90V98M947 122V150</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M520 122V150</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>150</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>100</span>" y="<span class='s'>150</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>170</span>" y="<span class='s'>150</span>" width="<span class='s'>40</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>210</span>" y="<span class='s'>150</span>" width="<span class='s'>120</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>150</span>" width="<span class='s'>40</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>370</span>" y="<span class='s'>150</span>" width="<span class='s'>300</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>700</span>" y="<span class='s'>150</span>" width="<span class='s'>90</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>805</span>" y="<span class='s'>150</span>" width="<span class='s'>85</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>905</span>" y="<span class='s'>150</span>" width="<span class='s'>85</span>" height="<span class='s'>32</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M670 166H698M698 166l-9-4M698 166l-9 4</span>"/&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>50</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>110</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>130</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>130</span>" y="<span class='s'>110</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>270</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>270</span>" y="<span class='s'>110</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>520</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>110</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>520</span>" cy="<span class='s'>78</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>520</span>" y="<span class='s'>78</span>"&gt;5&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>947</span>" cy="<span class='s'>110</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>947</span>" y="<span class='s'>110</span>"&gt;6&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M170 262H670M170 262V273M270 262V273M370 262V273M470 262V273M570 262V273M670 262V273</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M195 262v5M220 262v5M245 262v5M295 262v5M320 262v5M345 262v5M395 262v5M420 262v5M445 262v5M495 262v5M520 262v5M545 262v5M595 262v5M620 262v5M645 262v5</span>"/&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:6;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Connection&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:170;--y:6;--w:500</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Application · proportional&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:6;--w:290</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Response&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:190;--w:100;text-align:center</span>"&gt;DNS&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:90;--y:208;--w:80;text-align:center</span>"&gt;TLS&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:150;--y:190;--w:80;text-align:center</span>"&gt;LB&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:210;--y:208;--w:120;text-align:center</span>"&gt;web-api&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:190;--w:80;text-align:center</span>"&gt;cache&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:370;--y:208;--w:300;text-align:center</span>"&gt;database · 120 ms&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:695;--y:190;--w:100;text-align:center</span>"&gt;serialize&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:797;--y:208;--w:100;text-align:center</span>"&gt;compress&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:897;--y:190;--w:100;text-align:center</span>"&gt;client&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:140;--y:276;--w:60;text-align:center</span>"&gt;0&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:276;--w:60;text-align:center</span>"&gt;40&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:340;--y:276;--w:60;text-align:center</span>"&gt;80&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:440;--y:276;--w:60;text-align:center</span>"&gt;120&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:540;--y:276;--w:60;text-align:center</span>"&gt;160&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:630;--y:276;--w:80;text-align:center</span>"&gt;200 ms&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;DNS did not resolve: no record, or the resolver is unreachable.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;TLS handshake failed: the certificate expired or the chain is incomplete.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;web-api returned 5xx: application error, stack trace in the log.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Lit ·&lt;/<span class='k'>b</span>&gt; The database phase took 120 ms (budget 30 ms): an unindexed query on the &lt;<span class='k'>code</span>&gt;orders&lt;/<span class='k'>code</span>&gt; table.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;Connection pool exhausted: requests queued while waiting for the database.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span>&gt;Client timeout: the response did not complete within 2 seconds.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The middle zone is proportional: 10 units = 4 ms, with a ruler mark every 40 ms. The side zones are not proportional and are set apart with <code>.dim</code> brackets; the arrow between them shows the process moving on to the next zone. If one phase has two possible faults, the second lamp is stacked above the first (4 and 5).</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Lamp states">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Lamp states</h2><p class="lead">A lamp can be off, lit or in warning. A lamp under maintenance is dashed; a lamp that cannot be measured is drawn as a ghost. The number stays readable in every state.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · five states</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:900;--ah:120">
+  <svg viewBox="0 0 900 120" aria-hidden="true">
+    <g class="lamp"><circle cx="60" cy="40" r="14"/><text x="60" y="40">1</text></g>
+    <g class="lamp" data-state="on"><circle cx="240" cy="40" r="14"/><text x="240" y="40">2</text></g>
+    <g class="lamp s-warn" data-state="on"><circle cx="420" cy="40" r="14"/><text x="420" y="40">3</text></g>
+    <g class="lamp"><circle class="ln-dash" cx="600" cy="40" r="14"/><text x="600" y="40">4</text></g>
+    <g class="lamp" data-state="ghost"><circle cx="780" cy="40" r="14"/><text x="780" y="40">5</text></g>
+  </svg>
+  <p class="dl" style="--x:0;--y:66;--w:120;text-align:center">off<br>no problem</p>
+  <p class="dl" style="--x:180;--y:66;--w:120;text-align:center">lit<br>fault</p>
+  <p class="dl" style="--x:360;--y:66;--w:120;text-align:center">warning<br>near threshold</p>
+  <p class="dl" style="--x:540;--y:66;--w:120;text-align:center">maintenance<br>silenced</p>
+  <p class="dl" style="--x:720;--y:66;--w:120;text-align:center">ghost<br>not measurable</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:120</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 120</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>60</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>60</span>" y="<span class='s'>40</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>240</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>240</span>" y="<span class='s'>40</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>420</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>420</span>" y="<span class='s'>40</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> class="<span class='s'>ln-dash</span>" cx="<span class='s'>600</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>600</span>" y="<span class='s'>40</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>ghost</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>780</span>" cy="<span class='s'>40</span>" r="<span class='s'>14</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>780</span>" y="<span class='s'>40</span>"&gt;5&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:66;--w:120;text-align:center</span>"&gt;off&lt;<span class='k'>br</span>&gt;no problem&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:180;--y:66;--w:120;text-align:center</span>"&gt;lit&lt;<span class='k'>br</span>&gt;fault&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:360;--y:66;--w:120;text-align:center</span>"&gt;warning&lt;<span class='k'>br</span>&gt;near threshold&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:540;--y:66;--w:120;text-align:center</span>"&gt;maintenance&lt;<span class='k'>br</span>&gt;silenced&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:720;--y:66;--w:120;text-align:center</span>"&gt;ghost&lt;<span class='k'>br</span>&gt;not measurable&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>A lamp is a circle and a number inside <code>&lt;g class="lamp"&gt;</code>; a lit lamp gets <code>data-state="on"</code>. Its color means fault by default and turns to warning with <code>.s-warn</code>. A lamp that cannot be measured is drawn dashed and faded with <code>data-state="ghost"</code>; a lamp under maintenance gets <code>.ln-dash</code> on its circle. A lit phase is drawn with <code>class="ln-strong ln-c fill-soft s-bad"</code>: a single <code>.s-*</code> class sets both the line and the fill color. In the list, the same row is darkened with <code>&lt;li data-state="on"&gt;</code> and starts with “Lit ·”. The leader and phase tied to a lit lamp are drawn in red too; a lamp in warning colors only itself. Several lamps can be lit on one panel at once, but lit rows do not move to the top of the list; they stay at their own number: the number order is the order of positions in the drawing.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">03</p><h2>In context</h2><p class="lead">The same language fits a health matrix for a group of services: rows are services, columns are checks. Only lit lamps get a number.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · service health matrix</span>
+  <div class="demo-view">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 1</p>
+  <p class="fig-cap">prod · five services, five checks</p>
+  <div class="drawing" style="--aw:900;--ah:280">
+    <svg viewBox="0 0 900 280" aria-hidden="true">
+      <path class="ln-pencil" d="M20 44H880M20 92H880M20 137H880M20 182H880M20 227H880M20 272H880"/>
+      <path class="pencil-2" d="M270 44V272M390 44V272M510 44V272M630 44V272M750 44V272"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="70" r="11"/>
+      <g class="lamp s-warn" data-state="on"><circle cx="570" cy="70" r="11"/><text x="570" y="70">1</text></g>
+      <circle class="ln-draw fill-paper" cx="690" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="70" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="115" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="115" r="11"/>
+      <g class="lamp" data-state="on"><circle cx="810" cy="115" r="11"/><text x="810" y="115">2</text></g>
+      <circle class="ln-draw fill-paper" cx="330" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="160" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="205" r="11"/>
+      <g class="lamp" data-state="on"><circle cx="450" cy="205" r="11"/><text x="450" y="205">3</text></g>
+      <circle class="ln-draw fill-paper" cx="570" cy="205" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="205" r="11"/>
+      <circle class="ln-draw ln-dash fill-paper" cx="810" cy="205" r="11"/>
+      <circle class="ln-draw fill-paper" cx="330" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="450" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="570" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="690" cy="250" r="11"/>
+      <circle class="ln-draw fill-paper" cx="810" cy="250" r="11"/>
+    </svg>
+    <p class="dl" style="--x:270;--y:14;--w:120;text-align:center"><span class="stamp-k">Liveness</span></p>
+    <p class="dl" style="--x:390;--y:14;--w:120;text-align:center"><span class="stamp-k">Readiness</span></p>
+    <p class="dl" style="--x:510;--y:14;--w:120;text-align:center"><span class="stamp-k">p95</span></p>
+    <p class="dl" style="--x:630;--y:14;--w:120;text-align:center"><span class="stamp-k">Errors</span></p>
+    <p class="dl" style="--x:750;--y:14;--w:120;text-align:center"><span class="stamp-k">Dependency</span></p>
+    <p class="dl" style="--x:24;--y:60;--w:240">web-api</p>
+    <p class="dl" style="--x:24;--y:105;--w:240">billing-worker</p>
+    <p class="dl" style="--x:24;--y:150;--w:240">auth</p>
+    <p class="dl" style="--x:24;--y:195;--w:240">search</p>
+    <p class="dl" style="--x:24;--y:240;--w:240">orders-db</p>
+  </div>
+  <ol class="lamps">
+    <li><b>Warning ·</b> web-api p95 latency is 480 ms; threshold 500 ms.</li>
+    <li data-state="on"><b>Lit ·</b> The payment API that billing-worker depends on returns 502.</li>
+    <li data-state="on"><b>Lit ·</b> search is not ready: the index is being rebuilt, and it takes no traffic.</li>
+  </ol>
+  <figcaption class="figcap"><b>Figure 1.</b> Unlit lamps have no number. The dashed lamp in the search row is a silenced check (maintenance window).</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Figure 1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;prod · five services, five checks&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:900;--ah:280</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 900 280</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M20 44H880M20 92H880M20 137H880M20 182H880M20 227H880M20 272H880</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>pencil-2</span>" d="<span class='s'>M270 44V272M390 44V272M510 44V272M630 44V272M750 44V272</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>570</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>570</span>" y="<span class='s'>70</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>70</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>810</span>" cy="<span class='s'>115</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>810</span>" y="<span class='s'>115</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>160</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>450</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>450</span>" y="<span class='s'>205</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw ln-dash fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>205</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>330</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>450</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>570</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>690</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
+      &lt;<span class='k'>circle</span> class="<span class='s'>ln-draw fill-paper</span>" cx="<span class='s'>810</span>" cy="<span class='s'>250</span>" r="<span class='s'>11</span>"/&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:270;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Liveness&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:390;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Readiness&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:510;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;p95&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:630;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Errors&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:750;--y:14;--w:120;text-align:center</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Dependency&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:60;--w:240</span>"&gt;web-api&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:105;--w:240</span>"&gt;billing-worker&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:150;--w:240</span>"&gt;auth&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:195;--w:240</span>"&gt;search&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:24;--y:240;--w:240</span>"&gt;orders-db&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
+    &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>b</span>&gt;Warning ·&lt;/<span class='k'>b</span>&gt; web-api p95 latency is 480 ms; threshold 500 ms.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Lit ·&lt;/<span class='k'>b</span>&gt; The payment API that billing-worker depends on returns 502.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Lit ·&lt;/<span class='k'>b</span>&gt; search is not ready: the index is being rebuilt, and it takes no traffic.&lt;/<span class='k'>li</span>&gt;
+  &lt;/<span class='k'>ol</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 1.&lt;/<span class='k'>b</span>&gt; Unlit lamps have no number. The dashed lamp in the search row is a silenced check (maintenance window).&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · nightly backup job, dark sheet</span>
+  <div class="demo-view">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">03 · Figure 2</p>
+  <p class="fig-cap">nightly-backup · 02:00 run</p>
+  <div class="drawing" style="--aw:1000;--ah:200">
+    <svg viewBox="0 0 1000 200" aria-hidden="true">
+      <path class="dim" d="M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990"/>
+      <path class="ln-pencil" d="M50 92V110M210 92V110M770 92V110"/>
+      <path class="ln-strong ln-bad" d="M490 92V110"/>
+      <rect class="ln-draw fill-paper" x="10" y="110" width="80" height="32"/>
+      <rect class="ln-draw fill-paper" x="100" y="110" width="60" height="32"/>
+      <rect class="ln-draw fill-paper" x="170" y="110" width="80" height="32"/>
+      <rect class="ln-draw fill-paper" x="250" y="110" width="60" height="32"/>
+      <rect class="ln-strong ln-c fill-soft s-bad" x="310" y="110" width="360" height="32"/>
+      <rect class="ln-ghost" x="700" y="110" width="140" height="32"/>
+      <rect class="ln-ghost" x="855" y="110" width="135" height="32"/>
+      <path class="ln-draw" d="M670 126H698M698 126l-9-4M698 126l-9 4"/>
+      <g class="lamp"><circle cx="50" cy="80" r="12"/><text x="50" y="80">1</text></g>
+      <g class="lamp"><circle cx="210" cy="80" r="12"/><text x="210" y="80">2</text></g>
+      <g class="lamp" data-state="on"><circle cx="490" cy="80" r="12"/><text x="490" y="80">3</text></g>
+      <g class="lamp" data-state="ghost"><circle cx="770" cy="80" r="12"/><text x="770" y="80">4</text></g>
+    </svg>
+    <p class="dl" style="--x:10;--y:6;--w:150"><span class="stamp-k">Preparation</span></p>
+    <p class="dl" style="--x:170;--y:6;--w:500"><span class="stamp-k">Transfer · 10 units = 1 min</span></p>
+    <p class="dl" style="--x:700;--y:6;--w:290"><span class="stamp-k">Verification</span></p>
+    <p class="dl" style="--x:0;--y:150;--w:100;text-align:center">queue</p>
+    <p class="dl" style="--x:90;--y:168;--w:80;text-align:center">lock</p>
+    <p class="dl" style="--x:160;--y:150;--w:100;text-align:center">snapshot</p>
+    <p class="dl" style="--x:240;--y:168;--w:80;text-align:center">encrypt</p>
+    <p class="dl" style="--x:310;--y:150;--w:360;text-align:center">region copy · 36 min · timeout</p>
+    <p class="dl" style="--x:700;--y:150;--w:140;text-align:center">checksum</p>
+    <p class="dl" style="--x:855;--y:150;--w:135;text-align:center">record</p>
+  </div>
+  <ol class="lamps">
+    <li>Job could not be queued: the previous run still holds the lock.</li>
+    <li>Snapshot could not be taken: disk quota full.</li>
+    <li data-state="on"><b>Lit ·</b> The region copy exceeded its 30-minute limit; network bandwidth is shared with the nightly backups.</li>
+    <li>Checksum failed: the copy's checksum does not match the source. Not measured in this run.</li>
+  </ol>
+  <figcaption class="figcap"><b>Figure 2.</b> The copy phase failed, so the verification zone never ran; its phases and its lamp are ghosts.</figcaption>
+</figure>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>figure</span> class="<span class='s'>fig-sheet scene-dark</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>frame-bg</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;03 · Figure 2&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>fig-cap</span>"&gt;nightly-backup · 02:00 run&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:1000;--ah:200</span>"&gt;
+    &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 1000 200</span>" aria-hidden="<span class='s'>true</span>"&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>dim</span>" d="<span class='s'>M10 30V40M160 30V40M10 34H160M170 30V40M670 30V40M170 34H670M700 30V40M990 30V40M700 34H990</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M50 92V110M210 92V110M770 92V110</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M490 92V110</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>110</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>100</span>" y="<span class='s'>110</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>170</span>" y="<span class='s'>110</span>" width="<span class='s'>80</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>250</span>" y="<span class='s'>110</span>" width="<span class='s'>60</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>310</span>" y="<span class='s'>110</span>" width="<span class='s'>360</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>700</span>" y="<span class='s'>110</span>" width="<span class='s'>140</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>rect</span> class="<span class='s'>ln-ghost</span>" x="<span class='s'>855</span>" y="<span class='s'>110</span>" width="<span class='s'>135</span>" height="<span class='s'>32</span>"/&gt;
+      &lt;<span class='k'>path</span> class="<span class='s'>ln-draw</span>" d="<span class='s'>M670 126H698M698 126l-9-4M698 126l-9 4</span>"/&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>50</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>50</span>" y="<span class='s'>80</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>210</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>210</span>" y="<span class='s'>80</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>490</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>490</span>" y="<span class='s'>80</span>"&gt;3&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+      &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>ghost</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>770</span>" cy="<span class='s'>80</span>" r="<span class='s'>12</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>770</span>" y="<span class='s'>80</span>"&gt;4&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;/<span class='k'>svg</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:10;--y:6;--w:150</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Preparation&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:170;--y:6;--w:500</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Transfer · 10 units = 1 min&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:6;--w:290</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>stamp-k</span>"&gt;Verification&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:0;--y:150;--w:100;text-align:center</span>"&gt;queue&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:90;--y:168;--w:80;text-align:center</span>"&gt;lock&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:160;--y:150;--w:100;text-align:center</span>"&gt;snapshot&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:240;--y:168;--w:80;text-align:center</span>"&gt;encrypt&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:310;--y:150;--w:360;text-align:center</span>"&gt;region copy · 36 min · timeout&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:700;--y:150;--w:140;text-align:center</span>"&gt;checksum&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>dl</span>" style="<span class='s'>--x:855;--y:150;--w:135;text-align:center</span>"&gt;record&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
+    &lt;<span class='k'>li</span>&gt;Job could not be queued: the previous run still holds the lock.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span>&gt;Snapshot could not be taken: disk quota full.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Lit ·&lt;/<span class='k'>b</span>&gt; The region copy exceeded its 30-minute limit; network bandwidth is shared with the nightly backups.&lt;/<span class='k'>li</span>&gt;
+    &lt;<span class='k'>li</span>&gt;Checksum failed: the copy's checksum does not match the source. Not measured in this run.&lt;/<span class='k'>li</span>&gt;
+  &lt;/<span class='k'>ol</span>&gt;
+  &lt;<span class='k'>figcaption</span> class="<span class='s'>figcap</span>"&gt;&lt;<span class='k'>b</span>&gt;Figure 2.&lt;/<span class='k'>b</span>&gt; The copy phase failed, so the verification zone never ran; its phases and its lamp are ghosts.&lt;/<span class='k'>figcaption</span>&gt;
+&lt;/<span class='k'>figure</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">04</p><h2>Do / don't</h2><p class="lead">A lamp is a number that points to a list. Colored dots with no number and no list are not a panel; they are a puzzle.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · number and list</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:90">
+  <svg viewBox="0 0 440 90" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
+    <rect class="ln-strong ln-c fill-soft s-bad" x="150" y="54" width="170" height="26"/>
+    <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
+    <path class="ln-pencil" d="M75 36V54"/>
+    <path class="ln-strong ln-bad" d="M235 36V54"/>
+    <g class="lamp"><circle cx="75" cy="24" r="11"/><text x="75" y="24">1</text></g>
+    <g class="lamp" data-state="on"><circle cx="235" cy="24" r="11"/><text x="235" y="24">2</text></g>
+  </svg>
+</div>
+<ol class="lamps">
+  <li>The build did not start.</li>
+  <li data-state="on"><b>Lit ·</b> Tests failed: 3 unit tests.</li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:90</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 90</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>54</span>" width="<span class='s'>130</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-strong ln-c fill-soft s-bad</span>" x="<span class='s'>150</span>" y="<span class='s'>54</span>" width="<span class='s'>170</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>54</span>" width="<span class='s'>100</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-pencil</span>" d="<span class='s'>M75 36V54</span>"/&gt;
+    &lt;<span class='k'>path</span> class="<span class='s'>ln-strong ln-bad</span>" d="<span class='s'>M235 36V54</span>"/&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>75</span>" y="<span class='s'>24</span>"&gt;1&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>11</span>"/&gt;&lt;<span class='k'>text</span> x="<span class='s'>235</span>" y="<span class='s'>24</span>"&gt;2&lt;/<span class='k'>text</span>&gt;&lt;/<span class='k'>g</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>ol</span> class="<span class='s'>lamps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;The build did not start.&lt;/<span class='k'>li</span>&gt;
+  &lt;<span class='k'>li</span> data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>b</span>&gt;Lit ·&lt;/<span class='k'>b</span>&gt; Tests failed: 3 unit tests.&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · color only</span>
+  <div class="demo-view">
+<div class="drawing" style="--aw:440;--ah:90">
+  <svg viewBox="0 0 440 90" aria-hidden="true">
+    <rect class="ln-draw fill-paper" x="10" y="54" width="130" height="26"/>
+    <rect class="ln-draw fill-paper" x="150" y="54" width="170" height="26"/>
+    <rect class="ln-draw fill-paper" x="330" y="54" width="100" height="26"/>
+    <g class="lamp s-ok" data-state="on"><circle cx="75" cy="24" r="8"/></g>
+    <g class="lamp s-bad" data-state="on"><circle cx="235" cy="24" r="8"/></g>
+    <g class="lamp s-warn" data-state="on"><circle cx="380" cy="24" r="8"/></g>
+  </svg>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>drawing</span>" style="<span class='s'>--aw:440;--ah:90</span>"&gt;
+  &lt;<span class='k'>svg</span> viewBox="<span class='s'>0 0 440 90</span>" aria-hidden="<span class='s'>true</span>"&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>10</span>" y="<span class='s'>54</span>" width="<span class='s'>130</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>150</span>" y="<span class='s'>54</span>" width="<span class='s'>170</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>rect</span> class="<span class='s'>ln-draw fill-paper</span>" x="<span class='s'>330</span>" y="<span class='s'>54</span>" width="<span class='s'>100</span>" height="<span class='s'>26</span>"/&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-ok</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>75</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-bad</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>235</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
+    &lt;<span class='k'>g</span> class="<span class='s'>lamp s-warn</span>" data-state="<span class='s'>on</span>"&gt;&lt;<span class='k'>circle</span> cx="<span class='s'>380</span>" cy="<span class='s'>24</span>" r="<span class='s'>8</span>"/&gt;&lt;/<span class='k'>g</span>&gt;
+  &lt;/<span class='k'>svg</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The lamp number lives inside the SVG; a screen reader reads only the list. So a lit row is marked with a word in the list (“Lit ·”), and color is never left on its own. The list must be an <code>&lt;ol&gt;</code>: the item number is the lamp's number.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="track-and-switch.html" rel="prev"><small>Previous · Blueprint</small>Track and switch</a><a href="dark-scene.html" rel="next"><small>Next · Blueprint</small>Dark scene</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+
+Hendese.start();
+</script>
+</body>
+</html>

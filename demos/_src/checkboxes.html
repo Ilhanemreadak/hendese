@@ -1,0 +1,232 @@
+<!-- meta {"title":"Checkbox, radio and range","group":"Components","order":170,"tagline":"Native controls, drawing color.","intro":"Checkboxes, radio buttons and range sliders are the browser's own elements; the package only sets their color (<code>accent-color</code>) and their alignment with the label. Groups are named with <code>&lt;fieldset class=\"field\"&gt;</code> and <code>&lt;legend&gt;</code>; a slider's value is written in the <code>&lt;output&gt;</code> element next to it, in tabular figures.","summary":"<code>.field-check</code> checkboxes and radios, a range slider + <code>&lt;output&gt;</code>; how they differ from chips.","facts":{"Classes":"<code>.field-check</code> · <code>fieldset.field</code> · <code>output</code>","Input":"<code>type=\"checkbox\"</code> · <code>type=\"radio\"</code> · <code>type=\"range\"</code>","State":"<code>:checked</code> · <code>disabled</code> · <code>required</code> · <code>:user-invalid</code>","JS":"Not needed for checkboxes and radios; one listener to write the slider's value"}} -->
+
+<chapter title="Checkbox and radio" lead="A standalone setting is a checkbox; mutually exclusive options are radios. The label sits to the right of the box, aligned with the middle of its first line; the whole label is the click target.">
+<demo label="Example · a single setting and a radio group">
+<div style="max-width:480px">
+  <div class="field">
+    <label class="field-check"><input type="checkbox" name="ir-back" checked aria-describedby="ir-back-h">Roll back to the previous version if the health check fails</label>
+    <p class="field-help" id="ir-back-h">Kicks in after three consecutive failed checks.</p>
+  </div>
+  <fieldset class="field">
+    <legend>Deployment strategy</legend>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="rolling" checked>Rolling: replicas are replaced one at a time</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="blue-green">Blue/green: traffic switches at once when the new set is ready</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="canary">Canary: a small share of traffic goes to the new version first</label>
+  </fieldset>
+</div>
+</demo>
+<div class="prose"><p><code>.field-check</code> is a <code>&lt;label&gt;</code> that wraps the control; no <code>for</code> is needed. The label is not uppercased, because it reads as a sentence. The group name is given with <code>legend</code> and is set in mono uppercase like other field labels.</p></div>
+<demo label="Example · multiple choice">
+<fieldset class="field" style="max-width:480px">
+  <legend>Log fields</legend>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="request" checked>Request ID</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="user" checked>User ID (hashed)</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="body">Request body</label>
+  <p class="field-help">The body may carry personal data; turn it on only in <code>staging</code>.</p>
+</fieldset>
+</demo>
+</chapter>
+
+<chapter title="Range" lead="Use a slider to pick an approximate value in a range, and a number field to type an exact number. The value is always visible: in the output element next to it and the result line below.">
+<demo label="Example · replica count and its result">
+<div style="max-width:480px">
+  <div class="field">
+    <label for="ir-replica">Replica count</label>
+    <div style="display:flex;align-items:center;gap:var(--sp-5)">
+      <input type="range" id="ir-replica" name="replica" min="1" max="12" value="4" aria-describedby="ir-replica-h">
+      <output id="ir-replica-o" for="ir-replica">4</output>
+    </div>
+    <p class="field-help" id="ir-replica-h">1–12; each replica is 2 vCPU, 4 GiB.</p>
+  </div>
+  <div class="readout" id="ir-replica-out"><p><b>4 replicas</b> · estimated <b>$248 / month</b>. If a node goes down, 3 replicas stay in service.</p></div>
+</div>
+</demo>
+<div class="prose"><p>The package sets only the color and width; writing the value is the page's job. <code>&lt;output for&gt;</code> links it to the slider. A screen reader reads only the number on a slider; to have it say the unit too, write <code>aria-valuetext</code> in the same listener:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>range.addEventListener('input', () =&gt; {
+  output.value = range.value;
+  range.setAttribute('aria-valuetext', range.value + ' replicas');
+});</code></pre></figure>
+</chapter>
+
+<chapter title="States" lead="Checked, unchecked, disabled and required. Color comes through accent-color in the browser's own rendering; the browser fades a disabled control, and its label switches to faint ink.">
+<demo label="Example · checked, empty, disabled">
+<div class="field-row">
+  <fieldset class="field">
+    <legend>Checkbox</legend>
+    <label class="field-check"><input type="checkbox" checked>Checked</label>
+    <label class="field-check"><input type="checkbox">Unchecked</label>
+    <label class="field-check"><input type="checkbox" checked disabled>Disabled, checked</label>
+    <label class="field-check"><input type="checkbox" disabled>Disabled, empty</label>
+  </fieldset>
+  <fieldset class="field">
+    <legend>Radio</legend>
+    <label class="field-check"><input type="radio" name="ir-d-radio" checked>Checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio">Unchecked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" checked disabled>Disabled, checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" disabled>Disabled, empty</label>
+  </fieldset>
+  <div class="field">
+    <label for="ir-d-interval">Range, disabled</label>
+    <div style="display:flex;align-items:center;gap:var(--sp-5)">
+      <input type="range" id="ir-d-interval" min="0" max="100" value="30" disabled>
+      <output for="ir-d-interval">30</output>
+    </div>
+  </div>
+</div>
+</demo>
+<demo label="Example · required confirmation: check it, then uncheck it">
+<fieldset class="field" style="max-width:480px">
+  <legend>Production approval</legend>
+  <label class="field-check"><input type="checkbox" name="ir-confirm" required aria-describedby="ir-confirm-e">I confirmed that the change window is open</label>
+  <p class="field-error" id="ir-confirm-e">this confirmation is required before deploying to production.</p>
+</fieldset>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Triggered by</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td>Checked</td><td><code>:checked</code></td><td>The browser's mark, in <code>--draw</code>.</td></tr>
+    <tr><td>Disabled</td><td><code>disabled</code></td><td>The browser fades the control; the label is <code>--ink-3</code>, the cursor <code>not-allowed</code>.</td></tr>
+    <tr><td>Required</td><td><code>required</code> on any control in the group</td><td>The <code>--str-required</code> text after the legend; visual only, screen readers announce the native <code>required</code>.</td></tr>
+    <tr><td>Invalid</td><td><code>:user-invalid</code> · <code>aria-invalid="true"</code></td><td><code>.field-error</code> shows. For a checkbox, after the user checks and unchecks it, or after a form submit is attempted.</td></tr>
+    <tr><td>Focus</td><td><code>:focus-visible</code></td><td>A focus ring around the box.</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>Instead of disabling an option in a radio group, it is often clearer to remove it and say why on a line near the group. If a disabled option must stay visible, say why it is off in the label itself.</p></div>
+</chapter>
+
+<chapter title="Chip or checkbox" lead=".choice and .field-check use the same native elements; the difference is in how they read. A chip picks a short value, a checkbox confirms a sentence.">
+<div class="field-row">
+<demo label="Example · short values, chips">
+<fieldset class="choice">
+  <legend>Environment</legend>
+  <label><input type="radio" name="ir-c-env" value="dev"><span>dev</span></label>
+  <label><input type="radio" name="ir-c-env" value="staging" checked><span>staging</span></label>
+  <label><input type="radio" name="ir-c-env" value="prod"><span>prod</span></label>
+</fieldset>
+</demo>
+<demo label="Example · sentences, checkboxes">
+<fieldset class="field">
+  <legend>Notifications</legend>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify" checked>Post to the chat channel when the deployment finishes</label>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify">Page the on-call if a rollback happens</label>
+</fieldset>
+</demo>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Criterion</th><th><code>.choice</code> (chip, segment)</th><th><code>.field-check</code></th></tr></thead>
+  <tbody>
+    <tr><td>Option text</td><td>A name or value: <code>eu-west-1</code>, <code>p95</code></td><td>A sentence or a long name</td></tr>
+    <tr><td>Number of options</td><td>2–6; all visible at a glance</td><td>Unlimited; stacked vertically</td></tr>
+    <tr><td>Per-option description</td><td>A short note with <code>small</code></td><td>The label sentence, or <code>.field-help</code> below the group</td></tr>
+    <tr><td>Where</td><td>Configurator, filter, chart header</td><td>Submitted form, settings list, confirmation</td></tr>
+    <tr><td>Disabled</td><td>Dashed outline</td><td>Faded control and label</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="In context" lead="Deployment settings on a dark panel. If the strategy is not canary, the traffic share slider stays disabled; the result line is rewritten on every change.">
+<demo label="Example · deployment settings, dark scene">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
+  <form id="ir-deploy" style="max-width:560px">
+    <fieldset class="field">
+      <legend>Strategy</legend>
+      <label class="field-check"><input type="radio" name="ir-s" value="rolling">Rolling</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="blue-green">Blue/green</label>
+      <label class="field-check"><input type="radio" name="ir-s" value="canary" checked>Canary</label>
+    </fieldset>
+    <div class="field">
+      <label for="ir-pay">Canary traffic share</label>
+      <div style="display:flex;align-items:center;gap:var(--sp-5)">
+        <input type="range" id="ir-pay" name="pay" min="5" max="50" step="5" value="10" aria-describedby="ir-pay-h">
+        <output id="ir-pay-o" for="ir-pay">10%</output>
+      </div>
+      <p class="field-help" id="ir-pay-h">The remaining traffic stays on the old version; after 15 trouble-free minutes the share doubles.</p>
+    </div>
+    <fieldset class="field">
+      <legend>Options</legend>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="rollback" checked>Roll back automatically if the error rate exceeds 2%</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="migrate">Run the database migration before deploying</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="freeze" disabled>Ignore the change freeze (on-call only)</label>
+    </fieldset>
+    <div class="readout" id="ir-deploy-out" aria-live="polite"><p><b>Canary</b> · <b>10%</b> of traffic goes to the new version; it rolls back if the error rate exceeds 2%.</p></div>
+  </form>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Do / don't" lead="Related options sit inside a fieldset, with the name in the legend. A slider's value must be visible.">
+<div class="dodont">
+<demo label="Do · a named group">
+<fieldset class="field">
+  <legend>Backup frequency</legend>
+  <label class="field-check"><input type="radio" name="ir-do-often" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-do-often">Daily</label>
+</fieldset>
+</demo>
+<demo label="Don't · a paragraph posing as a heading">
+<div class="field">
+  <p class="field-help">Backup frequency</p>
+  <label class="field-check"><input type="radio" name="ir-dont-often" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-dont-often">Daily</label>
+</div>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · value alongside">
+<div class="field">
+  <label for="ir-do-ttl">Cache duration</label>
+  <div style="display:flex;align-items:center;gap:var(--sp-5)">
+    <input type="range" id="ir-do-ttl" min="0" max="60" step="5" value="15">
+    <output id="ir-do-ttl-o" for="ir-do-ttl">15 min</output>
+  </div>
+</div>
+</demo>
+<demo label="Don't · a slider with a hidden value">
+<div class="field">
+  <label for="ir-dont-ttl">Cache duration</label>
+  <input type="range" id="ir-dont-ttl" min="0" max="60" step="5" value="15">
+</div>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>On entering a radio, a screen reader first reads the <code>legend</code> text; a heading given as a paragraph does not create that link. In a radio group Tab is a single stop, and the arrow keys change the selection. On a slider, arrow keys move one step, <code>Page Up</code>/<code>Page Down</code> a large step, and <code>Home</code>/<code>End</code> go to the ends. <code>&lt;output&gt;</code> may act like a live region in a screen reader; since the slider already reads the value, do not add a second <code>aria-live</code> outside the result line.</p></div></div>
+</chapter>
+
+<script data-page>
+/* replica count → monthly cost and resilience */
+(function () {
+  var r = document.getElementById('ir-replica'), o = document.getElementById('ir-replica-o'), out = document.getElementById('ir-replica-out');
+  function show() {
+    var n = +r.value;
+    o.value = n;
+    r.setAttribute('aria-valuetext', n + (n === 1 ? ' replica' : ' replicas'));
+    out.classList.toggle('s-bad', n === 1);
+    out.innerHTML = '<p><b>' + n + (n === 1 ? ' replica' : ' replicas') + '</b> · estimated <b>$' + Math.round(n * 0.085 * 730) + ' / month</b>. ' +
+      (n === 1 ? 'A single replica means downtime on every deployment and every node loss.' : 'If a node goes down, ' + (n - 1) + (n === 2 ? ' replica stays' : ' replicas stay') + ' in service.') + '</p>';
+  }
+  r.addEventListener('input', show); show();
+})();
+/* deployment settings */
+(function () {
+  var f = document.getElementById('ir-deploy'), pay = document.getElementById('ir-pay'), o = document.getElementById('ir-pay-o'), out = document.getElementById('ir-deploy-out');
+  var ad = { rolling: 'Rolling', 'blue-green': 'Blue/green', canary: 'Canary' };
+  function show() {
+    var s = f.querySelector('input[name="ir-s"]:checked').value, p = pay.value;
+    var ek = Array.prototype.map.call(f.querySelectorAll('input[name="ir-extra"]:checked'), function (i) { return i.value; });
+    pay.disabled = s !== 'canary';
+    o.value = p + '%';
+    pay.setAttribute('aria-valuetext', p + ' percent');
+    var geri = ek.indexOf('rollback') > -1;
+    out.classList.toggle('s-warn', !geri);
+    out.innerHTML = '<p><b>' + ad[s] + '</b> · ' +
+      (s === 'canary' ? '<b>' + p + '%</b> of traffic goes to the new version' : s === 'rolling' ? 'replicas are replaced one at a time' : 'traffic switches to the new set at once') +
+      (ek.indexOf('migrate') > -1 ? '; the database migration runs first' : '') +
+      (geri ? '; it rolls back if the error rate exceeds 2%.' : '. Automatic rollback is off: problems must be noticed by hand.') + '</p>';
+  }
+  f.addEventListener('input', show); f.addEventListener('change', show); show();
+})();
+/* do example: cache duration */
+(function () {
+  var r = document.getElementById('ir-do-ttl'), o = document.getElementById('ir-do-ttl-o');
+  r.addEventListener('input', function () { o.value = r.value + ' min'; r.setAttribute('aria-valuetext', r.value + ' minutes'); });
+})();
+</script>

@@ -103,14 +103,11 @@ function evalMotion() {
 }
 
 // src/js/strings.js
-var strings = {
-  intro: "Giriş",
-  copy: "Kopyala",
-  copied: "Kopyalandı",
-  copyFail: "Kopyalanamadı",
-  toLight: "Açık temaya geç",
-  toDark: "Koyu temaya geç"
+var locales = {
+  en: { intro: "Intro", copy: "Copy", copied: "Copied", copyFail: "Copy failed", toLight: "Switch to light theme", toDark: "Switch to dark theme" },
+  tr: { intro: "Giriş", copy: "Kopyala", copied: "Kopyalandı", copyFail: "Kopyalanamadı", toLight: "Açık temaya geç", toDark: "Koyu temaya geç" }
 };
+var strings = Object.assign({}, locales.en);
 
 // src/js/theme.js
 function init(key) {
@@ -1420,7 +1417,7 @@ function init6(opts) {
   if (O) return;
   O = opts || {};
   document.documentElement.classList.add("js");
-  Object.assign(strings, O.strings);
+  Object.assign(strings, /^tr/i.test(document.documentElement.lang) ? locales.tr : null, O.strings);
   init(O.themeKey);
   init2(O);
   init3();
@@ -1500,6 +1497,7 @@ export {
   hoca2 as hoca,
   init6 as init,
   lerp,
+  locales,
   lockTo2 as lockTo,
   measure,
   pinScene,

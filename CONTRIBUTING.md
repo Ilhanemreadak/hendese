@@ -27,7 +27,7 @@ Node 21 or newer is required.
 
 ## Rules for changes
 
-- Follow [STANDART.md](STANDART.md). The test suite enforces most of it:
+- Follow [STANDARD.md](STANDARD.md). The test suite enforces most of it:
   - CSS uses tokens only;
   - every class appears on a docs or demo page;
   - part pages have the required sections.

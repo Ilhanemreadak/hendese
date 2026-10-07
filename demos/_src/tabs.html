@@ -1,0 +1,282 @@
+<!-- meta {"title":"Tabs","group":"Components","order":180,"tagline":"Alternatives of the same thing, in one place.","intro":"<code>.tabs[data-tabs]</code> stacks interchangeable versions of the same content (format, environment, tool) and shows one at a time. Tabs are real <code>&lt;button&gt;</code> elements; ARIA roles, arrow keys and a roving <code>tabindex</code> come with the package. Without JS, or in print, all panels read one after another.","summary":"<code>.tabs[data-tabs]</code>, <code>role=\"tab|tabpanel\"</code>, keyboard, the <code>hendese:tab</code> event; config formats and environment settings.","facts":{"Classes":"<code>.tabs</code> · <code>[data-tabs]</code> · <code>.tab-h</code>","Structure":"<code>role=\"tablist\"</code> · <code>role=\"tab\"</code> + <code>aria-controls</code> · <code>role=\"tabpanel\"</code> + <code>aria-labelledby</code>","State":"<code>aria-selected</code> (set by the package) · <code>hidden</code> (set by the package)","Event":"<code>hendese:tab</code> · <code>detail.id</code>","JS":"<code>Hendese.init()</code> wires up tabs automatically"}} -->
+
+<chapter title="Anatomy" lead="A tab strip on top, one panel per tab below it. A tab points to its panel with aria-controls, and a panel points to its tab with aria-labelledby. The package hides unselected panels; never write hidden on a panel in HTML.">
+<demo label="Example · the same setting, three formats">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Config format">
+    <button type="button" role="tab" id="sk-t-yaml" aria-controls="sk-p-yaml" aria-selected="true">YAML</button>
+    <button type="button" role="tab" id="sk-t-json" aria-controls="sk-p-json">JSON</button>
+    <button type="button" role="tab" id="sk-t-hcl" aria-controls="sk-p-hcl">HCL</button>
+  </div>
+  <div role="tabpanel" id="sk-p-yaml" aria-labelledby="sk-t-yaml" tabindex="0">
+    <h3 class="tab-h">YAML</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/values.yaml</span><span class="code-lang">YAML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">replicas</span>: <span class="v">3</span>
+<span class="k">resources</span>:
+  <span class="k">limits</span>:
+    <span class="k">memory</span>: <span class="s">512Mi</span>
+<span class="k">env</span>:
+  <span class="k">INDEX_BATCH</span>: <span class="s">"200"</span></code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-json" aria-labelledby="sk-t-json" tabindex="0">
+    <h3 class="tab-h">JSON</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/values.json</span><span class="code-lang">JSON</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code>{
+  <span class="k">"replicas"</span>: <span class="v">3</span>,
+  <span class="k">"resources"</span>: { <span class="k">"limits"</span>: { <span class="k">"memory"</span>: <span class="s">"512Mi"</span> } },
+  <span class="k">"env"</span>: { <span class="k">"INDEX_BATCH"</span>: <span class="s">"200"</span> }
+}</code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-hcl" aria-labelledby="sk-t-hcl" tabindex="0">
+    <h3 class="tab-h">HCL</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">search-indexer/main.tf</span><span class="code-lang">HCL</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">module</span> <span class="s">"search_indexer"</span> {
+  <span class="k">replicas</span>     = <span class="v">3</span>
+  <span class="k">memory_limit</span> = <span class="s">"512Mi"</span>
+  <span class="k">env</span>          = { <span class="k">INDEX_BATCH</span> = <span class="s">"200"</span> }
+}</code></pre></figure>
+  </div>
+</div>
+</demo>
+<dl class="kv">
+  <dt><code>.tabs[data-tabs]</code></dt><dd>The container. <code>data-tabs</code> marks where the package hooks in; <code>.tabs</code> gives the look.</dd>
+  <dt><code>[role="tablist"]</code></dt><dd>The tab strip. Its <code>aria-label</code> says what is being chosen (“Config format”). It scrolls sideways if it does not fit.</dd>
+  <dt><code>[role="tab"]</code></dt><dd>A <code>&lt;button type="button"&gt;</code> with a unique <code>id</code> and an <code>aria-controls</code> holding the panel's id. Put <code>aria-selected="true"</code> on the one selected at first; otherwise the first tab is selected.</dd>
+  <dt><code>[role="tabpanel"]</code></dt><dd>Linked to its tab with <code>aria-labelledby</code>, and keyboard-focusable with <code>tabindex="0"</code>.</dd>
+  <dt><code>.tab-h</code></dt><dd>The panel's first element, a heading with the tab's name. Visually hidden on screen when JS runs; visible without JS and in print (see section 4).</dd>
+</dl>
+</chapter>
+
+<chapter title="Keyboard" lead="The strip is a single Tab stop: Tab enters the selected tab, and the next Tab moves to the panel. Arrow keys move between tabs and also change the selection.">
+<div class="tbl"><table>
+  <thead><tr><th>Key</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Tab</kbd></td><td>Enters the selected tab; leaves the strip for the panel. Unselected tabs carry <code>tabindex="-1"</code> (roving <code>tabindex</code>).</td></tr>
+    <tr><td><kbd>→</kbd> · <kbd>←</kbd></td><td>Selects and focuses the next or previous tab; wraps from the end to the start and back.</td></tr>
+    <tr><td><kbd>Home</kbd> · <kbd>End</kbd></td><td>Selects the first or last tab.</td></tr>
+    <tr><td><kbd>Enter</kbd> · <kbd>Space</kbd></td><td>Not needed, since focus is already on the selected tab; works like a click.</td></tr>
+  </tbody>
+</table></div>
+<demo label="Example · settings per environment; try the arrow keys">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Environment">
+    <button type="button" role="tab" id="sk-t-stg" aria-controls="sk-p-stg" aria-selected="true">staging</button>
+    <button type="button" role="tab" id="sk-t-prod" aria-controls="sk-p-prod">prod</button>
+    <button type="button" role="tab" id="sk-t-dr" aria-controls="sk-p-dr">dr</button>
+  </div>
+  <div role="tabpanel" id="sk-p-stg" aria-labelledby="sk-t-stg" tabindex="0">
+    <h3 class="tab-h" lang="en">staging</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>staging · eu-central-1</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>1</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>debug</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>15m</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>off</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div role="tabpanel" id="sk-p-prod" aria-labelledby="sk-t-prod" tabindex="0">
+    <h3 class="tab-h">prod</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>prod · eu-west-1</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>4</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>info</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>8h</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>600 / min</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div role="tabpanel" id="sk-p-dr" aria-labelledby="sk-t-dr" tabindex="0">
+    <h3 class="tab-h">dr</h3>
+    <div class="register" style="max-width:420px">
+      <p class="register-h"><b>auth-gateway</b><span>dr · us-east-2</span></p>
+      <dl>
+        <div><dt>REPLICAS</dt><dd>0 (cold standby)</dd></div>
+        <div><dt>LOG_LEVEL</dt><dd>info</dd></div>
+        <div><dt>SESSION_TTL</dt><dd>8h</dd></div>
+        <div><dt>RATE_LIMIT</dt><dd>600 / min</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+</demo>
+<div class="prose"><p>Because the panel itself is focusable, keyboard users reach it and screen readers read its content even when it holds nothing focusable. If the panel already contains a focusable element (such as a scrollable code block), the panel's <code>tabindex</code> is still harmless.</p></div>
+</chapter>
+
+<chapter title="Event and listener" lead="Every selection fires a bubbling hendese:tab event on the container; detail.id is the selected tab's id. The initial selection on load fires no event.">
+<demo label="Example · selection → readout">
+<div class="tabs" data-tabs id="sk-incident">
+  <div role="tablist" aria-label="Install tool">
+    <button type="button" role="tab" id="sk-t-kubectl" aria-controls="sk-p-kubectl" aria-selected="true">kubectl</button>
+    <button type="button" role="tab" id="sk-t-helm" aria-controls="sk-p-helm">helm</button>
+    <button type="button" role="tab" id="sk-t-kustomize" aria-controls="sk-p-kustomize">kustomize</button>
+  </div>
+  <div role="tabpanel" id="sk-p-kubectl" aria-labelledby="sk-t-kubectl" tabindex="0">
+    <h3 class="tab-h">kubectl</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · kubectl</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> apply -f manifests/report-cron/ -n <span class="s">reports</span></code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-helm" aria-labelledby="sk-t-helm" tabindex="0">
+    <h3 class="tab-h">helm</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · helm</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">helm</span> upgrade --install report-cron charts/report-cron -n <span class="s">reports</span> -f values-prod.yaml</code></pre></figure>
+  </div>
+  <div role="tabpanel" id="sk-p-kustomize" aria-labelledby="sk-t-kustomize" tabindex="0">
+    <h3 class="tab-h" lang="en">kustomize</h3>
+    <figure class="code"><figcaption class="code-head"><span class="code-file">terminal · kustomize</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> apply -k overlays/prod/report-cron</code></pre></figure>
+  </div>
+</div>
+<div class="readout" id="sk-incident-out" aria-live="polite"><p>Selected tool: <b>kubectl</b>. Pick another tab.</p></div>
+</demo>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var tabs = document.getElementById('sk-incident'), out = document.getElementById('sk-incident-out');
+tabs.addEventListener('hendese:tab', function (e) {
+  var tab = document.getElementById(e.detail.id);
+  out.innerHTML = '&lt;p&gt;Selected tool: &lt;b&gt;' + tab.textContent + '&lt;/b&gt;. The command is in the panel.&lt;/p&gt;';
+});</code></pre></figure>
+<div class="prose"><p>Because the event bubbles, one listener can watch several tab groups; a page that wants to remember the selection (<code>localStorage</code>, the address bar) does it in this event. The package does not store the selection.</p></div>
+</chapter>
+
+<chapter title="Without JS and in print" lead="Finished state: if JS does not run, the tab strip is hidden and all panels show one after another. In print the strip is not printed either and hidden panels open; no option is lost on paper.">
+<div class="tbl"><table>
+  <thead><tr><th>Mode</th><th>Strip</th><th>Panels</th><th>Panel heading</th></tr></thead>
+  <tbody>
+    <tr><td>JS, screen</td><td>Visible</td><td>Only the selected panel; the others are <code>hidden</code></td><td>Visually hidden; read by screen readers</td></tr>
+    <tr><td>No JS</td><td>Hidden (<code>html:not(.js)</code>)</td><td>All, one after another</td><td>Visible</td></tr>
+    <tr><td>Print</td><td>Hidden</td><td>All, one after another; a <code>hidden</code> panel prints too</td><td>Visible</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-important"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Every panel starts with its own heading</span><div class="co-body"><p>Without the strip, the reader can tell which option a panel is only from inside the panel. So each panel's first element is an <code>&lt;h3 class="tab-h"&gt;</code> heading with the tab's name. When JS runs it is visually hidden on screen (the strip already says the same thing); without JS and in print it shows as a small uppercase heading. Every example on this page is written this way; try it in print preview.</p></div></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> role="<span class='s'>tabpanel</span>" id="<span class='s'>p-json</span>" aria-labelledby="<span class='s'>t-json</span>" tabindex="<span class='s'>0</span>"&gt;
+  &lt;<span class='k'>h3</span> class="<span class='s'>tab-h</span>"&gt;JSON&lt;/<span class='k'>h3</span>&gt;
+  …
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+<div class="prose"><p>Do not write <code>hidden</code> on panels in HTML: if JS does not arrive, those panels never show. Hiding is the package's job alone (STANDARD.md §5: JS may only hide). Pick the heading level for the page; if the section heading is <code>h2</code>, use <code>h3</code>.</p></div>
+</chapter>
+
+<chapter title="In context" lead="Tabs inside a figure sheet can switch between different cuts of the same figure; the figure name and caption stay fixed outside the tabs.">
+<demo label="Example · inside a sheet, capacity per region">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Figure 2</p>
+  <p class="fig-cap">billing-worker capacity</p>
+  <div class="tabs" data-tabs>
+    <div role="tablist" aria-label="Region">
+      <button type="button" role="tab" id="sk-t-euw" aria-controls="sk-p-euw" aria-selected="true">eu-west-1</button>
+      <button type="button" role="tab" id="sk-t-euc" aria-controls="sk-p-euc">eu-central-1</button>
+    </div>
+    <div role="tabpanel" id="sk-p-euw" aria-labelledby="sk-t-euw" tabindex="0">
+      <h3 class="tab-h">eu-west-1</h3>
+      <dl class="titleblock">
+        <div class="tb-head"><dt>Region</dt><dd>eu-west-1</dd></div>
+        <div><dt>Workers</dt><dd>6 · autoscaled (2–12)</dd></div>
+        <div><dt>Queue</dt><dd>invoice-queue · FIFO</dd></div>
+        <div><dt>Peak</dt><dd>1,800 messages / min</dd></div>
+      </dl>
+    </div>
+    <div role="tabpanel" id="sk-p-euc" aria-labelledby="sk-t-euc" tabindex="0">
+      <h3 class="tab-h">eu-central-1</h3>
+      <dl class="titleblock">
+        <div class="tb-head"><dt>Region</dt><dd>eu-central-1</dd></div>
+        <div><dt>Workers</dt><dd>2 · fixed</dd></div>
+        <div><dt>Queue</dt><dd>invoice-queue-dr · FIFO</dd></div>
+        <div><dt>Peak</dt><dd>400 messages / min</dd></div>
+      </dl>
+    </div>
+  </div>
+  <figcaption class="figcap"><b>Figure 2.</b> The same worker in two regions; eu-central-1 carries only standby traffic.</figcaption>
+</figure>
+</demo>
+<demo label="Example · on a dark scene" view="scene-dark">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Log source">
+    <button type="button" role="tab" id="sk-t-app" aria-controls="sk-p-app" aria-selected="true">application</button>
+    <button type="button" role="tab" id="sk-t-lb" aria-controls="sk-p-lb">load balancer</button>
+  </div>
+  <div role="tabpanel" id="sk-p-app" aria-labelledby="sk-t-app" tabindex="0">
+    <h3 class="tab-h">application</h3>
+    <p><code>web-api</code> logged 3 errors in the last 15 minutes; all are <code>upstream timeout</code>.</p>
+  </div>
+  <div role="tabpanel" id="sk-p-lb" aria-labelledby="sk-t-lb" tabindex="0">
+    <h3 class="tab-h">load balancer</h3>
+    <p>The load balancer returned <code>504</code> 41 times in the last 15 minutes; target group <code>web-api-tg</code>.</p>
+  </div>
+</div>
+</demo>
+</chapter>
+
+<chapter title="States" lead="A tab has two states: selected and not selected. The selected tab has dark ink and a 2px drawing line under it; focus is a visible ring on every tab.">
+<demo label="Example · opens with the second tab selected">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Version">
+    <button type="button" role="tab" id="sk-t-v1" aria-controls="sk-p-v1">v2.13.0</button>
+    <button type="button" role="tab" id="sk-t-v2" aria-controls="sk-p-v2" aria-selected="true">v2.14.0 · current</button>
+    <button type="button" role="tab" id="sk-t-v3" aria-controls="sk-p-v3">v2.15.0-rc.1</button>
+  </div>
+  <div role="tabpanel" id="sk-p-v1" aria-labelledby="sk-t-v1" tabindex="0"><h3 class="tab-h">v2.13.0</h3><p><b>v2.13.0</b> · the cache key is now tied to the schema.</p></div>
+  <div role="tabpanel" id="sk-p-v2" aria-labelledby="sk-t-v2" tabindex="0"><h3 class="tab-h">v2.14.0 · current</h3><p><b>v2.14.0</b> · retries raised from 3 to 5; the timeout is unchanged.</p></div>
+  <div role="tabpanel" id="sk-p-v3" aria-labelledby="sk-t-v3" tabindex="0"><h3 class="tab-h">v2.15.0-rc.1</h3><p><b>v2.15.0-rc.1</b> · release candidate; staging only.</p></div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>How it is set</th><th>Look</th></tr></thead>
+  <tbody>
+    <tr><td>Selected</td><td><code>aria-selected="true"</code>; from the HTML on load, then the package writes it</td><td>Dark ink, a 2px <code>--draw</code> line below; a <code>Highlight</code> outline in forced colors mode</td></tr>
+    <tr><td>Not selected</td><td><code>aria-selected="false"</code>, <code>tabindex="-1"</code></td><td>Faint ink; darkens on hover</td></tr>
+    <tr><td>Focus</td><td><code>:focus-visible</code></td><td>A focus ring drawn inside the tab</td></tr>
+    <tr><td>Disabled</td><td>None</td><td>Left out on purpose; see below</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Why there is no disabled tab</span><div class="co-body"><p>A disabled tab says an option exists but not why it will not open; the keyboard also skips it. If the option does not exist in this context, do not draw the tab at all. If the option exists but is still empty, leave the tab enabled and say why in the panel, with <code>.empty</code>: “no deployments in the dr environment yet”.</p></div></div>
+</chapter>
+
+<chapter title="Do / don't" lead="Tabs are interchangeable versions of the same thing; the reader looks at only one. Steps done in order do not go in tabs.">
+<div class="dodont">
+<demo label="Do · the same command, three package managers">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Package manager">
+    <button type="button" role="tab" id="sk-t-apt" aria-controls="sk-p-apt" aria-selected="true">apt</button>
+    <button type="button" role="tab" id="sk-t-dnf" aria-controls="sk-p-dnf">dnf</button>
+    <button type="button" role="tab" id="sk-t-brew" aria-controls="sk-p-brew">brew</button>
+  </div>
+  <div role="tabpanel" id="sk-p-apt" aria-labelledby="sk-t-apt" tabindex="0"><h3 class="tab-h">apt</h3><p><code>sudo apt install jq</code></p></div>
+  <div role="tabpanel" id="sk-p-dnf" aria-labelledby="sk-t-dnf" tabindex="0"><h3 class="tab-h">dnf</h3><p><code>sudo dnf install jq</code></p></div>
+  <div role="tabpanel" id="sk-p-brew" aria-labelledby="sk-t-brew" tabindex="0"><h3 class="tab-h">brew</h3><p><code>brew install jq</code></p></div>
+</div>
+</demo>
+<demo label="Don't · sequential steps in tabs">
+<div class="tabs" data-tabs>
+  <div role="tablist" aria-label="Release steps">
+    <button type="button" role="tab" id="sk-t-a1" aria-controls="sk-p-a1" aria-selected="true">1 · build</button>
+    <button type="button" role="tab" id="sk-t-a2" aria-controls="sk-p-a2">2 · test</button>
+    <button type="button" role="tab" id="sk-t-a3" aria-controls="sk-p-a3">3 · release</button>
+  </div>
+  <div role="tabpanel" id="sk-p-a1" aria-labelledby="sk-t-a1" tabindex="0"><h3 class="tab-h">1 · build</h3><p><code>make build</code></p></div>
+  <div role="tabpanel" id="sk-p-a2" aria-labelledby="sk-t-a2" tabindex="0"><h3 class="tab-h">2 · test</h3><p><code>make test</code></p></div>
+  <div role="tabpanel" id="sk-p-a3" aria-labelledby="sk-t-a3" tabindex="0"><h3 class="tab-h">3 · release</h3><p><code>make release</code></p></div>
+</div>
+</demo>
+</div>
+<div class="prose"><p>Sequential steps should be visible together: while doing the second step, the reader also sees the first and knows where they are. Use <code>.steps</code> for that:</p></div>
+<demo label="Example · the same content, the right part">
+<ol class="steps">
+  <li><h3>Build</h3><p><code>make build</code></p></li>
+  <li><h3>Test</h3><p><code>make test</code></p></li>
+  <li><h3>Release</h3><p><code>make release</code></p></li>
+</ol>
+</demo>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Number of tabs</span><div class="co-body"><p>Two to five tabs read well. More than that scroll in the strip and the reader cannot see the options; a <code>&lt;select&gt;</code> or separate sections work better then. A tab name is a short name, not a sentence.</p></div></div>
+</chapter>
+
+<script data-page>
+/* hendese:tab → readout */
+(function () {
+  var tabs = document.getElementById('sk-incident'), out = document.getElementById('sk-incident-out');
+  tabs.addEventListener('hendese:tab', function (e) {
+    var tab = document.getElementById(e.detail.id);
+    out.innerHTML = '<p>Selected tool: <b>' + tab.textContent + '</b>. The command is in the panel; <code>detail.id</code> = <code>' + e.detail.id + '</code>.</p>';
+  });
+})();
+</script>

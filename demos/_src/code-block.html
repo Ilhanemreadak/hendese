@@ -1,0 +1,221 @@
+<!-- meta {"title":"Code block","group":"Components","order":40,"tagline":"Dark in both themes, ready to copy.","intro":"<code>figure.code</code> carries a header row (file, language, copy) and a scrollable <code>&lt;pre&gt;</code>. Highlighting is done by hand with four classes; the copy button works automatically through <code>Hendese.init()</code> and takes only the code.","summary":"<code>.code</code> header, hand highlighting (<code>.k .s .c .v</code>), copy, long lines, annotations and an execution cursor.","facts":{"Classes":"<code>.code</code> · <code>.code-head</code> · <code>.code-file</code> · <code>.code-lang</code> · <code>.code-copy</code> · <code>.k</code> · <code>.s</code> · <code>.c</code> · <code>.v</code> · <code>.ln</code> · <code>.cur</code> · <code>pre.annotated</code> · <code>.grp</code> · <code>.g1</code>–<code>.g5</code>","Tokens":"<code>--code-bg</code> · <code>--code-ink</code> · <code>--code-k</code> · <code>--code-s</code> · <code>--code-c</code> · <code>--code-v</code>","JS":"Copy: <code>Hendese.init()</code>; text in <code>strings.copy / copied / copyFail</code>"}} -->
+
+
+<chapter title="Anatomy" lead="The header row has the file name on the left and the language and copy button on the right. The pre must be keyboard-focusable; long lines scroll sideways.">
+<demo label="Example · the smallest complete block">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">.env.example</span>
+    <span class="code-lang">ENV</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">DATABASE_URL</span>=<span class="s">postgres://app@db.internal:5432/orders</span>
+<span class="k">CACHE_TTL</span>=<span class="v">300</span>
+<span class="k">LOG_LEVEL</span>=<span class="s">info</span></code></pre>
+</figure>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Part</th><th>Role</th><th>Required</th></tr></thead>
+  <tbody>
+    <tr><td><code>.code-head</code></td><td>The header row; as a <code>figcaption</code>, it names the figure</td><td>No; without it there is no copy button either</td></tr>
+    <tr><td><code>.code-file</code></td><td>File name or context (<i>terminal</i>, <i>request</i>)</td><td>Yes, if there is a header</td></tr>
+    <tr><td><code>.code-lang</code></td><td>Short language name, uppercase</td><td>No</td></tr>
+    <tr><td><code>.code-copy</code></td><td>Copy button; an icon + <code>&lt;span&gt;</code> inside</td><td>No</td></tr>
+    <tr><td><code>pre[tabindex="0"]</code></td><td>Scrollable area, keyboard-focusable</td><td>Yes</td></tr>
+  </tbody>
+</table></div>
+<demo label="Example · a block without a header">
+<figure class="code">
+<pre tabindex="0"><code>make test</code></pre>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="Languages and highlighting" lead="The package includes no syntax highlighter. Four classes are enough: k for a key or command, s for a string value, c for a comment, v for a variable or number.">
+<div class="tbl"><table>
+  <thead><tr><th>Class</th><th>Token</th><th>For</th></tr></thead>
+  <tbody>
+    <tr><td><code>.k</code></td><td><code>--code-k</code></td><td>Key, command, instruction (<code>FROM</code>, <code>resource</code>)</td></tr>
+    <tr><td><code>.s</code></td><td><code>--code-s</code></td><td>String value, quoted expression</td></tr>
+    <tr><td><code>.c</code></td><td><code>--code-c</code></td><td>Comment; italic</td></tr>
+    <tr><td><code>.v</code></td><td><code>--code-v</code></td><td>Variable, number, a spot the reader will change</td></tr>
+  </tbody>
+</table></div>
+<demo label="Example · YAML, a scheduled job">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">cronjob-report.yaml</span>
+    <span class="code-lang">YAML</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="c"># cost report every night at 02:30</span>
+<span class="k">apiVersion</span>: <span class="s">batch/v1</span>
+<span class="k">kind</span>: <span class="s">CronJob</span>
+<span class="k">metadata</span>:
+  <span class="k">name</span>: <span class="s">cost-report</span>
+<span class="k">spec</span>:
+  <span class="k">schedule</span>: <span class="s">"30 2 * * *"</span>
+  <span class="k">concurrencyPolicy</span>: <span class="s">Forbid</span>
+  <span class="k">successfulJobsHistoryLimit</span>: <span class="v">3</span></code></pre>
+</figure>
+</demo>
+<demo label="Example · other languages" nocode>
+<figure class="code"><figcaption class="code-head"><span class="code-file">backup.sh</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="k">set</span> -euo pipefail
+<span class="v">STAMP</span>=$(date +%Y%m%d-%H%M)
+<span class="k">pg_dump</span> --format=custom <span class="s">"$DATABASE_URL"</span> &gt; <span class="s">"orders-${STAMP}.dump"</span>
+<span class="k">aws</span> s3 cp <span class="s">"orders-${STAMP}.dump"</span> s3://backup-eu-west-1/orders/</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">alert-rule.json</span><span class="code-lang">JSON</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>{
+  <span class="k">"name"</span>: <span class="s">"web-api 5xx rate"</span>,
+  <span class="k">"metric"</span>: <span class="s">"http_requests_total"</span>,
+  <span class="k">"threshold"</span>: <span class="v">0.02</span>,
+  <span class="k">"window"</span>: <span class="s">"5m"</span>,
+  <span class="k">"notify"</span>: [<span class="s">"oncall-platform"</span>]
+}</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">Dockerfile</span><span class="code-lang">DOCKERFILE</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="c"># build stage</span>
+<span class="k">FROM</span> node:22-alpine <span class="k">AS</span> build
+<span class="k">WORKDIR</span> /app
+<span class="k">COPY</span> package*.json ./
+<span class="k">RUN</span> npm ci &amp;&amp; npm run build
+
+<span class="c"># runtime stage</span>
+<span class="k">FROM</span> node:22-alpine
+<span class="k">ENV</span> <span class="v">NODE_ENV</span>=<span class="s">production</span>
+<span class="k">COPY</span> --from=build /app/dist ./dist
+<span class="k">CMD</span> [<span class="s">"node"</span>, <span class="s">"dist/server.js"</span>]</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">queue.tf</span><span class="code-lang">HCL</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">resource</span> <span class="s">"aws_sqs_queue"</span> <span class="s">"invoices"</span> {
+  <span class="k">name</span>                       = <span class="s">"invoices-${var.env}"</span>
+  <span class="k">visibility_timeout_seconds</span> = <span class="v">120</span>
+  <span class="k">message_retention_seconds</span>  = <span class="v">345600</span> <span class="c"># 4 days</span>
+}</code></pre></figure>
+</demo>
+</chapter>
+
+<chapter title="Copying and long lines" lead="The copy button takes the plain text of the code element; it drops trailing blank lines and leaves out the highlighting tags. The result shows on the button for 1.6 seconds.">
+<demo label="Example · try it, then paste">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">staging</span> rollout status deploy/web-api --timeout=<span class="v">120s</span></code></pre>
+</figure>
+</demo>
+<div class="prose"><p>On a successful copy the button gets <code>data-state="done"</code> and turns green; without clipboard permission it retries with a hidden <code>textarea</code>, and if that fails too it gets <code>data-state="fail"</code>, turns red and reads <b>Copy failed</b>. Because the label is <code>aria-live="polite"</code>, the result is announced to screen readers too. Override the button text like this:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.init({
+  strings: { copy: 'Copy', copied: 'Copied', copyFail: 'Copy failed' }
+});</code></pre></figure>
+<div class="prose"><p>Long lines do not wrap; the block scrolls sideways and the page does not overflow. Thanks to <code>tabindex="0"</code> on the <code>pre</code>, keyboard users can focus the block and scroll it with the arrow keys.</p></div>
+<demo label="Example · a long line in a narrow space">
+<div style="max-width:420px">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">request</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">curl</span> -sS -X POST <span class="s">"https://api.example.com/v2/cache/invalidate?region=eu-west-1&amp;scope=product"</span> -H <span class="s">"Authorization: Bearer $TOKEN"</span></code></pre>
+</figure>
+</div>
+</demo>
+</chapter>
+
+<chapter title="Annotations and cursor" lead="Two extra layers: pre.annotated puts colored labels on groups of lines; .ln.cur highlights the line running now. Neither changes the copied text.">
+<demo label="Example · an annotated migration script">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">0042_order_status.sql</span>
+    <span class="code-lang">SQL</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre class="annotated" tabindex="0"><code><span class="grp g1" data-label="lock">  <span class="k">SET</span> lock_timeout = <span class="s">'5s'</span>;
+</span><span class="grp g2" data-label="schema">  <span class="k">ALTER TABLE</span> orders <span class="k">ADD COLUMN</span> status text;
+</span><span class="grp g3" data-label="data">  <span class="k">UPDATE</span> orders <span class="k">SET</span> status = <span class="s">'paid'</span> <span class="k">WHERE</span> paid_at <span class="k">IS NOT NULL</span>;
+</span><span class="grp g4" data-label="constraint">  <span class="k">ALTER TABLE</span> orders <span class="k">ALTER COLUMN</span> status <span class="k">SET NOT NULL</span>;
+</span><span class="grp g5" data-label="grant">  <span class="k">GRANT SELECT</span> (status) <span class="k">ON</span> orders <span class="k">TO</span> reporting;
+</span></code></pre>
+</figure>
+</demo>
+<div class="prose"><p>There are five group colors (<code>.g1</code>–<code>.g5</code>); the order carries no meaning, as long as adjacent groups get different colors. Color only separates groups; <code>data-label</code> says what each one is. In a narrow column the labels hide and the colored rule stays.</p></div>
+<div class="prose"><p>For the execution cursor, wrap each line in <code>.ln</code> and put the line break inside the <code>&lt;/span&gt;</code>. The button below moves the cursor to the next line.</p></div>
+<demo label="Example · step-by-step execution">
+<figure class="code" id="kb-run">
+  <figcaption class="code-head">
+    <span class="code-file">release.sh</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="ln cur"><span class="k">npm</span> run test
+</span><span class="ln"><span class="k">docker</span> build -t web-api:<span class="v">$TAG</span> .
+</span><span class="ln"><span class="k">docker</span> push web-api:<span class="v">$TAG</span>
+</span><span class="ln"><span class="k">kubectl</span> set image deploy/web-api app=web-api:<span class="v">$TAG</span>
+</span></code></pre>
+</figure>
+<div class="pillrow" style="align-items:center">
+  <button class="btn" type="button" id="kb-next">Next line</button>
+  <span id="kb-pos" class="chip" aria-live="polite">line 1 / 4</span>
+</div>
+</demo>
+</chapter>
+
+<chapter title="States" lead="A code block's state lives in the copy button and in focus. The button has three states; text signals two of them, and text plus color the third.">
+<demo label="Example · copy and watch the button">
+<figure class="code">
+  <figcaption class="code-head">
+    <span class="code-file">terminal</span>
+    <span class="code-lang">BASH</span>
+    <button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+  </figcaption>
+<pre tabindex="0"><code><span class="k">kubectl</span> -n <span class="v">prod</span> get pods -l app=web-api</code></pre>
+</figure>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Button text</th><th>Look</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td>Ready</td><td>Copy</td><td>Thin border, light ink</td><td>Markup</td></tr>
+    <tr><td>Copied</td><td>Copied</td><td>Green border and text, 1.6 seconds</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Copy failed</td><td>Copy failed</td><td>No color change; text only</td><td><code>Hendese.init()</code></td></tr>
+    <tr><td>Focus</td><td>—</td><td>A 2px inset ring on the <code>pre</code>, a light blue ring on the button</td><td>Browser (<code>:focus-visible</code>)</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The script sets the result class and removes it again; do not set it by hand in the markup. A block without a header has no button, so it has no state either. The copy button has no disabled state: text that should not be copied does not go in a code block. A line's “running now” state is given with <code>.ln.cur</code> (see the section above).</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A code block exists to be copied. What the reader pastes must run; prompts, output and decoration stay out of the code.">
+<div class="dodont">
+<demo label="Do · the command only">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">redis-cli</span> -h cache-eu info stats</code></pre></figure>
+</demo>
+<demo label="Don't · prompt and output together">
+<figure class="code"><figcaption class="code-head"><span class="code-file">terminal</span><span class="code-lang">BASH</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>$ redis-cli -h cache-eu info stats
+# Stats
+total_connections_received:91822</code></pre></figure>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · little highlighting, in meaningful places">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="k">replicas</span>: <span class="v">3</span>
+<span class="k">image</span>: <span class="s">web-api:1.8.2</span></code></pre></figure>
+</demo>
+<demo label="Don't · everything highlighted in one color">
+<figure class="code"><figcaption class="code-head"><span class="code-file">values.yaml</span><span class="code-lang">YAML</span></figcaption><pre tabindex="0"><code><span class="v">replicas: 3</span>
+<span class="v">image: web-api:1.8.2</span></code></pre></figure>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>The colors pass the contrast threshold on <code>--code-bg</code> in both themes. The copy button has visible text; do not leave the icon on its own. Code is given as text, not as a screenshot: it stays searchable, zoomable and copyable.</p></div></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var fig = document.getElementById('kb-run'), btn = document.getElementById('kb-next'), pos = document.getElementById('kb-pos');
+  if (!fig || !btn) return;
+  var lines = fig.querySelectorAll('.ln'), i = 0;
+  btn.addEventListener('click', function () {
+    lines[i].classList.remove('cur');
+    i = (i + 1) % lines.length;
+    lines[i].classList.add('cur');
+    pos.textContent = 'line ' + (i + 1) + ' / ' + lines.length;
+  });
+})();
+</script>

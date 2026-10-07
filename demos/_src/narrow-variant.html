@@ -1,0 +1,188 @@
+<!-- meta {"title":"Narrow variant","group":"Motion","order":60,"tagline":"Same sheet, second drawing.","intro":"When a dense drawing gets cramped in a narrow figure column, make a narrow drawing of the same sheet instead of shrinking it. The package ships the pattern: <code>--naw</code>/<code>--nah</code> on <code>.drawing</code>, two SVGs (<code>.is-wide</code>, <code>.is-nar</code>) and <code>--nx</code>/<code>--ny</code>/<code>--nw</code> on labels. When the <code>fig</code> container drops below 575px, the second drawing takes over; the engine rereads the drawing size on every measure.","summary":"The narrow variant in the package: the <code>fig</code> container, <code>--naw</code> / <code>--nah</code>, <code>.is-wide</code> / <code>.is-nar</code>, <code>--nx</code> / <code>--ny</code> / <code>--nw</code>; picking coordinates with <code>api.aw</code>.","facts":{"Container":"<code>fig</code>: <code>.f-map</code> · <code>.fig-sheet</code> · <code>.sticky-fig</code> · threshold <code>575px</code>","Drawing":"<code>--aw/--ah</code> wide, <code>--naw/--nah</code> narrow · <code>.is-wide</code> / <code>.is-nar</code>","Label":"<code>--x/--y/--w</code> wide, <code>--nx/--ny/--nw</code> narrow","JS":"<code>api.aw</code> / <code>api.ah</code> give the computed value on every measure"}} -->
+
+<style>
+/* page-specific (.dv-): scene look only. The narrow variant rules live in the package (blueprint.css). */
+.dv-fail .dl b{display:block}
+.dv-t:not(.dv-end){display:none}
+@media screen{
+  .is-live .dv-t{display:none}
+  .is-live .dv-t.on{display:inline}
+  .is-live .sticky-fig:not(.dv-s2) .dv-toA{stroke:var(--draw);stroke-width:2.5;stroke-dasharray:none}
+  .is-live .sticky-fig:not(.dv-s2) .dv-toB{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:4 4}
+  .is-live .dv-s1:not(.dv-s3) .dv-A{stroke:var(--bad);stroke-dasharray:6 4}
+}
+</style>
+
+<chapter title="Problem and pattern" lead="A wide drawing shrinks with contain in a narrow column, and its labels become unreadable. The fix isn't shrinking but redrawing the same information in a vertical layout." hoca="quiet">
+<div class="prose">
+  <p>In a live sticky scene, the figure column is a little more than half the window, and the drawing fits into it with <code>contain</code> logic. At 1100px that column drops below 500px; a horizontal drawing of 900 × 420 units falls to half its size. The package pattern has four parts and makes the page write no CSS:</p>
+  <ol>
+    <li><code>.f-map</code>, <code>.fig-sheet</code> and <code>.sticky-fig</code> are a container named <code>fig</code>.</li>
+    <li><code>.drawing</code> carries the wide size in <code>--aw</code>/<code>--ah</code> and the narrow size in <code>--naw</code>/<code>--nah</code>. When the container drops below 575px, <code>--aw</code>/<code>--ah</code> switch to the narrow values; aspect-ratio and <code>--u</code> follow on their own.</li>
+    <li>The drawing has two SVGs as direct children: <code>.is-wide</code> and <code>.is-nar</code>. <code>.is-nar</code> is hidden by default; in a narrow container they swap.</li>
+    <li>HTML labels (<code>.dl</code>, <code>.sl</code>) carry <code>--nx</code>/<code>--ny</code>/<code>--nw</code>; in a narrow container the position is computed from these, and any value left out falls back to the wide one.</li>
+  </ol>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class="k">div</span> class="<span class="s">drawing</span>" data-aw="<span class="s">900</span>" data-ah="<span class="s">420</span>" style="<span class="s">--aw:900;--ah:420;--naw:600;--nah:780</span>"&gt;
+  &lt;<span class="k">svg</span> class="<span class="s">is-wide</span>" viewBox="<span class="s">0 0 900 420</span>" aria-hidden="<span class="s">true</span>"&gt;…&lt;/<span class="k">svg</span>&gt;
+  &lt;<span class="k">svg</span> class="<span class="s">is-nar</span>"  viewBox="<span class="s">0 0 600 780</span>" aria-hidden="<span class="s">true</span>"&gt;…&lt;/<span class="k">svg</span>&gt;
+  &lt;<span class="k">p</span> class="<span class="s">dl</span>" style="<span class="s">--x:520;--y:76;--w:220; --nx:52;--ny:346;--nw:220</span>"&gt;…&lt;/<span class="k">p</span>&gt;
+&lt;/<span class="k">div</span>&gt;</code></pre></figure>
+<figure class="code"><figcaption class="code-head"><span class="code-file">blueprint.css (package)</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>.f-map,.fig-sheet,.sticky-fig{container:fig / inline-size}
+.drawing&gt;.is-nar{display:none}
+@container fig (max-width:575px){
+  .drawing:has(&gt;.is-nar){--aw:var(--naw) !important;--ah:var(--nah) !important}
+  .drawing:has(&gt;.is-nar)&gt;.is-wide{display:none}
+  .drawing:has(&gt;.is-nar)&gt;.is-nar{display:block}
+  .drawing:has(&gt;.is-nar) :is(.dl,.sl){left:calc(var(--nx,var(--x)) / var(--aw) * 100%);top:calc(var(--ny,var(--y)) / var(--ah) * 100%)}
+  .drawing:has(&gt;.is-nar) :is(.dl,.sl)[style*="--nw"]{width:calc(var(--nw) / var(--aw) * 100%)}
+}</code></pre></figure>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Both values at once</span><div class="co-body"><p>If <code>.is-nar</code> is present, <code>--naw</code> and <code>--nah</code> are required: if one is missing, <code>--aw</code> becomes invalid in a narrow container and the drawing loses its size. The SVGs must be direct children of <code>.drawing</code>.</p></div></div>
+</chapter>
+
+<chapter title="Live example · cross-region failover" lead="Region A goes down, the DNS record is switched to Region B, and B becomes primary. If the figure column is wider than 575px you see the horizontal drawing; if narrower, a vertical drawing of the same scene.">
+<div class="prose"><p>In live mode the figure column stays below 575px up to a window width of about 1350px; in that range the scene shows the vertical drawing, and Hoca moves to the narrow drawing's coordinates. In a wider window the horizontal drawing returns. With motion off, the figure is full width, so on desktop you see the horizontal drawing in its finished state.</p></div>
+<div class="sticky dv-fail" id="dv-fail">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">02 · Fig. 1</p><p class="sf-cap">Failover from Region A to Region B</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420;--naw:600;--nah:780">
+        <svg class="is-wide" viewBox="0 0 900 420" aria-hidden="true">
+          <path class="ln-draw" d="M200 205H260"/>
+          <path class="ln-ghost dv-toA" d="M410 190L520 115"/>
+          <path class="ln-strong dv-toB" d="M410 220L520 305"/>
+          <path class="ln-ghost" d="M640 170V250"/>
+          <rect class="ln-draw fill-paper" x="40" y="170" width="160" height="70"/>
+          <rect class="ln-draw fill-paper" x="260" y="170" width="150" height="70"/>
+          <rect class="ln-draw fill-paper dv-A" x="520" y="60" width="240" height="110"/>
+          <rect class="ln-draw fill-paper" x="520" y="250" width="240" height="110"/>
+        </svg>
+        <svg class="is-nar" viewBox="0 0 600 780" aria-hidden="true">
+          <path class="ln-draw" d="M300 100V170"/>
+          <path class="ln-ghost dv-toA" d="M260 240L160 330"/>
+          <path class="ln-strong dv-toB" d="M340 240L440 330"/>
+          <path class="ln-ghost" d="M280 400H320"/>
+          <rect class="ln-draw fill-paper" x="200" y="30" width="200" height="70"/>
+          <rect class="ln-draw fill-paper" x="200" y="170" width="200" height="70"/>
+          <rect class="ln-draw fill-paper dv-A" x="40" y="330" width="240" height="140"/>
+          <rect class="ln-draw fill-paper" x="320" y="330" width="240" height="140"/>
+        </svg>
+        <p class="dl" style="--x:52;--y:186;--w:140;--nx:212;--ny:46;--nw:180"><b>User</b>browser</p>
+        <p class="dl" style="--x:272;--y:186;--w:130;--nx:212;--ny:186;--nw:180"><b>DNS</b><span class="dv-t" data-b="0">→ A</span><span class="dv-t" data-b="1">→ A</span><span class="dv-t" data-b="2">→ B · TTL 60</span><span class="dv-t dv-end" data-b="3">→ B</span></p>
+        <p class="dl" style="--x:532;--y:76;--w:220;--nx:52;--ny:346;--nw:220"><b>Region A</b><span class="dv-t" data-b="0"><span class="state s-ok">primary</span></span><span class="dv-t" data-b="1"><span class="state s-bad">down</span></span><span class="dv-t" data-b="2"><span class="state s-bad">down</span></span><span class="dv-t dv-end" data-b="3"><span class="state">standby</span></span></p>
+        <p class="dl" style="--x:532;--y:266;--w:220;--nx:332;--ny:346;--nw:220"><b>Region B</b><span class="dv-t" data-b="0"><span class="state">standby</span></span><span class="dv-t" data-b="1"><span class="state">standby</span></span><span class="dv-t" data-b="2"><span class="state s-warn">taking over</span></span><span class="dv-t dv-end" data-b="3"><span class="state s-ok">primary</span></span></p>
+        <p class="dl" style="--x:652;--y:200;--w:100;--nx:250;--ny:480;--nw:100">replication</p>
+      </div>
+    </div>
+    <p class="figcap"><b>Fig. 1.</b> The heavy line is the region traffic goes to; the dashed line is the standby path. The dashed line between the regions is data replication.</p>
+  </div>
+  <ol class="sticky-text steps">
+    <li data-beat="0"><h3>Normal operation</h3><p>The DNS record points to Region A. Region B waits as a standby that continuously replicates A's data.</p></li>
+    <li data-beat="1"><h3>Region A goes down</h3><p>The health check in A fails three times in a row. Users start getting errors.</p></li>
+    <li data-beat="2"><h3>DNS switches to B</h3><p>The record is pointed to Region B. Because the TTL is 60 seconds, every client sees the new address within a minute at most.</p></li>
+    <li data-beat="3"><h3>B becomes primary</h3><p>Region B takes all the traffic. When A is repaired, it returns as the standby this time; replication runs in the opposite direction.</p></li>
+  </ol>
+</div>
+</chapter>
+
+<chapter title="Coordinates and Hoca" lead="When the container changes, so does the drawing unit. Pick Hoca's coordinates from the value the scene is measuring at that moment.">
+<div class="prose"><p>On every <code>measure()</code>, the scene reads the computed <code>--aw</code>/<code>--ah</code> of <code>.drawing</code>. The <code>api.aw</code>/<code>api.ah</code> passed to <code>render</code> and the <code>aw</code>/<code>ah</code> fields of the object <code>stickyScene</code> returns give the same value; in a narrow container it is 600 × 780. Hoca's coordinates are converted to percentages with this size too. <code>still</code> is used only with motion off; in that mode the desktop figure is wide, so it holds the wide drawing's coordinates.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var WIDE = { x: 840, y: 410 }, NARROW = { x: 300, y: 620 };
+Hendese.stickyScene({
+  el: '#dv-fail', chap: '02 · Failover',
+  still: { x: 840, y: 410, pose: 'helm', face: -1 },          <span class="c">// motion off: wide drawing</span>
+  render: function (i, t, api) {
+    [1, 2, 3].forEach(function (k) { api.cls(api.fig, 'dv-s' + k, i &gt;= k); });
+    var at = api.aw &lt; 700 ? NARROW : WIDE;                      <span class="c">// measured drawing unit</span>
+    return { hoca: { x: at.x, y: at.y, pose: ['idle', 'worried', 'terminal', 'helm'][i], face: -1 } };
+  }
+});</code></pre></figure>
+<h3>Narrow drawing, still</h3>
+<div class="prose"><p>The copy below is the same markup inside a 340px <code>.fig-sheet</code>. The container query works in every mode: readers with motion off see the narrow drawing here.</p></div>
+<div class="fig-sheet dv-fail" style="max-width:340px">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <div class="drawing" data-aw="900" data-ah="420" style="--aw:900;--ah:420;--naw:600;--nah:780">
+    <svg class="is-wide" viewBox="0 0 900 420" aria-hidden="true"><rect class="ln-draw fill-paper" x="40" y="170" width="160" height="70"/></svg>
+    <svg class="is-nar" viewBox="0 0 600 780" aria-hidden="true">
+      <path class="ln-draw" d="M300 100V170"/>
+      <path class="ln-ghost" d="M260 240L160 330"/>
+      <path class="ln-strong" d="M340 240L440 330"/>
+      <path class="ln-ghost" d="M280 400H320"/>
+      <rect class="ln-draw fill-paper" x="200" y="30" width="200" height="70"/>
+      <rect class="ln-draw fill-paper" x="200" y="170" width="200" height="70"/>
+      <rect class="ln-draw fill-paper" x="40" y="330" width="240" height="140"/>
+      <rect class="ln-draw fill-paper" x="320" y="330" width="240" height="140"/>
+    </svg>
+    <p class="dl" style="--x:52;--y:186;--w:140;--nx:212;--ny:46;--nw:180"><b>User</b>browser</p>
+    <p class="dl" style="--x:272;--y:186;--w:130;--nx:212;--ny:186;--nw:180"><b>DNS</b>→ B</p>
+    <p class="dl" style="--x:532;--y:76;--w:220;--nx:52;--ny:346;--nw:220"><b>Region A</b><span class="state">standby</span></p>
+    <p class="dl" style="--x:532;--y:266;--w:220;--nx:332;--ny:346;--nw:220"><b>Region B</b><span class="state s-ok">primary</span></p>
+    <p class="dl" style="--x:652;--y:200;--w:100;--nx:250;--ny:480;--nw:100">replication</p>
+  </div>
+</div>
+</chapter>
+
+<chapter title="With motion off" lead="The narrow variant doesn't depend on motion: it looks only at the width of the fig container. With motion off, too, the narrow drawing shows when the container is narrow.">
+<div class="prose">
+  <p>With reduced motion and below 1100px, <code>.sticky</code> is a single column and the figure is full width. On desktop the figure is wider than 575px, so the horizontal drawing shows in its finished state; on a phone the figure narrows and the vertical drawing comes in on its own. That way a reader on a narrow screen sees a readable vertical drawing, not a shrunken horizontal one.</p>
+  <p>Hoca's still copy (<code>still</code>) is placed with the wide drawing's coordinates. The container query works without JS as well: CSS alone decides which drawing shows.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Drawing</th><th>Label position</th></tr></thead>
+  <tbody>
+    <tr><td><code>fig</code> container &gt; 575px (desktop, every mode)</td><td><code>.is-wide</code>, <code>--aw:900;--ah:420</code></td><td><code>--x/--y/--w</code></td></tr>
+    <tr><td><code>fig</code> container ≤ 575px (live sticky column, narrow screen, narrow <code>.fig-sheet</code>)</td><td><code>.is-nar</code>, <code>--naw:600;--nah:780</code></td><td><code>--nx/--ny/--nw</code></td></tr>
+    <tr><td>Print</td><td>Based on the container's printed width</td><td>Same as the drawing</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Do / don't" lead="The narrow drawing carries the same information; only the layout changes.">
+<div class="dodont">
+<demo label="Do · same elements, new layout" nocode>
+<p>Four boxes, four lines, five labels; the narrow drawing has them all, only their positions changed. The state classes (<code>.dv-A</code>, <code>.dv-toB</code>) keep the same names in both SVGs, so <code>render</code> stays a single code path.</p>
+</demo>
+<demo label="Don't · drop information when narrow" nocode>
+<p>Removing the replication line or the TTL label from the narrow drawing because there's “no room” tells the reader in the narrow column a different story.</p>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · the aw the scene measured" nocode>
+<p><code>var at = api.aw &lt; 700 ? NARROW : WIDE;</code></p>
+</demo>
+<demo label="Don't · window width or data-aw" nocode>
+<p><code>innerWidth</code> gives the window, not the column width, and misses changes like <code>.sticky--dense</code>. <code>data-aw</code> is only the initial value; it knows nothing about the container query.</p>
+</demo>
+</div>
+</chapter>
+
+<chapter title="API" lead="The whole pattern lives in the package: three containers, two classes, five variables. The page supplies only the second drawing and the coordinates.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>fig</code> container</td><td><code>container: fig / inline-size</code> on <code>.f-map</code>, <code>.fig-sheet</code> and <code>.sticky-fig</code>. You can make your own wrapper a container with the same name. Threshold <code>575px</code>.</td></tr>
+    <tr><td><code>--naw</code>, <code>--nah</code></td><td>The narrow drawing's unit, on <code>.drawing</code>. In a narrow container it overrides <code>--aw</code>/<code>--ah</code> (<code>!important</code>, so it can beat the inline value).</td></tr>
+    <tr><td><code>.is-wide</code>, <code>.is-nar</code></td><td>Two SVGs, direct children of <code>.drawing</code>. <code>.is-nar</code> is hidden by default; in a narrow container they swap.</td></tr>
+    <tr><td><code>--nx</code>, <code>--ny</code>, <code>--nw</code></td><td>Position and width of <code>.dl</code> and <code>.sl</code> labels in the narrow drawing (in drawing units). A value left out falls back to the wide one.</td></tr>
+    <tr><td><code>api.aw</code>, <code>api.ah</code></td><td>Updated in live mode on every <code>measure()</code> via <code>getComputedStyle(.drawing)</code>; <code>--naw</code>/<code>--nah</code> in a narrow container. The same in pin, sticky and fig scenes.</td></tr>
+    <tr><td><code>.sticky--dense</code></td><td>An alternative or addition: widens the figure column at 1100–1279px.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var WIDE = { x: 840, y: 410 }, NARROW = { x: 300, y: 620 }, ts = Hendese.$$('#dv-fail .dv-t');
+  Hendese.stickyScene({
+    el: '#dv-fail', chap: '02 · Failover',
+    still: { x: 840, y: 410, pose: 'helm', face: -1 },
+    render: function (i, t, api) {
+      [1, 2, 3].forEach(function (k) { api.cls(api.fig, 'dv-s' + k, i >= k); });
+      ts.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+      var at = api.aw < 700 ? NARROW : WIDE;
+      return { hoca: { x: at.x, y: at.y, pose: ['idle', 'worried', 'terminal', 'helm'][i], face: -1 } };
+    }
+  });
+})();
+</script>

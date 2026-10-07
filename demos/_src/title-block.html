@@ -1,0 +1,172 @@
+<!-- meta {"title":"Title block","group":"Components","order":150,"tagline":"The sheet's credits.","intro":"<code>.titleblock</code> is the information table in the corner of a technical drawing: it says at a glance what a figure or page shows, in which environment, at what scale and when. The markup is a <code>&lt;dl&gt;</code>; the first row, <code>.tb-head</code>, carries the sheet's name.","summary":"<code>dl.titleblock</code>, <code>.tb-head</code>; on its own, attached to a figure and at the top of a page.","facts":{"Classes":"<code>.titleblock</code> · <code>.tb-head</code>","Structure":"<code>&lt;div&gt;&lt;dt&gt;&lt;dd&gt;</code> inside a <code>&lt;dl&gt;</code>","Width":"380px, never overflows its container; full width if the content column is narrower than 720px","State":"No status color of its own; written in a row with <code>.state.s-*</code>","JS":"Not needed"}} -->
+
+<chapter title="Anatomy" lead="Each row is a field: a 132px label on the left, the value on the right. Thin pencil-colored lines separate the rows; the first row's value is bold.">
+<demo label="Example · a network sheet">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Sheet</dt><dd>Ingress traffic</dd></div>
+  <div><dt>Service</dt><dd>web-api</dd></div>
+  <div><dt>Region</dt><dd>eu-west-1 · 3 zones</dd></div>
+  <div><dt>Scale</dt><dd>schematic, not to scale</dd></div>
+  <div><dt>Date</dt><dd>October 6, 2026</dd></div>
+  <div><dt>Drawn by</dt><dd>network team</dd></div>
+</dl>
+</demo>
+<dl class="kv">
+  <dt><code>dl.titleblock</code></dt><dd>The container: an outer frame in the drawing color, paper background, mono text.</dd>
+  <dt><code>div.tb-head</code></dt><dd>The header row; its value is set in bold. The sheet's name goes here, used once.</dd>
+  <dt><code>div &gt; dt + dd</code></dt><dd>A field. The label is uppercase and faint, the value in ink; a long value wraps within the row.</dd>
+</dl>
+</chapter>
+
+<chapter title="Different sheets" lead="The fields change with the sheet; what stays the same is the layout. Three examples: a database migration, a cost report and an access grant.">
+<demo label="Example · three title blocks">
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Sheet</dt><dd>Migration 0042</dd></div>
+    <div><dt>Database</dt><dd>billing · PostgreSQL 16</dd></div>
+    <div><dt>Schema</dt><dd>41 → 42</dd></div>
+    <div><dt>Lock</dt><dd>advisory lock 42</dd></div>
+    <div><dt>Rollback</dt><dd>0042_down.sql</dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Report</dt><dd>September cost</dd></div>
+    <div><dt>Account</dt><dd>prod · staging</dd></div>
+    <div><dt>Period</dt><dd>September 1 – 30, 2026</dd></div>
+    <div><dt>Total</dt><dd>$4,320</dd></div>
+    <div><dt>Change</dt><dd>−7% from the previous month</dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Grant</dt><dd>billing-readonly</dd></div>
+    <div><dt>Scope</dt><dd>prod · billing schema</dd></div>
+    <div><dt>Duration</dt><dd>7 days</dd></div>
+    <div><dt>Approved by</dt><dd>data team</dd></div>
+  </dl>
+</div>
+</demo>
+<div class="prose"><p>Four to six rows is ideal. Field names are short nouns (“Region”, “Schema”); values are not sentences but something measurable.</p></div>
+</chapter>
+
+<chapter title="Attached to a figure" lead="The title block sits in the bottom-right corner of a figure sheet and gives the figure's scope; the figure caption stays on the left.">
+<demo label="Example · a figure sheet and title block">
+<figure class="fig-sheet">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Figure 4</p>
+  <p class="fig-cap">From outside to web-api</p>
+  <div class="drawing" style="--aw:900;--ah:170">
+    <svg viewBox="0 0 900 170" aria-hidden="true">
+      <rect class="ln-draw ln-dash fill-scene" x="10" y="45" width="210" height="80"/>
+      <rect class="ln-draw fill-paper" x="345" y="45" width="210" height="80"/>
+      <rect class="ln-draw fill-paper" x="680" y="45" width="210" height="80"/>
+      <path class="ln-draw" d="M220 85H345M555 85H680"/>
+      <path class="ln-draw" d="M345 85l-9-4v8zM680 85l-9-4v8z"/>
+      <path class="dim" d="M220 145V157M345 145V157M220 151H345"/>
+      <text class="dim-t" x="282" y="143" text-anchor="middle">TLS 443</text>
+    </svg>
+    <p class="dl" style="--x:26;--y:62;--w:180">Internet<br>clients</p>
+    <p class="dl" style="--x:361;--y:62;--w:180">Load balancer<br>public subnet</p>
+    <p class="dl" style="--x:696;--y:62;--w:180">web-api<br>3 replicas · private</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between;margin-top:14px">
+    <figcaption class="figcap" style="flex:1 1 260px;margin:0"><b>Figure 4.</b> Clients reach only the load balancer; the web-api replicas are in a private subnet, with no direct path from outside.</figcaption>
+    <dl class="titleblock">
+      <div class="tb-head"><dt>Sheet</dt><dd>Ingress path</dd></div>
+      <div><dt>Environment</dt><dd>prod</dd></div>
+      <div><dt>Region</dt><dd>eu-west-1</dd></div>
+      <div><dt>Scale</dt><dd>1 unit = 1 px (aw 900)</dd></div>
+    </dl>
+  </div>
+</figure>
+</demo>
+<demo label="Example · a dark sheet">
+<figure class="fig-sheet scene-dark">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <p class="chip">Figure 5</p>
+  <p class="fig-cap">Queue and workers</p>
+  <div class="drawing" style="--aw:900;--ah:130">
+    <svg viewBox="0 0 900 130" aria-hidden="true">
+      <rect class="ln-draw fill-paper" x="10" y="25" width="240" height="80"/>
+      <rect class="ln-draw fill-paper" x="420" y="10" width="200" height="48"/>
+      <rect class="ln-draw fill-paper" x="420" y="72" width="200" height="48"/>
+      <path class="ln-draw" d="M250 65H340V34H420M340 65V96H420"/>
+    </svg>
+    <p class="dl" style="--x:26;--y:44;--w:210">invoice-queue<br>FIFO · 14 days</p>
+    <p class="dl" style="--x:436;--y:20;--w:180">billing-worker-a</p>
+    <p class="dl" style="--x:436;--y:82;--w:180">billing-worker-b</p>
+  </div>
+  <div style="display:flex;justify-content:flex-end;margin-top:14px">
+    <dl class="titleblock">
+      <div class="tb-head"><dt>Sheet</dt><dd>Processing pipeline</dd></div>
+      <div><dt>Environment</dt><dd>staging</dd></div>
+      <div><dt>Scope</dt><dd>1 queue · 2 workers</dd></div>
+    </dl>
+  </div>
+</figure>
+</demo>
+</chapter>
+
+<chapter title="At the top of a page" lead="At the top of a document, the title block sits next to the heading and becomes the credits for the whole page; the package reserves the right column of the hero for it.">
+<demo label="Example · a runbook document header">
+<header style="display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between">
+  <div style="flex:1 1 300px">
+    <p class="chip">Runbook · RB-019</p>
+    <h3 style="margin:8px 0 8px;font-size:var(--fs-2xl);letter-spacing:-.02em">Refreshing the cache cluster</h3>
+    <p style="margin:0;color:var(--ink-2);max-width:48ch">A zero-downtime version upgrade, replacing nodes one at a time. Estimated time 40 minutes.</p>
+  </div>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Document</dt><dd>RB-019</dd></div>
+    <div><dt>Service</dt><dd>cache-redis</dd></div>
+    <div><dt>Owner</dt><dd>platform</dd></div>
+    <div><dt>Last reviewed</dt><dd>2026-09-12</dd></div>
+  </dl>
+</header>
+</demo>
+</chapter>
+
+<chapter title="States" lead="The title block has no status color or dashed draft look of its own. The sheet's status is written in a row with a .state label; one rule each covers empty and long values.">
+<demo label="Example · a draft and an approved sheet">
+<div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);align-items:flex-start">
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Sheet</dt><dd>Cache layer</dd></div>
+    <div><dt>Status</dt><dd><span class="state s-warn">draft</span></dd></div>
+    <div><dt>Revision</dt><dd>B · in review</dd></div>
+    <div><dt>Approved by</dt><dd><span aria-hidden="true">—</span><span class="visually-hidden">no one yet</span></dd></div>
+  </dl>
+  <dl class="titleblock">
+    <div class="tb-head"><dt>Sheet</dt><dd>Cache layer</dd></div>
+    <div><dt>Status</dt><dd><span class="state s-ok">approved</span></dd></div>
+    <div><dt>Revision</dt><dd>C · 2026-10-06</dd></div>
+    <div><dt>Approved by</dt><dd>platform team</dd></div>
+  </dl>
+</div>
+</demo>
+<demo label="Example · a superseded sheet, a long value">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Sheet</dt><dd>Old ingress path</dd></div>
+  <div><dt>Status</dt><dd><span class="state s-bad">superseded</span> by RB-024</dd></div>
+  <div><dt>Image</dt><dd>web-api@sha256:4c1e9a0b7d2f6e8a</dd></div>
+  <div><dt>Region</dt><dd>eu-west-1 · eu-central-1 · us-east-1</dd></div>
+</dl>
+</demo>
+<div class="prose"><p>Say the status with the word in the row, not with the title block's color; <code>.state</code> is printed with 1px units outside the drawing. Do not delete an empty field row: “—” is visible, screen readers hear the <code>.visually-hidden</code> text, and the reader knows the field was not forgotten. By the language's rules a draft sheet should be drawn with a dashed frame; the title block does not support this yet. Do not fake it with inline styles.</p></div>
+</chapter>
+
+<chapter title="Do / don't" lead="A title block is a set of credits, not a description area. Short fields, measurable values and a single header row.">
+<div class="dodont">
+<demo label="Do · short field, measurable value">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Sheet</dt><dd>DNS cutover</dd></div>
+  <div><dt>Zone</dt><dd>example.com</dd></div>
+  <div><dt>TTL</dt><dd>300 → 60 s</dd></div>
+  <div><dt>Date</dt><dd>2026-10-08</dd></div>
+</dl>
+</demo>
+<demo label="Don't · sentences and two headers">
+<dl class="titleblock">
+  <div class="tb-head"><dt>Sheet</dt><dd>DNS cutover</dd></div>
+  <div class="tb-head"><dt>Extra header</dt><dd>Important</dd></div>
+  <div><dt>Description</dt><dd>This drawing explains how the DNS records will be changed and what to watch out for.</dd></div>
+</dl>
+</demo>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p><code>&lt;div&gt;</code> wrappers inside a <code>&lt;dl&gt;</code> are valid HTML; screen readers read each field with its name and value. The title block must stay outside the figure's <code>aria-hidden</code> drawing: it is part of the figure's text equivalent.</p></div></div>
+</chapter>

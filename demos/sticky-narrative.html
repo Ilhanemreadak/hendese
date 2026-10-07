@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticky narrative · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Motion</div>
+    <a class="nav-page" href="pin-scene.html">Pin scene</a>
+    <a class="nav-page" href="sticky-narrative.html" aria-current="page">Sticky narrative</a>
+    <a class="nav-page" href="fig-scene.html">Fig scene</a>
+    <a class="nav-page" href="hud.html">HUD</a>
+    <a class="nav-page" href="sketch-and-reveal.html">Sketch and reveal</a>
+    <a class="nav-page" href="narrow-variant.html">Narrow variant</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>Live example · canary release</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Variation · rich beats</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>With motion off</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Motion</p>
+    <h1>Sticky narrative<em>Sticky figure, scrolling text.</em></h1>
+    <p class="intro">The figure column sticks to the screen while the text column flows. Each <code>[data-beat]</code> becomes active when it crosses the reading line (45% of the screen), and the figure moves to that step's state. With motion off, the figure sits above the text in its finished state.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.sticky</code> · <code>.sticky-fig</code> · <code>.sf-head</code> · <code>.sticky-text</code> · <code>[data-beat]</code> · <code>.sticky--dense</code></dd><dt>JS</dt><dd><code>Hendese.stickyScene(cfg)</code>; <code>render(i, t, api)</code></dd><dt>State</dt><dd><code>.on</code> (active) and <code>.past</code> (passed) on beats</dd></dl>
+  </div>
+</section>
+
+<style>
+/* page-specific drawing classes (.sa-). Default = finished state. */
+.sa-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.sa-off{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+.sa-l1{stroke:var(--draw);stroke-width:calc(1px + 7px * (1 - var(--kp,1)))}
+.sa-l2{stroke:var(--accent);stroke-width:calc(1px + 7px * var(--kp,1))}
+.sa-split{fill:var(--accent);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(var(--kp,1))}
+.sa-pc:not(.sa-end){display:none}
+.sa-rp{fill:var(--ok);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(var(--rp,1))}
+@media screen{
+  .is-live .sa-pc{display:none}
+  .is-live .sa-pc.on{display:inline}
+  .is-live .sa-v1:not(.gone){stroke:var(--draw);stroke-dasharray:none;fill:var(--paper)}
+  .is-live .sa-v1lbl:not(.gone) .sa-dead{display:none}
+  .is-live .sa-show:not(.in){opacity:0}
+}
+html.motion .sa-split,html.motion .sa-l1,html.motion .sa-l2{transition:transform var(--dur-3) var(--ease-out),stroke-width var(--dur-3) var(--ease-out)}
+html.motion .sa-show{transition:opacity var(--dur-2)}
+.sticky .dl b{display:block}
+</style>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy" data-hoca="quiet">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Two columns: the sticky figure on the left, the text being read on the right. Unlike the pin scene, progress comes from the text itself, not a track.</p></header>
+<div class="prose"><p>In live mode, <code>.sticky</code> turns into a two-column grid; <code>.sticky-fig</code> sticks at 100vh tall, and each <code>[data-beat]</code> inside <code>.sticky-text</code> takes at least 30vh. On every frame the engine finds the last beat that crossed the reading line (45% of the screen): <code>i</code> is its index, <code>t</code> the progress until the next beat (0..1). The active beat gets <code>.on</code>, the earlier ones <code>.past</code>.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">skeleton</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;div class="sticky" id="example"&gt;
+  &lt;div class="sticky-fig"&gt;                              &lt;!-- sticky at 100vh when live --&gt;
+    &lt;div class="frame-bg" aria-hidden="true"&gt;&lt;/div&gt;
+    &lt;div class="sf-head"&gt;&lt;div&gt;&lt;p class="chip"&gt;Fig. 1&lt;/p&gt;&lt;p class="sf-cap"&gt;…&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="f-map"&gt;
+      &lt;div class="drawing" data-aw="600" data-ah="420" style="--aw:600;--ah:420"&gt;…&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="figcap"&gt;…&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;ol class="sticky-text steps"&gt;                        &lt;!-- the text flows --&gt;
+    &lt;li data-beat="0"&gt;&lt;h3&gt;…&lt;/h3&gt;&lt;p&gt;…&lt;/p&gt;&lt;/li&gt;
+    &lt;li data-beat="1"&gt;…&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Pin or sticky</span><div class="co-body"><p>If the text is long or there are several paragraphs per beat, use sticky; if the figure is the main narrator and the text is a few lines, use pin. With sticky, readers read at their own pace and the figure follows them.</p></div></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="Live example · canary release">
+  <header class="ch-head"><p class="ch-num">02</p><h2>Live example · canary release</h2><p class="lead">The new version is first tried with a small share of traffic; if the metrics are clean, the share grows. Four beats, four traffic ratios.</p></header>
+<div class="sticky" id="sa-canary">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">02 · Fig. 1</p><p class="sf-cap">The traffic share moves from the stable version to the canary</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="600" data-ah="420" style="--aw:600;--ah:420">
+        <svg viewBox="0 0 600 420" aria-hidden="true">
+          <path class="sa-l1" d="M260 80L160 220"/>
+          <path class="sa-l2" d="M340 80L440 220"/>
+          <rect class="sa-box" x="200" y="20" width="200" height="60"/>
+          <rect class="sa-off sa-v1" x="60" y="220" width="200" height="80"/>
+          <rect class="sa-box" x="340" y="220" width="200" height="80"/>
+          <rect class="ln-pencil" x="60" y="324" width="480" height="12"/>
+          <rect class="sa-split" x="60" y="324" width="480" height="12"/>
+        </svg>
+        <p class="dl" style="--x:212;--y:36;--w:180"><b>Load balancer</b></p>
+        <p class="dl sa-v1lbl" style="--x:72;--y:236;--w:180"><b>v1 · stable</b><span class="sa-pc" data-b="0">100%</span><span class="sa-pc" data-b="1">95%</span><span class="sa-pc" data-b="2">50%</span><span class="sa-pc sa-end" data-b="3">0%</span> <span class="state sa-dead">shut down</span></p>
+        <p class="dl" style="--x:352;--y:236;--w:180"><b>v2 · canary</b><span class="sa-pc" data-b="0">0%</span><span class="sa-pc" data-b="1">5%</span><span class="sa-pc" data-b="2">50%</span><span class="sa-pc sa-end" data-b="3">100%</span> <span class="state ok">healthy</span></p>
+        <p class="dl" style="--x:60;--y:342;--w:300">canary share</p>
+      </div>
+    </div>
+    <p class="figcap"><b>Fig. 1.</b> The line weight and the bar below show the share of traffic going to the canary. The dashed box is the version that was shut down.</p>
+  </div>
+  <ol class="sticky-text steps">
+    <li data-beat="0"><h3>Bring up the canary</h3><p>v2 starts as a single replica and passes its health check. It takes no traffic yet; the stable version keeps serving every request.</p></li>
+    <li data-beat="1"><h3>Give it 5% of traffic</h3><p>The load balancer sends one request in twenty to the canary. For fifteen minutes, the error rate and latency are compared against the stable version.</p></li>
+    <li data-beat="2"><h3>Raise the share to half</h3><p>If the metrics stay within thresholds, the share goes up to 50%. If a threshold is crossed, rolling back is one step: drop the share to zero.</p></li>
+    <li data-beat="3"><h3>Hand over everything</h3><p>The canary takes all traffic and v1 is shut down. The release is done; Hoca's speech bubble says so too: traffic is 100% on the canary.</p></li>
+  </ol>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var pcs = Hendese.$$('#sa-canary .sa-pc'), v1 = Hendese.$$('#sa-canary .sa-v1, #sa-canary .sa-v1lbl'), K = [0, .05, .5, 1];
+Hendese.stickyScene({
+  el: '#sa-canary', chap: '02 · Canary',
+  still: { x: 500, y: 410, pose: 'happy', face: -1, bubble: 'Traffic is 100% on the canary.' },
+  render: function (i, t, api) {
+    api.set('kp', K[i]);                                    // line weight + bar: var(--kp,1)
+    pcs.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+    v1.forEach(function (el) { api.cls(el, 'gone', i === 3); });
+    return { hoca: { x: 500, y: 410, pose: i &lt; 3 ? 'clipboard' : 'happy', face: -1, bubble: i === 3 ? 'Traffic is 100% on the canary.' : null } };
+  }
+});</code></pre></figure>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Variation · rich beats">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Variation · rich beats</h2><p class="lead">A beat can be more than a paragraph: a table, a warning, code. For a dense drawing, .sticky--dense widens the figure column on narrow desktops; t gives the progress inside a beat.</p></header>
+<div class="prose"><p>Restoring from a backup takes four steps. In the third step, the log replay is drawn with <code>t</code>: as the reader moves through the beat, the green bar fills. Tables in the text column turn into row cards in live mode instead of scrolling sideways.</p></div>
+<div class="sticky sticky--dense" id="sa-restore">
+  <div class="sticky-fig">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <div class="sf-head"><div><p class="chip">03 · Fig. 2</p><p class="sf-cap">orders-db: restore to 14:05</p></div></div>
+    <div class="f-map">
+      <div class="drawing" data-aw="600" data-ah="380" style="--aw:600;--ah:380">
+        <svg viewBox="0 0 600 380" aria-hidden="true">
+          <path class="ln-draw" d="M40 70H560"/>
+          <path class="ln-pencil" d="M60 62V78M190 62V78M320 62V78"/>
+          <path class="ln-ok" stroke-width="2.5" d="M420 52V88"/>
+          <path class="ln-block" d="M446 52V88"/>
+          <path class="ln-pencil" d="M560 62V78"/>
+          <rect class="ln-pencil" x="320" y="128" width="100" height="14"/>
+          <rect class="sa-rp sa-show" data-s="2" x="320" y="128" width="100" height="14"/>
+          <path class="ln-ghost sa-show" data-s="1" d="M320 78V200"/>
+          <rect class="ln-draw fill-paper sa-show" data-s="1" x="220" y="200" width="200" height="76"/>
+        </svg>
+        <p class="dl" style="--x:30;--y:86;--w:60">00:00</p>
+        <p class="dl" style="--x:160;--y:86;--w:60">06:00</p>
+        <p class="dl" style="--x:290;--y:86;--w:60">12:00</p>
+        <p class="dl" style="--x:392;--y:22;--w:120"><span class="state ok">14:05</span></p>
+        <p class="dl" style="--x:458;--y:22;--w:120"><span class="state bad">14:07 error</span></p>
+        <p class="dl" style="--x:536;--y:86;--w:60">now</p>
+        <p class="dl sa-show" data-s="2" style="--x:320;--y:148;--w:200">log replay</p>
+        <p class="dl sa-show" data-s="1" style="--x:232;--y:214;--w:180"><b>orders-db-restore</b>new instance <span class="state ok sa-show" data-s="3">verified</span></p>
+      </div>
+    </div>
+    <p class="figcap"><b>Fig. 2.</b> The top line is the time axis; the green mark is the chosen restore point, the red cut the faulty deployment. The new instance opens next to the old database.</p>
+  </div>
+  <div class="sticky-text">
+    <section data-beat="0"><h3>Pick the restore point</h3><p>The faulty deployment was at 14:07. The restore point is set just before it, at 14:05. The last snapshot before that moment is used as the base.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Snapshot</th><th>Size</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>00:00</td><td>182 GB</td><td>retained</td></tr>
+          <tr><td>06:00</td><td>184 GB</td><td>retained</td></tr>
+          <tr><td>12:00</td><td>185 GB</td><td>chosen as base</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section data-beat="1"><h3>Open a new instance beside it</h3><p>A new instance named <code>orders-db-restore</code> is opened from the 12:00 snapshot. The broken database stays in place; it may be needed for the investigation.</p></section>
+    <section data-beat="2"><h3>Replay the logs up to 14:05</h3><p>The transaction logs after 12:00 are applied in order and stopped at exactly 14:05. Depending on data size, this step can take minutes.</p></section>
+    <section data-beat="3"><h3>Verify, then switch the traffic</h3><p>Row counts and the last order number are compared with the expected values. If they match, the app's connection address is switched to the new instance.</p>
+      <div class="co co-warn"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Lost window</span><div class="co-body"><p>Writes from the two minutes between 14:05 and 14:07 aren't in the new instance; extract them separately from the application log.</p></div></div>
+    </section>
+  </div>
+</div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var parts = Hendese.$$('#sa-restore .sa-show');
+Hendese.stickyScene({
+  el: '#sa-restore', chap: '03 · Restore',
+  still: { x: 500, y: 360, pose: 'stamp', face: -1 },
+  render: function (i, t, api) {
+    parts.forEach(function (el) { api.cls(el, 'in', +el.getAttribute('data-s') &lt;= i); });
+    api.set('rp', i &lt; 2 ? 0 : i === 2 ? t : 1);              // fills with t inside beat 2
+    return { hoca: { x: 500, y: 360, pose: ['pointDown', 'idle', 'terminal', 'stamp'][i], face: -1 } };
+  }
+});</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="With motion off">
+  <header class="ch-head"><p class="ch-num">04</p><h2>With motion off</h2><p class="lead">Reduced motion, below 1100px, print and no JS: the figure sits above the text in its finished state, and the beats sit below it as a normal list.</p></header>
+<div class="prose">
+  <p>With live mode off, <code>.sticky</code> is a single column and nothing sticks. The figure shows the last beat's state: in the canary example above, traffic is 100% on the canary and v1 is shut down; in the restore example, the new instance is verified. The beats are fully opaque and have no <code>.on</code> / <code>.past</code> class. That is why the information of the in-between steps must be written in the text; the figure shows only the final state.</p>
+  <p>With reduced motion on desktop, Hoca sits inside the drawing as a still copy in every scene that has <code>still</code>. When the engine leaves live mode, it clears whatever was written with <code>api.cls</code> and <code>api.set</code> by itself.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mode</th><th>Figure</th><th>Beats</th></tr></thead>
+  <tbody>
+    <tr><td>Live</td><td>Sticky, the active beat's state</td><td><code>.on</code> at the 45% line, earlier ones <code>.past</code></td></tr>
+    <tr><td>Reduced motion</td><td>Finished state, in the flow; Hoca <code>still</code></td><td>Plain list, all fully opaque</td></tr>
+    <tr><td>&lt; 1100px, print, no JS</td><td>Finished state, in the flow</td><td>Plain list</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">The figure follows the text; the text explains the figure. Each must make sense on its own.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · the beat text states the state</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li><h3>Give it 5% of traffic</h3><p>The load balancer sends one request in twenty to the canary.</p></li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Give it 5% of traffic&lt;/<span class='k'>h3</span>&gt;&lt;<span class='k'>p</span>&gt;The load balancer sends one request in twenty to the canary.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · information only in the figure</span>
+  <div class="demo-view">
+<ol class="steps">
+  <li><h3>Step two</h3><p>See the figure.</p></li>
+</ol>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>ol</span> class="<span class='s'>steps</span>"&gt;
+  &lt;<span class='k'>li</span>&gt;&lt;<span class='k'>h3</span>&gt;Step two&lt;/<span class='k'>h3</span>&gt;&lt;<span class='k'>p</span>&gt;See the figure.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>li</span>&gt;
+&lt;/<span class='k'>ol</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · one state change per beat</span>
+  <div class="demo-view">
+<p>Four beats, four traffic ratios. Every change in the figure maps to exactly one beat; the reader always knows what changed.</p>
+  </div>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · many changes inside one beat</span>
+  <div class="demo-view">
+<p>If three boxes appear and two lines vanish in a single beat, the reader can't tell which to follow. A single continuous change driven by <code>t</code> (like a bar filling) is enough.</p>
+  </div>
+</div>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Beat height</span><div class="co-body"><p>In live mode each beat is at least 30vh; even if the text is short, there is breathing room between steps. Don't pad beats with artificial space.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>API</h2><p class="lead">Register between Hendese.init() and Hendese.start(). If the selector isn't found, stickyScene returns null.</p></header>
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>el</code></td><td>The <code>.sticky</code> selector; contains <code>.sticky-fig</code> &gt; <code>.drawing</code> and <code>[data-beat]</code> elements.</td></tr>
+    <tr><td><code>render(i, t, api)</code></td><td><code>i</code> is the active beat (from 0), <code>t</code> the progress inside the beat, 0..1. Returns <code>{hud?, tb?, hoca?}</code>; <code>tb</code> 0..1 turns the readout into a title block (<code>.hud-tb</code>).</td></tr>
+    <tr><td><code>chap</code>, <code>still</code>, <code>measure(api)</code>, <code>reset(api)</code></td><td>As in the pin scene.</td></tr>
+    <tr><td><code>api</code></td><td><code>el, fig, beats, drawing, aw, ah</code> (<code>aw</code>/<code>ah</code> are read from the computed <code>--aw</code>/<code>--ah</code> on every measure; they change in the narrow variant), <code>set(k, v)</code> (writes <code>--k</code> to <code>.sticky-fig</code>), <code>cls, live, poke, seg, ease, lerp, clamp01</code>.</td></tr>
+    <tr><td><code>.on</code> / <code>.past</code></td><td>Classes the engine itself gives the beats; removed when live mode turns off.</td></tr>
+    <tr><td><code>.sticky--dense</code></td><td>Widens the figure column and tightens the padding at 1100–1279px.</td></tr>
+    <tr><td><code>.hud-slot</code></td><td>Optional; goes inside <code>.sf-head</code>, and the HUD lands there at 232px wide.</td></tr>
+  </tbody>
+</table></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="pin-scene.html" rel="prev"><small>Previous · Motion</small>Pin scene</a><a href="fig-scene.html" rel="next"><small>Next · Motion</small>Fig scene</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+(function () {
+  var $$ = Hendese.$$;
+  /* 02 · canary */
+  var pcs = $$('#sa-canary .sa-pc'), v1 = $$('#sa-canary .sa-v1, #sa-canary .sa-v1lbl'), K = [0, .05, .5, 1], BUB = 'Traffic is 100% on the canary.';
+  Hendese.stickyScene({
+    el: '#sa-canary', chap: '02 · Canary',
+    still: { x: 500, y: 410, pose: 'happy', face: -1, bubble: BUB },
+    render: function (i, t, api) {
+      api.set('kp', K[i]);
+      pcs.forEach(function (s) { api.cls(s, 'on', +s.getAttribute('data-b') === i); });
+      v1.forEach(function (el) { api.cls(el, 'gone', i === 3); });
+      return { hoca: { x: 500, y: 410, pose: i < 3 ? 'clipboard' : 'happy', face: -1, bubble: i === 3 ? BUB : null } };
+    }
+  });
+  /* 03 · restore */
+  var parts = $$('#sa-restore .sa-show');
+  Hendese.stickyScene({
+    el: '#sa-restore', chap: '03 · Restore',
+    still: { x: 500, y: 360, pose: 'stamp', face: -1 },
+    render: function (i, t, api) {
+      parts.forEach(function (el) { api.cls(el, 'in', +el.getAttribute('data-s') <= i); });
+      api.set('rp', i < 2 ? 0 : i === 2 ? t : 1);
+      return { hoca: { x: 500, y: 360, pose: ['pointDown', 'idle', 'terminal', 'stamp'][i], face: -1 } };
+    }
+  });
+})();
+Hendese.start();
+</script>
+</body>
+</html>

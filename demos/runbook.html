@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runbook · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html" aria-current="page">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Anatomy</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>States</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Event and listener</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Do / don't</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Accessibility and API</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Runbook<em>Check, count, remember.</em></h1>
+    <p class="intro"><code>.runbook</code> lists the items of a job carried out by hand: the counter, progress bar, reset and done line come with the package. The boxes are real <code>&lt;input type="checkbox"&gt;</code> elements; if you want, the choices are saved in the browser.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.runbook</code> · <code>.rb-head</code> · <code>.rb-count</code> · <code>.rb-bar</code> · <code>.rb-reset</code> · <code>.rb-list</code> · <code>.rb-item</code> · <code>.rb-done</code></dd><dt>Storage</dt><dd><code>data-store</code> → <code>localStorage</code> key</dd><dt>Event</dt><dd><code>hendese:runbook</code> · <code>detail.done</code>, <code>detail.total</code></dd><dt>JS</dt><dd><code>Hendese.init()</code> wires up the lists on its own</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Anatomy">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Anatomy</h2><p class="lead">Counter, bar and reset at the top; the items in the middle; at the bottom, a done line that opens only when everything is checked. The choices in this example are saved in this browser.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · pre-release check</span>
+  <div class="demo-view">
+<div class="runbook" data-store="hendese-demo-kl-version">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">All jobs in the latest pipeline on <code>main</code> are green</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Database migration <code>0042_add_invoice_index</code> ran on staging</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Image tag <code>prod-7c1e94d0</code> shows up in the registry</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Release note posted to the channel, on-call informed</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Rollback command ready: previous tag <code>prod-2b80f3aa</code></span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Ready to release.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-version</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Reset&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;All jobs in the latest pipeline on &lt;<span class='k'>code</span>&gt;main&lt;/<span class='k'>code</span>&gt; are green&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Database migration &lt;<span class='k'>code</span>&gt;0042_add_invoice_index&lt;/<span class='k'>code</span>&gt; ran on staging&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Image tag &lt;<span class='k'>code</span>&gt;prod-7c1e94d0&lt;/<span class='k'>code</span>&gt; shows up in the registry&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Release note posted to the channel, on-call informed&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Rollback command ready: previous tag &lt;<span class='k'>code</span>&gt;prod-2b80f3aa&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Ready to release.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<dl class="kv">
+  <dt><code>.runbook</code></dt><dd>The container. With <code>data-store</code>, the choices are written to <code>localStorage</code> under that key.</dd>
+  <dt><code>.rb-count</code></dt><dd>The package rewrites the <code>n / total</code> text on every change; the initial value shows only without JS.</dd>
+  <dt><code>.rb-bar &gt; i</code></dt><dd>The progress bar; the package sets its width as a percentage. It is decoration, so <code>aria-hidden</code>.</dd>
+  <dt><code>.rb-reset</code></dt><dd>Optional. Clears all boxes, updates the saved state and moves focus to the first box.</dd>
+  <dt><code>.rb-item</code></dt><dd>Inside a <code>&lt;label&gt;</code>: the hidden box, the drawn <code>.box</code> and the text <code>.txt</code>. The whole row is clickable.</dd>
+  <dt><code>.rb-done</code></dt><dd>Hidden; opens with <code>.runbook.complete</code> once every item is checked.</dd>
+</dl>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">02</p><h2>States</h2><p class="lead">Empty, partial and complete. The state is computed from the checked boxes; the package adds the complete class, not the page.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · three states side by side</span>
+  <div class="demo-view">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start">
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Alarm owner assigned</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Threshold value written</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Notification channel chosen</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Alarm ready.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">2 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">DNS record lowered</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL down to 60 seconds</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">New target healthy</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">TTL back to its old value</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Cutover done.</div>
+  </div>
+  <div class="runbook" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">3 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Cache flushed</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Hit rate watched</span></label>
+      <label class="rb-item"><input type="checkbox" checked><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Warm-up complete</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Cache is warm.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Alarm owner assigned&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Threshold value written&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Notification channel chosen&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Alarm ready.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;2 / 4&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;DNS record lowered&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;TTL down to 60 seconds&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;New target healthy&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;TTL back to its old value&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Cutover done.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;3 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Cache flushed&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Hit rate watched&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>" checked&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Warm-up complete&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Cache is warm.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>These three lists have no <code>data-store</code>: they aren't saved, and their initial state comes from the <code>checked</code> attribute in the HTML. The reset button is optional too; you can drop it from short lists that run only once.</p></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Initial state of a saved list</span><div class="co-body"><p>A list with <code>data-store</code> reads its saved state on load. If nothing is saved, the <code>checked</code> marks in the HTML are the initial state; after the first change, the saved state wins.</p></div></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Event and listener">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Event and listener</h2><p class="lead">On every change, the list dispatches a bubbling hendese:runbook event on itself. The readout below listens to it and writes the next step.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · incident response, live readout</span>
+  <div class="demo-view">
+<div class="runbook" data-store="hendese-demo-kl-incident">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 5</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+    <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Open the incident channel, assign roles</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Record the <code>billing-worker</code> queue depth and error rate</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Roll back the last release or stop the worker</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Watch the queue drain for 15 minutes</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Update the status page, close the incident</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Response complete.</div>
+</div>
+<div class="readout" id="kl-incident-out" aria-live="polite"><p>No response yet.</p></div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-incident</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Reset&lt;/<span class='k'>button</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Open the incident channel, assign roles&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Record the &lt;<span class='k'>code</span>&gt;billing-worker&lt;/<span class='k'>code</span>&gt; queue depth and error rate&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Roll back the last release or stop the worker&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Watch the queue drain for 15 minutes&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Update the status page, close the incident&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Response complete.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-incident-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;No response yet.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The first event fires on load, during <code>Hendese.init()</code>; the page script attaches its listener after that, so it must read the initial state itself. The readout's class changes with the state too: <code>.bad</code> with no items checked, <code>.ok</code> with all of them.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+var out = document.getElementById('kl-incident-out');
+function show(done, total) {
+  var next = rb.querySelector('input:not(:checked) ~ .txt');
+  out.classList.toggle('bad', done === 0);
+  out.classList.toggle('ok', done === total);
+  out.innerHTML = done === total ? '&lt;p&gt;&lt;b&gt;The incident can be closed.&lt;/b&gt; …&lt;/p&gt;'
+    : '&lt;p&gt;&lt;b&gt;' + done + ' / ' + total + '&lt;/b&gt; · Next: ' + next.innerHTML + '&lt;/p&gt;';
+}
+rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);</code></pre></figure>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">Several lists can be gathered with a single listener, and a list can sit in a dark panel or a narrow side column.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · onboarding, two lists, one readout</span>
+  <div class="demo-view">
+<div id="kl-member">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start">
+    <div>
+      <p class="chip">Accounts</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-account" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Company identity created</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Added to the code repository group</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Read-only cloud role granted</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Accounts ready.</div>
+      </div>
+    </div>
+    <div>
+      <p class="chip">Tools</p>
+      <div class="runbook" data-store="hendese-demo-kl-member-tools" style="margin-top:8px">
+        <div class="rb-head">
+          <span class="rb-count" aria-live="polite">0 / 3</span>
+          <div class="rb-bar" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="rb-list">
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">VPN client installed</span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>kubectl</code> context is <code>staging</code></span></label>
+          <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">First change opened for review</span></label>
+        </div>
+        <div class="rb-done"><svg><use href="#i-check"/></svg>Tools ready.</div>
+      </div>
+    </div>
+  </div>
+  <div class="readout" id="kl-member-out" aria-live="polite"><p>Day one: <b>0 / 6</b> items.</p></div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>kl-member</span>"&gt;
+  &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start</span>"&gt;
+    &lt;<span class='k'>div</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Accounts&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-member-account</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+          &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+          &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Company identity created&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Added to the code repository group&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Read-only cloud role granted&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Accounts ready.&lt;/<span class='k'>div</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Tools&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-member-tools</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+          &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+          &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;VPN client installed&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;kubectl&lt;/<span class='k'>code</span>&gt; context is &lt;<span class='k'>code</span>&gt;staging&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+          &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;First change opened for review&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+        &lt;/<span class='k'>div</span>&gt;
+        &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Tools ready.&lt;/<span class='k'>div</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-member-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Day one: &lt;<span class='k'>b</span>&gt;0 / 6&lt;/<span class='k'>b</span>&gt; items.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Because the event bubbles, the listener is attached once to the shared container; the total is recounted from every box in the container.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · on-call handover, dark panel</span>
+  <div class="demo-view">
+<div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
+  <p class="chip">On-call handover · eu-west-1</p>
+  <div class="runbook" data-store="hendese-demo-kl-oncall" style="margin-bottom:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 4</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Open alarms walked through one by one with the incoming engineer</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">End times of silenced alarms written down</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Ongoing maintenance windows shared</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Paging routed to the new on-call</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Handover complete.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;On-call handover · eu-west-1&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-oncall</span>" style="<span class='s'>margin-bottom:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 4&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Reset&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Open alarms walked through one by one with the incoming engineer&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;End times of silenced alarms written down&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Ongoing maintenance windows shared&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Paging routed to the new on-call&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Handover complete.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · narrow side column</span>
+  <div class="demo-view">
+<div style="max-width:320px">
+  <div class="runbook" data-store="hendese-demo-kl-narrow" style="margin:0">
+    <div class="rb-head">
+      <span class="rb-count" aria-live="polite">0 / 3</span>
+      <div class="rb-bar" aria-hidden="true"><i></i></div>
+      <button class="btn rb-reset" type="button"><svg><use href="#i-reset"/></svg>Reset</button>
+    </div>
+    <div class="rb-list">
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Old certificate's expiry date noted</span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">New certificate attached to the load balancer and verified with <code>openssl s_client</code></span></label>
+      <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Old certificate deleted</span></label>
+    </div>
+    <div class="rb-done"><svg><use href="#i-check"/></svg>Renewal done.</div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:320px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-narrow</span>" style="<span class='s'>margin:0</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+      &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn rb-reset</span>" type="<span class='s'>button</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Reset&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Old certificate's expiry date noted&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;New certificate attached to the load balancer and verified with &lt;<span class='k'>code</span>&gt;openssl s_client&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Old certificate deleted&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Renewal done.&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Do / don't</h2><p class="lead">Each item is a single action, and you can verify it was done. A vague or compound item doesn't say what happened, even when checked.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · single action, verifiable</span>
+  <div class="demo-view">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 3</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt"><code>/healthz</code> returns 200</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Error rate below 0.5%</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Queue depth below 100</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Service healthy.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;&lt;<span class='k'>code</span>&gt;/healthz&lt;/<span class='k'>code</span>&gt; returns 200&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Error rate below 0.5%&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Queue depth below 100&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Service healthy.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · vague and compound items</span>
+  <div class="demo-view">
+<div class="runbook" style="margin:0">
+  <div class="rb-head">
+    <span class="rb-count" aria-live="polite">0 / 2</span>
+    <div class="rb-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <div class="rb-list">
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Everything checked</span></label>
+    <label class="rb-item"><input type="checkbox"><span class="box" aria-hidden="true"><svg><use href="#i-tick"/></svg></span><span class="txt">Run the tests, do the migration, ship the release and let people know</span></label>
+  </div>
+  <div class="rb-done"><svg><use href="#i-check"/></svg>Done.</div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
+    &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 2&lt;/<span class='k'>span</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-list</span>"&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Everything checked&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span> class="<span class='s'>rb-item</span>"&gt;&lt;<span class='k'>input</span> type="<span class='s'>checkbox</span>"&gt;&lt;<span class='k'>span</span> class="<span class='s'>box</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-tick</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>txt</span>"&gt;Run the tests, do the migration, ship the release and let people know&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Done.&lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Key name</span><div class="co-body"><p>The <code>data-store</code> value is used as is. Giving two lists the same key writes one list's state over the other; pick a name that is unique per page, like <code>app-page-list</code>.</p></div></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Accessibility and API">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Accessibility and API</h2><p class="lead">The boxes are native checkboxes; keyboard, screen reader and form behavior come from the browser.</p></header>
+<div class="tbl"><table>
+  <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-store</code></td><td>text</td><td>The <code>localStorage</code> key; without it, the list isn't saved.</td></tr>
+    <tr><td><code>hendese:runbook</code></td><td><code>{done, total}</code></td><td>Once on load and on every change; bubbles.</td></tr>
+    <tr><td><code>.complete</code></td><td>class</td><td>Added to the list while every box is checked; <code>.rb-done</code> shows.</td></tr>
+    <tr><td><code>.rb-reset</code></td><td>button</td><td>Clears the boxes, saves, gives focus to the first box.</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p>Tab moves from box to box, Space checks; the focus ring shows on the drawn <code>.box</code>. The <code>aria-live="polite"</code> on <code>.rb-count</code> reads out counter changes. The struck-through text is visual only; the state is read from the box itself.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="steps.html" rel="prev"><small>Previous · Components</small>Steps</a><a href="choice-groups.html" rel="next"><small>Next · Components</small>Choice groups</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* incident response → readout */
+(function () {
+  var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+  var out = document.getElementById('kl-incident-out');
+  function show(done, total) {
+    var next = rb.querySelector('input:not(:checked) ~ .txt');
+    out.classList.toggle('bad', done === 0);
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === 0 ? '<p><b>Response not started.</b> First step: ' + next.innerHTML + '</p>'
+      : done === total ? '<p><b>The incident can be closed.</b> All ' + total + ' steps are checked; copy the timeline into the survey log.</p>'
+      : '<p><b>' + done + ' / ' + total + '</b> · Next: ' + next.innerHTML + '</p>';
+  }
+  rb.addEventListener('hendese:runbook', function (e) { show(e.detail.done, e.detail.total); });
+  show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').length);
+})();
+/* two lists, one listener (bubbling) */
+(function () {
+  var box = document.getElementById('kl-member'), out = document.getElementById('kl-member-out');
+  function show() {
+    var done = box.querySelectorAll('.runbook input:checked').length, total = box.querySelectorAll('.runbook input').length;
+    out.classList.toggle('ok', done === total);
+    out.innerHTML = done === total ? '<p><b>Day one complete.</b> Accounts and tools are ready.</p>' : '<p>Day one: <b>' + done + ' / ' + total + '</b> items.</p>';
+  }
+  box.addEventListener('hendese:runbook', show);
+  show();
+})();
+Hendese.start();
+</script>
+</body>
+</html>

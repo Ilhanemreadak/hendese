@@ -1,0 +1,191 @@
+<!-- meta {"title":"Hoca · behavior","group":"Hoca","order":20,"tagline":"Who speaks, where he walks.","intro":"Scenes only request Hoca; on every frame the controller decides who owns him. With no request, Hoca goes back to his home on the rail. Between two nearby points he walks; if they are far apart he fades out and appears at the new spot, so he never crosses unrelated content.","summary":"The controller: home, scene requests, walk / fade handover, <code>data-hoca=\"quiet\"</code>, still copies, <code>Hendese.hoca.dismiss()</code>.","facts":{"Home":"<code>#hoca-home</code> (under the rail)","Quiet section":"<code>data-hoca=\"quiet\"</code> → 45% opaque at home","JS":"<code>render → {hoca}</code> · <code>still</code> · <code>Hendese.refresh()</code> · <code>Hendese.hoca.dismiss()</code>"}} -->
+
+<style>
+/* page-specific (.hb-). */
+.hb-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hb-pair .fig-sheet{margin:0}
+.hb-box{stroke:var(--draw);stroke-width:1.5;fill:var(--paper)}
+.hb-msg{stroke:var(--draw);stroke-width:1;fill:var(--draw)}
+.hb-disk{fill:var(--bad)}
+.hb-fig .dl b{display:block}
+@media (max-width:900px){.hb-pair{grid-template-columns:minmax(0,1fr)}}
+html:not(.js) .hb-ctl{display:none}
+</style>
+
+<chapter title="Controller" lead="The module that draws Hoca only draws what it is told; the controller decides who speaks. The rules are short and fixed." hoca="quiet">
+<div class="tbl wide"><table>
+  <thead><tr><th>Situation</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr><td>No scene requests him</td><td>He stays <code>idle</code> at his <code>#hoca-home</code> on the rail.</td></tr>
+    <tr><td>The active section is <code>data-hoca="quiet"</code></td><td>Hoca at home drops to 45% opacity, and the rail box fades too (<code>.rail.hoca-quiet</code>). It does not block scene requests.</td></tr>
+    <tr><td>Several scenes request him</td><td>The first scene in registration order wins.</td></tr>
+    <tr><td>Owner changed, the two points ≤ 260 px apart</td><td>He walks for 650 ms (<code>walkA/B</code>, facing the direction of travel); the speech bubble and tag are hidden while walking.</td></tr>
+    <tr><td>To or from home, &gt; 260 px, part navigation</td><td>320 ms: he fades out at the old spot and appears at the new one.</td></tr>
+    <tr><td>Same scene, new coordinates</td><td>The controller does not interpolate; smooth movement is the scene's job (in a pin scene <code>p</code> is already smoothed).</td></tr>
+    <tr><td>Reduced motion (desktop)</td><td>No movement: each scene's <code>still</code> value is placed in the drawing as a still copy.</td></tr>
+    <tr><td>&lt; 1100px, print</td><td>Hidden.</td></tr>
+  </tbody>
+</table></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">scene request</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>render: function (api, t) {
+  return { hoca: {
+    x: 350, y: 210,              // in drawing units, bottom center of the feet
+    pose: 'clipboard', face: -1, // 1 faces right, -1 faces left
+    bubble: null, bubbleUp: false, tag: null, squash: 0
+  } };                           // hoca: null → no request
+}</code></pre></figure>
+</chapter>
+
+<chapter title="Live example · handover" lead="Two figures side by side. Choose which one wants Hoca. Handover happens between scenes: he walks to a nearby point, fades out and in for a distant one, and jumps within the same scene.">
+<fieldset class="choice is-seg hb-ctl">
+  <legend>Requesting Hoca</legend>
+  <label><input type="radio" name="hb-own" value="left" checked><span>Left figure</span></label>
+  <label><input type="radio" name="hb-own" value="near"><span>Right · near point</span></label>
+  <label><input type="radio" name="hb-own" value="far"><span>Right · far point</span></label>
+  <label><input type="radio" name="hb-own" value="none"><span>Neither</span></label>
+</fieldset>
+<div class="hb-pair">
+  <figure class="fig-sheet hb-fig" id="hb-left">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <p class="chip">02 · Figure 1</p><p class="fig-cap">Queue consumer</p>
+    <div class="drawing" data-aw="400" data-ah="220" style="--aw:400;--ah:220">
+      <svg viewBox="0 0 400 220" aria-hidden="true">
+        <rect class="ln-pencil" x="20" y="60" width="200" height="40" stroke-dasharray="4 4"/>
+        <rect class="hb-msg" x="30" y="70" width="20" height="20"/><rect class="hb-msg" x="56" y="70" width="20" height="20"/><rect class="hb-msg" x="82" y="70" width="20" height="20"/><rect class="hb-msg" x="108" y="70" width="20" height="20"/>
+        <path class="ln-draw" d="M220 80H260"/>
+        <rect class="hb-box" x="260" y="50" width="110" height="60"/>
+      </svg>
+      <p class="dl" style="--x:20;--y:30;--w:200"><b>Queue</b></p>
+      <p class="dl" style="--x:270;--y:62;--w:100"><b>Consumer</b>3 replicas</p>
+      <p class="dl" style="--x:20;--y:110;--w:220">pending · 4 messages</p>
+    </div>
+    <p class="figcap"><b>Figure 1.</b> Four messages in the queue, three consumer replicas.</p>
+  </figure>
+  <figure class="fig-sheet hb-fig" id="hb-right">
+    <div class="frame-bg" aria-hidden="true"></div>
+    <p class="chip">02 · Figure 2</p><p class="fig-cap">Log disk</p>
+    <div class="drawing" data-aw="400" data-ah="220" style="--aw:400;--ah:220">
+      <svg viewBox="0 0 400 220" aria-hidden="true">
+        <rect class="ln-draw" x="120" y="60" width="260" height="30"/>
+        <rect class="hb-disk" x="120" y="60" width="237" height="30"/>
+        <path class="ln-warn ln-dash" stroke-width="1.5" d="M328 50V100"/>
+      </svg>
+      <p class="dl" style="--x:120;--y:30;--w:260"><b>/var/log</b></p>
+      <p class="dl" style="--x:120;--y:104;--w:260">91% full · threshold 85%</p>
+    </div>
+    <p class="figcap"><b>Figure 2.</b> The disk is 91% full; the yellow dashed line is the 85% warning threshold.</p>
+  </figure>
+</div>
+<div class="readout" id="hb-out" aria-live="polite"><p><b>The left figure is requesting.</b> Hoca is next to the queue, with his clipboard.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var own = 'left', AT = { near: { x: 60, y: 210 }, far: { x: 350, y: 210 } };
+function off() { return Hendese.hoca.dismissed; }               // no request if the user dismissed him
+var L = Hendese.figScene({ el: '#hb-left',
+  still: function () { return own === 'left' &amp;&amp; !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null; },
+  render: function () { return { hoca: own === 'left' &amp;&amp; !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null }; }
+});
+var R = Hendese.figScene({ el: '#hb-right',
+  still: function () { var a = AT[own]; return a &amp;&amp; !off() ? { x: a.x, y: a.y, pose: 'worried', face: 1 } : null; },
+  render: function () { var a = AT[own];
+    return { hoca: a &amp;&amp; !off() ? { x: a.x, y: a.y, pose: 'worried', face: own === 'far' ? -1 : 1, bubble: 'Disk is 91% full.' } : null }; }
+});
+/* when the choice changes: */ own = value; L.poke(); R.poke();
+Hendese.refresh();                                            // still copies; does not interrupt a live handover</code></pre></figure>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">260 px</span><div class="co-body"><p>The threshold is in viewport pixels, not drawing units. At 1440px wide the two distances are about 170 px (walk) and 480 px (fade); in a narrower window the distances shrink.</p></div></div>
+</chapter>
+
+<chapter title="Quiet section and dismissal" lead="This section carries data-hoca=quiet: while you read it, Hoca stays faint at home. If the reader wants Hoca gone entirely, scenes stop requesting him." hoca="quiet">
+<div class="prose">
+  <p>When section tracking finds the active section, it checks for <code>data-hoca="quiet"</code>: if present, Hoca at home drops to 45% opacity and the rail's Hoca box fades. It suits places where Hoca has nothing to say, such as long reference tables, API sections and rules. If a scene in this section requests him, he still speaks; quiet only affects how he stands at home.</p>
+  <p><code>Hendese.hoca.dismiss()</code> sets the shared <code>dismissed</code> flag and wakes the loop. Scenes read the flag and return <code>hoca: null</code>; the two figures above are written this way. Hoca stays at home. To undo it, set <code>Hendese.hoca.dismissed = false</code>.</p>
+</div>
+<div class="pillrow hb-ctl">
+  <button class="btn" type="button" id="hb-dismiss"><svg><use href="#i-x"/></svg>Remove Hoca from scenes</button>
+  <button class="btn" type="button" id="hb-back"><svg><use href="#i-reset"/></svg>Bring him back</button>
+</div>
+<div class="readout" id="hb-dout" aria-live="polite"><p><b>On.</b> Scenes can request Hoca.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>function sync() { Hendese.refresh(); }   // harmless in live mode: only refreshes the still copies
+dismissBtn.addEventListener('click', function () { Hendese.hoca.dismiss(); sync(); });
+backBtn.addEventListener('click', function () { Hendese.hoca.dismissed = false; sync(); });</code></pre></figure>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Not persistent</span><div class="co-body"><p>The flag lives only while this page is open; when the page reloads, Hoca comes back. To make it persistent, store the preference yourself and set <code>Hendese.hoca.dismissed = true</code> before <code>Hendese.start()</code>.</p></div></div>
+</chapter>
+
+<chapter title="With motion off" lead="Under reduced motion Hoca does not walk or fade, and there is no home: a still copy stands in the drawing of every scene that requests him.">
+<div class="prose">
+  <p>When live mode turns off, the engine hides the fixed layer and puts a copy inside the drawing for every scene that has a <code>still</code> (<code>left</code>/<code>top</code> are converted from drawing units to percentages). If <code>still</code> is a function, it is read again on every <code>Hendese.refresh()</code> call; if it returns <code>null</code>, that scene gets no copy. That is why the choice and dismissal buttons above call <code>refresh()</code> on every change (in live mode the call does not interrupt a handover): under reduced motion, too, Hoca moves to the chosen figure and disappears when dismissed.</p>
+  <p>Below 1100px and in print the copies are hidden too. Since Hoca carries no information in any mode, nothing is lost.</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Mode</th><th>Home</th><th>Scene request</th><th>Handover</th></tr></thead>
+  <tbody>
+    <tr><td>Live</td><td>Yes (45% when quiet)</td><td><code>render → hoca</code></td><td>Walk / fade</td></tr>
+    <tr><td>Reduced motion (desktop)</td><td>None</td><td><code>still</code> → still copy</td><td>None; <code>refresh()</code> repositions</td></tr>
+    <tr><td>&lt; 1100px, print</td><td>None</td><td>None</td><td>None</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Do / don't" lead="Hoca accompanies a scene; he is not run between sections to draw attention.">
+<div class="dodont">
+<demo label="Do · one point per scene" nocode>
+<p>Each scene asks for Hoca at a single, empty spot: at the edge of the drawing, not on top of an important label. A short walk between nearby scenes looks natural.</p>
+</demo>
+<demo label="Don't · a new spot every frame" nocode>
+<p>If a fig scene changes the coordinates every frame, Hoca jumps; the controller does not interpolate within the same scene. If you need continuous movement, use a pin scene.</p>
+</demo>
+</div>
+<div class="dodont">
+<demo label="Do · respect dismissal" nocode>
+<p><code>render</code> and <code>still</code> check <code>Hendese.hoca.dismissed</code> first and return <code>null</code>.</p>
+</demo>
+<demo label="Don't · ignore the flag" nocode>
+<p>A scene that does not read the flag keeps calling Hoca after the reader has dismissed him; the dismiss button looks broken.</p>
+</demo>
+</div>
+</chapter>
+
+<chapter title="API" lead="The controller has no call of its own; Hendese.start() sets it up. Scenes make requests; the page manages only the flag and the still copies.">
+<div class="tbl wide api"><table>
+  <thead><tr><th>Member</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>#hoca-home</code></td><td>The home on the rail. If it is missing and no scene has a <code>still</code>, Hoca is never created.</td></tr>
+    <tr><td><code>data-hoca="quiet"</code></td><td>On a <code>[data-section]</code> element: while that section is active, Hoca at home is 45% opaque.</td></tr>
+    <tr><td><code>render → {hoca}</code></td><td><code>{x, y, pose, face, bubble, bubbleUp, tag, squash, hidden}</code>, in drawing units; <code>null</code> → no request. <code>hidden: true</code> keeps ownership but hides Hoca; when he shows again, he appears in place without walking.</td></tr>
+    <tr><td><code>still</code></td><td>An object or a function; the still copy under reduced motion. <code>null</code> → no copy.</td></tr>
+    <tr><td><code>Hendese.refresh()</code></td><td>Removes the still copies and places them again from the <code>still</code> values. In live mode it does not touch the handover state; a walk or fade in progress is not interrupted, so it can be called unconditionally on every state change.</td></tr>
+    <tr><td><code>Hendese.hoca.dismiss()</code></td><td><code>dismissed = true</code> and wakes the loop.</td></tr>
+    <tr><td><code>Hendese.hoca.dismissed</code></td><td>A readable / writable shared flag; writing it also wakes the loop.</td></tr>
+    <tr><td><code>Hendese.lockTo(id)</code></td><td>The part-navigation lock; while it holds, scene requests are ignored: Hoca fades to home, and when the lock ends he appears in the target scene.</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<script data-page>
+(function () {
+  var $ = Hendese.$, $$ = Hendese.$$;
+  var own = 'left', AT = { near: { x: 60, y: 210 }, far: { x: 350, y: 210 } }, out = $('#hb-out');
+  var WHO = { left: 'Left figure', near: 'Right figure, near point', far: 'Right figure, far point', none: 'No request' };
+  function say(prev) {
+    var sc = function (o) { return o === 'none' ? 'home' : o === 'left' ? 'L' : 'R'; }, p = sc(prev), n = sc(own), how;
+    if (p === n) how = 'Same scene, new point: the controller does not interpolate, so Hoca jumps to the new point.';
+    else if (p === 'home' || n === 'home') how = 'To or from home: Hoca fades out at the old spot and appears at the new one.';
+    else if (prev === 'far' || own === 'far') how = 'The distance exceeds 260 px: Hoca fades out at the old spot and appears at the new one.';
+    else how = 'The two points are closer than 260 px: Hoca walks for 650 ms, with the speech bubble hidden while walking.';
+    out.innerHTML = '<p><b>' + WHO[own] + '.</b> ' + how + '</p>';
+  }
+  function off() { return Hendese.hoca.dismissed; }
+  function sync() { Hendese.refresh(); }
+  var L = Hendese.figScene({
+    el: '#hb-left',
+    still: function () { return own === 'left' && !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null; },
+    render: function () { return { hoca: own === 'left' && !off() ? { x: 350, y: 210, pose: 'clipboard', face: -1 } : null }; }
+  });
+  var R = Hendese.figScene({
+    el: '#hb-right',
+    still: function () { var a = AT[own]; return a && !off() ? { x: a.x, y: a.y, pose: 'worried', face: 1 } : null; },
+    render: function () { var a = AT[own]; return { hoca: a && !off() ? { x: a.x, y: a.y, pose: 'worried', face: own === 'far' ? -1 : 1, bubble: 'Disk is 91% full.' } : null }; }
+  });
+  $$('[name=hb-own]').forEach(function (r) { r.addEventListener('change', function () { var prev = own; own = r.value; say(prev); L.poke(); R.poke(); sync(); }); });
+  var dout = $('#hb-dout');
+  $('#hb-dismiss').addEventListener('click', function () { Hendese.hoca.dismiss(); sync(); dout.innerHTML = '<p><b>Removed.</b> Scenes are not requesting him; Hoca stays at home.</p>'; });
+  $('#hb-back').addEventListener('click', function () { Hendese.hoca.dismissed = false; sync(); dout.innerHTML = '<p><b>On.</b> Scenes can request Hoca.</p>'; });
+})();
+</script>

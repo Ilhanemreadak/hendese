@@ -13,24 +13,24 @@ const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')), v = pkg.version
 
 // the newest entry must be this version, dated: "## [x.y.z] - YYYY-MM-DD"
 const top = (fs.readFileSync('CHANGELOG.md', 'utf8').match(/^## \[[^\r\n]*/m) || [''])[0];
-if (!top.startsWith(`## [${v}] - `) || !/ - \d{4}-\d{2}-\d{2}$/.test(top)) throw new Error(`CHANGELOG.md: ilk sürüm başlığı "## [${v}] - YYYY-MM-DD" olmalı, bulunan: "${top}"`);
-if (status()) throw new Error('çalışma ağacı temiz değil; önce commit edin:\n' + status());
-if (execSync('git tag --list v' + v, { encoding: 'utf8' }).trim()) throw new Error(`v${v} etiketi zaten var`);
+if (!top.startsWith(`## [${v}] - `) || !/ - \d{4}-\d{2}-\d{2}$/.test(top)) throw new Error(`CHANGELOG.md: the first release heading must be "## [${v}] - YYYY-MM-DD", found: "${top}"`);
+if (status()) throw new Error('the working tree is not clean; commit first:\n' + status());
+if (execSync('git tag --list v' + v, { encoding: 'utf8' }).trim()) throw new Error(`tag v${v} already exists`);
 
 run('npm run build');
 // dist/ and demos/ are tracked: the tag must point at exactly what gets packed
-if (status()) throw new Error('build izlenen dosyaları değiştirdi; dist/ ve demos/ çıktısını commit edip yeniden deneyin:\n' + status());
+if (status()) throw new Error('the build changed tracked files; commit dist/ and demos/ and try again:\n' + status());
 run('npm run test:unit');
 run('npx playwright test');
 
 fs.mkdirSync('releases', { recursive: true });
 run('npm pack --pack-destination releases');
-const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'STANDART.md', 'CHANGELOG.md'].flatMap(function walk(p) {
+const files = ['dist', 'docs', 'demos', 'starter', 'README.md', 'STANDARD.md', 'CHANGELOG.md'].flatMap(function walk(p) {
   return fs.statSync(p).isDirectory() ? fs.readdirSync(p).sort().flatMap(f => walk(path.join(p, f))) : [p];
 });
 zip(`releases/hendese-${v}.zip`, files);
 run(`git tag -a v${v} -m "hendese ${v}"`);
-console.log(`\nhazır: releases/hendese-${v}.tgz, releases/hendese-${v}.zip, etiket v${v}`);
+console.log(`\ndone: releases/hendese-${v}.tgz, releases/hendese-${v}.zip, tag v${v}`);
 
 // Minimal ZIP writer (DEFLATE, UTF-8 names, fixed 1980-01-01 timestamps for reproducible archives).
 // Written in Node because `tar -a` only produces a zip with bsdtar; GNU tar silently writes a tar file instead.

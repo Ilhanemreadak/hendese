@@ -1,0 +1,149 @@
+<!-- meta {"title":"Typography","group":"Basics","order":20,"tagline":"Two families and a pixel face.","intro":"IBM Plex Sans for body and headings, IBM Plex Mono for code and labels, Pixelify Sans for Hoca only. All three ship embedded in the package; Turkish letters are in the latin-ext subset, and no external requests are made.","summary":"Three families, the <code>--fs-*</code> type scale, heading hierarchy, inline elements, the Turkish uppercase trap and the limits of the pixel face.","facts":{"Tokens":"<code>--font-sans</code> · <code>--font-mono</code> · <code>--font-pixel</code> · <code>--fs-xs</code> … <code>--fs-display</code>","Classes":"<code>.hero h1 em</code> · <code>.ch-head</code> · <code>.lead</code> · <code>.prose</code> · <code>.chip</code> · <code>.mono</code> · <code>.figcap</code>","JS":"Not required; optional <code>englishStems</code> for uppercase English words on Turkish pages"}} -->
+
+<chapter title="Three families" lead="Each family has one job. The weights are files embedded in the package; ask for a weight that isn't listed and the browser fakes a bold.">
+<demo label="Example · families and their jobs">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5)">
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
+    <p class="chip">--font-sans · 400 500 600 700</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:600 var(--fs-xl)/1.2 var(--font-sans);letter-spacing:-.02em;color:var(--ink)">Release note</p>
+    <p style="margin:0;font:400 var(--fs-md)/1.55 var(--font-sans);color:var(--ink-2)">Body text, headings, button labels.</p>
+  </div>
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
+    <p class="chip">--font-mono · 400 500 600</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:500 var(--fs-xl)/1.3 var(--font-mono);color:var(--ink)">web-api:1.14.2</p>
+    <p style="margin:0;font:400 var(--fs-sm)/1.55 var(--font-mono);color:var(--ink-2)">Code, labels, title block, counters.</p>
+  </div>
+  <div style="border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:var(--sp-6) var(--sp-7)">
+    <p class="chip"><span lang="en">--font-pixel</span> · 400 500</p>
+    <p style="margin:var(--sp-3) 0 var(--sp-1);font:500 var(--fs-xl)/1.3 var(--font-pixel);color:var(--ink)">Hoca</p>
+    <p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">Speech bubble and the plate on the rail.</p>
+  </div>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Token</th><th>Fallback chain</th><th>Weight</th><th>Job</th></tr></thead>
+  <tbody>
+    <tr><td><code>--font-sans</code></td><td>Segoe UI, system-ui, -apple-system</td><td>400 · 500 · 600 · 700</td><td>Body and headings</td></tr>
+    <tr><td><code>--font-mono</code></td><td>Cascadia Code, Consolas, ui-monospace</td><td>400 · 500 · 600</td><td>Code, labels, title block, counters</td></tr>
+    <tr><td><code>--font-pixel</code></td><td><code>--font-mono</code></td><td>400 · 500</td><td>Hoca only</td></tr>
+  </tbody>
+</table></div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Files</span><div class="co-body"><p>The WOFF2 files live under <code>dist/fonts/</code> and load from your own server. For single-file pages, use <code>dist/hendese.inline.css</code>, which carries the fonts as base64. License: SIL Open Font License 1.1.</p></div></div>
+</chapter>
+
+<chapter title="Type scale" lead="Components read font size from nine tokens; writing raw px fails the tests. Each row below is set in its own token.">
+<div class="tbl wide"><table>
+  <thead><tr><th>Token</th><th>Value</th><th>Example</th><th>Old sizes it absorbed</th></tr></thead>
+  <tbody>
+    <tr><td><code>--fs-xs</code></td><td>11px</td><td><span style="font-size:var(--fs-xs)">Fig. 2 · build · 12 min ago</span></td><td>9 · 10 · 10.5 · 11.5px</td></tr>
+    <tr><td><code>--fs-sm</code></td><td>12.5px</td><td><span style="font-size:var(--fs-sm)">Copy · secondary line · caption</span></td><td>12 · 13px</td></tr>
+    <tr><td><code>--fs-md</code></td><td>14px</td><td><span style="font-size:var(--fs-md)">Table cell and callout body</span></td><td>13.5 · 14.5px</td></tr>
+    <tr><td><code>--fs-base</code></td><td>16px</td><td><span style="font-size:var(--fs-base)">Reading text, line height 1.65</span></td><td>15 · 15.5px</td></tr>
+    <tr><td><code>--fs-lg</code></td><td>17.5px</td><td><span style="font-size:var(--fs-lg)">Intro paragraph and subheading</span></td><td>17 · 18px</td></tr>
+    <tr><td><code>--fs-xl</code></td><td>22px</td><td><span style="font-size:var(--fs-xl);font-weight:600">Stamp name · 0042</span></td><td>20px</td></tr>
+    <tr><td><code>--fs-2xl</code></td><td>30px</td><td><span style="font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.02em">Sheet title</span></td><td>—</td></tr>
+    <tr><td><code>--fs-h2</code></td><td>26–32px</td><td><span style="font-size:var(--fs-h2);font-weight:600;letter-spacing:-.02em">Section title</span></td><td>—</td></tr>
+    <tr><td><code>--fs-display</code></td><td>44–68px</td><td><span style="font-size:var(--fs-display);font-weight:600;letter-spacing:-.035em;line-height:1.05">Hero</span></td><td><code>--fs-display-sm</code> (30–40px) on narrow screens</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The scale was set up in 0.2. In-between values in components were snapped to the nearest step; the most visible changes are in labels (10.5px → 11px) and the table body (14.5px → 14px). Text inside a drawing is outside the scale: an expression like <code>max(10.5px, calc(12 * var(--u)))</code> makes it grow and shrink with the drawing. Hoca's pixel face also keeps its own size, because it is tied to a 3px grid.</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">app.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>.deploy-card h4{font:600 var(--fs-lg)/1.3 var(--font-sans)}
+.deploy-card .meta{font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase}</code></pre></figure>
+</chapter>
+
+<chapter title="Hierarchy" lead="Five levels are enough for a page: hero title and its subline, section header, lead, body and label. Large headings fit the screen width with clamp.">
+<demo label="Example · hero">
+<div class="hero" style="padding:0">
+  <div class="hero-copy">
+    <p class="hero-label">Platform · Release note</p>
+    <h1>Release 1.14<em>Queue workers now scale themselves.</em></h1>
+    <p class="intro">billing-worker grows between 2 and 12 replicas based on queue depth. This note covers what changed and what you should check.</p>
+  </div>
+</div>
+</demo>
+<demo label="Example · section header and body">
+<header class="ch-head">
+  <p class="ch-num">02 <small>About 3 min</small></p>
+  <h2>Scaling rule</h2>
+  <p class="lead">The replica count is recalculated every 30 seconds from the average of the last five minutes.</p>
+</header>
+<div class="prose">
+  <p>If more than 500 jobs pile up in the queue, a new replica starts; if the depth drops below 50 and stays there for <b>10 minutes</b>, one replica stops. Short spikes don't trigger scaling.</p>
+</div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Selector</th><th>Size / line</th><th>Weight</th><th>Color</th></tr></thead>
+  <tbody>
+    <tr><td><code>.hero h1</code></td><td><code>--fs-display</code> / 1.02</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.hero h1 em</code></td><td>0.5em / 1.2, block</td><td>500</td><td><code>--ink-2</code></td></tr>
+    <tr><td><code>.chapter h2</code></td><td><code>--fs-h2</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.chapter h3</code></td><td><code>--fs-lg</code> / 1.2</td><td>600</td><td><code>--ink</code></td></tr>
+    <tr><td><code>.ch-num</code></td><td><code>--fs-xs</code> mono, uppercase</td><td>400</td><td><code>--accent</code></td></tr>
+    <tr><td><code>.lead</code> · <code>.intro</code></td><td><code>--fs-lg</code>, max 64ch</td><td>400</td><td><code>--ink-2</code></td></tr>
+    <tr><td><code>body</code> · <code>.prose</code></td><td><code>--fs-base</code> / 1.65, max 72ch</td><td>400</td><td><code>--ink</code> · <code>--ink-2</code></td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p><code>.chapter h2</code> and <code>.chapter h3</code> are styled only inside <code>.chapter</code>; move the heading out of a section and it falls back to the browser's default size.</p></div>
+</chapter>
+
+<chapter title="Inline elements" lead="Four small tools for running text: inline code, mono text, the label chip and the caption. Code blocks are a separate system that stays dark in both themes.">
+<demo label="Example · cache note">
+<p class="chip">Note 7 · cache</p>
+<div class="prose">
+  <p>Product pages are kept on <span class="mono">cache-eu-1</span> for 5 minutes. When a price changes, the key <code>product:{id}:v2</code> is deleted; the page is rebuilt on the next request. For bulk updates, bump the version prefix instead of deleting keys one by one.</p>
+</div>
+<p class="figcap"><b>Table 2.</b> Hit rate over the last 24 hours is 94%; most misses come right after a price update.</p>
+</demo>
+<demo label="Example · aligned digits with .tnum">
+<div class="tbl"><table>
+  <thead><tr><th>Region</th><th>Default</th><th>.tnum</th></tr></thead>
+  <tbody>
+    <tr><td>eu-west-1</td><td>1,111.11 ms</td><td class="tnum">1,111.11 ms</td></tr>
+    <tr><td>eu-central-1</td><td>808.08 ms</td><td class="tnum">808.08 ms</td></tr>
+    <tr><td>us-east-1</td><td>99.90 ms</td><td class="tnum">99.90 ms</td></tr>
+  </tbody>
+</table></div>
+</demo>
+<div class="tbl"><table>
+  <thead><tr><th>Element</th><th>Look</th><th>When</th></tr></thead>
+  <tbody>
+    <tr><td><code>code</code></td><td>mono .86em, <code>--surface-3</code> background</td><td>A value to copy: key, command, path</td></tr>
+    <tr><td><code>.mono</code></td><td>mono .92em, no background</td><td>A name or ID that should read aligned, without emphasis</td></tr>
+    <tr><td><code>.chip</code></td><td><code>--fs-xs</code> mono, uppercase, <code>--ink-3</code></td><td>Figure or section label</td></tr>
+    <tr><td><code>.figcap</code></td><td><code>--fs-sm</code>, <code>--ink-3</code>, <code>b</code> <code>--ink-2</code></td><td>Figure and table captions</td></tr>
+    <tr><td><code>.tnum</code></td><td>fixed-width digits</td><td>Counters, amounts, durations: digits aligned in a column</td></tr>
+  </tbody>
+</table></div>
+</chapter>
+
+<chapter title="Turkish characters" lead="The latin-ext subset of the Plex families covers every Turkish letter. The real trap isn't the letters; it is uppercasing with CSS.">
+<demo label="Example · the same sentence in three families">
+<p lang="tr" style="margin:0 0 var(--sp-2);font:400 var(--fs-lg)/1.5 var(--font-sans)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p lang="tr" style="margin:0 0 var(--sp-2);font:400 var(--fs-base)/1.5 var(--font-mono)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+<p lang="tr" style="margin:0;font:400 var(--fs-base)/1.5 var(--font-pixel)">Pijamalı hasta yağız şoföre çabucak güvendi. ÇĞİÖŞÜ çğıöşü</p>
+</demo>
+<div class="prose"><p>On a <code>lang="tr"</code> page, <code>text-transform:uppercase</code> applies the Turkish rule: <code>i</code> → <code lang="tr">İ</code>, <code lang="tr">ı</code> → <code>I</code>. That is right for Turkish words and wrong for English technical words set in uppercase. <code>.chip</code>, <code>.ch-num</code>, table headers and demo labels are set in uppercase. The two chips below are marked as Turkish to show the effect.</p></div>
+<div class="dodont">
+<demo label="Do · lang on the English word">
+<p class="chip" lang="tr">dağıtım hattı · <span lang="en">pipeline</span> · <span lang="en">init</span></p>
+</demo>
+<demo label="Don't · no lang">
+<p class="chip" lang="tr">dağıtım hattı · pipeline · init</p>
+</demo>
+</div>
+<div class="prose"><p>A hand-written <code>lang</code> always wins. On a Turkish page with many labels, give the stems once; matching words in uppercase drawing, beat and chip text are wrapped in <code>&lt;span lang="en"&gt;</code>:</p></div>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.init({ englishStems: <span class="s">/pipeline|init|build|image/i</span> });</code></pre></figure>
+</chapter>
+
+<chapter title="Limits of the pixel face" lead="Pixelify Sans is Hoca's voice only: the speech bubble and the plate on the rail. It is never used for body text, headings or data.">
+<div class="dodont">
+<demo label="Do · short speech, one sentence">
+<p style="display:inline-block;margin:0;padding:5px 9px var(--sp-2);border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:400 13.5px/1.4 var(--font-pixel)">The cache is warm, we can go on.</p>
+</demo>
+<demo label="Don't · data and long text">
+<p style="margin:0;font:400 13.5px/1.4 var(--font-pixel);color:var(--ink-2)">0O 1l 5S 8B · request ID 10l0O-8B5S: you can't tell these apart. Long paragraphs in a pixel face tire the eye fast, too.</p>
+</demo>
+</div>
+<div class="co co-warn"><span class="co-ic"><svg><use href="#i-warn"/></svg></span><span class="co-label">Why so narrow</span><div class="co-body"><p>In a pixel face, similar characters (<code>0/O</code>, <code>1/l</code>) don't separate, digits aren't equal width, and letter spacing turns uneven at small sizes. Only weights 400 and 500 ship. Hoca's bubble can switch to mono with <code>.hoca-bubble.mono</code>; use it for speech that contains code or values.</p></div></div>
+<div class="co co-tip"><span class="co-ic"><svg><use href="#i-bulb"/></svg></span><span class="co-label">Weight limit</span><div class="co-body"><p>The package weights are fixed: mono 400/500/600, sans 400–700, pixel 400/500. Write a weight that isn't listed and the browser fakes a bold.</p></div></div>
+</chapter>

@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form fields · Hendese parts</title>
+<script>(function(k){try{var t=localStorage.getItem(k);if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')})('hendese-theme');</script>
+<link rel="stylesheet" href="../dist/hendese.css">
+<link rel="stylesheet" href="../docs/assets/docs.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.2 5.2L13 18.4a2 2 0 0 1-2.8 0l-.6-.6a2 2 0 0 1 0-2.8l6.9-6.9z"/><path d="m4 20 3.5-3.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4"/><path d="M3 4v5h5"/></symbol>
+  </defs>
+</svg>
+<div class="rulers" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<header class="topbar">
+  <button class="icon-btn" id="nav-open" type="button" aria-label="Open sections" aria-controls="rail" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#top">Hendese</a>
+  <span class="spacer"></span>
+  <span class="cur" id="topbar-cur" aria-live="polite"></span>
+  <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+</header>
+<div class="shell"><aside class="rail" id="rail" aria-label="Sections">
+  <div class="rail-head">
+    <a class="brand" href="index.html">Hendese<small>Parts, one by one</small></a>
+    <button class="icon-btn rail-close" id="nav-close" type="button" aria-label="Close sections"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="rail-nav" aria-label="Contents">
+    <div class="nav-group">Belgeler</div>
+    <a class="nav-page" href="../docs/index.html">Getting started</a>
+    <a class="nav-page" href="index.html">Part gallery</a>
+    <div class="nav-group">Components</div>
+    <a class="nav-page" href="buttons.html">Buttons</a>
+    <a class="nav-page" href="badges.html">Badges</a>
+    <a class="nav-page" href="callout.html">Callout</a>
+    <a class="nav-page" href="code-block.html">Code block</a>
+    <a class="nav-page" href="diff-gutter.html">Diff gutter</a>
+    <a class="nav-page" href="table.html">Table</a>
+    <a class="nav-page" href="definition-list.html">Definition list</a>
+    <a class="nav-page" href="steps.html">Steps</a>
+    <a class="nav-page" href="runbook.html">Runbook</a>
+    <a class="nav-page" href="choice-groups.html">Choice groups</a>
+    <a class="nav-page" href="readout.html">Readout</a>
+    <a class="nav-page" href="register.html">Variable register</a>
+    <a class="nav-page" href="stamp.html">Stamp</a>
+    <a class="nav-page" href="survey-log.html">Survey log</a>
+    <a class="nav-page" href="title-block.html">Title block</a>
+    <a class="nav-page" href="form-fields.html" aria-current="page">Form fields</a>
+    <a class="nav-page" href="checkboxes.html">Checkbox, radio and range</a>
+    <a class="nav-page" href="tabs.html">Tabs</a>
+    <a class="nav-page" href="dialog.html">Dialog</a>
+    <a class="nav-page" href="dimension-note.html">Dimension note</a>
+    <a class="nav-page" href="empty-state.html">Empty state</a>
+    <div class="nav-group">Bu sayfa</div>
+    <a class="nav-link" href="#p1"><span class="num">01</span><span>Structure</span></a>
+    <a class="nav-link" href="#p2"><span class="num">02</span><span>States</span></a>
+    <a class="nav-link" href="#p3"><span class="num">03</span><span>Technical values, units, side-by-side fields</span></a>
+    <a class="nav-link" href="#p4"><span class="num">04</span><span>In context</span></a>
+    <a class="nav-link" href="#p5"><span class="num">05</span><span>Translating the strings</span></a>
+    <a class="nav-link" href="#p6"><span class="num">06</span><span>Do / don't</span></a>
+  </nav>
+  <div class="hoca-home" id="hoca-home" aria-hidden="true"><span class="hoca-plate">Hoca</span></div>
+  <div class="rail-foot">
+    <span class="pos" id="rail-pos">Intro</span>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme"><svg class="sun"><use href="#i-sun"/></svg><svg class="moon"><use href="#i-moon"/></svg></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<main id="content">
+<div class="canvas">
+<section class="hero" id="top" data-section data-title="Intro">
+  <div class="hero-copy">
+    <p class="hero-label">Hendese · Components</p>
+    <h1>Form fields<em>Label, hint, error; native controls.</em></h1>
+    <p class="intro"><code>.field</code> gathers a label, a native control (<code>input</code>, <code>textarea</code>, <code>select</code>) and the hint and error lines below it into a single column. The required mark comes from the <code>:required</code> attribute, and the error look from <code>aria-invalid</code> or the browser's own validation; no script is needed.</p>
+<dl class="kv"><dt>Classes</dt><dd><code>.field</code> · <code>.field-help</code> · <code>.field-error</code> · <code>.field-unit</code> · <code>.field-row</code> · <code>.mono</code></dd><dt>State</dt><dd><code>required</code> · <code>aria-invalid="true"</code> · <code>:user-invalid</code> · <code>disabled</code></dd><dt>String tokens</dt><dd><code>--str-required</code> · <code>--str-error</code></dd><dt>JS</dt><dd>Not needed; if present, it links the error text to <code>aria-describedby</code> only while the field is invalid</dd></dl>
+  </div>
+</section>
+
+<article class="chapter" id="p1" data-section data-title="Structure">
+  <header class="ch-head"><p class="ch-num">01</p><h2>Structure</h2><p class="lead">Label on top, control in the middle, hint and error below. Controls are styled only inside .field; other inputs on the page are left alone.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · text, select, multi-line</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+  <div class="field">
+    <label for="fa-service">Service name</label>
+    <input id="fa-service" name="service" value="web-api" aria-describedby="fa-service-h">
+    <p class="field-help" id="fa-service-h">This name appears on dashboards and in alarm titles.</p>
+  </div>
+  <div class="field">
+    <label for="fa-level">Log level</label>
+    <select id="fa-level" name="level">
+      <option>debug</option>
+      <option selected>info</option>
+      <option>warn</option>
+      <option>error</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="fa-not">Change note</label>
+    <textarea id="fa-not" name="not" aria-describedby="fa-not-h">Connection pool raised from 20 to 40.</textarea>
+    <p class="field-help" id="fa-not-h">Written to the audit log as is.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-service</span>"&gt;Service name&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-service</span>" name="<span class='s'>service</span>" value="<span class='s'>web-api</span>" aria-describedby="<span class='s'>fa-service-h</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-service-h</span>"&gt;This name appears on dashboards and in alarm titles.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-level</span>"&gt;Log level&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>select</span> id="<span class='s'>fa-level</span>" name="<span class='s'>level</span>"&gt;
+      &lt;<span class='k'>option</span>&gt;debug&lt;/<span class='k'>option</span>&gt;
+      &lt;<span class='k'>option</span> selected&gt;info&lt;/<span class='k'>option</span>&gt;
+      &lt;<span class='k'>option</span>&gt;warn&lt;/<span class='k'>option</span>&gt;
+      &lt;<span class='k'>option</span>&gt;error&lt;/<span class='k'>option</span>&gt;
+    &lt;/<span class='k'>select</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-not</span>"&gt;Change note&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>textarea</span> id="<span class='s'>fa-not</span>" name="<span class='s'>not</span>" aria-describedby="<span class='s'>fa-not-h</span>"&gt;Connection pool raised from 20 to 40.&lt;/<span class='k'>textarea</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-not-h</span>"&gt;Written to the audit log as is.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The label is tied to the control with <code>for</code>; the hint and error with <code>aria-describedby</code>. The border color lives in the <code>--c</code> variable: <code>--ink-3</code> by default (3:1 contrast for non-text elements), <code>--bad</code> while the field is invalid. A multi-line field can be resized vertically.</p></div>
+</article>
+
+<article class="chapter" id="p2" data-section data-title="States">
+  <header class="ch-head"><p class="ch-num">02</p><h2>States</h2><p class="lead">Required, invalid and disabled. The error text sits in the HTML from the start; CSS shows it only while the field is invalid.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · live validation: type, then leave the field</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+  <div class="field">
+    <label for="fa-cluster">Cluster name</label>
+    <input id="fa-cluster" name="cluster" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-cluster-h fa-cluster-e">
+    <p class="field-help" id="fa-cluster-h">Starts with a lowercase letter; lowercase letters, digits and hyphens; 3–24 characters.</p>
+    <p class="field-error" id="fa-cluster-e">the cluster name does not match this pattern.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-cluster</span>"&gt;Cluster name&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-cluster</span>" name="<span class='s'>cluster</span>" class="<span class='s'>mono</span>" required pattern="<span class='s'>[a-z][a-z0-9\-]{2,23}</span>" spellcheck="<span class='s'>false</span>" autocomplete="<span class='s'>off</span>" aria-describedby="<span class='s'>fa-cluster-h fa-cluster-e</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-cluster-h</span>"&gt;Starts with a lowercase letter; lowercase letters, digits and hyphens; 3–24 characters.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-cluster-e</span>"&gt;the cluster name does not match this pattern.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>Because the field carries <code>required</code>, “required” is written next to the label automatically. Thanks to <code>:user-invalid</code>, the error appears not as soon as the page opens but after the user changes the value and leaves the field (or tries to submit the form). Try it: type <code>Prod_EU</code> and press Tab.</p></div>
+<div class="demo">
+  <span class="demo-label">Example · a value the server rejected</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+  <div class="field">
+    <label for="fa-region">Region code</label>
+    <input id="fa-region" name="region" class="mono" value="EU West 1" aria-invalid="true" aria-describedby="fa-region-h fa-region-e">
+    <p class="field-help" id="fa-region-h">The cloud provider's region code.</p>
+    <p class="field-error" id="fa-region-e">region codes are written in lowercase with hyphens, for example <code>eu-west-1</code>.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-region</span>"&gt;Region code&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-region</span>" name="<span class='s'>region</span>" class="<span class='s'>mono</span>" value="<span class='s'>EU West 1</span>" aria-invalid="<span class='s'>true</span>" aria-describedby="<span class='s'>fa-region-h fa-region-e</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-region-h</span>"&gt;The cloud provider's region code.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-region-e</span>"&gt;region codes are written in lowercase with hyphens, for example &lt;<span class='k'>code</span>&gt;eu-west-1&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · disabled</span>
+  <div class="demo-view">
+<div style="max-width:440px">
+  <div class="field">
+    <label for="fa-account">Account ID</label>
+    <input id="fa-account" name="account" class="mono" value="123456789012" disabled aria-describedby="fa-account-h">
+    <p class="field-help" id="fa-account-h">Assigned at the organization level; it cannot be changed here.</p>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:440px</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-account</span>"&gt;Account ID&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-account</span>" name="<span class='s'>account</span>" class="<span class='s'>mono</span>" value="<span class='s'>123456789012</span>" disabled aria-describedby="<span class='s'>fa-account-h</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-account-h</span>"&gt;Assigned at the organization level; it cannot be changed here.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>State</th><th>Trigger</th><th>Appearance</th></tr></thead>
+  <tbody>
+    <tr><td>Required</td><td><code>required</code> (on the control in the element right after the label, or in the element that wraps it)</td><td>The <code>--str-required</code> text at the end of the label: “ · required”. Visual only, not part of the accessible name; the screen reader announces the native <code>required</code>.</td></tr>
+    <tr><td>Invalid (browser)</td><td><code>:user-invalid</code>: <code>required</code>, <code>pattern</code>, <code>type</code>, <code>min</code>/<code>max</code></td><td>Border <code>--bad</code>; <code>.field-error</code> visible. Not triggered before the user interacts.</td></tr>
+    <tr><td>Invalid (app)</td><td><code>aria-invalid="true"</code></td><td>The same look; for errors the browser cannot know about, such as server validation.</td></tr>
+    <tr><td>Hover / focus</td><td><code>:hover</code> · <code>:focus-visible</code></td><td>The border darkens; a 2px focus ring on focus.</td></tr>
+    <tr><td>Disabled</td><td><code>disabled</code></td><td>Dashed border, transparent background, faded text. The value is not submitted with the form.</td></tr>
+  </tbody>
+</table></div>
+<div class="prose"><p>The “Error:” at the start of the error text comes from CSS (<code>--str-error</code>); color alone carries no meaning, so the state is also stated in words. That is why you write the text in the HTML in lowercase, as a continuation of the prefix.</p><p>A field has no “success” state, and <code>.field</code> does not accept the <code>.s-*</code> classes: a valid field stays plain. A green-bordered “correct” field makes the reader confirm every field one by one and loses the real error in the crowd.</p></div>
+</article>
+
+<article class="chapter" id="p3" data-section data-title="Technical values, units, side-by-side fields">
+  <header class="ch-head"><p class="ch-num">03</p><h2>Technical values, units, side-by-side fields</h2><p class="lead">Values read character by character, like IDs, addresses and patterns, are set monospaced with .mono; a unit sticks to the right of the box with .field-unit. .field-row lays fields out side by side based on column width; in a narrow column they stack.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · a network rule with side-by-side fields</span>
+  <div class="demo-view">
+<div class="field-row">
+  <div class="field">
+    <label for="fa-cidr">Source <span lang="en">CIDR</span></label>
+    <input id="fa-cidr" name="cidr" class="mono" value="10.20.0.0/16" spellcheck="false" autocomplete="off">
+  </div>
+  <div class="field">
+    <label for="fa-port">Port</label>
+    <input id="fa-port" name="port" class="mono" type="number" min="1" max="65535" value="443">
+  </div>
+  <div class="field">
+    <label for="fa-proto">Protocol</label>
+    <select id="fa-proto" name="proto">
+      <option selected>tcp</option>
+      <option>udp</option>
+      <option>icmp</option>
+    </select>
+  </div>
+</div>
+<div class="field">
+  <label for="fa-arn">Role ARN</label>
+  <input id="fa-arn" name="arn" class="mono" value="arn:aws:iam::123456789012:role/deploy-staging" spellcheck="false" autocomplete="off">
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field-row</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-cidr</span>"&gt;Source &lt;<span class='k'>span</span> lang="<span class='s'>en</span>"&gt;CIDR&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-cidr</span>" name="<span class='s'>cidr</span>" class="<span class='s'>mono</span>" value="<span class='s'>10.20.0.0/16</span>" spellcheck="<span class='s'>false</span>" autocomplete="<span class='s'>off</span>"&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-port</span>"&gt;Port&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>input</span> id="<span class='s'>fa-port</span>" name="<span class='s'>port</span>" class="<span class='s'>mono</span>" type="<span class='s'>number</span>" min="<span class='s'>1</span>" max="<span class='s'>65535</span>" value="<span class='s'>443</span>"&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-proto</span>"&gt;Protocol&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>select</span> id="<span class='s'>fa-proto</span>" name="<span class='s'>proto</span>"&gt;
+      &lt;<span class='k'>option</span> selected&gt;tcp&lt;/<span class='k'>option</span>&gt;
+      &lt;<span class='k'>option</span>&gt;udp&lt;/<span class='k'>option</span>&gt;
+      &lt;<span class='k'>option</span>&gt;icmp&lt;/<span class='k'>option</span>&gt;
+    &lt;/<span class='k'>select</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;
+&lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+  &lt;<span class='k'>label</span> for="<span class='s'>fa-arn</span>"&gt;Role ARN&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>fa-arn</span>" name="<span class='s'>arn</span>" class="<span class='s'>mono</span>" value="<span class='s'>arn:aws:iam::123456789012:role/deploy-staging</span>" spellcheck="<span class='s'>false</span>" autocomplete="<span class='s'>off</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Example · fields with units</span>
+  <div class="demo-view">
+<div class="field-row">
+  <div class="field">
+    <label for="fa-time">Request timeout</label>
+    <div class="field-unit"><input id="fa-time" name="time" class="mono" type="number" min="100" max="60000" step="100" value="3000" required aria-describedby="fa-time-h fa-time-u fa-time-e"><span id="fa-time-u">ms</span></div>
+    <p class="field-help" id="fa-time-h">Between 100 and 60000.</p>
+    <p class="field-error" id="fa-time-e">the timeout must be between 100 and 60000 ms.</p>
+  </div>
+  <div class="field">
+    <label for="fa-memory">Memory limit</label>
+    <div class="field-unit"><input id="fa-memory" name="memory" class="mono" type="number" min="1" max="64" value="4" aria-describedby="fa-memory-u"><span id="fa-memory-u">GiB</span></div>
+  </div>
+  <div class="field">
+    <label for="fa-count">Minimum replicas</label>
+    <div class="field-unit"><input id="fa-count" name="count" class="mono" type="number" min="0" max="20" value="2" aria-describedby="fa-count-u"><span id="fa-count-u">count</span></div>
+  </div>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field-row</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-time</span>"&gt;Request timeout&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field-unit</span>"&gt;&lt;<span class='k'>input</span> id="<span class='s'>fa-time</span>" name="<span class='s'>time</span>" class="<span class='s'>mono</span>" type="<span class='s'>number</span>" min="<span class='s'>100</span>" max="<span class='s'>60000</span>" step="<span class='s'>100</span>" value="<span class='s'>3000</span>" required aria-describedby="<span class='s'>fa-time-h fa-time-u fa-time-e</span>"&gt;&lt;<span class='k'>span</span> id="<span class='s'>fa-time-u</span>"&gt;ms&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-time-h</span>"&gt;Between 100 and 60000.&lt;/<span class='k'>p</span>&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-time-e</span>"&gt;the timeout must be between 100 and 60000 ms.&lt;/<span class='k'>p</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-memory</span>"&gt;Memory limit&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field-unit</span>"&gt;&lt;<span class='k'>input</span> id="<span class='s'>fa-memory</span>" name="<span class='s'>memory</span>" class="<span class='s'>mono</span>" type="<span class='s'>number</span>" min="<span class='s'>1</span>" max="<span class='s'>64</span>" value="<span class='s'>4</span>" aria-describedby="<span class='s'>fa-memory-u</span>"&gt;&lt;<span class='k'>span</span> id="<span class='s'>fa-memory-u</span>"&gt;GiB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+    &lt;<span class='k'>label</span> for="<span class='s'>fa-count</span>"&gt;Minimum replicas&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field-unit</span>"&gt;&lt;<span class='k'>input</span> id="<span class='s'>fa-count</span>" name="<span class='s'>count</span>" class="<span class='s'>mono</span>" type="<span class='s'>number</span>" min="<span class='s'>0</span>" max="<span class='s'>20</span>" value="<span class='s'>2</span>" aria-describedby="<span class='s'>fa-count-u</span>"&gt;&lt;<span class='k'>span</span> id="<span class='s'>fa-count-u</span>"&gt;count&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>div</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The unit sits outside the box, in a separate <code>span</code>: the value is just the number, so the form submits <code>3000</code>, not <code>3000ms</code>. The unit <code>span</code>'s <code>id</code> is added to <code>aria-describedby</code> so the screen reader also says what the number measures. The required mark goes on the label even when the input is wrapped.</p><p>Each column is at least 200px (full width if the column is narrower); a field that does not fit moves to the next row. On fields that use <code>.mono</code>, also set <code>spellcheck="false"</code> and <code>autocomplete="off"</code>, so the spell checker does not underline an <span lang="en">ARN</span> in red.</p></div>
+</article>
+
+<article class="chapter" id="p4" data-section data-title="In context">
+  <header class="ch-head"><p class="ch-num">04</p><h2>In context</h2><p class="lead">A new environment form on a dark panel. When you try to submit, the browser marks the invalid fields; if all are valid, the result line is written.</p></header>
+<div class="demo">
+  <span class="demo-label">Example · new environment, dark scene</span>
+  <div class="demo-view">
+<div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
+  <form id="fa-env" style="max-width:560px">
+    <div class="field-row">
+      <div class="field">
+        <label for="fa-o-name">Environment name</label>
+        <input id="fa-o-name" name="ad" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-o-name-h fa-o-name-e">
+        <p class="field-help" id="fa-o-name-h">For example <code>staging-2</code>.</p>
+        <p class="field-error" id="fa-o-name-e">lowercase letters, digits and hyphens; 3–24 characters.</p>
+      </div>
+      <div class="field">
+        <label for="fa-o-region">Region</label>
+        <select id="fa-o-region" name="region" required aria-describedby="fa-o-region-e">
+          <option value="">Choose…</option>
+          <option>eu-west-1</option>
+          <option>eu-central-1</option>
+          <option>us-east-1</option>
+          <option>ap-southeast-1</option>
+        </select>
+        <p class="field-error" id="fa-o-region-e">choose a region.</p>
+      </div>
+    </div>
+    <div class="field">
+      <label for="fa-o-desc">Description</label>
+      <textarea id="fa-o-desc" name="desc" aria-describedby="fa-o-desc-h">Temporary environment for load testing the payment service.</textarea>
+      <p class="field-help" id="fa-o-desc-h">Shown under the name in the environment list.</p>
+    </div>
+    <div class="field">
+      <label for="fa-o-pattern">Tag pattern</label>
+      <input id="fa-o-pattern" name="pattern" class="mono" required pattern="[A-Za-z0-9._*\-]+" value="staging-*" spellcheck="false" autocomplete="off" aria-describedby="fa-o-pattern-h fa-o-pattern-e">
+      <p class="field-help" id="fa-o-pattern-h">Image tags that match this pattern are deployed to the environment automatically; <code>*</code> matches any sequence.</p>
+      <p class="field-error" id="fa-o-pattern-e">only letters, digits, dots, hyphens, underscores and <code>*</code>.</p>
+    </div>
+    <div class="pillrow" style="justify-content:flex-end">
+      <button class="btn" type="reset">Cancel</button>
+      <button class="btn" type="submit"><svg><use href="#i-check"/></svg>Create environment</button>
+    </div>
+    <div class="readout" id="fa-env-out" aria-live="polite"><p>The form has not been submitted yet.</p></div>
+  </form>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>border-radius:var(--r-md);padding:var(--sp-8)</span>"&gt;
+  &lt;<span class='k'>form</span> id="<span class='s'>fa-env</span>" style="<span class='s'>max-width:560px</span>"&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field-row</span>"&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+        &lt;<span class='k'>label</span> for="<span class='s'>fa-o-name</span>"&gt;Environment name&lt;/<span class='k'>label</span>&gt;
+        &lt;<span class='k'>input</span> id="<span class='s'>fa-o-name</span>" name="<span class='s'>ad</span>" class="<span class='s'>mono</span>" required pattern="<span class='s'>[a-z][a-z0-9\-]{2,23}</span>" spellcheck="<span class='s'>false</span>" autocomplete="<span class='s'>off</span>" aria-describedby="<span class='s'>fa-o-name-h fa-o-name-e</span>"&gt;
+        &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-o-name-h</span>"&gt;For example &lt;<span class='k'>code</span>&gt;staging-2&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>p</span>&gt;
+        &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-o-name-e</span>"&gt;lowercase letters, digits and hyphens; 3–24 characters.&lt;/<span class='k'>p</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+        &lt;<span class='k'>label</span> for="<span class='s'>fa-o-region</span>"&gt;Region&lt;/<span class='k'>label</span>&gt;
+        &lt;<span class='k'>select</span> id="<span class='s'>fa-o-region</span>" name="<span class='s'>region</span>" required aria-describedby="<span class='s'>fa-o-region-e</span>"&gt;
+          &lt;<span class='k'>option</span> value="<span class='s'></span>"&gt;Choose…&lt;/<span class='k'>option</span>&gt;
+          &lt;<span class='k'>option</span>&gt;eu-west-1&lt;/<span class='k'>option</span>&gt;
+          &lt;<span class='k'>option</span>&gt;eu-central-1&lt;/<span class='k'>option</span>&gt;
+          &lt;<span class='k'>option</span>&gt;us-east-1&lt;/<span class='k'>option</span>&gt;
+          &lt;<span class='k'>option</span>&gt;ap-southeast-1&lt;/<span class='k'>option</span>&gt;
+        &lt;/<span class='k'>select</span>&gt;
+        &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-o-region-e</span>"&gt;choose a region.&lt;/<span class='k'>p</span>&gt;
+      &lt;/<span class='k'>div</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+      &lt;<span class='k'>label</span> for="<span class='s'>fa-o-desc</span>"&gt;Description&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>textarea</span> id="<span class='s'>fa-o-desc</span>" name="<span class='s'>desc</span>" aria-describedby="<span class='s'>fa-o-desc-h</span>"&gt;Temporary environment for load testing the payment service.&lt;/<span class='k'>textarea</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-o-desc-h</span>"&gt;Shown under the name in the environment list.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+      &lt;<span class='k'>label</span> for="<span class='s'>fa-o-pattern</span>"&gt;Tag pattern&lt;/<span class='k'>label</span>&gt;
+      &lt;<span class='k'>input</span> id="<span class='s'>fa-o-pattern</span>" name="<span class='s'>pattern</span>" class="<span class='s'>mono</span>" required pattern="<span class='s'>[A-Za-z0-9._*\-]+</span>" value="<span class='s'>staging-*</span>" spellcheck="<span class='s'>false</span>" autocomplete="<span class='s'>off</span>" aria-describedby="<span class='s'>fa-o-pattern-h fa-o-pattern-e</span>"&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-o-pattern-h</span>"&gt;Image tags that match this pattern are deployed to the environment automatically; &lt;<span class='k'>code</span>&gt;*&lt;/<span class='k'>code</span>&gt; matches any sequence.&lt;/<span class='k'>p</span>&gt;
+      &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-o-pattern-e</span>"&gt;only letters, digits, dots, hyphens, underscores and &lt;<span class='k'>code</span>&gt;*&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>p</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>" style="<span class='s'>justify-content:flex-end</span>"&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>reset</span>"&gt;Cancel&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>submit</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Create environment&lt;/<span class='k'>button</span>&gt;
+    &lt;/<span class='k'>div</span>&gt;
+    &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>fa-env-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;The form has not been submitted yet.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;/<span class='k'>form</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="prose"><p>The page script only stops the <code>submit</code> event and writes the result; all validation belongs to the browser. A submit attempt counts every field as “interacted with”, so empty required fields all turn red at once.</p></div>
+</article>
+
+<article class="chapter" id="p5" data-section data-title="Translating the strings">
+  <header class="ch-head"><p class="ch-num">05</p><h2>Translating the strings</h2><p class="lead">“ · required” and “Error:” are CSS content strings; they do not appear in the HTML. A page with lang=&quot;tr&quot; gets the Turkish strings automatically; for any other language, override two tokens.</p></header>
+<figure class="code"><figcaption class="code-head"><span class="code-file">page.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>/* unlayered CSS: overrides the default inside @layer without extra specificity */
+:root{--str-required:" · Pflichtfeld";--str-error:"Fehler:"}
+/* a different language in one section only */
+[lang="fr"]{--str-required:" · obligatoire";--str-error:"Erreur :"}</code></pre></figure>
+<div class="prose"><p>The value is a CSS string, written with its quotes. The leading space and separator of the required text are part of the token too. The prefix is visible on screen only; for a screen reader the error text is the sentence in the HTML, so that sentence must make sense on its own.</p></div>
+</article>
+
+<article class="chapter" id="p6" data-section data-title="Do / don't">
+  <header class="ch-head"><p class="ch-num">06</p><h2>Do / don't</h2><p class="lead">The label is always visible; a placeholder does not replace it. An error is stated in a sentence, not by its color.</p></header>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · a visible label</span>
+  <div class="demo-view">
+<div class="field">
+  <label for="fa-do-tag">Health check path</label>
+  <input id="fa-do-tag" class="mono" value="/healthz" spellcheck="false">
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+  &lt;<span class='k'>label</span> for="<span class='s'>fa-do-tag</span>"&gt;Health check path&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>fa-do-tag</span>" class="<span class='s'>mono</span>" value="<span class='s'>/healthz</span>" spellcheck="<span class='s'>false</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · placeholder only</span>
+  <div class="demo-view">
+<div class="field">
+  <input class="mono" placeholder="Health check path" aria-label="Health check path" spellcheck="false">
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+  &lt;<span class='k'>input</span> class="<span class='s'>mono</span>" placeholder="<span class='s'>Health check path</span>" aria-label="<span class='s'>Health check path</span>" spellcheck="<span class='s'>false</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="prose"><p>A placeholder disappears once you start typing; the reader has to remember what they are filling in, and its contrast is low. Shrinking the label and moving it inside the field has the same problem.</p></div>
+<div class="dodont">
+<div class="demo">
+  <span class="demo-label">Do · an error sentence</span>
+  <div class="demo-view">
+<div class="field">
+  <label for="fa-do-error">Memory limit</label>
+  <input id="fa-do-error" class="mono" value="512" aria-invalid="true" aria-describedby="fa-do-error-h fa-do-error-e">
+  <p class="field-help" id="fa-do-error-h">Include the unit: <code>Mi</code> or <code>Gi</code>.</p>
+  <p class="field-error" id="fa-do-error-e">the unit is missing; did you mean <code>512Mi</code>?</p>
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+  &lt;<span class='k'>label</span> for="<span class='s'>fa-do-error</span>"&gt;Memory limit&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>fa-do-error</span>" class="<span class='s'>mono</span>" value="<span class='s'>512</span>" aria-invalid="<span class='s'>true</span>" aria-describedby="<span class='s'>fa-do-error-h fa-do-error-e</span>"&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>field-help</span>" id="<span class='s'>fa-do-error-h</span>"&gt;Include the unit: &lt;<span class='k'>code</span>&gt;Mi&lt;/<span class='k'>code</span>&gt; or &lt;<span class='k'>code</span>&gt;Gi&lt;/<span class='k'>code</span>&gt;.&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>p</span> class="<span class='s'>field-error</span>" id="<span class='s'>fa-do-error-e</span>"&gt;the unit is missing; did you mean &lt;<span class='k'>code</span>&gt;512Mi&lt;/<span class='k'>code</span>&gt;?&lt;/<span class='k'>p</span>&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+<div class="demo">
+  <span class="demo-label">Don't · a red border only</span>
+  <div class="demo-view">
+<div class="field">
+  <label for="fa-dont-error">Memory limit</label>
+  <input id="fa-dont-error" class="mono" value="512" aria-invalid="true">
+</div>
+  </div>
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>field</span>"&gt;
+  &lt;<span class='k'>label</span> for="<span class='s'>fa-dont-error</span>"&gt;Memory limit&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>fa-dont-error</span>" class="<span class='s'>mono</span>" value="<span class='s'>512</span>" aria-invalid="<span class='s'>true</span>"&gt;
+&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+</div>
+</div>
+<div class="co co-info"><span class="co-ic"><svg><use href="#i-info"/></svg></span><span class="co-label">Accessibility</span><div class="co-body"><p><code>aria-describedby</code> points to the hint first, then the error: <code>aria-describedby="x-h x-e"</code>. The screen reader reads the description in that order; the rule comes first, the violation second. A hidden element linked with <code>aria-describedby</code> is still read, so the package script removes the error ID from the list while the field is valid and adds it back at the end when the field becomes invalid (<code>aria-invalid="true"</code> or <code>:user-invalid</code>). Write both in the HTML; without JS the error text is always read, so the sentence should state the rule too. Set required with the <code>required</code> attribute: it draws the mark and makes the screen reader say “required”. For an error returned by the server, set <code>aria-invalid="true"</code> and move focus to the first invalid field.</p></div></div>
+</article>
+
+<nav class="pager" aria-label="Between parts"><a href="title-block.html" rel="prev"><small>Previous · Components</small>Title block</a><a href="checkboxes.html" rel="next"><small>Next · Components</small>Checkbox, radio and range</a></nav>
+</div>
+</main>
+</div>
+<script src="../dist/hendese.js"></script>
+<script>
+Hendese.init();
+/* new environment form: validation happens in the browser; if valid, just write the result */
+(function () {
+  var f = document.getElementById('fa-env'), out = document.getElementById('fa-env-out');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(f);
+    out.classList.add('s-ok');
+    out.innerHTML = '<p><b></b> will be created in <span></span>; <code></code> tags will be deployed here.</p>';
+    out.querySelector('b').textContent = d.get('ad');
+    out.querySelector('span').textContent = d.get('region');
+    out.querySelector('code').textContent = d.get('pattern');
+  });
+  f.addEventListener('reset', function () { out.classList.remove('s-ok'); out.innerHTML = '<p>The form has not been submitted yet.</p>'; });
+})();
+Hendese.start();
+</script>
+</body>
+</html>
