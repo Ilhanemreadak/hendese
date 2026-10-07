@@ -116,7 +116,7 @@
 <div class="demo">
   <span class="demo-label">Example · object storage cost estimate</span>
   <div class="demo-view">
-<div id="gs-maliyet">
+<div id="gs-cost">
   <fieldset class="choice is-seg">
     <legend>Monthly data</legend>
     <label><input type="radio" name="gs-gb" value="500"><span>500 GB</span></label>
@@ -125,14 +125,14 @@
   </fieldset>
   <fieldset class="choice">
     <legend>Storage class</legend>
-    <label><input type="radio" name="gs-sinif" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="archive"><span>archive <small>$0.004/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="archive"><span>archive <small>$0.004/GB</small></span></label>
   </fieldset>
-  <div class="readout" id="gs-maliyet-out" aria-live="polite"><p>Calculating…</p></div>
+  <div class="readout" id="gs-cost-out" aria-live="polite"><p>Calculating…</p></div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-maliyet</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-cost</span>"&gt;
   &lt;<span class='k'>fieldset</span> class="<span class='s'>choice is-seg</span>"&gt;
     &lt;<span class='k'>legend</span>&gt;Monthly data&lt;/<span class='k'>legend</span>&gt;
     &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-gb</span>" value="<span class='s'>500</span>"&gt;&lt;<span class='k'>span</span>&gt;500 GB&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
@@ -141,51 +141,51 @@
   &lt;/<span class='k'>fieldset</span>&gt;
   &lt;<span class='k'>fieldset</span> class="<span class='s'>choice</span>"&gt;
     &lt;<span class='k'>legend</span>&gt;Storage class&lt;/<span class='k'>legend</span>&gt;
-    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>standard</span>" checked&gt;&lt;<span class='k'>span</span>&gt;standard &lt;<span class='k'>small</span>&gt;$0.023/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
-    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>infrequent</span>"&gt;&lt;<span class='k'>span</span>&gt;infrequent access &lt;<span class='k'>small</span>&gt;$0.0125/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
-    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-sinif</span>" value="<span class='s'>archive</span>"&gt;&lt;<span class='k'>span</span>&gt;archive &lt;<span class='k'>small</span>&gt;$0.004/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>standard</span>" checked&gt;&lt;<span class='k'>span</span>&gt;standard &lt;<span class='k'>small</span>&gt;$0.023/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>infrequent</span>"&gt;&lt;<span class='k'>span</span>&gt;infrequent access &lt;<span class='k'>small</span>&gt;$0.0125/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
+    &lt;<span class='k'>label</span>&gt;&lt;<span class='k'>input</span> type="<span class='s'>radio</span>" name="<span class='s'>gs-tier</span>" value="<span class='s'>archive</span>"&gt;&lt;<span class='k'>span</span>&gt;archive &lt;<span class='k'>small</span>&gt;$0.004/GB&lt;/<span class='k'>small</span>&gt;&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>label</span>&gt;
   &lt;/<span class='k'>fieldset</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-maliyet-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-cost-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="demo">
   <span class="demo-label">Example · tag pattern test</span>
   <div class="demo-view">
 <div id="gs-regex" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px">
-  <label class="chip" for="gs-kalip">Pattern</label>
-  <label class="chip" for="gs-etiket">Tag</label>
-  <input id="gs-kalip" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
-  <input id="gs-etiket" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <label class="chip" for="gs-pattern">Pattern</label>
+  <label class="chip" for="gs-tag">Tag</label>
+  <input id="gs-pattern" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <input id="gs-tag" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
 </div>
 <div class="readout" id="gs-regex-out" aria-live="polite"><p>Calculating…</p></div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-regex</span>" style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px</span>"&gt;
-  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-kalip</span>"&gt;Pattern&lt;/<span class='k'>label</span>&gt;
-  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-etiket</span>"&gt;Tag&lt;/<span class='k'>label</span>&gt;
-  &lt;<span class='k'>input</span> id="<span class='s'>gs-kalip</span>" class="<span class='s'>mono</span>" value="<span class='s'>^prod-[0-9a-f]{8}$</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
-  &lt;<span class='k'>input</span> id="<span class='s'>gs-etiket</span>" class="<span class='s'>mono</span>" value="<span class='s'>prod-3f9c2a1b</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-pattern</span>"&gt;Pattern&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-tag</span>"&gt;Tag&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-pattern</span>" class="<span class='s'>mono</span>" value="<span class='s'>^prod-[0-9a-f]{8}$</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-tag</span>" class="<span class='s'>mono</span>" value="<span class='s'>prod-3f9c2a1b</span>" spellcheck="<span class='s'>false</span>" style="<span class='s'>padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)</span>"&gt;
 &lt;/<span class='k'>div</span>&gt;
 &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-regex-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="demo">
   <span class="demo-label">Example · capacity against peak load</span>
   <div class="demo-view">
-<div id="gs-kapasite" style="max-width:640px">
-  <label class="chip" for="gs-kopya">Replicas: <output id="gs-kopya-n" for="gs-kopya">4</output></label>
-  <input id="gs-kopya" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
+<div id="gs-capacity" style="max-width:640px">
+  <label class="chip" for="gs-replica">Replicas: <output id="gs-replica-n" for="gs-replica">4</output></label>
+  <input id="gs-replica" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
   <p class="figcap">450 req/s per replica · measured peak 1,800 req/s · target headroom 25%</p>
 </div>
-<div class="readout" id="gs-kapasite-out" aria-live="polite"><p>Calculating…</p></div>
+<div class="readout" id="gs-capacity-out" aria-live="polite"><p>Calculating…</p></div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-kapasite</span>" style="<span class='s'>max-width:640px</span>"&gt;
-  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-kopya</span>"&gt;Replicas: &lt;<span class='k'>output</span> id="<span class='s'>gs-kopya-n</span>" for="<span class='s'>gs-kopya</span>"&gt;4&lt;/<span class='k'>output</span>&gt;&lt;/<span class='k'>label</span>&gt;
-  &lt;<span class='k'>input</span> id="<span class='s'>gs-kopya</span>" type="<span class='s'>range</span>" min="<span class='s'>1</span>" max="<span class='s'>12</span>" value="<span class='s'>4</span>" style="<span class='s'>display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>gs-capacity</span>" style="<span class='s'>max-width:640px</span>"&gt;
+  &lt;<span class='k'>label</span> class="<span class='s'>chip</span>" for="<span class='s'>gs-replica</span>"&gt;Replicas: &lt;<span class='k'>output</span> id="<span class='s'>gs-replica-n</span>" for="<span class='s'>gs-replica</span>"&gt;4&lt;/<span class='k'>output</span>&gt;&lt;/<span class='k'>label</span>&gt;
+  &lt;<span class='k'>input</span> id="<span class='s'>gs-replica</span>" type="<span class='s'>range</span>" min="<span class='s'>1</span>" max="<span class='s'>12</span>" value="<span class='s'>4</span>" style="<span class='s'>display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)</span>"&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>figcap</span>"&gt;450 req/s per replica · measured peak 1,800 req/s · target headroom 25%&lt;/<span class='k'>p</span>&gt;
 &lt;/<span class='k'>div</span>&gt;
-&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-kapasite-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>gs-capacity-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Calculating…&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="prose"><p>The package does not do the calculation; the page script reads the value and writes the text and the class. The script for the capacity example:</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-kopya'), out = document.getElementById('gs-kapasite-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-replica'), out = document.getElementById('gs-capacity-out');
 function show() {
   var cap = r.value * 450, need = 1800 * 1.25;
   out.classList.toggle('s-ok', cap &gt;= need);
@@ -272,10 +272,10 @@ show();</code></pre></figure>
 Hendese.init();
 /* storage cost */
 (function () {
-  var box = document.getElementById('gs-maliyet'), out = document.getElementById('gs-maliyet-out');
+  var box = document.getElementById('gs-cost'), out = document.getElementById('gs-cost-out');
   var fiyat = { standard: 0.023, infrequent: 0.0125, archive: 0.004 };
   function show() {
-    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-sinif"]:checked').value;
+    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-tier"]:checked').value;
     var tl = gb * fiyat[s], over = tl > 150;
     out.classList.toggle('s-bad', over);
     out.innerHTML = '<p><b>$' + tl.toFixed(2) + ' / month</b> · ' + gb.toLocaleString('en-US') + ' GB, ' + s + ' class.' + (over ? ' The team budget is $150; consider the archive class.' : '') + '</p>';
@@ -284,7 +284,7 @@ Hendese.init();
 })();
 /* regular expression test */
 (function () {
-  var k = document.getElementById('gs-kalip'), e = document.getElementById('gs-etiket'), out = document.getElementById('gs-regex-out');
+  var k = document.getElementById('gs-pattern'), e = document.getElementById('gs-tag'), out = document.getElementById('gs-regex-out');
   function show() {
     var re;
     try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Invalid pattern.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
@@ -296,7 +296,7 @@ Hendese.init();
 })();
 /* capacity */
 (function () {
-  var r = document.getElementById('gs-kopya'), n = document.getElementById('gs-kopya-n'), out = document.getElementById('gs-kapasite-out');
+  var r = document.getElementById('gs-replica'), n = document.getElementById('gs-replica-n'), out = document.getElementById('gs-capacity-out');
   function show() {
     var cap = r.value * 450, need = 1800 * 1.25, ok = cap >= need, tight = !ok && cap >= 1800;
     n.textContent = r.value;

@@ -2,7 +2,7 @@
 
 <chapter title="Anatomy" lead="Two elements: the button that opens it and the note. The button points at the note's id with popovertarget; the note comes right after the button. Hovering opens nothing; the note opens only on click, tap or Enter.">
 <demo label="Example · click it">
-<p>search-indexer uses at most <b>512 MiB</b> of memory <button class="icon-btn" type="button" popovertarget="on-bellek" aria-label="Why 512 MiB?"><svg><use href="#i-info"/></svg></button><span popover id="on-bellek" class="dim-tip">The index shard is 380 MiB; the rest is the batch write buffer.</span></p>
+<p>search-indexer uses at most <b>512 MiB</b> of memory <button class="icon-btn" type="button" popovertarget="on-memory" aria-label="Why 512 MiB?"><svg><use href="#i-info"/></svg></button><span popover id="on-memory" class="dim-tip">The index shard is 380 MiB; the rest is the batch write buffer.</span></p>
 </demo>
 <dl class="kv">
   <dt><code>button[popovertarget]</code></dt><dd>The button that opens it. If it has only an icon, write its <code>aria-label</code> as a question (“Why 512 MiB?”). The browser sets the button's <code>aria-expanded</code> state itself.</dd>
@@ -14,7 +14,7 @@
 <chapter title="In running text" lead="Right after a value in body text. The sentence is complete and correct without opening the note; the note only answers “why”.">
 <demo label="Example · release note paragraph">
 <div class="prose">
-  <p>With this release <code>billing-worker</code> pulls <b>25</b> messages from the queue at a time <button class="icon-btn" type="button" popovertarget="on-toplu" aria-label="Why 25 messages?"><svg><use href="#i-info"/></svg></button><span popover id="on-toplu" class="dim-tip">The queue returns at most 25 messages per request; a larger batch means two requests.</span> and the visibility timeout went up to <b>90 seconds</b> <button class="icon-btn" type="button" popovertarget="on-sure" aria-label="Why 90 seconds?"><svg><use href="#i-info"/></svg></button><span popover id="on-sure" class="dim-tip">The slowest invoice takes 60 s; a 1.5× margin was added.</span>. Old workers pick up the new setting on their next restart.</p>
+  <p>With this release <code>billing-worker</code> pulls <b>25</b> messages from the queue at a time <button class="icon-btn" type="button" popovertarget="on-bulk" aria-label="Why 25 messages?"><svg><use href="#i-info"/></svg></button><span popover id="on-bulk" class="dim-tip">The queue returns at most 25 messages per request; a larger batch means two requests.</span> and the visibility timeout went up to <b>90 seconds</b> <button class="icon-btn" type="button" popovertarget="on-duration" aria-label="Why 90 seconds?"><svg><use href="#i-info"/></svg></button><span popover id="on-duration" class="dim-tip">The slowest invoice takes 60 s; a 1.5× margin was added.</span>. Old workers pick up the new setting on their next restart.</p>
 </div>
 </demo>
 </chapter>
@@ -22,10 +22,10 @@
 <chapter title="Next to a field heading" lead="A note in the heading of a form group that explains what the options mean. The button sits inside the legend; the note comes right after it.">
 <demo label="Example · deployment strategy">
 <fieldset class="field">
-  <legend>Deployment strategy <button class="icon-btn" type="button" popovertarget="on-strateji" aria-label="What is the difference between the strategies?"><svg><use href="#i-info"/></svg></button></legend>
-  <div popover id="on-strateji" class="dim-tip">Rolling: replicas are replaced one by one, and the old and new versions run side by side for a few minutes. Blue / green: the new version is set up alongside, and traffic switches over at once.</div>
-  <label class="field-check"><input type="radio" name="on-strateji-r" checked>Rolling update</label>
-  <label class="field-check"><input type="radio" name="on-strateji-r">Blue / green</label>
+  <legend>Deployment strategy <button class="icon-btn" type="button" popovertarget="on-strategy" aria-label="What is the difference between the strategies?"><svg><use href="#i-info"/></svg></button></legend>
+  <div popover id="on-strategy" class="dim-tip">Rolling: replicas are replaced one by one, and the old and new versions run side by side for a few minutes. Blue / green: the new version is set up alongside, and traffic switches over at once.</div>
+  <label class="field-check"><input type="radio" name="on-strategy-r" checked>Rolling update</label>
+  <label class="field-check"><input type="radio" name="on-strategy-r">Blue / green</label>
 </fieldset>
 </demo>
 <div class="prose"><p>For a single text field, do not put the button inside the <code>&lt;label&gt;</code>: a second control inside a label is invalid and muddles the label's click. Put the note in the group heading (<code>legend</code>) or in the field's help line. What the field expects (unit, format) goes in the <code>.field-help</code> line, not in a note.</p></div>
@@ -37,7 +37,7 @@
   <thead><tr>
     <th>Service</th>
     <th>Region</th>
-    <th class="num">Monthly <button class="icon-btn" type="button" popovertarget="on-aylik" aria-label="How is the monthly cost calculated?"><svg><use href="#i-info"/></svg></button><span popover id="on-aylik" class="dim-tip">Spend over the last 30 days; excludes tax and support fees.</span></th>
+    <th class="num">Monthly <button class="icon-btn" type="button" popovertarget="on-monthly" aria-label="How is the monthly cost calculated?"><svg><use href="#i-info"/></svg></button><span popover id="on-monthly" class="dim-tip">Spend over the last 30 days; excludes tax and support fees.</span></th>
     <th class="num">Change</th>
   </tr></thead>
   <tbody>
@@ -60,8 +60,8 @@
 <demo label="Example · try it with a button near the top of the page">
 <div class="pillrow">
   <span>Endpoint timeout <b>30 s</b></span>
-  <button class="icon-btn" type="button" popovertarget="on-zaman" aria-label="Why 30 seconds?"><svg><use href="#i-info"/></svg></button>
-  <div popover id="on-zaman" class="dim-tip">The load balancer's idle timeout is 60 s; the app must respond before that.</div>
+  <button class="icon-btn" type="button" popovertarget="on-time" aria-label="Why 30 seconds?"><svg><use href="#i-info"/></svg></button>
+  <div popover id="on-time" class="dim-tip">The load balancer's idle timeout is 60 s; the app must respond before that.</div>
 </div>
 </demo>
 <figure class="code"><figcaption class="code-head"><span class="code-file">components.css</span><span class="code-lang">CSS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code><span class="k">@supports</span> (position-area: block-start) {
@@ -73,8 +73,8 @@
 <demo label="Example · open both in turn">
 <div class="pillrow">
   <span>Target group <b>3 / 3</b> healthy</span>
-  <button class="icon-btn" type="button" popovertarget="on-saglik" aria-label="How is health measured?"><svg><use href="#i-info"/></svg></button>
-  <div popover id="on-saglik" class="dim-tip">/healthz every 10 s; 2 successes in a row count as healthy, 3 failures as unhealthy.</div>
+  <button class="icon-btn" type="button" popovertarget="on-health" aria-label="How is health measured?"><svg><use href="#i-info"/></svg></button>
+  <div popover id="on-health" class="dim-tip">/healthz every 10 s; 2 successes in a row count as healthy, 3 failures as unhealthy.</div>
   <span>· response time <b>p95 180 ms</b></span>
   <button class="icon-btn" type="button" popovertarget="on-p95" aria-label="What does p95 mean?"><svg><use href="#i-info"/></svg></button>
   <div popover id="on-p95" class="dim-tip">95% of requests are faster than this; last 5 minutes.</div>
@@ -95,10 +95,10 @@
 <chapter title="Do / don't" lead="The note is extra information: readers must be able to decide correctly without ever opening it. Do not write tooltips that open on hover.">
 <div class="dodont">
 <demo label="Do · the warning in the text, the detail in the note">
-<p><b>A deleted volume cannot be recovered.</b> The last snapshot was taken 6 hours ago <button class="icon-btn" type="button" popovertarget="on-yap" aria-label="When are snapshots taken?"><svg><use href="#i-info"/></svg></button><span popover id="on-yap" class="dim-tip">Every day at 03:00 and 15:00; kept for 7 days.</span></p>
+<p><b>A deleted volume cannot be recovered.</b> The last snapshot was taken 6 hours ago <button class="icon-btn" type="button" popovertarget="on-do" aria-label="When are snapshots taken?"><svg><use href="#i-info"/></svg></button><span popover id="on-do" class="dim-tip">Every day at 03:00 and 15:00; kept for 7 days.</span></p>
 </demo>
 <demo label="Don't · the key information in the note, a tooltip on hover">
-<p>The volume will be deleted <button class="icon-btn" type="button" popovertarget="on-yapma" aria-label="Info"><svg><use href="#i-info"/></svg></button><span popover id="on-yapma" class="dim-tip">Cannot be undone; no snapshot.</span> <button class="btn" type="button" title="This action deletes all data">Delete</button></p>
+<p>The volume will be deleted <button class="icon-btn" type="button" popovertarget="on-dont" aria-label="Info"><svg><use href="#i-info"/></svg></button><span popover id="on-dont" class="dim-tip">Cannot be undone; no snapshot.</span> <button class="btn" type="button" title="This action deletes all data">Delete</button></p>
 </demo>
 </div>
 <div class="prose"><ul>

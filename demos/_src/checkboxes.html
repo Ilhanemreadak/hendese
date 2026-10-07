@@ -4,14 +4,14 @@
 <demo label="Example · a single setting and a radio group">
 <div style="max-width:480px">
   <div class="field">
-    <label class="field-check"><input type="checkbox" name="ir-geri" checked aria-describedby="ir-geri-h">Roll back to the previous version if the health check fails</label>
-    <p class="field-help" id="ir-geri-h">Kicks in after three consecutive failed checks.</p>
+    <label class="field-check"><input type="checkbox" name="ir-back" checked aria-describedby="ir-back-h">Roll back to the previous version if the health check fails</label>
+    <p class="field-help" id="ir-back-h">Kicks in after three consecutive failed checks.</p>
   </div>
   <fieldset class="field">
     <legend>Deployment strategy</legend>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="rolling" checked>Rolling: replicas are replaced one at a time</label>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="blue-green">Blue/green: traffic switches at once when the new set is ready</label>
-    <label class="field-check"><input type="radio" name="ir-strateji" value="canary">Canary: a small share of traffic goes to the new version first</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="rolling" checked>Rolling: replicas are replaced one at a time</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="blue-green">Blue/green: traffic switches at once when the new set is ready</label>
+    <label class="field-check"><input type="radio" name="ir-strategy" value="canary">Canary: a small share of traffic goes to the new version first</label>
   </fieldset>
 </div>
 </demo>
@@ -19,9 +19,9 @@
 <demo label="Example · multiple choice">
 <fieldset class="field" style="max-width:480px">
   <legend>Log fields</legend>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="request" checked>Request ID</label>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="user" checked>User ID (hashed)</label>
-  <label class="field-check"><input type="checkbox" name="ir-alan" value="body">Request body</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="request" checked>Request ID</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="user" checked>User ID (hashed)</label>
+  <label class="field-check"><input type="checkbox" name="ir-field" value="body">Request body</label>
   <p class="field-help">The body may carry personal data; turn it on only in <code>staging</code>.</p>
 </fieldset>
 </demo>
@@ -31,14 +31,14 @@
 <demo label="Example · replica count and its result">
 <div style="max-width:480px">
   <div class="field">
-    <label for="ir-kopya">Replica count</label>
+    <label for="ir-replica">Replica count</label>
     <div style="display:flex;align-items:center;gap:var(--sp-5)">
-      <input type="range" id="ir-kopya" name="kopya" min="1" max="12" value="4" aria-describedby="ir-kopya-h">
-      <output id="ir-kopya-o" for="ir-kopya">4</output>
+      <input type="range" id="ir-replica" name="replica" min="1" max="12" value="4" aria-describedby="ir-replica-h">
+      <output id="ir-replica-o" for="ir-replica">4</output>
     </div>
-    <p class="field-help" id="ir-kopya-h">1–12; each replica is 2 vCPU, 4 GiB.</p>
+    <p class="field-help" id="ir-replica-h">1–12; each replica is 2 vCPU, 4 GiB.</p>
   </div>
-  <div class="readout" id="ir-kopya-out"><p><b>4 replicas</b> · estimated <b>$248 / month</b>. If a node goes down, 3 replicas stay in service.</p></div>
+  <div class="readout" id="ir-replica-out"><p><b>4 replicas</b> · estimated <b>$248 / month</b>. If a node goes down, 3 replicas stay in service.</p></div>
 </div>
 </demo>
 <div class="prose"><p>The package sets only the color and width; writing the value is the page's job. <code>&lt;output for&gt;</code> links it to the slider. A screen reader reads only the number on a slider; to have it say the unit too, write <code>aria-valuetext</code> in the same listener:</p></div>
@@ -60,16 +60,16 @@
   </fieldset>
   <fieldset class="field">
     <legend>Radio</legend>
-    <label class="field-check"><input type="radio" name="ir-d-radyo" checked>Checked</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo">Unchecked</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo-2" checked disabled>Disabled, checked</label>
-    <label class="field-check"><input type="radio" name="ir-d-radyo-2" disabled>Disabled, empty</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio" checked>Checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio">Unchecked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" checked disabled>Disabled, checked</label>
+    <label class="field-check"><input type="radio" name="ir-d-radio-2" disabled>Disabled, empty</label>
   </fieldset>
   <div class="field">
-    <label for="ir-d-aralik">Range, disabled</label>
+    <label for="ir-d-interval">Range, disabled</label>
     <div style="display:flex;align-items:center;gap:var(--sp-5)">
-      <input type="range" id="ir-d-aralik" min="0" max="100" value="30" disabled>
-      <output for="ir-d-aralik">30</output>
+      <input type="range" id="ir-d-interval" min="0" max="100" value="30" disabled>
+      <output for="ir-d-interval">30</output>
     </div>
   </div>
 </div>
@@ -77,8 +77,8 @@
 <demo label="Example · required confirmation: check it, then uncheck it">
 <fieldset class="field" style="max-width:480px">
   <legend>Production approval</legend>
-  <label class="field-check"><input type="checkbox" name="ir-onay" required aria-describedby="ir-onay-e">I confirmed that the change window is open</label>
-  <p class="field-error" id="ir-onay-e">this confirmation is required before deploying to production.</p>
+  <label class="field-check"><input type="checkbox" name="ir-confirm" required aria-describedby="ir-confirm-e">I confirmed that the change window is open</label>
+  <p class="field-error" id="ir-confirm-e">this confirmation is required before deploying to production.</p>
 </fieldset>
 </demo>
 <div class="tbl"><table>
@@ -99,16 +99,16 @@
 <demo label="Example · short values, chips">
 <fieldset class="choice">
   <legend>Environment</legend>
-  <label><input type="radio" name="ir-c-ortam" value="dev"><span>dev</span></label>
-  <label><input type="radio" name="ir-c-ortam" value="staging" checked><span>staging</span></label>
-  <label><input type="radio" name="ir-c-ortam" value="prod"><span>prod</span></label>
+  <label><input type="radio" name="ir-c-env" value="dev"><span>dev</span></label>
+  <label><input type="radio" name="ir-c-env" value="staging" checked><span>staging</span></label>
+  <label><input type="radio" name="ir-c-env" value="prod"><span>prod</span></label>
 </fieldset>
 </demo>
 <demo label="Example · sentences, checkboxes">
 <fieldset class="field">
   <legend>Notifications</legend>
-  <label class="field-check"><input type="checkbox" name="ir-c-bildirim" checked>Post to the chat channel when the deployment finishes</label>
-  <label class="field-check"><input type="checkbox" name="ir-c-bildirim">Page the on-call if a rollback happens</label>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify" checked>Post to the chat channel when the deployment finishes</label>
+  <label class="field-check"><input type="checkbox" name="ir-c-notify">Page the on-call if a rollback happens</label>
 </fieldset>
 </demo>
 </div>
@@ -127,7 +127,7 @@
 <chapter title="In context" lead="Deployment settings on a dark panel. If the strategy is not canary, the traffic share slider stays disabled; the result line is rewritten on every change.">
 <demo label="Example · deployment settings, dark scene">
 <div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
-  <form id="ir-dagitim" style="max-width:560px">
+  <form id="ir-deploy" style="max-width:560px">
     <fieldset class="field">
       <legend>Strategy</legend>
       <label class="field-check"><input type="radio" name="ir-s" value="rolling">Rolling</label>
@@ -144,11 +144,11 @@
     </div>
     <fieldset class="field">
       <legend>Options</legend>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="rollback" checked>Roll back automatically if the error rate exceeds 2%</label>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="migrate">Run the database migration before deploying</label>
-      <label class="field-check"><input type="checkbox" name="ir-ek" value="freeze" disabled>Ignore the change freeze (on-call only)</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="rollback" checked>Roll back automatically if the error rate exceeds 2%</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="migrate">Run the database migration before deploying</label>
+      <label class="field-check"><input type="checkbox" name="ir-extra" value="freeze" disabled>Ignore the change freeze (on-call only)</label>
     </fieldset>
-    <div class="readout" id="ir-dagitim-out" aria-live="polite"><p><b>Canary</b> · <b>10%</b> of traffic goes to the new version; it rolls back if the error rate exceeds 2%.</p></div>
+    <div class="readout" id="ir-deploy-out" aria-live="polite"><p><b>Canary</b> · <b>10%</b> of traffic goes to the new version; it rolls back if the error rate exceeds 2%.</p></div>
   </form>
 </div>
 </demo>
@@ -159,32 +159,32 @@
 <demo label="Do · a named group">
 <fieldset class="field">
   <legend>Backup frequency</legend>
-  <label class="field-check"><input type="radio" name="ir-yap-sik" checked>Hourly</label>
-  <label class="field-check"><input type="radio" name="ir-yap-sik">Daily</label>
+  <label class="field-check"><input type="radio" name="ir-do-often" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-do-often">Daily</label>
 </fieldset>
 </demo>
 <demo label="Don't · a paragraph posing as a heading">
 <div class="field">
   <p class="field-help">Backup frequency</p>
-  <label class="field-check"><input type="radio" name="ir-yapma-sik" checked>Hourly</label>
-  <label class="field-check"><input type="radio" name="ir-yapma-sik">Daily</label>
+  <label class="field-check"><input type="radio" name="ir-dont-often" checked>Hourly</label>
+  <label class="field-check"><input type="radio" name="ir-dont-often">Daily</label>
 </div>
 </demo>
 </div>
 <div class="dodont">
 <demo label="Do · value alongside">
 <div class="field">
-  <label for="ir-yap-ttl">Cache duration</label>
+  <label for="ir-do-ttl">Cache duration</label>
   <div style="display:flex;align-items:center;gap:var(--sp-5)">
-    <input type="range" id="ir-yap-ttl" min="0" max="60" step="5" value="15">
-    <output id="ir-yap-ttl-o" for="ir-yap-ttl">15 min</output>
+    <input type="range" id="ir-do-ttl" min="0" max="60" step="5" value="15">
+    <output id="ir-do-ttl-o" for="ir-do-ttl">15 min</output>
   </div>
 </div>
 </demo>
 <demo label="Don't · a slider with a hidden value">
 <div class="field">
-  <label for="ir-yapma-ttl">Cache duration</label>
-  <input type="range" id="ir-yapma-ttl" min="0" max="60" step="5" value="15">
+  <label for="ir-dont-ttl">Cache duration</label>
+  <input type="range" id="ir-dont-ttl" min="0" max="60" step="5" value="15">
 </div>
 </demo>
 </div>
@@ -194,7 +194,7 @@
 <script data-page>
 /* replica count → monthly cost and resilience */
 (function () {
-  var r = document.getElementById('ir-kopya'), o = document.getElementById('ir-kopya-o'), out = document.getElementById('ir-kopya-out');
+  var r = document.getElementById('ir-replica'), o = document.getElementById('ir-replica-o'), out = document.getElementById('ir-replica-out');
   function show() {
     var n = +r.value;
     o.value = n;
@@ -207,11 +207,11 @@
 })();
 /* deployment settings */
 (function () {
-  var f = document.getElementById('ir-dagitim'), pay = document.getElementById('ir-pay'), o = document.getElementById('ir-pay-o'), out = document.getElementById('ir-dagitim-out');
+  var f = document.getElementById('ir-deploy'), pay = document.getElementById('ir-pay'), o = document.getElementById('ir-pay-o'), out = document.getElementById('ir-deploy-out');
   var ad = { rolling: 'Rolling', 'blue-green': 'Blue/green', canary: 'Canary' };
   function show() {
     var s = f.querySelector('input[name="ir-s"]:checked').value, p = pay.value;
-    var ek = Array.prototype.map.call(f.querySelectorAll('input[name="ir-ek"]:checked'), function (i) { return i.value; });
+    var ek = Array.prototype.map.call(f.querySelectorAll('input[name="ir-extra"]:checked'), function (i) { return i.value; });
     pay.disabled = s !== 'canary';
     o.value = p + '%';
     pay.setAttribute('aria-valuetext', p + ' percent');
@@ -226,7 +226,7 @@
 })();
 /* do example: cache duration */
 (function () {
-  var r = document.getElementById('ir-yap-ttl'), o = document.getElementById('ir-yap-ttl-o');
+  var r = document.getElementById('ir-do-ttl'), o = document.getElementById('ir-do-ttl-o');
   r.addEventListener('input', function () { o.value = r.value + ' min'; r.setAttribute('aria-valuetext', r.value + ' minutes'); });
 })();
 </script>

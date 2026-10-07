@@ -107,10 +107,10 @@
 </chapter>
 
 <chapter title="Section tracking" lead="As you scroll, the active section is found; it is marked in the rail, the counter and top bar update, and the fragment in the address bar follows. All of it comes from the data-section and data-title attributes.">
-<div class="readout" id="isk-pos" aria-live="polite"><p>Position not read yet.</p></div>
+<div class="readout" id="shell-pos" aria-live="polite"><p>Position not read yet.</p></div>
 <div class="pillrow" style="margin:var(--sp-5) 0 var(--sp-8)">
-  <button class="btn" type="button" id="isk-read"><svg aria-hidden="true"><use href="#i-info"/></svg>Read position</button>
-  <button class="btn" type="button" id="isk-jump">Go to the shell map</button>
+  <button class="btn" type="button" id="shell-read"><svg aria-hidden="true"><use href="#i-info"/></svg>Read position</button>
+  <button class="btn" type="button" id="shell-jump">Go to the shell map</button>
 </div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>Hendese.state.section;      <span class="c">// id of the active section, e.g. "p4"</span>
 Hendese.lockTo(<span class="s">'p1'</span>);       <span class="c">// keep the target active until smooth scrolling ends</span>
@@ -244,13 +244,13 @@ location.hash = <span class="s">'#p1'</span>;</code></pre></figure>
 
 <script data-page>
 (function () {
-  var out = document.getElementById('isk-pos');
-  document.getElementById('isk-read').addEventListener('click', function () {
+  var out = document.getElementById('shell-pos');
+  document.getElementById('shell-read').addEventListener('click', function () {
     var id = Hendese.state.section, sec = id && document.getElementById(id);
     var pos = document.getElementById('rail-pos');
     out.innerHTML = '<p><b>' + (sec ? sec.getAttribute('data-title') : 'Intro') + '</b> · <code>' + (id || 'top') + '</code> · counter: ' + (pos ? pos.textContent : '—') + '</p>';
   });
-  document.getElementById('isk-jump').addEventListener('click', function () {
+  document.getElementById('shell-jump').addEventListener('click', function () {
     Hendese.lockTo('p1'); location.hash = '#p1';
   });
 })();

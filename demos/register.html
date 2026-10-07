@@ -132,8 +132,8 @@
   <span class="demo-label">Example · pipeline variables, live</span>
   <div class="demo-view">
 <div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start">
-  <div class="register" id="dk-hat">
-    <p class="register-h"><b>Variables</b><span id="dk-adim">step 1 / 4</span></p>
+  <div class="register" id="dk-track">
+    <p class="register-h"><b>Variables</b><span id="dk-step">step 1 / 4</span></p>
     <dl>
       <div data-k="sha"><dt>COMMIT_SHA</dt><dd>3f9c2a1b</dd></div>
       <div data-k="tag"><dt>IMAGE_TAG</dt><dd>—</dd></div>
@@ -144,16 +144,16 @@
   </div>
   <div>
     <div class="pillrow">
-      <button class="btn" type="button" id="dk-ileri"><svg><use href="#i-check"/></svg>Next step</button>
-      <button class="btn" type="button" id="dk-bas"><svg><use href="#i-reset"/></svg>Start over</button>
+      <button class="btn" type="button" id="dk-next"><svg><use href="#i-check"/></svg>Next step</button>
+      <button class="btn" type="button" id="dk-start"><svg><use href="#i-reset"/></svg>Start over</button>
     </div>
     <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Source checked out from the <code>main</code> branch.</p></div>
   </div>
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start</span>"&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>register</span>" id="<span class='s'>dk-hat</span>"&gt;
-    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Variables&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span> id="<span class='s'>dk-adim</span>"&gt;step 1 / 4&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>register</span>" id="<span class='s'>dk-track</span>"&gt;
+    &lt;<span class='k'>p</span> class="<span class='s'>register-h</span>"&gt;&lt;<span class='k'>b</span>&gt;Variables&lt;/<span class='k'>b</span>&gt;&lt;<span class='k'>span</span> id="<span class='s'>dk-step</span>"&gt;step 1 / 4&lt;/<span class='k'>span</span>&gt;&lt;/<span class='k'>p</span>&gt;
     &lt;<span class='k'>dl</span>&gt;
       &lt;<span class='k'>div</span> data-k="<span class='s'>sha</span>"&gt;&lt;<span class='k'>dt</span>&gt;COMMIT_SHA&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;3f9c2a1b&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
       &lt;<span class='k'>div</span> data-k="<span class='s'>tag</span>"&gt;&lt;<span class='k'>dt</span>&gt;IMAGE_TAG&lt;/<span class='k'>dt</span>&gt;&lt;<span class='k'>dd</span>&gt;—&lt;/<span class='k'>dd</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -164,8 +164,8 @@
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
-      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-ileri</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Next step&lt;/<span class='k'>button</span>&gt;
-      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-bas</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Start over&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-next</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Next step&lt;/<span class='k'>button</span>&gt;
+      &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>dk-start</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Start over&lt;/<span class='k'>button</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>dk-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;&lt;<span class='k'>b</span>&gt;checkout&lt;/<span class='k'>b</span>&gt; · Source checked out from the &lt;<span class='k'>code</span>&gt;main&lt;/<span class='k'>code</span>&gt; branch.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
@@ -179,7 +179,7 @@
     row.classList.toggle('now', hit);
   });
 }
-set(document.getElementById('dk-hat'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
+set(document.getElementById('dk-track'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
 </article>
 
 <article class="chapter" id="p3" data-section data-title="States">
@@ -352,7 +352,7 @@ SELECT pg_advisory_unlock(42);&lt;/<span class='k'>code</span>&gt;&lt;/<span cla
 Hendese.init();
 /* pipeline variables: step by step */
 (function () {
-  var reg = document.getElementById('dk-hat'), step = document.getElementById('dk-adim'), out = document.getElementById('dk-out');
+  var reg = document.getElementById('dk-track'), step = document.getElementById('dk-step'), out = document.getElementById('dk-out');
   var steps = [
     { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Source checked out from the <code>main</code> branch.' },
     { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · Image built; the tag comes from the short SHA.' },
@@ -369,10 +369,10 @@ Hendese.init();
     step.textContent = 'step ' + (i + 1) + ' / ' + steps.length;
     out.classList.toggle('ok', i === steps.length - 1);
     out.innerHTML = '<p>' + s.t + '</p>';
-    document.getElementById('dk-ileri').disabled = i === steps.length - 1;
+    document.getElementById('dk-next').disabled = i === steps.length - 1;
   }
-  document.getElementById('dk-ileri').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
-  document.getElementById('dk-bas').addEventListener('click', function () { i = 0; render(); });
+  document.getElementById('dk-next').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
+  document.getElementById('dk-start').addEventListener('click', function () { i = 0; render(); });
   render();
 })();
 Hendese.start();

@@ -23,8 +23,8 @@
 <chapter title="Step by step" lead="A pipeline's environment variables fill in as the job advances. Use the button to move to the next step; changed rows are highlighted, and the readout says what happened.">
 <demo label="Example · pipeline variables, live">
 <div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start">
-  <div class="register" id="dk-hat">
-    <p class="register-h"><b>Variables</b><span id="dk-adim">step 1 / 4</span></p>
+  <div class="register" id="dk-track">
+    <p class="register-h"><b>Variables</b><span id="dk-step">step 1 / 4</span></p>
     <dl>
       <div data-k="sha"><dt>COMMIT_SHA</dt><dd>3f9c2a1b</dd></div>
       <div data-k="tag"><dt>IMAGE_TAG</dt><dd>—</dd></div>
@@ -35,8 +35,8 @@
   </div>
   <div>
     <div class="pillrow">
-      <button class="btn" type="button" id="dk-ileri"><svg><use href="#i-check"/></svg>Next step</button>
-      <button class="btn" type="button" id="dk-bas"><svg><use href="#i-reset"/></svg>Start over</button>
+      <button class="btn" type="button" id="dk-next"><svg><use href="#i-check"/></svg>Next step</button>
+      <button class="btn" type="button" id="dk-start"><svg><use href="#i-reset"/></svg>Start over</button>
     </div>
     <div class="readout" id="dk-out" aria-live="polite"><p><b>checkout</b> · Source checked out from the <code>main</code> branch.</p></div>
   </div>
@@ -50,7 +50,7 @@
     row.classList.toggle('now', hit);
   });
 }
-set(document.getElementById('dk-hat'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
+set(document.getElementById('dk-track'), { tag: 'prod-3f9c2a1b', st: 'build' });</code></pre></figure>
 </chapter>
 
 <chapter title="States" lead="A row with no value yet, a long value, and several changes in the same step.">
@@ -139,7 +139,7 @@ SELECT pg_advisory_unlock(42);</code></pre></figure>
 <script data-page>
 /* pipeline variables: step by step */
 (function () {
-  var reg = document.getElementById('dk-hat'), step = document.getElementById('dk-adim'), out = document.getElementById('dk-out');
+  var reg = document.getElementById('dk-track'), step = document.getElementById('dk-step'), out = document.getElementById('dk-out');
   var steps = [
     { c: { sha: '3f9c2a1b', tag: '—', reg: '—', env: '—', st: 'checkout' }, now: ['sha', 'st'], t: '<b>checkout</b> · Source checked out from the <code>main</code> branch.' },
     { c: { tag: 'prod-3f9c2a1b', st: 'build' }, now: ['tag', 'st'], t: '<b>build</b> · Image built; the tag comes from the short SHA.' },
@@ -156,10 +156,10 @@ SELECT pg_advisory_unlock(42);</code></pre></figure>
     step.textContent = 'step ' + (i + 1) + ' / ' + steps.length;
     out.classList.toggle('ok', i === steps.length - 1);
     out.innerHTML = '<p>' + s.t + '</p>';
-    document.getElementById('dk-ileri').disabled = i === steps.length - 1;
+    document.getElementById('dk-next').disabled = i === steps.length - 1;
   }
-  document.getElementById('dk-ileri').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
-  document.getElementById('dk-bas').addEventListener('click', function () { i = 0; render(); });
+  document.getElementById('dk-next').addEventListener('click', function () { if (i < steps.length - 1) { i++; render(); } });
+  document.getElementById('dk-start').addEventListener('click', function () { i = 0; render(); });
   render();
 })();
 </script>

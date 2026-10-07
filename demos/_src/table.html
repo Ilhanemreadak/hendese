@@ -89,14 +89,14 @@
 
 <chapter title="Narrow screens" lead="Below 720px the header row hides and each row becomes a card. Each cell shows its column name on the left; init writes these names onto every td as data-th.">
 <demo label="Example · labels written by JS" nocode>
-<div class="tbl" id="tb-kuyruk"><table>
+<div class="tbl" id="tb-queue"><table>
   <thead><tr><th>Worker</th><th>Queue</th><th>Concurrency</th><th>Status</th></tr></thead>
   <tbody>
     <tr><td>billing-worker</td><td><code>invoices</code></td><td>8</td><td><span class="pill s-ok">running</span></td></tr>
     <tr><td>mail-worker</td><td><code>email</code></td><td>4</td><td><span class="pill s-neutral">paused</span></td></tr>
   </tbody>
 </table></div>
-<div class="readout" aria-live="polite"><p id="tb-etiket">Reading the labels…</p></div>
+<div class="readout" aria-live="polite"><p id="tb-tag">Reading the labels…</p></div>
 </demo>
 <div class="prose"><p>The card view is a container query: it kicks in when the content column holding the table (<code>main</code>) is narrower than 720px. A narrow box inside the page does not trigger it on its own; narrow the window to see it. If JS does not run, the cell labels are not written; the cards still form, but without column names.</p></div>
 <figure class="code"><figcaption class="code-head"><span class="code-file">markup after init</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;tr&gt;
@@ -134,9 +134,9 @@
 
 <script data-page>
 (function () {
-  var out = document.getElementById('tb-etiket');
+  var out = document.getElementById('tb-tag');
   if (!out) return;
-  var tds = document.querySelectorAll('#tb-kuyruk tbody tr:first-child td'), names = [];
+  var tds = document.querySelectorAll('#tb-queue tbody tr:first-child td'), names = [];
   for (var i = 0; i < tds.length; i++) names.push(tds[i].getAttribute('data-th') || '(none)');
   out.innerHTML = '<b>First row labels:</b> ' + names.join(' · ');
 })();

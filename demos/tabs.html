@@ -290,7 +290,7 @@
 <div class="demo">
   <span class="demo-label">Example · selection → readout</span>
   <div class="demo-view">
-<div class="tabs" data-tabs id="sk-olay">
+<div class="tabs" data-tabs id="sk-incident">
   <div role="tablist" aria-label="Install tool">
     <button type="button" role="tab" id="sk-t-kubectl" aria-controls="sk-p-kubectl" aria-selected="true">kubectl</button>
     <button type="button" role="tab" id="sk-t-helm" aria-controls="sk-p-helm">helm</button>
@@ -312,9 +312,9 @@
 <pre tabindex="0"><code><span class="k">kubectl</span> apply -k overlays/prod/report-cron</code></pre></figure>
   </div>
 </div>
-<div class="readout" id="sk-olay-out" aria-live="polite"><p>Selected tool: <b>kubectl</b>. Pick another tab.</p></div>
+<div class="readout" id="sk-incident-out" aria-live="polite"><p>Selected tool: <b>kubectl</b>. Pick another tab.</p></div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tabs</span>" data-tabs id="<span class='s'>sk-olay</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>tabs</span>" data-tabs id="<span class='s'>sk-incident</span>"&gt;
   &lt;<span class='k'>div</span> role="<span class='s'>tablist</span>" aria-label="<span class='s'>Install tool</span>"&gt;
     &lt;<span class='k'>button</span> type="<span class='s'>button</span>" role="<span class='s'>tab</span>" id="<span class='s'>sk-t-kubectl</span>" aria-controls="<span class='s'>sk-p-kubectl</span>" aria-selected="<span class='s'>true</span>"&gt;kubectl&lt;/<span class='k'>button</span>&gt;
     &lt;<span class='k'>button</span> type="<span class='s'>button</span>" role="<span class='s'>tab</span>" id="<span class='s'>sk-t-helm</span>" aria-controls="<span class='s'>sk-p-helm</span>"&gt;helm&lt;/<span class='k'>button</span>&gt;
@@ -336,9 +336,9 @@
 &lt;<span class='k'>pre</span> tabindex="<span class='s'>0</span>"&gt;&lt;<span class='k'>code</span>&gt;&lt;<span class='k'>span</span> class="<span class='s'>k</span>"&gt;kubectl&lt;/<span class='k'>span</span>&gt; apply -k overlays/prod/report-cron&lt;/<span class='k'>code</span>&gt;&lt;/<span class='k'>pre</span>&gt;&lt;/<span class='k'>figure</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;
-&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>sk-olay-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Selected tool: &lt;<span class='k'>b</span>&gt;kubectl&lt;/<span class='k'>b</span>&gt;. Pick another tab.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>sk-incident-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Selected tool: &lt;<span class='k'>b</span>&gt;kubectl&lt;/<span class='k'>b</span>&gt;. Pick another tab.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var tabs = document.getElementById('sk-olay'), out = document.getElementById('sk-olay-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var tabs = document.getElementById('sk-incident'), out = document.getElementById('sk-incident-out');
 tabs.addEventListener('hendese:tab', function (e) {
   var tab = document.getElementById(e.detail.id);
   out.innerHTML = '&lt;p&gt;Selected tool: &lt;b&gt;' + tab.textContent + '&lt;/b&gt;. The command is in the panel.&lt;/p&gt;';
@@ -587,7 +587,7 @@ tabs.addEventListener('hendese:tab', function (e) {
 Hendese.init();
 /* hendese:tab → readout */
 (function () {
-  var tabs = document.getElementById('sk-olay'), out = document.getElementById('sk-olay-out');
+  var tabs = document.getElementById('sk-incident'), out = document.getElementById('sk-incident-out');
   tabs.addEventListener('hendese:tab', function (e) {
     var tab = document.getElementById(e.detail.id);
     out.innerHTML = '<p>Selected tool: <b>' + tab.textContent + '</b>. The command is in the panel; <code>detail.id</code> = <code>' + e.detail.id + '</code>.</p>';

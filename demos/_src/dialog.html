@@ -2,11 +2,11 @@
 
 <chapter title="Anatomy" lead="The header row has the title on the left and a close button on the right; the body in the middle; the decisions at the bottom. The dialog is linked to its title with aria-labelledby. The opening button calls the dialog by name with commandfor.">
 <demo label="Example · release rollback">
-<button class="btn" type="button" command="show-modal" commandfor="dy-geri"><svg><use href="#i-reset"/></svg>Roll back release…</button>
-<dialog class="dialog" id="dy-geri" aria-labelledby="dy-geri-h">
+<button class="btn" type="button" command="show-modal" commandfor="dy-back"><svg><use href="#i-reset"/></svg>Roll back release…</button>
+<dialog class="dialog" id="dy-back" aria-labelledby="dy-back-h">
   <div class="dialog-head">
-    <h2 id="dy-geri-h">Roll web-api back to the previous release?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-geri" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-back-h">Roll web-api back to the previous release?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-back" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <p><code>web-api</code> in prod returns to the <code>v4.8.1</code> image. Replicas are replaced one by one; it takes about 3 minutes with no downtime.</p>
   <form method="dialog" class="dialog-foot">
@@ -25,11 +25,11 @@
 
 <chapter title="Return value" lead="A button inside form method=dialog closes the dialog and writes its value to dialog.returnValue. The page reads that value on the close event. Esc and the close button write no value.">
 <demo label="Example · picking a maintenance window">
-<button class="btn" type="button" command="show-modal" commandfor="dy-bakim">Pick a maintenance window…</button>
-<dialog class="dialog" id="dy-bakim" aria-labelledby="dy-bakim-h">
+<button class="btn" type="button" command="show-modal" commandfor="dy-maint">Pick a maintenance window…</button>
+<dialog class="dialog" id="dy-maint" aria-labelledby="dy-maint-h">
   <div class="dialog-head">
-    <h2 id="dy-bakim-h">When should report-cron be updated?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-bakim" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-maint-h">When should report-cron be updated?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-maint" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <p>During the update, scheduled reports wait 10 minutes. No reports are waiting in the night window.</p>
   <form method="dialog" class="dialog-foot">
@@ -38,9 +38,9 @@
     <button class="btn" value="tonight">Tonight at 02:00</button>
   </form>
 </dialog>
-<div class="readout" id="dy-bakim-out" aria-live="polite"><p>No choice yet. Open the dialog; close it with a button, with Esc or with the close button.</p></div>
+<div class="readout" id="dy-maint-out" aria-live="polite"><p>No choice yet. Open the dialog; close it with a button, with Esc or with the close button.</p></div>
 </demo>
-<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var dlg = document.getElementById('dy-bakim'), out = document.getElementById('dy-bakim-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var dlg = document.getElementById('dy-maint'), out = document.getElementById('dy-maint-out');
 dlg.addEventListener('close', function () {
   var v = dlg.returnValue;
   out.innerHTML = v ? '&lt;p&gt;Choice: &lt;b&gt;' + v + '&lt;/b&gt;&lt;/p&gt;' : '&lt;p&gt;No choice made.&lt;/p&gt;';
@@ -51,19 +51,19 @@ dlg.addEventListener('close', function () {
 
 <chapter title="Confirm by typing the name" lead="For an action that can't be undone, the reader confirms by typing what they are deleting. The match check is native form validation: required and pattern. If the name doesn't match, the form isn't submitted and .field shows the error line.">
 <demo label="Example · deleting a service">
-<button class="btn" type="button" command="show-modal" commandfor="dy-sil"><svg><use href="#i-x"/></svg>Delete search-indexer…</button>
-<dialog class="dialog" id="dy-sil" aria-labelledby="dy-sil-h" aria-describedby="dy-sil-d">
+<button class="btn" type="button" command="show-modal" commandfor="dy-del"><svg><use href="#i-x"/></svg>Delete search-indexer…</button>
+<dialog class="dialog" id="dy-del" aria-labelledby="dy-del-h" aria-describedby="dy-del-d">
   <form method="dialog">
     <div class="dialog-head">
-      <h2 id="dy-sil-h">Permanently delete search-indexer?</h2>
-      <button class="icon-btn" type="button" command="close" commandfor="dy-sil" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+      <h2 id="dy-del-h">Permanently delete search-indexer?</h2>
+      <button class="icon-btn" type="button" command="close" commandfor="dy-del" aria-label="Close"><svg><use href="#i-x"/></svg></button>
     </div>
-    <p id="dy-sil-d">The service, its 3 replicas and the <code>search-indexer-data</code> volume are deleted. Search won't respond until the index is rebuilt. <b>This can't be undone.</b></p>
+    <p id="dy-del-d">The service, its 3 replicas and the <code>search-indexer-data</code> volume are deleted. Search won't respond until the index is rebuilt. <b>This can't be undone.</b></p>
     <div class="field">
-      <label for="dy-sil-ad">Service name to confirm</label>
-      <input id="dy-sil-ad" class="mono" required pattern="search-indexer" autocomplete="off" spellcheck="false" aria-describedby="dy-sil-y dy-sil-e" autofocus>
-      <p class="field-help" id="dy-sil-y">Type exactly <code>search-indexer</code>.</p>
-      <p class="field-error" id="dy-sil-e">The name doesn't match.</p>
+      <label for="dy-del-name">Service name to confirm</label>
+      <input id="dy-del-name" class="mono" required pattern="search-indexer" autocomplete="off" spellcheck="false" aria-describedby="dy-del-y dy-del-e" autofocus>
+      <p class="field-help" id="dy-del-y">Type exactly <code>search-indexer</code>.</p>
+      <p class="field-error" id="dy-del-e">The name doesn't match.</p>
     </div>
     <div class="dialog-foot">
       <button class="btn" value="cancel" formnovalidate>Cancel</button>
@@ -71,18 +71,18 @@ dlg.addEventListener('close', function () {
     </div>
   </form>
 </dialog>
-<div class="readout" id="dy-sil-out" aria-live="polite"><p>Service in place: <b>search-indexer</b> · 3 replicas.</p></div>
+<div class="readout" id="dy-del-out" aria-live="polite"><p>Service in place: <b>search-indexer</b> · 3 replicas.</p></div>
 </demo>
 <div class="prose"><p>The “Cancel” button carries <code>formnovalidate</code>; otherwise, cancelling with an empty field would also trip validation. On open, <code>autofocus</code> puts focus on the field. The page script resets the form on close, so the field is empty again on the next open.</p></div>
 </chapter>
 
 <chapter title="With a title block and a register" lead="The summary needed to decide sits inside the dialog: changed variables with .register, a sheet's details with .titleblock.">
 <demo label="Example · deploy approval, changed variables">
-<button class="btn" type="button" command="show-modal" commandfor="dy-kayit"><svg><use href="#i-check"/></svg>Deploy to prod…</button>
-<dialog class="dialog" id="dy-kayit" aria-labelledby="dy-kayit-h">
+<button class="btn" type="button" command="show-modal" commandfor="dy-log"><svg><use href="#i-check"/></svg>Deploy to prod…</button>
+<dialog class="dialog" id="dy-log" aria-labelledby="dy-log-h">
   <div class="dialog-head">
-    <h2 id="dy-kayit-h">Deploy billing-worker to prod?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-kayit" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-log-h">Deploy billing-worker to prod?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-log" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <div class="register">
     <p class="register-h"><b>Changed</b><span>staging → prod</span></p>
@@ -98,14 +98,14 @@ dlg.addEventListener('close', function () {
     <button class="btn" value="deploy"><svg><use href="#i-check"/></svg>Deploy</button>
   </form>
 </dialog>
-<div class="readout" id="dy-kayit-out" aria-live="polite"><p>In prod: <b>prod-4a07b9e3</b>.</p></div>
+<div class="readout" id="dy-log-out" aria-live="polite"><p>In prod: <b>prod-4a07b9e3</b>.</p></div>
 </demo>
 <demo label="Example · sheet details">
-<button class="btn" type="button" command="show-modal" commandfor="dy-antet"><svg><use href="#i-info"/></svg>Sheet details</button>
-<dialog class="dialog" id="dy-antet" aria-labelledby="dy-antet-h">
+<button class="btn" type="button" command="show-modal" commandfor="dy-title"><svg><use href="#i-info"/></svg>Sheet details</button>
+<dialog class="dialog" id="dy-title" aria-labelledby="dy-title-h">
   <div class="dialog-head">
-    <h2 id="dy-antet-h">Fig. 7 · gateway path</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-antet" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-title-h">Fig. 7 · gateway path</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-title" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <dl class="titleblock">
     <div class="tb-head"><dt>Sheet</dt><dd>Gateway path</dd></div>
@@ -125,13 +125,13 @@ dlg.addEventListener('close', function () {
 <chapter title="States" lead="A dialog is closed or open; while it is open, the rest of the page is inert. Focus enters the dialog on open and returns to the opening button on close.">
 <demo label="Example · where focus returns">
 <div class="pillrow">
-  <button class="btn" type="button" command="show-modal" commandfor="dy-odak" id="dy-odak-ac">Rotate key…</button>
+  <button class="btn" type="button" command="show-modal" commandfor="dy-focus" id="dy-focus-open">Rotate key…</button>
   <button class="btn" type="button" disabled>Delete key</button>
 </div>
-<dialog class="dialog" id="dy-odak" aria-labelledby="dy-odak-h">
+<dialog class="dialog" id="dy-focus" aria-labelledby="dy-focus-h">
   <div class="dialog-head">
-    <h2 id="dy-odak-h">Rotate the deploy-bot key?</h2>
-    <button class="icon-btn" type="button" command="close" commandfor="dy-odak" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="dy-focus-h">Rotate the deploy-bot key?</h2>
+    <button class="icon-btn" type="button" command="close" commandfor="dy-focus" aria-label="Close"><svg><use href="#i-x"/></svg></button>
   </div>
   <p>The old key stays valid for 24 more hours; pipelines must switch to the new key in that time.</p>
   <form method="dialog" class="dialog-foot">
@@ -139,7 +139,7 @@ dlg.addEventListener('close', function () {
     <button class="btn" value="rotate">Rotate</button>
   </form>
 </dialog>
-<div class="readout" id="dy-odak-out" aria-live="polite"><p>Open the dialog and close it with Esc; this line says where focus went back to.</p></div>
+<div class="readout" id="dy-focus-out" aria-live="polite"><p>Open the dialog and close it with Esc; this line says where focus went back to.</p></div>
 </demo>
 <div class="tbl"><table>
   <thead><tr><th>State</th><th>How it's set</th><th>What happens</th></tr></thead>
@@ -158,9 +158,9 @@ dlg.addEventListener('close', function () {
 <chapter title="Do / don't" lead="A dialog stops the reader. That is justified only for a single decision the reader must make now; not for giving information.">
 <div class="dodont">
 <demo label="Do · one decision, verb label">
-<button class="btn" type="button" command="show-modal" commandfor="dy-yap">Purge queue…</button>
-<dialog class="dialog" id="dy-yap" aria-labelledby="dy-yap-h">
-  <div class="dialog-head"><h2 id="dy-yap-h">Purge invoice-queue?</h2></div>
+<button class="btn" type="button" command="show-modal" commandfor="dy-do">Purge queue…</button>
+<dialog class="dialog" id="dy-do" aria-labelledby="dy-do-h">
+  <div class="dialog-head"><h2 id="dy-do-h">Purge invoice-queue?</h2></div>
   <p>The 1,240 messages in the queue are deleted; unprocessed invoices aren't regenerated.</p>
   <form method="dialog" class="dialog-foot">
     <button class="btn" value="" autofocus>Cancel</button>
@@ -169,9 +169,9 @@ dlg.addEventListener('close', function () {
 </dialog>
 </demo>
 <demo label="Don't · a dialog for information, four equal buttons">
-<button class="btn" type="button" command="show-modal" commandfor="dy-yapma">Start build</button>
-<dialog class="dialog" id="dy-yapma" aria-labelledby="dy-yapma-h">
-  <div class="dialog-head"><h2 id="dy-yapma-h">Info</h2></div>
+<button class="btn" type="button" command="show-modal" commandfor="dy-dont">Start build</button>
+<dialog class="dialog" id="dy-dont" aria-labelledby="dy-dont-h">
+  <div class="dialog-head"><h2 id="dy-dont-h">Info</h2></div>
   <p>Build #4182 was queued.</p>
   <form method="dialog" class="dialog-foot">
     <button class="btn" value="ok">OK</button>
@@ -213,24 +213,24 @@ dlg.addEventListener('close', function () {
   }
   function out(id, html) { document.getElementById(id).innerHTML = html; }
   var bakim = { now: 'now', tonight: 'tonight at 02:00' };
-  onClose('dy-bakim', function (v) {
-    out('dy-bakim-out', v ? '<p>Update: <b>' + bakim[v] + '</b> · <code>returnValue</code> = <code>' + v + '</code></p>'
+  onClose('dy-maint', function (v) {
+    out('dy-maint-out', v ? '<p>Update: <b>' + bakim[v] + '</b> · <code>returnValue</code> = <code>' + v + '</code></p>'
       : '<p><b>No choice made.</b> Cancel, Esc or the close button; <code>returnValue</code> is empty.</p>');
   });
-  onClose('dy-sil', function (v, d) {
+  onClose('dy-del', function (v, d) {
     d.querySelector('form').reset();
-    var r = document.getElementById('dy-sil-out');
+    var r = document.getElementById('dy-del-out');
     r.classList.toggle('s-bad', v === 'delete');
-    out('dy-sil-out', v === 'delete' ? '<p><b>search-indexer deleted.</b> (Demo: nothing was actually deleted.)</p>' : '<p>Service in place: <b>search-indexer</b> · 3 replicas. Delete cancelled.</p>');
+    out('dy-del-out', v === 'delete' ? '<p><b>search-indexer deleted.</b> (Demo: nothing was actually deleted.)</p>' : '<p>Service in place: <b>search-indexer</b> · 3 replicas. Delete cancelled.</p>');
   });
-  onClose('dy-kayit', function (v) {
-    var r = document.getElementById('dy-kayit-out');
+  onClose('dy-log', function (v) {
+    var r = document.getElementById('dy-log-out');
     r.classList.toggle('s-ok', v === 'deploy');
-    out('dy-kayit-out', v === 'deploy' ? '<p>In prod: <b>prod-9d4e2c17</b> · deployment started.</p>' : '<p>In prod: <b>prod-4a07b9e3</b> · not deployed.</p>');
+    out('dy-log-out', v === 'deploy' ? '<p>In prod: <b>prod-9d4e2c17</b> · deployment started.</p>' : '<p>In prod: <b>prod-4a07b9e3</b> · not deployed.</p>');
   });
-  onClose('dy-odak', function (v) {
+  onClose('dy-focus', function (v) {
     var a = document.activeElement;
-    out('dy-odak-out', '<p>Closed with: <b>' + (v || 'no decision') + '</b> · focus is now on the “' + (a && a.textContent.trim() || 'page') + '” button.</p>');
+    out('dy-focus-out', '<p>Closed with: <b>' + (v || 'no decision') + '</b> · focus is now on the “' + (a && a.textContent.trim() || 'page') + '” button.</p>');
   });
 })();
 </script>

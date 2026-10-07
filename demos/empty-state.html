@@ -265,12 +265,12 @@
 <div class="demo">
   <span class="demo-label">Example · refresh: loading, then empty</span>
   <div class="demo-view">
-<div id="bd-canli">
+<div id="bd-live">
   <div class="pillrow">
-    <button class="btn" type="button" id="bd-yenile"><svg><use href="#i-reset"/></svg>Refresh</button>
-    <button class="btn" type="button" id="bd-hata">Try with an error</button>
+    <button class="btn" type="button" id="bd-refresh"><svg><use href="#i-reset"/></svg>Refresh</button>
+    <button class="btn" type="button" id="bd-error">Try with an error</button>
   </div>
-  <div id="bd-bolge" aria-live="polite">
+  <div id="bd-region" aria-live="polite">
     <div class="empty">
       <p class="chip">No releases</p>
       <p>No releases of web-api were published this week.</p>
@@ -278,12 +278,12 @@
   </div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>bd-canli</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>bd-live</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>pillrow</span>"&gt;
-    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>bd-yenile</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Refresh&lt;/<span class='k'>button</span>&gt;
-    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>bd-hata</span>"&gt;Try with an error&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>bd-refresh</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-reset</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Refresh&lt;/<span class='k'>button</span>&gt;
+    &lt;<span class='k'>button</span> class="<span class='s'>btn</span>" type="<span class='s'>button</span>" id="<span class='s'>bd-error</span>"&gt;Try with an error&lt;/<span class='k'>button</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>div</span> id="<span class='s'>bd-bolge</span>" aria-live="<span class='s'>polite</span>"&gt;
+  &lt;<span class='k'>div</span> id="<span class='s'>bd-region</span>" aria-live="<span class='s'>polite</span>"&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>empty</span>"&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;No releases&lt;/<span class='k'>p</span>&gt;
       &lt;<span class='k'>p</span>&gt;No releases of web-api were published this week.&lt;/<span class='k'>p</span>&gt;
@@ -345,19 +345,19 @@
 Hendese.init();
 /* refresh → aria-busy text → empty or error */
 (function () {
-  var bolge = document.getElementById('bd-bolge');
+  var region = document.getElementById('bd-region');
   var html = {
     yuk: '<p>Loading web-api releases…</p>',
     bos: '<div class="empty"><p class="chip">No releases</p><p>No releases of web-api were published this week.</p></div>',
     hata: '<div class="co co-trouble"><span class="co-ic"><svg><use href="#i-wrench"/></svg></span><span class="co-label">Could not load releases</span><div class="co-body"><p>The registry did not respond within 8 seconds. Try again with Refresh.</p></div></div>'
   };
   function run(son) {
-    bolge.setAttribute('aria-busy', 'true');
-    bolge.innerHTML = html.yuk;
-    setTimeout(function () { bolge.innerHTML = html[son]; bolge.removeAttribute('aria-busy'); }, 1200);
+    region.setAttribute('aria-busy', 'true');
+    region.innerHTML = html.yuk;
+    setTimeout(function () { region.innerHTML = html[son]; region.removeAttribute('aria-busy'); }, 1200);
   }
-  document.getElementById('bd-yenile').addEventListener('click', function () { run('bos'); });
-  document.getElementById('bd-hata').addEventListener('click', function () { run('hata'); });
+  document.getElementById('bd-refresh').addEventListener('click', function () { run('bos'); });
+  document.getElementById('bd-error').addEventListener('click', function () { run('hata'); });
 })();
 Hendese.start();
 </script>

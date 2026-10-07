@@ -98,7 +98,7 @@
 <div class="demo">
   <span class="demo-label">Example · pre-release check</span>
   <div class="demo-view">
-<div class="runbook" data-store="hendese-demo-kl-surum">
+<div class="runbook" data-store="hendese-demo-kl-version">
   <div class="rb-head">
     <span class="rb-count" aria-live="polite">0 / 5</span>
     <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -114,7 +114,7 @@
   <div class="rb-done"><svg><use href="#i-check"/></svg>Ready to release.</div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-surum</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-version</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
     &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -234,7 +234,7 @@
 <div class="demo">
   <span class="demo-label">Example · incident response, live readout</span>
   <div class="demo-view">
-<div class="runbook" data-store="hendese-demo-kl-olay">
+<div class="runbook" data-store="hendese-demo-kl-incident">
   <div class="rb-head">
     <span class="rb-count" aria-live="polite">0 / 5</span>
     <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -249,9 +249,9 @@
   </div>
   <div class="rb-done"><svg><use href="#i-check"/></svg>Response complete.</div>
 </div>
-<div class="readout" id="kl-olay-out" aria-live="polite"><p>No response yet.</p></div>
+<div class="readout" id="kl-incident-out" aria-live="polite"><p>No response yet.</p></div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-olay</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-incident</span>"&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
     &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 5&lt;/<span class='k'>span</span>&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -266,11 +266,11 @@
   &lt;/<span class='k'>div</span>&gt;
   &lt;<span class='k'>div</span> class="<span class='s'>rb-done</span>"&gt;&lt;<span class='k'>svg</span>&gt;&lt;<span class='k'>use</span> href="<span class='s'>#i-check</span>"/&gt;&lt;/<span class='k'>svg</span>&gt;Response complete.&lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;
-&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-olay-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;No response yet.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
+&lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-incident-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;No response yet.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="prose"><p>The first event fires on load, during <code>Hendese.init()</code>; the page script attaches its listener after that, so it must read the initial state itself. The readout's class changes with the state too: <code>.bad</code> with no items checked, <code>.ok</code> with all of them.</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-olay"]');
-var out = document.getElementById('kl-olay-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+var out = document.getElementById('kl-incident-out');
 function show(done, total) {
   var next = rb.querySelector('input:not(:checked) ~ .txt');
   out.classList.toggle('bad', done === 0);
@@ -287,11 +287,11 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
 <div class="demo">
   <span class="demo-label">Example · onboarding, two lists, one readout</span>
   <div class="demo-view">
-<div id="kl-uye">
+<div id="kl-member">
   <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start">
     <div>
       <p class="chip">Accounts</p>
-      <div class="runbook" data-store="hendese-demo-kl-uye-hesap" style="margin-top:8px">
+      <div class="runbook" data-store="hendese-demo-kl-member-account" style="margin-top:8px">
         <div class="rb-head">
           <span class="rb-count" aria-live="polite">0 / 3</span>
           <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -306,7 +306,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
     </div>
     <div>
       <p class="chip">Tools</p>
-      <div class="runbook" data-store="hendese-demo-kl-uye-arac" style="margin-top:8px">
+      <div class="runbook" data-store="hendese-demo-kl-member-tools" style="margin-top:8px">
         <div class="rb-head">
           <span class="rb-count" aria-live="polite">0 / 3</span>
           <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -320,14 +320,14 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
       </div>
     </div>
   </div>
-  <div class="readout" id="kl-uye-out" aria-live="polite"><p>Day one: <b>0 / 6</b> items.</p></div>
+  <div class="readout" id="kl-member-out" aria-live="polite"><p>Day one: <b>0 / 6</b> items.</p></div>
 </div>
   </div>
-  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>kl-uye</span>"&gt;
+  <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> id="<span class='s'>kl-member</span>"&gt;
   &lt;<span class='k'>div</span> style="<span class='s'>display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start</span>"&gt;
     &lt;<span class='k'>div</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Accounts&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-uye-hesap</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-member-account</span>" style="<span class='s'>margin-top:8px</span>"&gt;
         &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
           &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
           &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -342,7 +342,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
     &lt;/<span class='k'>div</span>&gt;
     &lt;<span class='k'>div</span>&gt;
       &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;Tools&lt;/<span class='k'>p</span>&gt;
-      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-uye-arac</span>" style="<span class='s'>margin-top:8px</span>"&gt;
+      &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-member-tools</span>" style="<span class='s'>margin-top:8px</span>"&gt;
         &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
           &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
           &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -356,7 +356,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
       &lt;/<span class='k'>div</span>&gt;
     &lt;/<span class='k'>div</span>&gt;
   &lt;/<span class='k'>div</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-uye-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Day one: &lt;<span class='k'>b</span>&gt;0 / 6&lt;/<span class='k'>b</span>&gt; items.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>readout</span>" id="<span class='s'>kl-member-out</span>" aria-live="<span class='s'>polite</span>"&gt;&lt;<span class='k'>p</span>&gt;Day one: &lt;<span class='k'>b</span>&gt;0 / 6&lt;/<span class='k'>b</span>&gt; items.&lt;/<span class='k'>p</span>&gt;&lt;/<span class='k'>div</span>&gt;
 &lt;/<span class='k'>div</span>&gt;</code></pre></figure>
 </div>
 <div class="prose"><p>Because the event bubbles, the listener is attached once to the shared container; the total is recounted from every box in the container.</p></div>
@@ -365,7 +365,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   <div class="demo-view">
 <div class="scene-dark" style="background:var(--scene-bg);border-radius:var(--r-md);padding:18px">
   <p class="chip">On-call handover · eu-west-1</p>
-  <div class="runbook" data-store="hendese-demo-kl-nobet" style="margin-bottom:0">
+  <div class="runbook" data-store="hendese-demo-kl-oncall" style="margin-bottom:0">
     <div class="rb-head">
       <span class="rb-count" aria-live="polite">0 / 4</span>
       <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -383,7 +383,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> class="<span class='s'>scene-dark</span>" style="<span class='s'>background:var(--scene-bg);border-radius:var(--r-md);padding:18px</span>"&gt;
   &lt;<span class='k'>p</span> class="<span class='s'>chip</span>"&gt;On-call handover · eu-west-1&lt;/<span class='k'>p</span>&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-nobet</span>" style="<span class='s'>margin-bottom:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-oncall</span>" style="<span class='s'>margin-bottom:0</span>"&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 4&lt;/<span class='k'>span</span>&gt;
       &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -403,7 +403,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   <span class="demo-label">Example · narrow side column</span>
   <div class="demo-view">
 <div style="max-width:320px">
-  <div class="runbook" data-store="hendese-demo-kl-dar" style="margin:0">
+  <div class="runbook" data-store="hendese-demo-kl-narrow" style="margin:0">
     <div class="rb-head">
       <span class="rb-count" aria-live="polite">0 / 3</span>
       <div class="rb-bar" aria-hidden="true"><i></i></div>
@@ -419,7 +419,7 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
 </div>
   </div>
   <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;<span class='k'>div</span> style="<span class='s'>max-width:320px</span>"&gt;
-  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-dar</span>" style="<span class='s'>margin:0</span>"&gt;
+  &lt;<span class='k'>div</span> class="<span class='s'>runbook</span>" data-store="<span class='s'>hendese-demo-kl-narrow</span>" style="<span class='s'>margin:0</span>"&gt;
     &lt;<span class='k'>div</span> class="<span class='s'>rb-head</span>"&gt;
       &lt;<span class='k'>span</span> class="<span class='s'>rb-count</span>" aria-live="<span class='s'>polite</span>"&gt;0 / 3&lt;/<span class='k'>span</span>&gt;
       &lt;<span class='k'>div</span> class="<span class='s'>rb-bar</span>" aria-hidden="<span class='s'>true</span>"&gt;&lt;<span class='k'>i</span>&gt;&lt;/<span class='k'>i</span>&gt;&lt;/<span class='k'>div</span>&gt;
@@ -522,8 +522,8 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
 Hendese.init();
 /* incident response → readout */
 (function () {
-  var rb = document.querySelector('[data-store="hendese-demo-kl-olay"]');
-  var out = document.getElementById('kl-olay-out');
+  var rb = document.querySelector('[data-store="hendese-demo-kl-incident"]');
+  var out = document.getElementById('kl-incident-out');
   function show(done, total) {
     var next = rb.querySelector('input:not(:checked) ~ .txt');
     out.classList.toggle('bad', done === 0);
@@ -537,7 +537,7 @@ Hendese.init();
 })();
 /* two lists, one listener (bubbling) */
 (function () {
-  var box = document.getElementById('kl-uye'), out = document.getElementById('kl-uye-out');
+  var box = document.getElementById('kl-member'), out = document.getElementById('kl-member-out');
   function show() {
     var done = box.querySelectorAll('.runbook input:checked').length, total = box.querySelectorAll('.runbook input').length;
     out.classList.toggle('ok', done === total);

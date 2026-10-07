@@ -134,7 +134,7 @@
 
 <chapter title="In context" lead="A dark scene points to a place: inside the network, the night shift, the production environment. The typical use is to make a whole sheet dark.">
 <demo label="Example · inside the network · dark sheet and explorer">
-<div class="frame scene-dark" data-explorer="ks-ag">
+<div class="frame scene-dark" data-explorer="ks-net">
   <div class="frame-bg" aria-hidden="true"></div>
   <header class="f-head">
     <p class="chip">05 · Figure 3</p>
@@ -163,16 +163,16 @@
       <p class="sl" style="--x:555;--y:319">data</p>
       <p class="sl" style="--x:400;--y:186">outbound only</p>
       <p class="sl" style="--x:10;--y:258">internet → db</p>
-      <button class="station" type="button" data-key="igw" aria-pressed="false" aria-controls="ks-ag" style="--x:15;--y:30;--w:170;--h:70"><span class="st-name">Gateway</span><span class="st-sub">internet</span></button>
-      <button class="station" type="button" data-key="lb" aria-pressed="true" aria-controls="ks-ag" style="--x:215;--y:30;--w:170;--h:70;--svc:var(--sec)"><span class="st-name">lb-public</span><span class="st-sub">:443</span></button>
-      <button class="station" type="button" data-key="nat" aria-pressed="false" aria-controls="ks-ag" style="--x:415;--y:30;--w:170;--h:70"><span class="st-name">NAT</span><span class="st-sub">egress</span></button>
-      <button class="station" type="button" data-key="web" aria-pressed="false" aria-controls="ks-ag" style="--x:215;--y:145;--w:170;--h:70;--svc:var(--ok)"><span class="st-name">web-api</span><span class="st-sub">10.0.1.0/24</span></button>
-      <button class="station" type="button" data-key="db" aria-pressed="false" aria-controls="ks-ag" style="--x:215;--y:260;--w:170;--h:70;--svc:var(--warn)"><span class="st-name">orders-db</span><span class="st-sub">10.0.2.0/24</span></button>
+      <button class="station" type="button" data-key="igw" aria-pressed="false" aria-controls="ks-net" style="--x:15;--y:30;--w:170;--h:70"><span class="st-name">Gateway</span><span class="st-sub">internet</span></button>
+      <button class="station" type="button" data-key="lb" aria-pressed="true" aria-controls="ks-net" style="--x:215;--y:30;--w:170;--h:70;--svc:var(--sec)"><span class="st-name">lb-public</span><span class="st-sub">:443</span></button>
+      <button class="station" type="button" data-key="nat" aria-pressed="false" aria-controls="ks-net" style="--x:415;--y:30;--w:170;--h:70"><span class="st-name">NAT</span><span class="st-sub">egress</span></button>
+      <button class="station" type="button" data-key="web" aria-pressed="false" aria-controls="ks-net" style="--x:215;--y:145;--w:170;--h:70;--svc:var(--ok)"><span class="st-name">web-api</span><span class="st-sub">10.0.1.0/24</span></button>
+      <button class="station" type="button" data-key="db" aria-pressed="false" aria-controls="ks-net" style="--x:215;--y:260;--w:170;--h:70;--svc:var(--warn)"><span class="st-name">orders-db</span><span class="st-sub">10.0.2.0/24</span></button>
     </div>
   </div>
   <div class="f-foot">
     <p class="oneliner"><span class="co-label">In one sentence</span>Requests enter only through the load balancer; the app goes out through NAT, and there is no path from the internet to the database.</p>
-    <div class="st-detail" id="ks-ag" aria-live="polite">
+    <div class="st-detail" id="ks-net" aria-live="polite">
       <div data-for="igw"><b>Gateway.</b> The VPC's only connection to the internet. Only resources in the public subnet route to it directly.</div>
       <div data-for="lb"><b>lb-public.</b> Accepts requests on port 443 and forwards them to web-api in the private subnet.</div>
       <div data-for="nat"><b>NAT.</b> Provides outbound access from the private subnet; it accepts no inbound connections.</div>

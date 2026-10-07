@@ -100,7 +100,7 @@
 
 <chapter title="Station positioning" lead="Clickable stations are placed in drawing units too: --x, --y, --w and --h. When the scale changes, the buttons grow with the drawing; their corners are square like the boxes in the drawing.">
 <demo label="Example · producer, queue, workers">
-<div data-explorer="cb-kuyruk">
+<div data-explorer="cb-queue">
   <div class="drawing" style="--aw:800;--ah:200">
     <svg viewBox="0 0 800 200" aria-hidden="true">
       <path class="ln-draw" d="M220 95H294M294 95l-8-4M294 95l-8 4M500 95H574M574 95l-8-4M574 95l-8 4"/>
@@ -110,14 +110,14 @@
     <p class="sl" style="--x:226;--y:66">publish</p>
     <p class="sl" style="--x:506;--y:66">pull</p>
     <p class="sl" style="--x:20;--y:16">--x: 20 · --y: 50</p>
-    <button class="station svc-k8s" type="button" data-key="uretici" aria-pressed="true" aria-controls="cb-kuyruk" style="--x:20;--y:50;--w:200;--h:90"><span class="st-name">Producer</span><span class="st-sub">web-api</span><span class="st-meta">1 message per event</span></button>
-    <button class="station svc-aws" type="button" data-key="kuyruk" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:300;--y:50;--w:200;--h:90"><span class="st-name">Queue</span><span class="st-sub">jobs-eu</span><span class="st-meta">depth 1,240</span></button>
-    <button class="station" type="button" data-key="isci" aria-pressed="false" aria-controls="cb-kuyruk" style="--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)"><span class="st-name">Workers</span><span class="st-sub">billing-worker × 4</span><span class="st-meta">--h: 100</span></button>
+    <button class="station svc-k8s" type="button" data-key="producer" aria-pressed="true" aria-controls="cb-queue" style="--x:20;--y:50;--w:200;--h:90"><span class="st-name">Producer</span><span class="st-sub">web-api</span><span class="st-meta">1 message per event</span></button>
+    <button class="station svc-aws" type="button" data-key="queue" aria-pressed="false" aria-controls="cb-queue" style="--x:300;--y:50;--w:200;--h:90"><span class="st-name">Queue</span><span class="st-sub">jobs-eu</span><span class="st-meta">depth 1,240</span></button>
+    <button class="station" type="button" data-key="worker" aria-pressed="false" aria-controls="cb-queue" style="--x:580;--y:40;--w:200;--h:100;--svc:var(--ok)"><span class="st-name">Workers</span><span class="st-sub">billing-worker × 4</span><span class="st-meta">--h: 100</span></button>
   </div>
-  <div class="st-detail" id="cb-kuyruk" aria-live="polite">
-    <div data-for="uretici"><b>Producer.</b> Drops one message into the queue for each order event and returns without waiting.</div>
-    <div data-for="kuyruk"><b>Queue.</b> Holds messages in order; a received message is hidden from other workers for the visibility timeout.</div>
-    <div data-for="isci"><b>Workers.</b> Four replicas pull from the same queue. This station sits 10 units higher and is 10 units taller: <code>--y: 40; --h: 100</code>.</div>
+  <div class="st-detail" id="cb-queue" aria-live="polite">
+    <div data-for="producer"><b>Producer.</b> Drops one message into the queue for each order event and returns without waiting.</div>
+    <div data-for="queue"><b>Queue.</b> Holds messages in order; a received message is hidden from other workers for the visibility timeout.</div>
+    <div data-for="worker"><b>Workers.</b> Four replicas pull from the same queue. This station sits 10 units higher and is 10 units taller: <code>--y: 40; --h: 100</code>.</div>
   </div>
 </div>
 </demo>

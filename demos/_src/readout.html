@@ -13,7 +13,7 @@
 
 <chapter title="Live calculation" lead="The text is rewritten as the input changes. Three examples: storage cost, a tag pattern test and replica capacity.">
 <demo label="Example · object storage cost estimate">
-<div id="gs-maliyet">
+<div id="gs-cost">
   <fieldset class="choice is-seg">
     <legend>Monthly data</legend>
     <label><input type="radio" name="gs-gb" value="500"><span>500 GB</span></label>
@@ -22,32 +22,32 @@
   </fieldset>
   <fieldset class="choice">
     <legend>Storage class</legend>
-    <label><input type="radio" name="gs-sinif" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
-    <label><input type="radio" name="gs-sinif" value="archive"><span>archive <small>$0.004/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="standard" checked><span>standard <small>$0.023/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="infrequent"><span>infrequent access <small>$0.0125/GB</small></span></label>
+    <label><input type="radio" name="gs-tier" value="archive"><span>archive <small>$0.004/GB</small></span></label>
   </fieldset>
-  <div class="readout" id="gs-maliyet-out" aria-live="polite"><p>Calculating…</p></div>
+  <div class="readout" id="gs-cost-out" aria-live="polite"><p>Calculating…</p></div>
 </div>
 </demo>
 <demo label="Example · tag pattern test">
 <div id="gs-regex" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:640px">
-  <label class="chip" for="gs-kalip">Pattern</label>
-  <label class="chip" for="gs-etiket">Tag</label>
-  <input id="gs-kalip" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
-  <input id="gs-etiket" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <label class="chip" for="gs-pattern">Pattern</label>
+  <label class="chip" for="gs-tag">Tag</label>
+  <input id="gs-pattern" class="mono" value="^prod-[0-9a-f]{8}$" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
+  <input id="gs-tag" class="mono" value="prod-3f9c2a1b" spellcheck="false" style="padding:6px 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)">
 </div>
 <div class="readout" id="gs-regex-out" aria-live="polite"><p>Calculating…</p></div>
 </demo>
 <demo label="Example · capacity against peak load">
-<div id="gs-kapasite" style="max-width:640px">
-  <label class="chip" for="gs-kopya">Replicas: <output id="gs-kopya-n" for="gs-kopya">4</output></label>
-  <input id="gs-kopya" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
+<div id="gs-capacity" style="max-width:640px">
+  <label class="chip" for="gs-replica">Replicas: <output id="gs-replica-n" for="gs-replica">4</output></label>
+  <input id="gs-replica" type="range" min="1" max="12" value="4" style="display:block;width:100%;margin:8px 0 0;accent-color:var(--accent)">
   <p class="figcap">450 req/s per replica · measured peak 1,800 req/s · target headroom 25%</p>
 </div>
-<div class="readout" id="gs-kapasite-out" aria-live="polite"><p>Calculating…</p></div>
+<div class="readout" id="gs-capacity-out" aria-live="polite"><p>Calculating…</p></div>
 </demo>
 <div class="prose"><p>The package does not do the calculation; the page script reads the value and writes the text and the class. The script for the capacity example:</p></div>
-<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-kopya'), out = document.getElementById('gs-kapasite-out');
+<figure class="code"><figcaption class="code-head"><span class="code-file">page script</span><span class="code-lang">JS</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>var r = document.getElementById('gs-replica'), out = document.getElementById('gs-capacity-out');
 function show() {
   var cap = r.value * 450, need = 1800 * 1.25;
   out.classList.toggle('s-ok', cap &gt;= need);
@@ -96,10 +96,10 @@ show();</code></pre></figure>
 <script data-page>
 /* storage cost */
 (function () {
-  var box = document.getElementById('gs-maliyet'), out = document.getElementById('gs-maliyet-out');
+  var box = document.getElementById('gs-cost'), out = document.getElementById('gs-cost-out');
   var fiyat = { standard: 0.023, infrequent: 0.0125, archive: 0.004 };
   function show() {
-    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-sinif"]:checked').value;
+    var gb = +box.querySelector('input[name="gs-gb"]:checked').value, s = box.querySelector('input[name="gs-tier"]:checked').value;
     var tl = gb * fiyat[s], over = tl > 150;
     out.classList.toggle('s-bad', over);
     out.innerHTML = '<p><b>$' + tl.toFixed(2) + ' / month</b> · ' + gb.toLocaleString('en-US') + ' GB, ' + s + ' class.' + (over ? ' The team budget is $150; consider the archive class.' : '') + '</p>';
@@ -108,7 +108,7 @@ show();</code></pre></figure>
 })();
 /* regular expression test */
 (function () {
-  var k = document.getElementById('gs-kalip'), e = document.getElementById('gs-etiket'), out = document.getElementById('gs-regex-out');
+  var k = document.getElementById('gs-pattern'), e = document.getElementById('gs-tag'), out = document.getElementById('gs-regex-out');
   function show() {
     var re;
     try { re = new RegExp(k.value); } catch (x) { out.className = 'readout s-bad'; out.innerHTML = '<p><b>Invalid pattern.</b> ' + x.message.replace(/</g, '&lt;') + '</p>'; return; }
@@ -120,7 +120,7 @@ show();</code></pre></figure>
 })();
 /* capacity */
 (function () {
-  var r = document.getElementById('gs-kopya'), n = document.getElementById('gs-kopya-n'), out = document.getElementById('gs-kapasite-out');
+  var r = document.getElementById('gs-replica'), n = document.getElementById('gs-replica-n'), out = document.getElementById('gs-capacity-out');
   function show() {
     var cap = r.value * 450, need = 1800 * 1.25, ok = cap >= need, tight = !ok && cap >= 1800;
     n.textContent = r.value;

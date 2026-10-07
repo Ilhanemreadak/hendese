@@ -4,13 +4,13 @@
 <demo label="Example · text, select, multi-line">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-servis">Service name</label>
-    <input id="fa-servis" name="servis" value="web-api" aria-describedby="fa-servis-h">
-    <p class="field-help" id="fa-servis-h">This name appears on dashboards and in alarm titles.</p>
+    <label for="fa-service">Service name</label>
+    <input id="fa-service" name="service" value="web-api" aria-describedby="fa-service-h">
+    <p class="field-help" id="fa-service-h">This name appears on dashboards and in alarm titles.</p>
   </div>
   <div class="field">
-    <label for="fa-seviye">Log level</label>
-    <select id="fa-seviye" name="seviye">
+    <label for="fa-level">Log level</label>
+    <select id="fa-level" name="level">
       <option>debug</option>
       <option selected>info</option>
       <option>warn</option>
@@ -31,10 +31,10 @@
 <demo label="Example · live validation: type, then leave the field">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-kume">Cluster name</label>
-    <input id="fa-kume" name="kume" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-kume-h fa-kume-e">
-    <p class="field-help" id="fa-kume-h">Starts with a lowercase letter; lowercase letters, digits and hyphens; 3–24 characters.</p>
-    <p class="field-error" id="fa-kume-e">the cluster name does not match this pattern.</p>
+    <label for="fa-cluster">Cluster name</label>
+    <input id="fa-cluster" name="cluster" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-cluster-h fa-cluster-e">
+    <p class="field-help" id="fa-cluster-h">Starts with a lowercase letter; lowercase letters, digits and hyphens; 3–24 characters.</p>
+    <p class="field-error" id="fa-cluster-e">the cluster name does not match this pattern.</p>
   </div>
 </div>
 </demo>
@@ -42,19 +42,19 @@
 <demo label="Example · a value the server rejected">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-bolge">Region code</label>
-    <input id="fa-bolge" name="bolge" class="mono" value="EU West 1" aria-invalid="true" aria-describedby="fa-bolge-h fa-bolge-e">
-    <p class="field-help" id="fa-bolge-h">The cloud provider's region code.</p>
-    <p class="field-error" id="fa-bolge-e">region codes are written in lowercase with hyphens, for example <code>eu-west-1</code>.</p>
+    <label for="fa-region">Region code</label>
+    <input id="fa-region" name="region" class="mono" value="EU West 1" aria-invalid="true" aria-describedby="fa-region-h fa-region-e">
+    <p class="field-help" id="fa-region-h">The cloud provider's region code.</p>
+    <p class="field-error" id="fa-region-e">region codes are written in lowercase with hyphens, for example <code>eu-west-1</code>.</p>
   </div>
 </div>
 </demo>
 <demo label="Example · disabled">
 <div style="max-width:440px">
   <div class="field">
-    <label for="fa-hesap">Account ID</label>
-    <input id="fa-hesap" name="hesap" class="mono" value="123456789012" disabled aria-describedby="fa-hesap-h">
-    <p class="field-help" id="fa-hesap-h">Assigned at the organization level; it cannot be changed here.</p>
+    <label for="fa-account">Account ID</label>
+    <input id="fa-account" name="account" class="mono" value="123456789012" disabled aria-describedby="fa-account-h">
+    <p class="field-help" id="fa-account-h">Assigned at the organization level; it cannot be changed here.</p>
   </div>
 </div>
 </demo>
@@ -99,18 +99,18 @@
 <demo label="Example · fields with units">
 <div class="field-row">
   <div class="field">
-    <label for="fa-zaman">Request timeout</label>
-    <div class="field-unit"><input id="fa-zaman" name="zaman" class="mono" type="number" min="100" max="60000" step="100" value="3000" required aria-describedby="fa-zaman-h fa-zaman-u fa-zaman-e"><span id="fa-zaman-u">ms</span></div>
-    <p class="field-help" id="fa-zaman-h">Between 100 and 60000.</p>
-    <p class="field-error" id="fa-zaman-e">the timeout must be between 100 and 60000 ms.</p>
+    <label for="fa-time">Request timeout</label>
+    <div class="field-unit"><input id="fa-time" name="time" class="mono" type="number" min="100" max="60000" step="100" value="3000" required aria-describedby="fa-time-h fa-time-u fa-time-e"><span id="fa-time-u">ms</span></div>
+    <p class="field-help" id="fa-time-h">Between 100 and 60000.</p>
+    <p class="field-error" id="fa-time-e">the timeout must be between 100 and 60000 ms.</p>
   </div>
   <div class="field">
-    <label for="fa-bellek">Memory limit</label>
-    <div class="field-unit"><input id="fa-bellek" name="bellek" class="mono" type="number" min="1" max="64" value="4" aria-describedby="fa-bellek-u"><span id="fa-bellek-u">GiB</span></div>
+    <label for="fa-memory">Memory limit</label>
+    <div class="field-unit"><input id="fa-memory" name="memory" class="mono" type="number" min="1" max="64" value="4" aria-describedby="fa-memory-u"><span id="fa-memory-u">GiB</span></div>
   </div>
   <div class="field">
-    <label for="fa-adet">Minimum replicas</label>
-    <div class="field-unit"><input id="fa-adet" name="adet" class="mono" type="number" min="0" max="20" value="2" aria-describedby="fa-adet-u"><span id="fa-adet-u">count</span></div>
+    <label for="fa-count">Minimum replicas</label>
+    <div class="field-unit"><input id="fa-count" name="count" class="mono" type="number" min="0" max="20" value="2" aria-describedby="fa-count-u"><span id="fa-count-u">count</span></div>
   </div>
 </div>
 </demo>
@@ -120,42 +120,42 @@
 <chapter title="In context" lead="A new environment form on a dark panel. When you try to submit, the browser marks the invalid fields; if all are valid, the result line is written.">
 <demo label="Example · new environment, dark scene">
 <div class="scene-dark" style="border-radius:var(--r-md);padding:var(--sp-8)">
-  <form id="fa-ortam" style="max-width:560px">
+  <form id="fa-env" style="max-width:560px">
     <div class="field-row">
       <div class="field">
-        <label for="fa-o-ad">Environment name</label>
-        <input id="fa-o-ad" name="ad" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-o-ad-h fa-o-ad-e">
-        <p class="field-help" id="fa-o-ad-h">For example <code>staging-2</code>.</p>
-        <p class="field-error" id="fa-o-ad-e">lowercase letters, digits and hyphens; 3–24 characters.</p>
+        <label for="fa-o-name">Environment name</label>
+        <input id="fa-o-name" name="ad" class="mono" required pattern="[a-z][a-z0-9\-]{2,23}" spellcheck="false" autocomplete="off" aria-describedby="fa-o-name-h fa-o-name-e">
+        <p class="field-help" id="fa-o-name-h">For example <code>staging-2</code>.</p>
+        <p class="field-error" id="fa-o-name-e">lowercase letters, digits and hyphens; 3–24 characters.</p>
       </div>
       <div class="field">
-        <label for="fa-o-bolge">Region</label>
-        <select id="fa-o-bolge" name="bolge" required aria-describedby="fa-o-bolge-e">
+        <label for="fa-o-region">Region</label>
+        <select id="fa-o-region" name="region" required aria-describedby="fa-o-region-e">
           <option value="">Choose…</option>
           <option>eu-west-1</option>
           <option>eu-central-1</option>
           <option>us-east-1</option>
           <option>ap-southeast-1</option>
         </select>
-        <p class="field-error" id="fa-o-bolge-e">choose a region.</p>
+        <p class="field-error" id="fa-o-region-e">choose a region.</p>
       </div>
     </div>
     <div class="field">
-      <label for="fa-o-aciklama">Description</label>
-      <textarea id="fa-o-aciklama" name="aciklama" aria-describedby="fa-o-aciklama-h">Temporary environment for load testing the payment service.</textarea>
-      <p class="field-help" id="fa-o-aciklama-h">Shown under the name in the environment list.</p>
+      <label for="fa-o-desc">Description</label>
+      <textarea id="fa-o-desc" name="desc" aria-describedby="fa-o-desc-h">Temporary environment for load testing the payment service.</textarea>
+      <p class="field-help" id="fa-o-desc-h">Shown under the name in the environment list.</p>
     </div>
     <div class="field">
-      <label for="fa-o-kalip">Tag pattern</label>
-      <input id="fa-o-kalip" name="kalip" class="mono" required pattern="[A-Za-z0-9._*\-]+" value="staging-*" spellcheck="false" autocomplete="off" aria-describedby="fa-o-kalip-h fa-o-kalip-e">
-      <p class="field-help" id="fa-o-kalip-h">Image tags that match this pattern are deployed to the environment automatically; <code>*</code> matches any sequence.</p>
-      <p class="field-error" id="fa-o-kalip-e">only letters, digits, dots, hyphens, underscores and <code>*</code>.</p>
+      <label for="fa-o-pattern">Tag pattern</label>
+      <input id="fa-o-pattern" name="pattern" class="mono" required pattern="[A-Za-z0-9._*\-]+" value="staging-*" spellcheck="false" autocomplete="off" aria-describedby="fa-o-pattern-h fa-o-pattern-e">
+      <p class="field-help" id="fa-o-pattern-h">Image tags that match this pattern are deployed to the environment automatically; <code>*</code> matches any sequence.</p>
+      <p class="field-error" id="fa-o-pattern-e">only letters, digits, dots, hyphens, underscores and <code>*</code>.</p>
     </div>
     <div class="pillrow" style="justify-content:flex-end">
       <button class="btn" type="reset">Cancel</button>
       <button class="btn" type="submit"><svg><use href="#i-check"/></svg>Create environment</button>
     </div>
-    <div class="readout" id="fa-ortam-out" aria-live="polite"><p>The form has not been submitted yet.</p></div>
+    <div class="readout" id="fa-env-out" aria-live="polite"><p>The form has not been submitted yet.</p></div>
   </form>
 </div>
 </demo>
@@ -174,8 +174,8 @@
 <div class="dodont">
 <demo label="Do · a visible label">
 <div class="field">
-  <label for="fa-yap-etiket">Health check path</label>
-  <input id="fa-yap-etiket" class="mono" value="/healthz" spellcheck="false">
+  <label for="fa-do-tag">Health check path</label>
+  <input id="fa-do-tag" class="mono" value="/healthz" spellcheck="false">
 </div>
 </demo>
 <demo label="Don't · placeholder only">
@@ -188,16 +188,16 @@
 <div class="dodont">
 <demo label="Do · an error sentence">
 <div class="field">
-  <label for="fa-yap-hata">Memory limit</label>
-  <input id="fa-yap-hata" class="mono" value="512" aria-invalid="true" aria-describedby="fa-yap-hata-h fa-yap-hata-e">
-  <p class="field-help" id="fa-yap-hata-h">Include the unit: <code>Mi</code> or <code>Gi</code>.</p>
-  <p class="field-error" id="fa-yap-hata-e">the unit is missing; did you mean <code>512Mi</code>?</p>
+  <label for="fa-do-error">Memory limit</label>
+  <input id="fa-do-error" class="mono" value="512" aria-invalid="true" aria-describedby="fa-do-error-h fa-do-error-e">
+  <p class="field-help" id="fa-do-error-h">Include the unit: <code>Mi</code> or <code>Gi</code>.</p>
+  <p class="field-error" id="fa-do-error-e">the unit is missing; did you mean <code>512Mi</code>?</p>
 </div>
 </demo>
 <demo label="Don't · a red border only">
 <div class="field">
-  <label for="fa-yapma-hata">Memory limit</label>
-  <input id="fa-yapma-hata" class="mono" value="512" aria-invalid="true">
+  <label for="fa-dont-error">Memory limit</label>
+  <input id="fa-dont-error" class="mono" value="512" aria-invalid="true">
 </div>
 </demo>
 </div>
@@ -207,15 +207,15 @@
 <script data-page>
 /* new environment form: validation happens in the browser; if valid, just write the result */
 (function () {
-  var f = document.getElementById('fa-ortam'), out = document.getElementById('fa-ortam-out');
+  var f = document.getElementById('fa-env'), out = document.getElementById('fa-env-out');
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(f);
     out.classList.add('s-ok');
     out.innerHTML = '<p><b></b> will be created in <span></span>; <code></code> tags will be deployed here.</p>';
     out.querySelector('b').textContent = d.get('ad');
-    out.querySelector('span').textContent = d.get('bolge');
-    out.querySelector('code').textContent = d.get('kalip');
+    out.querySelector('span').textContent = d.get('region');
+    out.querySelector('code').textContent = d.get('pattern');
   });
   f.addEventListener('reset', function () { out.classList.remove('s-ok'); out.innerHTML = '<p>The form has not been submitted yet.</p>'; });
 })();

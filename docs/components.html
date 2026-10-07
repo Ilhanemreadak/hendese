@@ -500,33 +500,33 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
   <div class="demo">
     <span class="demo-label">Example · <span lang="en">.choice</span> and <span lang="en">.choice.is-seg</span></span>
     <div class="demo-view">
-<fieldset class="choice" id="ortam-sec">
+<fieldset class="choice" id="env-select">
   <legend>Environment</legend>
-  <label><input type="radio" name="ortam" value="dev"><span>dev</span></label>
-  <label><input type="radio" name="ortam" value="test" checked><span>test</span></label>
-  <label><input type="radio" name="ortam" value="prod"><span>prod <small>eu-west-1</small></span></label>
+  <label><input type="radio" name="env" value="dev"><span>dev</span></label>
+  <label><input type="radio" name="env" value="test" checked><span>test</span></label>
+  <label><input type="radio" name="env" value="prod"><span>prod <small>eu-west-1</small></span></label>
 </fieldset>
-<fieldset class="choice is-seg" id="strateji-sec">
+<fieldset class="choice is-seg" id="strategy-select">
   <legend>Deploy</legend>
-  <label><input type="radio" name="strateji" value="rolling" checked><span>rolling</span></label>
-  <label><input type="radio" name="strateji" value="blue-green"><span>blue-green</span></label>
-  <label><input type="radio" name="strateji" value="all-at-once"><span>all-at-once</span></label>
+  <label><input type="radio" name="strategy" value="rolling" checked><span>rolling</span></label>
+  <label><input type="radio" name="strategy" value="blue-green"><span>blue-green</span></label>
+  <label><input type="radio" name="strategy" value="all-at-once"><span>all-at-once</span></label>
 </fieldset>
-<div class="readout" id="secim-out" aria-live="polite"><p><b>test</b>: <b>rolling</b> deploy.</p></div>
+<div class="readout" id="choice-out" aria-live="polite"><p><b>test</b>: <b>rolling</b> deploy.</p></div>
     </div>
-    <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;fieldset class="choice" id="ortam-sec"&gt;
+    <figure class="code"><figcaption class="code-head"><span class="code-file">markup</span><span class="code-lang">HTML</span><button class="code-copy" type="button"><svg><use href="#i-copy"/></svg><span>Copy</span></button></figcaption><pre tabindex="0"><code>&lt;fieldset class="choice" id="env-select"&gt;
   &lt;legend&gt;Environment&lt;/legend&gt;
-  &lt;label&gt;&lt;input type="radio" name="ortam" value="dev"&gt;&lt;span&gt;dev&lt;/span&gt;&lt;/label&gt;
-  &lt;label&gt;&lt;input type="radio" name="ortam" value="test" checked&gt;&lt;span&gt;test&lt;/span&gt;&lt;/label&gt;
-  &lt;label&gt;&lt;input type="radio" name="ortam" value="prod"&gt;&lt;span&gt;prod &lt;small&gt;eu-west-1&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="dev"&gt;&lt;span&gt;dev&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="test" checked&gt;&lt;span&gt;test&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="env" value="prod"&gt;&lt;span&gt;prod &lt;small&gt;eu-west-1&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;
 &lt;/fieldset&gt;
-&lt;fieldset class="choice is-seg" id="strateji-sec"&gt;
+&lt;fieldset class="choice is-seg" id="strategy-select"&gt;
   &lt;legend&gt;Deploy&lt;/legend&gt;
-  &lt;label&gt;&lt;input type="radio" name="strateji" value="rolling" checked&gt;&lt;span&gt;rolling&lt;/span&gt;&lt;/label&gt;
-  &lt;label&gt;&lt;input type="radio" name="strateji" value="blue-green"&gt;&lt;span&gt;blue-green&lt;/span&gt;&lt;/label&gt;
-  &lt;label&gt;&lt;input type="radio" name="strateji" value="all-at-once"&gt;&lt;span&gt;all-at-once&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="rolling" checked&gt;&lt;span&gt;rolling&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="blue-green"&gt;&lt;span&gt;blue-green&lt;/span&gt;&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="strategy" value="all-at-once"&gt;&lt;span&gt;all-at-once&lt;/span&gt;&lt;/label&gt;
 &lt;/fieldset&gt;
-&lt;div class="readout" id="secim-out" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;test&lt;/b&gt;: &lt;b&gt;rolling&lt;/b&gt; deploy.&lt;/p&gt;&lt;/div&gt;</code></pre></figure>
+&lt;div class="readout" id="choice-out" aria-live="polite"&gt;&lt;p&gt;&lt;b&gt;test&lt;/b&gt;: &lt;b&gt;rolling&lt;/b&gt; deploy.&lt;/p&gt;&lt;/div&gt;</code></pre></figure>
   </div>
   <div class="prose">
     <p><code>.readout</code> writes out the result of the choice; <code>aria-live="polite"</code> announces the change to screen readers. <code>.s-ok</code>, <code>.s-warn</code>, <code>.s-bad</code> and <code>.s-sec</code> color the left rule and the bold text by status (the old <code>.ok</code> / <code>.bad</code> keep working until 1.0); in the example, choosing <b>prod</b> together with <b>all-at-once</b> turns it <code>.s-bad</code>.</p>
@@ -661,9 +661,9 @@ show(rb.querySelectorAll('input:checked').length, rb.querySelectorAll('input').l
     <span class="demo-label">Example · field, tabs, dimension note, empty state</span>
     <div class="demo-view">
 <div class="field-row">
-  <div class="field"><label for="c11-ad">Service name</label><input id="c11-ad" class="mono" value="web-api" aria-describedby="c11-ad-h"><p class="field-help" id="c11-ad-h">Lowercase, hyphenated.</p></div>
-  <div class="field"><label for="c11-bolge">Region</label><select id="c11-bolge"><option>eu-west-1</option><option>eu-central-1</option></select></div>
-  <div class="field"><label for="c11-sure">Timeout</label><div class="field-unit"><input id="c11-sure" class="mono" inputmode="numeric" value="30" aria-describedby="c11-sure-u"><span id="c11-sure-u">s</span></div></div>
+  <div class="field"><label for="c11-name">Service name</label><input id="c11-name" class="mono" value="web-api" aria-describedby="c11-name-h"><p class="field-help" id="c11-name-h">Lowercase, hyphenated.</p></div>
+  <div class="field"><label for="c11-region">Region</label><select id="c11-region"><option>eu-west-1</option><option>eu-central-1</option></select></div>
+  <div class="field"><label for="c11-duration">Timeout</label><div class="field-unit"><input id="c11-duration" class="mono" inputmode="numeric" value="30" aria-describedby="c11-duration-u"><span id="c11-duration-u">s</span></div></div>
 </div>
 <div class="tabs" data-tabs>
   <div role="tablist" aria-label="Format">
@@ -715,10 +715,10 @@ document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
 })();
 /* choice groups → readout */
 (function () {
-  var out = document.getElementById('secim-out');
+  var out = document.getElementById('choice-out');
   function val(name) { return document.querySelector('input[name="' + name + '"]:checked').value; }
   function show() {
-    var o = val('ortam'), s = val('strateji'), risk = o === 'prod' && s === 'all-at-once';
+    var o = val('env'), s = val('strategy'), risk = o === 'prod' && s === 'all-at-once';
     out.classList.toggle('s-bad', risk);
     /* values are written as text, never parsed as HTML */
     function bold(t) { var e = document.createElement('b'); e.textContent = t; return e; }
@@ -726,7 +726,7 @@ document.querySelectorAll('.demo .toggle-btn').forEach(function (b) {
     p.append(bold(o), ': ', bold(s), ' deploy.' + (risk ? ' In production every replica changes at once; there is no rollback window.' : ''));
     out.replaceChildren(p);
   }
-  ['ortam-sec', 'strateji-sec'].forEach(function (id) { document.getElementById(id).addEventListener('change', show); });
+  ['env-select', 'strategy-select'].forEach(function (id) { document.getElementById(id).addEventListener('change', show); });
   show();
 })();
 Hendese.start();
