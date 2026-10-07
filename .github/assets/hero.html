@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- Source of the README hero images (hero-light.png / hero-dark.png); rendered by tools/readme-hero.mjs. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hendese hero</title>
+<link rel="stylesheet" href="../../dist/hendese.css">
+<style>body{margin:0;padding:32px;background:var(--bg)}#hero{max-width:1120px;margin:auto}</style>
+</head>
+<body>
+<div id="hero">
+<div class="frame">
+  <div class="frame-bg" aria-hidden="true"></div>
+  <header class="f-head">
+    <p class="chip">02 · Figure 1</p>
+    <p class="fig-cap">Three stops of a change</p>
+  </header>
+  <div class="f-side">
+    <ol class="beats">
+      <li><b>1 · Source</b>A developer pushes to the main branch; a trigger filter checks the branch.</li>
+      <li><b>2 · Build</b>A throwaway container builds the image and pushes it as <code>prod-3f9c2a1b</code>.</li>
+      <li><b>3 · Registry</b>The image waits in the <code>eu-west-1</code> registry; deploying is a separate step.</li>
+    </ol>
+  </div>
+  <div class="f-map">
+    <div class="drawing" id="d" style="--aw:600;--ah:250">
+      <svg viewBox="0 0 600 250" aria-hidden="true">
+        <path class="ln-pencil" d="M0 220H600"/>
+        <path class="dim" d="M20 104V52M580 104V52M20 60H580M20 60l8-3v6zM580 60l-8-3v6z"/>
+        <text class="dim-t" x="300" y="50" text-anchor="middle">end to end ≈ 4 min</text>
+        <rect class="ln-draw fill-paper" x="20" y="110" width="160" height="90"/>
+        <rect class="ln-draw fill-paper" x="220" y="110" width="160" height="90"/>
+        <rect class="ln-draw fill-paper" x="420" y="110" width="160" height="90"/>
+        <path class="ln-draw" d="M180 155H214M214 155l-8-4M214 155l-8 4M380 155H414M414 155l-8-4M414 155l-8 4"/>
+      </svg>
+      <p class="dl r-ink" style="--x:30;--y:122;--w:140"><span class="stamp-k">1 · Source</span>sample-service</p>
+      <p class="dl r-ink" style="--x:230;--y:122;--w:140"><span class="stamp-k">2 · Build</span>prod-3f9c2a1b</p>
+      <p class="dl r-ink" style="--x:430;--y:122;--w:140"><span class="stamp-k">3 · Registry</span>eu-west-1</p>
+    </div>
+  </div>
+  <div class="f-foot">
+    <p class="figcap"><b>Figure 1.</b> Source, build and registry from left to right; the dimension line on top shows the total time. The time is observed, not guaranteed.</p>
+  </div>
+</div>
+</div>
+<script src="../../dist/hendese.js"></script>
+<script>
+Hendese.init();
+Hendese.createHoca().place(document.getElementById('d'), { left: '50%', top: '96%', pose: 'clipboard', face: 1, bubble: 'Measured, not guessed.' });
+</script>
+</body>
+</html>

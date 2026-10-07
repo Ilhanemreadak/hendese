@@ -2,9 +2,21 @@
 
 Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme: [SemVer](https://semver.org).
 
+## [Unreleased]
+
+Açık kaynak yayınına hazırlık.
+
+### Eklendi
+- MIT lisansı (`LICENSE`) ve paket meta alanları (`license`, `author`, `repository`, `homepage`, `bugs`, `keywords`).
+- İngilizce `README.md`, Türkçe `README.tr.md`, `CONTRIBUTING.md`, `SECURITY.md`.
+- GitHub Actions CI: resmi Playwright imajında build, `dist/` güncellik denetimi, birim ve e2e testleri.
+- Linux görsel temel görüntüleri (`*-linux.png`).
+- Yayın öncesi inceleme raporu `docs/audits/` altına taşındı ve her bulgunun durumu güncellendi.
+- README kahraman görseli ve kaynağı (`.github/assets/hero.html`, `tools/readme-hero.mjs`).
+
 ## [0.4.0] - 2026-10-06
 
-Ön yayın denetiminin (`AUDIT.md`) yayınla ilgili olmayan bulguları düzeltildi. Kod içi yorumların hepsi İngilizceye çevrildi.
+[Yayın öncesi incelemenin](docs/audits/2026-10-pre-release-review.md) yayınla ilgili olmayan bulguları düzeltildi. Kod içi yorumların hepsi İngilizceye çevrildi.
 
 ### Değişti (kırıcı)
 - **Paket girişi:** `module`, `main` ve `exports["."]` artık derlenmiş `dist/hendese.esm.js` dosyasını gösterir; önceden derlenmemiş `src/js/index.js` geliyordu ve `version` değeri `'dev'` dönüyordu. IIFE (`dist/hendese.js`) `unpkg`/`jsdelivr` alanlarından ve `./dist/*` yolundan alınır. `./package.json` dışa açıldı; `engines.node >= 21`.
@@ -70,7 +82,7 @@ Biçim: [Keep a Changelog](https://keepachangelog.com/tr-TR/1.1.0/). Sürümleme
 
 ## [0.3.0] - 2026-10-06
 
-Yeni parçalar; hepsi `STANDART.md`'ye göre yazıldı ve advisor incelemesinden geçti.
+Yeni parçalar; hepsi `STANDART.md`'ye göre yazıldı ve kod incelemesinden geçti.
 
 ### Eklendi
 - Form alanı:

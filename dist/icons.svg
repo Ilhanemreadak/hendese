@@ -1,4 +1,4 @@
-<!-- Hendese · ikon sprite. <body> başına olduğu gibi yapıştırın, sonra <svg><use href="#i-copy"/></svg>. -->
+<!-- Hendese · Icon sprite: paste it as is at the start of <body>, then use <svg><use href="#i-copy"/></svg>. -->
 <svg class="sprite" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></symbol>
